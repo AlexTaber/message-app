@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :user_by_id, only: [:home]
   def new
     @user = User.new
   end
