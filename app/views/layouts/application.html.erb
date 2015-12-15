@@ -8,8 +8,12 @@
 </head>
 <body>
   <%= render partial: "layouts/header" %>
-  <p><%= flash[:warn] %></p>
-  <p><%= flash[:notice] %></p>
+  <% if flash[:warn] %>
+    <p><%= flash[:warn] %></p>
+  <% end %>
+  <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
   <%= yield %>
 
 </body>
