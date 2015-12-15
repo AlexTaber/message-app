@@ -1,0 +1,29 @@
+// Message 
+
+
+.msg-bx {
+	margin-top: 30%;
+	float: right;
+  width: 340px;
+	height: 4rem;
+	background: #133c64;
+	border-radius: 3px 3px 0 0;
+		header {
+			padding: 1rem 1.5rem 0;
+			color: #fff;
+			p {
+				margin-bottom: .5rem;
+			}
+			span {
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+}
+.msg-bx-is-open {
+	display: none;
+	border: 1px solid #ddd;
+	padding: 0 1rem 2rem;
+
+}

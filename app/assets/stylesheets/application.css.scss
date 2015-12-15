@@ -1,3 +1,22 @@
+@import 'base/meta';
+@import 'base/normalize';
+@import 'base/variables';
+@import 'base/typography';
+@import 'base/utilities';
+@import 'links/buttons';
+@import 'structure/grid';
+@import 'vendor/slick';
+@import 'vendor/slick-theme';
+@import 'vendor/headroom';
+@import 'vendor/sidr';
+@import 'structure/forms';
+@import 'links/nav';
+@import 'main/frontpage';
+@import 'main/sections';
+@import 'main/footer';
+@import 'structure/media';
+@import 'custom-content';
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,6 +29,5 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  */
