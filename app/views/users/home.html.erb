@@ -1,1 +1,17 @@
-<%= current_user.name %>
+<div>
+  <%= current_user.name %>
+</div>
+
+<div>
+  <h2>Sites</h2>
+  <% current_user.sites.each do |site| %>
+    <%= site.name %>
+  <% end %>
+</div>
+
+<div>
+  <h2>Sites</h2>
+  <% current_user.sites.each do |site| %>
+    <%= site.name %>
+  <% end %>
+</div>

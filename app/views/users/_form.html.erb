@@ -9,6 +9,8 @@
     <%= f.password_field :password, placeholder: "Password" %>
   </div>
 
+  <%= f.hidden_field :admin, value: admin %>
+
   <div>
     <%= f.submit "Sign Up" %>
   </div>
