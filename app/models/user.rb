@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def conversations_for_site(site)
     conversations.where(site_id: site.id)
   end
+
+  def has_sites?
+    sites.count > 0
+  end
 end

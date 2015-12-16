@@ -11,26 +11,30 @@
     <% end %>
   </nav>
 </div>
+
 <div class="message-bar">
   <div>
-    <i class="fa fa-plus"></i>
+    <%= link_to new_conversation_path(site_id: @site.id) do %>
+      <i class="fa fa-plus"></i>
+    <% end %>
   </div>
-  <% current_user.sites.first.conversations.each do |conversation| %>
+  <% @site.conversations.each do |conversation| %>
     <div class="message-item">
       <div class="media">
         <a class="img" href="">
           <%= image_tag "j-profile", class: "profile-img" %>
         </a>
         <div class="bd">
-          <h5><%= conversation.user.name %></h5>
+          <h5><%= conversation.other_users_to_s(current_user) %></h5>
           <p>
             <%= simple_format(conversation.content_preview) %>
           </p>
-          </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
+
   <div class="message-content">
    <span class="u-pull-right date-new-date"<i>Dec. 12, 2015</i></span>
    <div class="message-data">
