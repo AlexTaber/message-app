@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   def home
     current_user.has_sites? ? find_user_site : @site = Site.new
     @site.has_conversations? ? find_conversation : @conversation = Conversation.new
+    @message = Message.new
   end
 
   private

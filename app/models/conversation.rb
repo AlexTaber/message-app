@@ -2,6 +2,7 @@ class Conversation < ActiveRecord::Base
   has_many :conversers
   has_many :users, through: :conversers
   has_many :messages
+  belongs_to :site
 
   def content_preview
     messages.first.content_preview

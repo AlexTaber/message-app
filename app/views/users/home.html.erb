@@ -34,12 +34,13 @@
     <% end %>
   <% end %>
 </div>
-<% @conversation.messages.each do |message| %>
-  <div class="message-content">
+<div class="message-content">
+  <% @conversation.messages.each do |message| %>
     <span class="u-pull-right date-new-date"<i>Dec. 12, 2015</i></span>
     <div class="message-data">
       <h4><%= message.user.name %></h4>
       <%= simple_format(message.content) %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+</div>
