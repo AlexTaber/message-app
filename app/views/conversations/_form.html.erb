@@ -1,0 +1,18 @@
+<%= form_for conversation do |f| %>
+
+  <div>
+    <%= f.label :user_ids, "Users to message" %>
+    <%= f.collection_select(:user_ids, site.users, :id, :name,{}, {:multiple => true}) %>
+  </div>
+
+  <div>
+    <%= text_area_tag :content, nil, placeholder: "Type message here..." %>
+  </div>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :site_id, value: site.id %>
+
+  <div>
+    <%= f.submit "Start Conversation" %>
+  </div>
+<% end %>

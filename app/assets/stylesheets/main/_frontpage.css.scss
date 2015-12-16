@@ -56,7 +56,7 @@ body {
 	height: 100%;
 	overflow: scroll;
 	background: #fff;
-	color: #444;	
+	color: #444;
 }
 .message-item {
 	border-bottom: 1px solid #ddd;
@@ -73,6 +73,8 @@ body {
 }
 .profile-img {
  	width: 50px;
+ 	vertical-align: top;
+ 	margin-right: 5px;
  }
 
 .media {
@@ -83,20 +85,21 @@ body {
 	}
 }
 .media, .bd {
+	display: inline-block;
 	overflow:hidden;
-	 _overflow:visible; 
+	 _overflow:visible;
 	 zoom:1;
 	}
 .media .img {
-	float:left; 
+	float:left;
 	margin-right: 10px;
 }
 .media .img img {
 	display:block;
 }
 .media .imgExt {
-	float:right; 
-	margin-left: 
+	float:right;
+	margin-left:
 	10px;
 }
 

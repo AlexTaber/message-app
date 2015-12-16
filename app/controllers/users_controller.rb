@@ -21,6 +21,9 @@ class UsersController < ApplicationController
   end
 
   def home
+    current_user.has_sites? ? find_user_site : @site = Site.new
+    @site.has_conversations? ? find_conversation : @conversation = Conversation.new
+    @message = Message.new
   end
 
   private
@@ -31,5 +34,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :password, :email, :admin, :tier)
+  end
+
+  def find_user_site
+    params[:site_id] ? @site = Site.find_by(id: params[:site_id]) : @site = current_user.sites.first
+  end
+
+  def find_conversation
+    params[:conversation_id] ? @conversation = Conversation.find_by(id: params[:conversation_id]) : @conversation = @site.conversations.first
   end
 end

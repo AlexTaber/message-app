@@ -1,17 +1,46 @@
-<div>
-  <%= current_user.name %>
+<div class="sidebar">
+  <h2 class="logo"><b>M</b>ESS<b>AGE</b></h2>
+  <h3>Your sites
+    <%= link_to new_site_path do %>
+      <i class="fa fa-plus"></i>
+    <% end %>
+  </h3>
+  <nav>
+    <% current_user.sites.each do |site| %>
+      <li><%= link_to site.name, home_path(site_id: site.id) %></li>
+    <% end %>
+  </nav>
 </div>
 
-<div>
-  <h2>Sites</h2>
-  <% current_user.sites.each do |site| %>
-    <%= site.name %>
+<div class="message-bar">
+  <div>
+    <%= link_to new_conversation_path(site_id: @site.id) do %>
+      <i class="fa fa-plus"></i>
+    <% end %>
+  </div>
+  <% current_user.conversations_by_site(@site).each do |conversation| %>
+    <%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
+      <div class="message-item">
+        <div class="media">
+          <%= image_tag "j-profile", class: "profile-img" %>
+          <div class="bd">
+            <h5><%= conversation.other_users_to_s(current_user) %></h5>
+            <p>
+              <%= simple_format(conversation.content_preview) %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
-
-<div>
-  <h2>Sites</h2>
-  <% current_user.sites.each do |site| %>
-    <%= site.name %>
+<div class="message-content">
+  <% @conversation.messages.each do |message| %>
+    <span class="u-pull-right date-new-date"<i>Dec. 12, 2015</i></span>
+    <div class="message-data">
+      <h4><%= message.user.name %></h4>
+      <%= simple_format(message.content) %>
+    </div>
   <% end %>
+  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
 </div>
