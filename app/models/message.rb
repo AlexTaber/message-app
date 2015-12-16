@@ -2,8 +2,8 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :user
 
-  def content_preview
-    "#{content[0..20]}..."
+  def content_preview(length)
+    content.length > length ? "#{content[0...length]}..." : content[0...length]
   end
 
   def date_to_s

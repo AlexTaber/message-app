@@ -32,9 +32,9 @@
           <div class="media">
             <%= image_tag "j-profile", class: "profile-img" %>
             <div class="bd">
-              <h5><%= conversation.other_users_to_s(current_user) %></h5>
+              <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
               <p>
-                <%= simple_format(conversation.content_preview) %>
+                <%= simple_format(conversation.content_preview(30)) %>
               </p>
             </div>
           </div>
