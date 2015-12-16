@@ -4,6 +4,7 @@
   <title>MessageApp</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
@@ -17,5 +18,6 @@
   <% end %>
   <%= yield %>
 
+  <%= render partial: "layouts/message_box" %>
 </body>
 </html>
