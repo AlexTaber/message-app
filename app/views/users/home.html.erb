@@ -7,7 +7,7 @@
   </h3>
   <nav>
     <% current_user.sites.each do |site| %>
-      <li><%= site.name %></li>
+      <li><%= link_to site.name, home_path(site_id: site.id) %></li>
     <% end %>
   </nav>
 </div>
@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <% current_user.conversations_by_site(@site).each do |conversation| %>
-    <%= link_to home_path(conversation_id: conversation.id) do%>
+    <%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
       <div class="message-item">
         <div class="media">
           <%= image_tag "j-profile", class: "profile-img" %>
