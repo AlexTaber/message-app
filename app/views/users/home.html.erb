@@ -1,61 +1,32 @@
 <div class="sidebar">
   <h2 class="logo"><b>M</b>ESS<b>AGE</b></h2>
-  <h3>Your sites</h3>
+  <h3>Your sites
+    <%= link_to new_site_path do %>
+      <i class="fa fa-plus"></i>
+    <% end %>
+  </h3>
   <nav>
-    <li><a class="active" href="">ProDoula</a></li>
-    <li><a href="">PeekskillWebDesign</a></li>
-    <li><a href="">Amazon</a></li>
+    <% current_user.sites.each do |site| %>
+      <li><%= site.name %></li>
+    <% end %>
   </nav>
 </div>
 <div class="message-bar">
-  <div class="message-item">
-    <div class="media">
-      <a class="img" href="">
-        <%= image_tag "j-profile", class: "profile-img" %>
-      </a>
-      <div class="bd">
-        <h5>Jerry Patterson</h5>
-        <p><b>This is a message for the team</b><br>
-          I am glad you could all...</p>
-        </div>
-      </div>
-    </div>
+  <% current_user.sites.first.conversations.each do |conversation| %>
     <div class="message-item">
-    <div class="media">
-      <a class="img" href="">
-        <%= image_tag "j-profile", class: "profile-img" %>
-      </a>
-      <div class="bd">
-        <h5>Jerry Patterson</h5>
-        <p><b>This is a message for the team</b><br>
-          I am glad you could all...</p>
+      <div class="media">
+        <a class="img" href="">
+          <%= image_tag "j-profile", class: "profile-img" %>
+        </a>
+        <div class="bd">
+          <h5><%= conversation.user.name %></h5>
+          <p>
+            <%= simple_format(conversation.content) %>
+          </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="message-item">
-    <div class="media">
-      <a class="img" href="">
-        <%= image_tag "pwd-profile", class: "profile-img" %>
-      </a>
-      <div class="bd">
-        <h5>PeekskillWebDesign</h5>
-        <p><b>This is a message for the team</b><br>
-          I am glad you could all...</p>
-        </div>
-      </div>
-    </div>
-    <div class="message-item">
-    <div class="media">
-      <a class="img" href="">
-        <%= image_tag "j-profile", class: "profile-img" %>
-      </a>
-      <div class="bd">
-        <h5>Jerry Patterson</h5>
-        <p><b>In Response to Cathy</b><br>
-          I am glad you could all...</p>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
   <div class="message-content">
    <span class="u-pull-right date-new-date"<i>Dec. 12, 2015</i></span>
