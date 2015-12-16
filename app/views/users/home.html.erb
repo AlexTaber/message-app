@@ -7,7 +7,14 @@
   </h3>
   <nav>
     <% current_user.sites.each do |site| %>
-      <li><%= link_to site.name, home_path(site_id: site.id) %></li>
+      <li>
+        <% if current_user.admin_of_site?(@site) %>
+          <%= link_to edit_site_path(@site) do %>
+            <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+        <% end %>
+        <%= link_to site.name, home_path(site_id: site.id) %>
+      </li>
     <% end %>
   </nav>
 </div>
@@ -18,20 +25,24 @@
       <i class="fa fa-plus"></i>
     <% end %>
   </div>
-  <% current_user.conversations_by_site(@site).each do |conversation| %>
-    <%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
-      <div class="message-item">
-        <div class="media">
-          <%= image_tag "j-profile", class: "profile-img" %>
-          <div class="bd">
-            <h5><%= conversation.other_users_to_s(current_user) %></h5>
-            <p>
-              <%= simple_format(conversation.content_preview) %>
-            </p>
+  <% if current_user.has_conversations_by_site?(@site) %>
+    <% current_user.conversations_by_site(@site).each do |conversation| %>
+      <%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
+        <div class="message-item">
+          <div class="media">
+            <%= image_tag "j-profile", class: "profile-img" %>
+            <div class="bd">
+              <h5><%= conversation.other_users_to_s(current_user) %></h5>
+              <p>
+                <%= simple_format(conversation.content_preview) %>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
+  <% else %>
+    <h5>You don't have any conversations for this site... yet.</h5>
   <% end %>
 </div>
 <div class="message-content">
@@ -45,5 +56,7 @@
       <%= simple_format(message.content) %>
     </div>
   <% end %>
-  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+  <% unless @conversation.new_record? %>
+    <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+  <% end %>
 </div>

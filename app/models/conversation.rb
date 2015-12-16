@@ -17,4 +17,8 @@ class Conversation < ActiveRecord::Base
   def other_users(user)
     users.select { |checked_user| checked_user != user }
   end
+
+  def has_messages?
+    messages.count > 0
+  end
 end
