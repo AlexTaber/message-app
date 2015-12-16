@@ -5,4 +5,12 @@ class Message < ActiveRecord::Base
   def content_preview
     "#{content[0..20]}..."
   end
+
+  def date_to_s
+     created_at.strftime('%A, %B %d')
+  end
+
+  def time_to_s
+    created_at.strftime('%l:%M%P')
+  end
 end

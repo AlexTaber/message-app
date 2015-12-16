@@ -36,7 +36,10 @@
 </div>
 <div class="message-content">
   <% @conversation.messages.each do |message| %>
-    <span class="u-pull-right date-new-date"<i>Dec. 12, 2015</i></span>
+    <span class="u-pull-right date-new-date"
+      <i><%= message.date_to_s %></i>
+      <i><%= message.time_to_s %></i>
+    </span>
     <div class="message-data">
       <h4><%= message.user.name %></h4>
       <%= simple_format(message.content) %>
