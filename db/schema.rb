@@ -45,10 +45,11 @@ ActiveRecord::Schema.define(version: 20151215193717) do
   end
 
   create_table "user_sites", force: :cascade do |t|
-    t.integer  "site_id",    null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "site_id",                    null: false
+    t.integer  "user_id",                    null: false
+    t.boolean  "admin",      default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,7 +57,6 @@ ActiveRecord::Schema.define(version: 20151215193717) do
     t.string   "last_name",                         null: false
     t.string   "email",                             null: false
     t.string   "password_digest",                   null: false
-    t.boolean  "admin",           default: false,   null: false
     t.string   "tier",            default: "basic", null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false

@@ -4,9 +4,14 @@
     <%= f.text_field :url, placeholder: "Site Url" %>
   </div>
 
+  <div>
+    <%= f.label :user_ids, "Add Users" %>
+    <%= f.collection_select(:user_ids, User.all_other_users(current_user), :id, :name,{}, {:multiple => true}) %>
+  </div>
+
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   <div>
-    <%= f.submit "Create Site" %>
+    <%= f.submit%>
   </div>
 <% end %>

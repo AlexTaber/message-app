@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  before_action :site_by_id, only: [:edit, :update]
   def new
     @site = Site.new
   end
@@ -8,11 +9,30 @@ class SitesController < ApplicationController
 
     if @site.valid?
       @site.save
+      set_up_users
       set_up_user
       flash[:notice] = "Site successfully created"
-      redirect_to home_path
+      redirect_to home_path(site_id: @site.id)
     else
       flash[:warn] = "Unable to create site, please try again"
+      redirect_to :back
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+    @site.assign_attributes(site_params)
+
+    if @site.valid?
+      @site.save
+      set_up_users
+      flash[:notice] = "Site successfully saved"
+      redirect_to home_path(site_id: @site.id)
+    else
+      flash[:warn] = "Unable to save updates to site, please try again"
       redirect_to :back
     end
   end
@@ -22,12 +42,33 @@ class SitesController < ApplicationController
 
   private
 
+  def site_by_id
+    @site = Site.find_by(id: params[:id])
+  end
+
   def site_params
     params.require(:site).permit(:name, :url)
   end
 
+  def set_up_users
+    user_ids = params[:site][:user_ids].reject!(&:empty?)
+    user_ids.each do |user_id|
+      userSite = @site.user_sites.find_by(user_id: user_id)
+      unless userSite
+        UserSite.create(
+          user_id: user_id,
+          site_id: @site.id,
+          admin: false
+        )
+      end
+    end
+  end
+
   def set_up_user
-    @user = User.find_by(id: params[:site][:user_id])
-    UserSite.create(user_id: @user.id, site_id: @site.id)
+    UserSite.create(
+      user_id: current_user.id,
+      site_id: @site.id,
+      admin: true
+    )
   end
 end

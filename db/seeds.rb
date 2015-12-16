@@ -10,24 +10,21 @@ jerry = User.create(
   first_name: "Jerry",
   last_name: "Patterson",
   email: "info@peekskillwebdesign.com",
-  password: "123",
-  admin: true
+  password: "123"
 )
 
 alex = User.create(
   first_name: "Alex",
   last_name: "Taber",
   email: "me@at.com",
-  password: "123",
-  admin: false
+  password: "123"
 )
 
 dan = User.create(
   first_name: "Dan",
   last_name: "Intriligator",
   email: "me@di.com",
-  password: "123",
-  admin: false
+  password: "123"
 )
 
 google = Site.create(
@@ -35,18 +32,18 @@ google = Site.create(
   url: "www.google.com"
 )
 
-google.users << jerry
-google.users << alex
-google.users << dan
+UserSite.create(user_id: jerry.id, site_id: google.id, admin: true)
+UserSite.create(user_id: dan.id, site_id: google.id, admin: false)
+UserSite.create(user_id: alex.id, site_id: google.id, admin: false)
 
 amazon = Site.create(
   name: "Amazon",
   url: "www.amazon.com"
 )
 
-amazon.users << jerry
-amazon.users << alex
-amazon.users << dan
+UserSite.create(user_id: jerry.id, site_id: amazon.id, admin: true)
+UserSite.create(user_id: dan.id, site_id: amazon.id, admin: false)
+UserSite.create(user_id: alex.id, site_id: amazon.id, admin: false)
 
 Site.all.each do |site|
   convo = Conversation.create(
