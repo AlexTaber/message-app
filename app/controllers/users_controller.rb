@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       flash[:notice] = "User successfully created"
-      session[:user_id] = @user.id
+      cookies.permanent.signed[:user_id] = @user.id
       redirect_to home_path
     else
       flash[:warn] = "Unable to create user, please try again"

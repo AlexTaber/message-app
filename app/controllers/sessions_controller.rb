@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
 
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+      cookies.permanent.signed[:user_id] = @user.id
       redirect_to home_path
     else
       flash[:warn] = "Invalid email or password. Please try again."
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    cookies.signed[:user_id] = nil
     redirect_to root_path
   end
 end
