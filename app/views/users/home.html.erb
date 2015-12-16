@@ -12,6 +12,9 @@
   </nav>
 </div>
 <div class="message-bar">
+  <div>
+    <i class="fa fa-plus"></i>
+  </div>
   <% current_user.sites.first.conversations.each do |conversation| %>
     <div class="message-item">
       <div class="media">
@@ -21,7 +24,7 @@
         <div class="bd">
           <h5><%= conversation.user.name %></h5>
           <p>
-            <%= simple_format(conversation.content) %>
+            <%= simple_format(conversation.content_preview) %>
           </p>
           </div>
         </div>
