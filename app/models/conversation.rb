@@ -5,7 +5,7 @@ class Conversation < ActiveRecord::Base
   belongs_to :site
 
   def content_preview(length)
-    messages.first.content_preview(length)
+    messages.last.content_preview(length)
   end
 
   def other_users_to_s(user)
