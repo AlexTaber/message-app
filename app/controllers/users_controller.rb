@@ -24,6 +24,10 @@ class UsersController < ApplicationController
     current_user.has_sites? ? find_user_site : @site = Site.new
     current_user.has_conversations_by_site?(@site) ? find_conversation : @conversation = Conversation.new
     @message = Message.new
+
+    if request.xhr?
+      binding.pry
+    end
   end
 
   private

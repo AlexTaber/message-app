@@ -1,4 +1,13 @@
 jQuery(document).ready(function($){
+  $.ajax({
+    url: "http://localhost:3000/home",
+    method: "GET",
+    data: {
+      apples: "APPLES INDEED"
+    }
+  }).done(function(user_id){
+
+  });
 // message box
 $( ".msg-bx-open-button-pwd, .msg-bx-close-pwd" ).click(function() {
   $('.msg-bx-pwd').css({'top': 'auto', 'width':'auto'});
