@@ -6,4 +6,8 @@ class Site < ActiveRecord::Base
   def has_conversations?
     conversations.count > 0
   end
+
+  def other_users(user)
+    users.where.not(id: user.id)
+  end
 end

@@ -2,7 +2,7 @@
 
   <div>
     <%= f.label :user_ids, "Users to message" %>
-    <%= f.collection_select(:user_ids, site.users, :id, :name,{}, {:multiple => true}) %>
+    <%= f.collection_select(:user_ids, site.other_users(current_user), :id, :name,{}, {:multiple => true}) %>
   </div>
 
   <div>

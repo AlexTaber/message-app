@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def has_sites?
     sites.count > 0
   end
+
+  def self.all_other_users(user)
+    User.where.not(id: user.id)
+  end
 end
