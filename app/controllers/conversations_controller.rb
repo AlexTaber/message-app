@@ -8,7 +8,6 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.new(conversation_params)
 
     if @conversation.valid?
-      binding.pry
       @conversation.save
       set_up_users
       create_message if params[:content]
@@ -37,6 +36,7 @@ class ConversationsController < ApplicationController
         @user = User.find_by(id: user_id)
         @conversation.users << @user
       end
+      @conversation.users << current_user
     else
       flash[:warn] = "A conversation must have users, please try again"
       redirect_to :back

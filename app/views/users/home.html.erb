@@ -18,42 +18,28 @@
       <i class="fa fa-plus"></i>
     <% end %>
   </div>
-  <% @site.conversations.each do |conversation| %>
-    <div class="message-item">
-      <div class="media">
-        <a class="img" href="">
+  <% current_user.conversations_by_site(@site).each do |conversation| %>
+    <%= link_to home_path(conversation_id: conversation.id) do%>
+      <div class="message-item">
+        <div class="media">
           <%= image_tag "j-profile", class: "profile-img" %>
-        </a>
-        <div class="bd">
-          <h5><%= conversation.other_users_to_s(current_user) %></h5>
-          <p>
-            <%= simple_format(conversation.content_preview) %>
-          </p>
+          <div class="bd">
+            <h5><%= conversation.other_users_to_s(current_user) %></h5>
+            <p>
+              <%= simple_format(conversation.content_preview) %>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
-
+<% @conversation.messages.each do |message| %>
   <div class="message-content">
-   <span class="u-pull-right date-new-date"<i>Dec. 12, 2015</i></span>
-   <div class="message-data">
-    <h4>Jerry Patterson</h4>
-    <p><b>This is a message for the team</b></p>
-    <p>Do you have a business for sale or a business idea to present to the panel? Maybe you have a unique email or social media handle you had reserved for a business idea and want to sell it. One Click Start Up is the place to sell your ideas and bring them to market.</p>
+    <span class="u-pull-right date-new-date"<i>Dec. 12, 2015</i></span>
+    <div class="message-data">
+      <h4><%= message.user.name %></h4>
+      <%= simple_format(message.content) %>
+    </div>
   </div>
-  <div class="message-data">
-    <h4>Jerry Patterson</h4>
-    <p><b>This is a message for the team</b></p>
-    <p>Do you have a business for sale or a business idea to present to the panel? Maybe you have a unique email or social media handle you had reserved for a business idea and want to sell it. One Click Start Up is the place to sell your ideas and bring them to market.</p>
-  </div>
-  <div class="message-data">
-    <h4>Jerry Patterson</h4>
-    <p><b>This is a message for the team</b></p>
-    <p>Do you have a business for sale or a business idea to present to the panel? Maybe you have a unique email or social media handle you had reserved for a business idea and want to sell it. One Click Start Up is the place to sell your ideas and bring them to market.</p>
-  </div>  <div class="message-data">
-  <h4>Jerry Patterson</h4>
-  <p><b>This is a message for the team</b></p>
-  <p>Do you have a business for sale or a business idea to present to the panel? Maybe you have a unique email or social media handle you had reserved for a business idea and want to sell it. One Click Start Up is the place to sell your ideas and bring them to market.</p>
-</div>
-</div>
+<% end %>

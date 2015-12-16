@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def conversations_for_site(site)
+  def conversations_by_site(site)
     conversations.where(site_id: site.id)
   end
 
