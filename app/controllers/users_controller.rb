@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :email, :admin, :tier)
+    params.require(:user).permit(:first_name, :last_name, :password, :email, :tier)
   end
 
   def find_user_site

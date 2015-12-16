@@ -8,7 +8,7 @@ class SitesController < ApplicationController
 
     if @site.valid?
       @site.save
-      set_up_user
+      set_up_users
       flash[:notice] = "Site successfully created"
       redirect_to home_path
     else
@@ -26,8 +26,19 @@ class SitesController < ApplicationController
     params.require(:site).permit(:name, :url)
   end
 
-  def set_up_user
-    @user = User.find_by(id: params[:site][:user_id])
-    UserSite.create(user_id: @user.id, site_id: @site.id)
+  def set_up_users
+    user_ids = params[:site][:user_ids].reject!(&:empty?)
+    user_ids.each do |user_id|
+      UserSite.create(
+        user_id: user_id,
+        site_id: @site.id,
+        admin: false
+      )
+    end
+      UserSite.create(
+        user_id: current_user.id,
+        site_id: @site.id,
+        admin: true
+      )
   end
 end
