@@ -1,43 +1,48 @@
-// Message
+// insert into users page
 
-
-.msg-bx {
-	margin-top: 30%;
-	float: right;
-  width: 340px;
-	height: 4rem;
-	background: #133c64;
-	border-radius: 3px 3px 0 0;
-		header {
-			padding: 1rem 1.5rem 0;
-			color: #fff;
-			p {
-				margin-bottom: .5rem;
-			}
-			span {
-				&:hover {
-					cursor: pointer;
-				}
-			}
-		}
-}
-.msg-bx-is-open {
-	display: none;
-	border: 1px solid #ddd;
-	padding: 0 1rem 2rem;
-
-}
-
-//dan's message box--------------------------------!
-
-.msg-bx-pwd {
-  position: fixed;
-  bottom: 0;
-  right: 5rem;
-  width: 340px !important;
+#pwd-message-box {
+  width: 100%;
+  height:100%;
+    border-radius: 3px 3px 0 0;
+    margin:0;
+    padding:0;
+  width: 100% !important;
   z-index:100000000000;
-  -webkit-transition: width .7s;
-  transition: width .7s; }
+   }
+  #fixed-iframe {
+    height: 4rem;
+    width: 30rem;
+    position: fixed;
+    bottom:0 !important;
+    right:5rem;
+    -webkit-transition: width .7s, height .7s;
+  transition: width .7s, height .7s;
+  }
+  .pwd-open {
+    height:38rem !important;
+    width: 60rem !important;
+  }
+  #pwd-open-btn{
+    position:absolute;
+    top:1rem;
+    right: 2rem;
+    text-decoration: none;
+    color: #fff;
+  }
+  #pwd-open-btn:hover {
+    color: #8dbce9;
+  }
+
+
+
+
+
+//message-view
+.msg-bx-pwd {
+  width: 100%;
+  position: fixed;
+    top:0 !important;
+}
   .msg-bx-pwd textarea {
     width: 100%;
   }
@@ -47,22 +52,16 @@
     padding: 1rem 1.5rem 0;
     background: #133c64;
     color: #fff;
-    border-radius: 3px 3px 0 0; }
+     }
     .msg-bx-pwd header p {
       margin-bottom: .5rem; }
     .msg-bx-pwd header span:hover {
       cursor: pointer; }
 
 .msg-bx-is-open-pwd {
-  display: none;
   border: 1px solid #ddd;
   background: #fff;
    }
-.msg-bx-open-button-pwd {
-  float:right;
-}
-.msg-open-pwd {
-  width: 600px !important; }
 
 .msg-bx-bottom-pwd {
   padding: 0 1rem 2rem; }
@@ -87,13 +86,6 @@
     border-radius: 10px 10px 0 10px;
     padding: 1rem;
     background: #eee; }
-
-.change-convo-pwd {
-  display: none;
-  text-decoration: none;
-  color: #8dbce9; }
-  .change-convo-pwd:hover {
-    color: #fff; }
 
 .msg-bx-users-pwd {
   display: none;
