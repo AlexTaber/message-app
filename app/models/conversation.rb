@@ -26,4 +26,11 @@ class Conversation < ActiveRecord::Base
   def has_messages?
     messages.count > 0
   end
+
+  def set_json(user)
+    json = {}
+    json[:other_users] = other_users(user).map(&:name)
+    json[:messages] = messages.map { |message| message.set_json }
+    json
+  end
 end

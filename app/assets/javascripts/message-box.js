@@ -1,4 +1,13 @@
 jQuery(document).ready(function($){
+  $.ajax({
+    url: "http://localhost:3000/message_box",
+    method: "GET",
+    data: {
+      url: document.location.origin
+    }
+  }).done(function(response){
+    debugger;
+  });
 // message box
 $( ".msg-bx-open-button-pwd, .msg-bx-close-pwd" ).click(function() {
   $('.msg-bx-pwd').css({'top': 'auto', 'width':'auto'});

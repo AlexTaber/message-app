@@ -26,6 +26,16 @@ class UsersController < ApplicationController
     @message = Message.new
   end
 
+  def message_box
+    @json = Hash.new
+    @json[:site] = current_user.find_site_by_url(params[:url])
+    if @json[:site]
+      set_up_json
+    end
+
+    render json: @json
+  end
+
   private
 
   def user_by_id
@@ -42,5 +52,9 @@ class UsersController < ApplicationController
 
   def find_conversation
     params[:conversation_id] ? @conversation = Conversation.find_by(id: params[:conversation_id]) : @conversation = current_user.conversations_by_site(@site).first
+  end
+
+  def set_up_json
+    @json[:conversations] = current_user.conversations_to_json(@json[:site])
   end
 end
