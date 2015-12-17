@@ -1,5 +1,8 @@
+<div class="app-header">
+<h2 class="logo"><b>MESSAGE</b><small>ES</small></h2>
+</div>
+
 <div class="sidebar">
-  <h2 class="logo"><b>M</b>ESS<b>AGE</b></h2>
   <h3>Your sites
     <%= link_to new_site_path do %>
       <i class="fa fa-plus"></i>
@@ -10,10 +13,11 @@
       <li>
         <% if current_user.admin_of_site?(@site) %>
           <%= link_to edit_site_path(@site) do %>
-            <i class="fa fa-pencil-square-o"></i>
+          
           <% end %>
         <% end %>
         <%= link_to site.name, home_path(site_id: site.id) %>
+          <i class="fa fa-pencil-square-o u-pull-right"></i>
       </li>
     <% end %>
   </nav>
@@ -22,9 +26,12 @@
 <div class="message-bar">
   <div>
     <%= link_to new_conversation_path(site_id: @site.id) do %>
-      <i class="fa fa-plus"></i>
+      <!-- <i class="fa fa-plus"></i> -->
     <% end %>
   </div>
+  <header>
+    <h3>Now Viewing Team<b> Google</b></h3>
+  </header>
   <% if current_user.has_conversations_by_site?(@site) %>
     <% current_user.conversations_by_site(@site).each do |conversation| %>
       <%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
