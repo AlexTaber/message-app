@@ -1,12 +1,12 @@
 jQuery(document).ready(function($){
-  $.ajax({
-    url: "http://localhost:3000/message_box",
-    method: "GET",
-    data: {
-      url: document.location.origin
-    }
-  }).done(function(response){
-    $("body").append(response);
+  // $.ajax({
+  //   url: "http://localhost:3000/message_box",
+  //   method: "GET",
+  //   data: {
+  //     url: document.location.origin
+  //   }
+  // }).done(function(response){
+    //$("body").append(response);
 
     // message box
     $( ".msg-bx-open-button-pwd, .msg-bx-close-pwd" ).click(function() {
@@ -26,5 +26,5 @@ jQuery(document).ready(function($){
     $('.msg-bx-pwd').draggable({axis: 'x',
       containment: "window",
         });
-  });
+  //});
 });

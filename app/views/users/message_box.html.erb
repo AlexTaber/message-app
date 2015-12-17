@@ -1,0 +1,39 @@
+<div class="msg-bx-pwd">
+  <header>
+    <p>
+      <span class="msg-bx-header-txt-pwd">This is Your Message Center</span>
+      <a href='#' class='change-convo-pwd'>Message Another User</a>
+      <span class="msg-bx-open-button-pwd">
+        <b>---</b>
+      </span>
+    </p>
+  </header>
+  <div class="msg-bx-is-open-pwd">
+    <div class="msg-bx-users-pwd">
+      <p><b>Users on this site</b></p>
+      <ul class='msg-bx-user-list-pwd'>
+        <% @site.other_users(current_user).each do |user| %>
+          <li><%= user.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="msg-bx-convo-pwd">
+      <% @conversation.messages.each do |message| %>
+        <% if message.from_user?(current_user) %>
+          <p class="self-pwd">
+            <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
+          </p>
+        <% else %>
+          <p>
+            <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="msg-bx-bottom-pwd">
+      <label for="exampleMessage-pwd">Message</label>
+      <p><textarea placeholder="Hi <%= @conversation.other_user_name(current_user) %>…" id="exampleMessage"></textarea></p>
+      <input class="button-primary-pwd" type="submit" value="Submit">
+    </div>
+  </div>
+</div>
