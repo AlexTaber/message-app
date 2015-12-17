@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
   end
+
+  def token_user(token)
+    User.find_by(token: token)
+  end
 end
