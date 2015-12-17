@@ -20,4 +20,8 @@ class Message < ActiveRecord::Base
     json[:user_name] = user.name
     json
   end
+
+  def from_user?(checked_user)
+    user.id == checked_user.id
+  end
 end

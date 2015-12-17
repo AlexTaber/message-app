@@ -33,4 +33,9 @@ class Conversation < ActiveRecord::Base
     json[:messages] = messages.map { |message| message.set_json }
     json
   end
+
+  def other_user_name(user)
+    users = other_users(user)
+    users.count > 1 ? "everyone" : users.first.first_name
+  end
 end
