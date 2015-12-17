@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20151215193717) do
     t.string   "email",                             null: false
     t.string   "password_digest",                   null: false
     t.string   "tier",            default: "basic", null: false
+    t.string   "token"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end

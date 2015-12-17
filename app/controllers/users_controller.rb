@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def home
     current_user.has_sites? ? find_user_site : @site = Site.new
-    current_user.has_conversations_by_site?(@site) ? find_conversation : @conversation = Conversation.new
+    current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
     @message = Message.new
   end
 
@@ -37,8 +37,10 @@ class UsersController < ApplicationController
   end
 
   def message_box
-    @site = current_user.find_site_by_url(params[:site_url])
-    current_user.has_conversations_by_site?(@site) ? find_conversation : @conversation = Conversation.new
+    token = params[:token]
+    user = token_user(token)
+    @site = user.find_site_by_url(params[:site_url])
+    user.has_conversations_by_site?(@site) ? find_conversation(user) : @conversation = Conversation.new
     @message = Message.new
     #render partial: "layouts/message_box"
   end
@@ -57,8 +59,8 @@ class UsersController < ApplicationController
     params[:site_id] ? @site = Site.find_by(id: params[:site_id]) : @site = current_user.sites.first
   end
 
-  def find_conversation
-    params[:conversation_id] ? @conversation = Conversation.find_by(id: params[:conversation_id]) : @conversation = current_user.conversations_by_site(@site).first
+  def find_conversation(user)
+    params[:conversation_id] ? @conversation = Conversation.find_by(id: params[:conversation_id]) : @conversation = user.conversations_by_site(@site).first
   end
 
   def set_up_json
