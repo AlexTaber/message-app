@@ -45,6 +45,15 @@ UserSite.create(user_id: jerry.id, site_id: amazon.id, admin: true)
 UserSite.create(user_id: dan.id, site_id: amazon.id, admin: false)
 UserSite.create(user_id: alex.id, site_id: amazon.id, admin: false)
 
+base = Site.create(
+  name: "Base",
+  url: "localhost:3000"
+)
+
+UserSite.create(user_id: jerry.id, site_id: base.id, admin: true)
+UserSite.create(user_id: dan.id, site_id: base.id, admin: false)
+UserSite.create(user_id: alex.id, site_id: base.id, admin: false)
+
 Site.all.each do |site|
   convo = Conversation.create(
     site_id: site.id
