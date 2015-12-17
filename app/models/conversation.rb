@@ -35,7 +35,8 @@ class Conversation < ActiveRecord::Base
   end
 
   def other_user_name(user)
-    users = other_users(user)
-    users.count > 1 ? "everyone" : users.first.first_name
+    other_users = other_users(user)
+    binding.pry
+    users.count > 1 ? "everyone" : other_users.first.first_name
   end
 end
