@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+
   // $.ajax({
   //   url: "http://localhost:3000/message_box",
   //   method: "GET",
@@ -9,6 +9,7 @@ jQuery(document).ready(function($){
     //$("body").append(response);
 
 // insert into user's page
+jQuery(document).ready(function($){
     var opened = false
     $( "#pwd-open-btn" ).click(function() {
             $( "#fixed-iframe" )
@@ -21,4 +22,12 @@ jQuery(document).ready(function($){
               opened = true
       });
 
+});
+
+//our js
+jQuery(document).ready(function($){
+  $('#pwd-users').on('click',function(){
+      $('#msg-bx-users-pwd').slideToggle();
+      $(this).toggleClass('active')
+  });
 });

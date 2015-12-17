@@ -19,7 +19,7 @@
   transition: width .7s, height .7s;
   }
   .pwd-open {
-    height:38rem !important;
+    height:42rem !important;
     width: 60rem !important;
   }
   #pwd-open-btn{
@@ -48,10 +48,11 @@
   }
   .msg-bx-pwd header {
     position: relative;
-    height: 3rem;
-    padding: 1rem 1.5rem 0;
+    height:4rem;
+    padding-left: 1.5rem;
     background: #133c64;
     color: #fff;
+    line-height: 4rem;
      }
     .msg-bx-pwd header p {
       margin-bottom: .5rem; }
@@ -119,3 +120,39 @@ input[type="button"].button-primary-pwd {
   color: #FFF;
   background-color: #133c64;
   border-color: #133c64; }
+  #pwd-nav-icons{
+    float:right;
+    padding-right: 10rem;
+    font-size:150%;
+    color: #6795BA;
+  }
+  #pwd-nav-icons i:hover{
+    color:#fff;
+  }
+  #pwd-nav-icons i{
+    padding-left: 1rem;
+  }
+  .msg-bx-dropdown-pwd {
+    display:none;
+    position: absolute;
+    background: #fff;
+    color: #000;
+    top: 4rem;
+    right: 1.8rem;
+    width: 20rem;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  }
+  #msg-bx-users-pwd p{
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  #msg-bx-user-list-pwd {
+    list-style: none;
+    padding-left: 0;
+  }
+  #pwd-users.active{
+    color: #fff;
+  }
