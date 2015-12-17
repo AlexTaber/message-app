@@ -37,11 +37,11 @@ class UsersController < ApplicationController
   end
 
   def message_box
-    @site = current_user.find_site_by_url(params[:url])
+    @site = current_user.find_site_by_url(params[:site_url])
     current_user.has_conversations_by_site?(@site) ? find_conversation : @conversation = Conversation.new
     @message = Message.new
 
-    render partial: "layouts/message_box"
+    #render partial: "layouts/message_box"
   end
 
   private
