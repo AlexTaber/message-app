@@ -17,99 +17,14 @@ a:hover {
   font-weight: bold;
   font-size: 2rem;
 }
-.navbar {
-  position: fixed;
-  width: 100%;
-  z-index: 999;
 
-  ul {
-    list-style: none;
-  }
-
-  li {
-    display: inline;
-    position: relative;
-    margin-right: 2rem;
-  }
-
-  a {
-    color: #7d7d7d;
-    text-decoration: none;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -ms-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-
-    &:hover {
-    border-bottom: 2px solid #ddd;
-    }
-  }
+.app-header {
+  padding: 0 2rem;
+  background: $black;
+  color: $white;
+  border-bottom: 1px solid rgba(white, .3)
 }
-
-.no-border {
-  color: #222;
-  &:hover {
-    border-bottom: none;
-    color: #222;
-  }
-}
-// Dropdown Styles
-
-.navbar li ul {
-  position: absolute;
-  margin-top: 0;
-  left: 0;
-  z-index: 999;
-  background: #fff;
-  min-width: 100%;
-  height: 0px;
-  overflow: hidden;
-  padding: 0px;
-  text-align: left;
-  -webkit-box-shadow: 1px 2px 4px rgba(0,0,0,0.25);
-  -moz-box-shadow: 1px 2px 4px rgba(0,0,0,0.25);
-  box-shadow: 1px 2px 4px rgba(0,0,0,0.25);
-
-  li {
-    display: list-item;
-    padding: 0 2rem 0 1rem;
-    margin-right: 0;
-    white-space: nowrap;
-    border-bottom: 1px solid #ddd;
-    &:hover {
-    border-bottom: 1.5px solid #ddd;
-    }
-
-
-    a {
-      line-height: 3.5rem;
-      color: #7d7d7d;
-       display: inline-block;
-      &:hover {
-        border-bottom: none;
-    }
-
-    }
-  }
-}
-
-.navbar ul li:hover ul {
-  height: auto;
-  overflow: auto;
-}
-
-.current-menu-item  {
-
-}
-
-// WP Main Menu Container Override
-
-.menu-main-menu-container {
-  display: inline-block;
-}
-
-//Alex's super fantastical PWD Nav
+//Alex's super fantastical PWD Mobile Nav
 
 .pwd-nav-container {
   position: relative;
