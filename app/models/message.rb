@@ -13,4 +13,11 @@ class Message < ActiveRecord::Base
   def time_to_s
     created_at.strftime('%l:%M%P')
   end
+
+  def set_json
+    json = {}
+    json[:content] = content
+    json[:user_name] = user.name
+    json
+  end
 end

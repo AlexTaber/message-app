@@ -1,12 +1,12 @@
 jQuery(document).ready(function($){
   $.ajax({
-    url: "http://localhost:3000/home",
+    url: "http://localhost:3000/message_box",
     method: "GET",
     data: {
-      apples: "APPLES INDEED"
+      url: document.location.origin
     }
-  }).done(function(user_id){
-
+  }).done(function(response){
+    debugger;
   });
 // message box
 $( ".msg-bx-open-button-pwd, .msg-bx-close-pwd" ).click(function() {

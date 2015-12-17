@@ -31,4 +31,14 @@ class User < ActiveRecord::Base
     user_site = user_sites.find_by(site_id: site.id)
     user_site ? user_site.admin : false
   end
+
+  def find_site_by_url(query_url)
+    sites.find { |site| query_url.include?(site.url) }
+  end
+
+  def conversations_to_json(site)
+    conversations_json = []
+    conversations_by_site(site).each_with_index { |conversation, index| conversations_json[index] = conversation.set_json(self) }
+    conversations_json
+  end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   get '/home' => 'users#home'
+  get '/message_box' => 'users#message_box'
 
   root 'sessions#new'
 end
