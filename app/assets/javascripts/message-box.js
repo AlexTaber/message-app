@@ -1,14 +1,4 @@
-
-  // $.ajax({
-  //   url: "http://localhost:3000/message_box",
-  //   method: "GET",
-  //   data: {
-  //     url: document.location.origin
-  //   }
-  // }).done(function(response){
-    //$("body").append(response);
-
-// insert into user's page
+//has to go on users site
 jQuery(document).ready(function($){
     var opened = false
     $( "#pwd-open-btn" ).click(function() {
@@ -30,6 +20,7 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#pwd-sites', '#msg-bx-sites-pwd');
   msgBxDropdowns('#pwd-convos', '#msg-bx-convos-pwd');
 });
+
 function msgBxDropdowns(clicked, target){
   $(clicked).on('click',function(){
       $('.msg-bx-dropdown-pwd').slideUp();
@@ -38,3 +29,4 @@ function msgBxDropdowns(clicked, target){
       $(this).toggleClass('active');
   });
 }
+

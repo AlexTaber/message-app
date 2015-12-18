@@ -66,9 +66,13 @@
       <% end %>
     </div>
     <div class="msg-bx-bottom-pwd">
-      <label for="exampleMessage-pwd">Message</label>
-      <p><textarea placeholder="Hi <%= @conversation.other_user_name(current_user) %>…" id="exampleMessage"></textarea></p>
-      <input class="button-primary-pwd" type="submit" value="Submit">
+      <%= form_for @message do |f| %>
+        <%= f.label :content, "Message" %>
+        <p>
+          <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+        </p>
+        <%= f.submit "Submit" %>
+      <% end %>
     </div>
   </div>
 </div>
