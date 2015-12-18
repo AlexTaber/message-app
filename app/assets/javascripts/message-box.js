@@ -1,6 +1,5 @@
 //has to go on users site
 jQuery(document).ready(function($){
-<<<<<<< HEAD
     var opened = false
     $( "#pwd-open-btn" ).click(function() {
             $( "#fixed-iframe" )
