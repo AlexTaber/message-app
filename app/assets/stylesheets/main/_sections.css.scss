@@ -1,4 +1,4 @@
-//sections ------------------------------
+//headers ------------------------------
 
 header {
 	
@@ -17,5 +17,16 @@ article {
 	p {
 	max-width: 1040px;
 	
+	}
+}
+
+//Auxillary divs
+
+.background-class {
+	height: 100%;
+	background: $pwddark;
+	color: $white;
+	h1 {
+		margin-top: 30%;
 	}
 }
