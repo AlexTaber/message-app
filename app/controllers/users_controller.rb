@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
+      upload_image(params[:user][:file]) if params[:user][:file]
       flash[:notice] = "User successfully created"
       cookies.permanent.signed[:user_id] = @user.id
       redirect_to home_path
@@ -65,5 +66,18 @@ class UsersController < ApplicationController
 
   def set_up_json
     @json[:conversations] = current_user.conversations_to_json(@json[:site])
+  end
+
+  def upload_image(file)
+    obj = S3_BUCKET.object(file.original_filename)
+
+    obj.upload_file(file.tempfile, acl:'public-read')
+
+    @image = Image.new(url: obj.public_url, imageable_id: @user.id, imageable_type: "User")
+
+    unless @image.save
+      flash[:warn] = "There was a problem uploading your image, please try again"
+      redirect_to :back
+    end
   end
 end
