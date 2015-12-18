@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_action :site_by_id, only: [:edit, :update]
+  before_action :site_by_id, only: [:edit, :update, :add_users]
   def new
     @site = Site.new
   end
@@ -9,7 +9,6 @@ class SitesController < ApplicationController
 
     if @site.valid?
       @site.save
-      set_up_users
       set_up_user
       flash[:notice] = "Site successfully created"
       redirect_to home_path(site_id: @site.id)
@@ -38,6 +37,9 @@ class SitesController < ApplicationController
   end
 
   def destroy
+  end
+ 
+  def add_users
   end
 
   private

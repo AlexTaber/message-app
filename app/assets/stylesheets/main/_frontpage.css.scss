@@ -3,6 +3,7 @@ body,
 div {
 	height:100%;
 	box-sizing: border-box;
+	overflow: hidden;
 }
 div {
 	height: auto;
@@ -51,8 +52,6 @@ letter-spacing: normal;
 	color: #444;
 
 	header {
-		position: fixed;
-		width: 30%;
 		height: 6rem;
 		background: rgba($white, .9);
 		border-bottom: 1px solid $grey;
@@ -75,7 +74,6 @@ letter-spacing: normal;
 	color: #444;
 }
 .message-item {
-	margin-top: 6rem;
 	border-bottom: 1px solid #ddd;
 	background: #f5f5f5;
 

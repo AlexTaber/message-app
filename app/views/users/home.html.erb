@@ -17,6 +17,9 @@
           <% end %>
         <% end %>
         <%= link_to site.name, home_path(site_id: site.id) %>
+         <%= link_to add_users_site_path(site) do %>
+          <i class="fa fa-plus u-pull-right"></i>
+         <% end %>
           <i class="fa fa-pencil-square-o u-pull-right"></i>
       </li>
     <% end %>
@@ -26,7 +29,7 @@
 <div class="message-bar">
   <div>
     <%= link_to new_conversation_path(site_id: @site.id) do %>
-      <!-- <i class="fa fa-plus"></i> -->
+      <i class="fa fa-plus"></i>
     <% end %>
   </div>
   <header>
