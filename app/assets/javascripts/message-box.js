@@ -20,6 +20,7 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#pwd-sites', '#msg-bx-sites-pwd');
   msgBxDropdowns('#pwd-convos', '#msg-bx-convos-pwd');
   $(".new_message").submit(sendMessage);
+  $('.msg-bx-convo-pwd').scrollTop($('.msg-bx-convo-pwd')[0].scrollHeight);
 });
 
 function msgBxDropdowns(clicked, target){
