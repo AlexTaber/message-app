@@ -9,6 +9,11 @@
     <%= f.password_field :password, placeholder: "Password" %>
   </div>
 
+  <%= f.label :image, "Upload a Profile Image" %>
+  <div>
+    <%= f.file_field :file  %>
+  </div>
+
   <%= f.hidden_field :admin, value: admin %>
 
   <div>
