@@ -9,7 +9,7 @@
 <% else %>
 <div class="them-msg-wrapper">
 <div class="profile-pic no--pic"><div class="table-cell"><%= message.user.first_name[0] %></div></div>
-	<small><b><%= message.user.name %></b> &nbsp; <i>on <%= message.date_to_s %> <%= message.time_to_s %></i></small>
+	<small><b><%= message.user.name %></b> <i>on <%= message.date_to_s %> <%= message.time_to_s %></i></small>
   <p>
     <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
   </p>
