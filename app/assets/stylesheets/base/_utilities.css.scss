@@ -9,10 +9,10 @@
 * 12/29/2014
 */
 img {
-    position: relative;
+  position: relative;
   max-width: 100%;
   height: auto;
-  }
+}
 blockquote {
   font-size: 3.6rem;
   font-family: serif;
@@ -23,46 +23,62 @@ hr {
   margin-bottom: 3.5rem;
   border-width: 0;
   border-top: 1px solid #E1E1E1; }
-.text-center {
-  text-align: center;
-}
+  .text-center {
+    text-align: center;
+  }
 
-.text-left {
-  text-align: left;
-}
+  .text-left {
+    text-align: left;
+  }
 
-.text-right {
-  text-align: right;
-}
+  .text-right {
+    text-align: right;
+  }
 
-.text-justify {
-  text-align: justify;
-}
-.u-full-width {
-  width: 100%;
-  box-sizing: border-box; }
-.u-max-full-width {
-  max-width: 100%;
-  box-sizing: border-box; }
-.u-pull-right {
-  float: right; }
-.u-pull-left {
-  float: left; }
+  .text-justify {
+    text-align: justify;
+  }
+  .u-full-width {
+    width: 100%;
+    box-sizing: border-box; }
+    .u-max-full-width {
+      max-width: 100%;
+      box-sizing: border-box; }
+      .u-pull-right {
+        float: right; }
+        .u-pull-left {
+          float: left; }
 
+//Modal window 
+.modal input {
+  position: absolute;
+  top: -10000px;
+}
+.modal-overlay {
+  opacity: 0;
+  z-index: -100;
+  transform: scale(0.5);
+  transition: all 0.75s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.modal input:checked ~ .modal-overlay {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 800;
+}
   /* Code
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-code {
-  padding: .2rem .5rem;
-  margin: 0 .2rem;
-  font-size: 90%;
-  white-space: nowrap;
-  background: #F1F1F1;
-  border: 1px solid #E1E1E1;
-  border-radius: 4px; }
-pre > code {
-  display: block;
-  padding: 1rem 1.5rem;
-  white-space: pre; }
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  code {
+    padding: .2rem .5rem;
+    margin: 0 .2rem;
+    font-size: 90%;
+    white-space: nowrap;
+    background: #F1F1F1;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px; }
+    pre > code {
+      display: block;
+      padding: 1rem 1.5rem;
+      white-space: pre; }
 
 
 /* Tables
@@ -72,9 +88,9 @@ td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #E1E1E1; }
-th:first-child,
-td:first-child {
-  padding-left: 0; }
-th:last-child,
-td:last-child {
-  padding-right: 0; }
+  th:first-child,
+  td:first-child {
+    padding-left: 0; }
+    th:last-child,
+    td:last-child {
+      padding-right: 0; }
