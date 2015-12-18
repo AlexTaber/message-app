@@ -21,12 +21,11 @@
       <ul id='msg-bx-user-list-pwd'>
       <% current_user.sites.each do |site| %>
       <li>
-        <% if current_user.admin_of_site?(@site) %>
-          <%= link_to edit_site_path(@site) do %>
-            <i class="fa fa-pencil-square-o"></i>
-          <% end %>
-        <% end %>
-        <%= link_to site.name, "http://#{site.url}", :target => '_blank' %>
+      <% if @site == site %>
+        <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
+      <% else %>
+        <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+      <% end %>
       </li>
     <% end %>
       </ul>
