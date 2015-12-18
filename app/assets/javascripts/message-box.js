@@ -24,10 +24,15 @@ jQuery(document).ready(function($){
 
 function msgBxDropdowns(clicked, target){
   $(clicked).on('click',function(){
+    if($(this).hasClass('active')) {
+      $('.msg-bx-dropdown-pwd').slideUp();
+      $(this).toggleClass('active');
+    } else {
       $('.msg-bx-dropdown-pwd').slideUp();
       $('i.active').removeClass('active')
       $(target).slideToggle();
       $(this).toggleClass('active');
+    }
   });
 }
 

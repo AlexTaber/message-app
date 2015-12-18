@@ -19,7 +19,7 @@
   transition: width .7s, height .7s;
 }
 .pwd-open {
-  height:42rem !important;
+  height:47rem !important;
   width: 60rem !important;
 }
 #pwd-open-btn{
@@ -58,7 +58,7 @@
   cursor: pointer; 
 }
 
-.msg-bx-is-open-pwd {
+.msg-bx-body-pwd {
   border: 1px solid #ddd;
   background: #fff;
 }
@@ -156,6 +156,7 @@ input[type="button"].button-primary-pwd {
     border: 1px solid #ddd;
     border-bottom: 3px solid #ddd;
     border-radius: 0 0 3px 3px ;
+    overflow: visible;
 }
 .msg-bx-dropdown-pwd p{
   margin-bottom: 0;
@@ -170,15 +171,20 @@ input[type="button"].button-primary-pwd {
     margin-bottom: 0;
     color: #000;
     display: block;
-    &:hover{
+    &:hover {
       background:#f5f5f5;
   }
-  }
+}
+}
+#msg-bx-sites-pwd .active {
+  background: #f5f5f5;
+  font-weight: normal;
+  font-size: 1.5rem;
 }
 #msg-bx-convos-pwd{
   width:40rem;
 }
-#msg-bx-convos-list-pwd {
+#msg-bx-convos-list-pwd, #msg-bx-user-list-pwd, #msg-bx-site-list-pwd   {
   max-height:23rem;
   overflow-y: scroll;
 }
@@ -206,4 +212,18 @@ input[type="button"].button-primary-pwd {
 }
 .msg-bx-convo-data h4{
   margin-bottom:0;
+
+}
+.msg-bx-info {
+  height:5rem;
+  overflow-y: scroll;
+  text-align: center;
+  padding:.2rem;
+  background: #f5f5f5;
+  p {
+    margin-bottom: 0;
+  }
+}
+.msg-bx-convo:not(:last-child) {
+    border-bottom: 1px solid #ddd;
 }
