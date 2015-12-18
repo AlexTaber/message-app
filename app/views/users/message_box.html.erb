@@ -33,20 +33,20 @@
     </div>
 
     <div id="msg-bx-convos-pwd" class="msg-bx-dropdown-pwd">
-    <div id='msg-bx-convos-list-pwd'>      
-    <% @conversation.messages.each do |message| %>
-    <%= link_to('#') do %>
-      <div>
-        <i><%= message.date_to_s %></i>
-        <i><%= message.time_to_s %></i>
-      </div>
-      <div class="msg-bx-convo-data">
-        <h4><%= message.user.name %></h4>
-        <%= simple_format(message.content) %>
-      </div>
+      <div id='msg-bx-convos-list-pwd'>
+        <% @site.conversations.each do |conversation| %>
+          <%= link_to message_box_path(conversation_id: conversation.id, site_url: @site.url, token: current_user.token) do %>
+            <div>
+              <i><%= conversation.messages.last.date_to_s %></i>
+              <i><%= conversation.messages.last.time_to_s %></i>
+            </div>
+            <div class="msg-bx-convo-data">
+              <h4><%= conversation.abbreviated_other_users_to_s(current_user, 30, true) %></h4>
+              <%= "#{conversation.messages.last.user.first_name}: #{conversation.content_preview(30)}" %>
+            </div>
+          <% end %>
         <% end %>
-        <% end %>
-        </div>
+      </div>
     </div>
 
   </header>
