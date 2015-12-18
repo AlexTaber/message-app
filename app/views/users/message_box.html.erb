@@ -51,7 +51,10 @@
 
   </header>
 
-  <div class="msg-bx-is-open-pwd">
+  <div class="msg-bx-body-pwd">
+    <div class="msg-bx-info">
+      <p>Your conversation with: <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+    </div>
     <div class="msg-bx-convo-pwd">
       <% @conversation.messages.each do |message| %>
         <%= render partial: "messages/message", locals: { message: message } %>
@@ -65,7 +68,7 @@
         </p>
         <%= f.hidden_field :conversation_id, value: @conversation.id %>
         <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.submit "Submit" %>
+        <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
       <% end %>
     </div>
   </div>

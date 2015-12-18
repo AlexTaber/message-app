@@ -19,7 +19,7 @@
   transition: width .7s, height .7s;
 }
 .pwd-open {
-  height:42rem !important;
+  height:47rem !important;
   width: 60rem !important;
 }
 #pwd-open-btn{
@@ -58,7 +58,7 @@
   cursor: pointer; 
 }
 
-.msg-bx-is-open-pwd {
+.msg-bx-body-pwd {
   border: 1px solid #ddd;
   background: #fff;
 }
@@ -207,4 +207,14 @@ input[type="button"].button-primary-pwd {
 }
 .msg-bx-convo-data h4{
   margin-bottom:0;
+}
+.msg-bx-info {
+  height:5rem;
+  overflow-y: scroll;
+  text-align: center;
+  padding:.2rem;
+  background: #f5f5f5;
+  p {
+    margin-bottom: 0;
+  }
 }
