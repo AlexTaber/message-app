@@ -13,6 +13,12 @@ jerry = User.create(
   password: "123"
 )
 
+jerry_image = Image.create(
+  url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
+  imageable_type: "User",
+  imageable_id: jerry.id
+)
+
 alex = User.create(
   first_name: "Alex",
   last_name: "Taber",
@@ -20,11 +26,23 @@ alex = User.create(
   password: "123"
 )
 
+alex_image = Image.create(
+  url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
+  imageable_type: "User",
+  imageable_id: alex.id
+)
+
 dan = User.create(
   first_name: "Dan",
   last_name: "Intriligator",
   email: "me@di.com",
   password: "123"
+)
+
+dan_image = Image.create(
+  url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
+  imageable_type: "User",
+  imageable_id: dan.id
 )
 
 google = Site.create(
