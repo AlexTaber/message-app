@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :user_by_id, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -16,6 +18,23 @@ class UsersController < ApplicationController
       flash[:warn] = "Unable to create user, please try again"
       redirect_to :back
     end
+  end
+
+  def edit
+    @user.assign_attributes(user_params)
+
+    if @user.valid?
+      @user.save
+      upload_image(params[:user][:file]) if params[:user][:file]
+      flash[:notice] = "User successfully updated"
+      redirect_to home_path
+    else
+      flash[:warn] = "Unable to update user, please try again"
+      redirect_to :back
+    end
+  end
+
+  def update
   end
 
   def destroy
