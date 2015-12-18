@@ -12,7 +12,7 @@
         <p><b>Users on this site</b></p>
         <ul id='msg-bx-user-list-pwd'>
           <% @site.other_users(current_user).each do |user| %>
-            <li><%= "#{user.last_name}, #{user.first_name}" %> </li>
+            <li><div class="profile-pic no--pic"><div class="table-cell"><%= user.first_name[0] %></div></div><%= "#{user.last_name}, #{user.first_name}" %> </li>
           <% end %>
         </ul>
       </div>
@@ -32,6 +32,7 @@
     </div>
 
     <div id="msg-bx-convos-pwd" class="msg-bx-dropdown-pwd">
+    <p><b>Your Conversations</b></p>
       <div id='msg-bx-convos-list-pwd'>
         <% current_user.conversations_by_site(@site).each do |conversation| %>
             <div class="msg-bx-convo">

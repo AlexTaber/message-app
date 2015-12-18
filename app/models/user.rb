@@ -43,4 +43,5 @@ class User < ActiveRecord::Base
     conversations_by_site(site).each_with_index { |conversation, index| conversations_json[index] = conversation.set_json(self) }
     conversations_json
   end
+
 end
