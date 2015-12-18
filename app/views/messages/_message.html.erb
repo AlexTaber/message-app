@@ -4,6 +4,7 @@
   <p class="self-pwd">
     <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
   </p>
+ 
   <div class="profile-pic no--pic"><div class="table-cell"><%= message.user.name[0] %></div></div>
   </div>
 <% else %>
