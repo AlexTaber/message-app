@@ -8,14 +8,14 @@ class Conversation < ActiveRecord::Base
     messages.last.content_preview(length)
   end
 
-  def other_users_to_s(user)
+  def other_users_to_s(user, first_names_only = false)
     str = ""
-    other_users(user).each { |user| str += "#{user.name}, " }
+    other_users(user).each { |user| first_names_only ? str += "#{user.first_name}, " : str += "#{user.name}, " }
     str[0...-2]
   end
 
-  def abbreviated_other_users_to_s(user, length)
-    str = other_users_to_s(user)
+  def abbreviated_other_users_to_s(user, length, first_names_only = false)
+    str = other_users_to_s(user, first_names_only)
     str.length > length ? "#{str[0...length]}..." : str[0...length]
   end
 
