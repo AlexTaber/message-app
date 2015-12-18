@@ -33,7 +33,7 @@
 
     <div id="msg-bx-convos-pwd" class="msg-bx-dropdown-pwd">
       <div id='msg-bx-convos-list-pwd'>
-        <% @site.conversations.each do |conversation| %>
+        <% current_user.conversations_by_site(@site).each do |conversation| %>
             <div class="msg-bx-convo">
           <%= link_to message_box_path(conversation_id: conversation.id, site_url: @site.url, token: current_user.token) do %>
               <i><%= conversation.messages.last.date_to_s %></i>
