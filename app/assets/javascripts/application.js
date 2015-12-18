@@ -13,10 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
-jQuery(document).ready(function($){
-  msgBxDropdowns('#pwd-users', '#msg-bx-users-pwd');
-  msgBxDropdowns('#pwd-sites', '#msg-bx-sites-pwd');
-  msgBxDropdowns('#pwd-convos', '#msg-bx-convos-pwd');
-  $(".new_message").submit(sendMessage);
-});
