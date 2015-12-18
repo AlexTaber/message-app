@@ -13,7 +13,7 @@
       <li>
         <% if current_user.admin_of_site?(@site) %>
           <%= link_to edit_site_path(@site) do %>
-          
+
           <% end %>
         <% end %>
         <%= link_to site.name, home_path(site_id: site.id) %>
@@ -73,5 +73,5 @@
 
 <div id="fixed-iframe">
 <a href="#" id="pwd-open-btn">---</a>
-<iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?site_url=http://localhost:3000&token=Hqp7PvtP8m6iMkcwPBwYxF1S"></iframe>
+<iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?site_url=http://localhost:3000&token=bE7UkN7TpdBCzyTNgZi8skmq"></iframe>
 </div>
