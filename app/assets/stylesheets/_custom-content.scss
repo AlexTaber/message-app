@@ -95,7 +95,6 @@
   position: relative;
   z-index: 1;
   .profile-pic {
-    border-radius: 100%;
     width:4rem;
     height:4rem;
     position:absolute;
@@ -106,7 +105,10 @@
 
 
 // profile pic default 
-div.profile-pic {
+.profile-pic {
+  border-radius: 100%;
+}
+.no--pic {
   display:table;
   text-align: center;
   background: #133c64;
@@ -114,7 +116,7 @@ div.profile-pic {
   font-size: 3rem;
   color: #fff;
 }
-.table-cell {
+.no--pic {
   display: table-cell;
   vertical-align: middle;
 }
@@ -140,11 +142,17 @@ div.profile-pic {
   background:#fff;
 }
 
-.msg-bx-user-list-pwd {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: auto; 
+#msg-bx-user-list-pwd {
+    text-align: left;
+    .no--pic {
+    margin: 1rem;
+    display: inline-table;
+          height:3rem;
+          width:4rem;
+    .table-cell{
+          vertical-algin:middle;
+    }
+}
 }
 .msg-bx-user-list-pwd li {
   text-align: center;
