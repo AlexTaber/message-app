@@ -184,7 +184,7 @@ input[type="button"].button-primary-pwd {
 #msg-bx-convos-pwd{
   width:40rem;
 }
-#msg-bx-convos-list-pwd {
+#msg-bx-convos-list-pwd, #msg-bx-user-list-pwd, #msg-bx-site-list-pwd   {
   max-height:23rem;
   overflow-y: scroll;
 }
@@ -212,6 +212,7 @@ input[type="button"].button-primary-pwd {
 }
 .msg-bx-convo-data h4{
   margin-bottom:0;
+
 }
 .msg-bx-info {
   height:5rem;
@@ -222,4 +223,7 @@ input[type="button"].button-primary-pwd {
   p {
     margin-bottom: 0;
   }
+}
+.msg-bx-convo:not(:last-child) {
+    border-bottom: 1px solid #ddd;
 }
