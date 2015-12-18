@@ -38,4 +38,8 @@ class Conversation < ActiveRecord::Base
     other_users = other_users(user)
     other_users.count > 1 ? "everyone" : other_users.first.first_name
   end
+
+  def self.find_conversation_by_users_and_site(users, site)
+    site.find_conversation_by_users(users)
+  end
 end

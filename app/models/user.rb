@@ -20,10 +20,6 @@ class User < ActiveRecord::Base
     conversations_by_site(site).count > 0
   end
 
-  def conversation_by_users(users)
-    conversations.find { |conversation| conversation.users == users }
-  end
-
   def has_sites?
     sites.count > 0
   end
