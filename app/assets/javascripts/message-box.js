@@ -26,8 +26,15 @@ jQuery(document).ready(function($){
 
 //our js
 jQuery(document).ready(function($){
-  $('#pwd-users').on('click',function(){
-      $('#msg-bx-users-pwd').slideToggle();
-      $(this).toggleClass('active')
-  });
+  msgBxDropdowns('#pwd-users', '#msg-bx-users-pwd');
+  msgBxDropdowns('#pwd-sites', '#msg-bx-sites-pwd');
+  msgBxDropdowns('#pwd-convos', '#msg-bx-convos-pwd');
 });
+function msgBxDropdowns(clicked, target){
+  $(clicked).on('click',function(){
+      $('.msg-bx-dropdown-pwd').slideUp();
+      $('i.active').removeClass('active')
+      $(target).slideToggle();
+      $(this).toggleClass('active');
+  });
+}

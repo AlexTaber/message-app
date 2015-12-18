@@ -4,19 +4,53 @@
       <span class="msg-bx-header-txt-pwd">This is Your Message Center</span>
       <span id="pwd-nav-icons">
       <i class="fa fa-users" id="pwd-users"></i>
-      <i class="fa fa-comment"></i>
-      <i class="fa fa-globe"></i>
+      <i class="fa fa-comment" id="pwd-convos"></i>
+      <i class="fa fa-globe" id="pwd-sites"></i>
       </span>
     </p>
-        <div id="msg-bx-users-pwd" class="msg-bx-dropdown-pwd">
+      <div id="msg-bx-users-pwd" class="msg-bx-dropdown-pwd">
         <p><b>Users on this site</b></p>
         <ul id='msg-bx-user-list-pwd'>
           <% @site.other_users(current_user).each do |user| %>
-            <li><%= user.name %></li>
+            <li><%= "#{user.last_name}, #{user.first_name}" %> </li>
           <% end %>
         </ul>
       </div>
+      <div id="msg-bx-sites-pwd" class="msg-bx-dropdown-pwd">
+      <p><b>Your Sites</b></p>
+      <ul id='msg-bx-user-list-pwd'>
+      <% current_user.sites.each do |site| %>
+      <li>
+        <% if current_user.admin_of_site?(@site) %>
+          <%= link_to edit_site_path(@site) do %>
+            <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+        <% end %>
+        <%= link_to site.name, "http://#{site.url}", :target => '_blank' %>
+      </li>
+    <% end %>
+      </ul>
+    </div>
+
+    <div id="msg-bx-convos-pwd" class="msg-bx-dropdown-pwd">
+    <div id='msg-bx-convos-list-pwd'>      
+    <% @conversation.messages.each do |message| %>
+    <%= link_to('#') do %>
+      <div>
+        <i><%= message.date_to_s %></i>
+        <i><%= message.time_to_s %></i>
+      </div>
+      <div class="msg-bx-convo-data">
+        <h4><%= message.user.name %></h4>
+        <%= simple_format(message.content) %>
+      </div>
+        <% end %>
+        <% end %>
+        </div>
+    </div>
+
   </header>
+
   <div class="msg-bx-is-open-pwd">
     <div class="msg-bx-convo-pwd">
       <% @conversation.messages.each do |message| %>
