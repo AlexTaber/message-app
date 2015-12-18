@@ -54,15 +54,7 @@
   <div class="msg-bx-is-open-pwd">
     <div class="msg-bx-convo-pwd">
       <% @conversation.messages.each do |message| %>
-        <% if message.from_user?(current_user) %>
-          <p class="self-pwd">
-            <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
-          </p>
-        <% else %>
-          <p>
-            <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
-          </p>
-        <% end %>
+        <%= render partial: "messages/message", locals: { message: message } %>
       <% end %>
     </div>
     <div class="msg-bx-bottom-pwd">
@@ -71,6 +63,8 @@
         <p>
           <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
         </p>
+        <%= f.hidden_field :conversation_id, value: @conversation.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.submit "Submit" %>
       <% end %>
     </div>

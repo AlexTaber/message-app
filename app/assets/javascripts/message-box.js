@@ -1,5 +1,6 @@
 //has to go on users site
 jQuery(document).ready(function($){
+<<<<<<< HEAD
     var opened = false
     $( "#pwd-open-btn" ).click(function() {
             $( "#fixed-iframe" )
@@ -19,6 +20,7 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#pwd-users', '#msg-bx-users-pwd');
   msgBxDropdowns('#pwd-sites', '#msg-bx-sites-pwd');
   msgBxDropdowns('#pwd-convos', '#msg-bx-convos-pwd');
+  $(".new_message").submit(sendMessage);
 });
 
 function msgBxDropdowns(clicked, target){
@@ -30,3 +32,20 @@ function msgBxDropdowns(clicked, target){
   });
 }
 
+function sendMessage(e) {
+  e.preventDefault();
+  $.ajax({
+    url: "http://localhost:3000/messages",
+    method: "POST",
+    data: $(e.target).serialize()
+  }).done(function(response){
+    $(".msg-bx-convo-pwd").append(response);
+    $(".new_message").find("#message_content").val("");
+    scrollToBottom();
+  });
+}
+
+function scrollToBottom() {
+  var tar = $(".msg-bx-convo-pwd");
+  tar.scrollTop(tar[0].scrollHeight - tar.height())
+}

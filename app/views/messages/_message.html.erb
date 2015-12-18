@@ -1,0 +1,9 @@
+<% if message.from_user?(current_user) %>
+  <p class="self-pwd">
+    <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
+  </p>
+<% else %>
+  <p>
+    <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
+  </p>
+<% end %>
