@@ -73,22 +73,59 @@
   height: 20rem;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd; 
+  z-index: -1;
 }
 .msg-bx-users-pwd p {
   text-align: center;
 }
 .msg-bx-convo-pwd .self-pwd {
-  margin-right: 20rem;
-  margin-left: 0;
-  border-radius: 10px 10px 10px 0;
+  margin-left: 20rem;
+  margin-right: 5rem;
+  border-radius: 10px 10px 0 10px ;
   background: #8dbce9; 
 }
 .msg-bx-convo-pwd p {
-  margin-left: 20rem;
-  margin-right: 0;
-  border-radius: 10px 10px 0 10px;
+  margin-right: 20rem;
+  margin-left: 5rem;
+  border-radius: 10px 10px 10px 0 ;
   padding: 1rem; 
   background: #ddd;
+}
+.self-msg-wrapper, .them-msg-wrapper  {
+  position: relative;
+  z-index: 1;
+  .profile-pic {
+    border-radius: 100%;
+    width:4rem;
+    height:4rem;
+    position:absolute;
+    top: 2rem;
+    right: 0;
+  }
+}
+
+
+// profile pic default 
+div.profile-pic {
+  display:table;
+  text-align: center;
+  background: #133c64;
+  font-weight: 900;
+  font-size: 3rem;
+  color: #fff;
+}
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+
+
+.them-msg-wrapper .profile-pic{
+  left:0;
+  right:auto;
+
 }
 
 .msg-bx-users-pwd {
@@ -157,6 +194,7 @@ input[type="button"].button-primary-pwd {
     border-bottom: 3px solid #ddd;
     border-radius: 0 0 3px 3px ;
     overflow: visible;
+    z-index: 100;
 }
 .msg-bx-dropdown-pwd p{
   margin-bottom: 0;
@@ -229,4 +267,7 @@ input[type="button"].button-primary-pwd {
 }
 .them-pwd {
   display:block;
+}
+#message_content:focus {
+border:1px solid #133c64;
 }
