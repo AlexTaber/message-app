@@ -1,77 +1,74 @@
 <div class="app-header">
-<h2 class="logo"><b>MESSAGE</b><small>ES</small></h2>
+  <h2 class="logo"><b>MESSAGE</b><small>ES</small></h2>
+  <span id="nav-icons">
+    <i class="fa fa-users" id="header-users"></i>
+    <i class="fa fa-comment" id="header-convos"></i>
+    <i class="fa fa-globe" id="header-sites"></i>
+    <i class="fa fa-user" id="header-account"></i>
+  </span>
 </div>
-
 <div class="sidebar">
   <h3>Your sites
     <%= link_to new_site_path do %>
-      <i class="fa fa-plus"></i>
+    <i class="fa fa-plus u-pull-right"></i>
     <% end %>
   </h3>
   <nav>
     <% current_user.sites.each do |site| %>
-      <li>
-        <% if current_user.admin_of_site?(@site) %>
-          <%= link_to edit_site_path(@site) do %>
-
-          <% end %>
-        <% end %>
-        <%= link_to site.name, home_path(site_id: site.id) %>
-         <%= link_to add_users_site_path(site) do %>
-          <i class="fa fa-plus u-pull-right"></i>
-         <% end %>
-          <i class="fa fa-pencil-square-o u-pull-right"></i>
-      </li>
+    <li>
+      <%= link_to site.name, home_path(site_id: site.id) %>
+      <% if current_user.admin_of_site?(@site) %>
+      <%= link_to add_users_site_path(site) do %>
+      <i class="fa fa-user-plus u-pull-right"></i>
+      <% end %>
+      <i class="fa fa-pencil-square-o u-pull-right"></i>
+      <% end %>
+    </li>
     <% end %>
   </nav>
 </div>
-
 <div class="message-bar">
-  <div>
-    <%= link_to new_conversation_path(site_id: @site.id) do %>
-      <i class="fa fa-plus"></i>
-    <% end %>
-  </div>
-  <header>
-    <h3>Now Viewing Team<b> Google</b></h3>
-  </header>
-  <% if current_user.has_conversations_by_site?(@site) %>
-    <% current_user.conversations_by_site(@site).each do |conversation| %>
-      <%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
-        <div class="message-item">
-          <div class="media">
-            <%= image_tag "j-profile", class: "profile-img" %>
-            <div class="bd">
-              <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
-              <p>
-                <%= simple_format(conversation.content_preview(30)) %>
-              </p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  <% else %>
-    <h5>You don't have any conversations for this site... yet.</h5>
+ <header>
+  <%= link_to new_conversation_path(site_id: @site.id) do %>
+  <div id="pwd-users"><span>Message a <b>Google</b> User</span><i class="fa fa-plus"></i></div>
   <% end %>
+</header>
+<% if current_user.has_conversations_by_site?(@site) %>
+<% current_user.conversations_by_site(@site).each do |conversation| %>
+<%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
+<div class="message-item">
+  <div class="media">
+    <%= image_tag "j-profile", class: "profile-img" %>
+    <div class="bd">
+      <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
+      <p>
+        <%= simple_format(conversation.content_preview(30)) %>
+      </p>
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>
+<% else %>
+<h5>You don't have any conversations for this site... yet.</h5>
+<% end %>
 </div>
 <div class="message-content">
   <% @conversation.messages.each do |message| %>
-    <span class="u-pull-right date-new-date"
-      <i><%= message.date_to_s %></i>
-      <i><%= message.time_to_s %></i>
-    </span>
-    <div class="message-data">
-      <h4><%= message.user.name %></h4>
-      <%= simple_format(message.content) %>
-    </div>
-  <% end %>
-  <% unless @conversation.new_record? %>
-    <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
-  <% end %>
+  <span class="u-pull-right date-new-date"
+  <i><%= message.date_to_s %></i>
+  <i><%= message.time_to_s %></i>
+</span>
+<div class="message-data">
+  <h4><%= message.user.name %></h4>
+  <%= simple_format(message.content) %>
 </div>
-
+<% end %>
+<% unless @conversation.new_record? %>
+<%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+<% end %>
+</div>
 <div id="fixed-iframe">
-<a href="#" id="pwd-open-btn">---</a>
-<iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?site_url=http://localhost:3000&token=<%= current_user.token %>"></iframe>
+  <a href="#" id="pwd-open-btn">---</a>
+  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?site_url=http://localhost:3000&token=<%= current_user.token %>"></iframe>
 </div>
