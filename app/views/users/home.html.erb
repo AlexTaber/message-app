@@ -7,7 +7,6 @@
     <i class="fa fa-user" id="header-account"></i>
   </span>
 </div>
-
 <div class="sidebar">
   <h3>Your sites
     <%= link_to new_site_path do %>
@@ -16,26 +15,22 @@
   </h3>
   <nav>
     <% current_user.sites.each do |site| %>
-      <li>
-        <% if current_user.admin_of_site?(@site) %>
-          <%= link_to edit_site_path(@site) do %>
-
-          <% end %>
-        <% end %>
-        <%= link_to site.name, home_path(site_id: site.id) %>
-         <%= link_to add_users_site_path(site) do %>
-          <i class="fa fa-plus u-pull-right"></i>
-         <% end %>
-          <i class="fa fa-pencil-square-o u-pull-right"></i>
-      </li>
+    <li>
+      <%= link_to site.name, home_path(site_id: site.id) %>
+      <% if current_user.admin_of_site?(@site) %>
+      <%= link_to add_users_site_path(site) do %>
+      <i class="fa fa-user-plus u-pull-right"></i>
+      <% end %>
+      <i class="fa fa-pencil-square-o u-pull-right"></i>
+      <% end %>
+    </li>
     <% end %>
   </nav>
 </div>
-
 <div class="message-bar">
  <header>
   <%= link_to new_conversation_path(site_id: @site.id) do %>
- <span>Message a <b>Google</b> User</span><i class="fa fa-plus"></i>
+  <div id="pwd-users"><span>Message a <b>Google</b> User</span><i class="fa fa-plus"></i></div>
   <% end %>
 </header>
 <% if current_user.has_conversations_by_site?(@site) %>
@@ -74,7 +69,6 @@
 <% end %>
 </div>
 <div id="fixed-iframe">
-<a href="#" id="pwd-open-btn">---</a>
-<iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?site_url=http://localhost:3000&token=<%= current_user.token %>"></iframe>
-
+  <a href="#" id="pwd-open-btn">---</a>
+  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?site_url=http://localhost:3000&token=<%= current_user.token %>"></iframe>
 </div>
