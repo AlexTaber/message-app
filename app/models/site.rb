@@ -10,4 +10,8 @@ class Site < ActiveRecord::Base
   def other_users(user)
     users.where.not(id: user.id)
   end
+
+  def find_conversation_by_users(users)
+    conversations.find { |conversation| conversation.user_ids.sort == users.map(&:id).sort }
+  end
 end
