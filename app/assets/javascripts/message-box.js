@@ -1,14 +1,4 @@
-
-  // $.ajax({
-  //   url: "http://localhost:3000/message_box",
-  //   method: "GET",
-  //   data: {
-  //     url: document.location.origin
-  //   }
-  // }).done(function(response){
-    //$("body").append(response);
-
-// insert into user's page
+//has to go on users site
 jQuery(document).ready(function($){
     var opened = false
     $( "#pwd-open-btn" ).click(function() {
@@ -29,7 +19,9 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#pwd-users', '#msg-bx-users-pwd');
   msgBxDropdowns('#pwd-sites', '#msg-bx-sites-pwd');
   msgBxDropdowns('#pwd-convos', '#msg-bx-convos-pwd');
+  $(".new_message").submit(sendMessage);
 });
+
 function msgBxDropdowns(clicked, target){
   $(clicked).on('click',function(){
       $('.msg-bx-dropdown-pwd').slideUp();
@@ -37,4 +29,22 @@ function msgBxDropdowns(clicked, target){
       $(target).slideToggle();
       $(this).toggleClass('active');
   });
+}
+
+function sendMessage(e) {
+  e.preventDefault();
+  $.ajax({
+    url: "http://localhost:3000/messages",
+    method: "POST",
+    data: $(e.target).serialize()
+  }).done(function(response){
+    $(".msg-bx-convo-pwd").append(response);
+    $(".new_message").find("#message_content").val("");
+    scrollToBottom();
+  });
+}
+
+function scrollToBottom() {
+  var tar = $(".msg-bx-convo-pwd");
+  tar.scrollTop(tar[0].scrollHeight - tar.height())
 }
