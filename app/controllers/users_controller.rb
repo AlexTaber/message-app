@@ -21,6 +21,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
     @user.assign_attributes(user_params)
 
     if @user.valid?
@@ -32,9 +35,6 @@ class UsersController < ApplicationController
       flash[:warn] = "Unable to update user, please try again"
       redirect_to :back
     end
-  end
-
-  def update
   end
 
   def destroy
