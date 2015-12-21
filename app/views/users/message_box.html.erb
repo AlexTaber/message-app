@@ -14,7 +14,11 @@
         <p><b>Users on this site</b></p>
         <ul id='msg-bx-user-list-pwd'>
           <% @site.other_users(current_user).each do |user| %>
-            <li><div class="profile-pic no--pic"><div class="table-cell"><%= user.first_name[0] %></div></div><%= "#{user.last_name}, #{user.first_name}" %> </li>
+            <li><% if user.image %>
+<div class="profile-pic"><div class="table-cell"><img src="<%= user.image.url %>"></div></div>
+<% else %>
+<div class="profile-pic no--pic"><div class="table-cell"><%= user.first_name[0] %></div></div>
+<% end %><span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span> </li>
           <% end %>
         </ul>
       </div>

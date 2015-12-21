@@ -80,7 +80,7 @@
 }
 .msg-bx-convo-pwd .self-pwd {
   margin-left: 20rem;
-  margin-right: 5rem;
+  margin-right: 0rem;
   border-radius: 10px 10px 0 10px ;
   background: #8dbce9; 
 }
@@ -95,8 +95,6 @@
   position: relative;
   z-index: 1;
   .profile-pic {
-    width:4rem;
-    height:4rem;
     position:absolute;
     top: 2rem;
     right: 0;
@@ -106,7 +104,10 @@
 
 // profile pic default 
 .profile-pic {
+      width:4rem;
+    height:4rem;
   border-radius: 100%;
+  display:inline-table;
 }
 .no--pic {
   display:table;
@@ -116,11 +117,14 @@
   font-size: 3rem;
   color: #fff;
 }
-.no--pic {
-  display: table-cell;
-  vertical-align: middle;
+#msg-bx-users-pwd .profile-pic {
+  margin:1rem;
+  img{
+    width:4rem;
+    height:4rem;
+    display:block;
+  }
 }
-
 
 
 
@@ -141,7 +145,10 @@
   margin-bottom: 0;
   background:#fff;
 }
-
+.table-cell{
+      display:inline-table;
+      vertical-align:middle;
+}
 #msg-bx-user-list-pwd {
     text-align: left;
     .no--pic {
@@ -149,9 +156,7 @@
     display: inline-table;
           height:3rem;
           width:4rem;
-    .table-cell{
-          vertical-algin:middle;
-    }
+
 }
 }
 .msg-bx-user-list-pwd li {
