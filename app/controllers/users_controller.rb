@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   def home
     current_user.has_sites? ? find_user_site : @site = Site.new
     current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
+    @conversation.real_all_messages(current_user) unless @conversation.new_record?
     @message = Message.new
   end
 

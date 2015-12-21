@@ -42,4 +42,12 @@ class Conversation < ActiveRecord::Base
   def self.find_conversation_by_users_and_site(users, site)
     site.find_conversation_by_users(users)
   end
+
+  def read_all_messages(user)
+    messages.each { |message| message.update_attribute(read: true) if message.user == user }
+  end
+
+  def has_unread_messages?(user)
+    messages.count > 0 messages.last.is_read_by(user) : false
+  end
 end

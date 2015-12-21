@@ -24,4 +24,8 @@ class Message < ActiveRecord::Base
   def from_user?(checked_user)
     user.id == checked_user.id
   end
+
+  def is_read_by?(checked_user)
+    user == checked_user || read
+  end
 end
