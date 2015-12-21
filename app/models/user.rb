@@ -46,6 +46,6 @@ class User < ActiveRecord::Base
   end
 
   def ordered_conversations_by_site(site)
-    Conversation.ordered_conversations(conversations)
+    Conversation.ordered_conversations(conversations_by_site(site))
   end
 end

@@ -35,19 +35,19 @@
 </header>
 <% if current_user.has_conversations_by_site?(@site) %>
 <% current_user.conversations_by_site(@site).each do |conversation| %>
-<%= link_to home_path(conversation_id: conversation.id, site_id: @site.id) do%>
-<div class="message-item">
-  <div class="media">
-    <%= image_tag "j-profile", class: "profile-img" %>
-    <div class="bd">
-      <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
-      <p>
-        <%= simple_format(conversation.content_preview(30)) %>
-      </p>
+  <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
+  <div class="message-item">
+    <div class="media">
+      <%= image_tag "j-profile", class: "profile-img" %>
+      <div class="bd">
+        <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
+        <p>
+          <%= simple_format(conversation.content_preview(30)) %>
+        </p>
+      </div>
     </div>
   </div>
-</div>
-<% end %>
+  <% end %>
 <% end %>
 <% else %>
 <h5>You don't have any conversations for this site... yet.</h5>
