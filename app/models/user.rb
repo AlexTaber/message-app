@@ -45,4 +45,7 @@ class User < ActiveRecord::Base
     conversations_json
   end
 
+  def ordered_conversations_by_site(site)
+    Conversation.ordered_conversations(conversations)
+  end
 end

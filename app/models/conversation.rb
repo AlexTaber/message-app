@@ -54,4 +54,8 @@ class Conversation < ActiveRecord::Base
   def has_users?
     users.length > 0
   end
+
+  def self.ordered_conversations(conversations)
+    conversations.sort_by { |conversation| conversation.messages.last.updated_at }.reverse!
+  end
 end
