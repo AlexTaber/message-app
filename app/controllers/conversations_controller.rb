@@ -5,8 +5,8 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    users = User.where(id: params[:conversation][:user_ids].reject!(&:empty?))
-    users << current_user
+    users = User.where(id: params[:conversation][:user_ids].reject(&:empty?))
+    users << current_user unless users.include?(current_user)
     site = Site.find_by(id: params[:conversation][:site_id])
     @conversation = site.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
@@ -14,8 +14,14 @@ class ConversationsController < ApplicationController
       @conversation.save
       set_up_users(users) unless @conversation.users.count > 0
       create_message if params[:content]
-      flash[:notice] = "Conversation successfully created"
-      redirect_to home_path
+
+      if request.xhr?
+        render partial: "messages/message", locals: { message: @message }
+      else
+        flash[:notice] = "Conversation successfully created"
+        redirect_to home_path
+      end
+
     else
       flash[:warn] = "Unable to create conversation, please try again"
       redirect_to :back

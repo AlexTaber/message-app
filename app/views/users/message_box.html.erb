@@ -5,7 +5,9 @@
     <p>
       <span class="msg-bx-header-txt-pwd">This is Your Message Center</span>
       <span id="pwd-nav-icons">
-      <a href="#"><i class="fa fa-home"></i></a>
+      <%= link_to message_box_path(token: @site.token) do %>
+        <i class="fa fa-home"></i>
+      <% end %>
       <i class="fa fa-users" id="pwd-users"></i>
       <i class="fa fa-comment" id="pwd-convos"></i>
       <i class="fa fa-globe" id="pwd-sites"></i>
@@ -15,11 +17,22 @@
         <p><b>Users on this site</b></p>
         <ul id='msg-bx-user-list-pwd'>
           <% @site.other_users(current_user).each do |user| %>
-            <li><% if user.image %>
-<div class="profile-pic"><div class="table-cell"><img src="<%= user.image.url %>"></div></div>
-<% else %>
-<div class="profile-pic no--pic"><div class="table-cell"><%= user.first_name[0] %></div></div>
-<% end %><span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span> </li>
+            <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
+              <li>
+                <% if user.image %>
+                  <div class="profile-pic">
+                    <div class="table-cell">
+                      <img src="<%= user.image.url %>">
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="profile-pic no--pic">
+                    <div class="table-cell"><%= user.first_name[0] %></div>
+                  </div>
+                <% end %>
+                <span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -63,24 +76,50 @@
   </header>
 
   <div class="msg-bx-body-pwd">
-    <div class="msg-bx-info">
-      <p><i>Your conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
-    </div>
-    <div class="msg-bx-convo-pwd">
-      <% @conversation.messages.each do |message| %>
-        <%= render partial: "messages/message", locals: { message: message } %>
-      <% end %>
-    </div>
-    <div class="msg-bx-bottom-pwd">
-      <%= form_for @message do |f| %>
-        <%= f.label :content, "Message" %>
-        <p>
-          <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
-        </p>
-        <%= f.hidden_field :conversation_id, value: @conversation.id %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
-      <% end %>
-    </div>
+    <% if @conversation.has_users? %>
+      <!-- view for saved conversation -->
+      <div class="msg-bx-info">
+        <p><i>Your conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+      </div>
+      <div class="msg-bx-convo-pwd">
+        <% @conversation.messages.each do |message| %>
+          <%= render partial: "messages/message", locals: { message: message } %>
+        <% end %>
+      </div>
+
+      <div class="msg-bx-bottom-pwd">
+        <% if @conversation.new_record? %>
+          <%= form_for @conversation do |f| %>
+            <%= f.label :content, "Message" %>
+            <p>
+              <%= text_area_tag :content, nil, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+            </p>
+
+            <% @conversation.user_ids.each do |user_id| %>
+              <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
+            <% end %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :site_id, value: @site.id %>
+            <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+          <% end %>
+        <% else %>
+          <%= form_for @message do |f| %>
+            <%= f.label :content, "Message" %>
+            <p>
+              <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+            </p>
+            <%= f.hidden_field :conversation_id, value: @conversation.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :site_id, value: @site.id %>
+            <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- default conversation view -->
+      <div class="msg-bx-convo-pwd">
+        You Have No Conversations... Yet
+      </div>
+    <% end %>
   </div>
 </div>
