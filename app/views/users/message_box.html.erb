@@ -43,7 +43,7 @@
       <div id='msg-bx-convos-list-pwd'>
         <% current_user.conversations_by_site(@site).each do |conversation| %>
           <% if conversation.has_unread_messages?(current_user) %>
-            <div class="msg-bx-convo grey-bg">
+            <div class="msg-bx-convo unread-bg">
           <% else %>  
             <div class="msg-bx-convo">
           <% end %>

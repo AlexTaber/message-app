@@ -31,6 +31,7 @@
 }
 #pwd-open-btn:hover {
   color: #8dbce9;
+  text-shadow:none;
 }
 
 
@@ -76,8 +77,8 @@
   z-index: -1;
 
 }
-    .grey-bg{
-    background: #ddd;
+    .unread-bg{
+    background: #CDE6FC;
   }
 .msg-bx-users-pwd p {
   text-align: center;
