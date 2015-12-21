@@ -29,12 +29,12 @@ class Message < ActiveRecord::Base
 
   def read(recipient)
     message_user = message_user_by_user(recipient)
-    message_user.update_attribute(read: true) if message_user
+    message_user.update_attribute(:read, true) if message_user
   end
 
   def is_read_by?(checked_user)
     message_user = message_user_by_user(checked_user)
-    message_user ? message_user.read : false
+    message_user ? message_user.read : true
   end
 
   def message_user_by_user(recipient)
