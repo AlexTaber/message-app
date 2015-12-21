@@ -1,6 +1,7 @@
 class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :user
+  has_many :recipients, through: :message_users, class_name: "User"
 
   def content_preview(length)
     content.length > length ? "#{content[0...length]}..." : content[0...length]

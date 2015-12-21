@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :conversers
   has_many :conversations, through: :conversers
   has_one  :image, as: :imageable
+  has_many :recieved_messages, through: :message_users, class_name: "Message"
 
   def name
     "#{first_name} #{last_name}"
