@@ -48,6 +48,6 @@ class Conversation < ActiveRecord::Base
   end
 
   def has_unread_messages?(user)
-    messages.count > 0 messages.last.is_read_by(user) : false
+    messages.count > 0 ? messages.last.is_read_by(user) : false
   end
 end
