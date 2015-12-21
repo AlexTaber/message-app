@@ -90,6 +90,9 @@
   border-radius: 10px 10px 10px 0 ;
   padding: 1rem; 
   background: #ddd;
+  .grey-bg{
+    background: #ddd;
+  }
 }
 .self-msg-wrapper, .them-msg-wrapper  {
   position: relative;
@@ -104,10 +107,11 @@
 
 // profile pic default 
 .profile-pic {
-      width:4rem;
-    height:4rem;
+  width:4rem;
+  height:4rem;
   border-radius: 100%;
   display:inline-table;
+  position:relative;
 }
 .no--pic {
   display:table;
@@ -116,6 +120,7 @@
   font-weight: 900;
   font-size: 3rem;
   color: #fff;
+  line-height: 1.4;
 }
 #msg-bx-users-pwd .profile-pic {
   margin:1rem;
@@ -123,6 +128,8 @@
     width:4rem;
     height:4rem;
     display:block;
+    top:0;
+    position: absolute;
   }
 }
 
@@ -176,21 +183,27 @@ input[type="reset"].button-primary-pwd,
 input[type="button"].button-primary-pwd {
   color: #FFF;
   background-color: #133c64;
-  border-color: #133c64; }
+  border-color: #133c64; 
+}
   #pwd-nav-icons{
     float:right;
     padding-right: 10rem;
     font-size:150%;
-    color: #6795BA;
+    color: rgba(255, 255 , 255, 0.6);
   }
-  #pwd-nav-icons i:hover{
-    color:#fff;
+  #pwd-nav-icons i:hover, .msg-bx-pwd i.active{
+   color:#fff;
   }
   #pwd-nav-icons i{
     padding-left: 1rem;
   }
-.msg-bx-pwd i.active{
-  color: #fff !important;
+
+#pwd-nav-icons a{
+  color: rgba(255, 255, 255, 0.6) !important;
+  &:hover {
+    color: #fff;
+    text-shadow: none;
+  }
 }
 
 //styles for all dropdowns

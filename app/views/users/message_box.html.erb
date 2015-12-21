@@ -5,6 +5,7 @@
     <p>
       <span class="msg-bx-header-txt-pwd">This is Your Message Center</span>
       <span id="pwd-nav-icons">
+      <a href="#"><i class="fa fa-home"></i></a>
       <i class="fa fa-users" id="pwd-users"></i>
       <i class="fa fa-comment" id="pwd-convos"></i>
       <i class="fa fa-globe" id="pwd-sites"></i>
@@ -41,7 +42,11 @@
     <p><b>Your Conversations</b></p>
       <div id='msg-bx-convos-list-pwd'>
         <% current_user.conversations_by_site(@site).each do |conversation| %>
+          <% if conversation.has_unread_messages?(current_user) %>
+            <div class="msg-bx-convo grey-bg">
+          <% else %>  
             <div class="msg-bx-convo">
+          <% end %>
           <%= link_to message_box_path(conversation_id: conversation.id, site_url: @site.url, token: current_user.token) do %>
               <i><%= conversation.messages.last.date_to_s %></i>
               <i><%= conversation.messages.last.time_to_s %></i>
