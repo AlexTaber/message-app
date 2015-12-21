@@ -52,6 +52,6 @@ class Conversation < ActiveRecord::Base
   end
 
   def has_users?
-    users.count > 0
+    users.length > 0
   end
 end

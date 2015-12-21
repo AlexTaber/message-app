@@ -82,7 +82,10 @@ class UsersController < ApplicationController
     if params[:user_ids]
       users = User.where(id: params[:user_ids])
       @conversation = Conversation.find_conversation_by_users_and_site(users, @site)
-      @conversation = user.conversations_by_site(@site).first unless @conversation
+      unless @conversation
+        @conversation = Conversation.new(site_id: @site.id)
+        @conversation.users << users
+      end
     else
       @conversation = user.conversations_by_site(@site).first
     end

@@ -4,6 +4,7 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#pwd-sites', '#msg-bx-sites-pwd');
   msgBxDropdowns('#pwd-convos', '#msg-bx-convos-pwd');
   $(".new_message").submit(sendMessage);
+  $(".new_conversation").submit(startConversation);
   $('.msg-bx-convo-pwd').scrollTop($('.msg-bx-convo-pwd')[0].scrollHeight);
 });
 
@@ -24,7 +25,20 @@ function msgBxDropdowns(clicked, target){
 function sendMessage(e) {
   e.preventDefault();
   $.ajax({
-    url: "http://localhost:3000/messages",
+    url: e.target.action,
+    method: "POST",
+    data: $(e.target).serialize()
+  }).done(function(response){
+    $(".msg-bx-convo-pwd").append(response);
+    $(".new_message").find("#message_content").val("");
+    scrollToBottom();
+  });
+}
+
+function startConversation(e) {
+  e.preventDefault();
+  $.ajax({
+    url: e.target.action,
     method: "POST",
     data: $(e.target).serialize()
   }).done(function(response){

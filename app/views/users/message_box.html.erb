@@ -75,14 +75,31 @@
       </div>
 
       <div class="msg-bx-bottom-pwd">
-        <%= form_for @message do |f| %>
-          <%= f.label :content, "Message" %>
-          <p>
-            <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
-          </p>
-          <%= f.hidden_field :conversation_id, value: @conversation.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+        <% if @conversation.new_record? %>
+          <%= form_for @conversation do |f| %>
+            <%= f.label :content, "Message" %>
+            <p>
+              <%= text_area_tag :content, nil, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+            </p>
+
+            <% @conversation.user_ids.each do |user_id| %>
+              <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
+            <% end %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :site_id, value: @site.id %>
+            <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+          <% end %>
+        <% else %>
+          <%= form_for @message do |f| %>
+            <%= f.label :content, "Message" %>
+            <p>
+              <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+            </p>
+            <%= f.hidden_field :conversation_id, value: @conversation.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :site_id, value: @site.id %>
+            <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+          <% end %>
         <% end %>
       </div>
     <% else %>
