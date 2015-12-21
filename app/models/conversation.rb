@@ -44,7 +44,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def read_all_messages(user)
-    messages.each { |message| message.update_attribute(read: true) if message.user == user }
+    messages.each { |message| message.read(user) unless message.user == user }
   end
 
   def has_unread_messages?(user)

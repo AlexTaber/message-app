@@ -26,7 +26,16 @@ class Message < ActiveRecord::Base
     user.id == checked_user.id
   end
 
+  def read(recipient)
+    message_user_by_user(recipient).update_attribute(read: true)
+  end
+
   def is_read_by?(checked_user)
-    user == checked_user || read
+    message_user = message_user_by_user(checked_user)
+    message_user ? message_user.read : false
+  end
+
+  def message_user_by_user(recipient)
+    message_users.find_by(user_id: recipient.id)
   end
 end
