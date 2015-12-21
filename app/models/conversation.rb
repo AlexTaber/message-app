@@ -40,7 +40,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def self.find_conversation_by_users_and_site(users, site)
-    site.find_conversation_by_users(users)
+    users ? site.find_conversation_by_users(users) : nil
   end
 
   def read_all_messages(user)
@@ -49,5 +49,9 @@ class Conversation < ActiveRecord::Base
 
   def has_unread_messages?(user)
     messages.count > 0 ? !messages.last.is_read_by?(user) : false
+  end
+
+  def has_users?
+    users.count > 0
   end
 end

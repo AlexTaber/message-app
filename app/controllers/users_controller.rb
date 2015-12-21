@@ -62,7 +62,6 @@ class UsersController < ApplicationController
     @site = token_site(token)
     current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
     @message = Message.new
-    #render partial: "layouts/message_box"
   end
 
   private
@@ -80,7 +79,13 @@ class UsersController < ApplicationController
   end
 
   def find_conversation(user)
-    params[:conversation_id] ? @conversation = Conversation.find_by(id: params[:conversation_id]) : @conversation = user.conversations_by_site(@site).first
+    if params[:user_ids]
+      users = User.where(id: params[:user_ids])
+      @conversation = Conversation.find_conversation_by_users_and_site(users, @site)
+      @conversation = user.conversations_by_site(@site).first unless @conversation
+    else
+      @conversation = user.conversations_by_site(@site).first
+    end
   end
 
   def set_up_json

@@ -63,24 +63,33 @@
   </header>
 
   <div class="msg-bx-body-pwd">
-    <div class="msg-bx-info">
-      <p><i>Your conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
-    </div>
-    <div class="msg-bx-convo-pwd">
-      <% @conversation.messages.each do |message| %>
-        <%= render partial: "messages/message", locals: { message: message } %>
-      <% end %>
-    </div>
-    <div class="msg-bx-bottom-pwd">
-      <%= form_for @message do |f| %>
-        <%= f.label :content, "Message" %>
-        <p>
-          <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
-        </p>
-        <%= f.hidden_field :conversation_id, value: @conversation.id %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
-      <% end %>
-    </div>
+    <% if @conversation.has_users? %>
+      <!-- view for saved conversation -->
+      <div class="msg-bx-info">
+        <p><i>Your conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+      </div>
+      <div class="msg-bx-convo-pwd">
+        <% @conversation.messages.each do |message| %>
+          <%= render partial: "messages/message", locals: { message: message } %>
+        <% end %>
+      </div>
+
+      <div class="msg-bx-bottom-pwd">
+        <%= form_for @message do |f| %>
+          <%= f.label :content, "Message" %>
+          <p>
+            <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+          </p>
+          <%= f.hidden_field :conversation_id, value: @conversation.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- default conversation view -->
+      <div class="msg-bx-convo-pwd">
+        You Have No Conversations... Yet
+      </div>
+    <% end %>
   </div>
 </div>
