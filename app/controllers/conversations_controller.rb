@@ -37,7 +37,16 @@ class ConversationsController < ApplicationController
   end
 
   def create_message
-    @message = Message.new(content: params[:content], user_id: current_user.id)
-    @conversation.messages << @message
+    @message = Message.create(content: params[:content], user_id: current_user.id, conversation_id: @conversation.id)
+    set_up_recipients
+  end
+
+  def set_up_recipients
+    @message.conversation.other_users(current_user).each do |user|
+      MessageUser.create(
+        user_id: user.id,
+        message_id: @message.id
+      )
+    end
   end
 end

@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
 
     if @message.valid?
       @message.save!
+      set_up_recipients
       flash[:notice] = "Message successfully created"
 
       if request.xhr?
@@ -22,5 +23,14 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content, :user_id, :conversation_id)
+  end
+
+  def set_up_recipients
+    @message.conversation.other_users(current_user).each do |user|
+      MessageUser.create(
+        user_id: user.id,
+        message_id: @message.id
+      )
+    end
   end
 end

@@ -86,9 +86,19 @@ Site.all.each do |site|
     content: "Sup Jerry, I heart #{site.name}"
   )
 
+  message_user = MessageUser.create(
+    user_id: jerry.id,
+    message_id: message.id
+  )
+
   message = Message.create(
     user_id: jerry.id,
     conversation_id: convo.id,
     content: "Sup Dan, I heart #{site.name}"
+  )
+
+  message_user = MessageUser.create(
+    user_id: dan.id,
+    message_id: message.id
   )
 end
