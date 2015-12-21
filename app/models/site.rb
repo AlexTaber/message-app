@@ -16,4 +16,8 @@ class Site < ActiveRecord::Base
   def find_conversation_by_users(users)
     conversations.find { |conversation| conversation.user_ids.sort == users.map(&:id).sort }
   end
+
+  def ordered_conversations
+    conversations.sort_by { |conversation| conversation.messages.last.updated_at }.reverse!
+  end
 end
