@@ -7,7 +7,7 @@ jQuery(document).ready(function($){
               if($( "#fixed-iframe" ).hasClass('pwd-open')) {
                 $('#pwd-open-btn').text('X');
               } else {
-                $('#pwd-open-btn').text('---');
+                $('#pwd-open-btn').html('&#9650;');
               }
               opened = true
       });

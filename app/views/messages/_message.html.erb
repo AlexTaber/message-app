@@ -4,15 +4,18 @@
   <p class="self-pwd">
     <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
   </p>
- 
-  <div class="profile-pic no--pic"><div class="table-cell"><%= message.user.name[0] %></div></div>
   </div>
 <% else %>
 <div class="them-msg-wrapper">
+
+<% if message.user.image %>
+<img class="profile-pic" src="<%= message.user.image.url %>">
+<% else %>
 <div class="profile-pic no--pic"><div class="table-cell"><%= message.user.first_name[0] %></div></div>
+<% end %>
 	<small><b><%= message.user.name %></b> <i>on <%= message.date_to_s %> <%= message.time_to_s %></i></small>
-  <p>
-    <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
-  </p>
+    <p>
+      <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
+    </p>
   </div>
 <% end %>
