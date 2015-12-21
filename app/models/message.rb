@@ -1,7 +1,8 @@
 class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :user
-  has_many :recipients, through: :message_users, class_name: "User"
+  has_many :message_users
+  has_many :recipients, through: :message_users, source: :user
 
   def content_preview(length)
     content.length > length ? "#{content[0...length]}..." : content[0...length]
@@ -27,7 +28,8 @@ class Message < ActiveRecord::Base
   end
 
   def read(recipient)
-    message_user_by_user(recipient).update_attribute(read: true)
+    message_user = message_user_by_user(recipient)
+    message_user.update_attribute(read: true) if message_user
   end
 
   def is_read_by?(checked_user)
