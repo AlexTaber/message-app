@@ -11,5 +11,4 @@ jQuery(document).ready(function($){
               }
               opened = true
       });
-
 });
