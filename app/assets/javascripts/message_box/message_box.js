@@ -43,7 +43,7 @@ function startConversation(e) {
     data: $(e.target).serialize()
   }).done(function(response){
     $(".msg-bx-convo-pwd").append(response);
-    $(".new_message").find("#message_content").val("");
+    $(".new_conversation").find("#content").val("");
     scrollToBottom();
   });
 }

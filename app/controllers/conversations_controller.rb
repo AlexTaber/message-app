@@ -16,7 +16,6 @@ class ConversationsController < ApplicationController
       create_message if params[:content]
 
       if request.xhr?
-        binding.pry
         render partial: "messages/message", locals: { message: @message }
       else
         flash[:notice] = "Conversation successfully created"
