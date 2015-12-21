@@ -59,9 +59,8 @@ class UsersController < ApplicationController
 
   def message_box
     token = params[:token]
-    user = token_user(token)
-    @site = user.find_site_by_url(params[:site_url])
-    user.has_conversations_by_site?(@site) ? find_conversation(user) : @conversation = Conversation.new
+    @site = token_site(token)
+    current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
     @message = Message.new
     #render partial: "layouts/message_box"
   end

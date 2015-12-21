@@ -44,10 +44,10 @@
         <% current_user.conversations_by_site(@site).each do |conversation| %>
           <% if conversation.has_unread_messages?(current_user) %>
             <div class="msg-bx-convo unread-bg">
-          <% else %>  
+          <% else %>
             <div class="msg-bx-convo">
           <% end %>
-          <%= link_to message_box_path(conversation_id: conversation.id, site_url: @site.url, token: current_user.token) do %>
+          <%= link_to message_box_path(conversation_id: conversation.id, token: @site.token) do %>
               <i><%= conversation.messages.last.date_to_s %></i>
               <i><%= conversation.messages.last.time_to_s %></i>
             <div class="msg-bx-convo-data">
