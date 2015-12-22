@@ -3,26 +3,28 @@
     <h2><b>MESSAGE</b><small>ES</small></h2>
   </nav>
   <nav class="current-site-data">
-  <h3>Google</h3>
+  <span><%= @site.name %></span>
   <%= link_to new_conversation_path(site_id: @site.id) do %>
     <small>New Message</small>
    <% end %>
-   <i id="user-site" class="fa fa-chevron-down" title="Edit this site"></i>
-   <nav id="current-site">
-   <h4>Site Name</h4>
-     <li>Edit </li>
-     <li>Delete</li>
-      <li>Add $$$</li>
-   </nav>
+   <% current_user.sites.each do |site| %>
+      <% if current_user.admin_of_site?(@site) %>
+      <%= link_to add_users_site_path(site) do %>
+      <small title="Add a new user">Users &#9662;</small>
+      <% end %>
+      <% end %>
+    <% end %>  
   </nav>
   <nav class="profile-data">
-    <i class="fa fa-user" id="header-account"></i>
+  <span><%= current_user.name %></span>
+    <i class="fa fa-user"></i>
     <i id="users-account" class="fa fa-chevron-down" title="Edit your account"></i>
     <nav id="current-account">
-   <h4>Your Account</h4>
-     <li>Edit </li>
-     <li>Delete</li>
-      <li>Add $$$</li>
+   <h4>Your User Account</h4>
+     <li>Settings </li>
+     <li>Free Level 1<small style="color:red;"> Upgrade now</small></li>
+      <%= link_to logout_path do %> <li>Log Out</li>
+      <% end %>
    </nav>
   </nav>
 </div>
@@ -94,7 +96,6 @@
 <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
 <% end %>
 </div>
-
 <% if current_user.sites.count > 0 %>
   <div id="fixed-iframe">
     <a href="#" id="pwd-open-btn">&#9650;</a>
