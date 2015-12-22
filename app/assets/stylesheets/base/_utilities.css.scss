@@ -50,6 +50,28 @@ hr {
           float: left; }
 
 //Modal window 
+ #mask {  
+    position:fixed;   
+    top:0px;  
+    left:0px;  
+    height:100%;  
+    width:100%;   
+    display:none;  
+    background-color: rgba($black, .8);  
+  }  
+  .modal-window{  
+    position:absolute;
+    width: auto; 
+    display:none;     
+    padding: 2rem;
+    background: $black; 
+    text-align: center; 
+    z-index: 4440000;
+    h1 {
+      color: $white;
+    }
+  }  
+  //checkbox modal
 .modal input {
   position: absolute;
   top: -10000px;

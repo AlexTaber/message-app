@@ -1,4 +1,10 @@
-<%= form_for @site do |f| %>
+
+<div class="background-class">
+	<div class="container">
+		<div class="row">
+			<div class="six offset-by-three columns text-center">
+				<h1>Awesome! Let's add a new user to this site</h1>	
+				<%= form_for @site do |f| %>
 <div>
     <%= f.label :user_ids, "Add Users" %>
     <%= f.collection_select(:user_ids, User.all_other_users(current_user), :id, :name,{}, {:multiple => true}) %>
@@ -7,3 +13,7 @@
     <%= f.submit%>
   </div>
 <% end %>
+			</div>
+		</div>
+	</div>
+</div>

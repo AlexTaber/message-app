@@ -1,6 +1,5 @@
 // nav ––––––––––––––––––––––––––––––
-
- /*
+/*
 * Skeleton V2.0.4
 * Copyright 2014, Dave Gamache
 * www.getskeleton.com
@@ -8,13 +7,13 @@
 * http://www.opensource.org/licenses/mit-license.php
 * 12/29/2014
 */
-
 a {
   color: rgba($pwdlight, .8); 
 }
 a:hover {
   color: rgba($pwdlight, 1); 
-text-shadow: 0 1px 1px $white;}
+// text-shadow: 0 1px 1px $white;
+}
 .active {
   font-weight: bold;
   font-size: 2rem;
@@ -26,9 +25,65 @@ text-shadow: 0 1px 1px $white;}
   background: $black;
   color: $white;
   border-bottom: 1px solid rgba(white, .3);
+  nav {
+    display: inline-block;
+  }
+  a {
+    text-decoration: none;
+    color: $white;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-#nav-icons {
+.current-site-data {
+ width: 28%;
+ font-size: 2.5rem;
+ line-height: 4rem;
+ padding: 0 2rem;
+ border-right: 1px solid rgba(white, .3);
+ h3 {
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 3rem;
+ }
+ i {
+   padding-left: 8rem;
+   &:hover {
+    cursor: pointer;
+   }
+ }
+}
+//dropdown
+nav#current-account, nav#current-site {
+  display:none;
+  position: absolute;
+  right: 2.5rem;;
+  top:6rem;
+  z-index: 999;
+  background: #fafafa;
+  padding: 1.5rem 2rem;
+  color: #222;
+  width: 25rem;
+  border: 1px solid $grey;
+  border-radius: .3rem;
+  box-shadow: 0px 1px 1px $grey;
+  li {
+    list-style: none;
+   padding: 1rem;
+   color: #7d7d7d;
+  }
+}
+.profile-data {
+  float: right;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  i {
+    padding-left: 1.5rem;
+  }
+}
+.nav-icons {
   float: right;
   margin: 0 3rem;
   line-height: 5rem;
