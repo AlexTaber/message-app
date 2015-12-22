@@ -32,7 +32,7 @@ a:hover {
     text-decoration: none;
     color: $white;
     &:hover {
-      text-decoration: underline;
+      opacity: .8;
     }
   }
 }
@@ -48,11 +48,9 @@ a:hover {
   margin-bottom: 0;
   margin-right: 3rem;
  }
- i {
-   padding-left: 8rem;
-   &:hover {
-    cursor: pointer;
-   }
+ small {
+  color:$pwdlight;
+  margin-left: 2rem;
  }
 }
 //dropdown
