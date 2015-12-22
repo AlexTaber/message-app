@@ -1,17 +1,49 @@
 <div class="app-header">
-  <h2 class="logo"><b>MESSAGE</b><small>ES</small></h2>
-  <span id="nav-icons">
-    <i class="fa fa-users" id="header-users"></i>
-    <i class="fa fa-comment" id="header-convos"></i>
-    <i class="fa fa-globe" id="header-sites"></i>
+  <nav class="logo">
+    <h2><b>MESSAGE</b><small>ES</small></h2>
+  </nav>
+  <nav class="current-site-data">
+  <h3>Google</h3>
+  <%= link_to new_conversation_path(site_id: @site.id) do %>
+    <small>New Message</small>
+   <% end %>
+   <i id="user-site" class="fa fa-chevron-down" title="Edit this site"></i>
+   <nav id="current-site">
+   <h4>Site Name</h4>
+     <li>Edit </li>
+     <li>Delete</li>
+      <li>Add $$$</li>
+   </nav>
+  </nav>
+  <nav class="profile-data">
     <i class="fa fa-user" id="header-account"></i>
-  </span>
+    <i id="users-account" class="fa fa-chevron-down" title="Edit your account"></i>
+    <nav id="current-account">
+   <h4>Your Account</h4>
+     <li>Edit </li>
+     <li>Delete</li>
+      <li>Add $$$</li>
+   </nav>
+  </nav>
 </div>
 <div class="sidebar">
   <h3>Your sites
-    <%= link_to new_site_path do %>
-    <i class="fa fa-plus u-pull-right"></i>
-    <% end %>
+     <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
+      <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
+     <% end %>
+   <div id='mask' class='close-modal'></div>  
+  <div id='window' class='modal-window'>
+  <div class="background-class">
+  <div class="container">
+    <div class="row">
+      <div>
+        <h1>Awesome! Let's add a new site to your Organization</h1> 
+        <%= render partial: "sites/form", locals: { site: @site } %>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>  
   </h3>
   <nav>
     <% current_user.sites.each do |site| %>
@@ -19,20 +51,14 @@
       <%= link_to site.name, home_path(site_id: site.id) %>
       <% if current_user.admin_of_site?(@site) %>
       <%= link_to add_users_site_path(site) do %>
-      <i class="fa fa-user-plus u-pull-right"></i>
+      <i class="fa fa-user-plus u-pull-right" title="Add a new user"></i>
       <% end %>
-      <i class="fa fa-pencil-square-o u-pull-right"></i>
       <% end %>
     </li>
     <% end %>
   </nav>
 </div>
 <div class="message-bar">
- <header>
-  <%= link_to new_conversation_path(site_id: @site.id) do %>
-  <div id="pwd-users"><span>Message a <b>Google</b> User</span><i class="fa fa-plus"></i></div>
-  <% end %>
-</header>
 <% if current_user.has_conversations_by_site?(@site) %>
 <% current_user.conversations_by_site(@site).each do |conversation| %>
   <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
