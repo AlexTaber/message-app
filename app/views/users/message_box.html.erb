@@ -1,21 +1,21 @@
 <%= javascript_include_tag "message_box/message_box" %>
 
-<div class="msg-bx-pwd">
+<div id="msg-bx">
   <header class="brand-color">
     <p>
-      <span class="msg-bx-header-txt-pwd">This is Your Message Center</span>
-      <span id="pwd-nav-icons">
-      <%= link_to message_box_path(token: @site.token) do %>
-        <i class="fa fa-home"></i>
-      <% end %>
-      <i class="fa fa-users" id="pwd-users"></i>
-      <i class="fa fa-comment" id="pwd-convos"></i>
-      <i class="fa fa-globe" id="pwd-sites"></i>
+      <span>This is Your Message Center</span>
+      <span id="msg-bx-nav-icons">
+        <%= link_to message_box_path(token: @site.token) do %>
+          <i class="fa fa-home"></i>
+        <% end %>
+      <i class="fa fa-users" id="msg-bx-users-btn"></i>
+      <i class="fa fa-comment" id="msg-bx-convos-btn"></i>
+      <i class="fa fa-globe" id="msg-bx-sites-btn"></i>
       </span>
     </p>
-      <div id="msg-bx-users-pwd" class="msg-bx-dropdown-pwd">
+      <div id="msg-bx-users-drop" class="msg-bx-dropdown">
         <p><b>Users on this site</b></p>
-        <ul id='msg-bx-user-list-pwd'>
+        <ul id="msg-bx-user-list">
           <% @site.other_users(current_user).each do |user| %>
             <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
               <li>
@@ -36,29 +36,14 @@
           <% end %>
         </ul>
       </div>
-      <div id="msg-bx-sites-pwd" class="msg-bx-dropdown-pwd">
-      <p><b>Your Sites</b></p>
-      <ul id='msg-bx-site-list-pwd'>
-      <% current_user.sites.each do |site| %>
-      <li>
-      <% if @site == site %>
-        <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
-      <% else %>
-        <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
-      <% end %>
-      </li>
-    <% end %>
-      </ul>
-    </div>
-
-    <div id="msg-bx-convos-pwd" class="msg-bx-dropdown-pwd">
+    <div id="msg-bx-convos-drop" class="msg-bx-dropdown">
     <p><b>Your Conversations</b></p>
-      <div id='msg-bx-convos-list-pwd'>
+      <div id='msg-bx-convos-list'>
         <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
           <% if conversation.has_unread_messages?(current_user) %>
-            <div class="msg-bx-convo unread-bg">
+            <div class="msg-bx-convo-item unread-bg">
           <% else %>
-            <div class="msg-bx-convo">
+            <div class="msg-bx-convo-item">
           <% end %>
           <%= link_to message_box_path(user_ids: conversation.user_ids, token: @site.token) do %>
               <i><%= conversation.messages.last.date_to_s %></i>
@@ -72,22 +57,37 @@
         <% end %>
       </div>
     </div>
+      <div id="msg-bx-sites-drop" class="msg-bx-dropdown">
+      <p><b>Your Sites</b></p>
+      <ul id='msg-bx-site-list'>
+      <% current_user.sites.each do |site| %>
+      <li>
+      <% if @site == site %>
+        <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
+      <% else %>
+        <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+      <% end %>
+      </li>
+    <% end %>
+      </ul>
+    </div>
+
 
   </header>
 
-  <div class="msg-bx-body-pwd">
+  <div class="msg-bx-body">
     <% if @conversation.has_users? %>
       <!-- view for saved conversation -->
       <div class="msg-bx-info">
         <p><i>Your conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
       </div>
-      <div class="msg-bx-convo-pwd">
+      <div class="msg-bx-convo">
         <% @conversation.messages.each do |message| %>
           <%= render partial: "messages/message", locals: { message: message } %>
         <% end %>
       </div>
 
-      <div class="msg-bx-bottom-pwd">
+      <div class="msg-bx-bottom">
         <% if @conversation.new_record? %>
           <%= form_for @conversation do |f| %>
             <%= f.label :content, "Message" %>

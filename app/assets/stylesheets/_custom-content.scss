@@ -36,83 +36,7 @@
 
 //--------------------------message-view
 
-//main
-.msg-bx-pwd {
-  width: 100%;
-  position: fixed;
-  top:0 !important;
-  textarea {
-    width: 100%;
-  }
-  header {
-    position: relative;
-    height:4rem;
-    padding-left: 1.5rem;
-    color: #fff;
-    line-height: 4rem;
-    &.brand-color{
-      background: #222;
-    }
-    span:hover {
-      cursor: pointer; 
-    }
-  }
-}
-
-.msg-bx-body-pwd {
-  border: 1px solid #ddd;
-  background: #fff;
-}
-
-.msg-bx-bottom-pwd {
-  padding: 0 1rem 2rem; 
-}
-
-.msg-bx-convo-pwd {
-  padding: 1rem;
-  overflow-y: scroll;
-  height: 20rem;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd; 
-  z-index: -1;
-  p{
-    margin-right: 20rem;
-    margin-left: 5rem;
-    border-radius: 10px 10px 10px 0 ;
-    padding: 1rem; 
-    background: #ddd;
-  }
-  .self-pwd {
-    margin-left: 20rem;
-    margin-right: 0rem;
-    border-radius: 10px 10px 0 10px ;
-    background: #8dbce9; 
-  }
-
-}
-  .unread-bg{
-    background: #CDE6FC;
-  }
-.msg-bx-users-pwd p {
-  text-align: center;
-}
-.msg-bx-convo-pwd p {
-  margin-right: 20rem;
-  margin-left: 5rem;
-  border-radius: 10px 10px 10px 0 ;
-  padding: 1rem; 
-  background: #ddd;
-
-}
-.self-msg-wrapper, .them-msg-wrapper  {
-  position: relative;
-  z-index: 1;
-  .profile-pic {
-    position:absolute;
-    top: 2rem;
-    right: 0;
-  }
-}
+//------defaults
 
 // profile pic default 
 .profile-pic {
@@ -131,107 +55,85 @@
   color: #fff;
   line-height: 1.4;
 }
-#msg-bx-users-pwd .profile-pic {
-  margin:1rem;
-  img{
-    width:4rem;
+
+//------main msg bx styles
+
+#msg-bx {
+  width: 100%;
+  position: fixed;
+  top:0 !important;
+  header {
+    position: relative;
     height:4rem;
-    display:block;
-    top:0;
-    position: absolute;
+    padding-left: 1.5rem;
+    color: #fff;
+    line-height: 4rem;
+    &.brand-color{
+      background: #222;
+    }
+    span:hover {
+      cursor: pointer; 
+    }
+  }
+  textarea {
+    width: 100%;
   }
 }
 
-.them-msg-wrapper .profile-pic{
-  left:0;
-  right:auto;
+//------dropdown icons
 
-}
-
-.msg-bx-users-pwd {
-  display: none;
-  max-height: 300px;
-  overflow-y: scroll;
-  background: #f5f5f5;
-}
-.msg-bx-users-pwd p {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 0;
-  background:#fff;
-}
-.table-cell{
-      display:inline-table;
-      vertical-align:middle;
-}
-#msg-bx-user-list-pwd {
-    text-align: left;
-    .no--pic {
-    margin: 1rem;
-    display: inline-table;
-          height:3rem;
-          width:4rem;
-
-}
-}
-.msg-bx-user-list-pwd li {
-  text-align: center;
-  cursor: pointer;
-  width: 49.5%;
-  display: inline-block;
-  border-radius: 10px; 
-}
-.msg-bx-user-list-pwd li:hover {
-  background: #ccc; 
-}
-.button.button-primary-pwd{
-display:none;
-}
-  #pwd-nav-icons{
-    float:right;
-    padding-right: 10rem;
-    font-size:150%;
-    color: rgba(255, 255 , 255, 0.6);
-  }
-  #pwd-nav-icons i:hover, .msg-bx-pwd i.active{
+#msg-bx-nav-icons{
+  float:right;
+  padding-right: 10rem;
+  font-size:150%;
+  color: rgba(255, 255 , 255, 0.6);
+  i:hover, & i.active{
    color:#fff;
   }
-  #pwd-nav-icons i{
+  i{
     padding-left: 1rem;
   }
-
-#pwd-nav-icons a{
-  color: rgba(255, 255, 255, 0.6) !important;
-  text-decoration: none;
-  &:hover {
-    color: #fff;
-    text-shadow: none;
+  a{
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-decoration: none;
+    &:hover {
+      color: #fff;
+      text-shadow: none;
+    }
   }
 }
 
-//styles for all dropdowns
-.msg-bx-dropdown-pwd {
-    display:none;
-    position: absolute;
-    background: #fff;
-    color: #000;
-    top: 4rem;
-    right: 3rem;
-    width: 20rem;
-    text-align: center;
-    border: 1px solid #ddd;
-    border-bottom: 3px solid #ddd;
-    border-radius: 0 0 3px 3px ;
-    overflow: visible;
-    z-index: 100;
+@media (max-width: 500px) {
+  #pwd-nav-icons{
+    display: none;
+  }
 }
-.msg-bx-dropdown-pwd p{
-  margin-bottom: 0;
-  border-bottom: 1px solid #ddd;
-}
-.msg-bx-dropdown-pwd ul, .msg-bx-dropdown-pwd{
-  list-style: none;
-  padding-left: 0;
+
+//------styles for all dropdowns
+
+.msg-bx-dropdown {
+  display:none;
+  position: absolute;
+  background: #fff;
+  color: #000;
+  top: 4rem;
+  right: 3rem;
+  width: 20rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-bottom: 3px solid #ddd;
+  border-radius: 0 0 3px 3px ;
+  overflow: visible;
+  z-index: 100;
+  p {
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
     margin:0;
+  }
   a {
     text-decoration: none;
     margin-bottom: 0;
@@ -239,23 +141,16 @@ display:none;
     display: block;
     &:hover {
       background:#f5f5f5;
+    }
   }
 }
-}
-#msg-bx-sites-pwd .active {
-  background: #f5f5f5;
-  font-weight: normal;
-  font-size: 1.5rem;
-}
-#msg-bx-convos-pwd{
-  width:40rem;
-}
-#msg-bx-convos-list-pwd, #msg-bx-user-list-pwd, #msg-bx-site-list-pwd   {
+//makes each dropdown scrollable, cannot be added to msg-bx-dropdown without losing tooltip 
+#msg-bx-convos-list, #msg-bx-user-list, #msg-bx-site-list   {
   max-height:23rem;
   overflow-y: scroll;
 }
 //creates the tooltip triangle
-.msg-bx-dropdown-pwd:before{
+.msg-bx-dropdown:before{
   border: solid;
   border-color: #fff transparent;
   border-color: rgba(255,255,255, 1) transparent;
@@ -265,21 +160,70 @@ display:none;
   display: block;
   position: absolute;
   z-index: 99;
-}
-// edits the position of the tooltip triangle
-#msg-bx-users-pwd:before{
+} 
+// edits the position of the tooltip triangle for each section
+#msg-bx-users-drop:before{
   left: 4.3rem;
 }
-#msg-bx-sites-pwd:before{
+#msg-bx-sites-drop:before{
   left: 11.3rem;
 }
-#msg-bx-convos-pwd:before{
+#msg-bx-convos-drop:before{
   left: 28rem;
 }
-.msg-bx-convo-data h4{
-  margin-bottom:0;
 
+//------user dropdown
+
+#msg-bx-user-list {
+  text-align: left;
+  .no--pic {
+    margin: 1rem;
+    display: inline-table;
+    height: 3rem;
+    width: 4rem;
+  }
+  .profile-pic {
+    margin:1rem;
+    img{
+      width:4rem;
+      height:4rem;
+      display:block;
+      top:0;
+      position: absolute;
+    }
+  }
 }
+
+//------conversation dropdown
+
+#msg-bx-convos-drop{
+  width:40rem;
+}
+.msg-bx-convo-data {
+  h4{
+  margin-bottom:0;
+  }
+}
+.msg-bx-convo-item:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+//------sites dropdown
+
+#msg-bx-sites-drop .active {
+  background: #f5f5f5;
+  font-weight: normal;
+  font-size: 1.5rem;
+}
+//------main body styles
+
+.msg-bx-body {
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+//------conversation meta data
+
 .msg-bx-info {
   height:5rem;
   overflow-y: scroll;
@@ -290,11 +234,50 @@ display:none;
     margin-bottom: 0;
   }
 }
-.msg-bx-convo:not(:last-child) {
-    border-bottom: 1px solid #ddd;
+
+//------conversation main
+
+.msg-bx-convo {
+  padding: 1rem;
+  overflow-y: scroll;
+  height: 20rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd; 
+  z-index: -1;
+  p {
+    margin-right: 20rem;
+    margin-left: 5rem;
+    border-radius: 10px 10px 10px 0 ;
+    padding: 1rem; 
+    background: #ddd;
+  }
+  .self-pwd {
+    margin-left: 20rem;
+    margin-right: 0rem;
+    border-radius: 10px 10px 0 10px ;
+    background: #8dbce9; 
+  }
+  .them-msg-wrapper  {
+    position: relative;
+    z-index: 1;
+    .profile-pic {
+      position:absolute;
+      top: 2rem;
+      left:0;
+      right:auto;
+    }
+  }
+  .self-meta-data{
+    display:block;
+  }
 }
-.them-pwd {
-  display:block;
+
+//message form
+.msg-bx-bottom {
+  padding: 0 1rem 2rem; 
+}
+#msg-bx .button{
+display:none;
 }
 #message_content:focus {
 border:1px solid #222;
