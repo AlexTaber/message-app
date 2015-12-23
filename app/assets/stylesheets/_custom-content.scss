@@ -34,25 +34,29 @@
   text-shadow:none;
 }
 
-//message-view
+//--------------------------message-view
+
+//main
 .msg-bx-pwd {
   width: 100%;
   position: fixed;
   top:0 !important;
-}
-.msg-bx-pwd textarea {
-  width: 100%;
-}
-.msg-bx-pwd header {
-  position: relative;
-  height:4rem;
-  padding-left: 1.5rem;
-  background: #133c64;
-  color: #fff;
-  line-height: 4rem;
-}
-.msg-bx-pwd header span:hover {
-  cursor: pointer; 
+  textarea {
+    width: 100%;
+  }
+  header {
+    position: relative;
+    height:4rem;
+    padding-left: 1.5rem;
+    color: #fff;
+    line-height: 4rem;
+    &.brand-color{
+      background: #222;
+    }
+    span:hover {
+      cursor: pointer; 
+    }
+  }
 }
 
 .msg-bx-body-pwd {
@@ -71,19 +75,26 @@
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd; 
   z-index: -1;
+  p{
+    margin-right: 20rem;
+    margin-left: 5rem;
+    border-radius: 10px 10px 10px 0 ;
+    padding: 1rem; 
+    background: #ddd;
+  }
+  .self-pwd {
+    margin-left: 20rem;
+    margin-right: 0rem;
+    border-radius: 10px 10px 0 10px ;
+    background: #8dbce9; 
+  }
 
 }
-    .unread-bg{
+  .unread-bg{
     background: #CDE6FC;
   }
 .msg-bx-users-pwd p {
   text-align: center;
-}
-.msg-bx-convo-pwd .self-pwd {
-  margin-left: 20rem;
-  margin-right: 0rem;
-  border-radius: 10px 10px 0 10px ;
-  background: #8dbce9; 
 }
 .msg-bx-convo-pwd p {
   margin-right: 20rem;
@@ -172,14 +183,8 @@
 .msg-bx-user-list-pwd li:hover {
   background: #ccc; 
 }
-.button.button-primary-pwd,
-button.button-primary-pwd,
-input[type="submit"].button-primary-pwd,
-input[type="reset"].button-primary-pwd,
-input[type="button"].button-primary-pwd {
-  color: #FFF;
-  background-color: #133c64;
-  border-color: #133c64; 
+.button.button-primary-pwd{
+display:none;
 }
   #pwd-nav-icons{
     float:right;
@@ -292,5 +297,5 @@ input[type="button"].button-primary-pwd {
   display:block;
 }
 #message_content:focus {
-border:1px solid #133c64;
+border:1px solid #222;
 }
