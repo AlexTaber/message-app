@@ -7,6 +7,16 @@ jQuery(document).ready(function($){
   $(".new_message").submit(sendMessage);
   $(".new_conversation").submit(startConversation);
   $('.msg-bx-convo').scrollTop($('.msg-bx-convo')[0].scrollHeight);
+  $('.msg-bx-tab a').on('click', function(e){
+    e.preventDefault();
+    if($(this).hasClass('inactive')){
+
+      i = $(this).index();
+      $('.tab-content>div').fadeOut(0);
+      $('.tab-content').children().eq(i).fadeIn();
+      $('.msg-bx-tab a').toggleClass('inactive')
+  }
+  });
 });
 function enterSubmit(input, form) {
   $(input).keypress(function(event) {
