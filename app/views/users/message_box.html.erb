@@ -8,36 +8,42 @@
         <%= link_to message_box_path(token: @site.token) do %>
           <i class="fa fa-home"></i>
         <% end %>
-      <i class="fa fa-users" id="msg-bx-users-btn"></i>
       <i class="fa fa-comment" id="msg-bx-convos-btn"></i>
       <i class="fa fa-globe" id="msg-bx-sites-btn"></i>
+      <i class="fa fa-user" id="msg-bx-users-btn"></i>
       </span>
     </p>
-      <div id="msg-bx-users-drop" class="msg-bx-dropdown">
-        <p><b>Users on this site</b></p>
-        <ul id="msg-bx-user-list">
-          <% @site.other_users(current_user).each do |user| %>
-            <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
-              <li>
-                <% if user.image %>
-                  <div class="profile-pic">
-                    <div class="table-cell">
-                      <img src="<%= user.image.url %>">
-                    </div>
-                  </div>
-                <% else %>
-                  <div class="profile-pic no--pic">
-                    <div class="table-cell"><%= user.first_name[0] %></div>
-                  </div>
-                <% end %>
-                <span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
+
     <div id="msg-bx-convos-drop" class="msg-bx-dropdown">
-    <p><b>Your Conversations</b></p>
+        <div class="msg-bx-tab">
+          <a href="#" class="inactive"><b>Users on this site</b></a>
+          <a href="#"><b>Your Conversations</b></a>
+        </div>
+      <div class="tab-content">
+        <div id="msg-bx-users">
+          <ul id="msg-bx-user-list">
+            <% @site.other_users(current_user).each do |user| %>
+              <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
+                <li>
+                  <% if user.image %>
+                    <div class="profile-pic">
+                      <div class="table-cell">
+                        <img src="<%= user.image.url %>">
+                      </div>
+                    </div>
+                  <% else %>
+                    <div class="profile-pic no--pic">
+                      <div class="table-cell"><%= user.first_name[0] %></div>
+                    </div>
+                  <% end %>
+                  <span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+    <div id="msg-bx-convos">
       <div id='msg-bx-convos-list'>
         <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
           <% if conversation.has_unread_messages?(current_user) %>
@@ -57,6 +63,18 @@
         <% end %>
       </div>
     </div>
+    </div>
+    </div>
+
+
+
+
+
+
+    
+
+
+
       <div id="msg-bx-sites-drop" class="msg-bx-dropdown">
       <p><b>Your Sites</b></p>
       <ul id='msg-bx-site-list'>
@@ -79,7 +97,7 @@
     <% if @conversation.has_users? %>
       <!-- view for saved conversation -->
       <div class="msg-bx-info">
-        <p><i>Your conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+        <p><i><%= current_user.name %>'s conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
       </div>
       <div class="msg-bx-convo">
         <% @conversation.messages.each do |message| %>
@@ -100,7 +118,7 @@
             <% end %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :site_id, value: @site.id %>
-            <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+            <%= f.submit "Submit", :class => 'button button-primary'  %>
           <% end %>
         <% else %>
           <%= form_for @message do |f| %>
@@ -111,7 +129,7 @@
             <%= f.hidden_field :conversation_id, value: @conversation.id %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :site_id, value: @site.id %>
-            <%= f.submit "Submit", :class => 'button-primary-pwd'  %>
+            <%= f.submit "Submit", :class => 'button button-primary'  %>
           <% end %>
         <% end %>
       </div>

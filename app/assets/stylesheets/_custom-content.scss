@@ -179,13 +179,13 @@
   left: 4.3rem;
 }
 #msg-bx-sites-drop:before{
-  left: 11.3rem;
+  left: 8.2rem;
 }
 #msg-bx-convos-drop:before{
-  left: 28rem;
+  left: 34.8rem;
 }
 
-//------user dropdown
+//------conversation dropdown
 
 #msg-bx-user-list {
   text-align: left;
@@ -207,10 +207,35 @@
   }
 }
 
-//------conversation dropdown
-
+.msg-bx-tab a {
+  width: 49%;
+  float:left;
+  display: inline-table;
+  border-bottom: none;
+  &:first-child{
+    border-right: 1px solid #ddd;
+  }
+  &:last-child {
+    width: 51%;
+  }
+  &.inactive {
+    background: #f5f5f5;
+  }
+  &:hover{
+    background:#fff;
+  }
+}
+.msg-bx-tab {
+  border-bottom: 1px solid #ddd;
+}
+.tab-content{
+  position:relative;
+}
+#msg-bx-users{
+  display:none;
+}
 #msg-bx-convos-drop{
-  width:40rem;
+  width:50rem;
 }
 .msg-bx-convo-data {
   h4{
@@ -288,9 +313,6 @@
 //message form
 .msg-bx-bottom {
   padding: 0 1rem 2rem; 
-}
-#msg-bx .button{
-display:none;
 }
 #message_content:focus {
 border:1px solid #222;
