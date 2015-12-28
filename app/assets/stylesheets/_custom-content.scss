@@ -19,25 +19,32 @@
   position: fixed;
   bottom:0 !important;
   right:5rem;
+    -webkit-transition: width .7s, height .7s;
+  transition: width .7s, height .7s;
 
+}
+.pwd-init{
+  animation:none !important;
 }
 .pwd-closed {
   height:4rem !important;
   width: 30rem !important;
   animation: bounce 2s;
-  -webkit-transition: width .7s, height .7s;
-  transition: width .7s, height .7s;
 }
 #pwd-open-btn{
   position:absolute;
   top:1rem;
   right: 2rem;
   text-decoration: none;
-  color: #fff;
+  color: #000;
+  background-color:rgba(255, 255, 255, .6);
+  width: 2rem;
+  line-height: 2rem;
+  border-radius: 100%;
+  text-align:center;
 }
 #pwd-open-btn:hover {
-  color: #8dbce9;
-  text-shadow:none;
+  background: #fff;
 }
 
 //--------------------------message-view

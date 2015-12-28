@@ -7,13 +7,11 @@
   <%= link_to new_conversation_path(site_id: @site.id) do %>
     <small>New Message</small>
    <% end %>
-   <% current_user.sites.each do |site| %>
       <% if current_user.admin_of_site?(@site) %>
-      <%= link_to add_users_site_path(site) do %>
+      <%= link_to add_users_site_path(@site) do %>
       <small title="Add a new user">Users &#9662;</small>
       <% end %>
       <% end %>
-    <% end %>  
   </nav>
   <nav class="profile-data">
   <span><%= current_user.name %></span>
@@ -95,7 +93,7 @@
 <% end %>
 </div>
 <% if current_user.sites.count > 0 %>
-  <div id="fixed-iframe" class="pwd-closed">
+  <div id="fixed-iframe" class="pwd-init pwd-closed">
     <a href="#" id="pwd-open-btn">&#9650;</a>
     <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
   </div>

@@ -1,7 +1,8 @@
 //has to go on users site
 jQuery(document).ready(function($){
-    var opened = false
     $( "#pwd-open-btn" ).click(function() {
+        $( ".pwd-init" )
+          .removeClass('pwd-init')
             $( "#fixed-iframe" )
               .toggleClass("pwd-closed");
               if($( "#fixed-iframe" ).hasClass('pwd-closed')) {
@@ -9,6 +10,6 @@ jQuery(document).ready(function($){
               } else {
                 $('#pwd-open-btn').text('X');
               }
-              opened = true
+        
       });
 });
