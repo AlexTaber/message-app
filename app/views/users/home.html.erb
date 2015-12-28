@@ -95,7 +95,7 @@
 <% end %>
 </div>
 <% if current_user.sites.count > 0 %>
-  <div id="fixed-iframe">
+  <div id="fixed-iframe" class="pwd-closed">
     <a href="#" id="pwd-open-btn">&#9650;</a>
     <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
   </div>
