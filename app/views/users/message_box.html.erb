@@ -115,7 +115,7 @@
         <%= form_for @conversation do |f| %>
         <%= f.label :content, "Message" %>
         <p>
-          <%= text_area_tag :content, nil, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+          <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
         </p>
 
         <% @conversation.user_ids.each do |user_id| %>
@@ -123,18 +123,17 @@
         <% end %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :site_id, value: @site.id %>
-        <%= f.submit "Submit", :class => 'button button-primary'  %>
+        <!--<%= f.submit "Submit", :class => 'button button-primary brand-color'  %>-->
         <% end %>
         <% else %>
         <%= form_for @message do |f| %>
-        <%= f.label :content, "Message" %>
         <p>
-          <%= f.text_area :content, placeholder: "Hi #{@conversation.other_user_name(current_user)}..." %>
+          <%= f.text_area :content, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
         </p>
         <%= f.hidden_field :conversation_id, value: @conversation.id %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :site_id, value: @site.id %>
-        <%= f.submit "Submit", :class => 'button button-primary brand-color'  %>
+        <!--<%= f.submit "Submit", :class => 'button button-primary brand-color'  %>-->
         <% end %>
         <% end %>
       </div>

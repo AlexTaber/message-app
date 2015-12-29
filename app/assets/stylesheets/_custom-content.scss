@@ -287,7 +287,7 @@
 .msg-bx-convo {
   padding: 1rem;
   overflow-y: scroll;
-  height: 20rem;
+  height: 30.8rem;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd; 
   z-index: -1;
@@ -319,10 +319,16 @@
   }
 }
 
+
 //message form
 .msg-bx-bottom {
-  padding: 0 1rem 2rem; 
+    textarea{
+    min-height:5rem;
+  }
 }
-#message_content:focus {
-border:1px solid #222;
+#message_content, #content {
+resize:none;
+border:none;
+height:100%;
+width:100%;
 }
