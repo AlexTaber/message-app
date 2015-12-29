@@ -1,8 +1,11 @@
 //our js
 jQuery(document).ready(function($){
+
+  //dropdowns
   msgBxDropdowns('#msg-bx-sites-btn', '#msg-bx-sites-drop');
   msgBxDropdowns('#msg-bx-convos-btn', '#msg-bx-convos-drop');
   msgBxDropdowns('#msg-bx-acct-btn', '#msg-bx-acct-drop');
+
   enterSubmit('#message_content', '#new_message')
   $(".new_message").submit(sendMessage);
   $(".new_conversation").submit(startConversation);
@@ -15,7 +18,13 @@ jQuery(document).ready(function($){
       $('.tab-content>div').fadeOut(0);
       $('.tab-content').children().eq(i).fadeIn();
       $('.msg-bx-tab a').toggleClass('inactive')
-  }
+    }
+  });
+  $(window).on('resize', function(){
+    if ($('body').width() < 400) {
+      $('.msg-bx-dropdown').hide();
+      $('i.active').removeClass('active');
+    }
   });
 });
 function enterSubmit(input, form) {
