@@ -98,6 +98,7 @@
 
     </header>
 
+<div class="msg-bx-body-cntn">
     <div class="msg-bx-body">
       <% if @conversation.has_users? %>
       <!-- view for saved conversation -->
@@ -139,9 +140,10 @@
       </div>
       <% else %>
       <!-- default conversation view -->
-      <div class="msg-bx-convo-pwd">
+      <div class="msg-bx-convo">
         You Have No Conversations... Yet
       </div>
       <% end %>
     </div>
+  </div>
   </div>
