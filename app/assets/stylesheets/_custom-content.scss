@@ -21,6 +21,9 @@
   right:5rem;
     -webkit-transition: width .7s, height .7s;
   transition: width .7s, height .7s;
+  -webkit-box-shadow: 0px -1px 3px 0px rgba(170,170,170,1);
+-moz-box-shadow: 0px -1px 3px 0px rgba(170,170,170,1);
+box-shadow: 0px -1px 3px 0px rgba(170,170,170,1);
 
 }
 .pwd-init{
@@ -51,6 +54,9 @@
 
 //------defaults
 
+.brand-color{
+      background: #222 !important;
+}
 // profile pic default 
 .profile-pic {
   width:4rem;
@@ -81,9 +87,6 @@
     padding-left: 1.5rem;
     color: #fff;
     line-height: 4rem;
-    &.brand-color{
-      background: #222;
-    }
     span:hover {
       cursor: pointer; 
     }
@@ -130,7 +133,7 @@
   background: #fff;
   color: #000;
   top: 4rem;
-  right: 3rem;
+  right: 6rem;
   width: 20rem;
   text-align: center;
   border: 1px solid #ddd;
@@ -175,14 +178,14 @@
   z-index: 99;
 } 
 // edits the position of the tooltip triangle for each section
-#msg-bx-users-drop:before{
-  left: 4.3rem;
-}
 #msg-bx-sites-drop:before{
-  left: 8.2rem;
+  right:10.8rem;
 }
 #msg-bx-convos-drop:before{
-  left: 34.8rem;
+  right:10.5rem;
+}
+#msg-bx-acct-drop:before{
+  right:4rem;
 }
 
 //------conversation dropdown
@@ -204,6 +207,11 @@
       top:0;
       position: absolute;
     }
+  }
+  a {
+    width:49%;
+    display:inline-table;
+    float:left;
   }
 }
 
@@ -236,6 +244,10 @@
 }
 #msg-bx-convos-drop{
   width:50rem;
+  right:3rem;
+      .unread-bg {
+    background: #ddd;
+  }
 }
 .msg-bx-convo-data {
   h4{
@@ -278,7 +290,7 @@
 .msg-bx-convo {
   padding: 1rem;
   overflow-y: scroll;
-  height: 20rem;
+  height: 30.8rem;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd; 
   z-index: -1;
@@ -310,10 +322,21 @@
   }
 }
 
+
 //message form
 .msg-bx-bottom {
-  padding: 0 1rem 2rem; 
+    textarea{
+    min-height:5rem;
+  }
 }
-#message_content:focus {
-border:1px solid #222;
+#message_content, #content {
+resize:none;
+border:none;
+height:100%;
+width:100%;
+}
+.msg-bx-body-cntn {
+  width:100%;
+  height:50rem;
+  background:#fff;
 }
