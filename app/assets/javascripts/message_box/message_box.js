@@ -10,6 +10,8 @@ jQuery(document).ready(function($){
   $(".new_message").submit(sendMessage);
   $(".new_conversation").submit(startConversation);
   $('.msg-bx-convo').scrollTop($('.msg-bx-convo')[0].scrollHeight);
+  
+  //conversation dropdown tabs
   $('.msg-bx-tab a').on('click', function(e){
     e.preventDefault();
     if($(this).hasClass('inactive')){
@@ -20,6 +22,8 @@ jQuery(document).ready(function($){
       $('.msg-bx-tab a').toggleClass('inactive')
     }
   });
+
+  //hide dropdowns on window resize
   $(window).on('resize', function(){
     if ($('body').width() < 400) {
       $('.msg-bx-dropdown').hide();

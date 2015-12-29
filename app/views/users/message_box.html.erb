@@ -8,8 +8,8 @@
         <%= link_to message_box_path(token: @site.token) do %>
         <i class="fa fa-home"></i>
         <% end %>
-        <i class="fa fa-comment" id="msg-bx-convos-btn"></i>
         <i class="fa fa-globe" id="msg-bx-sites-btn"></i>
+        <i class="fa fa-comment" id="msg-bx-convos-btn"></i>
         <i class="fa fa-user" id="msg-bx-acct-btn"></i>
       </span>
     </p>
@@ -134,7 +134,7 @@
         <%= f.hidden_field :conversation_id, value: @conversation.id %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :site_id, value: @site.id %>
-        <%= f.submit "Submit", :class => 'button button-primary'  %>
+        <%= f.submit "Submit", :class => 'button button-primary brand-color'  %>
         <% end %>
         <% end %>
       </div>

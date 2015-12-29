@@ -51,6 +51,9 @@
 
 //------defaults
 
+.brand-color{
+      background: #222 !important;
+}
 // profile pic default 
 .profile-pic {
   width:4rem;
@@ -81,9 +84,6 @@
     padding-left: 1.5rem;
     color: #fff;
     line-height: 4rem;
-    &.brand-color{
-      background: #222;
-    }
     span:hover {
       cursor: pointer; 
     }
@@ -175,14 +175,14 @@
   z-index: 99;
 } 
 // edits the position of the tooltip triangle for each section
-#msg-bx-acct-drop:before{
-  right:4rem;
-}
 #msg-bx-sites-drop:before{
-  right:7.2rem;
+  right:10.8rem;
 }
 #msg-bx-convos-drop:before{
-  left: 34.8rem;
+  right:10.5rem;
+}
+#msg-bx-acct-drop:before{
+  right:4rem;
 }
 
 //------conversation dropdown
@@ -204,6 +204,11 @@
       top:0;
       position: absolute;
     }
+  }
+  a {
+    width:49%;
+    display:inline-table;
+    float:left;
   }
 }
 
@@ -237,6 +242,9 @@
 #msg-bx-convos-drop{
   width:50rem;
   right:3rem;
+      .unread-bg {
+    background: #ddd;
+  }
 }
 .msg-bx-convo-data {
   h4{
