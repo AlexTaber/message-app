@@ -130,7 +130,7 @@
   background: #fff;
   color: #000;
   top: 4rem;
-  right: 3rem;
+  right: 6rem;
   width: 20rem;
   text-align: center;
   border: 1px solid #ddd;
@@ -175,11 +175,11 @@
   z-index: 99;
 } 
 // edits the position of the tooltip triangle for each section
-#msg-bx-users-drop:before{
-  left: 4.3rem;
+#msg-bx-acct-drop:before{
+  right:4rem;
 }
 #msg-bx-sites-drop:before{
-  left: 8.2rem;
+  right:7.2rem;
 }
 #msg-bx-convos-drop:before{
   left: 34.8rem;
@@ -236,6 +236,7 @@
 }
 #msg-bx-convos-drop{
   width:50rem;
+  right:3rem;
 }
 .msg-bx-convo-data {
   h4{

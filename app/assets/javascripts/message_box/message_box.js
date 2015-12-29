@@ -1,8 +1,8 @@
 //our js
 jQuery(document).ready(function($){
-  msgBxDropdowns('#msg-bx-users-btn', '#msg-bx-users-drop');
   msgBxDropdowns('#msg-bx-sites-btn', '#msg-bx-sites-drop');
   msgBxDropdowns('#msg-bx-convos-btn', '#msg-bx-convos-drop');
+  msgBxDropdowns('#msg-bx-acct-btn', '#msg-bx-acct-drop');
   enterSubmit('#message_content', '#new_message')
   $(".new_message").submit(sendMessage);
   $(".new_conversation").submit(startConversation);
