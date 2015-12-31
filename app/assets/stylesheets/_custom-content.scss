@@ -3,7 +3,12 @@
   0%{height:47rem;}
   45%{height:2rem;}
   100%{height:4rem;}
-  }
+}
+@-webkit-keyframes bounce {
+  0%{height:47rem;}
+  45%{height:2rem;}
+  100%{height:4rem;}
+}
 #pwd-message-box {
   width: 100%;
   height:100%;
@@ -21,9 +26,6 @@
   right:5rem;
     -webkit-transition: width .7s, height .7s;
   transition: width .7s, height .7s;
-  -webkit-box-shadow: 0px -1px 3px 0px rgba(170,170,170,1);
--moz-box-shadow: 0px -1px 3px 0px rgba(170,170,170,1);
-box-shadow: 0px -1px 3px 0px rgba(170,170,170,1);
 
 }
 .pwd-init{
@@ -45,17 +47,27 @@ box-shadow: 0px -1px 3px 0px rgba(170,170,170,1);
   line-height: 2rem;
   border-radius: 100%;
   text-align:center;
+  span{
+    background-clip: padding-box;
+  }
 }
 #pwd-open-btn:hover {
   background: #fff;
 }
 
-//--------------------------message-view
 
+
+//--------------------------message-view
+@keyframes unread {
+  50%{background-color:#AF0808;}
+}
 //------defaults
 
 .brand-color{
       background: #222 !important;
+}
+.unread-flash{
+  animation: unread 5s infinite;
 }
 // profile pic default 
 .profile-pic {
