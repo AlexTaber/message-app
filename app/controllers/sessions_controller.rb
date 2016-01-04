@@ -13,7 +13,11 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       cookies.permanent.signed[:user_id] = @user.id
-      redirect_to home_path
+      if params[:token]
+        redirect_to message_box_path(token: params[:token])
+      else
+        redirect_to home_path
+      end
     else
       flash[:warn] = "Invalid email or password. Please try again."
       redirect_to '/login'
@@ -23,6 +27,14 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.signed[:user_id] = nil
-    redirect_to root_path
+    if params[:message_box]
+      redirect_to mb_login_path(token: params[:token])
+    else
+      redirect_to root_path
+    end
+  end
+
+  def mb_new
+    @token = params[:token]
   end
 end
