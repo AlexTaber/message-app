@@ -38,7 +38,7 @@ class SitesController < ApplicationController
 
   def destroy
   end
- 
+
   def add_users
   end
 
@@ -62,6 +62,8 @@ class SitesController < ApplicationController
           site_id: @site.id,
           admin: false
         )
+
+        set_up_notification(user_id, @site)
       end
     end
   end
@@ -71,6 +73,13 @@ class SitesController < ApplicationController
       user_id: current_user.id,
       site_id: @site.id,
       admin: true
+    )
+  end
+
+  def set_up_notification(user_id, site)
+    Notification.create(
+      user_id: user_id,
+      content: "You have been added to the site #{@site.name} by #{current_user.name}"
     )
   end
 end

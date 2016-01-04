@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_one  :image, as: :imageable
   has_many :message_users
   has_many :recieved_messages, through: :message_users, source: :message
+  has_many :notifications
 
   def name
     "#{first_name} #{last_name}"
@@ -47,5 +48,13 @@ class User < ActiveRecord::Base
 
   def ordered_conversations_by_site(site)
     Conversation.ordered_conversations(conversations_by_site(site))
+  end
+
+  def unread_notifications
+    notifications.where(read: false)
+  end
+
+  def has_unread_notifications?
+    unread_notifications.count > 0
   end
 end
