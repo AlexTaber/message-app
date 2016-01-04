@@ -1,7 +1,11 @@
 <%= javascript_include_tag "message_box/message_box" %>
 
 <div id="msg-bx">
+  <% if current_user.has_unread_conversations_by_site?(@site) %>
+  <header class="brand-color unread-flash">
+  <% else %>
   <header class="brand-color">
+  <% end %>
     <p>
       <span>This is Your Message Center</span>
       <span id="msg-bx-nav-icons">
