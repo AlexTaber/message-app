@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   def new
-    @request = Request.new
     @site = token_site(params[:token])
+    @request = current_user.pending_request_by_site(@site) || Request.new
   end
 
   def create

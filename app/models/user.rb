@@ -70,4 +70,8 @@ class User < ActiveRecord::Base
   def has_unread_conversations_by_site?(site)
     unread_conversations_by_site(site).count > 0
   end
+
+  def pending_request_by_site(site)
+    requests.find_by(site_id: site.id, active: true)
+  end
 end
