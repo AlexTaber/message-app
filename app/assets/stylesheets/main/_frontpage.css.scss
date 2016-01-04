@@ -130,6 +130,22 @@ h2 {
 	margin-left:
 	10px;
 }
+#requests-icon {
+	cursor: pointer;
+	&.active small{
+		color: #fff !important;
+
+	}
+}
+#requests{
+	position: absolute;
+	display:none;
+	left:40rem;
+	background: #fff;
+	color: #000;
+	border: 1px solid #ddd;
+	z-index: 100;
+}
 
 
 
