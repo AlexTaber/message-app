@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_one  :image, as: :imageable
   has_many :message_users
   has_many :recieved_messages, through: :message_users, source: :message
+  has_many :notifications
 
   def name
     "#{first_name} #{last_name}"
