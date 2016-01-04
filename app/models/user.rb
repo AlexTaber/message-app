@@ -49,4 +49,12 @@ class User < ActiveRecord::Base
   def ordered_conversations_by_site(site)
     Conversation.ordered_conversations(conversations_by_site(site))
   end
+
+  def unread_notifications
+    notifications.where(read: false)
+  end
+
+  def has_unread_notifications?
+    unread_notifications.count > 0
+  end
 end
