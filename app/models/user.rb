@@ -74,4 +74,8 @@ class User < ActiveRecord::Base
   def pending_request_by_site(site)
     requests.find_by(site_id: site.id, active: true)
   end
+
+  def pending_received_requests
+    inverse_requests.where(active: true)
+  end
 end

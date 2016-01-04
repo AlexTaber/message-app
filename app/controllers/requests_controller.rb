@@ -17,9 +17,23 @@ class RequestsController < ApplicationController
     redirect_to :back
   end
 
+  def update
+    @request = Request.find_by(id: params[:id])
+    @request.assign_attributes(request_params)
+
+    if @request.valid?
+      @request.save
+      flash[:notice] = "Request updated"
+    else
+      flash[:warn] = "Unable to update request, please try again"
+    end
+
+    redirect_to :back
+  end
+
   private
 
   def request_params
-    params.require(:request).permit(:user_id, :receiver_id, :site_id)
+    params.require(:request).permit(:user_id, :receiver_id, :site_id, :active)
   end
 end
