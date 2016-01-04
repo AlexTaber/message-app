@@ -95,7 +95,7 @@
             <%= link_to 'Upgrade', logout_path %>
           </li>
           <li>           
-            <%= link_to 'Log Out', logout_path %>
+            <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
           </li>
         </ul>
       </div>
