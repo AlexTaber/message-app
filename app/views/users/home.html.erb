@@ -31,17 +31,17 @@
      <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
       <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
      <% end %>
-   <div id='mask' class='close-modal'></div>  
+   <div id='mask' class='close-modal'></div>
   <div id='window' class='modal-window'>
   <div class="background-class">
-  
+
       <div>
-        <h1>Awesome! Let's add a new site to your Organization</h1> 
+        <h1>Awesome! Let's add a new site to your Organization</h1>
         <%= render partial: "sites/form", locals: { site: @site } %>
-  
+
   </div>
 </div>
-  </div>  
+  </div>
   </h3>
   <nav>
     <% current_user.sites.each do |site| %>
@@ -95,6 +95,6 @@
 <% if current_user.sites.count > 0 %>
   <div id="fixed-iframe" class="pwd-init pwd-closed">
     <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
+    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=7fryfFWGjbbAeUY7Bc6Whop4"></iframe>
   </div>
 <% end %>

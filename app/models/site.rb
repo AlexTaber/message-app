@@ -21,4 +21,8 @@ class Site < ActiveRecord::Base
   def ordered_conversations
     conversations.sort_by { |conversation| conversation.messages.last.updated_at }.reverse!
   end
+
+  def find_admin
+    user_sites.find_by(admin: true)
+  end
 end

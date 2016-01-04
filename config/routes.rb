@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :conversations, only: [:new, :create, :destroy]
   resources :messages, only: [:create]
+  resources :requests, only: [:new, :create]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
