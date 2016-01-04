@@ -8,6 +8,7 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#msg-bx-acct-btn', '#msg-bx-acct-drop');
 
   enterSubmit('#message_content', '#new_message')
+  enterSubmit('#content', '#new_conversation')
   $(".new_message").submit(sendMessage);
   $(".new_conversation").submit(startConversation);
   $('.msg-bx-convo').scrollTop($('.msg-bx-convo')[0].scrollHeight);
