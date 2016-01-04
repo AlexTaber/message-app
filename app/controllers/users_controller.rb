@@ -58,11 +58,15 @@ class UsersController < ApplicationController
   end
 
   def message_box
-    token = params[:token]
-    @site = token_site(token)
-    current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
-    @conversation.read_all_messages(current_user) unless @conversation.new_record?
-    @message = Message.new
+    if current_user
+      token = params[:token]
+      @site = token_site(token)
+      current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
+      @conversation.read_all_messages(current_user) unless @conversation.new_record?
+      @message = Message.new
+    else
+      redirect_to mb_login_path(token: token)
+    end
   end
 
   private
