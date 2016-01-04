@@ -1,0 +1,11 @@
+<% if @request.new_record? %>
+  <%= form_for request do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :receiver_id, value: site.find_admin.id %>
+    <%= f.hidden_field :site_id, value: site.id %>
+
+    <%= f.submit "Send Request", class: "button button-primary" %>
+  <% end %>
+<% else %>
+  Request has been sent!
+<% end %>
