@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/mb-login' => 'sessions#mb_new'
   get '/home' => 'users#home'
   get '/message_box' => 'users#message_box'
+  get '/invite' => 'users#invite'
+  post '/invite' => 'users#send_invite'
 
   root 'sessions#new'
 end

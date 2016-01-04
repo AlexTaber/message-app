@@ -73,6 +73,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def invite
+
+  end
+
+  def send_invite
+    site = Site.find_by(id: params[:site_id])
+    UserMailer.invite_email(params[:email], site).deliver_now
+    redirect_to :back
+  end
+
   private
 
   def user_by_id
