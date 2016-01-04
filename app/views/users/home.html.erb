@@ -7,12 +7,16 @@
   <%= link_to new_conversation_path(site_id: @site.id) do %>
     <small>New Message</small>
    <% end %>
+   <span id="requests-icon"><small>Requests</small></span>
       <% if current_user.admin_of_site?(@site) %>
       <%= link_to add_users_site_path(@site) do %>
       <small title="Add a new user">Users &#9662;</small>
       <% end %>
       <% end %>
   </nav>
+      <div id="requests">
+      <p> asdfasdfasfsadfasdfasdfasdfasdfasdfasdfdasdfasdfasdfasdfasf </p>
+      </div>
   <nav class="profile-data">
   <span><%= current_user.name %></span>
     <i class="fa fa-user"></i>

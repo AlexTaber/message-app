@@ -3,6 +3,8 @@ jQuery(document).ready(function($){
 	$('#users-account').on('click', function () {
 		$('nav#current-account').slideToggle(500);	
 	});
+		dropdowns('#requests-icon', '#requests');
+
 ///Modal  
 
 var window_width = $(window).width();  
@@ -25,7 +27,14 @@ $('.close-modal').click(function(){
 	close_modal();  
 });  
 
+});
 //Functions
+function dropdowns(clicked, target){
+  $(clicked).on('click',function(){
+      $(target).slideToggle();
+      $(this).toggleClass('active');
+  });
+}
 function close_modal(){  
 	$('#mask').fadeOut(500);  
 	$('.modal-window').fadeOut(500);  
@@ -35,4 +44,3 @@ function show_modal(modal_id){
 	$('#mask').fadeTo(500,0.8);  
 	$('#'+modal_id).fadeIn(500);  
 }  
-});
