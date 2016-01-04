@@ -118,7 +118,6 @@
       <div class="msg-bx-bottom">
         <% if @conversation.new_record? %>
         <%= form_for @conversation do |f| %>
-        <%= f.label :content, "Message" %>
         <p>
           <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
         </p>
