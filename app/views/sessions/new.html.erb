@@ -1,9 +1,16 @@
-<%= form_tag '/login' do %>
-  <%= text_field_tag :email, nil, placeholder: "Email" %>
-  <%= password_field_tag :password, nil, placeholder: "Password" %>
-  <%= submit_tag "Sign In" %>
+<div class="display-table">
+<div class="text-center centered">
+<h2 class="text-center">
+Sign in to start messaging with Mercury
+</h2>
+<%= form_tag '/login', id: "sign-in-form" do %>
+  <%= text_field_tag :email, nil, placeholder: "Email" %><br>
+  <%= password_field_tag :password, nil, placeholder: "Password" %><br><br>
+  <%= submit_tag "Sign In" , :class => 'button button-primary' %><br><br>
   <p>
     DON'T HAVE AN ACCOUNT?
     <%= link_to "SIGN UP", new_user_path %>
   </p>
 <% end %>
+</div>
+</div>

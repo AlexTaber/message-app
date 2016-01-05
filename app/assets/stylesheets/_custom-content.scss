@@ -372,5 +372,21 @@ width:100%;
   border: none;
   border-bottom: 1px solid #ddd;
   width:50%;
+    &:focus {
+    background-color:#DBEDFC;
+  }
+ }
+}
+
+#sign-in-form {
+ input[type='text'], input[type='password'] {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  width:30%;
+  font-size:125%;
+  &:focus {
+    background-color:#DBEDFC;
+  }
  }
 }
