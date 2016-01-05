@@ -81,4 +81,12 @@ class User < ActiveRecord::Base
   def pending_received_requests
     inverse_requests.where(active: true)
   end
+
+  def can_create_site
+    tier.permit_user_site(self)
+  end
+
+  def admin_sites
+    user_sites.where(admin: true).map(&:site)
+  end
 end
