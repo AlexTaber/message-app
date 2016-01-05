@@ -52,8 +52,15 @@ hr {
       display:inline-table;
       vertical-align:middle;
 }
-
-
+.display-table {
+  display:table;
+  width:100%;
+  height:100%
+}
+.centered {
+  vertical-align: middle;
+  display:table-cell;
+}
 
 //Modal window 
  #mask {  
