@@ -11,7 +11,6 @@ jQuery(document).ready(function($){
   enterSubmit('#content', '#new_conversation')
   $(".new_message").submit(sendMessage);
   $(".new_conversation").submit(startConversation);
-  $('.msg-bx-convo').scrollTop($('.msg-bx-convo')[0].scrollHeight);
   //conversation dropdown tabs
   $('.msg-bx-tab a').on('click', function(e){
     e.preventDefault();
