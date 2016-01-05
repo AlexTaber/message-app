@@ -57,22 +57,24 @@ class SitesController < ApplicationController
   end
 
   def set_up_users
-    user_ids = params[:site][:user_ids].reject!(&:empty?)
-    user_ids.each do |user_id|
-      if current_user.can_add_user_to_site(@site)
-        userSite = @site.user_sites.find_by(user_id: user_id)
-        unless userSite
-          UserSite.create(
-            user_id: user_id,
-            site_id: @site.id,
-            admin: false
-          )
+    if params[:site][:user_ids]
+      user_ids = params[:site][:user_ids].reject!(&:empty?)
+      user_ids.each do |user_id|
+        if current_user.can_add_user_to_site(@site)
+          userSite = @site.user_sites.find_by(user_id: user_id)
+          unless userSite
+            UserSite.create(
+              user_id: user_id,
+              site_id: @site.id,
+              admin: false
+            )
 
-          set_up_notification(user_id, @site)
+            set_up_notification(user_id, @site)
+          end
+        else
+          flash[:warn] = "You have reached the maximum number of users for this site. Please upgrade and try again"
+          return false
         end
-      else
-        flash[:warn] = "You have reached the maximum number of users for this site. Please upgrade and try again"
-        return false
       end
     end
 

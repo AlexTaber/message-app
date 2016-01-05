@@ -48,7 +48,9 @@
   <nav class="site-list">
     <% current_user.sites.each do |site| %>
     <li>
-     <i class="fa fa-list open-accordian" title="Edit Site"></i>
+      <% if @site == site %>
+        <i class="fa fa-list open-accordian" title="Edit Site"></i>
+      <% end %>
       <%= link_to site.name, home_path(site_id: site.id) %>
       <% if current_user.admin_of_site?(@site) %>
       <%= link_to add_users_site_path(site) do %>
@@ -58,15 +60,15 @@
       <div class="requests">33</div>
       <!-- End Requests Div -->
       <!-- Edit Site List Accordian -->
-       <div class="accordian-content">
-           <ul class="edit-site-list">
-              <li>Manage Users</li>
-              <li>
-                <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "apple" %>
-              </li>
-             <li>Requests</li>
-           </ul>
-         </div>
+      <div class="accordian-content">
+        <ul class="edit-site-list">
+          <li>Manage Users</li>
+          <li>
+            <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "apple" %>
+          </li>
+          <li>Requests</li>
+        </ul>
+      </div>
     </li>
     <% end %>
   </nav>
