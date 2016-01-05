@@ -1,10 +1,10 @@
 class UserMailer < ApplicationMailer
   default from: 'info@peekskillwebdesign.com'
 
-  def invite_email(email, site, user)
-    @url  = 'http://localhost:3000'
-    @site = site
-    @user = user
-    mail(to: email, subject: "You've just been invited!")
+  def invite_email(invite)
+    @url  = "http://localhost:3000/users/new?invite_token=#{invite.token}"
+    @site = invite.site
+    @user = invite.user
+    mail(to: invite.email, subject: "You've just been invited!")
   end
 end
