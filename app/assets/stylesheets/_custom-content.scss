@@ -279,9 +279,13 @@
 }
 //------main body styles
 
-.msg-bx-body {
+.msg-bx-body, .no-convo {
   border: 1px solid #ddd;
   background: #fff;
+  min-height: 425px;
+}
+.no-convo{
+  padding-top: 45px;
 }
 
 //------conversation meta data
@@ -334,6 +338,9 @@
   }
 }
 
+//default message
+.no-convo-yet {
+}
 
 //message form
 .msg-bx-bottom {

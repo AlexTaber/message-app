@@ -103,8 +103,8 @@
     </header>
 
 <div class="msg-bx-body-cntn">
-    <div class="msg-bx-body">
       <% if @conversation.has_users? %>
+    <div class="msg-bx-body">
       <!-- view for saved conversation -->
       <div class="msg-bx-info">
         <p><i><%= current_user.name %>'s conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
@@ -141,12 +141,13 @@
         <% end %>
         <% end %>
       </div>
+    </div>
       <% else %>
       <!-- default conversation view -->
-      <div class="msg-bx-convo">
-        You Have No Conversations... Yet
+      <div class="no-convo text-center">
+        <h4>You Have No Conversations... Yet</h4>
+        <p> You can get started by clicking the <i class="fa fa-comment" id="msg-bx-convos-btn"></i> icon above.</p>
       </div>
       <% end %>
     </div>
-  </div>
   </div>
