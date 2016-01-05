@@ -3,7 +3,7 @@ jQuery(document).ready(function($){
 	$('#users-account').on('click', function () {
 		$('nav#current-account').slideToggle(500);	
 	});
-		dropdowns('#requests-icon', '#requests');
+		dropdowns('#new-message-trigger', '#new-message');
 //Accordian 
 $(".open-accordian").on('click',function() {
           jQuery(this).slideToggle(500).siblings( ".accordian-content" ).slideToggle(500);

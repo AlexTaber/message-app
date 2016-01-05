@@ -15,12 +15,16 @@ a:hover {
 // text-shadow: 0 1px 1px $white;
 }
 .menu-bar {
+  width: 100%;
   background: $brand-color;
   color: $white;
   padding: 5px 10px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  span {
   font-size: 18px;
   line-height: 1.5%;
-  
+  }
 }
 .active {
   background: rgba($white, .25);
@@ -32,28 +36,31 @@ a:hover {
  line-height: 4rem;
  padding: 0 2rem;
  color: $grey;
- small {
-  color:$brand-color;
-  margin-left: 2rem;
+ span {
+  margin-right: 20px;
+ }
+ i {
+  padding-left: 10px;
  }
 }
 //dropdown
 nav#current-account, nav#current-site {
   display:none;
   position: absolute;
-  right: 2.5rem;;
-  top:6rem;
+  right: 35px;
+  top: 80px;
   z-index: 999;
   background: #fafafa;
   padding: 1.5rem 2rem;
   color: #222;
   width: 25rem;
   border: 1px solid $grey;
-  border-radius: .3rem;
+  border-radius: 3px;
   box-shadow: 0px 1px 1px $grey;
   li {
-    list-style: none;
-   padding: 1rem;
+   list-style: none;
+   border-bottom: 1px solid $grey;
+   padding: 20px;
    color: #7d7d7d;
   }
 }

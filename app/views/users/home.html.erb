@@ -1,4 +1,22 @@
 
+<div class="menu-bar">
+  <span>Mercury<b>App</b></span>
+  <!-- User Account Section -->
+  <nav class="profile-data">
+    <span><%= current_user.name %></span>
+    <i class="fa fa-user"></i>
+    <i id="users-account" class="fa fa-chevron-down" title="Edit your account"></i>
+    <nav id="current-account">
+     <h4>Your User Account</h4>
+     <li>Settings </li>
+     <li>Free Level 1<small style="color:red;"> Upgrade now</small></li>
+     <%= link_to logout_path do %> <li>Log Out</li>
+     <% end %>
+   </nav>
+ </nav>
+ <!-- End User Account Section -->
+</div>
+<!-- End Menu Bar -->
   <div class="inbox-sidebar">
   <h4>Your sites</h4>
      <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
@@ -42,19 +60,15 @@
 <div class="message-bar">
 <nav class="current-site-data">
   <span><%= @site.name %></span>
-  <%= link_to new_conversation_path(site_id: @site.id) do %>
-  <small>New Message</small>
-  <% end %>
-  <span id="requests-icon"><small>Requests</small></span>
-  <% if current_user.admin_of_site?(@site) %>
-  <%= link_to add_users_site_path(@site) do %>
-  <small title="Add a new user">Users &#9662;</small>
-  <% end %>
-  <% end %>
+  <i id ="new-message-trigger" class="fa fa-comments"></i>
+  <div id="new-message">
+    <div>
+      <%= link_to new_conversation_path(site_id: @site.id) do %>
+        <small>New Message</small>
+      <% end %>
+    </div>
+  </div>
 </nav>
-<div id="requests">
-  <p> asdfasdfasfsadfasdfasdfasdfasdfasdfasdfdasdfasdfasdfasdfasf </p>
-</div>
   <% if current_user.has_conversations_by_site?(@site) %>
   <% current_user.conversations_by_site(@site).each do |conversation| %>
   <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
@@ -75,25 +89,6 @@
   <h5>You don't have any conversations for this site... yet.</h5>
   <% end %>
 </div>
-<!-- Top Menu Bar -->
-<div class="menu-bar">
-  <!-- <span>mercury</span> -->
-  <!-- User Account Section -->
-  <nav class="profile-data">
-    <span><%= current_user.name %></span>
-    <i class="fa fa-user"></i>
-    <i id="users-account" class="fa fa-chevron-down" title="Edit your account"></i>
-    <nav id="current-account">
-     <h4>Your User Account</h4>
-     <li>Settings </li>
-     <li>Free Level 1<small style="color:red;"> Upgrade now</small></li>
-     <%= link_to logout_path do %> <li>Log Out</li>
-     <% end %>
-   </nav>
- </nav>
- <!-- End User Account Section -->
-</div>
-<!-- End Menu Bar -->
 <!-- Message Content Section -->
 <div class="message-content">
   <% @conversation.messages.each do |message| %>
