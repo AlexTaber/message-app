@@ -5,12 +5,30 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+basic = Tier.create(
+  name: "Basic",
+  admin_sites: 1,
+  users_per_site: 3
+)
+
+start_up = Tier.create(
+  name: "Start Up",
+  admin_sites: 1,
+  users_per_site: 500
+)
+
+multi_site = Tier.create(
+  name: "Multi Site",
+  admin_sites: 5,
+  users_per_site: 500
+)
 
 jerry = User.create(
   first_name: "Jerry",
   last_name: "Patterson",
   email: "info@peekskillwebdesign.com",
-  password: "123"
+  password: "123",
+  tier_id: multi_site.id
 )
 
 jerry_image = Image.create(
