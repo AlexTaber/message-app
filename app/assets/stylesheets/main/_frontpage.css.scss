@@ -23,32 +23,50 @@ h2 {
 	margin-bottom:0;
 }
 }
-.sidebar {
+.inbox-sidebar {
 	width: 20%;
 	float: left;
 	background:rgba($black, 1);
 	height: 100%;
-  padding: 4rem 2rem 0;
+  padding:20px;
 	color: $white;
-	h3 {
+	h4 {
+		display: inline-block;
 		margin-bottom: 3rem;
 	}
 	nav {
 		list-style: none;
-		padding-left: 0;
+		
 		li {
-			padding: 1rem 0;
+			padding: 10px;
 			font-size: 2rem;
-			border-bottom: 1px solid;
-			a{
-				color: rgba($white, 1);
+			color: rgba($white, .8);
+      font-weight: 300;
+      letter-spacing: 1px;
+      &:hover {
+      background: rgba($white, .25);
+      } 
+		  i {
+		    padding-right: 20px;
+		     &:hover {
+		     	cursor: pointer;
+		     }
+		  }
+			a {
+				color: rgba($white, .8);
 				text-decoration: none;
 			}
 		}
 	}
 }
-.sidebar i {
-	padding: .5rem 2rem;
+.requests  {
+	float: right;
+	color: $white;
+	font-size: 10px;
+	text-decoration: underline;
+	&:hover {
+		     	cursor: pointer;
+		     }
 }
 .message-bar {
 	width: 30%;

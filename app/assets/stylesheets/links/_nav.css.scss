@@ -8,38 +8,45 @@
 * 12/29/2014
 */
 a {
-  color: rgba($pwdlight, .8); 
+  color: rgba($brand-color, .8); 
 }
 a:hover {
-  color: rgba($pwdlight, 1); 
+  color: rgba($brand-color, 1); 
 // text-shadow: 0 1px 1px $white;
 }
+.menu-bar {
+  background: $brand-color;
+  color: $white;
+  padding: 5px 10px;
+  font-size: 18px;
+  line-height: 1.5%;
+  
+}
 .active {
-  font-weight: bold;
-  font-size: 2rem;
+  background: rgba($white, .25);
 }
 
-.app-header {
-  width: 100%;
-  padding: 0 2rem;
-  background: $black;
-  color: $white;
-  border-bottom: 1px solid rgba(white, .3);
-  nav {
-    display: inline-block;
-  }
-  a {
-    text-decoration: none;
-    color: $white;
-    &:hover {
-      opacity: .8;
-    }
-  }
-}
+// .app-header {
+//   width: 100%;
+//   padding: 0 2rem;
+//   background: $black;
+//   color: $brand-color;
+//   border-bottom: 1px solid rgba(white, .3);
+//   nav {
+//     display: inline-block;
+//   }
+//   a {
+//     text-decoration: none;
+//     color: $white;
+//     &:hover {
+//       opacity: .8;
+//     }
+//   }
+// }
 
 .current-site-data {
  width: 28%;
- font-size: 2.5rem;
+ font-size: 18px;
  line-height: 4rem;
  padding: 0 2rem;
  border-right: 1px solid rgba(white, .3);
@@ -75,8 +82,8 @@ nav#current-account, nav#current-site {
 }
 .profile-data {
   float: right;
-  font-size: 2.5rem;
-  line-height: 4rem;
+  font-size: 18px;
+  line-height: 1.5%;
   i {
     padding-left: 1.5rem;
   }
