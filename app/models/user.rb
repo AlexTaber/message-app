@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
     tier.permit_user_site(self)
   end
 
+  def can_add_user_to_site(site)
+    tier.permit_site_user(site)
+  end
+
   def admin_sites
     user_sites.where(admin: true).map(&:site)
   end
