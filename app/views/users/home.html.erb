@@ -1,28 +1,10 @@
-<!-- Top Menu Bar -->
-<div class="menu-bar">
-  <span>mercury</span>
-  <!-- User Account Section -->
-  <nav class="profile-data">
-    <span><%= current_user.name %></span>
-    <i class="fa fa-user"></i>
-    <i id="users-account" class="fa fa-chevron-down" title="Edit your account"></i>
-    <nav id="current-account">
-     <h4>Your User Account</h4>
-     <li>Settings </li>
-     <li>Free Level 1<small style="color:red;"> Upgrade now</small></li>
-     <%= link_to logout_path do %> <li>Log Out</li>
-     <% end %>
-   </nav>
- </nav>
- <!-- User Account Section -->
-</div>
-<!-- End Menu Bar -->
+
 <!-- 
 <div class="app-header">
 <nav class="logo">
     <h3><b>Inbox</b></h3>
   </nav> -->
-  <!-- Inbox Sidebar -->
+  <!-- Your Sites Sidebar -->
   <div class="inbox-sidebar">
   <h4>Your sites</h4>
      <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
@@ -40,7 +22,7 @@
   <nav class="site-list">
     <% current_user.sites.each do |site| %>
     <li>
-     <i class="fa fa-list" title="Add a new user"></i>
+     <i class="fa fa-list open-accordian" title="Edit Site"></i>
       <%= link_to site.name, home_path(site_id: site.id) %>
       <% if current_user.admin_of_site?(@site) %>
       <%= link_to add_users_site_path(site) do %>
@@ -48,11 +30,20 @@
       <% end %>
       <!-- Requests Div -->
       <div class="requests">33</div>
+       <div class="accordian-content">
+           <ul class="edit-site-list">
+             <li>Manage Users</li>
+             <li>Edit Site</li>
+             <li>Requests</li>
+           </ul>
+         </div>
     </li>
     <% end %>
   </nav>
 </div>
-<!-- End Inbox Sidebar -->
+<!-- End Your Sites Sidebar -->
+<!-- Current Site Data and Message Area -->
+<div class="message-bar">
 <nav class="current-site-data">
   <span><%= @site.name %></span>
   <%= link_to new_conversation_path(site_id: @site.id) do %>
@@ -68,8 +59,6 @@
 <div id="requests">
   <p> asdfasdfasfsadfasdfasdfasdfasdfasdfasdfdasdfasdfasdfasdfasf </p>
 </div>
-<!-- </div> -->
-<div class="message-bar">
   <% if current_user.has_conversations_by_site?(@site) %>
   <% current_user.conversations_by_site(@site).each do |conversation| %>
   <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
@@ -90,6 +79,26 @@
   <h5>You don't have any conversations for this site... yet.</h5>
   <% end %>
 </div>
+<!-- Top Menu Bar -->
+<div class="menu-bar">
+  <!-- <span>mercury</span> -->
+  <!-- User Account Section -->
+  <nav class="profile-data">
+    <span><%= current_user.name %></span>
+    <i class="fa fa-user"></i>
+    <i id="users-account" class="fa fa-chevron-down" title="Edit your account"></i>
+    <nav id="current-account">
+     <h4>Your User Account</h4>
+     <li>Settings </li>
+     <li>Free Level 1<small style="color:red;"> Upgrade now</small></li>
+     <%= link_to logout_path do %> <li>Log Out</li>
+     <% end %>
+   </nav>
+ </nav>
+ <!-- End User Account Section -->
+</div>
+<!-- End Menu Bar -->
+<!-- Message Content Section -->
 <div class="message-content">
   <% @conversation.messages.each do |message| %>
   <span class="u-pull-right date-new-date"
