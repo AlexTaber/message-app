@@ -2,9 +2,9 @@
 
 <div id="msg-bx">
   <% if current_user.has_unread_conversations_by_site?(@site) %>
-  <header class="brand-color unread-flash">
+    <header class="brand-color unread-flash">
   <% else %>
-  <header class="brand-color">
+    <header class="brand-color">
   <% end %>
     <p>
       <span>This is Your Message Center</span>
@@ -87,14 +87,14 @@
 
       <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
         <p><b>Your Account</b></p>
-        <ul id='msg-bx-acct-list'>  
-          <li>           
+        <ul id='msg-bx-acct-list'>
+          <li>
             <%= link_to 'Edit Account', logout_path %>
           </li>
-          <li>           
+          <li>
             <%= link_to 'Upgrade', logout_path %>
           </li>
-          <li>           
+          <li>
             <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
           </li>
         </ul>
@@ -102,52 +102,52 @@
 
     </header>
 
-<div class="msg-bx-body-cntn">
-      <% if @conversation.has_users? %>
-    <div class="msg-bx-body">
-      <!-- view for saved conversation -->
-      <div class="msg-bx-info">
-        <p><i><%= current_user.name %>'s conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
-      </div>
-      <div class="msg-bx-convo">
-        <% @conversation.messages.each do |message| %>
-        <%= render partial: "messages/message", locals: { message: message } %>
-        <% end %>
-      </div>
+  <div class="msg-bx-body-cntn">
+    <% if @conversation.has_users? %>
+      <div class="msg-bx-body">
+        <!-- view for saved conversation -->
+        <div class="msg-bx-info">
+          <p><i><%= current_user.name %>'s conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+        </div>
+        <div class="msg-bx-convo">
+          <% @conversation.messages.each do |message| %>
+            <%= render partial: "messages/message", locals: { message: message } %>
+          <% end %>
+        </div>
 
-      <div class="msg-bx-bottom">
-        <% if @conversation.new_record? %>
-        <%= form_for @conversation do |f| %>
-        <p>
-          <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
-        </p>
+        <div class="msg-bx-bottom">
+          <% if @conversation.new_record? %>
+            <%= form_for @conversation do |f| %>
+              <p>
+                <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
+              </p>
 
-        <% @conversation.user_ids.each do |user_id| %>
-        <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
-        <% end %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.hidden_field :site_id, value: @site.id %>
-        <!--<%= f.submit "Submit", :class => 'button button-primary brand-color'  %>-->
-        <% end %>
-        <% else %>
-        <%= form_for @message do |f| %>
-        <p>
-          <%= f.text_area :content, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
-        </p>
-        <%= f.hidden_field :conversation_id, value: @conversation.id %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.hidden_field :site_id, value: @site.id %>
-        <!--<%= f.submit "Submit", :class => 'button button-primary brand-color'  %>-->
-        <% end %>
-        <% end %>
+              <% @conversation.user_ids.each do |user_id| %>
+                <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
+              <% end %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :site_id, value: @site.id %>
+              <!--<%= f.submit "Submit", :class => 'button button-primary brand-color'  %>-->
+            <% end %>
+          <% else %>
+            <%= form_for @message do |f| %>
+              <p>
+                <%= f.text_area :content, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
+              </p>
+              <%= f.hidden_field :conversation_id, value: @conversation.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :site_id, value: @site.id %>
+              <!--<%= f.submit "Submit", :class => 'button button-primary brand-color'  %>-->
+            <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
       <% else %>
-      <!-- default conversation view -->
-      <div class="no-convo text-center">
-        <h4>You Have No Conversations... Yet</h4>
-        <p> You can get started by clicking the <i class="fa fa-comment" id="msg-bx-convos-btn"></i> icon above.</p>
-      </div>
+        <!-- default conversation view -->
+        <div class="no-convo text-center">
+          <h4>You Have No Conversations... Yet</h4>
+          <p> You can get started by clicking the <i class="fa fa-comment" id="msg-bx-convos-btn"></i> icon above.</p>
+        </div>
       <% end %>
     </div>
   </div>

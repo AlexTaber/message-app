@@ -64,7 +64,7 @@ class UsersController < ApplicationController
       token = params[:token]
       @site = token_site(token)
       if current_user.sites.include?(@site)
-        current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
+        current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
         @conversation.read_all_messages(current_user) unless @conversation.new_record?
         @message = Message.new
       else
@@ -131,6 +131,14 @@ class UsersController < ApplicationController
         site_id: @invite.site.id,
         admin: false
       )
+    end
+  end
+
+  def set_up_new_conversation
+    @conversation = Conversation.new
+    if params[:user_ids]
+      users = User.where(id: params[:user_ids])
+      @conversation.users << users
     end
   end
 end
