@@ -23,6 +23,7 @@ class RequestsController < ApplicationController
 
     if @request.valid?
       @request.save
+      set_up_user if params[:request][:approved]
       flash[:notice] = "Request updated"
     else
       flash[:warn] = "Unable to update request, please try again"
@@ -35,5 +36,13 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:user_id, :receiver_id, :site_id, :active)
+  end
+
+  def set_up_user
+    UserSite.create(
+      user_id: @request.user.id,
+      site_id: @request.site.id,
+      admin: false
+    )
   end
 end

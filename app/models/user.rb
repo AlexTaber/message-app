@@ -93,4 +93,8 @@ class User < ActiveRecord::Base
   def admin_sites
     user_sites.where(admin: true).map(&:site)
   end
+
+  def image_url
+    image ? image.url : "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"
+  end
 end
