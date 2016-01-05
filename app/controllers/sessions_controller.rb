@@ -20,11 +20,7 @@ class SessionsController < ApplicationController
       end
     else
       flash[:warn] = "Invalid email or password. Please try again."
-      if params[:token]
-        redirect_to message_box_path(token: params[:token])
-      else
-        redirect_to home_path
-      end
+      redirect_to :back
     end
 
   end

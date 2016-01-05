@@ -11,10 +11,16 @@
 <body>
   <%= render partial: "layouts/header" %>
   <% if flash[:warn] %>
-    <p><%= flash[:warn] %></p>
+  <div class="flash-warn flash">
+    <%= flash[:warn] %>
+    <a href="#" class="dismiss"><i class="fa fa-times"></i></a>
+  </div>
   <% end %>
   <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
+  <div class="flash-notice flash">
+    <%= flash[:notice] %>
+    <a href="#" class="dismiss"><i class="fa fa-times"></i></a>
+  </div>
   <% end %>
   <%= yield %>
 

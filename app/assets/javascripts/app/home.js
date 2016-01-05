@@ -30,6 +30,11 @@ $('.close-modal').click(function(){
 	close_modal();  
 });  
 
+	$('.dismiss').on('click', function(e) {
+		e.preventDefault;
+		$('.flash').fadeOut();
+	});
+
 });
 //Functions
 function dropdowns(clicked, target){
