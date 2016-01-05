@@ -1,0 +1,5 @@
+<div>
+  <div><%= request.user.name %></div>
+  <%= link_to "Deny", request_path(request, request: { active: false, approved: false }), method: "PUT" %>
+  <%= link_to "Accept", request_path(request, request: { active: false, approved: true }), method: "PUT" %>
+</div>

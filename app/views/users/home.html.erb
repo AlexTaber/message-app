@@ -11,7 +11,7 @@
 </div>
 
 <div id='mask' class='close-modal'></div>
-<div id='apple' class='modal-window'>
+<div id='edit-site' class='modal-window'>
   <div class="background-class">
     <div>
       <h1>Awesome! Let's update your site</h1>
@@ -19,6 +19,19 @@
     </div>
   </div>
 </div>
+
+<div id='mask' class='close-modal'></div>
+<div id='requests' class='modal-window'>
+  <div class="background-class">
+    <div>
+      <h1>All Pending Requests</h1>
+      <% current_user.pending_received_requests.each do |request| %>
+        <%= render partial: "requests/card", locals: { request: request } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
 <!-- END MODALS -->
 
@@ -64,9 +77,11 @@
         <ul class="edit-site-list">
           <li>Manage Users</li>
           <li>
-            <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "apple" %>
+            <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
           </li>
-          <li>Requests</li>
+          <li>
+            <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
+          </li>
         </ul>
       </div>
     </li>
@@ -126,6 +141,6 @@
 <% if current_user.sites.count > 0 %>
 <div id="fixed-iframe" class="pwd-init pwd-closed">
   <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
+  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=hEZGj3Zuhk1prcyNv1yBxw52"></iframe>
 </div>
 <% end %>
