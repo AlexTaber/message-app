@@ -372,6 +372,9 @@ width:100%;
   border: none;
   border-bottom: 1px solid #ddd;
   width:50%;
+    &:focus {
+    background-color:#DBEDFC;
+  }
  }
 }
 
@@ -381,6 +384,9 @@ width:100%;
   border: none;
   border-bottom: 1px solid #ddd;
   width:30%;
-  font-size:125%
+  font-size:125%;
+  &:focus {
+    background-color:#DBEDFC;
+  }
  }
 }
