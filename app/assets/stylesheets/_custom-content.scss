@@ -378,6 +378,7 @@ width:100%;
  }
 }
 
+//main sign in form
 #sign-in-form {
  input[type='text'], input[type='password'] {
   border-radius: 0;
@@ -389,4 +390,7 @@ width:100%;
     background-color:#DBEDFC;
   }
  }
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: none;
 }
