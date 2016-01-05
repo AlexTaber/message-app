@@ -1,3 +1,26 @@
+<!-- MODALS -->
+
+<div id='mask' class='close-modal'></div>
+<div id='window' class='modal-window'>
+  <div class="background-class">
+    <div>
+      <h1>Awesome! Let's add a new site to your Organization</h1>
+      <%= render partial: "sites/form", locals: { site: @new_site } %>
+    </div>
+  </div>
+</div>
+
+<div id='mask' class='close-modal'></div>
+<div id='apple' class='modal-window'>
+  <div class="background-class">
+    <div>
+      <h1>Awesome! Let's update your site</h1>
+      <%= render partial: "sites/form", locals: { site: @site } %>
+    </div>
+  </div>
+</div>
+
+<!-- END MODALS -->
 
 <div class="menu-bar">
   <span>Mercury<b>App</b></span>
@@ -22,15 +45,6 @@
      <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
      <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
      <% end %>
-     <div id='mask' class='close-modal'></div>
-     <div id='window' class='modal-window'>
-      <div class="background-class">
-        <div>
-          <h1>Awesome! Let's add a new site to your Organization</h1>
-          <%= render partial: "sites/form", locals: { site: @site } %>
-        </div>
-      </div>
-    </div>
   <nav class="site-list">
     <% current_user.sites.each do |site| %>
     <li>
@@ -46,8 +60,10 @@
       <!-- Edit Site List Accordian -->
        <div class="accordian-content">
            <ul class="edit-site-list">
-             <li>Manage Users</li>
-             <li>Edit Site</li>
+              <li>Manage Users</li>
+              <li>
+                <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "apple" %>
+              </li>
              <li>Requests</li>
            </ul>
          </div>
