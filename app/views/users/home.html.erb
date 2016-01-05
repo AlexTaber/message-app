@@ -32,7 +32,6 @@
   </div>
 </div>
 
-
 <!-- END MODALS -->
 
 <div class="menu-bar">
@@ -95,11 +94,7 @@
   <span><%= @site.name %></span>
   <i id ="new-message-trigger" class="fa fa-comments"></i>
   <div id="new-message">
-    <div>
-      <%= link_to new_conversation_path(site_id: @site.id) do %>
-        <small>New Message</small>
-      <% end %>
-    </div>
+    <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
   </div>
 </nav>
   <% if current_user.has_conversations_by_site?(@site) %>

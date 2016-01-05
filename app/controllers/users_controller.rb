@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     @conversation.read_all_messages(current_user) unless @conversation.new_record?
     @message = Message.new
     @new_site = Site.new
+    @new_conversation = Conversation.new
   end
 
   def message_box_data
