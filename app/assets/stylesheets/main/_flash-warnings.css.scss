@@ -1,0 +1,21 @@
+.flash {
+	position: fixed;
+	border-radius:5px 5px 0   0;
+	padding:2.5rem;
+	text-align:center;
+	margin-left: 50%;
+	transform:translateX(-50%);
+	bottom:0;
+	z-index: 10000;
+	color: #fff;
+	i {
+		color:#fff;
+		margin-left:2rem;
+	}
+}
+.flash-warn{
+	background:red;
+}
+.flash-notice{
+	background:green;
+}
