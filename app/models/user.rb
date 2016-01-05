@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :inverse_receivers, through: :inverse_requests, source: :user
 
   has_many :invites
+  belongs_to :tier
 
   def name
     "#{first_name} #{last_name}"
