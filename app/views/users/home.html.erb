@@ -91,8 +91,8 @@
 <!-- Current Site Data and Message Area -->
 <div class="message-bar">
 <nav class="current-site-data">
-  <span><%= @site.name %></span>
-  <i id ="new-message-trigger" class="fa fa-comments"></i>
+  <span><%= @site.name %> Conversations</span>
+  <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
   <div id="new-message">
     <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
   </div>

@@ -40,7 +40,7 @@ $('.close-modal').click(function(){
 function dropdowns(clicked, target){
   $(clicked).on('click',function(){
       $(target).slideToggle();
-      $(this).toggleClass('active');
+      $(this).toggleClass('');
   });
 }
 function close_modal(){  
