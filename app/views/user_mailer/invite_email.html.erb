@@ -4,13 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome there!</h1>
+    <h1>Hello!</h1>
     <p>
-      You have just been invited to join Mercury!<br>
+      You have just been invited by <%= @user.name %> to join Mercury! <%= @user.first_name %> uses Mercury for his site <%= @site.name %>.<br>
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      To accept this invitation, <a href="<%= @url %>">click here</a>. Be sure to tell <%= @user.first_name %> thanks for adding you!
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Thanks for your time and have a great day!</p>
   </body>
 </html>
