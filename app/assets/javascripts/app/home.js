@@ -4,7 +4,10 @@ jQuery(document).ready(function($){
 		$('nav#current-account').slideToggle(500);	
 	});
 		dropdowns('#requests-icon', '#requests');
-
+//Accordian 
+$(".open-accordian").on('click',function() {
+          jQuery(this).slideToggle(500).siblings( ".accordian-content" ).slideToggle(500);
+        });
 ///Modal  
 
 var window_width = $(window).width();  
