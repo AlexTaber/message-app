@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
   def token_site(token)
     Site.find_by(token: token)
   end
+
+  def token_invite(token)
+    Invite.find_by(token: token)
+  end
 end

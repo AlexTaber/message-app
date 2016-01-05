@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :inverse_requests, class_name: "Request", foreign_key: "receiver_id"
   has_many :inverse_receivers, through: :inverse_requests, source: :user
 
+  has_many :invites
+
   def name
     "#{first_name} #{last_name}"
   end

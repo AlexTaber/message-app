@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @invite_token = params[:invite_token]
   end
 
   def create
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       upload_image(params[:user][:file]) if params[:user][:file]
+      set_up_invite if params[:invite_token]
       flash[:notice] = "User successfully created"
       cookies.permanent.signed[:user_id] = @user.id
       redirect_to home_path
@@ -114,6 +116,21 @@ class UsersController < ApplicationController
     unless @image.save
       flash[:warn] = "There was a problem uploading your image, please try again"
       redirect_to :back
+    end
+  end
+
+  def set_up_invite
+    @invite = token_invite(params[:invite_token])
+    validate_and_create_site if @invite
+  end
+
+  def validate_and_create_site
+    if @invite.email == @user.email
+      UserSite.create(
+        user_id: @user.id,
+        site_id: @invite.site.id,
+        admin: false
+      )
     end
   end
 end

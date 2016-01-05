@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello!</h1>
+    <p>
+      You have just been invited by <%= @user.name %> to join Mercury! <%= @user.first_name %> uses Mercury for his site <%= @site.name %>.<br>
+    </p>
+    <p>
+      To accept this invitation, <a href="<%= @url %>">click here</a>. Be sure to tell <%= @user.first_name %> thanks for adding you!
+    </p>
+    <p>Thanks for your time and have a great day!</p>
+  </body>
+</html>
