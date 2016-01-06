@@ -1,5 +1,7 @@
 //our js
 jQuery(document).ready(function($){
+  scrollToBottom();
+
   //PUSHER--------------------------
   var pusher = new Pusher('9cc4489f87803144fa9d');
   var channel;
@@ -13,6 +15,8 @@ jQuery(document).ready(function($){
       } else {
         $(".msg-bx-convo").append(data.other_user_html);
       }
+
+      scrollToBottom();
     });
   }
   //END PUSHER----------------------
@@ -100,7 +104,6 @@ function startConversation(e) {
   }).done(function(response){
     $(".msg-bx-convo").append(response);
     $(".new_conversation").find("#content").val("");
-    scrollToBottom();
   });
 }
 function scrollToBottom() {
