@@ -5,6 +5,7 @@
     <div>
       <h1>Awesome! Let's add a new site to your Organization</h1>
       <%= render partial: "sites/form", locals: { site: @new_site } %>
+      <a herf="#" class='close-modal'>Close</a>
   </div>
 </div>
 
@@ -13,6 +14,7 @@
     <div>
       <h1>Awesome! Let's update your site</h1>
       <%= render partial: "sites/form", locals: { site: @site } %>
+      <a herf="#" class='close-modal'>Close</a>
   </div>
 </div>
 
@@ -22,6 +24,7 @@
       <h1>All Pending Requests</h1>
       <% current_user.pending_received_requests.each do |request| %>
         <%= render partial: "requests/card", locals: { request: request } %>
+        <a herf="#" class='close-modal'>Close</a>
       <% end %>
   </div>
 </div>
@@ -96,7 +99,15 @@
   <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
   <div class="message-item">
     <div class="media">
-      <%= image_tag "j-profile", class: "profile-img" %>
+    <% if conversation.messages.last.user.image %>
+              <div class="profile-pic u-pull-left app-view-p-img">
+                  <img src="<%= conversation.messages.last.user.image_url %>">
+              </div>
+              <% else %>
+              <div class="profile-pic no--pic u-pull-left app-view-p-img">
+                <%= conversation.messages.last.user.first_name[0] %>
+              </div>
+              <% end %>
       <div class="bd">
         <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
         <p>
