@@ -1,4 +1,5 @@
 ///APP Header
+var canSendMessage = true;
 jQuery(document).ready(function($){
   scrollToBottom();
   //PUSHER--------------------------
@@ -92,17 +93,28 @@ function enterSubmit(input, form) {
 
 function sendMessage(e) {
   e.preventDefault();
-  $.ajax({
-    url: e.target.action,
-    method: "POST",
-    data: $(e.target).serialize()
-  }).done(function(response){
-    //$(".msg-bx-convo").append(response);
-    $(".new_message").find("#message_content").val("");
-  });
+  if(messageSendable()) {
+    canSendMessage = false;
+    $.ajax({
+      url: e.target.action,
+      method: "POST",
+      data: $(e.target).serialize()
+    }).done(function(response){
+      canSendMessage = true;
+      $(".new_message").find("#message_content").val("");
+    });
+  }
 }
 
 function scrollToBottom() {
   var tar = $(".msg-bx-convo");
   tar.scrollTop(tar[0].scrollHeight - tar.height())
+}
+
+function messageSendable() {
+  var content = $(".new_message").find("#message_content").val();
+  if(canSendMessage && content != "") {
+    return true;
+  }
+  return false;
 }

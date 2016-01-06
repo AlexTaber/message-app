@@ -1,4 +1,6 @@
 //our js
+var canSendMessage = true;
+
 jQuery(document).ready(function($){
   scrollToBottom();
 
@@ -84,15 +86,18 @@ $(clicked).on('click',function(){
 
 function sendMessage(e) {
   e.preventDefault();
-  $.ajax({
-    url: e.target.action,
-    method: "POST",
-    data: $(e.target).serialize()
-  }).done(function(response){
-    //$(".msg-bx-convo").append(response);
-    $(".new_message").find("#message_content").val("");
-    scrollToBottom();
-  });
+  if(messageSendable()) {
+    canSendMessage = false;
+    $.ajax({
+      url: e.target.action,
+      method: "POST",
+      data: $(e.target).serialize()
+    }).done(function(response){
+      canSendMessage = true;
+      $(".new_message").find("#message_content").val("");
+      scrollToBottom();
+    });
+  }
 }
 
 function startConversation(e) {
@@ -106,8 +111,17 @@ function startConversation(e) {
     $(".new_conversation").find("#content").val("");
   });
 }
+
 function scrollToBottom() {
   var tar = $(".msg-bx-convo");
   tar.scrollTop(tar[0].scrollHeight - tar.height())
+}
+
+function messageSendable() {
+  var content = $(".new_message").find("#message_content").val();
+  if(canSendMessage && content != "") {
+    return true;
+  }
+  return false;
 }
 
