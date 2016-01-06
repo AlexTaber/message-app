@@ -1,12 +1,12 @@
 <%= form_for site do |f| %>
   <div>
-    <%= f.text_field :name, placeholder: "Site Name" %>
+    <%= f.text_field :name, placeholder: "Site Name" %> &nbsp;
     <%= f.text_field :url, placeholder: "Site Url" %>
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
 
-  <div>
+  <div style="margin-top:10px">
     <%= f.submit class: "button button-primary" %>
   </div>
 <% end %>

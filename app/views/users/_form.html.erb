@@ -1,11 +1,11 @@
 <%= form_for user do |f| %>
   <div>
-    <%= f.text_field :first_name, placeholder: "First Name" %>
+    <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
     <%= f.text_field :last_name, placeholder: "Last Name" %>
   </div>
 
   <div style="margin-top:10px;">
-    <%= f.text_field :email, placeholder:"Email" %>
+    <%= f.text_field :email, placeholder:"Email" %> &nbsp;
     <%= f.password_field :password, placeholder: "Password" %>
   </div><br>
 
@@ -19,6 +19,6 @@
   <% end %> 
 
   <div style="margin-top:1rem;">
-    <%= f.submit 'Join', class: 'button button-primary' %>
+    <%= f.submit class: 'button button-primary' %>
   </div>
 <% end %>
