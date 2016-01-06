@@ -1,5 +1,25 @@
 //our js
 jQuery(document).ready(function($){
+  scrollToBottom();
+
+  //PUSHER--------------------------
+  var pusher = new Pusher('9cc4489f87803144fa9d');
+  var channel;
+  var conversationId;
+  for(var i = 0; i < conversationIds.length; i++) {
+    conversationId = conversationIds[i];
+    channel = pusher.subscribe('conversation' + String(conversationId));
+    channel.bind('new-message', function(data) {
+      if(userId == data.user_id) {
+        $(".msg-bx-convo").append(data.current_user_html);
+      } else {
+        $(".msg-bx-convo").append(data.other_user_html);
+      }
+
+      scrollToBottom();
+    });
+  }
+  //END PUSHER----------------------
 
   $('.msg-bx-body').hide();
   //dropdowns
@@ -69,7 +89,7 @@ function sendMessage(e) {
     method: "POST",
     data: $(e.target).serialize()
   }).done(function(response){
-    $(".msg-bx-convo").append(response);
+    //$(".msg-bx-convo").append(response);
     $(".new_message").find("#message_content").val("");
     scrollToBottom();
   });
@@ -84,7 +104,6 @@ function startConversation(e) {
   }).done(function(response){
     $(".msg-bx-convo").append(response);
     $(".new_conversation").find("#content").val("");
-    scrollToBottom();
   });
 }
 function scrollToBottom() {

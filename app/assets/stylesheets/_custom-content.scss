@@ -69,7 +69,7 @@
 .unread-flash{
   animation: unread 5s infinite;
 }
-// profile pic default 
+// profile pic default
 .profile-pic {
   width:4rem;
   height:4rem;
@@ -100,7 +100,7 @@
     color: #fff;
     line-height: 4rem;
     span:hover {
-      cursor: pointer; 
+      cursor: pointer;
     }
   }
   textarea {
@@ -173,7 +173,7 @@
     }
   }
 }
-//makes each dropdown scrollable, cannot be added to msg-bx-dropdown without losing tooltip 
+//makes each dropdown scrollable, cannot be added to msg-bx-dropdown without losing tooltip
 #msg-bx-convos-list, #msg-bx-user-list, #msg-bx-site-list   {
   max-height:23rem;
   overflow-y: scroll;
@@ -189,7 +189,7 @@
   display: block;
   position: absolute;
   z-index: 99;
-} 
+}
 // edits the position of the tooltip triangle for each section
 #msg-bx-sites-drop:before{
   right:10.8rem;
@@ -309,24 +309,23 @@
   overflow-y: scroll;
   height: 30.8rem;
   border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd; 
+  border-bottom: 1px solid #ddd;
   z-index: -1;
   p {
     margin-right: 20rem;
     margin-left: 5rem;
     border-radius: 10px 10px 10px 0 ;
-    padding: 1rem; 
+    padding: 1rem;
     background: #ddd;
   }
   .self-pwd {
     margin-left: 20rem;
     margin-right: 0rem;
     border-radius: 10px 10px 0 10px ;
-    background: #8dbce9; 
+    background: #8dbce9;
   }
   .them-msg-wrapper  {
     position: relative;
-    z-index: 1;
     .profile-pic {
       position:absolute;
       top: 2rem;

@@ -118,21 +118,14 @@
   <% end %>
 </div>
 <!-- Message Content Section -->
-<div class="message-content">
+<div class="msg-bx-convo app-view">
   <% @conversation.messages.each do |message| %>
-  <span class="u-pull-right date-new-date"
-  <i><%= message.date_to_s %></i>
-  <i><%= message.time_to_s %></i>
-</span>
-<div class="message-data">
-  <h4><%= message.user.name %></h4>
-  <%= simple_format(message.content) %>
+    <%= render partial: "messages/message", locals: { message: message } %>
+  <% end %>
 </div>
-<% end %>
 <% unless @conversation.new_record? %>
-<%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
 <% end %>
-</div>
 <% if current_user.sites.count > 0 %>
 <div id="fixed-iframe" class="pwd-init pwd-closed">
   <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
