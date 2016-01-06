@@ -172,14 +172,14 @@ h2 {
 	background: rgba(255, 255, 255, 0.2) !important; }
 	.msg-item-current:after {
 		float:right;
-		margin-top: 4.5rem;
+		margin-top: 5rem;
 		content: "";
 		width: 0; 
 		height: 0; 
 		border-top: 15px solid transparent;
 		border-bottom: 15px solid transparent; 
 		
-		border-right:10px solid #f5f5f5; 
+		border-right:10px solid #fff; 
 }
 //////Accordian
 .open-accordian {
@@ -199,4 +199,4 @@ ul.edit-site-list {
 }
 .app-view {
 	height: 80vh !important;
-
+}
