@@ -21,11 +21,15 @@
 <div id='mask' class='close-modal'></div>
 <div id='requests' class='modal-window'>
     <div>
+    <% if current_user.has_pending_received_request_by_site?(@site) %>
       <h1>All Pending Requests</h1>
       <% current_user.pending_received_requests.each do |request| %>
         <%= render partial: "requests/card", locals: { request: request } %>
         <a herf="#" class='close-modal'>Close</a>
       <% end %>
+    <% else %>
+      <h1> You have no pending requests </h1>
+    <% end %>
   </div>
 </div>
 

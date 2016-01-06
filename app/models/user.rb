@@ -82,6 +82,14 @@ class User < ActiveRecord::Base
     inverse_requests.where(active: true)
   end
 
+  def pending_received_requests_by_site(site)
+    inverse_requests.where(active: true, site_id: site.id)
+  end
+
+  def has_pending_received_request_by_site?(site)
+    pending_received_requests_by_site(site).count > 0
+  end
+
   def can_create_site
     tier.permit_user_site(self)
   end
