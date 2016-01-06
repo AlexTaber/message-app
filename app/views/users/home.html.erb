@@ -2,33 +2,33 @@
 
 <div id='mask' class='close-modal'></div>
 <div id='window' class='modal-window'>
-    <div>
-      <h1>Awesome! Let's add a new site to your Organization</h1>
-      <%= render partial: "sites/form", locals: { site: @new_site } %>
-      <a herf="#" class='close-modal'>Close</a>
+  <div>
+    <h1>Awesome! Let's add a new site to your Organization</h1>
+    <%= render partial: "sites/form", locals: { site: @new_site } %>
+    <a herf="#" class='close-modal'>Close</a>
   </div>
 </div>
 
 <div id='mask' class='close-modal'></div>
 <div id='edit-site' class='modal-window'>
-    <div>
-      <h1>Awesome! Let's update your site</h1>
-      <%= render partial: "sites/form", locals: { site: @site } %>
-      <a herf="#" class='close-modal'>Close</a>
+  <div>
+    <h1>Awesome! Let's update your site</h1>
+    <%= render partial: "sites/form", locals: { site: @site } %>
+    <a herf="#" class='close-modal'>Close</a>
   </div>
 </div>
 
 <div id='mask' class='close-modal'></div>
 <div id='requests' class='modal-window'>
-    <div>
+  <div>
     <% if current_user.has_pending_received_request_by_site?(@site) %>
-      <h1>All Pending Requests</h1>
-      <% current_user.pending_received_requests.each do |request| %>
-        <%= render partial: "requests/card", locals: { request: request } %>
-        <a herf="#" class='close-modal'>Close</a>
-      <% end %>
+    <h1>All Pending Requests</h1>
+    <% current_user.pending_received_requests.each do |request| %>
+    <%= render partial: "requests/card", locals: { request: request } %>
+    <a herf="#" class='close-modal'>Close</a>
+    <% end %>
     <% else %>
-      <h1> You have no pending requests </h1>
+    <h1> You have no pending requests </h1>
     <% end %>
   </div>
 </div>
@@ -53,16 +53,16 @@
  <!-- End User Account Section -->
 </div>
 <!-- End Menu Bar -->
-  <div class="inbox-sidebar">
+<div class="inbox-sidebar">
   <h4>Your sites</h4>
-     <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
-     <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
-     <% end %>
+  <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
+  <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
+  <% end %>
   <nav class="site-list">
     <% current_user.sites.each do |site| %>
     <li>
       <% if @site == site %>
-        <i class="fa fa-list open-accordian" title="Edit Site"></i>
+      <i class="fa fa-list open-accordian" title="Edit Site"></i>
       <% end %>
       <%= link_to site.name, home_path(site_id: site.id) %>
       <% if current_user.admin_of_site?(@site) %>
@@ -91,27 +91,31 @@
 <!-- End Your Sites Sidebar -->
 <!-- Current Site Data and Message Area -->
 <div class="message-bar">
-<nav class="current-site-data">
-  <span><%= @site.name %> Conversations</span>
-  <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
-  <div id="new-message">
-    <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
-  </div>
-</nav>
+  <nav class="current-site-data">
+    <span><%= @site.name %> Conversations</span>
+    <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
+    <div id="new-message">
+      <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
+    </div>
+  </nav>
   <% if current_user.has_conversations_by_site?(@site) %>
   <% current_user.conversations_by_site(@site).each do |conversation| %>
   <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
-  <div class="message-item">
+  <% if conversation == @conversation %>
+    <div class="message-item msg-item-current">
+  <% else %>
+    <div class="message-item">
+  <% end %>
     <div class="media">
-    <% if conversation.messages.last.user.image %>
-              <div class="profile-pic u-pull-left app-view-p-img">
-                  <img src="<%= conversation.messages.last.user.image_url %>">
-              </div>
-              <% else %>
-              <div class="profile-pic no--pic u-pull-left app-view-p-img">
-                <%= conversation.messages.last.user.first_name[0] %>
-              </div>
-              <% end %>
+      <% if conversation.messages.last.user.image %>
+      <div class="profile-pic u-pull-left app-view-p-img">
+        <img src="<%= conversation.messages.last.user.image_url %>">
+      </div>
+      <% else %>
+      <div class="profile-pic no--pic u-pull-left app-view-p-img">
+        <%= conversation.messages.last.user.first_name[0] %>
+      </div>
+      <% end %>
       <div class="bd">
         <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
         <p>
