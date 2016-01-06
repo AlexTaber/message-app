@@ -89,7 +89,7 @@
         <p><b>Your Account</b></p>
         <ul id='msg-bx-acct-list'>
           <li>
-            <%= link_to 'Edit Account', logout_path %>
+            <%= link_to 'Edit Account', edit_user_path(current_user) %>
           </li>
           <li>
             <%= link_to 'Upgrade', logout_path %>

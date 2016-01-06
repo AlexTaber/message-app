@@ -1,0 +1,47 @@
+// input styling
+input[type='text'], input[type='password'] {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  font-size:125%;
+    &:focus {
+    background-color:#DBEDFC;
+    border: 1px solid #33C3F0
+  }
+}
+
+//login form
+#msg-bx.mb-form {
+ .msg-bx-body{
+  height: 500px;
+  text-align: center;
+  padding-top: 5rem;
+ }
+ input[type='text'], input[type='password'] {
+    &:focus {
+    background-color:#DBEDFC;
+  }
+ }
+}
+
+//main sign in form
+#sign-in-form {
+ input[type='text'], input[type='password'] {
+  width:30%;
+ }
+}
+#new_user{
+  input[type='text'], input[type='password'] {
+  width:200px;
+  font-size:125%;
+ }
+}
+
+//new user form
+#password{margin-top:10px;}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: #fff !important;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}

@@ -9,10 +9,10 @@ div {
 	height: auto;
 }
 body {
-	// background: rgba($black, .8);
-	//  padding: 40px 30px;
- //    -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5);
- //    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5);
+// background: rgba($black, .8);
+// padding: 40px 30px;
+// -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5);
+// box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5);
 }
 .logo {
 display: inline-block;
@@ -146,6 +146,12 @@ h2 {
 	margin-left:
 	10px;
 }
+.app-view-p-img{
+	display:inline !important;
+	height:5rem !important;
+	width:5rem !important;
+	margin-right: 2rem;
+}
 #requests-icon {
 	cursor: pointer;
 	&.active small{
@@ -161,6 +167,19 @@ h2 {
 	color: #000;
 	border: 1px solid #ddd;
 	z-index: 100;
+}
+.msg-item-current{
+	background: rgba(255, 255, 255, 0.2) !important; }
+	.msg-item-current:after {
+		float:right;
+		margin-top: 5rem;
+		content: "";
+		width: 0; 
+		height: 0; 
+		border-top: 15px solid transparent;
+		border-bottom: 15px solid transparent; 
+		
+		border-right:10px solid #fff; 
 }
 //////Accordian
 .open-accordian {
@@ -178,7 +197,6 @@ ul.edit-site-list {
 		list-style: none;
 	}
 }
-
 .app-view {
 	height: 80vh !important;
 }
