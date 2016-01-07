@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
   def token_invite(token)
     Invite.find_by(token: token)
   end
+
+  def token_conversation(token)
+    Conversation.find_by(token: token)
+  end
 end

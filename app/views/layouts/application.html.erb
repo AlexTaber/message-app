@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
   <script src="//js.pusher.com/3.0/pusher.min.js"></script>
   <% if current_user %>
-    <%= javascript_tag "conversationIds = #{current_user.conversation_ids.to_json.html_safe}; userId = #{current_user.id};" %>
+    <%= javascript_tag "conversationTokens = #{current_user.conversation_tokens.to_json.html_safe}; userId = #{current_user.id};" %>
   <% end %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>

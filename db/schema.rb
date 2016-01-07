@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160105173138) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "site_id",    null: false
+    t.string   "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

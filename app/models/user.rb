@@ -117,4 +117,8 @@ class User < ActiveRecord::Base
   def first_visit?
     visits <= 1
   end
+
+  def conversation_tokens
+    conversations.pluck(:token)
+  end
 end
