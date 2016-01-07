@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   resources :requests, only: [:new, :create, :update]
   resources :invites, only: [:new, :create]
+  resources :user_sites, only: [:destroy]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

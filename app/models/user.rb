@@ -105,4 +105,8 @@ class User < ActiveRecord::Base
   def image_url
     image ? image.url : "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"
   end
+
+  def find_user_site(site)
+    user_sites.find_by(site_id: site.id)
+  end
 end

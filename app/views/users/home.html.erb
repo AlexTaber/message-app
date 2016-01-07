@@ -1,6 +1,34 @@
 <!-- MODALS -->
 
 <div id='mask' class='close-modal'></div>
+<div id='manage-users' class='modal-window'>
+  <div>
+    <h1>Manage Users of <%= @site.name %></h1>
+    <hr>
+    <h3>Current Users</h3>
+    <% @site.other_users(current_user).each do |user| %>
+      <p><%= user.name %> <%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete" %></p>
+    <% end %>
+    <hr>
+    <div>
+      <h3>Add Users</h3>
+      <%= form_for @site do |f| %>
+        <div>
+          <%= f.label :user_ids, "Add Users" %>
+          <%= f.collection_select(:user_ids, User.all_other_users(current_user), :id, :name,{}, {:multiple => true}) %>
+        </div>
+        <div>
+          <%= f.submit "Add Users", class: "button button-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <a herf="#" class='close-modal'>Close</a>
+    </div>
+  </div>
+</div>
+
+<div id='mask' class='close-modal'></div>
 <div id='window' class='modal-window'>
   <div>
     <h1>Awesome! Let's add a new site to your Organization</h1>
@@ -61,31 +89,31 @@
   <nav class="site-list">
   <div class="welcome-msg"><p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p></div>
     <% current_user.sites.each do |site| %>
-    <li>
-      <% if @site == site %>
-      <i class="fa fa-list open-accordian" title="Edit Site"></i>
-      <% end %>
-      <%= link_to site.name, home_path(site_id: site.id) %>
-      <% if current_user.admin_of_site?(@site) %>
-      <%= link_to add_users_site_path(site) do %>
-      <% end %>
-      <% end %>
-      <!-- Requests Div -->
-      <div class="requests">33</div>
-      <!-- End Requests Div -->
-      <!-- Edit Site List Accordian -->
-      <div class="accordian-content">
-        <ul class="edit-site-list">
-          <li>Manage Users</li>
-          <li>
-            <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
-          </li>
-          <li>
-            <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
-          </li>
-        </ul>
-      </div>
-    </li>
+      <li>
+        <% if site == @admin_site %>
+          <i class="fa fa-list open-accordian" title="Edit Site"></i>
+        <% end %>
+        <%= link_to site.name, home_path(site_id: site.id) %>
+        <!-- Requests Div -->
+        <div class="requests">33</div>
+        <!-- End Requests Div -->
+        <!-- Edit Site List Accordian -->
+        <div class="accordian-content">
+          <ul class="edit-site-list">
+            <% if site == @admin_site %>
+              <li>
+                <%= link_to "Manage Users", "#", class: "activate-modal", name: "manage-users" %>
+              </li>
+              <li>
+                <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
+              </li>
+              <li>
+                <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </li>
     <% end %>
   </nav>
 </div>
