@@ -1,5 +1,4 @@
 <!-- MODALS -->
-
 <div id='mask' class='close-modal'></div>
 <div id='manage-users' class='modal-window'>
   <div>
@@ -27,7 +26,6 @@
     </div>
   </div>
 </div>
-
 <div id='mask' class='close-modal'></div>
 <div id='window' class='modal-window'>
   <div>
@@ -45,7 +43,6 @@
     <a herf="#" class='close-modal'>Close</a>
   </div>
 </div>
-
 <div id='mask' class='close-modal'></div>
 <div id='requests' class='modal-window'>
   <div>
@@ -60,9 +57,7 @@
     <% end %>
   </div>
 </div>
-
 <!-- END MODALS -->
-
 <div class="menu-bar">
   <span>Mercury<b>App</b></span>
   <!-- User Account Section -->
@@ -82,20 +77,24 @@
 </div>
 <!-- End Menu Bar -->
 <div class="inbox-sidebar">
-  <h4>Your sites</h4>
-  <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
-  <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
-  <% end %>
+  <header>
+    <h4>Your sites</h4>
+      <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
+      <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
+      <% end %>
+    </header>
   <nav class="site-list">
-  <div class="welcome-msg"><p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p></div>
+  <div class="welcome-msg">
+    <p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p>
+  </div>
     <% current_user.sites.each do |site| %>
       <li>
         <% if site == @admin_site %>
-          <i class="fa fa-list open-accordian" title="Edit Site"></i>
+          <i class="fa fa-pencil u-pull-right open-accordian" title="Edit Site"></i>
         <% end %>
         <%= link_to site.name, home_path(site_id: site.id) %>
-        <!-- Requests Div -->
-        <div class="requests">33</div>
+        <!-- Requests Div I f Needed-->
+        <!-- <div class="requests">33</div> -->
         <!-- End Requests Div -->
         <!-- Edit Site List Accordian -->
         <div class="accordian-content">
