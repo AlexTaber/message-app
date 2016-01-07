@@ -1,5 +1,6 @@
 //our js
 var canSendMessage = true;
+var shiftPressed = false;
 
 jQuery(document).ready(function($){
   scrollToBottom();
@@ -31,8 +32,9 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#msg-bx-convos-btn', '#msg-bx-convos-drop');
   msgBxDropdowns('#msg-bx-acct-btn', '#msg-bx-acct-drop');
 
-  enterSubmit('#message_content', '#new_message')
-  enterSubmit('#content', '#new_conversation')
+  enterSubmit('#message_content', '#new_message');
+  enterSubmit('#content', '#new_conversation');
+
   $(".new_message").submit(sendMessage);
   $(".new_conversation").submit(startConversation);
   //conversation dropdown tabs
@@ -70,8 +72,12 @@ jQuery(document).ready(function($){
 function enterSubmit(input, form) {
   $(input).keypress(function(event) {
     if (event.which == 13) {
+      if(event.shiftKey) {
+        addNewLine(form);
+      } else {
         event.preventDefault();
         $(form).submit();
+      }
     }
   });
 }
@@ -132,3 +138,8 @@ function messageSendable() {
   return false;
 }
 
+function addNewLine(form) {
+  var tar = $(form).find("textarea");
+  var value = tar.val();
+  tar.val(value);
+}
