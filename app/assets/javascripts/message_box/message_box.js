@@ -55,6 +55,9 @@ jQuery(document).ready(function($){
       $('.msg-bx-dropdown').hide();
       $('i.active').removeClass('active');
       $('.msg-bx-body').fadeOut(200);
+      if($('.flash')[0]){
+      $('.flash').hide();
+    }
     }
     if ($('body').width() > 450) {
       $('.msg-bx-body').fadeIn();
@@ -114,7 +117,9 @@ function startConversation(e) {
 
 function scrollToBottom() {
   var tar = $(".msg-bx-convo");
-  tar.scrollTop(tar[0].scrollHeight - tar.height())
+  if( tar.length > 0) {
+    tar.scrollTop(tar[0].scrollHeight - tar.height())
+  }
 }
 
 function messageSendable() {
