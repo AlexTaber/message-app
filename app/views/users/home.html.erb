@@ -7,7 +7,7 @@
     <hr>
     <h3>Current Users</h3>
     <% @site.other_users(current_user).each do |user| %>
-      <p><%= user.name %> <%= link_to "Remove", "#" %></p>
+      <p><%= user.name %> <%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete" %></p>
     <% end %>
     <hr>
     <div>
