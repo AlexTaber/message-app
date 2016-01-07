@@ -87,13 +87,8 @@ h2 {
 	}
 .message-center {
 	float: left;
-	width: 30%;
-	padding: 5rem;
-	height: 100%;
-	overflow: scroll;
-	background: #fff;
-	color: #444;
-	background: rgba($black, .5);
+	width: 50%;  
+	height: 100vh;
 }
 .message-item {
 	border-bottom: 1px solid #000;
@@ -195,6 +190,6 @@ ul.edit-site-list {
 	}
 }
 .app-view {
-	height: 80vh !important;
+	height: 80% !important;
 }
 
