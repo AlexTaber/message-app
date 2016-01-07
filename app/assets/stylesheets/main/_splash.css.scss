@@ -1,0 +1,97 @@
+//Splash Page Styles
+
+a {
+  color: #11b9ee; }
+a:hover {
+  color: #10a7d6; }
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  background-color: #11b9ee;
+  color: rgba($white, 1);
+  span {
+    font-size: 3rem;
+  }
+
+  z-index: 999;
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline;
+    position: relative;
+    margin-right: 2rem;
+  }
+
+  a {
+    color: rgba($white, .8);
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+
+    &:hover {
+     color: rgba($white, 1);
+    }
+  }
+}
+///Page Styles
+.feature-sign-up {
+	padding-top: 8rem;
+	background: #ababab;
+	h1 {
+		font-weight: bold;
+		color: $white;
+		letter-spacing: normal;
+		small {
+			margin-left: 2rem;
+			color: $black;
+			font-size: 50%;
+		}
+	}
+}
+.landing {
+	padding: 6rem 0;
+	background: $grey;
+}
+.card {
+	padding: 1.5rem;
+	border: 1px solid rgba(0,0,0,0.08);
+	border-radius: 10px;
+	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+	background: $white;
+}
+
+@media (min-width: 1000px) {
+	.lead-in {
+		max-width: 70%;
+	}
+}
+.card-data {
+	margin-top: 2rem;
+	border-bottom: 1px solid $grey;
+	ul {
+		margin-bottom: 4rem;
+		color: rgba($black, .8);
+	}
+}
+@media (min-width: 1000px) {
+	.card-data {
+		border-bottom: none;
+		ul {
+			padding-left: 10rem;
+		}
+	}
+}
+.getting-started {
+	border-top: 1px solid $grey;
+	border-bottom: 1px solid $grey;
+	background: #fafafa;
+}
