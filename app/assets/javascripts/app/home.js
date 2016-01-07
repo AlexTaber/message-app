@@ -64,7 +64,7 @@ $('.close-modal').click(function(){
 		$('.flash').fadeOut();
 	});
 
-	$('.flash').wait(10).fadeOut();
+	$('.flash').delay(3000).fadeOut();
 
 });
 //Functions
