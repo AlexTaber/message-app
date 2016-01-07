@@ -74,7 +74,6 @@ h2 {
 	float: left;
 	height: 100%;
 	border-left: 1px solid #000;
-	border-right: 1px solid #ddd;
 	overflow: -y;
 		a {
 			font-size: 14px;
@@ -172,13 +171,12 @@ h2 {
 	background: rgba(255, 255, 255, 0.2) !important; }
 	.msg-item-current:after {
 		float:right;
-		margin-top: 5rem;
+		margin-top: 5.5rem;
 		content: "";
 		width: 0; 
 		height: 0; 
-		border-top: 15px solid transparent;
-		border-bottom: 15px solid transparent; 
-		
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent; 
 		border-right:10px solid #fff; 
 }
 //////Accordian
