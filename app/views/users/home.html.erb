@@ -57,6 +57,18 @@
     <% end %>
   </div>
 </div>
+
+<% if(current_user.first_visit?) %>
+<div id='mask' class='close-modal' style="display:block;"></div>
+  <div id='edit-site' class='modal-window' style="display:block;">
+    <div>
+      <h1>Welcome to Mercury<b>App</b></h1>
+      <p>Thank you for signing up. Please take some time to learn our features by visiting our <a href="#">tutorials page</a>. Happy messaging!</p>
+      <a herf="#" class='close-modal'>Close</a>
+    </div>
+  </div>
+<% end %>
+
 <!-- END MODALS -->
 <div class="menu-bar">
   <span>Mercury<b>App</b></span>
