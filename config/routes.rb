@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/mb-login' => 'sessions#mb_new'
   get '/home' => 'users#home'
   get '/message_box' => 'users#message_box'
+  get '/token_redirect' => 'users#token_redirect'
 
   root 'sessions#splash'
 end
