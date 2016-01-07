@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
       @message.save!
       set_up_recipients
       flash[:notice] = "Message successfully created"
-      Pusher.trigger("conversation#{@message.conversation.id}", 'new-message', {
+      Pusher.trigger("conversation#{@message.conversation.token}", 'new-message', {
         user_id: @message.user.id,
         current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: @message }),
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message })
