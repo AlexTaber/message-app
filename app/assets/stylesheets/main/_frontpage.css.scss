@@ -70,7 +70,7 @@ h2 {
 }
 .request-card{
 	border-top: 1px solid #ddd;
-	padding:2rem;
+	padding:24px;
 }
 .message-bar {
 	background: rgba($black, .8);
@@ -109,8 +109,8 @@ h2 {
 	height: 100%;
 }
 .message-data {
- padding-bottom: 2rem;
- margin-bottom: 2rem;
+ padding-bottom: 16px;
+ margin-bottom: 16px;
  border-bottom: 1px solid #ddd;
 }
 .profile-img {
@@ -146,9 +146,9 @@ h2 {
 }
 .app-view-p-img{
 	display:inline !important;
-	height:5rem !important;
-	width:5rem !important;
-	margin-right: 2rem;
+	height:40px !important;
+	width:40px !important;
+	margin-right: 16px;
 }
 #requests-icon {
 	cursor: pointer;
@@ -160,7 +160,7 @@ h2 {
 #requests{
 	position: absolute;
 	display:none;
-	left:40rem;
+	left:320px;
 	background: #fff;
 	color: #000;
 	border: 1px solid #ddd;
@@ -170,7 +170,7 @@ h2 {
 	background: rgba(255, 255, 255, 0.2) !important; }
 	.msg-item-current:after {
 		float:right;
-		margin-top: 5.5rem;
+		margin-top: 44px;
 		content: "";
 		width: 0; 
 		height: 0; 
