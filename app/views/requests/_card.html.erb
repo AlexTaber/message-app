@@ -1,5 +1,5 @@
-<div>
-  <div><%= request.user.name %></div>
-  <%= link_to "Deny", request_path(request, request: { active: false, approved: false }), method: "PUT" %>
-  <%= link_to "Accept", request_path(request, request: { active: false, approved: true }), method: "PUT" %>
+<div class="request-card">
+  <h4><%= request.user.name %></h4>
+  <%= link_to "Deny", request_path(request, request: { active: false, approved: false }), method: "PUT", class: 'button button-primary' %>
+  <%= link_to "Accept", request_path(request, request: { active: false, approved: true }), method: "PUT", class: 'button button-primary' %>
 </div>

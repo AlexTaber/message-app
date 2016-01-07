@@ -64,6 +64,8 @@ $('.close-modal').click(function(){
 		$('.flash').fadeOut();
 	});
 
+	$('.flash').delay(3000).fadeOut();
+
 });
 //Functions
 function dropdowns(clicked, target){
@@ -108,7 +110,9 @@ function sendMessage(e) {
 
 function scrollToBottom() {
   var tar = $(".msg-bx-convo");
-  tar.scrollTop(tar[0].scrollHeight - tar.height())
+  if( tar.length > 0) {
+    tar.scrollTop(tar[0].scrollHeight - tar.height())
+  }
 }
 
 function messageSendable() {
