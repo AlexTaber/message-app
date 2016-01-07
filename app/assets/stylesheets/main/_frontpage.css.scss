@@ -49,9 +49,9 @@ body {
 			font-weight: 300;
 			letter-spacing: 1px;
 			border-bottom: 1px solid rgba($white, .25);
-			&:hover {
-				background: rgba($white, .25);
-			}
+			// &:hover {
+			// 	background: rgba($white, .25);
+			// }
 			i {
 				font-size: 14px;
 				&:hover {
@@ -59,7 +59,6 @@ body {
 				}
 			}
 			a {
-				color: rgba($white, .8);
 				text-decoration: none;
 			}
 		}
@@ -88,6 +87,12 @@ ul.edit-site-list {
 		color: $white;
 		&:hover {
 			background: transparent;
+		}
+		a {
+			color: $white;
+			&:hover {
+				opacity: .8;
+			}
 		}
 	}
 }
