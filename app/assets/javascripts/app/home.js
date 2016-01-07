@@ -79,12 +79,12 @@ function dropdowns(clicked, target){
   });
 }
 function close_modal(){
-	$('#mask').fadeOut(500);
+	$('.mask').fadeOut(500);
 	$('.modal-window').fadeOut(500);
 }
 function show_modal(modal_id){
-	$('#mask').css({ 'display' : 'block', opacity : 0});
-	$('#mask').fadeTo(500,0.8);
+	$('.mask').css({ 'display' : 'block', opacity : 0});
+	$('.mask').fadeTo(500,0.8);
 	$('#'+modal_id).fadeIn(500);
 }
 
