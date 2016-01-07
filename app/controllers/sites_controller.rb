@@ -11,6 +11,7 @@ class SitesController < ApplicationController
       if @site.valid?
         @site.save
         set_up_user
+        send_site_email
         flash[:notice] = "Site successfully created"
         redirect_to home_path(site_id: @site.id)
       else
@@ -94,5 +95,9 @@ class SitesController < ApplicationController
       user_id: user_id,
       content: "You have been added to the site #{@site.name} by #{current_user.name}"
     )
+  end
+
+  def send_site_email
+    UserMailer.site_email(current_user, @site).deliver_now
   end
 end
