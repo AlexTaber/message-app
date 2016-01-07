@@ -50,6 +50,7 @@ class UsersController < ApplicationController
     @new_site = Site.new
     @new_conversation = Conversation.new
     current_user.admin_of_site?(@site) ? @admin_site = @site : @admin_site = nil
+    current_user.add_visit
   end
 
   def message_box_data

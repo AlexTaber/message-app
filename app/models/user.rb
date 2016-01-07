@@ -109,4 +109,12 @@ class User < ActiveRecord::Base
   def find_user_site(site)
     user_sites.find_by(site_id: site.id)
   end
+
+  def add_visit
+    update_attribute(:visits, visits + 1)
+  end
+
+  def first_visit?
+    visits <= 1
+  end
 end
