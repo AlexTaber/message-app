@@ -345,15 +345,17 @@
   border-bottom: 1px solid #ddd;
   z-index: -1;
   p {
-    margin-right: 160px;
-    margin-left: 5rem;
+    max-width:300px;
+    margin-left: 50px;
     border-radius: 10px 10px 10px 0 ;
+    display:inline-block;
     padding: 1rem;
     background: #ddd;
   }
   .self-pwd {
+    float:right;
     margin-left: 160px;
-    margin-right: 0;
+    margin-right: 10px;
     border-radius: 10px 10px 0 10px ;
     background: #8dbce9;
   }
@@ -366,7 +368,16 @@
       right:auto;
     }
   }
+  .self-msg-wrapper{
+    .profile-pic{
+      float:right;
+    }
+  }
   .self-meta-data{
+    display:block;
+    float:right;
+  }
+  .them-meta-data{
     display:block;
   }
 }
