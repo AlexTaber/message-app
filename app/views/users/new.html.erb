@@ -2,5 +2,6 @@
 	<div class="centered">
 		<h1>Awesome! You are just steps away<br>from messaging with Mercury</h1>	
 		<%= render partial: "form", locals: { user: @user } %>
+		Already a user? <%= link_to 'Log In', login_path %> here.
 	</div>
 </div>
