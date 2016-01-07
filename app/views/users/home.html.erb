@@ -190,6 +190,6 @@
 <!-- I-Frame -->
 <div id="fixed-iframe" class="pwd-init pwd-closed">
   <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=RXyS8w4ZGCwAbY3i4DF7o"></iframe>
+  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
 </div>
 <% end %>
