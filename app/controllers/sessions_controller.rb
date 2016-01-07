@@ -34,6 +34,9 @@ class SessionsController < ApplicationController
     end
   end
 
+  def splash
+  end
+
   def mb_new
     @token = params[:token]
   end

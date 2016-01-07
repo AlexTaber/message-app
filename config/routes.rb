@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   get '/home' => 'users#home'
   get '/message_box' => 'users#message_box'
 
-  root 'sessions#new'
+  root 'sessions#splash'
 end

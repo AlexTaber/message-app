@@ -59,6 +59,7 @@
   <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
   <% end %>
   <nav class="site-list">
+  <div class="welcome-msg"><p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p></div>
     <% current_user.sites.each do |site| %>
     <li>
       <% if @site == site %>
@@ -98,6 +99,7 @@
       <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
     </div>
   </nav>
+    <div class="welcome-msg"><p>All active site conversations will appear here. Click the plus next to conversations to start a conversation or click a conversation to display your messages in the conversation window. <b>Make sure you have  added users to converse with</b></p></div>
   <% if current_user.has_conversations_by_site?(@site) %>
   <% current_user.conversations_by_site(@site).each do |conversation| %>
   <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
