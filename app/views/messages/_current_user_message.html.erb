@@ -1,4 +1,6 @@
+<div class="self-msg-wrapper u-full-width">
 <small class="self-meta-data text-right u-full-width"><b>Me</b> <i>on <%= message.date_to_s %> <%= message.time_to_s %></i></small>
 <p class="self-pwd">
   <%= message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>').html_safe %>
 </p>
+</div>
