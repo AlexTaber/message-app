@@ -131,6 +131,9 @@ ul.edit-site-list {
 	float: left;
 	width: 50%;  
 	height: 100vh;
+	header {
+		padding: 10px;
+	}
 }
 .message-item {
 	border-bottom: 1px solid #000;
