@@ -63,7 +63,13 @@
 //------defaults
 
 .brand-color{
-      background: #222 !important;
+      background: #333 !important;
+      opacity: 1;
+}
+@media (max-width: 300px) {
+  .brand-color{
+    opacity: .8;
+  }
 }
 .unread-flash{
   animation: unread 5s infinite;
