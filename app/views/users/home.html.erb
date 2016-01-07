@@ -147,10 +147,10 @@
       </div>
       <% end %>
       <div class="bd">
-        <h4><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h4>
-        <p>
+        <h4>
+        <%= conversation.abbreviated_other_users_to_s(current_user, 20) %>
+        </h4>
           <%= simple_format(conversation.content_preview(30)) %>
-        </p>
       </div>
     </div>
   </div>
