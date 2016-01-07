@@ -161,6 +161,10 @@
 </div>
 <!-- Message Content Section -->
 <div class="message-center">
+    <header>
+    <i><%= current_user.name %>'s conversation with:</i>
+    <b> <%= @conversation.other_users_to_s(current_user) %> </b>
+    </header>
     <div class="msg-bx-convo app-view">
       <% @conversation.messages.each do |message| %>
         <%= render partial: "messages/message", locals: { message: message } %>
