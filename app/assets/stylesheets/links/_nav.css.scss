@@ -19,8 +19,7 @@ a:hover {
   background: $brand-color;
   color: $white;
   padding: 5px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-bottom: 1px solid $grey;
   span {
   font-size: 18px;
   line-height: 1.5%;
@@ -30,11 +29,11 @@ a:hover {
   background: rgba($white, .25);
 }
 .current-site-data {
-border-bottom: 1px solid #000;
- font-size: 18px;
- line-height: 32px;
- padding: 0 16px;
- color: $grey;
+ border-bottom: 1px solid $grey;
+ color: $black;
+ header {
+  padding: 10px;
+ }
  span {
   margin-right: 20px;
  }

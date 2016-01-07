@@ -90,7 +90,7 @@
 <!-- End Menu Bar -->
 <div class="inbox-sidebar">
   <header>
-    <h4>Your sites</h4>
+    <b>Your</b> sites
       <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
       <i class="fa fa-plus u-pull-right" title="Add a new site"></i>
       <% end %>
@@ -132,11 +132,13 @@
 <!-- Current Site Data and Conversations Area -->
 <div class="message-bar">
   <nav class="current-site-data">
-    <span><%= @site.name %> Conversations</span>
-    <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
-    <div id="new-message">
-      <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
-    </div>
+   <header> 
+  <b><%= @site.name %></b> &nbsp; conversations
+       <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
+       <div id="new-message">
+         <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
+       </div>
+       </header>
   </nav>
     <div class="welcome-msg"><p>All active site conversations will appear here. Click the plus next to conversations to start a conversation or click a conversation to display your messages in the conversation window. <b>Make sure you have  added users to converse with</b></p></div>
   <% if current_user.has_conversations_by_site?(@site) %>
