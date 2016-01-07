@@ -9,7 +9,7 @@
     <p>
       <span>This is Your Message Center</span>
       <span id="msg-bx-nav-icons">
-        <%= link_to message_box_path(token: @site.token) do %>
+        <%= link_to login_path, target: '_blank' do %>
         <i class="fa fa-home"></i>
         <% end %>
         <i class="fa fa-globe" id="msg-bx-sites-btn"></i>
@@ -92,7 +92,7 @@
             <%= link_to 'Edit Account', edit_user_path(current_user) %>
           </li>
           <li>
-            <%= link_to 'Upgrade', logout_path %>
+            <%= link_to 'Upgrade', root_path, target: '_blank' %>
           </li>
           <li>
             <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
