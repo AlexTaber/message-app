@@ -118,7 +118,7 @@
   </nav>
 </div>
 <!-- End Your Sites Sidebar -->
-<!-- Current Site Data and Message Area -->
+<!-- Current Site Data and Conversations Area -->
 <div class="message-bar">
   <nav class="current-site-data">
     <span><%= @site.name %> Conversations</span>
@@ -147,7 +147,7 @@
       </div>
       <% end %>
       <div class="bd">
-        <h5><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h5>
+        <h4><%= conversation.abbreviated_other_users_to_s(current_user, 20) %></h4>
         <p>
           <%= simple_format(conversation.content_preview(30)) %>
         </p>

@@ -98,7 +98,18 @@ h2 {
 .message-item {
 	border-bottom: 1px solid #000;
 	color: $white;
-
+}
+.msg-item-current{
+	background: rgba(255, 255, 255, 0.2) !important; }
+	.msg-item-current:after {
+		float:right;
+		margin-top: 44px;
+		content: "";
+		width: 0; 
+		height: 0; 
+		border-top: 10px solid transparent;
+		border-bottom: 10px solid transparent; 
+		border-right:10px solid #fff; 
  &:hover {
 		background: rgba($white,.2);
 	}
@@ -118,12 +129,14 @@ h2 {
  	vertical-align: top;
  	margin-right: 5px;
  }
+///The Media Object Styles http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
 
 .media {
-	margin:0 10px 10px;
+	margin:0 10px 8px;
 	padding-top: 20px;
-	h3 {
+	h4{
 		display: inline-block;
+		margin-bottom: 0px;
 	}
 }
 .media, .bd {
@@ -144,6 +157,7 @@ h2 {
 	margin-left:
 	10px;
 }
+//End Media Object
 .app-view-p-img{
 	display:inline !important;
 	height:40px !important;
@@ -165,18 +179,6 @@ h2 {
 	color: #000;
 	border: 1px solid #ddd;
 	z-index: 100;
-}
-.msg-item-current{
-	background: rgba(255, 255, 255, 0.2) !important; }
-	.msg-item-current:after {
-		float:right;
-		margin-top: 44px;
-		content: "";
-		width: 0; 
-		height: 0; 
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent; 
-		border-right:10px solid #fff; 
 }
 //////Accordian
 .open-accordian {
