@@ -2,22 +2,22 @@
 @keyframes bounce {
   0%{height:425px;}
   45%{height:20px;}
-  100%{height:35px;}
+  100%{height:32px;}
 }
 @-webkit-keyframes bounce {
   0%{height:425px;}
   45%{height:20px;}
-  100%{height:35px;}
+  100%{height:32px;}
 }
   @-moz-keyframes bounce {
   0%{height:425px;}
   45%{height:20px;}
-  100%{height:35px;}
+  100%{height:32px;}
 }
   @-o-keyframes bounce {
   0%{height:425px;}
   45%{height:20px;}
-  100%{height:35px;}
+  100%{height:32px;}
 }
 #pwd-message-box {
   width: 100%;
@@ -41,7 +41,7 @@
   animation:none !important;
 }
 .pwd-closed {
-  height:35px !important;
+  height:32px !important;
   width: 300px !important;
   animation: bounce 2s;
   -webkit-animation: bounce 2s;
@@ -101,8 +101,8 @@
 }
 // profile pic default
 .profile-pic {
-  width:4rem;
-  height:4rem;
+  width:30px;
+  height:30px;
   border-radius: 100%;
   display:inline-table;
   position:relative;
@@ -112,7 +112,7 @@
   text-align: center;
   background: #133c64;
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 24px;
   color: #fff;
   line-height: 1.4;
 }
@@ -125,10 +125,10 @@
   top:0 !important;
   header {
     position: relative;
-    height:4rem;
-    padding-left: 1.5rem;
+    height:32px;
+    padding-left: 12px;
     color: #fff;
-    line-height: 4rem;
+    line-height: 32px;
     span:hover {
       cursor: pointer;
     }
@@ -142,15 +142,15 @@
 
 #msg-bx-nav-icons{
   float:right;
-  padding-right: 10rem;
-  font-size:150%;
+  padding-right: 80px;
+  font-size: 20px;
   color: rgba(255, 255 , 255, 0.6);
   i:hover, & i.active{
    color:#fff;
    background: none;
   }
   i{
-    padding-left: 1rem;
+    padding-left: 8px;
   }
   a{
     color: rgba(255, 255, 255, 0.6) !important;
@@ -175,9 +175,9 @@
   position: absolute;
   background: #fff;
   color: #000;
-  top: 4rem;
-  right: 6rem;
-  width: 20rem;
+  top: 32px;
+  right: 48px;
+  width: 160px;
   text-align: center;
   border: 1px solid #ddd;
   border-bottom: 3px solid #ddd;
@@ -205,7 +205,7 @@
 }
 //makes each dropdown scrollable, cannot be added to msg-bx-dropdown without losing tooltip
 #msg-bx-convos-list, #msg-bx-user-list, #msg-bx-site-list   {
-  max-height:23rem;
+  max-height:230px;
   overflow-y: scroll;
 }
 //creates the tooltip triangle
@@ -222,13 +222,13 @@
 }
 // edits the position of the tooltip triangle for each section
 #msg-bx-sites-drop:before{
-  right:10.8rem;
+  right:97px;
 }
 #msg-bx-convos-drop:before{
-  right:10.5rem;
+  right:86px;
 }
 #msg-bx-acct-drop:before{
-  right:4rem;
+  right:32px;
 }
 
 //------conversation dropdown
@@ -236,16 +236,16 @@
 #msg-bx-user-list {
   text-align: left;
   .no--pic {
-    margin: 1rem;
+    margin: 8px;
     display: inline-table;
-    height: 3rem;
-    width: 4rem;
+    height: 24px;
+    width: 38px;
   }
   .profile-pic {
-    margin:1rem;
+    margin:8px;
     img{
-      width:4rem;
-      height:4rem;
+      width:32px;
+      height:32px;
       display:block;
       top:0;
       position: absolute;
@@ -286,8 +286,8 @@
   display:none;
 }
 #msg-bx-convos-drop{
-  width:50rem;
-  right:3rem;
+  width:400px;
+  right:24px;
       .unread-bg {
     background: #ddd;
   }
@@ -306,7 +306,7 @@
 #msg-bx-sites-drop .active {
   background: #f5f5f5;
   font-weight: normal;
-  font-size: 1.5rem;
+  font-size: 12px;
 }
 //------main body styles
 
@@ -322,10 +322,10 @@
 //------conversation meta data
 
 .msg-bx-info {
-  height:5rem;
+  height:50px;
   overflow-y: scroll;
   text-align: center;
-  padding:.2rem;
+  padding:2px;
   background: #f5f5f5;
   p {
     margin-bottom: 0;
@@ -335,22 +335,22 @@
 //------conversation main
 
 .msg-bx-convo {
-  padding: 1rem;
+  padding: 8px;
   overflow-y: scroll;
-  height: 30.8rem;
+  height: 247px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   z-index: -1;
   p {
-    margin-right: 20rem;
+    margin-right: 160px;
     margin-left: 5rem;
     border-radius: 10px 10px 10px 0 ;
     padding: 1rem;
     background: #ddd;
   }
   .self-pwd {
-    margin-left: 20rem;
-    margin-right: 0rem;
+    margin-left: 160px;
+    margin-right: 0;
     border-radius: 10px 10px 0 10px ;
     background: #8dbce9;
   }
@@ -375,7 +375,7 @@
 //message form
 .msg-bx-bottom {
     textarea{
-    min-height:5rem;
+    min-height:40px;
   }
 }
 #message_content, #content {
@@ -386,7 +386,7 @@ width:100%;
 }
 .msg-bx-body-cntn {
   width:100%;
-  height:50rem;
+  height:400px;
   background:#fff;
 }
 
