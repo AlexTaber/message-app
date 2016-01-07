@@ -64,6 +64,8 @@ $('.close-modal').click(function(){
 		$('.flash').fadeOut();
 	});
 
+	$('.flash').wait(10).fadeOut();
+
 });
 //Functions
 function dropdowns(clicked, target){
