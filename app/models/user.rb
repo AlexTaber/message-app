@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def last_initial
+    "#{last_name[0]}."
+  end
+
+  def first_name_last_initial
+    "#{first_name} #{last_initial}"
+  end
+
   def conversations_by_site(site)
     conversations.where(site_id: site.id)
   end

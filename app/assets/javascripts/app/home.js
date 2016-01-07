@@ -91,8 +91,12 @@ function show_modal(modal_id){
 function enterSubmit(input, form) {
   $(input).keypress(function(event) {
     if (event.which == 13) {
+      if(event.shiftKey) {
+        addNewLine(form);
+      } else {
         event.preventDefault();
         $(form).submit();
+      }
     }
   });
 }
