@@ -3,21 +3,25 @@ var canSendMessage = true;
 jQuery(document).ready(function($){
   scrollToBottom();
   //PUSHER--------------------------
-  var pusher = new Pusher('9cc4489f87803144fa9d');
-  var channel;
-  var conversationToken;
-  for(var i = 0; i < conversationTokens.length; i++) {
-    conversationToken = conversationTokens[i];
-    channel = pusher.subscribe('conversation' + String(conversationToken));
-    channel.bind('new-message', function(data) {
-      if(userId == data.user_id) {
-        $(".app-view").append(data.current_user_html);
-      } else {
-        $(".app-view").append(data.other_user_html);
-      }
+  if(typeof conversationTokens !== 'undefined') {
+    var pusher = new Pusher('9cc4489f87803144fa9d');
+    var channel;
+    var conversationToken;
+    for(var i = 0; i < conversationTokens.length; i++) {
+      conversationToken = conversationTokens[i];
+      channel = pusher.subscribe('conversation' + String(conversationToken));
+      channel.bind('new-message', function(data) {
+        if(curConvoToken == data.conversation_token) {
+          if(userId == data.user_id) {
+            $(".app-view").append(data.current_user_html);
+          } else {
+            $(".app-view").append(data.other_user_html);
+          }
 
-      scrollToBottom();
-    });
+          scrollToBottom();
+        }
+      });
+    }
   }
   //END PUSHER----------------------
 

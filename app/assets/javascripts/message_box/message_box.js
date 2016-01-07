@@ -12,13 +12,15 @@ jQuery(document).ready(function($){
     conversationToken = conversationTokens[i];
     channel = pusher.subscribe('conversation' + String(conversationToken));
     channel.bind('new-message', function(data) {
-      if(userId == data.user_id) {
-        $(".msg-bx-convo").append(data.current_user_html);
-      } else {
-        $(".msg-bx-convo").append(data.other_user_html);
-      }
+      if(curConvoToken == data.conversation_token) {
+        if(userId == data.user_id) {
+          $(".msg-bx-convo").append(data.current_user_html);
+        } else {
+          $(".msg-bx-convo").append(data.other_user_html);
+        }
 
-      scrollToBottom();
+        scrollToBottom();
+      }
     });
   }
   //END PUSHER----------------------
