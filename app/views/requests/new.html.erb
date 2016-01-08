@@ -1,1 +1,109 @@
-<%= render partial: "form", locals: { request: @request, site: @site } %>
+<%= javascript_include_tag "message_box/message_box" %>
+<div id="msg-bx">
+	<% if current_user.has_unread_conversations_by_site?(@site) %>
+    <header class="brand-color unread-flash">
+  <% else %>
+    <header class="brand-color">
+  <% end %>
+    <p>
+      <span>This is Your Message Center</span>
+      <span id="msg-bx-nav-icons">
+        <%= link_to login_path, target: '_blank' do %>
+        <i class="fa fa-home"></i>
+        <% end %>
+        <i class="fa fa-globe" id="msg-bx-sites-btn"></i>
+        <i class="fa fa-comment" id="msg-bx-convos-btn"></i>
+        <i class="fa fa-user" id="msg-bx-acct-btn"></i>
+      </span>
+    </p>
+
+    <div id="msg-bx-convos-drop" class="msg-bx-dropdown">
+      <div class="msg-bx-tab">
+        <a href="#" class="inactive"><b>Users on this site</b></a>
+        <a href="#"><b>Your Conversations</b></a>
+      </div>
+      <div class="tab-content">
+        <div id="msg-bx-users">
+          <ul id="msg-bx-user-list">
+            <% @site.other_users(current_user).each do |user| %>
+            <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
+            <li>
+              <% if user.image %>
+              <div class="profile-pic">
+                <div class="table-cell">
+                  <img src="<%= user.image_url %>">
+                </div>
+              </div>
+              <% else %>
+              <div class="profile-pic no--pic">
+                <div class="table-cell"><%= user.first_name[0] %></div>
+              </div>
+              <% end %>
+              <span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span>
+            </li>
+            <% end %>
+            <% end %>
+          </ul>
+        </div>
+
+        <div id="msg-bx-convos">
+          <div id='msg-bx-convos-list'>
+            <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
+            <% if conversation.has_unread_messages?(current_user) %>
+            <div class="msg-bx-convo-item unread-bg">
+              <% else %>
+              <div class="msg-bx-convo-item">
+                <% end %>
+                <%= link_to message_box_path(user_ids: conversation.user_ids, token: @site.token) do %>
+                <i><%= conversation.messages.last.date_to_s %></i>
+                <i><%= conversation.messages.last.time_to_s %></i>
+                <div class="msg-bx-convo-data">
+                  <h4><%= conversation.abbreviated_other_users_to_s(current_user, 30, true) %></h4>
+                  <%= "#{conversation.messages.last.user.first_name}: #{conversation.content_preview(30)}" %>
+                </div>
+                <% end %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="msg-bx-sites-drop" class="msg-bx-dropdown">
+        <p><b>Your Sites</b></p>
+        <ul id='msg-bx-site-list'>
+          <% current_user.sites.each do |site| %>
+          <li>
+            <% if @site == site %>
+            	<%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
+            <% else %>
+            	<%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
+        <p><b>Your Account</b></p>
+        <ul id='msg-bx-acct-list'>
+          <li>
+            <%= link_to 'Edit Account', edit_user_path(current_user) %>
+          </li>
+          <li>
+            <%= link_to 'Upgrade', root_path, target: '_blank' %>
+          </li>
+          <li>
+            <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
+          </li>
+        </ul>
+      </div>
+
+    </header>
+
+
+			<%= render partial: "form", locals: { request: @request, site: @site } %>
+
+		</div>
+	</div>
+</div>

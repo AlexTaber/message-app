@@ -65,7 +65,19 @@ hr {
   display:table-cell;
   max-width:600px;
 }
-
+.menu-caret{
+    margin-right:12px;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+}
+.menu-caret.rotated {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+}
 //Modal window 
  .mask {  
     position:fixed;   
