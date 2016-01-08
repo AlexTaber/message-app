@@ -1,5 +1,9 @@
 <!-- MODALS -->
+<% if(current_user.first_visit?) %>
+<div class='mask close-modal' style="display:block;"></div>
+<% else %>
 <div class='mask close-modal'></div>
+<% end %>
 <div id='manage-users' class='modal-window'>
   <div>
     <h1>Manage Users of <%= @site.name %></h1>
@@ -22,7 +26,7 @@
       <% end %>
     </div>
     <div>
-      <a herf="#" class='close-modal'>Close</a>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
     </div>
   </div>
 </div>
@@ -31,26 +35,25 @@
   <div>
     <h1>Awesome! Let's add a new site to your Organization</h1>
     <%= render partial: "sites/form", locals: { site: @new_site } %>
-    <a herf="#" class='close-modal'>Close</a>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
 
-<div class='mask close-modal'></div>
 <div id='edit-site' class='modal-window'>
   <div>
     <h1>Awesome! Let's update your site</h1>
     <%= render partial: "sites/form", locals: { site: @site } %>
-    <a herf="#" class='close-modal'>Close</a>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
-<div class='mask close-modal'></div>
+
 <div id='requests' class='modal-window'>
   <div>
     <% if current_user.has_pending_received_request_by_site?(@site) %>
     <h1>All Pending Requests</h1>
     <% current_user.pending_received_requests.each do |request| %>
     <%= render partial: "requests/card", locals: { request: request } %>
-    <a herf="#" class='close-modal'>Close</a>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
     <% end %>
     <% else %>
     <h1> You have no pending requests </h1>
@@ -59,12 +62,11 @@
 </div>
 
 <% if(current_user.first_visit?) %>
-<div class='mask close-modal' style="display:block;"></div>
   <div id='edit-site' class='modal-window' style="display:block;">
     <div>
       <h1>Welcome to Mercury<b>App</b></h1>
       <p>Thank you for signing up. Please take some time to learn our features by visiting our <a href="#">tutorials page</a>. Happy messaging!</p>
-      <a herf="#" class='close-modal'>Close</a>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
     </div>
   </div>
 <% end %>
