@@ -6,7 +6,6 @@ jQuery(document).ready(function($){
   scrollToBottom();
 
   //PUSHER--------------------------
-  var pusher = new Pusher('9cc4489f87803144fa9d');
   var channel;
   var conversationToken;
   for(var i = 0; i < conversationTokens.length; i++) {

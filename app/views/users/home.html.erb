@@ -145,7 +145,6 @@
   <b><%= @site.name %></b> &nbsp; Conversations
        <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
        <div id="new-message">
-        <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
        </div>
        </header>
   </nav>
@@ -206,11 +205,13 @@
         <%= render partial: "messages/message", locals: { message: message } %>
       <% end %>
     </div>
-  <% if @conversation.new_record? %>
-    <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
-  <% else %>
-    <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
-  <% end %>
+  <div id="form-wrapper">
+    <% if @conversation.new_record? %>
+      <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation } %>
+    <% else %>
+      <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+    <% end %>
+  </div>
 </div>
 <% if current_user.sites.count > 0 %>
   <!-- I-Frame -->

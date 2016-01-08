@@ -10,6 +10,7 @@
   <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
   <!-- JS DATA -->
+  <%= javascript_tag "var pusher = new Pusher('9cc4489f87803144fa9d');" %>
   <% if current_user %>
     <%= javascript_tag "conversationTokens = #{current_user.conversation_tokens.to_json.html_safe}; userId = #{current_user.id};" %>
   <% end %>

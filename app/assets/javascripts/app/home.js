@@ -4,22 +4,11 @@ jQuery(document).ready(function($){
   scrollToBottom();
   //PUSHER--------------------------
   if(typeof conversationTokens !== 'undefined') {
-    var pusher = new Pusher('9cc4489f87803144fa9d');
     var channel;
     var conversationToken;
     for(var i = 0; i < conversationTokens.length; i++) {
       conversationToken = conversationTokens[i];
-      channel = pusher.subscribe('conversation' + String(conversationToken));
-      channel.bind('new-message', function(data) {
-        if(curConvoToken == data.conversation_token) {
-          if(userId == data.user_id) {
-            $(".app-view").append(data.current_user_html);
-          } else {
-            $(".app-view").append(data.other_user_html);
-          }
-          scrollToBottom();
-        }
-      });
+      subscribeToConvo(conversationToken, curConvoToken);
     }
   }
   //END PUSHER----------------------
@@ -31,10 +20,12 @@ jQuery(document).ready(function($){
 
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);
+  $("#new_conversation").submit(startConversation);
   //-------------------------------
 
   //enter submit
   enterSubmit('#message_content', '#av-message-form')
+  enterSubmit('#content', '#new_conversation')
   //-----------
 
 	$('#users-account').on('click', function () {
@@ -120,6 +111,27 @@ function sendMessage(e) {
   }
 }
 
+function startConversation(e) {
+  e.preventDefault();
+  if(messageSendable()) {
+    canSendMessage = false;
+    $.ajax({
+      url: e.target.action,
+      method: "POST",
+      data: $(e.target).serialize()
+    }).done(function(data){
+      canSendMessage = true;
+      curConvoToken = data.token;
+      $("#form-wrapper").html(data.form_html);
+      $("#av-message-form").submit(sendMessage);
+      enterSubmit('#message_content', '#av-message-form');
+      $(".app-view").append(data.html);
+      subscribeToConvo(data.token, curConvoToken);
+      $(".new_conversation").find("#content").val("");
+    });
+  }
+}
+
 function scrollToBottom() {
   var tar = $(".msg-bx-convo");
   if( tar.length > 0) {
@@ -133,4 +145,19 @@ function messageSendable() {
     return true;
   }
   return false;
+}
+
+function subscribeToConvo(conversationToken, curConvoToken) {
+  channel = pusher.subscribe('conversation' + String(conversationToken));
+  channel.bind('new-message', function(data) {
+    if(curConvoToken == data.conversation_token) {
+      if(userId == data.user_id) {
+        $(".app-view").append(data.current_user_html);
+      } else {
+        $(".app-view").append(data.other_user_html);
+      }
+
+      scrollToBottom();
+    }
+  });
 }

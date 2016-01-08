@@ -17,7 +17,11 @@ class ConversationsController < ApplicationController
       create_message if params[:content]
 
       if request.xhr?
-        render partial: "messages/message", locals: { message: @message }
+        render json: {
+          html: (render_to_string partial: "messages/message", locals: { message: @message }),
+          form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation }),
+          token: @conversation.token
+        }
       else
         flash[:notice] = "Conversation successfully created"
         redirect_to home_path
