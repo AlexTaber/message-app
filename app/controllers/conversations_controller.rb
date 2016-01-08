@@ -42,7 +42,11 @@ class ConversationsController < ApplicationController
       @conversation = site.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
       set_up_users(users) unless @conversation.users.count > 0
-      redirect_to home_path(user_ids: @conversation.user_ids, site_id: site.id)
+      if params[:token].empty?
+        redirect_to home_path(user_ids: @conversation.user_ids, site_id: site.id)
+      else
+        redirect_to message_box_path(token: params[:token], user_ids: @conversation.user_ids)
+      end
     else
       flash[:warn] = "Unable to find user"
       redirect_to :back

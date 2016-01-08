@@ -1,0 +1,13 @@
+<%= form_tag add_user_path do %>
+  <%= text_field_tag :user_name, nil, class:"typeahead app-view-typeahead", value: "", placeholder: "Search" %>
+
+  <%= hidden_field_tag "conversation[site_id]", site.id %>
+  <%= hidden_field_tag :user_id, nil %>
+  <%= hidden_field_tag :token, token %>
+
+  <% conversation.user_ids.each do |user_id| %>
+    <%= hidden_field_tag "user_ids[]", user_id %>
+  <% end %>
+
+  <%= submit_tag "Add", class: "button button-primary" %>
+<% end %>

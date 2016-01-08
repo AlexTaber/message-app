@@ -103,6 +103,7 @@
     </header>
 
   <div class="msg-bx-body-cntn">
+    <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
     <% if @conversation.has_users? %>
       <div class="msg-bx-body">
         <!-- view for saved conversation -->
