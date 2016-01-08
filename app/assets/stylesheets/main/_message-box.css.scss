@@ -109,15 +109,20 @@
   border-radius: 100%;
   display:inline-table;
   position:relative;
+  margin-top: -15px;
 }
 .no--pic {
-  display:table;
+  display:table !important;
   text-align: center;
   background: #133c64;
   font-weight: 900;
   font-size: 24px;
   color: #fff;
-  line-height: 1.4;
+  margin-top: -15px;
+  p{
+    display:table-cell;
+    vertical-align: middle;
+  }
 }
 
 //------main msg bx styles
