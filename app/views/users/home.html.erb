@@ -1,5 +1,9 @@
 <!-- MODALS -->
+<% if(current_user.first_visit?) %>
+<div class='mask close-modal' style="display:block;"></div>
+<% else %>
 <div class='mask close-modal'></div>
+<% end %>
 <div id='manage-users' class='modal-window'>
   <div>
     <h1>Manage Users of <%= @site.name %></h1>
@@ -35,7 +39,6 @@
   </div>
 </div>
 
-<div class='mask close-modal'></div>
 <div id='edit-site' class='modal-window'>
   <div>
     <h1>Awesome! Let's update your site</h1>
@@ -43,7 +46,7 @@
     <a herf="#" class='close-modal'>Close</a>
   </div>
 </div>
-<div class='mask close-modal'></div>
+
 <div id='requests' class='modal-window'>
   <div>
     <% if current_user.has_pending_received_request_by_site?(@site) %>
@@ -59,7 +62,6 @@
 </div>
 
 <% if(current_user.first_visit?) %>
-<div class='mask close-modal' style="display:block;"></div>
   <div id='edit-site' class='modal-window' style="display:block;">
     <div>
       <h1>Welcome to Mercury<b>App</b></h1>
