@@ -118,7 +118,8 @@ ul.edit-site-list {
 	width: 30%;
 	float: left;
 	height: 100%;
-	overflow: -y;
+	overflow:visible;
+	border-right:1px solid #ababab;
 	a {
 		font-size: 14px;
 		text-decoration: none;
@@ -150,9 +151,16 @@ ul.edit-site-list {
 	}
 }
 .msg-item-current{
-	background: rgba($darkgrey, .2) !important; }
+	background: rgba($darkgrey, .2) !important;
+	position:relative;
+	overflow:visible;
+	&:hover {
+			background: rgba($darkgrey, 1);
+		}
+	}
 	.msg-item-current:after {
-		float:right;
+		position:absolute;
+		right:0;
 		margin-top: 32px;
 		content: "";
 		width: 0; 
@@ -160,9 +168,19 @@ ul.edit-site-list {
 		border-top: 10px solid transparent;
 		border-bottom: 10px solid transparent; 
 		border-right:10px solid #fff; 
-		&:hover {
-			background: rgba($darkgrey, 1);
-		}
+		margin-right:-1px;
+	}
+		.msg-item-current:before {
+		position:absolute;
+		right:0;
+		margin-top: 31px;
+		content: "";
+		width: 0; 
+		height: 0; 
+		border-top: 11px solid transparent;
+		border-bottom: 11px solid transparent; 
+		border-right:11px solid #ababab; 
+		margin-right:-1px;
 	}
 	.message-content {
 		padding: 60px 30px;
@@ -179,6 +197,12 @@ ul.edit-site-list {
 		vertical-align: top;
 		margin-right: 5px;
 	}
+.unread-convo-app {
+	 animation: unread 5s infinite;
+  -webkit-animation: unread 5s infinite;
+  -moz-animation: unread 5s infinite;
+  -o-animation: unread 5s infinite;
+}
 ///The Media Object Styles http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
 
 .media {
@@ -204,8 +228,10 @@ ul.edit-site-list {
 }
 .media .imgExt {
 	float:right;
-	margin-left:
-	10px;
+	margin-left: 10px;
+}
+.media .profile-pic{
+	margin-top:0px;
 }
 //End Media Object
 

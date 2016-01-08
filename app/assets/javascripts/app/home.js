@@ -25,6 +25,11 @@ jQuery(document).ready(function($){
   }
   //END PUSHER----------------------
 
+  // User Chevron ------------------
+  $('#users-account').on('click', function(){
+    $(this).toggleClass('rotated');
+  })
+
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);
   //-------------------------------
