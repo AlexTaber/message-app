@@ -17,7 +17,6 @@ jQuery(document).ready(function($){
           } else {
             $(".app-view").append(data.other_user_html);
           }
-
           scrollToBottom();
         }
       });
@@ -26,7 +25,7 @@ jQuery(document).ready(function($){
   //END PUSHER----------------------
 
   // User Chevron ------------------
-  $('#users-account').on('click', function(){
+  $('.menu-caret').on('click', function(){
     $(this).toggleClass('rotated');
   })
 
@@ -44,7 +43,7 @@ jQuery(document).ready(function($){
 		dropdowns('#new-message-trigger', '#new-message');
 //Accordian
 $(".open-accordian").on('click',function() {
-          jQuery(this).slideToggle(500).siblings( ".accordian-content" ).slideToggle(500);
+          jQuery(this).siblings( ".accordian-content" ).slideToggle(500);
         });
 ///Modal
 

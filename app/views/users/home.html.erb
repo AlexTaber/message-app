@@ -59,6 +59,7 @@
     <% end %>
     <% else %>
     <h1> You have no pending requests </h1>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
     <% end %>
   </div>
 </div>
@@ -80,7 +81,7 @@
   <nav class="profile-data">
     <span><%= current_user.name %></span>
     <i class="fa fa-user"></i>
-    <i id="users-account" class="fa fa-chevron-down" title="Edit your account"></i>
+    <i id="users-account" class="fa fa-chevron-down menu-caret" title="Edit your account"></i>
     <nav id="current-account">
      <p><b>Your Acount</b></p>
      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
@@ -103,9 +104,14 @@
     <p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p>
   </div>
     <% current_user.sites.each do |site| %>
+    <% if current_user.has_unread_conversations_by_site?(site) %>
+      <li class="unread unread-convo-app">
+    <% else %>
       <li>
+    <% end %>
+
         <% if site == @admin_site %>
-          <i class="fa fa-pencil u-pull-right open-accordian" title="Edit Site"></i>
+          <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
         <% end %>
         <%= link_to site.name, home_path(site_id: site.id) %>
         <!-- Requests Div If Needed-->

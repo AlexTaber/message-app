@@ -1,26 +1,17 @@
-<div id="msg-bx" class="mb-form">
-<header class="brand-color">
-    <p>
-      <span>You aren't part of this site yet!</span>
-    </p>
-</header>
-
-<div class="msg-bx-body">
-<% if request.new_record? %>
-<h4 class="text-center">
-Click below request to be added by the site owner
-</h4>
-<p>Once the site owner approves, you can start using the app immediately</p>
-
+    <div class="msg-bx-body text-center msg-bx-padding">
+      <% if request.new_record? %>
+      <h4>
+        Click below request to be added by the site owner
+      </h4>
+      <p>Once the site owner approves, you can start using the app immediately</p>
   <%= form_for request do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :receiver_id, value: site.find_admin.id %>
     <%= f.hidden_field :site_id, value: site.id %>
 
     <%= f.submit "Send Request", class: "button button-primary" %>
-  <% end %>
+    <% end %>
 <% else %>
   <h4 class="text-center">Request has been sent!</h4>
   <p>Please allow some time for this request to be processed</p>
 <% end %>
-</div>
