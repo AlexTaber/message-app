@@ -118,7 +118,7 @@ function startConversation(e) {
     method: "POST",
     data: $(e.target).serialize()
   }).done(function(response){
-    $(".msg-bx-convo").append(response);
+    $(".msg-bx-convo").append();
     $(".new_conversation").find("#content").val("");
   });
 }
@@ -142,4 +142,14 @@ function addNewLine(form) {
   var tar = $(form).find("textarea");
   var value = tar.val();
   tar.val(value);
+}
+function escapeHTML(s) {
+    return s.replace(/[&"<>]/g, function (c) {
+        return {
+            '&': "&amp;",
+            '"': "&quot;",
+            '<': "&lt;",
+            '>': "&gt;"
+        }[c];
+    });
 }
