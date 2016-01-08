@@ -141,11 +141,12 @@
 <!-- Current Site Data and Conversations Area -->
 <div class="message-bar">
   <nav class="current-site-data">
-   <header> 
+   <header>
   <b><%= @site.name %></b> &nbsp; Conversations
        <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
        <div id="new-message">
-         <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
+        <%= text_field_tag :typeahead, nil, class:"typeahead", placeholder: "Search" %>
+        <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
        </div>
        </header>
   </nav>
