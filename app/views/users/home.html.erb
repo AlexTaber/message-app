@@ -206,14 +206,16 @@
         <%= render partial: "messages/message", locals: { message: message } %>
       <% end %>
     </div>
-  <% unless @conversation.new_record? %>
-         <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
-       <% end %>
-       <% if current_user.sites.count > 0 %>
+  <% if @conversation.new_record? %>
+    <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+  <% else %>
+    <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+  <% end %>
 </div>
-<!-- I-Frame -->
-<div id="fixed-iframe" class="pwd-init pwd-closed">
-  <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
-</div>
+<% if current_user.sites.count > 0 %>
+  <!-- I-Frame -->
+  <div id="fixed-iframe" class="pwd-init pwd-closed">
+    <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
+    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
+  </div>
 <% end %>
