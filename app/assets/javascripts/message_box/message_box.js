@@ -143,13 +143,3 @@ function addNewLine(form) {
   var value = tar.val();
   tar.val(value);
 }
-function escapeHTML(s) {
-    return s.replace(/[&"<>]/g, function (c) {
-        return {
-            '&': "&amp;",
-            '"': "&quot;",
-            '<': "&lt;",
-            '>': "&gt;"
-        }[c];
-    });
-}
