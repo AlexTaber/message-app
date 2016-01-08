@@ -118,7 +118,7 @@ function startConversation(e) {
     method: "POST",
     data: $(e.target).serialize()
   }).done(function(response){
-    $(".msg-bx-convo").append();
+    $(".msg-bx-convo").append(response);
     $(".new_conversation").find("#content").val("");
   });
 }
