@@ -197,6 +197,12 @@ ul.edit-site-list {
 		vertical-align: top;
 		margin-right: 5px;
 	}
+.unread-convo-app {
+	 animation: unread 5s infinite;
+  -webkit-animation: unread 5s infinite;
+  -moz-animation: unread 5s infinite;
+  -o-animation: unread 5s infinite;
+}
 ///The Media Object Styles http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
 
 .media {

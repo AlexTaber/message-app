@@ -74,16 +74,16 @@
 
 //--------------------------message-view
 @keyframes unread {
-  50%{background-color:#AF0808;}
+  50%{background-color: #8dbce9;}
 }
-@-webkit-keyframes unread {
-  50%{background-color:#AF0808;}
+@-webkit-keyframes unread-conv {
+  50%{background-color: #8dbce9;}
 }
-  @-moz-keyframes unread {
-  50%{background-color:#AF0808;}
+  @-moz-keyframes unread-convo {
+  50%{background-color: #8dbce9;}
 }
-  @-o-keyframes unread {
-  50%{background-color:#AF0808;}
+  @-o-keyframes unread-convo {
+  50%{background-color: #8dbce9;}
 }
 //------defaults
 
@@ -297,7 +297,10 @@
   width:400px;
   right:24px;
       .unread-bg {
-    background: #ddd;
+      animation: unread 5s infinite;
+  -webkit-animation: unread 5s infinite;
+  -moz-animation: unread 5s infinite;
+  -o-animation: unread 5s infinite;
   }
 }
 .msg-bx-convo-data {
