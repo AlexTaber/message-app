@@ -8,7 +8,7 @@
 basic = Tier.create(
   name: "Basic",
   admin_sites: 1,
-  users_per_site: 3
+  users_per_site: 4
 )
 
 start_up = Tier.create(
