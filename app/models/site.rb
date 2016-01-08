@@ -25,4 +25,8 @@ class Site < ActiveRecord::Base
   def find_admin
     user_sites.find_by(admin: true)
   end
+
+  def typeahead_users_data
+    users.map(&:typeahead_data)
+  end
 end

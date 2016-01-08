@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+
   def new
     @conversation = Conversation.new
     @site = Site.find_by(id: params[:site_id])
@@ -28,11 +29,31 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def add_user
+    user = User.find_by(id: params[:user_id])
+    site = Site.find_by(id: params[:conversation][:site_id])
+    if user
+      users = User.where(id: params[:user_ids].reject(&:empty?))
+      users << user
+      @conversation = site.find_conversation_by_users(users) || Conversation.new(conversation_params)
+
+      set_up_users(users) unless @conversation.users.count > 0
+      redirect_to home_path(user_ids: @conversation.user_ids, site_id: site.id)
+    else
+      flash[:warn] = "Unable to find user"
+      redirect_to :back
+    end
+  end
+
   def destroy
 
   end
 
   private
+
+  def conversation_by_id
+    @conversation = Conversation.find_by(id: params[:id])
+  end
 
   def conversation_params
     params.require(:conversation).permit(:site_id)

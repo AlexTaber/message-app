@@ -22,7 +22,7 @@ $(document).ready(function() {
           // iterate through the pool of strings and for any string that
           // contains the substring `q`, add it to the `matches` array
           $.each(users, function(i, user) {
-            if (substrRegex.test(user.first_name)) {
+            if (substrRegex.test(user.name)) {
               matches.push(user);
             }
           });
@@ -37,9 +37,14 @@ $(document).ready(function() {
       },
       {
         name: 'users',
-        displayKey: 'first_name',
+        displayKey: 'name',
         source: substringMatcher(users)
       });
+
+      $('.typeahead').on('typeahead:selected', function (e, datum) {
+        $("#user_id").val(datum['id']);
+      });
+      //end ajax response---
     });
   }
 });

@@ -129,4 +129,8 @@ class User < ActiveRecord::Base
   def conversation_tokens
     conversations.pluck(:token)
   end
+
+  def typeahead_data
+    { id: id, name: name }
+  end
 end

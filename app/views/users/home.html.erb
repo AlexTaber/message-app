@@ -191,7 +191,15 @@
     <header>
     <i><%= current_user.name %>'s conversation with:</i>
     <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-    <%= text_field_tag :typeahead, nil, class:"typeahead app-view-typeahead", placeholder: "Search" %>
+    <%= form_tag add_user_path do %>
+      <%= text_field_tag :user_name, nil, class:"typeahead app-view-typeahead", value: "", placeholder: "Search" %>
+      <%= hidden_field_tag "conversation[site_id]", @site.id %>
+      <%= hidden_field_tag :user_id, nil %>
+      <% @conversation.user_ids.each do |user_id| %>
+        <%= hidden_field_tag "user_ids[]", user_id %>
+      <% end %>
+      <%= submit_tag "Add", class: "button button-primary" %>
+    <% end %>
     </header>
     <div class="msg-bx-convo app-view">
       <% @conversation.messages.each do |message| %>
