@@ -104,7 +104,12 @@
     <p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p>
   </div>
     <% current_user.sites.each do |site| %>
+    <% if current_user.has_unread_conversations_by_site?(site) %>
+      <li class="unread unread-convo-app">
+    <% else %>
       <li>
+    <% end %>
+
         <% if site == @admin_site %>
           <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
         <% end %>
