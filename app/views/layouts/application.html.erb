@@ -16,6 +16,9 @@
   <% if @conversation %>
     <%= javascript_tag "curConvoToken = #{@conversation.token.to_json.html_safe};" %>
   <% end %>
+  <% if @site %>
+    <%= javascript_tag "siteId = #{@site.id.to_json.html_safe};" %>
+  <% end %>
   <!-- END JS DATA -->
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
