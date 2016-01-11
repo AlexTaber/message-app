@@ -55,38 +55,39 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div id="msg-bx-sites-drop" class="msg-bx-dropdown">
-        <p><b>Your Sites</b></p>
-        <ul id='msg-bx-site-list'>
-          <% current_user.sites.each do |site| %>
-          <li>
-            <% if @site == site %>
-            <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
-            <% else %>
-            <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
-            <% end %>
-          </li>
+    <div id="msg-bx-sites-drop" class="msg-bx-dropdown">
+      <p><b>Your Sites</b></p>
+      <ul id='msg-bx-site-list'>
+        <% current_user.sites.each do |site| %>
+        <li>
+          <% if @site == site %>
+          <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
+          <% else %>
+          <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
           <% end %>
-        </ul>
-      </div>
+        </li>
+        <% end %>
+      </ul>
+    </div>
 
-      <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
-        <p><b>Your Account</b></p>
-        <ul id='msg-bx-acct-list'>
-          <li>
-            <%= link_to 'Edit Account', edit_user_path(current_user) %>
-          </li>
-          <li>
-            <%= link_to 'Upgrade', root_path, target: '_blank' %>
-          </li>
-          <li>
-            <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
-          </li>
-        </ul>
-      </div>
+    <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
+      <p><b>Your Account</b></p>
+      <ul id='msg-bx-acct-list'>
+        <li>
+          <%= link_to 'Edit Account', edit_user_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to 'Upgrade', root_path, target: '_blank' %>
+        </li>
+        <li>
+          <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
+        </li>
+      </ul>
+    </div>
 
-    </header>
+  </header>
 
   <div class="msg-bx-body-cntn">
     <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
