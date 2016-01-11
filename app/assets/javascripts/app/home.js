@@ -34,8 +34,9 @@ jQuery(document).ready(function($){
   //-------------------------------
 
   //enter submit
-  enterSubmit('#message_content', '#av-message-form')
-  enterSubmit('#content', '#new_conversation')
+  enterSubmit('#message_content', '#av-message-form');
+  enterSubmit('#content', '#new_conversation');
+  enterSubmit('.tt-input', '.typeahead-form')
   //-----------
 
 	$('#users-account').on('click', function () {
