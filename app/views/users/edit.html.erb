@@ -1,15 +1,11 @@
-<div id="msg-bx" class="mb-form edit-form">
-<header class="brand-color">
-    <p>
-      <span>Edit your account</span>
-    </p>
-</header>
-
-<div class="msg-bx-body">
+<div class="display-table text-center">
+	<div class="centered">
 <h4 class="text-center">
 Make changes to your account below
 </h4>
 <%= render partial: "form", locals: { user: @user, default_tier_id: @default_tier_id} %>
 <br>
 <%= link_to 'cancel', :back %>
+
+	</div>
 </div>

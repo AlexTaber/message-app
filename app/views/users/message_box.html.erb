@@ -72,20 +72,20 @@
       </ul>
     </div>
 
-    <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
-      <p><b>Your Account</b></p>
-      <ul id='msg-bx-acct-list'>
-        <li>
-          <%= link_to 'Edit Account', edit_user_path(current_user) %>
-        </li>
-        <li>
-          <%= link_to 'Upgrade', root_path, target: '_blank' %>
-        </li>
-        <li>
-          <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
-        </li>
-      </ul>
-    </div>
+      <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
+        <p><b>Your Account</b></p>
+        <ul id='msg-bx-acct-list'>
+          <li>
+            <%= link_to 'Edit Account', edit_user_path(current_user), target: '_blank' %>
+          </li>
+          <li>
+            <%= link_to 'Upgrade', root_path, target: '_blank' %>
+          </li>
+          <li>
+            <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
+          </li>
+        </ul>
+      </div>
 
   </header>
 
