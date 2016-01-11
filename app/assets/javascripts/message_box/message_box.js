@@ -12,6 +12,8 @@ jQuery(document).ready(function($){
     conversationToken = conversationTokens[i];
     subscribeToMbConvo(conversationToken, curConvoToken);
   }
+
+  listenForNewMbConvos();
   //END PUSHER----------------------
 
   $('.msg-bx-body').hide();
@@ -151,5 +153,12 @@ function subscribeToMbConvo(conversationToken, curConvoToken) {
 
       scrollToBottom();
     }
+  });
+}
+
+function listenForNewMbConvos() {
+  channel = pusher.subscribe('new-conversation' + String(userId));
+  channel.bind('new-conversation', function(data){
+    $("#msg-bx-convos-list").append(data.mb_html);
   });
 }
