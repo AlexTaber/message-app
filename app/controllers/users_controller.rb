@@ -44,7 +44,11 @@ class UsersController < ApplicationController
 
   def home
     current_user.has_sites? ? find_user_site : @site = Site.new
-    current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : @conversation = Conversation.new
+    if params[:new_conversation]
+      set_up_new_conversation
+    else
+      current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
+    end
     @conversation.read_all_messages(current_user) unless @conversation.new_record?
     @message = Message.new
     @new_site = Site.new
@@ -160,6 +164,8 @@ class UsersController < ApplicationController
     if params[:user_ids]
       users = User.where(id: params[:user_ids])
       @conversation.users << users
+    else
+      @conversation.users << current_user
     end
   end
 end

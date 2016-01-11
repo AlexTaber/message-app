@@ -12,8 +12,13 @@ class ConversationsController < ApplicationController
     @conversation = @site.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
     if @conversation.valid?
-      @conversation.save
       set_up_users(users) unless @conversation.users.count > 0
+      if @conversation.users.count > 1
+        @conversation.save
+      else
+        flash[:warn] = "You must add at least one other user to the conversation. Please try again."
+        redirect_to :back and return
+      end
       create_message if params[:content]
       pusher_new_conversation unless @conversation.new_record?
 
