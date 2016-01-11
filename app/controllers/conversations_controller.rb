@@ -75,8 +75,8 @@ class ConversationsController < ApplicationController
   def pusher_new_conversation
     @conversation.users.each do |user|
        Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
-         app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @conversation, site: @site, user: user }),
-         mb_html: (render_to_string partial: "conversations/mb_card", locals: { conversation: @conversation, site: @site, user: user })
+         app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @conversation, current_conversation: nil, site: @site, user: user }),
+         mb_html: (render_to_string partial: "conversations/mb_card", locals: { conversation: @conversation, current_conversation: nil, site: @site, user: user })
       })
     end
   end

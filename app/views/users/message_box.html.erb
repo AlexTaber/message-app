@@ -50,7 +50,7 @@
         <div id="msg-bx-convos">
           <div id='msg-bx-convos-list'>
             <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
-              <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, user: current_user } %>
+              <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user } %>
             <% end %>
           </div>
         </div>
