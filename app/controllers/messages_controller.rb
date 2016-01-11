@@ -5,13 +5,16 @@ class MessagesController < ApplicationController
     if @message.valid?
       @message.save!
       set_up_recipients
-      flash[:notice] = "Message successfully created"
-      Pusher.trigger("conversation#{@message.conversation.token}", 'new-message', {
-        user_id: @message.user.id,
-        conversation_token: @message.conversation.token,
-        current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: @message }),
-        other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message })
-      })
+      @message.conversation.users.each do |user|
+        Pusher.trigger("conversation#{@message.conversation.token}#{user.id}", 'new-message', {
+          user_id: @message.user.id,
+          conversation_token: @message.conversation.token,
+          current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: @message }),
+          other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message }),
+          conversation_id: @message.conversation.id,
+          app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @message.conversation, current_conversation: nil, site: @message.conversation.site, user: user })
+        })
+      end
 
       if request.xhr?
         render partial: "messages/message", locals: { message: @message }

@@ -50,22 +50,8 @@
         <div id="msg-bx-convos">
           <div id='msg-bx-convos-list'>
             <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
-            <% if conversation.has_unread_messages?(current_user) %>
-            <div class="msg-bx-convo-item unread-bg">
-              <% else %>
-              <div class="msg-bx-convo-item">
-                <% end %>
-                <%= link_to message_box_path(user_ids: conversation.user_ids, token: @site.token) do %>
-                <i><%= conversation.messages.last.date_to_s %></i>
-                <i><%= conversation.messages.last.time_to_s %></i>
-                <div class="msg-bx-convo-data">
-                  <h4><%= conversation.abbreviated_other_users_to_s(current_user, 30, true) %></h4>
-                  <%= "#{conversation.messages.last.user.first_name}: #{conversation.content_preview(30)}" %>
-                </div>
-                <% end %>
-              </div>
-              <% end %>
-            </div>
+              <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user } %>
+            <% end %>
           </div>
         </div>
       </div>

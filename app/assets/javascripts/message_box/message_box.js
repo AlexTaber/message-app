@@ -12,6 +12,8 @@ jQuery(document).ready(function($){
     conversationToken = conversationTokens[i];
     subscribeToMbConvo(conversationToken, curConvoToken);
   }
+
+  listenForNewMbConvos();
   //END PUSHER----------------------
 
   $('.msg-bx-body').hide();
@@ -140,7 +142,7 @@ function addNewLine(form) {
 }
 
 function subscribeToMbConvo(conversationToken, curConvoToken) {
-  channel = pusher.subscribe('conversation' + String(conversationToken));
+  channel = pusher.subscribe('conversation' + String(conversationToken) + String(userId));
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
       if(userId == data.user_id) {
@@ -151,5 +153,12 @@ function subscribeToMbConvo(conversationToken, curConvoToken) {
 
       scrollToBottom();
     }
+  });
+}
+
+function listenForNewMbConvos() {
+  channel = pusher.subscribe('new-conversation' + String(userId));
+  channel.bind('new-conversation', function(data){
+    $("#msg-bx-convos-list").append(data.mb_html);
   });
 }
