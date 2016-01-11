@@ -11,6 +11,8 @@ jQuery(document).ready(function($){
       subscribeToConvo(conversationToken, curConvoToken);
     }
   }
+
+  listenForNewConvos();
   //END PUSHER----------------------
 
   // User Chevron ------------------
@@ -151,6 +153,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
   channel = pusher.subscribe('conversation' + String(conversationToken));
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
+      //if the message is from the current conversation
       if(userId == data.user_id) {
         $(".app-view").append(data.current_user_html);
       } else {
@@ -158,6 +161,15 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       }
 
       scrollToBottom();
+    } else if(conversationTokens.contains(data.conversation_token)) {
+      //if the message belongs to an existing conversation
     }
+  });
+}
+
+function listenForNewConvos() {
+  channel = pusher.subscribe('new-conversation' + String(userId));
+  channel.bind('new-conversation', function(data){
+    debugger;
   });
 }

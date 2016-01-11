@@ -68,7 +68,14 @@ class ConversationsController < ApplicationController
   end
 
   def set_up_users(users)
-    users.each { |user| @conversation.users << user }
+    users.each do |user|
+      @conversation.users << user
+      unless @conversation.new_record?
+        Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
+          message: "This is the message!"
+       })
+      end
+    end
   end
 
   def create_message
