@@ -13,8 +13,8 @@ class ConversationsController < ApplicationController
 
     if @conversation.valid?
       @conversation.save
-      create_message if params[:content]
       set_up_users(users) unless @conversation.users.count > 0
+      create_message if params[:content]
       pusher_new_conversation unless @conversation.new_record?
 
       if request.xhr?
