@@ -142,7 +142,7 @@ function addNewLine(form) {
 }
 
 function subscribeToMbConvo(conversationToken, curConvoToken) {
-  channel = pusher.subscribe('conversation' + String(conversationToken));
+  channel = pusher.subscribe('conversation' + String(conversationToken) + String(userId));
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
       if(userId == data.user_id) {

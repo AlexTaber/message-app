@@ -150,7 +150,7 @@ function messageSendable() {
 }
 
 function subscribeToConvo(conversationToken, curConvoToken) {
-  channel = pusher.subscribe('conversation' + String(conversationToken));
+  channel = pusher.subscribe('conversation' + String(conversationToken) + String(userId));
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
@@ -161,9 +161,9 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       }
 
       scrollToBottom();
-    } else if(conversationTokens.contains(data.conversation_token)) {
-      //if the message belongs to an existing conversation
     }
+
+    $("#conversation" + String(data.conversation_id)).html(data.app_html);
   });
 }
 
