@@ -8,13 +8,14 @@ class ConversationsController < ApplicationController
   def create
     users = User.where(id: params[:conversation][:user_ids].reject(&:empty?))
     users << current_user unless users.include?(current_user)
-    site = Site.find_by(id: params[:conversation][:site_id])
-    @conversation = site.find_conversation_by_users(users) || Conversation.new(conversation_params)
+    @site = Site.find_by(id: params[:conversation][:site_id])
+    @conversation = @site.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
     if @conversation.valid?
       @conversation.save
-      set_up_users(users) unless @conversation.users.count > 0
       create_message if params[:content]
+      set_up_users(users) unless @conversation.users.count > 0
+      pusher_new_conversation unless @conversation.new_record?
 
       if request.xhr?
         render json: {
@@ -35,15 +36,15 @@ class ConversationsController < ApplicationController
 
   def add_user
     user = User.find_by(id: params[:user_id])
-    site = Site.find_by(id: params[:conversation][:site_id])
+    @site = Site.find_by(id: params[:conversation][:site_id])
     if user
       users = User.where(id: params[:user_ids].reject(&:empty?))
       users << user
-      @conversation = site.find_conversation_by_users(users) || Conversation.new(conversation_params)
+      @conversation = @site.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
       set_up_users(users) unless @conversation.users.count > 0
       if params[:token].empty?
-        redirect_to home_path(user_ids: @conversation.user_ids, site_id: site.id)
+        redirect_to home_path(user_ids: @conversation.user_ids, site_id: @site.id)
       else
         redirect_to message_box_path(token: params[:token], user_ids: @conversation.user_ids)
       end
@@ -68,13 +69,14 @@ class ConversationsController < ApplicationController
   end
 
   def set_up_users(users)
-    users.each do |user|
-      @conversation.users << user
-      unless @conversation.new_record?
-        Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
-          message: "This is the message!"
-       })
-      end
+    users.each { |user| @conversation.users << user }
+  end
+
+  def pusher_new_conversation
+    @conversation.users.each do |user|
+       Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
+         app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @conversation, site: @site, user: user })
+      })
     end
   end
 

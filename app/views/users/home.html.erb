@@ -151,7 +151,7 @@
     <div class="welcome-msg"><p>All active site conversations will appear here. Click the plus next to conversations to start a conversation or click a conversation to display your messages in the conversation window. <b>Make sure you have  added users to converse with</b></p></div>
   <% if current_user.has_conversations_by_site?(@site) %>
     <% current_user.conversations_by_site(@site).each do |conversation| %>
-      <%= render partial: "conversations/app_card", locals: { conversation: conversation, site: @site } %>
+      <%= render partial: "conversations/app_card", locals: { conversation: conversation, site: @site, user: current_user } %>
     <% end %>
   <% else %>
   <p class="else-message">You don't have any conversations for this site... yet.<br>Just click on the plus sign above and add some!
