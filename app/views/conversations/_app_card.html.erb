@@ -1,0 +1,27 @@
+<%= link_to home_path(user_ids: conversation.user_ids, site_id: site.id) do%>
+  <% if conversation == @conversation %>
+    <div class="message-item msg-item-current">
+  <% elsif conversation.has_unread_messages?(current_user) %>
+    <div class="message-item unread-convo-app">
+  <% else %>
+    <div class="message-item">
+  <% end %>
+    <div class="media">
+      <% if conversation.messages.last.user.image %>
+        <div class="profile-pic u-pull-left app-view-p-img">
+          <img class="profile-pic" src="<%= conversation.messages.last.user.image_url %>">
+        </div>
+      <% else %>
+        <div class="profile-pic no--pic u-pull-left app-view-p-img">
+          <p><%= conversation.messages.last.user.first_name[0] %></p>
+        </div>
+      <% end %>
+      <div class="bd">
+        <h4>
+          <%= conversation.abbreviated_other_users_to_s(current_user, 20) %>
+        </h4>
+        <%= simple_format(conversation.content_preview(30)) %>
+      </div>
+    </div>
+  </div>
+<% end %>

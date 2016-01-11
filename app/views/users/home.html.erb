@@ -151,34 +151,8 @@
     <div class="welcome-msg"><p>All active site conversations will appear here. Click the plus next to conversations to start a conversation or click a conversation to display your messages in the conversation window. <b>Make sure you have  added users to converse with</b></p></div>
   <% if current_user.has_conversations_by_site?(@site) %>
     <% current_user.conversations_by_site(@site).each do |conversation| %>
-      <%= link_to home_path(user_ids: conversation.user_ids, site_id: @site.id) do%>
-        <% if conversation == @conversation %>
-          <div class="message-item msg-item-current">
-        <% elsif conversation.has_unread_messages?(current_user) %>
-          <div class="message-item unread-convo-app">
-        <% else %>
-          <div class="message-item">
-        <% end %>
-        <div class="media">
-          <% if conversation.messages.last.user.image %>
-            <div class="profile-pic u-pull-left app-view-p-img">
-              <img class="profile-pic" src="<%= conversation.messages.last.user.image_url %>">
-            </div>
-          <% else %>
-            <div class="profile-pic no--pic u-pull-left app-view-p-img">
-              <p><%= conversation.messages.last.user.first_name[0] %></p>
-            </div>
-          <% end %>
-          <div class="bd">
-            <h4>
-              <%= conversation.abbreviated_other_users_to_s(current_user, 20) %>
-            </h4>
-          <%= simple_format(conversation.content_preview(30)) %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <% end %>
+      <%= render partial: "conversations/app_card", locals: { conversation: conversation, site: @site } %>
+    <% end %>
   <% else %>
   <p class="else-message">You don't have any conversations for this site... yet.<br>Just click on the plus sign above and add some!
   </p>
