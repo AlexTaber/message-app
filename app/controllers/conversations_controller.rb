@@ -13,7 +13,7 @@ class ConversationsController < ApplicationController
 
     if @conversation.valid?
       set_up_users(users) unless @conversation.users.count > 0
-      if @conversation.users.count > 1
+      if @conversation.users.length > 1
         @conversation.save
       else
         flash[:warn] = "You must add at least one other user to the conversation. Please try again."
