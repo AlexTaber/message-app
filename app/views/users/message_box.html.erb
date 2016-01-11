@@ -40,7 +40,7 @@
                 <div class="table-cell"><%= user.first_name[0] %></div>
               </div>
               <% end %>
-              <span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span>
+              <div class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></div>
             </li>
             <% end %>
             <% end %>
@@ -90,12 +90,15 @@
   </header>
 
   <div class="msg-bx-body-cntn">
-    <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
     <% if @conversation.has_users? %>
       <div class="msg-bx-body">
         <!-- view for saved conversation -->
         <div class="msg-bx-info">
-          <p><i><%= current_user.name %>'s conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+          <p><i><%= current_user.name %>'s conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b> <a herf="#" class='add-users-msg-bx'><i class="fa fa-plus"></i></a></p>
+        </div>
+
+        <div class="add-user-to-msg-bx">
+          <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
         </div>
         <div class="msg-bx-convo">
           <% @conversation.messages.each do |message| %>

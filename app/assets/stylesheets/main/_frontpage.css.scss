@@ -162,6 +162,7 @@ ul.edit-site-list {
 	height: 100vh;
 	header {
 		padding: 10px;
+		height:20px;
 	}
 }
 }
@@ -293,6 +294,44 @@ ul.edit-site-list {
 	display: block;
 }
 
+
 .conversation-wrapper {
 	overflow: visible;
 }
+
+.message-center {
+	.typeahead-form{
+		display:inline;
+		input{
+			font-size: 100%;
+			height:20px;
+			line-height:100%;
+			padding:0;
+		}
+		input[type="submit"] {
+			padding:0 20px;
+		}
+	}
+}
+
+.tt-menu{
+	background:#fff;
+	border: 1px solid #ddd;
+	z-index:999;
+}
+.tt-suggestion {
+	padding:10px;
+	&:hover, &:focus{
+		background:#f5f5f5;
+		cursor: pointer;
+	}
+}
+
+.convo-add-user-form{
+	display: none;
+	padding-left:10px;
+}
+.add-user-to-convo{
+	padding-left:10px;
+}
+
