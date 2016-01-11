@@ -24,6 +24,7 @@ jQuery(document).ready(function($){
 
   enterSubmit('#message_content', '#new_message');
   enterSubmit('#content', '#new-conversation-form');
+  enterSubmit('.tt-input', '.typeahead-form')
 
   $(".new_message").submit(sendMbMessage);
   $("#new-conversation-form").submit(startMbConversation);
