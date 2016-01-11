@@ -168,7 +168,10 @@
     <header>
     <i><%= current_user.name %>'s conversation with:</i>
     <b> <%= @conversation.other_users_to_s(current_user) %> </b>
+     <a href="#" class="add-user-to-convo"><i class="fa fa-plus"></i></a>
+     <div class="convo-add-user-form">
     <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
+    </div>
     </header>
     <div class="msg-bx-convo app-view">
       <% @conversation.messages.each do |message| %>

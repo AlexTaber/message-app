@@ -20,6 +20,14 @@ jQuery(document).ready(function($){
     $(this).toggleClass('rotated');
   })
 
+  // Add user to message --------------
+  $('.add-user-to-convo').on('click', function(e){
+    e.preventDefault();
+    $(this).fadeOut(0);
+    $('.convo-add-user-form').fadeIn().css('display', 'inline');
+
+  });
+
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);
   $("#new_conversation").submit(startConversation);

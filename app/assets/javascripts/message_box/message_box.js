@@ -58,6 +58,12 @@ jQuery(document).ready(function($){
 
     }
   });
+
+  $('.add-users-msg-bx').on('click', function(e){
+    e.preventDefault();
+    $(this).fadeOut();
+    $('.add-user-to-msg-bx').slideDown();
+  })
 });
 function enterSubmit(input, form) {
   $(input).keypress(function(event) {
