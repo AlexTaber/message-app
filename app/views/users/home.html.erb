@@ -143,10 +143,12 @@
   <nav class="current-site-data">
    <header>
   <b><%= @site.name %></b> &nbsp; Conversations
-       <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
-       <div id="new-message">
-       </div>
-       </header>
+      <%= link_to home_path(site_id: @site.id, new_conversation: true) do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
+      <div id="new-message">
+      </div>
+      </header>
   </nav>
     <div class="welcome-msg"><p>All active site conversations will appear here. Click the plus next to conversations to start a conversation or click a conversation to display your messages in the conversation window. <b>Make sure you have  added users to converse with</b></p></div>
   <% if current_user.has_conversations_by_site?(@site) %>
