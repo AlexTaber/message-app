@@ -19,7 +19,7 @@
 </div>
 </div>
 <!--nav-bar-->
-<!-- main body -->  
+<!-- main body -->
 <section class="feature-sign-up">
  <header>
    <div class="container">
@@ -49,7 +49,11 @@
          <li>Belong to unlimited sites</li>
        </ul>
        <p class="text-center"><b>FREE</b></p>
-       <p class="text-center"><a class="button button-primary">Register</a></p>
+       <p class="text-center">
+        <%= link_to new_user_path, class: "button button-primary" do %>
+          Register
+        <% end %>
+      </p>
      </div>
      <div class="four columns card-data">
        <h4 class="text-center">Start Up</h4>
@@ -59,7 +63,11 @@
          <li>Belong to unlimited sites</li>
        </ul>
        <p class="text-center"><b>$9.99<small>/year</small></b></p>
-       <p class="text-center"><a class="button button-primary">Register</a></p>
+        <p class="text-center">
+         <%= link_to new_user_path(default_tier_id: 2), class: "button button-primary" do %>
+           Register
+         <% end %>
+       </p>
      </div>
      <div class="four columns card-data">
        <h4 class="text-center">Multi Site</h4>
@@ -69,7 +77,11 @@
          <li>Belong to unlimited sites</li>
        </ul>
        <p class="text-center"><b>$19.99<small>/year</small></b></p>
-       <p class="text-center"><a class="button button-primary">Register</a></p>
+        <p class="text-center">
+         <%= link_to new_user_path(default_tier_id: 3), class: "button button-primary" do %>
+           Register
+         <% end %>
+       </p>
        <p class="text-center"><small><i>For five or more <a href="">contact us</a> for enterprise solutions</i></small></p>
      </div>
    </div>
@@ -91,7 +103,7 @@
      <div class="row">
        <div class="twelve columns">
          <h1>Become a user and have access to unlimited sites</h1>
-         <p class="lead-in"> Once you become a Mercury user, you can be added to and have acces to an unlimited amount of sites. While you can only be added by the site admin/owner there is no limit to the amount of sites you can participate in. 
+         <p class="lead-in"> Once you become a Mercury user, you can be added to and have acces to an unlimited amount of sites. While you can only be added by the site admin/owner there is no limit to the amount of sites you can participate in.
          </p>
        </div>
      </div>
@@ -113,7 +125,7 @@
      <div class="row">
        <div class="twelve columns">
          <h1>Getting Started is Easy</h1>
-         <ul class="lead-in"> 
+         <ul class="lead-in">
          <li>Sign up and create an account</li>
          <li>Add users to your account</li>
          <li>Install the WordPress Plugin and verify</li>
@@ -125,7 +137,7 @@
      <div class="row">
        <div class="twelve columns">
          <h1>Upgrading is Easy</h1>
-         <ul class="lead-in"> 
+         <ul class="lead-in">
          <li>Sign up and create an account</li>
          <li>Add users to your account</li>
          <li>Install the WordPress Plugin and verify</li>
@@ -137,7 +149,7 @@
      <div class="row">
        <div class="twelve columns">
          <h1>Adding Multiple Sites is Easy</h1>
-         <ul class="lead-in"> 
+         <ul class="lead-in">
          <li>Sign up and create an account</li>
          <li>Add users to your account</li>
          <li>Install the WordPress Plugin</li>

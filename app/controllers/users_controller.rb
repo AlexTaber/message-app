@@ -2,8 +2,14 @@ class UsersController < ApplicationController
   before_action :user_by_id, only: [:edit, :update]
 
   def new
-    @user = User.new
-    @invite_token = params[:invite_token]
+    @default_tier_id = params[:default_tier_id] || 1
+
+    if current_user
+      redirect_to edit_user_path(current_user, default_tier_id: @default_tier_id)
+    else
+      @user = User.new
+      @invite_token = params[:invite_token]
+    end
   end
 
   def create
@@ -23,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @default_tier_id = params[:default_tier_id] || current_user.tier.id
   end
 
   def update
@@ -107,7 +114,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :password, :email, :tier)
+    params.require(:user).permit(:first_name, :last_name, :password, :email, :tier_id)
   end
 
   def find_user_site
