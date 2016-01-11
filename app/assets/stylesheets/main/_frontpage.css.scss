@@ -54,7 +54,7 @@ body {
 			line-height: 0;
 		}
 	}
-	
+
 	nav {
 		list-style: none;
 
@@ -153,19 +153,19 @@ ul.edit-site-list {
 	display: none;
 }
 .message-center {
-	width:100%; 
+	width:100%;
 	height: 100vh;
 }
 @media (min-width: 550px) {
 .message-center {
 	float: left;
-	width: 50%;  
+	width: 50%;
 	height: 100vh;
 	header {
 		padding: 10px;
 	}
 }
-} 
+}
 .else-message {
 	padding: 10px;
 	border-bottom: 1px solid $grey;
@@ -190,11 +190,11 @@ ul.edit-site-list {
 		right:0;
 		margin-top: 32px;
 		content: "";
-		width: 0; 
-		height: 0; 
+		width: 0;
+		height: 0;
 		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent; 
-		border-right:10px solid #fff; 
+		border-bottom: 10px solid transparent;
+		border-right:10px solid #fff;
 		margin-right:-1px;
 	}
 		.msg-item-current:before {
@@ -202,11 +202,11 @@ ul.edit-site-list {
 		right:0;
 		margin-top: 31px;
 		content: "";
-		width: 0; 
-		height: 0; 
+		width: 0;
+		height: 0;
 		border-top: 11px solid transparent;
-		border-bottom: 11px solid transparent; 
-		border-right:11px solid #ababab; 
+		border-bottom: 11px solid transparent;
+		border-right:11px solid #ababab;
 		margin-right:-1px;
 	}
 	.message-content {
@@ -286,7 +286,11 @@ ul.edit-site-list {
 }
 
 .app-view {
-	height: 80% !important;
+	height: 70% !important;
 	padding: 40px 20px 20px !important;
+}
+
+.app-view-typeahead {
+	display: block;
 }
 

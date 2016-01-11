@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/home' => 'users#home'
   get '/message_box' => 'users#message_box'
   get '/token_redirect' => 'users#token_redirect'
+  get '/typeahead' => 'users#typeahead'
+  post '/add_user' => 'conversations#add_user'
 
   root 'sessions#splash'
 end

@@ -141,11 +141,10 @@
 <!-- Current Site Data and Conversations Area -->
 <div class="message-bar">
   <nav class="current-site-data">
-   <header> 
+   <header>
   <b><%= @site.name %></b> &nbsp; Conversations
        <a id ="new-message-trigger"><i class="fa fa-plus"></i></a>
        <div id="new-message">
-         <%= render partial: "conversations/form", locals: { conversation: @new_conversation, site: @site } %>
        </div>
        </header>
   </nav>
@@ -191,20 +190,25 @@
     <header>
     <i><%= current_user.name %>'s conversation with:</i>
     <b> <%= @conversation.other_users_to_s(current_user) %> </b>
+    <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
     </header>
     <div class="msg-bx-convo app-view">
       <% @conversation.messages.each do |message| %>
         <%= render partial: "messages/message", locals: { message: message } %>
       <% end %>
     </div>
-  <% unless @conversation.new_record? %>
-         <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
-       <% end %>
-       <% if current_user.sites.count > 0 %>
+  <div id="form-wrapper">
+    <% if @conversation.new_record? %>
+      <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation } %>
+    <% else %>
+      <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+    <% end %>
+  </div>
 </div>
-<!-- I-Frame -->
-<div id="fixed-iframe" class="pwd-init pwd-closed">
-  <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-  <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
-</div>
+<% if current_user.sites.count > 0 %>
+  <!-- I-Frame -->
+  <div id="fixed-iframe" class="pwd-init pwd-closed">
+    <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
+    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
+  </div>
 <% end %>

@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+
   def new
     @conversation = Conversation.new
     @site = Site.find_by(id: params[:site_id])
@@ -16,7 +17,11 @@ class ConversationsController < ApplicationController
       create_message if params[:content]
 
       if request.xhr?
-        render partial: "messages/message", locals: { message: @message }
+        render json: {
+          html: (render_to_string partial: "messages/message", locals: { message: @message }),
+          form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation }),
+          token: @conversation.token
+        }
       else
         flash[:notice] = "Conversation successfully created"
         redirect_to home_path
@@ -28,11 +33,35 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def add_user
+    user = User.find_by(id: params[:user_id])
+    site = Site.find_by(id: params[:conversation][:site_id])
+    if user
+      users = User.where(id: params[:user_ids].reject(&:empty?))
+      users << user
+      @conversation = site.find_conversation_by_users(users) || Conversation.new(conversation_params)
+
+      set_up_users(users) unless @conversation.users.count > 0
+      if params[:token].empty?
+        redirect_to home_path(user_ids: @conversation.user_ids, site_id: site.id)
+      else
+        redirect_to message_box_path(token: params[:token], user_ids: @conversation.user_ids)
+      end
+    else
+      flash[:warn] = "Unable to find user"
+      redirect_to :back
+    end
+  end
+
   def destroy
 
   end
 
   private
+
+  def conversation_by_id
+    @conversation = Conversation.find_by(id: params[:id])
+  end
 
   def conversation_params
     params.require(:conversation).permit(:site_id)
