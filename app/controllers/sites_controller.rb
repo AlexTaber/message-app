@@ -59,7 +59,7 @@ class SitesController < ApplicationController
 
   def set_up_users
     if params[:site][:user_ids]
-      user_ids = params[:site][:user_ids].reject!(&:empty?)
+      user_ids = params[:site][:user_ids].reject(&:empty?)
       user_ids.each do |user_id|
         if current_user.can_add_user_to_site(@site)
           userSite = @site.user_sites.find_by(user_id: user_id)

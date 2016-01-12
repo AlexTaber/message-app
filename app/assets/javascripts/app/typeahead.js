@@ -7,7 +7,8 @@ $(document).ready(function() {
         site_id: siteId
       }
     }).done(function(response){
-      var users = response;
+      var site_users = response.site_users;
+      var all_users = response.all_users;
 
       var substringMatcher = function(users) {
         return function findMatches(q, cb) {
@@ -30,7 +31,18 @@ $(document).ready(function() {
         };
       };
 
-      $('.typeahead').typeahead({
+      $('.convo-typeahead').typeahead({
+        hint: false,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'site_users',
+        displayKey: 'name',
+        source: substringMatcher(site_users)
+      });
+
+      $('.site-typeahead').typeahead({
         hint: true,
         highlight: true,
         minLength: 1
@@ -38,11 +50,15 @@ $(document).ready(function() {
       {
         name: 'users',
         displayKey: 'name',
-        source: substringMatcher(users)
+        source: substringMatcher(all_users)
       });
 
-      $('.typeahead').on('typeahead:selected', function (e, datum) {
+      $('.convo-typeahead').on('typeahead:selected', function (e, datum) {
         $("#user_id").val(datum['id']);
+      });
+
+      $('.site-typeahead').on('typeahead:selected', function (e, datum) {
+        $("#add-user-id").val(datum['id']);
       });
       //end ajax response---
     });

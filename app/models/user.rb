@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     User.where.not(id: user.id)
   end
 
+  def self.all_other_users_data(user)
+    self.all_other_users(user).map(&:typeahead_data)
+  end
+
   def admin_of_site?(site)
     user_site = user_sites.find_by(site_id: site.id)
     user_site ? user_site.admin : false

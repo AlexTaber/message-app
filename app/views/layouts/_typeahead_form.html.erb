@@ -1,5 +1,5 @@
 <%= form_tag add_user_path, class: 'typeahead-form' do %>
-  <%= text_field_tag :user_name, nil, class:"typeahead app-view-typeahead", value: "", placeholder: "Search" %>
+  <%= text_field_tag :user_name, nil, class:"typeahead app-view-typeahead convo-typeahead", value: "", placeholder: "Search" %>
 
   <%= hidden_field_tag "conversation[site_id]", site.id %>
   <%= hidden_field_tag :user_id, nil %>
