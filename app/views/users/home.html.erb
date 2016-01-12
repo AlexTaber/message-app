@@ -111,16 +111,24 @@
     <% end %>
 
         <% if site == @admin_site %>
-          <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
+            <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret <% if site == @site %>rotated<% end %>" title="Edit Site"></i>
         <% end %>
+        <% if site == @site %>
+        <b><%= link_to site.name, home_path(site_id: site.id) %></b>
+        <% else %>
         <%= link_to site.name, home_path(site_id: site.id) %>
+        <% end %>
         <!-- Requests Div If Needed-->
         <!-- <div class="requests">33</div> -->
         <!-- End Requests Div -->
         <!-- Edit Site List Accordian -->
-        <div class="accordian-content">
+        <% if site == @admin_site %>
+        <%if site == @site %>
+          <div class="accordian-content" style="display:block">
+        <% else %>
+          <div class="accordian-content">
+        <% end %>
           <ul class="edit-site-list">
-            <% if site == @admin_site %>
               <li>
                 <%= link_to "Manage Users", "#", class: "activate-modal", name: "manage-users" %>
               </li>
@@ -130,9 +138,9 @@
               <li>
                 <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
               </li>
-            <% end %>
           </ul>
         </div>
+        <% end %>
       </li>
     <% end %>
   </nav>
@@ -169,10 +177,10 @@
     <i><%= current_user.name %>'s conversation with:</i>
     <b> <%= @conversation.other_users_to_s(current_user) %> </b>
      <a href="#" class="add-user-to-convo"><i class="fa fa-plus"></i></a>
+    </header>
      <div class="convo-add-user-form">
     <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
     </div>
-    </header>
     <div class="msg-bx-convo app-view">
       <% @conversation.messages.each do |message| %>
         <%= render partial: "messages/message", locals: { message: message } %>
