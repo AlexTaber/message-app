@@ -30,117 +30,100 @@ admin_tier = Tier.create(
   published: false
 )
 
-jerry = User.create(
-  username: "jerrypatterson",
-  first_name: "Jerry",
-  last_name: "Patterson",
-  email: "info@peekskillwebdesign.com",
-  password: "123",
-  tier_id: admin_tier.id
-)
+# jerry = User.create(
+#   first_name: "Jerry",
+#   last_name: "Patterson",
+#   email: "info@peekskillwebdesign.com",
+#   password: "123",
+#   tier_id: multi_site.id
+# )
 
-jerry_image = Image.create(
-  url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
-  imageable_type: "User",
-  imageable_id: jerry.id
-)
+# jerry_image = Image.create(
+#   url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
+#   imageable_type: "User",
+#   imageable_id: jerry.id
+# )
 
-jerry_sub = Subscription.create(
-  user_id: jerry.id
-)
+# alex = User.create(
+#   first_name: "Alex",
+#   last_name: "Taber",
+#   email: "me@at.com",
+#   password: "123"
+# )
 
-alex = User.create(
-  username: "alextaber",
-  first_name: "Alex",
-  last_name: "Taber",
-  email: "alex.taber0@gmail.com",
-  password: "123",
-  tier_id: admin_tier.id
-)
+# alex_image = Image.create(
+#   url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
+#   imageable_type: "User",
+#   imageable_id: alex.id
+# )
 
-alex_sub = Subscription.create(
-  user_id: alex.id
-)
+# dan = User.create(
+#   first_name: "Dan",
+#   last_name: "Intriligator",
+#   email: "me@di.com",
+#   password: "123"
+# )
 
-alex_image = Image.create(
-  url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
-  imageable_type: "User",
-  imageable_id: alex.id
-)
+# dan_image = Image.create(
+#   url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
+#   imageable_type: "User",
+#   imageable_id: dan.id
+# )
 
-dan = User.create(
-  username: "danintriligator",
-  first_name: "Dan",
-  last_name: "Intriligator",
-  email: "daniel@peekskillwebdesign.com",
-  password: "123",
-  tier_id: admin_tier.id
-)
+# google = Site.create(
+#   name: "Google",
+#   url: "www.google.com"
+# )
 
-dan_image = Image.create(
-  url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
-  imageable_type: "User",
-  imageable_id: dan.id
-)
+# UserSite.create(user_id: jerry.id, site_id: google.id, admin: true)
+# UserSite.create(user_id: dan.id, site_id: google.id, admin: false)
+# UserSite.create(user_id: alex.id, site_id: google.id, admin: false)
 
-dan_sub = Subscription.create(
-  user_id: dan.id
-)
+# amazon = Site.create(
+#   name: "Amazon",
+#   url: "www.amazon.com"
+# )
 
-google = Site.create(
-  name: "Google",
-  url: "www.google.com"
-)
+# UserSite.create(user_id: jerry.id, site_id: amazon.id, admin: true)
+# UserSite.create(user_id: dan.id, site_id: amazon.id, admin: false)
+# UserSite.create(user_id: alex.id, site_id: amazon.id, admin: false)
 
-UserSite.create(user_id: jerry.id, site_id: google.id, admin: true, approved: true)
-UserSite.create(user_id: dan.id, site_id: google.id, admin: false, approved: true)
-UserSite.create(user_id: alex.id, site_id: google.id, admin: false, approved: true)
+# base = Site.create(
+#   name: "Base",
+#   url: "localhost:3000"
+# )
 
-amazon = Site.create(
-  name: "Amazon",
-  url: "www.amazon.com"
-)
+# UserSite.create(user_id: jerry.id, site_id: base.id, admin: true)
+# UserSite.create(user_id: dan.id, site_id: base.id, admin: false)
+# UserSite.create(user_id: alex.id, site_id: base.id, admin: false)
 
-UserSite.create(user_id: jerry.id, site_id: amazon.id, admin: true, approved: true)
-UserSite.create(user_id: dan.id, site_id: amazon.id, admin: false, approved: true)
-UserSite.create(user_id: alex.id, site_id: amazon.id, admin: false, approved: true)
+# Site.all.each do |site|
+#   convo = Conversation.create(
+#     site_id: site.id
+#   )
 
-base = Site.create(
-  name: "Base",
-  url: "localhost:3000"
-)
+#   convo.users << jerry
+#   convo.users << dan
 
-UserSite.create(user_id: jerry.id, site_id: base.id, admin: true, approved: true)
-UserSite.create(user_id: dan.id, site_id: base.id, admin: false, approved: true)
-UserSite.create(user_id: alex.id, site_id: base.id, admin: false, approved: false)
+#   message = Message.create(
+#     user_id: dan.id,
+#     conversation_id: convo.id,
+#     content: "Sup Jerry, I heart #{site.name}"
+#   )
 
-Site.all.each do |site|
-  convo = Conversation.create(
-    site_id: site.id
-  )
+#   message_user = MessageUser.create(
+#     user_id: jerry.id,
+#     message_id: message.id
+#   )
 
-  convo.users << jerry
-  convo.users << dan
+#   message = Message.create(
+#     user_id: jerry.id,
+#     conversation_id: convo.id,
+#     content: "Sup Dan, I heart #{site.name}"
+#   )
 
-  message = Message.create(
-    user_id: dan.id,
-    conversation_id: convo.id,
-    content: "Sup Jerry, I heart #{site.name}"
-  )
-
-  message_user = MessageUser.create(
-    user_id: jerry.id,
-    message_id: message.id
-  )
-
-  message = Message.create(
-    user_id: jerry.id,
-    conversation_id: convo.id,
-    content: "Sup Dan, I heart #{site.name}"
-  )
-
-  message_user = MessageUser.create(
-    user_id: dan.id,
-    message_id: message.id
-  )
-end
+#   message_user = MessageUser.create(
+#     user_id: dan.id,
+#     message_id: message.id
+#   )
+# end
