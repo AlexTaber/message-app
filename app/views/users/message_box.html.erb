@@ -104,13 +104,22 @@
           <% @conversation.messages.each do |message| %>
             <%= render partial: "messages/message", locals: { message: message } %>
           <% end %>
+          <% if @site.users.length == 1 %>
+            <div class="text-center">
+              Looks as if your don't have any users for this site. Head over to <%= link_to "mercuryapp.co", home_path, target: "blank" %> to add some!
+            </div>
+          <% elsif @conversation.users.length <= 1 %>
+            <div class="text-center" >Add users to this conversation by pressing the plus icon above!</div>
+          <% end %>
         </div>
 
         <div class="msg-bx-bottom">
           <% if @conversation.new_record? %>
             <%= form_for @conversation, html: { id: "new-conversation-form" } do |f| %>
               <p>
-                <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
+                <% if @conversation.users.length > 1 %>
+                  <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
+                <% end %>
               </p>
 
               <% @conversation.user_ids.each do |user_id| %>
