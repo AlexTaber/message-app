@@ -15,21 +15,10 @@
 
 .mobile-nav {
     display: block;
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-
-    h2 {
-      font-weight: 300;
-      display: inline;
-
-    }
     a {
-      margin-top: 1rem;
-      color: rgba($white, .8);
       text-decoration: none;
-
     }
+    width:auto;
 }
 .desktop-nav {
   display: none;
