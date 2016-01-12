@@ -166,6 +166,8 @@ function subscribeToMbConvo(conversationToken, curConvoToken) {
 function listenForNewMbConvos() {
   channel = pusher.subscribe('new-conversation' + String(userId));
   channel.bind('new-conversation', function(data){
-    $("#msg-bx-convos-list").append(data.mb_html);
+    if(siteId == data.site_id) {
+      $("#msg-bx-convos-list").append(data.mb_html);
+    }
   });
 }

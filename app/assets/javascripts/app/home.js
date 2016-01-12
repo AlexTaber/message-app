@@ -179,6 +179,8 @@ function subscribeToConvo(conversationToken, curConvoToken) {
 function listenForNewConvos() {
   channel = pusher.subscribe('new-conversation' + String(userId));
   channel.bind('new-conversation', function(data){
-    $(".message-bar").append(data.app_html);
+    if(siteId == data.site_id) {
+      $(".message-bar").append(data.app_html);
+    }
   });
 }
