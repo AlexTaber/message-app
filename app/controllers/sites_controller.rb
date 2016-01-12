@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
-  before_action :site_by_id, only: [:edit, :update, :add_users]
+  before_action :site_by_id, only: [:edit, :update, :add_users, :destroy]
+
   def new
     @site = Site.new
   end
@@ -42,6 +43,14 @@ class SitesController < ApplicationController
   end
 
   def destroy
+    if @site
+      @site.delete
+      flash[:notice] = "Site deleted"
+    else
+      flash[:warn] = "Unable to delete site, please try again"
+    end
+
+    redirect_to home_path
   end
 
   def add_users

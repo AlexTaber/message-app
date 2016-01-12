@@ -138,6 +138,9 @@
               <li>
                 <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
               </li>
+              <li>
+                <%= link_to "Remove", site_path(@site), method: "delete" %>
+              </li>
           </ul>
         </div>
         <% end %>
