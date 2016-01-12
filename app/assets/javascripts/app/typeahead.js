@@ -7,7 +7,7 @@ $(document).ready(function() {
         site_id: siteId
       }
     }).done(function(response){
-      var users = response;
+      var site_users = response.site_users;
 
       var substringMatcher = function(users) {
         return function findMatches(q, cb) {
@@ -36,9 +36,9 @@ $(document).ready(function() {
         minLength: 1
       },
       {
-        name: 'users',
+        name: 'site_users',
         displayKey: 'name',
-        source: substringMatcher(users)
+        source: substringMatcher(site_users)
       });
 
       $('.typeahead').on('typeahead:selected', function (e, datum) {

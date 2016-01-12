@@ -101,7 +101,10 @@ class UsersController < ApplicationController
   def typeahead
     site = Site.find_by(id: params[:site_id])
     if site
-      render json: site.typeahead_users_data.to_json
+      render json: {
+        site_users: site.typeahead_users_data,
+        all_users: User.all_other_users_data(current_user)
+      }.to_json
     else
       render text: "No Site Found"
     end
