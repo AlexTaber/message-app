@@ -27,4 +27,12 @@ class ApplicationController < ActionController::Base
   def token_conversation(token)
     Conversation.find_by(token: token)
   end
+
+  def default_url_options
+    if Rails.env.production?
+      {:host => "mercuryapp.co"}
+    else
+      {}
+    end
+  end
 end
