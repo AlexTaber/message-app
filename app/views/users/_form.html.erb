@@ -1,17 +1,20 @@
 <%= form_for user do |f| %>
-  <div>
+  <div style="margin:15px 0;">
     <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
     <%= f.text_field :last_name, placeholder: "Last Name" %>
   </div>
 
-  <div style="margin-top:10px;">
+  <div style="margin:15px 0;">
     <%= f.text_field :email, placeholder:"Email" %> &nbsp;
     <%= f.password_field :password, placeholder: "Password" %>
   </div><br>
 
-  <%= f.label :image, "Upload a Profile Image" %>
-  <div>
-    <%= f.file_field :file %>
+  <div style="margin:15px 0;">  
+    <%= f.label :image, "Upload a Profile Image" %>
+  </div>
+
+  <div style="margin:15px 0;">
+   <span style="margin-left:110px;"></span><%= f.file_field :file %>
   </div>
 
   <div class="tier-select">
@@ -23,7 +26,7 @@
     <%= hidden_field_tag :invite_token, @invite_token %>
   <% end %>
 
-  <div style="margin-top:1rem;">
+  <div style="margin:20px 0 15px;">
     <%= f.submit class: 'button button-primary' %>
   </div>
 <% end %>
