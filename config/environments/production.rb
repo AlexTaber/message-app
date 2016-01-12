@@ -81,7 +81,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.gmail.com',
-    :domain         => 'mail.google.com',
+    :domain         => 'mercuryapp.co',
     :port           => 587,
     :user_name      => 'alex.taber0@gmail.com',
     :password       => ENV['EMAIL_PW'],
