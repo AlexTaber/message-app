@@ -96,7 +96,7 @@ padding : 0;
 	display:none;
 }
 ul.edit-site-list {
-	padding-left: 0;
+	padding-left: 10px;
 	li {
 		font-size: 16px;
 		list-style: none;
@@ -329,7 +329,9 @@ ul.edit-site-list {
 
 .convo-add-user-form{
 	display: none;
-	padding-left:10px;
+	text-align:center;
+	background: #fff;
+	padding-bottom: 10px;
 }
 .add-user-to-convo{
 	padding-left:10px;

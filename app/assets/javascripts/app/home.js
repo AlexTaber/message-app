@@ -24,7 +24,7 @@ jQuery(document).ready(function($){
   $('.add-user-to-convo').on('click', function(e){
     e.preventDefault();
     $(this).fadeOut(0);
-    $('.convo-add-user-form').fadeIn().css('display', 'inline');
+    $('.convo-add-user-form').slideDown()
 
   });
 
