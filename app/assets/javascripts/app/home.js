@@ -47,6 +47,18 @@ jQuery(document).ready(function($){
 $(".open-accordian").on('click',function() {
           jQuery(this).siblings( ".accordian-content" ).slideToggle(500);
         });
+
+//mobile-nav
+$(".mobile-icons i:not(:last-child)"). on('click', function(){
+  $('.mobile-target').fadeOut(0);
+  $('#current-account').slideUp();
+  i = $(this).parent().children().index(this)
+  $('.mobile-target').eq(i).fadeIn();
+});
+$(".mobile-icons i:last-child").on('click', function(){
+  $('#mobile-current-account').slideToggle();
+})
+
 ///Modal
 
 var window_width = $(window).width();

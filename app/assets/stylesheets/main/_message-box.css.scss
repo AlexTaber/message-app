@@ -359,7 +359,7 @@
   border-bottom: 1px solid #ddd;
   z-index: -1;
   p {
-    max-width:300px;
+    max-width:200px;
     min-width: 100px;
     margin-left: 50px;
     border-radius: 0 10px 10px 10px;
@@ -369,13 +369,13 @@
   }
   .self-pwd {
     float:right;
-    margin-left: 160px;
     margin-right: 10px;
     border-radius: 10px 0 10px 10px;
     background: #8dbce9;
   }
   .them-msg-wrapper  {
     position: relative;
+    clear:both;
     .profile-pic {
       position:absolute;
       top: 2rem;
@@ -384,6 +384,7 @@
     }
   }
   .self-msg-wrapper{
+    clear:both;
     .profile-pic{
       float:right;
     }

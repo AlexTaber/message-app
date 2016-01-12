@@ -42,7 +42,41 @@ a:hover {
   padding-left: 10px;
  }
 }
+#mobile-current-account {
+  display:none;
+  position:fixed;
+  z-index:10000;
+  background: #f5f5f5;
+  color: #222;
+  border: 1px solid $grey;
+  width:100%;
+  left:0;
+  top:66px;
+    li {
+   list-style: none;
+   border-bottom: 1px solid $grey;
+   &:hover {
+    background:#dddddd;
+   }
+  }
+  li:last-child{
+    border:none;
+  }
+    a{
+    text-decoration: none;
+    color:#000;
+    padding: 20px;
+    display:block;
+  }
+    p {
+    border-bottom: 1px solid $grey;
+    margin: 0;
+    padding:10px;
+    background:#fff;
+  }
+}
 //dropdown
+@media (min-width: 550px) {
 nav#current-account {
   display:none;
   position: absolute;
@@ -92,6 +126,7 @@ nav#current-account {
     right:23px;
 
   }
+}
 }
 .profile-data {
   float: right;
@@ -179,6 +214,29 @@ nav#current-account {
 
 .pwd-nav-item:hover{
   background-color: #EAEAEA;
+}
+
+.mobile-nav .user-name {
+    display:inline;
+    float:right;
+    padding-top:5px;
+  }
+.mobile-info {
+  width:100%;
+  background-color:#444;
+  height:25px;
+  padding:5px 30px;
+  border-bottom: 1px solid #aaa;
+  color:#fff;
+}
+.mobile-icons {
+  display:inline;
+  padding:0;
+  margin:0;
+  font-size:125%;
+  i {
+    padding-right:20px;
+  }
 }
 
 //end Alex's amazing fantastical PWD Nav

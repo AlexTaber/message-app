@@ -75,7 +75,8 @@
 <% end %>
 
 <!-- END MODALS -->
-<div class="menu-bar">
+<!-- Desktop Navbar -->
+<div class="menu-bar desktop-nav">
   <span>Mercury<b>App</b></span>
   <!-- User Account Section -->
   <nav class="profile-data">
@@ -89,10 +90,34 @@
      <li><%= link_to 'Logout', logout_path %></li>
    </nav>
  </nav>
- <!-- End User Account Section -->
 </div>
+<!-- End Desktop Navbar -->
+<!-- Mobile Navbar -->
+<div class="menu-bar mobile-nav">
+  <span>Mercury<b>App</b></span>
+  <!-- User Account Section -->
+  <nav class="profile-data">
+    <span><%= @site.name %></span>
+ </nav>
+</div>
+ <nav class="mobile-info mobile-nav">
+    <div class="mobile-icons">
+      <i class="fa fa-globe" id="mobile-sites"></i>
+      <i class="fa fa-comments" id="mobile-convos"></i>
+      <i class="fa fa-comment" id="mobile"></i>
+      <i class="fa fa-user" id="msg-bx-acct-btn"></i>
+    </div>
+    <p class="user-name"><%= current_user.name %></p>
+        <nav id="mobile-current-account">
+     <p><b>Your Acount</b></p>
+     <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+     <li><%= link_to 'Upgrade', root_path %></li>
+     <li><%= link_to 'Logout', logout_path %></li>
+   </nav>
+ </nav>
+<!-- End Mobile Navbar -->
 <!-- End Menu Bar -->
-<div class="inbox-sidebar">
+<div class="inbox-sidebar mobile-target">
   <header>
     <b>Your</b> sites
       <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
@@ -147,7 +172,7 @@
 </div>
 <!-- End Your Sites Sidebar -->
 <!-- Current Site Data and Conversations Area -->
-<div class="message-bar">
+<div class="message-bar mobile-target">
   <nav class="current-site-data">
    <header>
   <b><%= @site.name %></b> &nbsp; Conversations
@@ -172,7 +197,7 @@
 </div>
 <!-- End Current Site Data and Conversations Area -->
 <!-- Message Content Section -->
-<div class="message-center">
+<div class="message-center mobile-target">
     <header>
     <i><%= current_user.name %>'s conversation with:</i>
     <b> <%= @conversation.other_users_to_s(current_user) %> </b>
