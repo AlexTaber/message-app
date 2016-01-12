@@ -74,16 +74,24 @@
 
 //--------------------------message-view
 @keyframes unread {
+  0%{}
   50%{background-color: #8dbce9;}
+  100%{}
 }
 @-webkit-keyframes unread-conv {
+    0%{}
   50%{background-color: #8dbce9;}
+  100%{}
 }
   @-moz-keyframes unread-convo {
+    0%{}
   50%{background-color: #8dbce9;}
+  100%{}
 }
   @-o-keyframes unread-convo {
+    0%{}
   50%{background-color: #8dbce9;}
+  100%{}
 }
 //------defaults
 
