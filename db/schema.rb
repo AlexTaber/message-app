@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113185045) do
+ActiveRecord::Schema.define(version: 20160105173138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,13 +28,6 @@ ActiveRecord::Schema.define(version: 20160113185045) do
     t.integer  "user_id",         null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "coupons", force: :cascade do |t|
-    t.string   "code"
-    t.string   "free_trial_length"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   create_table "images", force: :cascade do |t|
@@ -78,18 +71,6 @@ ActiveRecord::Schema.define(version: 20160113185045) do
     t.datetime "updated_at"
   end
 
-  create_table "plans", force: :cascade do |t|
-    t.string   "name"
-    t.string   "stripe_id"
-    t.float    "price"
-    t.string   "interval"
-    t.text     "features"
-    t.boolean  "highlight"
-    t.integer  "display_order"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id",                    null: false
     t.integer  "receiver_id",                null: false
@@ -106,18 +87,6 @@ ActiveRecord::Schema.define(version: 20160113185045) do
     t.boolean  "active",     default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string   "stripe_id"
-    t.integer  "plan_id"
-    t.string   "last_four"
-    t.integer  "coupon_id"
-    t.string   "card_type"
-    t.float    "current_price"
-    t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   create_table "tiers", force: :cascade do |t|
