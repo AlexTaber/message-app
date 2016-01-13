@@ -1,4 +1,4 @@
-html,
+ html,
 body {
 	height:100%;
 	box-sizing: border-box;
@@ -329,11 +329,20 @@ ul.edit-site-list {
 	z-index: 100;
 }
 
+
 .app-view {
-	height: 70% !important;
+	width:100% !important;
+	height: calc(100% - 380px) !important;
 	padding: 40px 20px 20px !important;
+	box-sizing:border-box;
 }
 
+@media (min-width: 550px) {
+.app-view {
+height: 70% !important;
+width:auto
+}
+}
 .app-view-typeahead {
 	display: block;
 }
