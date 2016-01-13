@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   end
 
   def home
-    current_user.has_sites? ? find_user_site : @site = Site.new
+    current_user.has_active_sites? ? find_user_site : @site = Site.new
     if params[:new_conversation]
       set_up_new_conversation
     else
@@ -121,7 +121,7 @@ class UsersController < ApplicationController
   end
 
   def find_user_site
-    params[:site_id] ? @site = Site.find_by(id: params[:site_id]) : @site = current_user.sites.first
+    params[:site_id] ? @site = Site.find_by(id: params[:site_id]) : @site = current_user.active_sites_ordered_by_admin.first
   end
 
   def find_conversation(user)

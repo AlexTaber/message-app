@@ -35,7 +35,7 @@ class SitesController < ApplicationController
     if @site.valid?
       @site.save
       flash[:notice] = "Site successfully saved" if set_up_users
-      redirect_to home_path(site_id: @site.id)
+      redirect_to home_path
     else
       flash[:warn] = "Unable to save updates to site, please try again"
       redirect_to :back
@@ -63,7 +63,7 @@ class SitesController < ApplicationController
   end
 
   def site_params
-    params.require(:site).permit(:name, :url)
+    params.require(:site).permit(:name, :url, :active)
   end
 
   def set_up_users
