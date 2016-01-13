@@ -55,15 +55,12 @@ $(".open-accordian").on('click',function() {
         });
 
 //mobile-nav
-$(".mobile-icons i:not(:last-child)"). on('click', function(){
+$(".mobile-icons i"). on('click', function(){
   $('.mobile-target').fadeOut(0);
   $('#current-account').slideUp();
   i = $(this).parent().children().index(this)
   $('.mobile-target').eq(i).fadeIn();
 });
-$(".mobile-icons i:last-child").on('click', function(){
-  $('#mobile-current-account').slideToggle();
-})
 
 ///Modal
 
