@@ -60,6 +60,8 @@ $(".open-accordian").on('click',function() {
 
 //mobile-nav
 $(".mobile-icons i"). on('click', function(){
+  $('.mobile-active').removeClass('mobile-active')
+  $(this).addClass('mobile-active')
   $('.mobile-target').fadeOut(0);
   $('#current-account').slideUp();
   i = $(this).parent().children().index(this)
