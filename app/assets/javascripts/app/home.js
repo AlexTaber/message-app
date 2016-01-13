@@ -15,7 +15,7 @@ jQuery(document).ready(function($){
 
     var messageUrl = window.location.href.indexOf("user_ids") > -1
     var newConversationUrl = window.location.href.indexOf("new_conversation") > -1
-    var mediaSize = $('body').width() < 550
+    var mediaSize = $('body').width() < 750
     if (( messageUrl || newConversationUrl) && mediaSize) {
       $('.mobile-target').fadeOut(0);
       $('#current-account').slideUp();
