@@ -137,4 +137,8 @@ class User < ActiveRecord::Base
   def typeahead_data
     { id: id, name: name }
   end
+
+  def sites_ordered_by_admin
+    user_sites.order(admin: :desc).collect(&:site)
+  end
 end
