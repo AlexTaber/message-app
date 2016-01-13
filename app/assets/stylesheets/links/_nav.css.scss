@@ -45,23 +45,19 @@ a:hover {
 #mobile-current-account {
   display:none;
   position:fixed;
-  z-index:10000;
+  z-index:1000000000;
   background: #f5f5f5;
   color: #222;
-  border: 1px solid $grey;
   width:100%;
   left:0;
-  top:66px;
     li {
    list-style: none;
-   border-bottom: 1px solid $grey;
+   border-bottom: 1px solid #ddd;
    &:hover {
     background:#dddddd;
    }
   }
-  li:last-child{
-    border:none;
-  }
+
     a{
     text-decoration: none;
     color:#000;
@@ -215,19 +211,24 @@ nav#current-account {
 .pwd-nav-item:hover{
   background-color: #EAEAEA;
 }
+.mobile-nav{
+  position:fixed;
+  width:100vw !important;
+  box-sizing:border-box;
+}
 
 .mobile-nav .user-name {
     display:inline;
     float:right;
-    padding-top:5px;
   }
 .mobile-info {
   width:100%;
   background-color:#444;
-  height:25px;
+  height:35px;
   padding:5px 30px;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #fff;
   color:#fff;
+  top:31px;
 }
 .mobile-icons {
   display:inline;
@@ -238,5 +239,13 @@ nav#current-account {
     padding-right:20px;
   }
 }
+.mobile-target{
+  top:65px;
+}
+@media (min-width: 550px) {
+  .mobile-target{
+    top:auto;
+  }
+  }
 
 //end Alex's amazing fantastical PWD Nav

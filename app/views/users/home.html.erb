@@ -120,12 +120,6 @@
       <i class="fa fa-user" id="msg-bx-acct-btn"></i>
     </div>
     <p class="user-name"><%= current_user.name %></p>
-        <nav id="mobile-current-account">
-     <p><b>Your Acount</b></p>
-     <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
-     <li><%= link_to 'Upgrade', root_path %></li>
-     <li><%= link_to 'Logout', logout_path %></li>
-   </nav>
  </nav>
 <!-- End Mobile Navbar -->
 <!-- End Menu Bar -->
@@ -235,6 +229,13 @@
   </div>
 </div>
 <% if current_user.active_sites_ordered_by_admin.length > 0 %>
+
+    <div id="mobile-current-account" class="mobile-target">
+     <p><b>Your Acount</b></p>
+     <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+     <li><%= link_to 'Upgrade', root_path %></li>
+     <li><%= link_to 'Logout', logout_path %></li>
+   </div>
   <!-- I-Frame -->
   <div id="fixed-iframe" class="pwd-init pwd-closed">
     <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
