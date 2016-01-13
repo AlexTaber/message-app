@@ -11,6 +11,12 @@ jQuery(document).ready(function($){
       subscribeToConvo(conversationToken, curConvoToken);
     }
   }
+  //if user clicks conversation on mobile
+    if (window.location.href.indexOf("user_ids") > -1 && $('body').width() < 550) {
+      $('.mobile-target').fadeOut(0);
+      $('#current-account').slideUp();
+      $('.mobile-target').eq(2).fadeIn();
+    }
 
   listenForNewConvos();
   //END PUSHER----------------------
@@ -89,6 +95,8 @@ $('.close-modal').click(function(){
 	$('.flash').delay(3000).fadeOut();
 
 });
+
+
 //Functions
 function dropdowns(clicked, target){
   $(clicked).on('click',function(){
