@@ -81,9 +81,10 @@ ActiveRecord::Schema.define(version: 20160105173138) do
   end
 
   create_table "sites", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "url",        null: false
+    t.string   "name",                      null: false
+    t.string   "url",                       null: false
     t.string   "token"
+    t.boolean  "active",     default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

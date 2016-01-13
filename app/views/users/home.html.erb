@@ -49,6 +49,17 @@
   </div>
 </div>
 
+<div id='delete' class='modal-window'>
+  <div>
+    <h1>Are you sure you want to delete your site?</h1>
+    <%= form_for @site do |f| %>
+      <%= f.hidden_field :active, value: false %>
+      <%= f.submit "Delete #{@site.name}", class: "button button-primary" %>
+    <% end %>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+</div>
+
 <div id='requests' class='modal-window'>
   <div>
     <% if current_user.has_pending_received_request_by_site?(@site) %>
@@ -128,7 +139,7 @@
   <div class="welcome-msg">
     <p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p>
   </div>
-    <% current_user.sites_ordered_by_admin.each do |site| %>
+    <% current_user.active_sites_ordered_by_admin.each do |site| %>
     <% if current_user.has_unread_conversations_by_site?(site) %>
       <li class="unread unread-convo-app">
     <% else %>
@@ -164,7 +175,7 @@
                 <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
               </li>
               <li>
-                <%= link_to "Remove", site_path(@site), method: "delete" %>
+                <%= link_to "Delete", "#", class: "activate-modal", name: "delete" %>
               </li>
           </ul>
         </div>
@@ -222,10 +233,10 @@
     <% end %>
   </div>
 </div>
-<% if current_user.sites.count > 0 %>
+<% if current_user.active_sites_ordered_by_admin.length > 0 %>
   <!-- I-Frame -->
   <div id="fixed-iframe" class="pwd-init pwd-closed">
     <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.sites.first.token %>"></iframe>
+    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.active_sites_ordered_by_admin.first.token %>"></iframe>
   </div>
 <% end %>

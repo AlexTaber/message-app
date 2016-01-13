@@ -43,6 +43,14 @@ class User < ActiveRecord::Base
     sites.count > 0
   end
 
+  def active_sites
+    sites.where(active: true)
+  end
+
+  def has_active_sites?
+    active_sites.count > 0
+  end
+
   def self.all_other_users(user)
     User.where.not(id: user.id)
   end
@@ -138,7 +146,7 @@ class User < ActiveRecord::Base
     { id: id, name: name }
   end
 
-  def sites_ordered_by_admin
-    user_sites.order(admin: :desc).collect(&:site)
+  def active_sites_ordered_by_admin
+    user_sites.order(admin: :desc).collect(&:site).select(&:active)
   end
 end
