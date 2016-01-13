@@ -85,7 +85,7 @@ body {
 	}
 .inbox-sidebar {
 	position:relative;
-	display:block;
+	display:block !important;
 	width: 20%;
 	float: left;
 }
@@ -228,7 +228,7 @@ ul.edit-site-list {
 margin-left:149px;
 		border-color: #fff transparent;
 	}
-	@media (min-width: 1000px) {
+	@media (min-width: 550px) {
 		.mobile-target:before {
 			display:none;
 		}
@@ -255,6 +255,9 @@ margin-left:149px;
 		border-bottom: 11px solid transparent;
 		border-right:11px solid #ababab;
 		margin-right:-1px;
+	}
+	#mobile-current-account {
+		display:none !important;
 	}
 }
 	.message-content {
@@ -344,7 +347,7 @@ margin-left:149px;
 @media (min-width: 550px) {
 .app-view {
 height: 70% !important;
-width:auto
+width:auto !important;
 }
 }
 .app-view-typeahead {

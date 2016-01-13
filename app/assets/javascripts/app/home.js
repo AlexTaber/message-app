@@ -93,7 +93,6 @@ $('.close-modal').click(function(){
 
 });
 
-
 //Functions
 function dropdowns(clicked, target){
   $(clicked).on('click',function(){
