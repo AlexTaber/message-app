@@ -12,7 +12,11 @@ jQuery(document).ready(function($){
     }
   }
   //if user clicks conversation on mobile
-    if (window.location.href.indexOf("user_ids") > -1 && $('body').width() < 550) {
+
+    var messageUrl = window.location.href.indexOf("user_ids") > -1
+    var newConversationUrl = window.location.href.indexOf("new_conversation") > -1
+    var mediaSize = $('body').width() < 750
+    if (( messageUrl || newConversationUrl) && mediaSize) {
       $('.mobile-target').fadeOut(0);
       $('#current-account').slideUp();
       $('.mobile-target').eq(2).fadeIn();
@@ -56,6 +60,8 @@ $(".open-accordian").on('click',function() {
 
 //mobile-nav
 $(".mobile-icons i"). on('click', function(){
+  $('.mobile-active').removeClass('mobile-active')
+  $(this).addClass('mobile-active')
   $('.mobile-target').fadeOut(0);
   $('#current-account').slideUp();
   i = $(this).parent().children().index(this)

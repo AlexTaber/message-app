@@ -72,7 +72,7 @@ a:hover {
   }
 }
 //dropdown
-@media (min-width: 550px) {
+@media (min-width: 750px) {
 nav#current-account {
   display:none;
   position: absolute;
@@ -242,7 +242,7 @@ nav#current-account {
 .mobile-target{
   top:65px;
 }
-@media (min-width: 550px) {
+@media (min-width: 750px) {
   .mobile-target{
     top:auto;
   }
