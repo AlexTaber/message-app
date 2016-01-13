@@ -30,7 +30,7 @@ class SitesController < ApplicationController
   end
 
   def update
-    params[:site][:active] = params[:site][:active].to_bool if params[:site][:active]
+    params[:site][:active] = params[:site][:active].to_b if params[:site][:active]
     @site.assign_attributes(site_params)
 
     if @site.valid?
