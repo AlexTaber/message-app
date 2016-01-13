@@ -242,5 +242,10 @@ nav#current-account {
 .mobile-target{
   top:65px;
 }
+@media (min-width: 550px) {
+  .mobile-target{
+    top:auto;
+  }
+  }
 
 //end Alex's amazing fantastical PWD Nav
