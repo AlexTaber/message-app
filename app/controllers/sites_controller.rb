@@ -31,6 +31,7 @@ class SitesController < ApplicationController
 
   def update
     @site.assign_attributes(site_params)
+    binding.remote_pry
 
     if @site.valid?
       @site.save
