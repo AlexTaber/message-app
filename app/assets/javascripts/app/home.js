@@ -35,6 +35,11 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //-------------------------------
 
+  //add user to conversation
+  $('.add-user-to-convo').on('click', function(){
+    $('.add-focus').focus();
+  })
+
   //enter submit
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');

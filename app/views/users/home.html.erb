@@ -12,12 +12,12 @@
     <% @site.other_users(current_user).each do |user| %>
       <p>
         <%= user.name %>
-        <%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete" %>
+        <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-text" %>
         <% if user.find_user_site(@site).admin %>
-          <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put" %>
+          <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-primary button-text" %>
         <% else %>
-          <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put" %>
-        <% end %>
+          <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-text" %>
+        <% end %> </span>
       </p>
     <% end %>
     <hr>
