@@ -358,6 +358,7 @@ width:auto !important;
 	overflow: visible;
 }
 
+//typeahead-dropdown
 .message-center {
 	.typeahead-form{
 		display:inline-block;
@@ -372,18 +373,28 @@ width:auto !important;
 		}
 	}
 }
-//typeahead-dropdown
 .tt-menu{
 	background:#fff;
 	border: 1px solid #ddd;
 	z-index:999;
+	overflow:visible;
+	width: 100%;
+	border-radius: 0 0 5px 5px;
+	box-shadow: 0px 1px 1px $grey;
 }
 .tt-suggestion {
 	padding:10px;
+	border-bottom: 1px solid #ddd;
 	&:hover, &:focus{
 		background:#f5f5f5;
 		cursor: pointer;
 	}
+}
+.tt-cursor {
+	background: #f5f5f5!important;
+}
+.tt-menu, .tt-suggestion, .tt-dataset {
+	overflow: visible;
 }
 .add-btn {
 	float:right;

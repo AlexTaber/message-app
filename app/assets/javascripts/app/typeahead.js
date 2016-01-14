@@ -48,7 +48,7 @@ $(document).ready(function() {
         minLength: 1
       },
       {
-        name: 'users',
+        name: 'all_users',
         displayKey: 'name',
         source: substringMatcher(all_users)
       });
