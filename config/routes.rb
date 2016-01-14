@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   resources :invites, only: [:new, :create]
   resources :user_sites, only: [:update, :destroy]
   resources :subscriptions, only: [:new, :create, :destroy]
+  resources :password_recoveries, only: [:new, :create] do
+    member do
+      get :check
+      post :verify
+    end
+  end
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

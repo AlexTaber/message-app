@@ -1,0 +1,9 @@
+<%= form_for password_recovery do |f| %>
+  <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <p>We will with instructions to create a new password to <%= current_user.email %></p>
+
+  <%= f.submit 'Send Password Recovery Email', class: 'primary button-primary' %>
+<% end %>
