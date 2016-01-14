@@ -14,13 +14,17 @@ jQuery(document).ready(function($){
   //if user clicks conversation on mobile
 
     var messageUrl = window.location.href.indexOf("user_ids") > -1
+    var convoUrl = window.location.href.indexOf("user_ids") > -1
     var newConversationUrl = window.location.href.indexOf("new_conversation") > -1
     var mediaSize = $('body').width() < 750
     if (( messageUrl || newConversationUrl) && mediaSize) {
       $('.mobile-target').fadeOut(0);
       $('#current-account').slideUp();
       $('.mobile-target').eq(2).fadeIn();
+      $('.mobile-active').removeClass('mobile-active')
+      $('#mobile-messages').addClass('mobile-active');
     }
+
 
   listenForNewConvos();
   //END PUSHER----------------------
