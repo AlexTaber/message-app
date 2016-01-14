@@ -6,7 +6,6 @@
       <p>Once the site owner approves, you can start using the app immediately</p>
   <%= form_for request do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :receiver_id, value: site.find_admin.id %>
     <%= f.hidden_field :site_id, value: site.id %>
 
     <%= f.submit "Send Request", class: "button button-primary" %>

@@ -29,4 +29,12 @@ class Site < ActiveRecord::Base
   def typeahead_users_data
     users.map(&:typeahead_data)
   end
+
+  def pending_requests
+    requests.where(active: true)
+  end
+
+  def has_pending_requests?
+    pending_requests.count > 0
+  end
 end

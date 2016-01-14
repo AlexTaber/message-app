@@ -62,20 +62,22 @@
   </div>
 </div>
 
-<div id='requests' class='modal-window'>
-  <div>
-    <% if current_user.has_pending_received_request_by_site?(@site) %>
-    <h1>All Pending Requests</h1>
-    <% current_user.pending_received_requests.each do |request| %>
-    <%= render partial: "requests/card", locals: { request: request } %>
-    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-    <% end %>
-    <% else %>
-    <h1> You have no pending requests </h1>
-    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-    <% end %>
+<% if current_user.admin_of_site?(@site) %>
+  <div id='requests' class='modal-window'>
+    <div>
+      <% if @site.has_pending_requests? %>
+      <h1>All Pending Requests</h1>
+      <% @site.pending_requests.each do |request| %>
+      <%= render partial: "requests/card", locals: { request: request } %>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+      <% end %>
+      <% else %>
+      <h1> You have no pending requests </h1>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <% if(current_user.first_visit?) %>
   <div id='edit-site' class='modal-window' style="display:block;">
@@ -239,6 +241,6 @@
   <!-- I-Frame -->
   <div id="fixed-iframe" class="pwd-init pwd-closed">
     <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.active_sites_ordered_by_admin.first.token %>"></iframe>
+    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.active_sites.first.token %>"></iframe>
   </div>
 <% end %>

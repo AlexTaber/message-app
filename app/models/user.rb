@@ -13,9 +13,6 @@ class User < ActiveRecord::Base
   has_many :subscriptions
 
   has_many :requests
-  has_many :receivers, through: :requests
-  has_many :inverse_requests, class_name: "Request", foreign_key: "receiver_id"
-  has_many :inverse_receivers, through: :inverse_requests, source: :user
 
   has_many :invites
   belongs_to :tier
@@ -93,22 +90,6 @@ class User < ActiveRecord::Base
 
   def has_unread_conversations_by_site?(site)
     unread_conversations_by_site(site).count > 0
-  end
-
-  def pending_request_by_site(site)
-    requests.find_by(site_id: site.id, active: true)
-  end
-
-  def pending_received_requests
-    inverse_requests.where(active: true)
-  end
-
-  def pending_received_requests_by_site(site)
-    inverse_requests.where(active: true, site_id: site.id)
-  end
-
-  def has_pending_received_request_by_site?(site)
-    pending_received_requests_by_site(site).count > 0
   end
 
   def can_create_site
