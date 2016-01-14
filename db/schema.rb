@@ -72,12 +72,11 @@ ActiveRecord::Schema.define(version: 20160113214947) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.integer  "receiver_id",                null: false
-    t.integer  "site_id",                    null: false
-    t.boolean  "active",      default: true, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "user_id",                   null: false
+    t.integer  "site_id",                   null: false
+    t.boolean  "active",     default: true, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "sites", force: :cascade do |t|
