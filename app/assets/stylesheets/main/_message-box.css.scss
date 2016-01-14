@@ -223,6 +223,7 @@
 #msg-bx-convos-list, #msg-bx-user-list, #msg-bx-site-list   {
   max-height:230px;
   overflow-y: scroll;
+  display:inline;
 }
 //creates the tooltip triangle
 .msg-bx-dropdown:before{
@@ -238,7 +239,7 @@
 }
 // edits the position of the tooltip triangle for each section
 #msg-bx-sites-drop:before{
-  right:97px;
+  right:92px;
 }
 #msg-bx-convos-drop:before{
   right:86px;
@@ -393,12 +394,12 @@
     display:block;
     float:right;
     margin-bottom:5px;
-    margin-right:50px;
+    padding-right:50px;
   }
   .them-meta-data{
     display:block;
     margin-bottom:5px;
-    margin-left:50px;
+    padding-left:50px;
   }
 }
 .msg-bx-padding{

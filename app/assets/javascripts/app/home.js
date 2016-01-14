@@ -151,7 +151,7 @@ function sendMessage(e) {
 
 function startConversation(e) {
   e.preventDefault();
-  if(messageSendable()) {
+  if(newMessageSendable()) {
     canSendMessage = false;
     $.ajax({
       url: e.target.action,
@@ -166,6 +166,7 @@ function startConversation(e) {
       $(".app-view").append(data.html);
       subscribeToConvo(data.token, curConvoToken);
       $(".new_conversation").find("#content").val("");
+      $('.new-convo-placeholder').slideUp();
     });
   }
 }
@@ -179,6 +180,14 @@ function scrollToBottom() {
 
 function messageSendable() {
   var content = $(".new_message").find("#message_content").val();
+  if(canSendMessage && content != "") {
+    return true;
+  }
+  return false;
+}
+
+function newMessageSendable() {
+  var content = $(".new_conversation").find("#content").val();
   if(canSendMessage && content != "") {
     return true;
   }
