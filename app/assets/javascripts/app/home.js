@@ -33,13 +33,18 @@ jQuery(document).ready(function($){
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);
   $("#new_conversation").submit(startConversation);
-  //-------------------------------
+  //--------------------------------
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
     $('.add-focus').focus();
   })
+  //----------------
 
+  //manage user edit ----------------
+  $('.manage-user-edit').on('click', function(){
+    $(this).siblings('span').fadeToggle();
+  })
   //enter submit
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');

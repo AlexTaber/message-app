@@ -9,17 +9,19 @@
     <h1>Manage Users of <%= @site.name %></h1>
     <hr>
     <h3>Current Users</h3>
+      <div id="site-user-list"><p>
     <% @site.other_users(current_user).each do |user| %>
-      <p>
         <%= user.name %>
-        <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-text" %>
+        <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
         <% if user.find_user_site(@site).admin %>
-          <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-primary button-text" %>
+          <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
         <% else %>
-          <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-text" %>
+          <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
         <% end %> </span>
+        <a href="#" class="manage-user-edit"><i class="fa fa-pencil"></i></a>
       </p>
     <% end %>
+    </div>
     <hr>
     <div class="overflow-visible">
       <h3>Add Users</h3>

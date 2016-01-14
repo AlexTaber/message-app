@@ -34,7 +34,7 @@ $(document).ready(function() {
       $('.convo-typeahead').typeahead({
         hint: false,
         highlight: true,
-        minLength: 1
+        minLength: 1,
       },
       {
         name: 'site_users',
@@ -53,11 +53,12 @@ $(document).ready(function() {
         source: substringMatcher(all_users)
       });
 
-      $('.convo-typeahead').on('typeahead:selected', function (e, datum) {
+      $('.convo-typeahead').on('typeahead:cursorchange', function (e, datum) {
+        console.log('apples')
         $("#user_id").val(datum['id']);
       });
 
-      $('.site-typeahead').on('typeahead:selected', function (e, datum) {
+      $('.site-typeahead').on('typeahead:cursorchange', function (e, datum) {
         $("#add-user-id").val(datum['id']);
       });
       //end ajax response---
