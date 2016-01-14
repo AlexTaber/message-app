@@ -14,13 +14,17 @@ jQuery(document).ready(function($){
   //if user clicks conversation on mobile
 
     var messageUrl = window.location.href.indexOf("user_ids") > -1
+    var convoUrl = window.location.href.indexOf("user_ids") > -1
     var newConversationUrl = window.location.href.indexOf("new_conversation") > -1
     var mediaSize = $('body').width() < 750
     if (( messageUrl || newConversationUrl) && mediaSize) {
       $('.mobile-target').fadeOut(0);
       $('#current-account').slideUp();
       $('.mobile-target').eq(2).fadeIn();
+      $('.mobile-active').removeClass('mobile-active')
+      $('#mobile-messages').addClass('mobile-active');
     }
+
 
   listenForNewConvos();
   //END PUSHER----------------------
@@ -30,23 +34,24 @@ jQuery(document).ready(function($){
     $(this).toggleClass('rotated');
   })
 
-  // Add user to message --------------
-  $('.add-user-to-convo').on('click', function(e){
-    e.preventDefault();
-    $(this).fadeOut(0);
-    $('.convo-add-user-form').slideDown()
-
-  });
-
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);
   $("#new_conversation").submit(startConversation);
-  //-------------------------------
+  //--------------------------------
 
+  //add user to conversation
+  $('.add-user-to-convo').on('click', function(){
+    $('.add-focus').focus();
+  })
+  //----------------
+
+  //manage user edit ----------------
+  $('.manage-user-edit').on('click', function(){
+    $(this).siblings('span').fadeToggle();
+  })
   //enter submit
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');
-  enterSubmit('.tt-input', '.typeahead-form')
   //-----------
 
 	$('#users-account').on('click', function () {

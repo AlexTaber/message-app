@@ -65,6 +65,33 @@ input[type="button"].button-primary:focus {
   background-color: #1EAEDB;
   border-color: #1EAEDB; }
 
+//creates warning button
+.button.button-warning,
+button.button-warning,
+input[type="submit"].button-warning,
+input[type="reset"].button-warning,
+input[type="button"].button-warning {
+  background: #AF0808;
+  border-color: #AF0808;}
+  .button.button-warning:hover,
+button.button-warning:hover,
+input[type="submit"].button-warning:hover,
+input[type="reset"].button-warning:hover,
+input[type="button"].button-warning:hover,
+.button.button-warning:focus,
+button.button-warning:focus,
+input[type="submit"].button-warning:focus,
+input[type="reset"].button-warning:focus,
+input[type="button"].button-warning:focus {
+  opacity: .8}
+
+.button-inline{
+  padding:2px;
+  height:auto;
+  line-height: 100%;
+  margin-right:5px;
+  margin-left:5px;
+}
 //Rails Styles
 .new_site input[type="submit"] {
   margin-top: 2rem;
@@ -74,7 +101,6 @@ input[type="button"].button-primary:focus {
   width: 30%;
   margin-left: 1rem;
 }
-
 
 
 

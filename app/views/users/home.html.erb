@@ -9,19 +9,21 @@
     <h1>Manage Users of <%= @site.name %></h1>
     <hr>
     <h3>Current Users</h3>
+      <div id="site-user-list"><p>
     <% @site.other_users(current_user).each do |user| %>
-      <p>
         <%= user.name %>
-        <%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete" %>
+        <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
         <% if user.find_user_site(@site).admin %>
-          <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put" %>
+          <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
         <% else %>
-          <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put" %>
-        <% end %>
+          <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+        <% end %> </span>
+        <a href="#" class="manage-user-edit"><i class="fa fa-pencil"></i></a>
       </p>
     <% end %>
+    </div>
     <hr>
-    <div>
+    <div class="overflow-visible">
       <h3>Add Users</h3>
       <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
     </div>
@@ -113,9 +115,9 @@
 </div>
  <nav class="mobile-info mobile-nav">
     <div class="mobile-icons">
-      <i class="fa fa-globe" id="mobile-sites"></i>
+      <i class="fa fa-globe mobile-active" id="mobile-sites"></i>
       <i class="fa fa-comments" id="mobile-convos"></i>
-      <i class="fa fa-comment" id="mobile"></i>
+      <i class="fa fa-comment" id="mobile-messages"></i>
       <i class="fa fa-user" id="msg-bx-acct-btn"></i>
     </div>
     <p class="user-name"><%= current_user.name %></p>
@@ -125,7 +127,7 @@
 <div class="inbox-sidebar mobile-target">
   <header>
     <b>Your</b> sites
-      <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
+      <%= link_to new_site_path, class: "activate-modal add-btn", name: "window" do %>
       <i class="fa fa-plus" title="Add a new site"></i>
       <% end %>
     </header>
@@ -184,7 +186,7 @@
   <nav class="current-site-data">
    <header>
   <b><%= @site.name %></b> &nbsp; Conversations
-      <%= link_to home_path(site_id: @site.id, new_conversation: true) do %>
+      <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
         <i class="fa fa-plus"></i>
       <% end %>
       <div id="new-message">
@@ -207,13 +209,12 @@
 <!-- Message Content Section -->
 <div class="message-center mobile-target">
     <header>
-    <i><%= current_user.name %>'s conversation with:</i>
+    <i>To:</i>
     <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-     <a href="#" class="add-user-to-convo"><i class="fa fa-plus"></i></a>
-    </header>
-     <div class="convo-add-user-form">
     <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
-    </div>
+     <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
+    </header>
+
     <div class="msg-bx-convo app-view">
       <% @conversation.messages.each do |message| %>
         <%= render partial: "messages/message", locals: { message: message } %>
