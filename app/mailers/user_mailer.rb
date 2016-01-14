@@ -13,4 +13,11 @@ class UserMailer < ApplicationMailer
     @site = site
     mail(to: user.email, subject: "Here's Your Token for #{@site.name}")
   end
+
+  def password_recovery_email(user, password_recovery)
+    @user = user
+    @password_recovery = password_recovery
+    @url = "http://localhost:3000/password_recoveries/#{password_recovery.id}/check"
+    mail(to: user.email, subject: "Password Recovery")
+  end
 end
