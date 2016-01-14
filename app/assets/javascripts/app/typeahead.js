@@ -52,9 +52,10 @@ $(document).ready(function() {
         displayKey: 'name',
         source: substringMatcher(all_users)
       });
-
+      $('.convo-typeahead').on('typeahead:select', function (e, datum) {
+          $('.typeahead-form').submit();
+        });
       $('.convo-typeahead').on('typeahead:cursorchange', function (e, datum) {
-        console.log('apples')
         $("#user_id").val(datum['id']);
       });
 

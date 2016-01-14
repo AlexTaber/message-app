@@ -62,8 +62,8 @@ jQuery(document).ready(function($){
 
   $('.add-users-msg-bx').on('click', function(e){
     e.preventDefault();
-    $(this).fadeOut();
-    $('.add-user-to-msg-bx').slideDown();
+    $('.add-user-to-msg-bx').slideToggle();
+    $('.add-focus').focus()
   })
 });
 function enterSubmit(input, form) {
