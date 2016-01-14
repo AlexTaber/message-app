@@ -30,14 +30,6 @@ jQuery(document).ready(function($){
     $(this).toggleClass('rotated');
   })
 
-  // Add user to message --------------
-  $('.add-user-to-convo').on('click', function(e){
-    e.preventDefault();
-    $(this).fadeOut(0);
-    $('.convo-add-user-form').slideDown()
-
-  });
-
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);
   $("#new_conversation").submit(startConversation);
@@ -46,7 +38,8 @@ jQuery(document).ready(function($){
   //enter submit
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');
-  enterSubmit('.tt-input', '.typeahead-form')
+  enterSubmit('.tt-input', '.typeahead-form');
+  enterSubmit('.typeahead', '.typeahead-form');
   //-----------
 
 	$('#users-account').on('click', function () {

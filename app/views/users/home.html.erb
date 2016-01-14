@@ -125,7 +125,7 @@
 <div class="inbox-sidebar mobile-target">
   <header>
     <b>Your</b> sites
-      <%= link_to new_site_path, class: "activate-modal", name: "window" do %>
+      <%= link_to new_site_path, class: "activate-modal add-btn", name: "window" do %>
       <i class="fa fa-plus" title="Add a new site"></i>
       <% end %>
     </header>
@@ -184,7 +184,7 @@
   <nav class="current-site-data">
    <header>
   <b><%= @site.name %></b> &nbsp; Conversations
-      <%= link_to home_path(site_id: @site.id, new_conversation: true) do %>
+      <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
         <i class="fa fa-plus"></i>
       <% end %>
       <div id="new-message">
@@ -207,13 +207,12 @@
 <!-- Message Content Section -->
 <div class="message-center mobile-target">
     <header>
-    <i><%= current_user.name %>'s conversation with:</i>
+    <i>To:</i>
     <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-     <a href="#" class="add-user-to-convo"><i class="fa fa-plus"></i></a>
-    </header>
-     <div class="convo-add-user-form">
     <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
-    </div>
+     <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
+    </header>
+
     <div class="msg-bx-convo app-view">
       <% @conversation.messages.each do |message| %>
         <%= render partial: "messages/message", locals: { message: message } %>
