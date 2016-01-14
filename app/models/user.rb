@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :message_users
   has_many :recieved_messages, through: :message_users, source: :message
   has_many :notifications
+  has_many :subscriptions
 
   has_many :requests
   has_many :receivers, through: :requests

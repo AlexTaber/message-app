@@ -9,7 +9,7 @@
     <%= f.password_field :password, placeholder: "Password" %>
   </div><br>
 
-  <div style="margin:15px 0;">  
+  <div style="margin:15px 0;">
     <%= f.label :image, "Upload a Profile Image" %>
   </div>
 
@@ -19,7 +19,7 @@
 
   <div class="tier-select">
     <p><b> Choose Your Level</b></p>
-    <%= f.collection_radio_buttons :tier_id, Tier.all, :id, :name, checked: default_tier_id %>
+    <%= collection_radio_buttons nil, :tier_id, Tier.all, :id, :name, checked: default_tier_id %>
   </div>
 
   <% if @invite_token %>
