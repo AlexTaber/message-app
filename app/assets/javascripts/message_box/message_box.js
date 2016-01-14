@@ -24,26 +24,27 @@ jQuery(document).ready(function($){
 
   enterSubmit('#message_content', '#new_message');
   enterSubmit('#content', '#new-conversation-form');
-  enterSubmit('.tt-input', '.typeahead-form')
 
   $(".new_message").submit(sendMbMessage);
   $("#new-conversation-form").submit(startMbConversation);
   //conversation dropdown tabs
+
+
   $('.msg-bx-tab a').on('click', function(e){
     e.preventDefault();
+    console.log('working')
     if($(this).hasClass('inactive')){
-
       i = $(this).index();
       $('.tab-content>div').fadeOut(0);
       $('.tab-content').children().eq(i).fadeIn();
-      $('.msg-bx-tab a').toggleClass('inactive')
+      $('.msg-bx-tab a').toggleClass('inactive');
     }
   });
+
 
   //hide dropdowns on window resize
     if ($('body').width() > 450) {
       $('.msg-bx-body').fadeIn();
-
     }
   $(window).on('resize', function(){
     if ($('body').width() < 450) {
@@ -56,15 +57,14 @@ jQuery(document).ready(function($){
     }
     if ($('body').width() > 450) {
       $('.msg-bx-body').fadeIn();
-
     }
   });
 
   $('.add-users-msg-bx').on('click', function(e){
     e.preventDefault();
     $('.add-user-to-msg-bx').slideToggle();
-    $('.add-focus').focus()
-  })
+    $('.add-focus').focus();
+  });
 });
 function enterSubmit(input, form) {
   $(input).keypress(function(event) {
