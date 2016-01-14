@@ -155,7 +155,7 @@ ul.edit-site-list {
 @media (min-width: 750px) {
 .message-bar {
 		position:relative;
-	display:block;
+	display:block !important;
 	width: 30%;
 	float: left;
 }
@@ -175,7 +175,7 @@ ul.edit-site-list {
 @media (min-width: 750px) {
 .message-center {
 		position:relative;
-	display:block;
+	display:block !important;
 	float: left;
 	width: 50%;
 
@@ -352,7 +352,6 @@ width:auto !important;
 .app-view-typeahead {
 	display: block;
 }
-
 
 .conversation-wrapper {
 	overflow: visible;
