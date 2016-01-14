@@ -53,7 +53,8 @@ $(document).ready(function() {
         source: substringMatcher(all_users)
       });
       $('.convo-typeahead').on('typeahead:select', function (e, datum) {
-          $('.typeahead-form').submit();
+        $("#user_id").val(datum['id']);
+        $('.typeahead-form').submit();
         });
       $('.convo-typeahead').on('typeahead:cursorchange', function (e, datum) {
         $("#user_id").val(datum['id']);
