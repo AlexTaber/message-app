@@ -134,48 +134,56 @@
       <% end %>
     </header>
   <nav class="site-list">
+    <div class="welcome-msg">
+      <p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p>
+    </div>
     <% current_user.active_sites_ordered_by_admin.each do |site| %>
-    <% if current_user.has_unread_conversations_by_site?(site) %>
-      <li class="unread unread-convo-app">
-    <% else %>
-      <li>
-    <% end %>
 
-        <% if site == @admin_site %>
-            <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret <% if site == @site %>rotated<% end %>" title="Edit Site"></i>
-        <% end %>
-        <% if site == @site %>
-        <b><%= link_to site.name, home_path(site_id: site.id) %></b>
-        <% else %>
-        <%= link_to site.name, home_path(site_id: site.id) %>
-        <% end %>
-        <!-- Requests Div If Needed-->
-        <!-- <div class="requests">33</div> -->
-        <!-- End Requests Div -->
-        <!-- Edit Site List Accordian -->
-        <% if site == @admin_site %>
-        <%if site == @site %>
-          <div class="accordian-content" style="display:block">
-        <% else %>
-          <div class="accordian-content">
-        <% end %>
-          <ul class="edit-site-list">
-              <li>
-                <%= link_to "Manage Users", "#", class: "activate-modal", name: "manage-users" %>
-              </li>
-              <li>
-                <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
-              </li>
-              <li>
-                <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
-              </li>
-              <li>
-                <%= link_to "Delete", "#", class: "activate-modal", name: "delete" %>
-              </li>
-          </ul>
-        </div>
-        <% end %>
-      </li>
+    <% unless current_user.admin_of_site?(site) %>
+      <div class="non-admin-user">
+    <% else %>
+      <div>
+    <% end %> 
+      <% if current_user.has_unread_conversations_by_site?(site) %>
+        <li class="unread unread-convo-app">
+      <% else %>
+        <li>
+      <% end %>
+
+          <% if site == @admin_site %>
+              <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
+          <% end %>
+
+          <% if current_user.admin_of_site?(site) %>
+            <i class="fa fa-user admin-profile"></i>
+          <% end %>
+
+          <% if site == @site %>
+          <b><%= link_to site.name, home_path(site_id: site.id) %></b>
+          <% else %>
+          <%= link_to site.name, home_path(site_id: site.id) %>
+          <% end %>
+          <% if site == @admin_site %>
+            <div class="accordian-content">
+
+            <ul class="edit-site-list">
+                <li>
+                  <%= link_to "Manage Users", "#", class: "activate-modal", name: "manage-users" %>
+                </li>
+                <li>
+                  <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
+                </li>
+                <li>
+                  <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
+                </li>
+                <li>
+                  <%= link_to "Remove", site_path(@site), method: "delete" %>
+                </li>
+            </ul>
+          </div>
+          <% end %>
+        </li>
+      </div>
     <% end %>
   </nav>
 </div>
