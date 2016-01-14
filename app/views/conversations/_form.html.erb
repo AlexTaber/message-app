@@ -9,8 +9,4 @@
   <% @conversation.user_ids.each do |user_id| %>
     <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
   <% end %>
-
-  <div>
-    <%= f.submit "Start Conversation" %>
-  </div>
 <% end %>
