@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :recieved_messages, through: :message_users, source: :message
   has_many :notifications
   has_many :subscriptions
+  has_many :password_recoveries
 
   has_many :requests
 
