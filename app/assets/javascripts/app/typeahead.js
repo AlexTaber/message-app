@@ -45,7 +45,7 @@ $(document).ready(function() {
       $('.site-typeahead').typeahead({
         hint: false,
         highlight: true,
-        minLength: 1
+        minLength: 1,
       },
       {
         name: 'all_users',
@@ -55,7 +55,7 @@ $(document).ready(function() {
       $('.convo-typeahead').on('typeahead:select', function (e, datum) {
         $("#user_id").val(datum['id']);
         $('.typeahead-form').submit();
-        });
+      });
       $('.convo-typeahead').on('typeahead:cursorchange', function (e, datum) {
         $("#user_id").val(datum['id']);
       });
