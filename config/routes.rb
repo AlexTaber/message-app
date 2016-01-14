@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :requests, only: [:new, :create, :update]
   resources :invites, only: [:new, :create]
   resources :user_sites, only: [:update, :destroy]
+  resources :subscriptions, only: [:new, :create, :destroy]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
