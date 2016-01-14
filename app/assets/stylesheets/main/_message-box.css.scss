@@ -223,6 +223,7 @@
 #msg-bx-convos-list, #msg-bx-user-list, #msg-bx-site-list   {
   max-height:230px;
   overflow-y: scroll;
+  display:inline;
 }
 //creates the tooltip triangle
 .msg-bx-dropdown:before{
