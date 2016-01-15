@@ -6,6 +6,6 @@
   <div class="profile-pic no--pic"><div class="table-cell"><%= message.user.first_name[0] %></div></div>
 <% end %>
 <p class="self-pwd">
-  <%= sanitize(simple_format(message.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br)) %>
+  <%= sanitize(simple_format(message.content.gsub(/(?:\n\r?|\r\n?)/, '<br> <a>')), :tags => %w(br a)) %>
 </p>
 </div>
