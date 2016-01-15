@@ -8,6 +8,7 @@
   <% end %>
     <p>
       <span>Mercury<b>App</b></span>
+      | <%= current_user.name %>
       <span id="msg-bx-nav-icons">
         <%= link_to login_path, target: '_blank' do %>
         <i class="fa fa-home"></i>
@@ -94,11 +95,10 @@
       <div class="msg-bx-body">
         <!-- view for saved conversation -->
         <div class="msg-bx-info">
-          <p><i><%= current_user.name %>'s conversation with:</i> <br><b><%= @conversation.other_users_to_s(current_user) %> </b> <a herf="#" class='add-users-msg-bx'><i class="fa fa-plus add-btn" style="padding-right:10px"></i></a></p>
-        </div>
-
+          <p style="display:inline"><i>To: </i><b><%= @conversation.other_users_to_s(current_user) %> </b> <a herf="#" class='add-users-msg-bx'><i class="fa fa-plus add-btn" style="padding-right:10px"></i></a></p>
         <div class="add-user-to-msg-bx">
           <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
+        </div>
         </div>
         <div class="msg-bx-convo">
           <% @conversation.messages.each do |message| %>
