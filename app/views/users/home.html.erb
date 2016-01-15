@@ -26,7 +26,9 @@
     <hr>
     <div class="overflow-visible">
       <h3>Add Users</h3>
-      <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
+      <%= render partial: "layouts/site_typeahead", locals: { site: @site } %> 
+      <h4 class="add-users-or">or</h4>
+      <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
     </div>
     <div>
       <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
