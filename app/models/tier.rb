@@ -2,7 +2,7 @@ class Tier < ActiveRecord::Base
   has_many :users
 
   def permit_user_site(admin)
-    admin.admin_sites.count < admin_sites
+    admin.active_admin_sites.length < admin_sites
   end
 
   def permit_site_user(site)

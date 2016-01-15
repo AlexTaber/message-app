@@ -136,7 +136,7 @@
       <% end %>
     </header>
   <nav class="site-list">
-  <% unless current_user.has_sites? %>
+  <% unless current_user.has_active_sites? %>
     <div class="welcome-msg">
       <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p>
     </div>
@@ -202,7 +202,7 @@
       </header>
   </nav>
 
-  <% if @conversation.new_record? && current_user.has_sites?  %>      
+  <% if @conversation.new_record? && current_user.has_active_sites?  %>      
     <div class="message-item msg-item-current new-convo-placeholder">
     <div class="media">
          <% if current_user.image %>
