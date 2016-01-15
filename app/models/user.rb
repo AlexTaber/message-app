@@ -129,7 +129,11 @@ class User < ActiveRecord::Base
     { id: id, name: name }
   end
 
+  def active_user_sites
+    user_sites.select { |user_site| user_site.site.active }
+  end
+
   def active_sites_ordered_by_admin
-    user_sites.order(admin: :desc).collect(&:site).select(&:active)
+    active_user_sites.sort_by { |user_site| user_site.admin ? 0 : 1 }.collect(&:site).select(&:active)
   end
 end
