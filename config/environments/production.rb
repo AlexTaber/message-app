@@ -83,7 +83,7 @@ Rails.application.configure do
     :address        => 'smtp.gmail.com',
     :domain         => 'mercuryapp.co',
     :port           => 587,
-    :user_name      => 'alex.taber0@gmail.com',
+    :user_name      => 'admin@mercuryapp.co',
     :password       => ENV['EMAIL_PW'],
     :authentication => :plain,
     :enable_starttls_auto => true
