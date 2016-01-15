@@ -1,4 +1,4 @@
-<%= form_for site, html: { class: 'typeahead-form' } do |f| %>
+<%= form_for site, html: { class: 'typeahead-form', id: "site-typeahead" } do |f| %>
   <%= text_field_tag :user_name, nil, class:"typeahead app-view-typeahead site-typeahead", value: "", placeholder: "Search" %>
 
   <%= f.hidden_field :user_ids, :multiple => true, :value => nil, id: 'add-user-id' %>
