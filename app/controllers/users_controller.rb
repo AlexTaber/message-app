@@ -102,8 +102,8 @@ class UsersController < ApplicationController
     site = Site.find_by(id: params[:site_id])
     if site
       render json: {
-        site_users: site.typeahead_users_data,
-        all_users: User.all_other_users_data(current_user)
+        site_users: site.typeahead_users_data(current_user),
+        all_users: site.non_member_users_data
       }.to_json
     else
       render text: "No Site Found"
