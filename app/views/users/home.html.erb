@@ -150,15 +150,12 @@
       <% else %>
         <li>
       <% end %>
-
           <% if site == @admin_site %>
               <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
           <% end %>
-
           <% if current_user.admin_of_site?(site) %>
             <i class="fa fa-user admin-profile"></i>
           <% end %>
-
           <% if site == @site %>
           <b><%= link_to site.name, home_path(site_id: site.id) %></b>
           <% else %>
