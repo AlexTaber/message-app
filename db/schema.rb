@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20160114192719) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "username",                    null: false
     t.string   "first_name",                  null: false
     t.string   "last_name",                   null: false
     t.string   "email",                       null: false

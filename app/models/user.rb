@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   end
 
   def typeahead_data
-    { id: id, name: name }
+    { username: username, id: id, name: name }
   end
 
   def active_sites_ordered_by_admin
