@@ -161,7 +161,7 @@
           <% end %>
           <% if site == @site %>
           <b class="open-accordian site-target"><%= link_to site.name, '#' %></b>
-          <% else %>,
+          <% else %>
           <%= link_to site.name, home_path(site_id: site.id) %>
           <% end %>
           <% if site == @admin_site %>
