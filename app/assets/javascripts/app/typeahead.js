@@ -61,7 +61,6 @@ $(document).ready(function() {
       });
 
       $('.site-typeahead').on('typeahead:select', function (e, datum) {
-        console.log("HERE")
         $("#add-user-id").val(datum['id']);
         $('#site-typeahead').submit();
       });
