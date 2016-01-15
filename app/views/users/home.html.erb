@@ -9,8 +9,9 @@
     <h1>Manage Users of <%= @site.name %></h1>
     <hr>
     <h3>Current Users</h3>
-      <div id="site-user-list"><p>
+      <div id="site-user-list">
     <% @site.other_users(current_user).each do |user| %>
+      <p>
         <%= user.name %>
         <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
         <% if user.find_user_site(@site).admin %>
@@ -135,9 +136,11 @@
       <% end %>
     </header>
   <nav class="site-list">
+  <% unless current_user.has_sites? %>
     <div class="welcome-msg">
-      <p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p>
+      <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p>
     </div>
+  <% end %>
     <% current_user.active_sites_ordered_by_admin.each do |site| %>
 
     <% unless current_user.admin_of_site?(site) %>
@@ -157,7 +160,7 @@
             <i class="fa fa-user admin-profile"></i>
           <% end %>
           <% if site == @site %>
-          <b><%= link_to site.name, home_path(site_id: site.id) %></b>
+          <b class="open-accordian site-target"><%= link_to site.name, '#' %></b>
           <% else %>
           <%= link_to site.name, home_path(site_id: site.id) %>
           <% end %>
@@ -198,10 +201,10 @@
       </div>
       </header>
   </nav>
-  <% if @conversation.new_record? %>
+
+  <% if @conversation.new_record? && current_user.has_sites?  %>      
     <div class="message-item msg-item-current new-convo-placeholder">
     <div class="media">
-
          <% if current_user.image %>
         <div class="profile-pic u-pull-left app-view-p-img">
           <img class="profile-pic" src="<%= current_user.image_url %>">
@@ -220,6 +223,7 @@
     </div>
   </div>
 <% end %>
+
 <% current_user.conversations_by_site(@site).each do |conversation| %>
   <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
     <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user } %>
