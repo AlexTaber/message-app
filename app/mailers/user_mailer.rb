@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'info@peekskillwebdesign.com'
+  default from: 'admin@mercuryapp.co'
 
   def invite_email(invite)
     @url  = "http://localhost:3000/users/new?invite_token=#{invite.token}"
