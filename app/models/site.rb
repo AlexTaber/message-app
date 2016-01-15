@@ -14,6 +14,10 @@ class Site < ActiveRecord::Base
     users.where.not(id: user.id)
   end
 
+  def non_member_users
+    User.where.not(id: user_ids)
+  end
+
   def find_conversation_by_users(users)
     conversations.find { |conversation| conversation.user_ids.sort == users.map(&:id).sort }
   end
@@ -26,8 +30,12 @@ class Site < ActiveRecord::Base
     user_sites.find_by(admin: true)
   end
 
-  def typeahead_users_data
-    users.map(&:typeahead_data)
+  def typeahead_users_data(user)
+    other_users(user).map(&:typeahead_data)
+  end
+
+  def non_member_users_data
+    non_member_users.map(&:typeahead_data)
   end
 
   def pending_requests
