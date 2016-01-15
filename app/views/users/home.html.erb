@@ -8,7 +8,7 @@
   <div>
     <h1>Manage Users of <%= @site.name %></h1>
     <hr>
-    <h3>Current Users</h3>
+    <h4><%= @site.name %> Users</h4>
       <div id="site-user-list">
     <% @site.other_users(current_user).each do |user| %>
       <p>
@@ -25,9 +25,11 @@
     </div>
     <hr>
     <div class="overflow-visible">
-      <h3>Add Users</h3>
+      <h4>Add Users to <%= @site.name %></h4>
+      <p>If the person is already a MercuryApp user, use the search form below.</p>
       <%= render partial: "layouts/site_typeahead", locals: { site: @site } %> 
-      <h4 class="add-users-or">or</h4>
+      <p class="add-users-or">or</p>
+       <p>If the person isnt on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
       <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
     </div>
     <div>
