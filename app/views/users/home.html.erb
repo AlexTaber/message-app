@@ -8,22 +8,24 @@
   <div>
     <h1>Manage Users of <%= @site.name %></h1>
     <hr>
-    <h4><%= @site.name %> Users</h4>
-      <div id="site-user-list">
-    <% @site.other_users(current_user).each do |user| %>
-      <p>
-        <%= user.name %>
-        <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
-        <% if user.find_user_site(@site).admin %>
-          <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
-        <% else %>
-          <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
-        <% end %> </span>
-        <a href="#" class="manage-user-edit"><i class="fa fa-pencil"></i></a>
-      </p>
+    <% if @site.has_other_users?(current_user) %>
+      <h4><%= @site.name %> Users</h4>
+        <div id="site-user-list">
+      <% @site.other_users(current_user).each do |user| %>
+        <p>
+          <%= user.name %>
+          <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
+          <% if user.find_user_site(@site).admin %>
+            <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
+          <% else %>
+            <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+          <% end %> </span>
+          <a href="#" class="manage-user-edit"><i class="fa fa-pencil"></i></a>
+        </p>
+      <% end %>
+      </div>
+      <hr>
     <% end %>
-    </div>
-    <hr>
     <div class="overflow-visible">
       <h4>Add Users to <%= @site.name %></h4>
       <p>If the person is already a MercuryApp user, use the search form below.</p>

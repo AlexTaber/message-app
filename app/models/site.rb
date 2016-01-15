@@ -14,6 +14,10 @@ class Site < ActiveRecord::Base
     users.where.not(id: user.id)
   end
 
+  def has_other_users?(user)
+    other_users(user).count > 0 
+  end
+
   def non_member_users
     User.where.not(id: user_ids)
   end
