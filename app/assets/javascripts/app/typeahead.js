@@ -10,7 +10,7 @@ $(document).ready(function() {
       var site_users = response.site_users;
       var all_users = response.all_users;
 
-      var substringMatcher = function(users) {
+      var substringMatcher = function(users, query) {
         return function findMatches(q, cb) {
           var matches, substringRegex;
 
@@ -23,8 +23,14 @@ $(document).ready(function() {
           // iterate through the pool of strings and for any string that
           // contains the substring `q`, add it to the `matches` array
           $.each(users, function(i, user) {
-            if (substrRegex.test(user.name)) {
-              matches.push(user);
+            if(query == 'name') {
+              if (substrRegex.test(user.name)) {
+                matches.push(user);
+              }
+            } else {
+              if (substrRegex.test(user.username)) {
+                matches.push(user);
+              }
             }
           });
           cb(matches);
@@ -39,7 +45,7 @@ $(document).ready(function() {
       {
         name: 'site_users',
         displayKey: 'name',
-        source: substringMatcher(site_users)
+        source: substringMatcher(site_users, 'name')
       });
 
       $('.site-typeahead').typeahead({
@@ -49,8 +55,8 @@ $(document).ready(function() {
       },
       {
         name: 'all_users',
-        displayKey: 'name',
-        source: substringMatcher(all_users)
+        displayKey: 'username',
+        source: substringMatcher(all_users, 'username')
       });
       $('.convo-typeahead').on('typeahead:select', function (e, datum) {
         $("#user_id").val(datum['id']);

@@ -24,6 +24,7 @@ multi_site = Tier.create(
 )
 
 jerry = User.create(
+  username: "jerrypatterson",
   first_name: "Jerry",
   last_name: "Patterson",
   email: "info@peekskillwebdesign.com",
@@ -38,6 +39,7 @@ jerry_image = Image.create(
 )
 
 alex = User.create(
+  username: "alextaber",
   first_name: "Alex",
   last_name: "Taber",
   email: "me@at.com",
@@ -51,6 +53,7 @@ alex_image = Image.create(
 )
 
 dan = User.create(
+  username: "danintriligator",
   first_name: "Dan",
   last_name: "Intriligator",
   email: "me@di.com",
