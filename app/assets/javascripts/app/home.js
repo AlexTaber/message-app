@@ -32,7 +32,10 @@ jQuery(document).ready(function($){
   // User Chevron ------------------
   $('.menu-caret').on('click', function(){
     $(this).toggleClass('rotated');
-  })
+  });
+  $('.site-target').on('click', function(){
+    $(this).siblings('.menu-caret').toggleClass('rotated');
+  });
 
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);

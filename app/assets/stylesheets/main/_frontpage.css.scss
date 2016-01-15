@@ -346,7 +346,7 @@ ul.edit-site-list {
 
 .app-view {
 	width:100vw !important;
-	height: calc(100vh - 200px) !important;
+	height: calc(100vh - 250px) !important;
 	padding: 40px 20px 20px !important;
 	box-sizing:border-box;
 }
@@ -407,3 +407,4 @@ width:auto !important;
 }
 .manage-user-opts{display:none;}
 .site-user-list{overflow:scroll}
+.site-target{display:inline;}

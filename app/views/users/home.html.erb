@@ -136,9 +136,11 @@
       <% end %>
     </header>
   <nav class="site-list">
+  <% unless current_user.has_sites? %>
     <div class="welcome-msg">
-      <p>This section will list all of the sites you belong to automatically, as well as your admin sites. To create an admin site hit the plus next to "My Sites" You can always view message in the help section</p>
+      <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p>
     </div>
+  <% end %>
     <% current_user.active_sites_ordered_by_admin.each do |site| %>
 
     <% unless current_user.admin_of_site?(site) %>
@@ -158,8 +160,8 @@
             <i class="fa fa-user admin-profile"></i>
           <% end %>
           <% if site == @site %>
-          <b><%= link_to site.name, home_path(site_id: site.id) %></b>
-          <% else %>
+          <b class="open-accordian site-target"><%= link_to site.name, '#' %></b>
+          <% else %>,
           <%= link_to site.name, home_path(site_id: site.id) %>
           <% end %>
           <% if site == @admin_site %>
