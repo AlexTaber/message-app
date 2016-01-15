@@ -62,6 +62,7 @@ class UsersController < ApplicationController
     @new_conversation = Conversation.new
     current_user.admin_of_site?(@site) ? @admin_site = @site : @admin_site = nil
     current_user.add_visit
+    @invite = Invite.new
   end
 
   def message_box_data

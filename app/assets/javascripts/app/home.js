@@ -219,7 +219,8 @@ function listenForNewConvos() {
   channel = pusher.subscribe('new-conversation' + String(userId));
   channel.bind('new-conversation', function(data){
     if(siteId == data.site_id) {
-      $(".message-bar").append(data.app_html);
+      //$(".current-site-data").after(data.app_html);
+      $(".new-convo-placeholder").after(data.app_html);
     }
   });
 }
