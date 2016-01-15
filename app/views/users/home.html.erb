@@ -202,7 +202,7 @@
       </header>
   </nav>
 
-  <% if @conversation.new_record? && current_user.has_active_sites?  %>      
+  <% if @conversation.new_record? && current_user.has_active_sites?  %>
     <div class="message-item msg-item-current new-convo-placeholder">
     <div class="media">
          <% if current_user.image %>
@@ -224,7 +224,7 @@
   </div>
 <% end %>
 
-<% current_user.conversations_by_site(@site).each do |conversation| %>
+<% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
   <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
     <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user } %>
   </div>
