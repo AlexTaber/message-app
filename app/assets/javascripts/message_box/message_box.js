@@ -43,7 +43,6 @@ jQuery(document).ready(function($){
 
   $('.flash').delay(3000).fadeOut();
 
-});
   //hide dropdowns on window resize
     if ($('body').width() > 450) {
       $('.msg-bx-body').fadeIn();
