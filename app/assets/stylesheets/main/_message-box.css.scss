@@ -52,6 +52,7 @@
   -o-animation: bounce 2s;
 }
 #pwd-open-btn{
+  font-family: "lato","Helvetica Neue", Helvetica, Arial, sans-serif;
   position:absolute;
   top:7px;
   right: 10px;
@@ -303,11 +304,11 @@
 #msg-bx-convos-drop{
   width:400px;
   right:24px;
-      .unread-bg {
-      animation: unread 5s infinite;
-  -webkit-animation: unread 5s infinite;
-  -moz-animation: unread 5s infinite;
-  -o-animation: unread 5s infinite;
+  .unread-bg {
+    animation: unread 5s infinite;
+    -webkit-animation: unread 5s infinite;
+    -moz-animation: unread 5s infinite;
+    -o-animation: unread 5s infinite;
   }
 }
 .msg-bx-convo-data {
@@ -340,11 +341,10 @@
 //------conversation meta data
 
 .msg-bx-info {
-  height:50px;
-  overflow-y: scroll;
-  text-align: center;
-  padding:2px;
+  padding:10px;
+  height:45px;
   background: #f5f5f5;
+  overflow:visible;
   p {
     margin-bottom: 0;
   }
@@ -360,7 +360,7 @@
   border-bottom: 1px solid #ddd;
   z-index: -1;
   p {
-    max-width:200px;
+    max-width:250px;
     min-width: 100px;
     margin-left: 50px;
     border-radius: 0 10px 10px 10px;
@@ -432,8 +432,7 @@ width:100%;
   position:relative;
   text-align:center;
   background:#f5f5f5;
-  padding-bottom:5px;
-  display: none;
+  display:inline-block;
   overflow: visible;
   input{
     background: #f5f5f5;
@@ -446,6 +445,10 @@ width:100%;
 .add-users-msg-bx {
   display: inline;
   cursor: pointer;
+  overflow:visible;
+  i {
+  padding-top: 6px;
+}
 }
 
 
