@@ -144,7 +144,7 @@
       <div class="non-admin-user">
     <% else %>
       <div>
-    <% end %> 
+    <% end %>
       <% if current_user.has_unread_conversations_by_site?(site) %>
         <li class="unread unread-convo-app">
       <% else %>
@@ -175,7 +175,7 @@
                   <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
                 </li>
                 <li>
-                  <%= link_to "Remove", site_path(@site), method: "delete" %>
+                  <%= link_to "Remove", "#", class: "activate-modal", name: "delete" %>
                 </li>
             </ul>
           </div>
@@ -198,10 +198,10 @@
       </div>
       </header>
   </nav>
-  <% if @conversation.new_record? %>      
+  <% if @conversation.new_record? %>
     <div class="message-item msg-item-current new-convo-placeholder">
     <div class="media">
-  
+
          <% if current_user.image %>
         <div class="profile-pic u-pull-left app-view-p-img">
           <img class="profile-pic" src="<%= current_user.image_url %>">

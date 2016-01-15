@@ -60,6 +60,10 @@ $(document).ready(function() {
         $("#user_id").val(datum['id']);
       });
 
+      $('.site-typeahead').on('typeahead:select', function (e, datum) {
+        $("#add-user-id").val(datum['id']);
+        $('#site-typeahead').submit();
+      });
       $('.site-typeahead').on('typeahead:cursorchange', function (e, datum) {
         $("#add-user-id").val(datum['id']);
       });
