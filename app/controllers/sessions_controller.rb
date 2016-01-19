@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
   end
 
   def splash
+    redirect_to home_path if current_user
   end
 
   def mb_new
