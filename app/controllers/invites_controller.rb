@@ -10,7 +10,7 @@ class InvitesController < ApplicationController
       @invite.save
       send_invite_email
       flash[:notice] = "Invite sent!"
-      redirect_to root_path
+      redirect_to home_path
     else
       flash[:warn] = "Unable to send invite, please try again"
       redirect_to :back
