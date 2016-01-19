@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
   default from: "Mercury App <no-reply@mercuryapp.co>"
 
   def welcome_email(user)
-    @url = "http://localhost:3000/home"
+    @url = "http://www.mercuryapp.co/home"
     @user = user
     mail(to: user.email, subject: "Thank You for Joining MercuryApp", from: "MercuryApp <admin@mercuryapp.co>")
   end
@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
     @site = site
     @user = user
     @inviter = inviter
-    @url = "http://localhost:3000/home/?site_id=#{@site.id}"
+    @url = "http://www.mercuryapp.co/home/?site_id=#{@site.id}"
     mail(to: user.email, subject: "You've Been Added to #{site.name}", from: "MercuryApp <admin@mercuryapp.co>")
   end
 
@@ -31,7 +31,7 @@ class UserMailer < ApplicationMailer
   def password_recovery_email(user, password_recovery)
     @user = user
     @password_recovery = password_recovery
-    @url = "http://localhost:3000/password_recoveries/#{password_recovery.id}/check?token=#{password_recovery.token}"
+    @url = "http://www.mercuryapp.co/password_recoveries/#{password_recovery.id}/check?token=#{password_recovery.token}"
     mail(to: user.email, subject: "Password Recovery", from: "Mercury Password Recovery <no-reply@mercuryapp.co>")
   end
 
