@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.assign_attributes(email: @user.email.downcase)
 
     if @user.valid?
       @user.save
