@@ -34,4 +34,9 @@ class UserMailer < ApplicationMailer
     @url = "http://localhost:3000/password_recoveries/#{password_recovery.id}/check"
     mail(to: user.email, subject: "Password Recovery", from: "Mercury Password Recovery <no-reply@mercuryapp.co>")
   end
+
+  def monthly_email(user)
+    @user = user
+    mail(to: user.email, subject: "Monthly Newsletter from MercuryApp", from: "MercuryApp Newsletter <no-reply@mercuryapp.co>")
+  end
 end
