@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
+      send_welcome_email(@user)
       upload_image(params[:user][:file]) if params[:user][:file]
       set_up_invite if params[:invite_token]
       flash[:notice] = "User successfully created"
@@ -178,5 +179,9 @@ class UsersController < ApplicationController
     else
       @conversation.users << current_user
     end
+  end
+
+  def send_welcome_email(user)
+    UserMailer.welcome_email(user).deliver_now
   end
 end
