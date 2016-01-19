@@ -12,3 +12,5 @@
 !/log/.keep
 /tmp
 config/env.yml
+server.key
+server.pass.key
