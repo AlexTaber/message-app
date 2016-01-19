@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @user.name %>!</h1>
+    <p>
+      You have just been added by <%= @inviter.name %> to join <%= @site.name %>!<br>
+    </p>
+    <p>
+      Please <a href="<%= @url %>">click here</a> to start sending messages to members of <%= @site.name %>.
+    </p>
+    <p>Thanks for your time and have a great day!</p>
+  </body>
+</html>

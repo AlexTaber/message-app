@@ -79,6 +79,7 @@ class SitesController < ApplicationController
               admin: false
             )
 
+            send_added_to_site_email(User.find_by(id: user_id), @site, current_user)
             set_up_notification(user_id, @site)
           end
         else
@@ -108,5 +109,9 @@ class SitesController < ApplicationController
 
   def send_site_email
     UserMailer.site_email(current_user, @site).deliver_now
+  end
+
+  def send_added_to_site_email(user, site, inviter)
+    UserMailer.added_to_site_email(user, site, inviter).deliver_now
   end
 end

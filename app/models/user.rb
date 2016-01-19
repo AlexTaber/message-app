@@ -136,4 +136,12 @@ class User < ActiveRecord::Base
   def active_sites_ordered_by_admin
     user_sites.order(admin: :desc).collect(&:site).select(&:active)
   end
+
+  def self.send_monthly_emails
+    all.each(&:send_monthly_email)
+  end
+
+  def send_monthly_email
+    UserMailer.monthly_email(self).deliver_now
+  end
 end
