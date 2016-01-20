@@ -1,30 +1,30 @@
 <%= javascript_include_tag "message_box/message_box" %>
 <div id="msg-bx">
 	<% if current_user.has_unread_conversations_by_site?(@site) %>
-    <header class="brand-color unread-flash">
+    <header class="mb-header is-unread">
   <% else %>
-    <header class="brand-color">
+    <header class="mb-header">
   <% end %>
     <p>
       <span>This is Your Message Center</span>
-      <span id="msg-bx-nav-icons">
+      <span id="mb-header_icons">
         <%= link_to login_path, target: '_blank' do %>
         <i class="fa fa-home"></i>
         <% end %>
-        <i class="fa fa-globe" id="msg-bx-sites-btn"></i>
-        <i class="fa fa-comment" id="msg-bx-convos-btn"></i>
-        <i class="fa fa-user" id="msg-bx-acct-btn"></i>
+        <i class="fa fa-globe" id="sites-btn"></i>
+        <i class="fa fa-comment" id="convos-btn"></i>
+        <i class="fa fa-user" id="acct-btn"></i>
       </span>
     </p>
 
-    <div id="msg-bx-convos-drop" class="msg-bx-dropdown">
-      <div class="msg-bx-tab">
-        <a href="#" class="inactive"><b>Users on this site</b></a>
+    <div id="mb-convos-dropdown" class="mb-dropdown">
+      <div class="mb-convos-dropdown_tabs">
+        <a href="#" class="is-inactive"><b>Users on this site</b></a>
         <a href="#"><b>Your Conversations</b></a>
       </div>
-      <div class="tab-content">
-        <div id="msg-bx-users">
-          <ul id="msg-bx-user-list">
+      <div class="mb-convos-dropdown_tab-content">
+        <div id="mb-convos-dropdown_tab-content_users">
+          <ul id="mb-user-list">
             <% @site.other_users(current_user).each do |user| %>
             <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
             <li>
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <% else %>
-              <div class="profile-pic no--pic">
+              <div class="profile-pic .has-no-pic">
                 <div class="table-cell"><%= user.first_name[0] %></div>
               </div>
               <% end %>
@@ -46,8 +46,8 @@
           </ul>
         </div>
 
-        <div id="msg-bx-convos">
-          <div id='msg-bx-convos-list'>
+        <div id="mb-convos-dropdown_tab-content_convos">
+          <div id='convos-list'>
             <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
             <% if conversation.has_unread_messages?(current_user) %>
             <div class="msg-bx-convo-item unread-bg">
@@ -69,9 +69,9 @@
         </div>
       </div>
 
-      <div id="msg-bx-sites-drop" class="msg-bx-dropdown">
+      <div id="mb-sites-dropdown" class="mb-dropdown">
         <p><b>Your Sites</b></p>
-        <ul id='msg-bx-site-list'>
+        <ul id='site-list'>
           <% current_user.sites.each do |site| %>
           <li>
             <% if @site == site %>
@@ -84,9 +84,9 @@
         </ul>
       </div>
 
-      <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
+      <div id="mb-acct-dropdown" class="mb-dropdown">
         <p><b>Your Account</b></p>
-        <ul id='msg-bx-acct-list'>
+        <ul id='acct-list'>
           <li>
             <%= link_to 'Edit Account', edit_user_path(current_user) %>
           </li>

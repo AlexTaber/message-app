@@ -1,152 +1,170 @@
 <%= javascript_include_tag "message_box/message_box" %>
 
+<!--# Message Box #-->
 <div id="msg-bx">
+
+  <!--# Message Box Header #-->
   <% if current_user.has_unread_conversations_by_site?(@site) %>
-    <header class="brand-color unread-flash">
+    <header class="mb-header is-unread">
   <% else %>
-    <header class="brand-color">
+    <header class="mb-header">
   <% end %>
-    <p>
-      <span>Mercury<b>App</b></span>
-      | <%= current_user.name %>
-      <span id="msg-bx-nav-icons">
-        <%= link_to login_path, target: '_blank' do %>
-        <i class="fa fa-home"></i>
-        <% end %>
-        <i class="fa fa-globe" id="msg-bx-sites-btn"></i>
-        <i class="fa fa-comment" id="msg-bx-convos-btn"></i>
-        <i class="fa fa-user" id="msg-bx-acct-btn"></i>
-      </span>
-    </p>
+      <p>
+        <span>Mercury<b>App</b></span>
+|       <%= current_user.name %>
+        <span id="mb-header_icons">
+          <%= link_to login_path, target: '_blank' do %>
+            <i class="fa fa-home"></i>
+          <% end %>
+          <i class="fa fa-globe" id="sites-btn"></i>
+          <i class="fa fa-comment" id="convos-btn"></i>
+          <i class="fa fa-user" id="acct-btn"></i>
+        </span>
+      </p>
+    </header>
+    <!--# END Message Box Header #-->
 
-    <div id="msg-bx-convos-drop" class="msg-bx-dropdown">
-      <div class="msg-bx-tab">
-        <a href="#" class="inactive"><b>Users on this site</b></a>
-        <a href="#"><b>Your Conversations</b></a>
-      </div>
-      <div class="tab-content">
-        <div id="msg-bx-users">
-          <ul id="msg-bx-user-list">
-            <% @site.other_users(current_user).each do |user| %>
-            <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
-            <li>
-              <% if user.image %>
-              <div class="profile-pic">
-                <div class="table-cell">
-                  <img src="<%= user.image_url %>">
-                </div>
-              </div>
-              <% else %>
-              <div class="profile-pic no--pic">
-                <div class="table-cell"><%= user.first_name[0] %></div>
-              </div>
-              <% end %>
-              <div class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></div>
-            </li>
-            <% end %>
-            <% end %>
-          </ul>
+      <!--# Message Box Dropdowns #-->
+      <div id="mb-convos-dropdown" class="mb-dropdown">
+
+        <!--# Conversation Tabbed Dropdown #-->
+        <div class="mb-convos-dropdown_tabs">
+          <a href="#" class="is-inactive"><b>Users on this site</b></a>
+          <a href="#"><b>Your Conversations</b></a>
         </div>
-
-        <div id="msg-bx-convos">
-          <div id='msg-bx-convos-list'>
-            <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
-              <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user } %>
-            <% end %>
+        <div class="mb-convos-dropdown_tab-content">
+          <div id="mb-convos-dropdown_tab-content_users">
+            <ul id="mb-user-list">
+              <% @site.other_users(current_user).each do |user| %>
+                <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
+                  <li>
+                    <% if user.image %>
+                      <div class="profile-pic">
+                        <div class="table-cell">
+                          <img src="<%= user.image_url %>">
+                        </div>
+                      </div>
+                    <% else %>
+                      <div class="profile-pic .has-no-pic">
+                        <div class="table-cell">
+                          <%= user.first_name[0] %>
+                        </div>
+                      </div>
+                    <% end %>
+                    <div class="table-cell">
+                      <%= "#{user.last_name}, #{user.first_name}" %>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+          <div id="mb-convos-dropdown_tab-content_convos">
+            <div id='convos-list'>
+              <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
+                <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user } %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <!--# END Conversation Tabbed Dropdown #-->
 
-    <div id="msg-bx-sites-drop" class="msg-bx-dropdown">
-      <p><b>Your Sites</b></p>
-      <ul id='msg-bx-site-list'>
-        <% current_user.sites.each do |site| %>
-        <li>
-          <% if @site == site %>
-          <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
-          <% else %>
-          <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+      <!--# Sites Dropdown #-->
+      <div id="mb-sites-dropdown" class="mb-dropdown">
+        <p><b>Your Sites</b></p>
+        <ul id='site-list'>
+          <% current_user.sites.each do |site| %>
+            <li>
+              <% if @site == site %>
+                <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'is-active' %>
+              <% else %>
+                <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+              <% end %>
+            </li>
           <% end %>
-        </li>
-        <% end %>
-      </ul>
-    </div>
+        </ul>
+      </div>
+      <!--# END Sites Dropdown #-->
 
-      <div id="msg-bx-acct-drop" class="msg-bx-dropdown">
+      <!--# Sites Dropdown #-->
+      <div id="mb-acct-dropdown" class="mb-dropdown">
         <p><b>Your Account</b></p>
-        <ul id='msg-bx-acct-list'>
+        <ul id='acct-list'>
           <li>
             <%= link_to 'Edit Account', edit_user_path(current_user), target: '_blank' %>
           </li>
           <li>
-            <%= link_to 'Upgrade', root_path, target: '_blank' %>
+            <%= link_to 'Upgrade', edit_user_path(current_user), target: '_blank' %>
           </li>
           <li>
             <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
           </li>
         </ul>
       </div>
+      <!--# END Sites Dropdown #-->
 
-  </header>
 
-  <div class="msg-bx-body-cntn">
-    <% if @conversation.has_users? %>
-      <div class="msg-bx-body">
-        <!-- view for saved conversation -->
-        <div class="msg-bx-info">
-          <p style="display:inline"><i>To: </i><b><%= @conversation.other_users_to_s(current_user) %> </b> <a herf="#" class='add-users-msg-bx'><i class="fa fa-plus add-btn" style="padding-right:10px"></i></a></p>
-        <div class="add-user-to-msg-bx">
-          <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
-        </div>
-        </div>
-        <div class="msg-bx-convo">
-          <% @conversation.messages.each do |message| %>
-            <%= render partial: "messages/message", locals: { message: message } %>
-          <% end %>
-          <% if @site.users.length == 1 %>
-            <div class="text-center">
-              Looks as if your don't have any users for this site. Head over to <%= link_to "mercuryapp.co", home_path, target: "blank" %> to add some!
+    <!--# Message Box Body #-->
+    <div class="mb-body-wrapper">
+      <% if @conversation.has_users? %>
+        <div class="mb-body">
+          <!-- view for saved conversation -->
+          <div class="mb-body_info">
+            <p style="display:inline"><i>To: </i><b><%= @conversation.other_users_to_s(current_user) %> </b> <a herf="#" class='mb-body_add-users-btn'><i class="fa fa-plus add-btn" style="padding-right:10px"></i></a></p>
+            <div class="mb-body_add-users-form">
+              <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
             </div>
-          <% elsif @conversation.users.length <= 1 %>
-            <div class="text-center" >Add users to this conversation by pressing the plus icon above!</div>
-          <% end %>
-        </div>
-
-        <div class="msg-bx-bottom">
-          <% if @conversation.new_record? %>
-            <%= form_for @conversation, html: { id: "new-conversation-form" } do |f| %>
-              <p>
-                <% if @conversation.users.length > 1 %>
-                  <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
-                <% end %>
-              </p>
-
-              <% @conversation.user_ids.each do |user_id| %>
-                <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
-              <% end %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.hidden_field :site_id, value: @site.id %>
+          </div>
+          <div class="msg-bx-convo">
+            <% @conversation.messages.each do |message| %>
+              <%= render partial: "messages/message", locals: { message: message } %>
             <% end %>
-          <% else %>
-            <%= form_for @message do |f| %>
+            <% if @site.users.length == 1 %>
+              <div class="text-center">
+                Looks as if your don't have any users for this site. Head over to <%= link_to "mercuryapp.co", home_path, target: "blank" %> to add some!
+              </div>
+            <% elsif @conversation.users.length <= 1 %>
+              <div class="text-center" >
+                Add users to this conversation by pressing the plus icon above!
+              </div>
+            <% end %>
+          </div>
+          <!--# END Message Box Body #-->
+
+          <!--# Message Box Form #-->
+          <div class="msg-bx-bottom">
+            <% if @conversation.new_record? %>
+              <%= form_for @conversation, html: { id: "new-conversation-form" } do |f| %>
+                <p>
+                  <% if @conversation.users.length > 1 %>
+                    <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
+                  <% end %>
+                </p>
+                <% @conversation.user_ids.each do |user_id| %>
+                  <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
+                <% end %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :site_id, value: @site.id %>
+              <% end %>
+            <% else %>
+              <%= form_for @message do |f| %>
               <p>
                 <%= f.text_area :content, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
               </p>
               <%= f.hidden_field :conversation_id, value: @conversation.id %>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.hidden_field :site_id, value: @site.id %>
-              <!--<%= f.submit "Submit", :class => 'button button-primary brand-color'  %>-->
             <% end %>
           <% end %>
         </div>
       </div>
-      <% else %>
-        <!-- default conversation view -->
-        <div class="no-convo text-center">
-          <h4>You Have No Conversations... Yet</h4>
-          <p> You can get started by clicking the <i class="fa fa-comment" id="msg-bx-convos-btn"></i> icon above.</p>
-        </div>
-      <% end %>
-    </div>
+    <% else %>
+    <!-- default conversation view -->
+      <div class="no-convo text-center">
+        <h4>You Have No Conversations... Yet</h4>
+        <p> You can get started by clicking the <i class="fa fa-comment"></i> icon above.</p>
+      </div>
+    <% end %>
   </div>
+</div>
