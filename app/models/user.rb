@@ -144,4 +144,17 @@ class User < ActiveRecord::Base
   def send_monthly_email
     UserMailer.monthly_email(self).deliver_now
   end
+
+  def is_memeber_of_site?(site)
+    user_sites.where(site_id: site.id).count > 0
+  end
+
+  def is_not_member_of_site?(site)
+    !is_memeber_of_site?(site)
+  end
+
+  def can_send_request(potential_request)
+    return false unless potential_request.valid?
+    is_not_member_of_site?(potential_request.site)
+  end
 end

@@ -9,6 +9,8 @@ $(document).ready(function() {
     }).done(function(response){
       var site_users = response.site_users;
       var all_users = response.all_users;
+      var all_sites = response.all_sites;
+      console.log(response);
 
       var substringMatcher = function(users, query) {
         return function findMatches(q, cb) {
@@ -58,6 +60,18 @@ $(document).ready(function() {
         displayKey: 'username',
         source: substringMatcher(all_users, 'username')
       });
+
+      $('.request-typeahead').typeahead({
+        hint: false,
+        highlight: true,
+        minLength: 1,
+      },
+      {
+        name: 'all_sites',
+        displayKey: 'name',
+        source: substringMatcher(all_sites, 'name')
+      });
+
       $('.convo-typeahead').on('typeahead:select', function (e, datum) {
         $("#user_id").val(datum['id']);
         $('.typeahead-form').submit();
@@ -72,6 +86,14 @@ $(document).ready(function() {
       });
       $('.site-typeahead').on('typeahead:cursorchange', function (e, datum) {
         $("#add-user-id").val(datum['id']);
+      });
+
+      $('.request-typeahead').on('typeahead:select', function (e, datum) {
+        $("#request_site_id").val(datum['id']);
+        $('#request-typeahead').submit();
+      });
+      $('.request-typeahead').on('typeahead:cursorchange', function (e, datum) {
+        $("#request_site_id").val(datum['id']);
       });
       //end ajax response---
     });

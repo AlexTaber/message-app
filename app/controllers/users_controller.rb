@@ -65,6 +65,7 @@ class UsersController < ApplicationController
     current_user.admin_of_site?(@site) ? @admin_site = @site : @admin_site = nil
     current_user.add_visit
     @invite = Invite.new
+    @request = Request.new
   end
 
   def message_box_data
@@ -106,10 +107,13 @@ class UsersController < ApplicationController
     if site
       render json: {
         site_users: site.typeahead_users_data(current_user),
-        all_users: site.non_member_users_data
+        all_users: site.non_member_users_data,
+        all_sites: Site.all_sites_data
       }.to_json
     else
-      render text: "No Site Found"
+      render json: {
+        all_sites: Site.all_sites_data
+      }.to_json
     end
   end
 

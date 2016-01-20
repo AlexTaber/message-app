@@ -15,7 +15,7 @@ class Site < ActiveRecord::Base
   end
 
   def has_other_users?(user)
-    other_users(user).count > 0 
+    other_users(user).count > 0
   end
 
   def non_member_users
@@ -48,5 +48,13 @@ class Site < ActiveRecord::Base
 
   def has_pending_requests?
     pending_requests.count > 0
+  end
+
+  def self.all_sites_data
+    all.map(&:typeahead_data)
+  end
+
+  def typeahead_data
+    { name: name, id: id }
   end
 end

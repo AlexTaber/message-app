@@ -58,6 +58,14 @@
   </div>
 </div>
 
+<div id='send-request' class='modal-window'>
+  <div>
+    <h1>Send Request</h1>
+    <%= render partial: "requests/typeahead", locals: { my_request: @request } %>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+</div>
+
 <div id='delete' class='modal-window'>
   <div>
     <h1>Are you sure you want to delete your site?</h1>
@@ -149,12 +157,6 @@
         <button class="button button-primary activate-modal" name="window">Add Site</button>
       </div>
     </div>
-    <div class="welcome-msg">
-      <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>
-      <div class="text-center">
-        <button class="button button-primary">Send Request</button>
-      </div>
-    </div>
   <% end %>
     <% current_user.active_sites_ordered_by_admin.each do |site| %>
 
@@ -201,6 +203,14 @@
         </li>
       </div>
     <% end %>
+    <div class="send-request">
+      <div class="welcome-msg">
+        <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>
+        <div class="text-center">
+          <button class="button button-primary activate-modal" name="send-request">Send Request</button>
+        </div>
+      </div>
+    </div>
   </nav>
 </div>
 <!-- End Your Sites Sidebar -->
