@@ -3,7 +3,7 @@
 <% if message.user.image %>
   <img class="profile-pic" src="<%= message.user.image_url %>">
 <% else %>
-  <div class="profile-pic no--pic"><div class="table-cell"><%= message.user.first_name[0] %></div></div>
+  <div class="profile-pic .has-no-pic"><div class="table-cell"><%= message.user.first_name[0] %></div></div>
 <% end %>
 <p class="self-pwd">
   <%= sanitize(simple_format(message.content.gsub(/(?:\n\r?|\r\n?)/, '<br> <a>')), :tags => %w(br a)) %>
