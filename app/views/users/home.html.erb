@@ -29,7 +29,7 @@
     <div class="overflow-visible">
       <h4>Add Users to <%= @site.name %></h4>
       <p>If the person is already a MercuryApp user, use the search form below.</p>
-      <%= render partial: "layouts/site_typeahead", locals: { site: @site } %> 
+      <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
       <p class="add-users-or">or</p>
        <p>If the person isnt on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
       <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
@@ -54,6 +54,14 @@
   <div>
     <h1>Awesome! Let's update your site</h1>
     <%= render partial: "sites/form", locals: { site: @site } %>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+</div>
+
+<div id='send-request' class='modal-window'>
+  <div>
+    <h1>Send Request</h1>
+    <%= render partial: "requests/typeahead", locals: { my_request: @request } %>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
@@ -144,7 +152,10 @@
   <nav class="site-list">
   <% unless current_user.has_active_sites? %>
     <div class="welcome-msg">
-      <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p>
+      <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <!-- <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p> -->
+      <div class="text-center">
+        <button class="button button-primary activate-modal" name="window">Add Site</button>
+      </div>
     </div>
   <% end %>
     <% current_user.active_sites_ordered_by_admin.each do |site| %>
@@ -192,6 +203,14 @@
         </li>
       </div>
     <% end %>
+    <div class="send-request">
+      <div class="welcome-msg">
+        <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>
+        <div class="text-center">
+          <button class="button button-primary activate-modal" name="send-request">Send Request</button>
+        </div>
+      </div>
+    </div>
   </nav>
 </div>
 <!-- End Your Sites Sidebar -->

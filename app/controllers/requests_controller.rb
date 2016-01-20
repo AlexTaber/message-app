@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
 
-    if @request.valid?
+    if current_user.can_send_request(@request)
       @request.save
       flash[:notice] = "Request sent"
     else
