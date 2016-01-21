@@ -6,7 +6,7 @@ class InvitesController < ApplicationController
   def create
     @invite = Invite.new(invite_params)
 
-    if @invite.valid?
+    if @invite.can_be_sent?
       @invite.save
       send_invite_email
       flash[:notice] = "Invite sent!"
