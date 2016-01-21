@@ -25,13 +25,10 @@
       <div id="mb-convos-dropdown" class="mb-dropdown">
 
         <!--# Conversation Tabbed Dropdown #-->
-        <div class="mb-convos-dropdown_tabs">
-          <a href="#" class="is-inactive"><b>Users on this site</b></a>
-          <a href="#"><b>Your Conversations</b></a>
-        </div>
         <div class="mb-convos-dropdown_tab-content">
           <div id="mb-convos-dropdown_tab-content_users">
             <ul id="mb-user-list">
+            <p class="text-center"><b>Users on this Site</b></p>
               <% @site.other_users(current_user).each do |user| %>
                 <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
                   <li>
@@ -58,6 +55,7 @@
           </div>
           <div id="mb-convos-dropdown_tab-content_convos">
             <div id='convos-list'>
+            <p class="text-center"><b>Your Conversations</b></p>
               <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
                 <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user } %>
               <% end %>
