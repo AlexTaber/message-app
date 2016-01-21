@@ -1,8 +1,10 @@
-<%= form_tag subscription_path(current_user.subscription), method: "PUT" do %>
-  <div class="tier-select">
-    <p><b> Choose Your Level</b></p>
-    <%= collection_radio_buttons nil, :tier_id, Tier.all_published, :id, :name, checked: current_user.tier_id %>
-  </div>
+<div class="display-table text-center">
+  <div class="centered">
 
-  <%= submit_tag "Send", class: "button button-primary" %>
-<% end %>
+<%= render partial: "form", locals: { subscription: @subscription, tier_id: @tier_id, card_token: @card_token } %>
+
+<div id="stripe_error">
+  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+</div>
+</div>
+</div>

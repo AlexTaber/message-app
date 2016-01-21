@@ -5,6 +5,15 @@ class Subscription < ActiveRecord::Base
 
   attr_accessor :stripe_card_token
 
+  def get_card_token
+    customer = Stripe::Customer.retrieve(stripe_customer_token)
+    customer.default_source
+  end
+
+  def needs_card_token(tier_id)
+    !get_card_token && tier_id != 1
+  end
+
   def save_with_payment(tier_id)
     if valid?
       customer = Stripe::Customer.create(description: user.email, plan: tier_id - 1, card: stripe_card_token)
@@ -22,10 +31,12 @@ class Subscription < ActiveRecord::Base
 
   def upgrade(tier_id)
     customer = Stripe::Customer.retrieve(stripe_customer_token)
+    customer.sources.create({ source: stripe_card_token }) if needs_card_token(tier_id)
     subscription = customer.subscriptions.retrieve(stripe_subscription_token)
     subscription.plan = tier_id - 1
     subscription.save
     self.stripe_subscription_token = subscription.id
+    user.update_attribute(:tier_id, tier_id)
 
   rescue Stripe::InvalidRequestError => e
     user.update_attribute(:tier_id, 1)
