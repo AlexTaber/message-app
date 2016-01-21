@@ -74,26 +74,6 @@
 
 
 //--------------------------message-view
-@keyframes unread {
-  0%{}
-  50%{background-color: #8dbce9;}
-  100%{}
-}
-@-webkit-keyframes unread-conv {
-    0%{}
-  50%{background-color: #8dbce9;}
-  100%{}
-}
-  @-moz-keyframes unread-convo {
-    0%{}
-  50%{background-color: #8dbce9;}
-  100%{}
-}
-  @-o-keyframes unread-convo {
-    0%{}
-  50%{background-color: #8dbce9;}
-  100%{}
-}
 //------defaults
 
 .mb-header{
@@ -105,11 +85,8 @@
     opacity: .8;
   }
 }
-.is-unread{
-  animation: unread 5s infinite;
-  -webkit-animation: unread 5s infinite;
-  -moz-animation: unread 5s infinite;
-  -o-animation: unread 5s infinite;
+.is-unread {
+  background-color: #D9ECFC;
 }
 // profile pic default
 .profile-pic {

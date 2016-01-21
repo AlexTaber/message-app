@@ -166,10 +166,10 @@
       <div>
     <% end %>
       <% if current_user.has_unread_conversations_by_site?(site) %>
-        <li class="unread unread-convo-app">
-      <% else %>
+        <li class="is-unread">
+      <% else %>   
         <li>
-      <% end %>
+      <% end %>    
           <% if site == @admin_site %>
               <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
           <% end %>
