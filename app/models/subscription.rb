@@ -1,6 +1,8 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
 
+  validates :user_id, presence: true
+
   attr_accessor :stripe_card_token
 
   def save_with_payment(tier_id)

@@ -6,6 +6,8 @@ class Conversation < ActiveRecord::Base
   has_many :messages
   belongs_to :site
 
+  validates :site_id, presence: true
+
   def content_preview(length)
     messages.last.content_preview(length)
   end

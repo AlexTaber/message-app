@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   has_many :invites
   belongs_to :tier
 
+  validates :username, :first_name, :last_name, :email, :password_digest, presence: true
+  validates :email, :username, uniqueness: true
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
+
   def name
     "#{first_name} #{last_name}"
   end

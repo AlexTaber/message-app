@@ -6,6 +6,9 @@ class Site < ActiveRecord::Base
   has_many :users, through: :user_sites
   has_many :requests
 
+  validates :name, :url, presence: true
+  validates :name, :url, uniqueness: true
+
   def has_conversations?
     conversations.count > 0
   end
