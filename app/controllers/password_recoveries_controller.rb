@@ -10,6 +10,7 @@ class PasswordRecoveriesController < ApplicationController
     @password_recovery = PasswordRecovery.new(user_id: @user.id)
 
     if @password_recovery.valid?
+      @user.invalidate_password_recoveries
       @password_recovery.save
       send_password_recovery_email
       flash[:notice] = "Password recovery email sent to #{@password_recovery.user.email}"
@@ -30,10 +31,15 @@ class PasswordRecoveriesController < ApplicationController
   def verify
     if @password_recovery
       if params[:token] = @password_recovery.token
-        @password_recovery.user.update_attribute(:password, params[:password])
-        @password_recovery.update_attribute(:active, false)
-        cookies.permanent.signed[:user_id] = @password_recovery.user.id
-        redirect_to home_path
+        if params[:confirm_password] == params[:password]
+          @password_recovery.user.update_attribute(:password, params[:password])
+          @password_recovery.update_attribute(:active, false)
+          cookies.permanent.signed[:user_id] = @password_recovery.user.id
+          redirect_to home_path
+        else
+          flash[:warn] = "Password/Confirm Password fields do not match, please try again"
+          redirect_to :back
+        end
       else
         flash[:warn] = "Your Token is Invalid"
         redirect_to :back

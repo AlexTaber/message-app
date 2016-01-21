@@ -9,8 +9,12 @@
   </div>
 
   <div style="margin:15px 0;">
+    <%= f.password_field :password, placeholder: "Password" %> &nbsp;
+    <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %>
+  </div>
+
+  <div style="margin:15px 0;">
     <%= f.text_field :email, placeholder:"Email" %> &nbsp;
-    <%= f.password_field :password, placeholder: "Password" %>
   </div><br>
 
   <div style="margin:15px 0;">
@@ -23,7 +27,7 @@
 
   <div class="tier-select">
     <p><b> Choose Your Level</b></p>
-    <%= collection_radio_buttons nil, :tier_id, Tier.all, :id, :name, checked: default_tier_id %>
+    <%= collection_radio_buttons nil, :tier_id, Tier.all_published, :id, :name, checked: default_tier_id %>
   </div>
 
   <% if @invite_token %>

@@ -26,7 +26,8 @@ multi_site = Tier.create(
 admin_tier = Tier.create(
   name: "Admin",
   admin_sites: 1001,
-  users_per_site: 1000
+  users_per_site: 1000,
+  published: false
 )
 
 jerry = User.create(

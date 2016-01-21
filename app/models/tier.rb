@@ -8,4 +8,8 @@ class Tier < ActiveRecord::Base
   def permit_site_user(site)
     site.users.count < users_per_site
   end
+
+  def self.all_published
+    all.where(published: true)
+  end
 end
