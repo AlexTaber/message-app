@@ -25,37 +25,15 @@
       <div id="mb-convos-dropdown" class="mb-dropdown">
 
         <!--# Conversation Tabbed Dropdown #-->
-        <div class="mb-convos-dropdown_tab-content">
-          <div id="mb-convos-dropdown_tab-content_users">
-            <ul id="mb-user-list">
-            <p class="text-center"><b>Users on this Site</b></p>
-              <% @site.other_users(current_user).each do |user| %>
-                <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
-                  <li>
-                    <% if user.image %>
-                      <div class="profile-pic">
-                        <div class="table-cell">
-                          <img src="<%= user.image_url %>">
-                        </div>
-                      </div>
-                    <% else %>
-                      <div class="profile-pic has-no-pic">
-                        <div class="table-cell">
-                          <%= user.first_name[0] %>
-                        </div>
-                      </div>
-                    <% end %>
-                    <div class="table-cell">
-                      <%= "#{user.last_name}, #{user.first_name}" %>
-                    </div>
-                  </li>
-                <% end %>
-              <% end %>
-            </ul>
-          </div>
-          <div id="mb-convos-dropdown_tab-content_convos">
+        <div class="mb-convos-dropdown">
+          <div id="mb-convos-dropdown_convos">
             <div id='convos-list'>
-            <p class="text-center"><b>Your Conversations</b></p>
+            <p class="text-center">
+              <b>Your Conversations</b>
+<!--This Link--><%= link_to new_conversation_path, class: 'u-pull-right'  do %>
+                  <i class="fa fa-plus add-btn" style="right: 25px; top:10px; position:absolute;"></i>
+                <% end %>
+            </p>
               <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
                 <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user } %>
               <% end %>
