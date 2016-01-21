@@ -4,7 +4,7 @@ class Message < ActiveRecord::Base
   has_many :message_users
   has_many :recipients, through: :message_users, source: :user
 
-  validates :user_id, :conversation_id, :text, presence: true
+  validates :user_id, :conversation_id, :content, presence: true
 
   def content_preview(length)
     content.length > length ? "#{content[0...length]}..." : content[0...length]
