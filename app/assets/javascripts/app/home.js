@@ -10,8 +10,8 @@ jQuery(document).ready(function($){
       conversationToken = conversationTokens[i];
       subscribeToConvo(conversationToken, curConvoToken);
     }
-  }
-  //if user clicks conversation on mobile
+
+    //if user clicks conversation on mobile
 
     var messageUrl = window.location.href.indexOf("user_ids") > -1
     var convoUrl = window.location.href.indexOf("user_ids") > -1
@@ -26,7 +26,8 @@ jQuery(document).ready(function($){
     }
 
 
-  listenForNewConvos();
+    listenForNewConvos();
+  }
   //END PUSHER----------------------
 
   // User Chevron ------------------

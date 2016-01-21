@@ -6,11 +6,13 @@ jQuery(document).ready(function($){
   scrollToBottom();
 
   //PUSHER--------------------------
-  var channel;
-  var conversationToken;
-  for(var i = 0; i < conversationTokens.length; i++) {
-    conversationToken = conversationTokens[i];
-    subscribeToMbConvo(conversationToken, curConvoToken);
+  if(typeof conversationTokens !== 'undefined') {
+    var channel;
+    var conversationToken;
+    for(var i = 0; i < conversationTokens.length; i++) {
+      conversationToken = conversationTokens[i];
+      subscribeToMbConvo(conversationToken, curConvoToken);
+    }
   }
 
   listenForNewMbConvos();
