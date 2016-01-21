@@ -16,16 +16,21 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.assign_attributes(email: @user.email.downcase)
 
-    if @user.valid?
-      @user.save
-      send_welcome_email(@user)
-      upload_image(params[:user][:file]) if params[:user][:file]
-      set_up_invite if params[:invite_token]
-      flash[:notice] = "User successfully created"
-      cookies.permanent.signed[:user_id] = @user.id
-      if params[:tier_id].to_i > 1 then redirect_to new_subscription_path(tier_id: params[:tier_id]) else redirect_to home_path end
+    if @user.confirm_password(params[:confirm_password])
+      if @user.valid?
+        @user.save
+        send_welcome_email(@user)
+        upload_image(params[:user][:file]) if params[:user][:file]
+        set_up_invite if params[:invite_token]
+        flash[:notice] = "User successfully created"
+        cookies.permanent.signed[:user_id] = @user.id
+        if params[:tier_id].to_i > 1 then redirect_to new_subscription_path(tier_id: params[:tier_id]) else redirect_to home_path end
+      else
+        flash[:warn] = "Unable to create user, please try again"
+        redirect_to :back
+      end
     else
-      flash[:warn] = "Unable to create user, please try again"
+      flash[:warn] = "Password/Confirm Password fields do not match, please try again"
       redirect_to :back
     end
   end
@@ -37,13 +42,18 @@ class UsersController < ApplicationController
   def update
     @user.assign_attributes(user_params)
 
-    if @user.valid?
-      @user.save
-      upload_image(params[:user][:file]) if params[:user][:file]
-      flash[:notice] = "User successfully updated"
-      redirect_to home_path
+    if @user.confirm_password(params[:confirm_password])
+      if @user.valid?
+        @user.save
+        upload_image(params[:user][:file]) if params[:user][:file]
+        flash[:notice] = "User successfully updated"
+        redirect_to home_path
+      else
+        flash[:warn] = "Unable to update user, please try again"
+        redirect_to :back
+      end
     else
-      flash[:warn] = "Unable to update user, please try again"
+      flash[:warn] = "Password/Confirm Password fields do not match, please try again"
       redirect_to :back
     end
   end

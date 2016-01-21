@@ -166,4 +166,12 @@ class User < ActiveRecord::Base
     return false if is_member_of_site?(potential_request.site)
     has_no_requests_for_site?(potential_request.site)
   end
+
+  def confirm_password(checked_password)
+    checked_password == password
+  end
+
+  def invalidate_password_recoveries
+    password_recoveries.each { |password_recovery| password_recovery.update_attributes(active: false) }
+  end
 end
