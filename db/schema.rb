@@ -104,9 +104,10 @@ ActiveRecord::Schema.define(version: 20160114192719) do
   end
 
   create_table "tiers", force: :cascade do |t|
-    t.string   "name",           null: false
-    t.integer  "admin_sites",    null: false
-    t.integer  "users_per_site", null: false
+    t.string   "name",                          null: false
+    t.integer  "admin_sites",                   null: false
+    t.integer  "users_per_site",                null: false
+    t.boolean  "published",      default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -4,6 +4,7 @@ class CreateTiers < ActiveRecord::Migration
       t.string  :name, null: false
       t.integer :admin_sites, null: false
       t.integer :users_per_site, null: false
+      t.boolean :published, null: false, default: true
 
       t.timestamps
     end
