@@ -89,8 +89,9 @@ class UsersController < ApplicationController
   end
 
   def message_box
+    token = params[:token]
+
     if current_user
-      token = params[:token]
       @site = token_site(token)
       unless @site
         redirect_to token_redirect_path
