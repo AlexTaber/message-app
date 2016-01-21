@@ -23,13 +23,19 @@ multi_site = Tier.create(
   users_per_site: 500
 )
 
+admin_tier = Tier.create(
+  name: "Admin",
+  admin_sites: 1001,
+  users_per_site: 1000
+)
+
 jerry = User.create(
   username: "jerrypatterson",
   first_name: "Jerry",
   last_name: "Patterson",
   email: "info@peekskillwebdesign.com",
   password: "123",
-  tier_id: multi_site.id
+  tier_id: admin_tier.id
 )
 
 jerry_image = Image.create(
@@ -42,8 +48,9 @@ alex = User.create(
   username: "alextaber",
   first_name: "Alex",
   last_name: "Taber",
-  email: "me@at.com",
-  password: "123"
+  email: "alex.taber0@gmail.com",
+  password: "123",
+  tier_id: admin_tier.id
 )
 
 alex_image = Image.create(
@@ -56,8 +63,9 @@ dan = User.create(
   username: "danintriligator",
   first_name: "Dan",
   last_name: "Intriligator",
-  email: "me@di.com",
-  password: "123"
+  email: "daniel@peekskillwebdesign.com",
+  password: "123",
+  tier_id: admin_tier.id
 )
 
 dan_image = Image.create(
