@@ -13,9 +13,6 @@
         <span>Mercury<b>App</b></span>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
-          <%= link_to login_path, target: '_blank' do %>
-            <i class="fa fa-home"></i>
-          <% end %>
           <i class="fa fa-globe" id="sites-btn"></i>
           <i class="fa fa-comment" id="convos-btn"></i>
           <i class="fa fa-user" id="acct-btn"></i>
@@ -91,6 +88,9 @@
       <div id="mb-acct-dropdown" class="mb-dropdown">
         <p><b>Your Account</b></p>
         <ul id='acct-list'>
+          <li>
+            <%= link_to 'MercuryApp.co', login_path, target: '_blank' %>
+          </li>
           <li>
             <%= link_to 'Edit Account', edit_user_path(current_user), target: '_blank' %>
           </li>
