@@ -31,18 +31,6 @@ jQuery(document).ready(function($){
   $("#new-conversation-form").submit(startMbConversation);
   //conversation dropdown tabs
 
-
-  $('.mb-convos-dropdown_tabs a').on('click', function(e){
-    e.preventDefault();
-    console.log('working')
-    if($(this).hasClass('is-inactive')){
-      i = $(this).index();
-      $('.mb-convos-dropdown_tab-content>div').fadeOut(0);
-      $('.mb-convos-dropdown_tab-content').children().eq(i).fadeIn();
-      $('.mb-convos-dropdown_tabs a').toggleClass('is-inactive');
-    }
-  });
-
   $('.flash').delay(3000).fadeOut();
 
   //hide dropdowns on window resize

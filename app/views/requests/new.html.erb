@@ -22,8 +22,8 @@
         <a href="#" class="is-inactive"><b>Users on this site</b></a>
         <a href="#"><b>Your Conversations</b></a>
       </div>
-      <div class="mb-convos-dropdown_tab-content">
-        <div id="mb-convos-dropdown_tab-content_users">
+      <div class="mb-convos-dropdown">
+        <div id="mb-convos-dropdown_users">
           <ul id="mb-user-list">
             <% @site.other_users(current_user).each do |user| %>
             <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
@@ -46,7 +46,7 @@
           </ul>
         </div>
 
-        <div id="mb-convos-dropdown_tab-content_convos">
+        <div id="mb-convos-dropdown_convos">
           <div id='convos-list'>
             <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
             <% if conversation.has_unread_messages?(current_user) %>

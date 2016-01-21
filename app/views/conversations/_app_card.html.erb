@@ -2,7 +2,7 @@
   <% if conversation == current_conversation %>
     <div class="message-item msg-item-current">
   <% elsif conversation.has_unread_messages?(user) %>
-    <div class="message-item unread-convo-app">
+    <div class="message-item is-unread">
   <% else %>
     <div class="message-item">
   <% end %>
