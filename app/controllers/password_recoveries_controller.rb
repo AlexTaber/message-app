@@ -26,11 +26,13 @@ class PasswordRecoveriesController < ApplicationController
       flash[:warn] = "This url is inactive"
       redirect_to root_path
     end
+
+    @token = params[:token]
   end
 
   def verify
     if @password_recovery
-      if params[:token] = @password_recovery.token
+      if params[:token] == @password_recovery.token
         if params[:confirm_password] == params[:password]
           @password_recovery.user.update_attribute(:password, params[:password])
           @password_recovery.update_attribute(:active, false)
