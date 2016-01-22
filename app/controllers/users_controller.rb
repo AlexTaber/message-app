@@ -106,9 +106,13 @@ class UsersController < ApplicationController
         redirect_to token_redirect_path
       else
         if current_user.sites.include?(@site)
-          current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
-          @conversation.read_all_messages(current_user) unless @conversation.new_record?
-          @message = Message.new
+          if params[:new_conversation]
+            set_up_new_conversation
+          else
+            current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
+            @conversation.read_all_messages(current_user) unless @conversation.new_record?
+            @message = Message.new
+          end
         else
           redirect_to new_request_path(token: token)
         end

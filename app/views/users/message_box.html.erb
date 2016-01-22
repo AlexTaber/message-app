@@ -37,7 +37,7 @@
             <div id='convos-list'>
             <p class="text-center">
               <b>Your Conversations</b>
-<!--This Link--><%= link_to new_conversation_path, class: 'u-pull-right'  do %>
+<!--This Link--><%= link_to message_box_path(token: @site.token, new_conversation: true), class: 'u-pull-right'  do %>
                   <i class="fa fa-plus add-btn" style="right: 25px; top:10px; position:absolute;"></i>
                 <% end %>
             </p>
