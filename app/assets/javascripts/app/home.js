@@ -62,8 +62,8 @@ jQuery(document).ready(function($){
 		dropdowns('#new-message-trigger', '#new-message');
 //Accordian
 $(".open-accordian").on('click',function() {
-          jQuery(this).siblings( ".accordian-content" ).slideToggle(500);
-        });
+  jQuery(this).siblings( ".accordian-content" ).slideToggle(500);
+});
 
 //mobile-nav
 $(".mobile-icons i"). on('click', function(){
