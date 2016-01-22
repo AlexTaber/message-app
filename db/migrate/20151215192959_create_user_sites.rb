@@ -4,6 +4,7 @@ class CreateUserSites < ActiveRecord::Migration
       t.integer :site_id, null: false
       t.integer :user_id, null: false
       t.boolean :admin, null: false, default: false
+      t.boolean :approved, null: false, default: false
 
       t.timestamps null: false
     end
