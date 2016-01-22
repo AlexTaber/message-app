@@ -232,11 +232,11 @@ ul.edit-site-list {
 	}
 }
 .msg-item-current{
-	background: rgba($darkgrey, .3) !important;
+	background: #e5e5e5;
 	position:relative;
 	overflow:visible;
 	&:hover {
-			background: rgba($darkgrey, 1);
+			background: rgba($darkgrey, .1);
 		}
 	}
 	//tooltips
