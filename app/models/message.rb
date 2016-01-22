@@ -1,4 +1,5 @@
 class Message < ActiveRecord::Base
+
   belongs_to :conversation
   belongs_to :user
   has_many :message_users
@@ -41,5 +42,9 @@ class Message < ActiveRecord::Base
 
   def message_user_by_user(recipient)
     message_users.find_by(user_id: recipient.id)
+  end
+
+  def auto_linked_content
+    Rinku.auto_link(content, :all, 'target="_blank"')
   end
 end
