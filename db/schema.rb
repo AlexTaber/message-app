@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160114192719) do
     t.integer  "site_id",                    null: false
     t.integer  "user_id",                    null: false
     t.boolean  "admin",      default: false, null: false
+    t.boolean  "approved",   default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

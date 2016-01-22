@@ -1,0 +1,4 @@
+<p>You Have Been Invited to Join <%= user_site.site.name %></p>
+
+<%= link_to "Accept", user_site_path(user_site, user_site: { approved: true }), method: "PUT" %>
+<%= link_to "Deny", user_site_path(user_site), method: "DELETE" %>

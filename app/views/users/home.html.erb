@@ -203,6 +203,9 @@
         </li>
       </div>
     <% end %>
+    <% current_user.unapproved_sites.each do |site| %>
+      <%= render partial: "user_sites/form", locals: { user_site: current_user.find_user_site(site) } %>
+    <% end %>
     <div class="send-request">
       <div class="welcome-msg">
         <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>

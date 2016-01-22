@@ -92,27 +92,27 @@ google = Site.create(
   url: "www.google.com"
 )
 
-UserSite.create(user_id: jerry.id, site_id: google.id, admin: true)
-UserSite.create(user_id: dan.id, site_id: google.id, admin: false)
-UserSite.create(user_id: alex.id, site_id: google.id, admin: false)
+UserSite.create(user_id: jerry.id, site_id: google.id, admin: true, approved: true)
+UserSite.create(user_id: dan.id, site_id: google.id, admin: false, approved: true)
+UserSite.create(user_id: alex.id, site_id: google.id, admin: false, approved: true)
 
 amazon = Site.create(
   name: "Amazon",
   url: "www.amazon.com"
 )
 
-UserSite.create(user_id: jerry.id, site_id: amazon.id, admin: true)
-UserSite.create(user_id: dan.id, site_id: amazon.id, admin: false)
-UserSite.create(user_id: alex.id, site_id: amazon.id, admin: false)
+UserSite.create(user_id: jerry.id, site_id: amazon.id, admin: true, approved: true)
+UserSite.create(user_id: dan.id, site_id: amazon.id, admin: false, approved: true)
+UserSite.create(user_id: alex.id, site_id: amazon.id, admin: false, approved: true)
 
 base = Site.create(
   name: "Base",
   url: "localhost:3000"
 )
 
-UserSite.create(user_id: jerry.id, site_id: base.id, admin: true)
-UserSite.create(user_id: dan.id, site_id: base.id, admin: false)
-UserSite.create(user_id: alex.id, site_id: base.id, admin: false)
+UserSite.create(user_id: jerry.id, site_id: base.id, admin: true, approved: true)
+UserSite.create(user_id: dan.id, site_id: base.id, admin: false, approved: true)
+UserSite.create(user_id: alex.id, site_id: base.id, admin: false, approved: false)
 
 Site.all.each do |site|
   convo = Conversation.create(

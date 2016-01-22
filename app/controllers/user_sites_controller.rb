@@ -2,6 +2,7 @@ class UserSitesController < ApplicationController
   before_action :user_site_by_id, only: [:update, :destroy]
 
   def update
+    params[:user_site][:approved] = params[:user_site][:approved] if params[:user_site][:approved]
     @user_site.assign_attributes(user_site_params)
 
     if @user_site.valid?
@@ -29,6 +30,6 @@ class UserSitesController < ApplicationController
   end
 
   def user_site_params
-    params.require(:user_site).permit(:user_id, :site_id, :admin)
+    params.require(:user_site).permit(:user_id, :site_id, :admin, :approved)
   end
 end

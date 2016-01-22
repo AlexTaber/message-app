@@ -158,7 +158,11 @@ class User < ActiveRecord::Base
   end
 
   def active_sites_ordered_by_admin
-    user_sites.order(admin: :desc).collect(&:site).select(&:active)
+    user_sites.where(approved: true).order(admin: :desc).collect(&:site).select(&:active)
+  end
+
+  def unapproved_sites
+    user_sites.where(approved: false).collect(&:site).select(&:active)
   end
 
   def self.send_monthly_emails
