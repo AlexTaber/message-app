@@ -67,20 +67,24 @@ class UsersController < ApplicationController
   end
 
   def home
-    current_user.has_active_sites? ? find_user_site : @site = Site.new
-    if params[:new_conversation]
-      set_up_new_conversation
+    if current_user
+      current_user.has_active_sites? ? find_user_site : @site = Site.new
+      if params[:new_conversation]
+        set_up_new_conversation
+      else
+        current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
+      end
+      @conversation.read_all_messages(current_user) unless @conversation.new_record?
+      @message = Message.new
+      @new_site = Site.new
+      @new_conversation = Conversation.new
+      current_user.admin_of_site?(@site) ? @admin_site = @site : @admin_site = nil
+      current_user.add_visit
+      @invite = Invite.new
+      @request = Request.new
     else
-      current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
+      redirect_to splash_path
     end
-    @conversation.read_all_messages(current_user) unless @conversation.new_record?
-    @message = Message.new
-    @new_site = Site.new
-    @new_conversation = Conversation.new
-    current_user.admin_of_site?(@site) ? @admin_site = @site : @admin_site = nil
-    current_user.add_visit
-    @invite = Invite.new
-    @request = Request.new
   end
 
   def message_box_data

@@ -45,6 +45,10 @@ jerry_image = Image.create(
   imageable_id: jerry.id
 )
 
+jerry_sub = Subscription.create(
+  user_id: jerry.id
+)
+
 alex = User.create(
   username: "alextaber",
   first_name: "Alex",
@@ -52,6 +56,10 @@ alex = User.create(
   email: "alex.taber0@gmail.com",
   password: "123",
   tier_id: admin_tier.id
+)
+
+alex_sub = Subscription.create(
+  user_id: alex.id
 )
 
 alex_image = Image.create(
@@ -73,6 +81,10 @@ dan_image = Image.create(
   url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
   imageable_type: "User",
   imageable_id: dan.id
+)
+
+dan_sub = Subscription.create(
+  user_id: dan.id
 )
 
 google = Site.create(

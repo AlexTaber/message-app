@@ -107,7 +107,7 @@
 <!-- END MODALS -->
 <!-- Desktop Navbar -->
 <div class="menu-bar desktop-nav">
-  <span®><%= link_to 'Mercury App', root_path %></span®>
+  <span><%= link_to 'Mercury App', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
     <span><%= current_user.name %></span>
@@ -167,9 +167,9 @@
     <% end %>
       <% if current_user.has_unread_conversations_by_site?(site) %>
         <li class="is-unread">
-      <% else %>   
+      <% else %>
         <li>
-      <% end %>    
+      <% end %>
           <% if site == @admin_site %>
               <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
           <% end %>

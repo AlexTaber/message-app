@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   get '/mb-login' => 'sessions#mb_new'
+  get '/splash' => 'sessions#splash'
   get '/home' => 'users#home'
   get '/message_box' => 'users#message_box'
   get '/token_redirect' => 'users#token_redirect'
   get '/typeahead' => 'users#typeahead'
   post '/add_user' => 'conversations#add_user'
 
-  root 'sessions#splash'
+  root 'users#home'
 end
