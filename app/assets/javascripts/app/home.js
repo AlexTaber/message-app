@@ -201,9 +201,9 @@ function subscribeToConvo(conversationToken, curConvoToken) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
       if(userId == data.user_id) {
-        $(".app-view").append(anchorme.js(data.current_user_html));
+        $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
       } else {
-        $(".app-view").append(anchorme.js(data.other_user_html));
+        $(".app-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
       }
 
       scrollToBottom();
@@ -218,7 +218,7 @@ function listenForNewConvos() {
   channel.bind('new-conversation', function(data){
     if(siteId == data.site_id) {
       //$(".current-site-data").after(data.app_html);
-      $(".new-convo-placeholder").after(anchorme.js(data.app_html));
+      $(".new-convo-placeholder").after(anchorme.js(data.app_html, { "target":"_blank" }));
     }
   });
 }
