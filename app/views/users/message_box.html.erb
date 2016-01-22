@@ -4,12 +4,11 @@
 <div id="msg-bx">
 
   <!--# Message Box Header #-->
-  <% if current_user.has_unread_conversations_by_site?(@site) %>
-    <header class="mb-header is-unread">
-  <% else %>
     <header class="mb-header">
-  <% end %>
       <p>
+        <% if current_user.has_unread_conversations_by_site?(@site) %>
+          <span class="is-unread-mb"> &bull; </span>
+        <% end %>
         <span>Mercury<b>App</b></span>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
