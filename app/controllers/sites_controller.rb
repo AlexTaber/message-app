@@ -96,7 +96,8 @@ class SitesController < ApplicationController
     UserSite.create(
       user_id: current_user.id,
       site_id: @site.id,
-      admin: true
+      admin: true,
+      approved: true
     )
   end
 
