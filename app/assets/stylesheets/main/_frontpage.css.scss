@@ -104,6 +104,32 @@ i.admin-profile {
 }
 }
 // Site List Accordian
+@keyframes unread-site {
+  0%{}
+  45%{background:lighten($pwdlight, 40%)}
+  100%{}
+}
+@-webkit-keyframes unread-site {
+  0%{}
+  45%{background:lighten($pwdlight, 40%)}
+  100%{}
+}
+  @-moz-keyframes unread-site {
+  0%{}
+  45%{background:lighten($pwdlight, 40%)}
+  100%{}
+}
+  @-o-keyframes unread-site {
+  0%{}
+  45%{background:lighten($pwdlight, 40%)}
+  100%{}
+}
+.is-unread-site{
+	  animation: unread-site 2s infinite;
+  -webkit-animation: unread-site 2s infinite;
+  -moz-animation: unread-site 2s infinite;
+  -o-animation: unread-site 2s infinite;
+}
 .site-list {
 padding : 0;
 }
@@ -166,12 +192,12 @@ ul.edit-site-list {
 	}
 }
 @media (min-width: 750px) {
-.message-bar {
-		position:relative;
-	display:block !important;
-	width: 30%;
-	float: left;
-}
+	.message-bar {
+			position:relative;
+		display:block !important;
+		width: 30%;
+		float: left;
+	}
 }
 #new-message {
 	display: none;
@@ -206,7 +232,7 @@ ul.edit-site-list {
 	}
 }
 .msg-item-current{
-	background: rgba($darkgrey, .2) !important;
+	background: rgba($darkgrey, .3) !important;
 	position:relative;
 	overflow:visible;
 	&:hover {
@@ -287,12 +313,7 @@ ul.edit-site-list {
 		vertical-align: top;
 		margin-right: 5px;
 	}
-.unread-convo-app {
-	 animation: unread 5s infinite;
-  -webkit-animation: unread 5s infinite;
-  -moz-animation: unread 5s infinite;
-  -o-animation: unread 5s infinite;
-}
+
 ///The Media Object Styles http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
 
 .media {

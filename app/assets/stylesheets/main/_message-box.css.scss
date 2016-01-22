@@ -34,7 +34,7 @@
   position: fixed;
   bottom:0 !important;
   right:50px;
-    -webkit-transition: width .7s, height .7s;
+  -webkit-transition: width .7s, height .7s;
   transition: width .7s, height .7s;
 }
 .pwd-init{
@@ -45,7 +45,7 @@
 }
 .pwd-closed {
   height:35px !important;
-  width: 300px !important;
+  width:300px !important;
   animation: bounce 2s;
   -webkit-animation: bounce 2s;
   -moz-animation: bounce 2s;
@@ -54,30 +54,51 @@
 #pwd-open-btn{
   font-family: "lato","Helvetica Neue", Helvetica, Arial, sans-serif;
   position:absolute;
+  padding:1px;
   top:7px;
   right: 10px;
   text-decoration: none;
-  color: #455372;
-  background-color:rgba(255, 255, 255, .6);
-  width: 20px;
+  color: #fff;
+  font-size:1.6rem;
+  font-weight: bold;
+  width: 18px;
   line-height: 20px;
-  border-radius: 100%;
+  border-radius: 5px;
   text-align:center;
   span{
     background-clip: padding-box;
   }
 }
 #pwd-open-btn:hover {
-  background: #fff;
+  background: rgba(255, 255, 255, .3);
 }
-
 
 
 //--------------------------message-view
 //------defaults
 
+@keyframes icon-flash {
+  0%{}
+  45%{color: #fff}
+  100%{}
+}
+@-webkit-keyframes icon-flash {
+  0%{}
+  45%{color: #fff}
+  100%{}
+}
+  @-moz-keyframes icon-flash {
+  0%{}
+  45%{color: #fff}
+  100%{}
+}
+  @-o-keyframes icon-flash {
+  0%{}
+  45%{color: #fff}
+  100%{}
+}
 .mb-header{
-      background: #455372 !important;
+      background: $pwdlight !important;
       opacity: 1;
 }
 @media (max-width: 300px) {
@@ -85,8 +106,17 @@
     opacity: .8;
   }
 }
-.is-unread {
+.is-unread-mb-convo {
   background-color: #D9ECFC;
+}
+.is-unread-mb{
+  line-height:0;
+}
+.is-unread-icon{
+    animation: icon-flash 2s infinite;
+  -webkit-animation: icon-flash 2s infinite;
+  -moz-animation: icon-flash 2s infinite;
+  -o-animation: icon-flash 2s infinite;
 }
 // profile pic default
 .profile-pic {
@@ -120,9 +150,9 @@
   header {
     position: relative;
     height:35px;
-    padding-left: 12px;
+    padding-left:12px;
     color: #fff;
-    line-height: 32px;
+    line-height:32px;
     span:hover {
       cursor: pointer;
     }

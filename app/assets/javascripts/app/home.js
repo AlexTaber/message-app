@@ -10,24 +10,22 @@ jQuery(document).ready(function($){
       conversationToken = conversationTokens[i];
       subscribeToConvo(conversationToken, curConvoToken);
     }
-
-    //if user clicks conversation on mobile
-
-    var messageUrl = window.location.href.indexOf("user_ids") > -1
-    var convoUrl = window.location.href.indexOf("user_ids") > -1
-    var newConversationUrl = window.location.href.indexOf("new_conversation") > -1
-    var mediaSize = $('body').width() < 750
-    if (( messageUrl || newConversationUrl) && mediaSize) {
-      $('.mobile-target').fadeOut(0);
-      $('#current-account').slideUp();
-      $('.mobile-target').eq(2).fadeIn();
-      $('.mobile-active').removeClass('mobile-active')
-      $('#mobile-messages').addClass('mobile-active');
-    }
-
-
     listenForNewConvos();
   }
+  //if user clicks conversation on mobile
+
+  var messageUrl = window.location.href.indexOf("user_ids") > -1
+  var convoUrl = window.location.href.indexOf("user_ids") > -1
+  var newConversationUrl = window.location.href.indexOf("new_conversation") > -1
+  var mediaSize = $('body').width() < 750
+  if (( messageUrl || newConversationUrl) && mediaSize) {
+    $('.mobile-target').fadeOut(0);
+    $('#current-account').slideUp();
+    $('.mobile-target').eq(2).fadeIn();
+    $('.mobile-active').removeClass('mobile-active')
+    $('#mobile-messages').addClass('mobile-active');
+  }
+
   //END PUSHER----------------------
 
   // User Chevron ------------------
@@ -64,8 +62,8 @@ jQuery(document).ready(function($){
 		dropdowns('#new-message-trigger', '#new-message');
 //Accordian
 $(".open-accordian").on('click',function() {
-          jQuery(this).siblings( ".accordian-content" ).slideToggle(500);
-        });
+  jQuery(this).siblings( ".accordian-content" ).slideToggle(500);
+});
 
 //mobile-nav
 $(".mobile-icons i"). on('click', function(){
@@ -78,7 +76,6 @@ $(".mobile-icons i"). on('click', function(){
 });
 
 ///Modal
-
 var window_width = $(window).width();
 var window_height = $(window).height();
 $('.modal-window').each(function(){

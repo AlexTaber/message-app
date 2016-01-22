@@ -6,9 +6,9 @@ jQuery(document).ready(function($){
             $( "#fixed-iframe" )
               .toggleClass("pwd-closed");
               if($( "#fixed-iframe" ).hasClass('pwd-closed')) {
-                $('#pwd-open-btn').html('&#9650;');
+                $('#pwd-open-btn').html('+');
               } else {
-                $('#pwd-open-btn').text('X');
+                $('#pwd-open-btn').text('_');
               }
         
       });

@@ -89,12 +89,32 @@ class User < ActiveRecord::Base
     unread_notifications.count > 0
   end
 
+  def unread_conversations
+    conversations.select { |conversation| conversation.has_unread_messages?(self) }
+  end
+
+  def has_unread_conversations?
+    unread_conversations.count > 0
+  end
+
+  def unread_conversations_count
+    unread_conversations.count
+  end
+
   def unread_conversations_by_site(site)
     conversations_by_site(site).select { |conversation| conversation.has_unread_messages?(self) }
   end
 
   def has_unread_conversations_by_site?(site)
     unread_conversations_by_site(site).count > 0
+  end
+
+  def unread_conversations_other_sites(site)
+    conversations.where.not(site_id: site.id).select { |conversation| conversation.has_unread_messages?(self)}
+  end
+
+  def has_unread_conversations_other_sites?(site)
+    unread_conversations_other_sites(site).count > 0
   end
 
   def can_create_site

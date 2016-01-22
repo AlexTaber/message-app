@@ -4,17 +4,24 @@
 <div id="msg-bx">
 
   <!--# Message Box Header #-->
-  <% if current_user.has_unread_conversations_by_site?(@site) %>
-    <header class="mb-header is-unread">
-  <% else %>
     <header class="mb-header">
-  <% end %>
       <p>
+        <% if current_user.has_unread_conversations? %>
+          <span class="is-unread-mb"> &bull; </span> &nbsp;
+        <% end %>
         <span>Mercury<b>App</b></span>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
+        <% if current_user.has_unread_conversations_other_sites?(@site) %>
+          <i class="fa fa-globe is-unread-icon" id="sites-btn"></i>
+        <% else %>
           <i class="fa fa-globe" id="sites-btn"></i>
+        <% end %>
+        <% if current_user.has_unread_conversations_by_site?(@site) %>
+          <i class="fa fa-comment is-unread-icon" id="convos-btn"></i>
+        <% else %>
           <i class="fa fa-comment" id="convos-btn"></i>
+        <% end %>
           <i class="fa fa-user" id="acct-btn"></i>
         </span>
       </p>
@@ -52,7 +59,11 @@
               <% if @site == site %>
                 <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'is-active' %>
               <% else %>
-                <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+                <% if current_user.has_unread_conversations_by_site?(site) %>
+                  <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'is-unread-site' %>
+                <% else %>
+                  <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+                <% end %>
               <% end %>
             </li>
           <% end %>
