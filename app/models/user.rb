@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def active_sites
-    sites.where(active: true)
+    user_sites.where(approved: true).collect(&:site).select(&:active)
   end
 
   def has_active_sites?
