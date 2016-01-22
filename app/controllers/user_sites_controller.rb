@@ -2,7 +2,7 @@ class UserSitesController < ApplicationController
   before_action :user_site_by_id, only: [:update, :destroy]
 
   def update
-    params[:user_site][:approved] = params[:user_site][:approved] if params[:user_site][:approved]
+    params[:user_site][:approved] = params[:user_site][:approved].to_b if params[:user_site][:approved]
     @user_site.assign_attributes(user_site_params)
 
     if @user_site.valid?
