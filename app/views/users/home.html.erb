@@ -110,7 +110,7 @@
   <span><%= link_to 'MercuryApp', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
-    <span><%= current_user.name %></span>
+    <span><%= current_user.name %> (<%= current_user.username %>)</span>
     <i class="fa fa-user"></i>
     <i id="users-account" class="fa fa-chevron-down menu-caret" title="Edit your account"></i>
     <nav id="current-account">
