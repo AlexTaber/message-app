@@ -438,3 +438,27 @@ width:auto !important;
 .send-request {
 	background: $grey;
 }
+
+#invites-title {
+	margin-top: 4px;
+	padding: 5px;
+	border-bottom: 1px solid $darkgrey;
+	font-size: 16px;
+}
+
+.site-approval {
+	background-color: rgba($white, 0.5px);
+	border-bottom: 1px solid $darkgrey;
+	padding-left: 25px;
+
+	p {
+		font-size: 16px;
+		padding-left: 10px;
+		padding-top: 10px;
+	}
+
+	a {
+		padding-left: 10px;
+		text-decoration: none;
+	}
+}

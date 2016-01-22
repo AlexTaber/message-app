@@ -165,6 +165,10 @@ class User < ActiveRecord::Base
     user_sites.where(approved: false).collect(&:site).select(&:active)
   end
 
+  def has_unapproved_sites?
+    unapproved_sites.count > 0;
+  end
+
   def self.send_monthly_emails
     all.each(&:send_monthly_email)
   end

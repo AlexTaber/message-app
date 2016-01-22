@@ -203,6 +203,9 @@
         </li>
       </div>
     <% end %>
+    <% if current_user.has_unapproved_sites? %>
+      <div class="text-center" id="invites-title">Invites</div>
+    <% end %>
     <% current_user.unapproved_sites.each do |site| %>
       <%= render partial: "user_sites/form", locals: { user_site: current_user.find_user_site(site) } %>
     <% end %>

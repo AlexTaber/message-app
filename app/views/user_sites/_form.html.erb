@@ -1,4 +1,10 @@
-<p>You Have Been Invited to Join <%= user_site.site.name %></p>
-
-<%= link_to "Accept", user_site_path(user_site, user_site: { approved: true }), method: "PUT" %>
-<%= link_to "Deny", user_site_path(user_site), method: "DELETE" %>
+<div class="site-approval">
+  <p><%= user_site.site.name %>
+    <%= link_to user_site_path(user_site, user_site: { approved: true }), method: "PUT" do %>
+      <i class="fa fa-check-circle"></i>
+    <% end %>
+    <%= link_to user_site_path(user_site), method: "DELETE" do %>
+      <i class="fa fa-times-circle"></i>
+    <% end %>
+  </p>
+</div>
