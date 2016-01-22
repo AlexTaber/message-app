@@ -89,6 +89,18 @@ class User < ActiveRecord::Base
     unread_notifications.count > 0
   end
 
+  def unread_conversations
+    conversations.select { |conversation| conversation.has_unread_messages?(self) }
+  end
+
+  def has_unread_conversations?
+    unread_conversations.count > 0
+  end
+
+  def unread_conversations_count
+    unread_conversations.count
+  end
+
   def unread_conversations_by_site(site)
     conversations_by_site(site).select { |conversation| conversation.has_unread_messages?(self) }
   end
