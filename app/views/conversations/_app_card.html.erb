@@ -20,7 +20,9 @@
         <h4>
           <%= conversation.abbreviated_other_users_to_s(user, 20) %>
         </h4>
-        <%= simple_format(conversation.content_preview(30)) %>
+        <p>
+          <%= sanitize(simple_format(conversation.content_preview(30)), :tags => %w(br a)) %>
+        </p>
       </div>
     </div>
   </div>
