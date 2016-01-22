@@ -76,6 +76,7 @@
 //--------------------------message-view
 //------defaults
 
+
 .mb-header{
       background: $pwdlight !important;
       opacity: 1;
@@ -85,7 +86,7 @@
     opacity: .8;
   }
 }
-.is-unread {
+.is-unread-mb-convo {
   background-color: #D9ECFC;
 }
 .is-unread-mb{

@@ -166,8 +166,8 @@
       <div>
     <% end %>
       <% if current_user.has_unread_conversations_by_site?(site) %>
-        <li class="is-unread">
-      <% else %>
+        <li class="is-unread-site">
+      <% else %>   
         <li>
       <% end %>
           <% if site == @admin_site %>
