@@ -24,13 +24,7 @@ class UsersController < ApplicationController
         set_up_invite if params[:invite_token]
         flash[:notice] = "User successfully created"
         cookies.permanent.signed[:user_id] = @user.id
-        if params[:tier_id].to_i > 1
-          redirect_to new_subscription_path(tier_id: params[:tier_id])
-        else
-          subscription = Subscription.create(user_id: @user.id)
-          subscription.save_with_payment(@user.tier.id)
-          redirect_to home_path
-        end
+        redirect_to new_subscription_path
       else
         flash[:warn] = "Unable to create user, please try again"
         redirect_to :back

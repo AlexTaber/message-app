@@ -3,8 +3,8 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
-    @tier_id = params[:tier_id]
-    @card_token = current_user.subscription.get_card_token
+    @tier_id = 1
+    @card_token = nil
   end
 
   def create
@@ -20,6 +20,7 @@ class SubscriptionsController < ApplicationController
 
   def edit
     @card_token = current_user.subscription.get_card_token
+    @tier_id = current_user.tier.id
   end
 
   def update

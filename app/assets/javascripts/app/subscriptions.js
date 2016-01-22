@@ -36,4 +36,18 @@
       }
     }
   };
+
+  $(document).ready(function() {
+    $("#_tier_id_1").click(hideCardForm);
+    $("#_tier_id_2, #_tier_id_3").click(showCardForm)
+  });
+
+  function hideCardForm() {
+    $("#card-form").slideUp(300);
+  }
+
+  function showCardForm() {
+    console.log("HERE");
+    $("#card-form").slideDown(300);
+  }
 }).call(this);
