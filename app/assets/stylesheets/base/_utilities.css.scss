@@ -81,24 +81,24 @@ hr {
 .open-accordian.menu-caret {
       font-size:1.2rem !important;
 }
-//Modal window 
- .mask {  
-    position:fixed;   
-    top:0px;  
-    left:0px;  
-    height:100%;  
-    width:100%;   
-    display:none;  
-    background-color: rgba($black, .8);  
+//Modal window
+ .mask {
+    position:fixed;
+    top:0px;
+    left:0px;
+    height:100%;
+    width:100%;
+    display:none;
+    background-color: rgba($black, .8);
     z-index:100;
-  }  
-  .modal-window{  
+  }
+  .modal-window{
     position:absolute;
-    width: auto; 
-    display:none;     
+    width: auto;
+    display:none;
     padding: 2rem;
-    background: #fff; 
-    text-align: center; 
+    background: #fff;
+    text-align: center;
     z-index: 4440000;
     border-radius: 5px;
     overflow:visible;
@@ -111,7 +111,7 @@ hr {
       position:relative;
       overflow:visible;
     }
-  } 
+  }
 
 a.close-modal{
   cursor: pointer;
@@ -154,6 +154,10 @@ a.close-modal{
 }
 .overflow-visible{
   overflow:visible;
+}
+
+.hidden {
+  display: none;
 }
   /* Code
   –––––––––––––––––––––––––––––––––––––––––––––––––– */

@@ -97,10 +97,11 @@ ActiveRecord::Schema.define(version: 20160114192719) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer  "user_id",               null: false
+    t.integer  "user_id",                   null: false
     t.string   "stripe_customer_token"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "stripe_subscription_token"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "tiers", force: :cascade do |t|

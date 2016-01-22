@@ -6,9 +6,9 @@
   });
   subscription = {
     setupForm: function() {
-      return $('#new_subscription').submit(function() {
+      return $('#subscription-form').submit(function() {
         $('input[type=submit]').attr('disabled', true);
-        if ($('#card_number').length) {
+        if ($('#card_number').length && !$('#_tier_id_1').is(':checked')) {
           subscription.processCard();
           return false;
         } else {
@@ -29,11 +29,25 @@
     handleStripeResponse: function(status, response) {
       if (status === 200) {
         $('#subscription_stripe_card_token').val(response.id);
-        return $('#new_subscription')[0].submit();
+        return $('#subscription-form')[0].submit();
       } else {
         $('#stripe_error').text(response.error.message);
         return $('input[type=submit]').attr('disabled', false);
       }
     }
   };
+
+  $(document).ready(function() {
+    $("#_tier_id_1").click(hideCardForm);
+    $("#_tier_id_2, #_tier_id_3").click(showCardForm)
+  });
+
+  function hideCardForm() {
+    $("#card-form").slideUp(300);
+  }
+
+  function showCardForm() {
+    console.log("HERE");
+    $("#card-form").slideDown(300);
+  }
 }).call(this);

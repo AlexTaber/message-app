@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         set_up_invite if params[:invite_token]
         flash[:notice] = "User successfully created"
         cookies.permanent.signed[:user_id] = @user.id
-        if params[:tier_id].to_i > 1 then redirect_to new_subscription_path(tier_id: params[:tier_id]) else redirect_to home_path end
+        redirect_to new_subscription_path
       else
         flash[:warn] = "Unable to create user, please try again"
         redirect_to :back
@@ -40,6 +40,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if params[:user][:tier_id]
+      flash[:warn] = "Unable to process user data. An email has been sent to admin@mercuryapp.co to resolve this issue"
+      redirect_to :back and return
+    end
+
     @user.assign_attributes(user_params)
 
     if @user.confirm_password(params[:confirm_password])

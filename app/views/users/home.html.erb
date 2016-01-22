@@ -116,7 +116,7 @@
     <nav id="current-account">
      <p><b>Your Acount</b></p>
      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
-     <li><%= link_to 'Upgrade', root_path %></li>
+     <li><%= link_to 'Upgrade', edit_subscription_path(current_user.subscription) %></li>
      <li><%= link_to 'Logout', logout_path %></li>
    </nav>
  </nav>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :requests, only: [:new, :create, :update]
   resources :invites, only: [:new, :create]
   resources :user_sites, only: [:update, :destroy]
-  resources :subscriptions, only: [:new, :create, :destroy]
+  resources :subscriptions, only: [:new, :create, :edit, :update, :destroy]
   resources :password_recoveries, only: [:new, :create] do
     member do
       get :check

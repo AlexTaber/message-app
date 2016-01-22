@@ -25,11 +25,6 @@
    <span style="margin-left:110px;"></span><%= f.file_field :file %>
   </div>
 
-  <div class="tier-select">
-    <p><b> Choose Your Level</b></p>
-    <%= collection_radio_buttons nil, :tier_id, Tier.all_published, :id, :name, checked: default_tier_id %>
-  </div>
-
   <% if @invite_token %>
     <%= hidden_field_tag :invite_token, @invite_token %>
   <% end %>
