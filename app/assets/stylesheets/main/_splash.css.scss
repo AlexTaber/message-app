@@ -74,7 +74,7 @@ a:hover {
 ///Page Styles
 .feature-sign-up {
 	padding-top: 4rem;
-	background: #ababab;
+	background-color: rgba($pwdlight, .8);
 	h1 {
 		font-weight: bold;
 		color: $white;
@@ -86,9 +86,12 @@ a:hover {
 		}
 	}
 }
-.landing {
+.sign-up-plans {
 	padding: 6rem 0;
 	background: $grey;
+	h4 {
+		font-weight: 700;
+	}
 }
 .card {
 	padding: 1.5rem;
@@ -99,10 +102,12 @@ a:hover {
 	box-shadow: 1px 1px 2px rgba(0,0,0,0.08);
 	background: $white;
 }
-
+.lead-in {
+	margin-bottom: 30px;
+}
 @media (min-width: 1000px) {
 	.lead-in {
-		max-width: 70%;
+		max-width: 60%;
 	}
 }
 .card-data {
@@ -121,8 +126,4 @@ a:hover {
 		}
 	}
 }
-.getting-started {
-	border-top: 1px solid $grey;
-	border-bottom: 1px solid $grey;
-	background: #fafafa;
-}
+

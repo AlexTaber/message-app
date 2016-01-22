@@ -1,25 +1,25 @@
 <div style="height:100%; width:100%; overflow: scroll;">
-    <div id="header" class="navbar">
-     <div class="container">
-      <div class="row">
-        <span><b>M</b>ercury<b>A</b>pp</span>
-        <ul>
-          <li><a  class="selected" href="#">Features</a></li>
-          <li><a href="">Plans</a></li>
-          <li><a href="">Why MAP</a></li>
-          <li><a href="">Getting Started</a></li>
-        </ul>
-        <ul class="u-pull-right">
-          <li class="pill"><%= link_to 'Sign Up', login_path %></li>
-          <li><%= link_to 'Login', login_path %></li>
-        </ul>
-      </div>
+  <div id="header" class="navbar">
+   <div class="container">
+    <div class="row">
+      <span><b>M</b>ercury<b>A</b>pp</span>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#plans">Plans</a></li>
+        <li><a href="#why">Why MAP</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
+      </ul>
+      <ul class="u-pull-right">
+        <li class="pill"><%= link_to 'Sign Up', login_path %></li>
+        <li><%= link_to 'Login', login_path %></li>
+      </ul>
     </div>
   </div>
+</div>
 <!--nav-bar-->
 <!-- 
 Feature Area
- -->
+-->
 <section class="feature">
  <header>
    <div class="container">
@@ -32,41 +32,38 @@ Feature Area
  </header>
 </section>
 
- <!-- End Feature -->
+<!-- End Feature -->
 <!-- main body -->
 <div class="main">
-<section class="">
- <div class="container">
-   <div class="row">
-     <div class="twelve columns text-center">
-       <h1>Your WordPress Admin just got a lot more productive</h1>
+  <section class="intro">
+   <div class="container">
+     <div class="row">
+       <div class="twelve columns text-center">
+         <h1>Your WordPress Admin just got a lot more productive</h1>
        </div>
        <div class="ten offset-by-one columns text-center">
-       <p> Communicate with an unlimited amount of *users. <b><i>All in one place.</i></b> The Mercury messenger app is a widget that is docked to your web browser when you are logged in. Anyone who visits your site will not see the messenger app, but anyone who is logged in has the ability to message and send data to single user or group  on their respective site.</p>
+         <p> Communicate with an unlimited amount of *users. <b><i>All in one place.</i></b> The Mercury messenger app is a widget that is docked to your web browser when you are logged in. Anyone who visits your site will not see the messenger app, but anyone who is logged in has the ability to message and send data to single user or group  on their respective site.</p>
+       </div>
      </div>
    </div>
-   </div>
-   </section>
-   <section class="">
    <div class="container">
-   <div class="row">
-   <div class="four columns text-center">
-   <p><i class="fa fa-folder-open fa-5x"></i></p>
-     <h3>Eliminate Barriers</h3> <p class="text-left">How many times do we mean to send an email about something we need or see on our site and forget. Now it is all in one place, just send a quick message.</p>
+     <div class="row">
+       <div class="four columns text-center">
+         <p><i class="fa fa-folder-open fa-5x"></i></p>
+         <h3>Eliminate Barriers</h3> <p class="text-left">How many times do we mean to send an email about something we need or see on our site and forget. Now it is all in one place, just send a quick message.</p>
+       </div>
+       <div class="four columns text-center">
+         <p><i class="fa fa-smile-o fa-5x"></i></p>
+         <h3>Convenient Messaging</h3> <p class="text-left">Need to communicate immediately just send a quick message  Now it is all in one place</p>
+       </div>
+       <div class="four columns text-center">
+         <p><i class="fa fa-envelope-o fa-5x"></i></p>
+         <h3>Work Directly with Clients</h3><p class="text-left"> Web Developers can manage all of their clients needs and requests all in one placeNeed to communicate immediately just send a quick message</p>
+       </div>
+     </div>
    </div>
-   <div class="four columns text-center">
-   <p><i class="fa fa-smile-o fa-5x"></i></p>
-     <h3>Convenient Messaging</h3> <p class="text-left">Need to communicate immediately just send a quick message  Now it is all in one place</p>
-   </div>
-   <div class="four columns text-center">
-   <p><i class="fa fa-envelope-o fa-5x"></i></p>
-     <h3>Work Directly with Clients</h3><p class="text-left"> Web Developers can manage all of their clients needs and requests all in one placeNeed to communicate immediately just send a quick message</p>
-   </div>
-   </div>
- </div>
-</section>
-<section class="feature-sign-up">
- <header>
+ </section>
+ <section class="feature-sign-up">
    <div class="container">
      <div class="row">
        <div class="twelve columns">
@@ -74,64 +71,111 @@ Feature Area
        </div>
      </div>
    </div>
- </header>
-</section>
-<section class="landing">
- <div class="container card">
-  <div class="row">
-    <div class="twelve columns">
-      <!--     <img src="/assets/j-profile.png"> -->
-      <h3> Mercury is an "Everything In One Place app"</h3>
-      <p class="lead-in">
-       A message center that is docked to your web browser when you are a logged in user. Helping you to communicate with your team. Allowing you to  share and store website management data and tasks.</p>
+ </section>
+ <section id="plans" class="sign-up-plans">
+   <div class="container card">
+    <div class="row">
+      <div class="twelve columns">
+        <!--     <img src="/assets/j-profile.png"> -->
+        <h3> Mercury is an "Everything In One Place app"</h3>
+        <p class="lead-in">
+         A message center that is docked to your web browser when you are a logged in user. Helping you to communicate with your team. Allowing you to  share and store website management data and tasks.</p>
+       </div>
      </div>
-   </div>
-   <div class="row">
-     <div class="four columns card-data">
-       <h4 class="text-center">Basic</h4>
+     <div class="row">
+       <div class="four columns card-data">
+         <h4 class="text-center">Basic</h4>
+         <ul>
+           <li>One Admin site</li>
+           <li>Up to three users</li>
+           <li>Belong to unlimited sites</li>
+         </ul>
+         <p class="text-center"><b>FREE</b></p>
+         <p class="text-center">
+          <%= link_to new_user_path, class: "button button-primary" do %>
+          Sign Up
+          <% end %>
+        </p>
+      </div>
+      <div class="four columns card-data">
+       <h4 class="text-center">Start Up</h4>
        <ul>
          <li>One Admin site</li>
-         <li>Up to three users</li>
+         <li>Unlimited users</li>
          <li>Belong to unlimited sites</li>
        </ul>
-       <p class="text-center"><b>FREE</b></p>
+       <p class="text-center"><b>$9.99<small>/year</small></b></p>
        <p class="text-center">
-        <%= link_to new_user_path, class: "button button-primary" do %>
-        Sign Up
-        <% end %>
-      </p>
-    </div>
-    <div class="four columns card-data">
-     <h4 class="text-center">Start Up</h4>
-     <ul>
-       <li>One Admin site</li>
-       <li>Unlimited users</li>
-       <li>Belong to unlimited sites</li>
-     </ul>
-     <p class="text-center"><b>$9.99<small>/year</small></b></p>
-     <p class="text-center">
-       <%= link_to new_user_path(default_tier_id: 2), class: "button button-primary" do %>
-       Sign Up
-       <% end %>
-     </p>
-   </div>
-   <div class="four columns card-data">
-     <h4 class="text-center">Multi Site</h4>
-     <ul>
-       <li>Five Admin sites</li>
-       <li>Unlimited users per site</li>
-       <li>Belong to unlimited sites</li>
-     </ul>
-     <p class="text-center"><b>$19.99<small>/year</small></b></p>
-     <p class="text-center">
-       <%= link_to new_user_path(default_tier_id: 3), class: "button button-primary" do %>
-       Sign Up
-       <% end %>
-     </p>
-     <p class="text-center"><small><i>For five or more <a href="">contact us</a> for enterprise solutions</i></small></p>
+         <%= link_to new_user_path(default_tier_id: 2), class: "button button-primary" do %>
+         Sign Up
+         <% end %>
+       </p>
+     </div>
+     <div class="four columns card-data">
+       <h4 class="text-center">Multi Site</h4>
+       <ul>
+         <li>Five Admin sites</li>
+         <li>Unlimited users per site</li>
+         <li>Belong to unlimited sites</li>
+       </ul>
+       <p class="text-center"><b>$19.99<small>/year</small></b></p>
+       <p class="text-center">
+         <%= link_to new_user_path(default_tier_id: 3), class: "button button-primary" do %>
+         Sign Up
+         <% end %>
+       </p>
+       <p class="text-center"><small><i>For five or more <a href="">contact us</a> for enterprise solutions</i></small></p>
+     </div>
    </div>
  </div>
-</div>
+</section>
+<section id="why">
+ <div class="container">
+   <div class="row">
+     <div class="eight offset-by-two columns text-center">
+       <h1>Why Mercury? It's Simple</h1>
+       <p > Mercury was made to increase productivity for content managers and website managers. Email and other productivity apps can be clunky and corporate. The Mercury Messenger App is active only to admins and is a simple way to commmunicate with your team and clients.<h3>All in one place.</h3>
+       </p>
+       <p>
+         <i class="fa fa-coffee fa-4x"></i>
+         <i class="fa fa-commenting-o fa-5x"></i> 
+         <i class="fa fa-check fa-5x"></i>
+       </p>
+     </div>
+   </div>
+ </div>
+</section>
+<section id="features">
+ <div class="container">
+   <div class="row">
+     <div class="twelve columns text-center">
+       <h1>Full of great features and benefits</h1>
+     </div>
+   </div>
+ </div>
+ <div class="container">
+   <div class="row">
+     <div class="four columns">
+     <li><b>SSL-encryption.</b> Conversations stay safe and sound.</li>
+     <li><b>Multi-browser support.</b> From Firefox to Windows, Safari and Chrome and everything in between.</li>
+     <li><b>Group messages.</b> Message single users or message as many groups as you want.</li>
+     <li><b>Conversation history.</b> Managers and users have access to all past messages.</li>
+     </div>
+     <div class="four columns">
+     <li><b>Profile image ready.</b> Personalize with a profile image and add personality to your team.</li>
+     <li><b>Emoji support.</b> What would messaging be without emoji support ;)</li>
+     <li><b>Username enabled.</b> Create a unique username so you can be easily discovered.</li>
+     <li><b>Cloud dashboard.</b> Managers and users have access to cloud based home screen to view all of their sites in one convenient place.</li>
+      <li><b>Mobile friendly.</b> Mobile enabled to give you access on the go.</li>
+     </div>
+     <div class="four columns">
+     <li><b>Easy onboarding.</b> Mercury App makes site management and yeam organization extremely effective.</li>
+     <li><b>Quick referencing.</b> Read back through you messages to find tasks, instruction and approvals.</li>
+     <li><b>Fast approvals.</b> Managers and users cam quickly communicate with clients and each other.</li>
+     <li><b>Clean task management.</b> Communicate and create with your team all within your own website.</li>
+     </div>
+   </div>
+ </div>
 </section>
 <section class="">
  <div class="container">
@@ -144,7 +188,7 @@ Feature Area
    </div>
  </div>
 </section>
-<section class="">
+<section>
  <div class="container">
    <div class="row">
      <div class="twelve columns">
@@ -155,7 +199,7 @@ Feature Area
    </div>
  </div>
 </section>
-<section class="getting-started">
+<section id="getting-started">
  <div class="container">
    <div class="row">
      <div class="twelve columns">
