@@ -28,6 +28,12 @@ section  {
 	border-top: 1px solid $grey;
 	border-bottom: 1px solid $grey;
 	background: #fafafa;
+	h1 {
+		margin-bottom: 25px;
+	}
+	p {
+		margin-top: 15px;
+	}
 }
 #features {
 	padding: 80px 0;
