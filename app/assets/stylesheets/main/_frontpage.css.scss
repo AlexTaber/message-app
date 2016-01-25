@@ -376,7 +376,7 @@ ul.edit-site-list {
 	padding: 40px 20px 20px !important;
 	box-sizing:border-box;
 		.profile-pic {
-			display:none;
+			display:none !important;
 		}
 		.them-msg-wrapper {
 			.them-meta-data{
@@ -421,7 +421,7 @@ ul.edit-site-list {
 @media (min-width: 550px) {
 	.app-view {
 		.profile-pic {
-			display:block;
+			display:block !important;
 		}
 	}
 }
