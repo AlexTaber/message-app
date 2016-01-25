@@ -375,13 +375,55 @@ ul.edit-site-list {
 	height: calc(100vh - 250px) !important;
 	padding: 40px 20px 20px !important;
 	box-sizing:border-box;
+		.profile-pic {
+			display:none;
+		}
+		.them-msg-wrapper {
+			.them-meta-data{
+				padding-left:0;
+			}
+			p{
+				margin-left:0;
+			}
+		}
+		.self-msg-wrapper{
+			.self-meta-data{
+				padding-right:0;
+			}
+			p{
+				margin-left:0;
+			}
+		}
 }
 
 @media (min-width: 750px) {
-.app-view {
-height: 70% !important;
-width:auto !important;
+	.app-view {
+		height: 70% !important;
+		width:auto !important;
+		.them-msg-wrapper {
+			.them-meta-data{
+				padding-left:50px;
+			}
+			p{
+				margin-left:50px;
+			}
+		}
+		.self-msg-wrapper{
+			.self-meta-data{
+				padding-right:50px;
+			}
+			p{
+				margin-left:50px;
+			}
+		}
+	}
 }
+@media (min-width: 550px) {
+	.app-view {
+		.profile-pic {
+			display:block;
+		}
+	}
 }
 .app-view-typeahead {
 	display: block;
