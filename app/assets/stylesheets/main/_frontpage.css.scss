@@ -375,6 +375,7 @@ ul.edit-site-list {
 	height: calc(100vh - 250px) !important;
 	padding: 40px 20px 20px !important;
 	box-sizing:border-box;
+	font-size: 15px;
 		.profile-pic {
 			display:none !important;
 		}
@@ -420,6 +421,7 @@ ul.edit-site-list {
 }
 @media (min-width: 550px) {
 	.app-view {
+		font-size:14px;
 		.profile-pic {
 			display:block !important;
 		}
