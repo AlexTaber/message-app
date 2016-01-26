@@ -1,26 +1,55 @@
 <div style="height:100%; width:100%; overflow: scroll;">
-  <div id="header" class="navbar">
-   <div class="container">
-    <div class="row">
-      <span><b>M</b>ercury<b>A</b>pp</span>
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#plans">Plans</a></li>
-        <li><a href="#why">Why MAP</a></li>
-        <li><a href="#getting-started">Getting Started</a></li>
-      </ul>
-      <ul class="u-pull-right">
-        <% if current_user %>
-        <li><%= link_to 'Dashboard', home_path %></li>
-        <li><%= link_to 'Logout', logout_path %></li>
-        <% else %>
-        <li class="pill"><%= link_to 'Sign Up', login_path %></li>
-        <li><%= link_to 'Login', login_path %></li>
-        <% end %>
-      </ul>
+
+  <div class="desktop-nav">
+    <div id="header" class="navbar">
+       <div class="container">
+        <div class="row">
+          <span><b>M</b>ercury<b>A</b>pp</span>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#why">Why MAP</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
+          </ul>
+          <ul class="u-pull-right">
+            <% if current_user %>
+            <li><%= link_to 'Dashboard', home_path %></li>
+            <li><%= link_to 'Logout', logout_path %></li>
+            <% else %>
+            <li class="pill"><%= link_to 'Sign Up', login_path %></li>
+            <li><%= link_to 'Login', login_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+
+    <div class="mobile-nav">
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <a href="/"><h2>MercuryApp</h2></a>
+          <a id="right-menu" class="u-pull-right" href="#right-menu"><i class="fa fa-bars fa-2x"></i></a>
+          <div id="sidr-right" class="sidr right">
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#plans">Plans</a></li>
+              <li><a href="#why">Why MAP</a></li>
+              <li><a href="#getting-started">Getting Started</a></li>
+              <% if current_user %>
+              <li><%= link_to 'Dashboard', home_path %></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+              <% else %>
+              <li class="pill"><%= link_to 'Sign Up', login_path %></li>
+              <li><%= link_to 'Login', login_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div><!-- row -->
+    </div><!-- container -->
+  </div><!-- End mobile menu -->
 <!--nav-bar-->
 <!--
 Feature Area
