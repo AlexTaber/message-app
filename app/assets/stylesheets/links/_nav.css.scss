@@ -75,6 +75,28 @@ a:hover {
     background:#fff;
   }
 }
+
+.mobile-nav {
+    display: block;
+    background: lighten($pwdlight, 10%);
+    color: #fff;
+    padding: 1rem 0;
+    z-index: 1000;
+
+    h2 {
+      font-weight: 300;
+      display: inline;
+    }
+    a {
+      margin-top:5px;
+      color: rgba($white, .8);
+      text-decoration: none;
+    }
+    &.menu-bar{
+      padding: 5px 10px;
+      background: $brand-color;
+    }
+}
 //dropdown
 @media (min-width: 750px) {
 nav#current-account {
@@ -230,7 +252,6 @@ nav#current-account {
   background-color:#444;
   height:35px;
   padding:5px 30px;
-  border-bottom: 1px solid #fff;
   color:#fff;
   top:31px;
 }
