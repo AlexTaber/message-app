@@ -396,7 +396,9 @@ ul.edit-site-list {
 			}
 		}
 }
-
+.self-meta-data{
+	margin-right:10px;
+}
 @media (min-width: 750px) {
 	.app-view {
 		height: 70% !important;
@@ -409,6 +411,9 @@ ul.edit-site-list {
 				margin-left:50px;
 			}
 		}
+		.self-meta-data{
+			margin-right:0px;
+		}
 		.self-msg-wrapper{
 			.self-meta-data{
 				padding-right:50px;
@@ -418,6 +423,9 @@ ul.edit-site-list {
 			}
 		}
 	}
+	.self-meta-data{
+	margin-right:0px;
+}
 }
 @media (min-width: 550px) {
 	.app-view {
