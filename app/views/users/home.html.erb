@@ -150,14 +150,6 @@
       <% end %>
     </header>
   <nav class="site-list">
-  <% unless current_user.has_active_sites? %>
-    <div class="welcome-msg">
-      <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <!-- <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p> -->
-      <div class="text-center">
-        <button class="button button-primary activate-modal" name="window">Add Site</button>
-      </div>
-    </div>
-  <% end %>
     <% current_user.active_sites_ordered_by_admin.each do |site| %>
 
     <% unless current_user.admin_of_site?(site) %>
@@ -209,6 +201,14 @@
     <% current_user.unapproved_sites.each do |site| %>
       <%= render partial: "user_sites/form", locals: { user_site: current_user.find_user_site(site) } %>
     <% end %>
+      <% unless current_user.has_active_sites? %>
+    <div class="welcome-msg">
+      <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <!-- <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p> -->
+      <div class="text-center">
+        <button class="button button-primary activate-modal" name="window">Add Site</button>
+      </div>
+    </div>
+  <% end %>
     <div class="send-request">
       <div class="welcome-msg">
         <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>
@@ -224,13 +224,13 @@
 <div class="message-bar mobile-target">
   <nav class="current-site-data">
    <header>
-  <b><%= @site.name %></b> &nbsp; Conversations
+      <b><%= @site.name %></b> &nbsp; Conversations
       <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
         <i class="fa fa-plus"></i>
       <% end %>
       <div id="new-message">
       </div>
-      </header>
+    </header>
   </nav>
 
   <% if @conversation.new_record? && current_user.has_active_sites?  %>
