@@ -2,6 +2,9 @@
 var canSendMessage = true;
 jQuery(document).ready(function($){
   scrollToBottom();
+    //sidr
+  jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
+
   //PUSHER--------------------------
   if(typeof conversationTokens !== 'undefined') {
     var channel;
@@ -103,9 +106,6 @@ $('.close-modal').click(function(){
 
   //flash messages fade out after 3 sec
 	$('.flash').delay(3000).fadeOut();
-
-  //sidr
-  jQuery("#right-menu").sidr({name:"sidr-right",side:"right"})
 
 });
 

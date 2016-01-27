@@ -81,6 +81,7 @@ a:hover {
     background: lighten($pwdlight, 10%);
     color: #fff;
     padding: 1rem 0;
+    z-index: 1000;
 
     h2 {
       font-weight: 300;
@@ -91,6 +92,9 @@ a:hover {
       color: rgba($white, .8);
       text-decoration: none;
 
+    }
+    &.menu-bar{
+      padding: 5px 10px;
     }
 }
 //dropdown
@@ -248,7 +252,6 @@ nav#current-account {
   background-color:#444;
   height:35px;
   padding:5px 30px;
-  border-bottom: 1px solid #fff;
   color:#fff;
   top:31px;
 }
