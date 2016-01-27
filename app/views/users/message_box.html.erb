@@ -9,7 +9,9 @@
         <% if current_user.has_unread_conversations? %>
           <span class="is-unread-mb"> &bull; </span> &nbsp;
         <% end %>
-        <span>Mercury<b>App</b></span>
+        <%= link_to login_path, target: '_blank' do %>
+          <span>Mercury<b>App</b></span>
+        <% end %>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
         <% if current_user.has_unread_conversations_other_sites?(@site) %>
@@ -37,7 +39,7 @@
             <div id='convos-list'>
             <p class="text-center">
               <b>Your Conversations</b>
-<!--This Link--><%= link_to message_box_path(token: @site.token, new_conversation: true), class: 'u-pull-right'  do %>
+                <%= link_to message_box_path(token: @site.token, new_conversation: true), class: 'u-pull-right'  do %>
                   <i class="fa fa-plus add-btn" style="right: 25px; top:10px; position:absolute;"></i>
                 <% end %>
             </p>

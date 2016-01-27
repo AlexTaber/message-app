@@ -100,6 +100,14 @@
 .mb-header{
       background: $pwdlight !important;
       opacity: 1;
+      a {
+        text-decoration: none;
+        color:#fff;
+        &:hover{
+          color:#fff;
+          opacity: .8;
+        }
+      }
 }
 @media (max-width: 300px) {
   .mb-header{
