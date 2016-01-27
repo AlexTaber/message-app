@@ -220,9 +220,15 @@ function subscribeToConvo(conversationToken, curConvoToken) {
 function listenForNewConvos() {
   channel = pusher.subscribe('new-conversation' + String(userId));
   channel.bind('new-conversation', function(data){
+
     if(siteId == data.site_id) {
-      //$(".current-site-data").after(data.app_html);
-      $(".new-convo-placeholder").after(anchorme.js(data.app_html, { "target":"_blank" }));
+      var newConvoEl = $(".new-convo-placeholder");
+
+      if(newConvoEl.length) {
+        newConvoEl.after(anchorme.js(data.app_html, { "target":"_blank" }));
+      } else {
+        $(".current-site-data").after(data.app_html);
+      }
     }
   });
 }
