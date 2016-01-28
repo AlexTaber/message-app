@@ -15,6 +15,7 @@ jQuery(document).ready(function($){
     }
     listenForNewConvos();
   }
+
   //if user clicks conversation on mobile
 
   var messageUrl = window.location.href.indexOf("user_ids") > -1
