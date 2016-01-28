@@ -17,9 +17,7 @@ a:hover {
   span {
     font-size: 3rem;
   }
-
   z-index: 999;
-
   ul {
   	display: inline-block;
     list-style: none;
@@ -100,7 +98,7 @@ a:hover {
 }
 .sign-up-plans {
 	padding: 6rem 0;
-	background: $grey;
+	background: rgba($grey, .6);
 	h4 {
 		font-weight: 700;
 	}
@@ -124,6 +122,8 @@ a:hover {
 }
 .card-data {
 	margin-top: 2rem;
+	margin-bottom : 15px;
+	padding-bottom : 20px;
 	border-bottom: 1px solid $grey;
 	ul {
 		margin-bottom: 4rem;

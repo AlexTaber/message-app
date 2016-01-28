@@ -20,21 +20,30 @@
           <% else %>
             <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
           <% end %> </span>
-          <a href="#" class="manage-user-edit"><i class="fa fa-pencil"></i></a>
+          <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
         </p>
       <% end %>
       </div>
-      <hr>
     <% end %>
+  <section class="tabs">  
     <div class="overflow-visible">
-      <h4>Add Users to <%= @site.name %></h4>
-      <p>If the person is already a MercuryApp user, use the search form below.</p>
-      <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
-      <p class="add-users-or">or</p>
-       <p>If the person isnt on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
-      <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
+      <ul class="tab-list">
+        <li class="tab1 active-tab"><a href="#"></a>Add Users</a></li>
+        <li class="tab2"><a href="#"></a>Invite Users</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab1 active-tab">
+        <p>If the person is already a MercuryApp user, use the search form below.</p>
+        <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
+        </div>
+        <div class="tab2">
+         <p>If the person isn't on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
+        <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
+        </div>
+      </div>
     </div>
-    <div>
+  </section>
+ <div>
       <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
     </div>
   </div>
@@ -106,7 +115,7 @@
 
 <!-- END MODALS -->
 <!-- Desktop Navbar -->
-<div class="menu-bar desktop-nav">
+<div class="menu-bar desktop-nav show-desktop">
   <span><%= link_to 'MercuryApp', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
@@ -123,14 +132,14 @@
 </div>
 <!-- End Desktop Navbar -->
 <!-- Mobile Navbar -->
-<div class="menu-bar mobile-nav">
+<div class="menu-bar mobile-nav show-mobile">
   <span><%= link_to 'MercuryApp', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
     <span><%= @site.name %></span>
  </nav>
 </div>
- <nav class="mobile-info mobile-nav">
+ <nav class="mobile-info mobile-nav show-mobile">
     <div class="mobile-icons">
       <i class="fa fa-globe mobile-active" id="mobile-sites"></i>
       <i class="fa fa-comments" id="mobile-convos"></i>

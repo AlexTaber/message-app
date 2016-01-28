@@ -108,6 +108,20 @@ $('.close-modal').click(function(){
   //flash messages fade out after 3 sec
 	$('.flash').delay(3000).fadeOut();
 
+//Tabs
+
+$(".tab-list .tab1 a").click(function(e) {
+    e.preventDefault(); 
+    $(".tabs .active-tab").removeClass("active-tab");
+    $(".tab1").addClass("active-tab");
+});
+
+$(".tab-list .tab2 a").click(function(e) {
+    e.preventDefault(); 
+    $(".tabs .active-tab").removeClass("active-tab");
+    $(".tab2").addClass("active-tab");
+});
+
 });
 
 //Functions
