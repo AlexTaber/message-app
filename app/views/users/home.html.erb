@@ -106,7 +106,7 @@
 
 <!-- END MODALS -->
 <!-- Desktop Navbar -->
-<div class="menu-bar desktop-nav">
+<div class="menu-bar desktop-nav show-desktop">
   <span><%= link_to 'MercuryApp', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
@@ -123,14 +123,14 @@
 </div>
 <!-- End Desktop Navbar -->
 <!-- Mobile Navbar -->
-<div class="menu-bar mobile-nav">
+<div class="menu-bar mobile-nav show-mobile">
   <span><%= link_to 'MercuryApp', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
     <span><%= @site.name %></span>
  </nav>
 </div>
- <nav class="mobile-info mobile-nav">
+ <nav class="mobile-info mobile-nav show-mobile">
     <div class="mobile-icons">
       <i class="fa fa-globe mobile-active" id="mobile-sites"></i>
       <i class="fa fa-comments" id="mobile-convos"></i>
