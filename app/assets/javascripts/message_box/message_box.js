@@ -34,11 +34,11 @@ jQuery(document).ready(function($){
   $('.flash').delay(3000).fadeOut();
 
   //hide dropdowns on window resize
-    if ($('body').width() > 450) {
+    if ($('body').height() > 100) {
       $('.mb-body').fadeIn();
     }
   $(window).on('resize', function(){
-    if ($('body').width() < 450) {
+    if ($('body').height() < 100) {
       $('.mb-dropdown').hide();
       $('i.is-active').removeClass('is-active');
       $('.mb-body').fadeOut(200);
@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
       $('.flash').hide();
     }
     }
-    if ($('body').width() > 450) {
+    if ($('body').height() > 100) {
       $('.mb-body').fadeIn();
     }
   });
