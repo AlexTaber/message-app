@@ -1,0 +1,5 @@
+<div class="user-data-container">
+  <% @users.each do |user| %>
+    <%= render partial: "users/user_data", locals: { user: user } %>
+  <% end %>
+</div>

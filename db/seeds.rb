@@ -36,7 +36,8 @@ jerry = User.create(
   last_name: "Patterson",
   email: "info@peekskillwebdesign.com",
   password: "123",
-  tier_id: admin_tier.id
+  tier_id: admin_tier.id,
+  owner: true
 )
 
 jerry_image = Image.create(

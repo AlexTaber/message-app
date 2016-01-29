@@ -142,6 +142,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def owner_data
+    require_owner
+    @users = User.all
+  end
+
   private
 
   def user_by_id

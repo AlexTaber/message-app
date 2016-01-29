@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/message_box' => 'users#message_box'
   get '/token_redirect' => 'users#token_redirect'
   get '/typeahead' => 'users#typeahead'
+  get '/owner-data' => 'users#owner_data'
   post '/add_user' => 'conversations#add_user'
 
   root 'users#home'

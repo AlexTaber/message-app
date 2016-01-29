@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_initial}"
   end
 
+  def messages_by_site(site)
+    conversations.where(site_id: site.id).collect(&:messages)
+  end
+
   def conversations_by_site(site)
     conversations.where(site_id: site.id)
   end
