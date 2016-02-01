@@ -121,7 +121,11 @@ $(".tab-list .tab2 a").click(function(e) {
     $(".tabs .active-tab").removeClass("active-tab");
     $(".tab2").addClass("active-tab");
 });
+  
 
+});
+$(window).on('load',function(){
+  $('.new-focus').focus();
 });
 
 //Functions
