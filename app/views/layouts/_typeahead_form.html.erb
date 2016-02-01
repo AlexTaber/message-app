@@ -1,5 +1,9 @@
 <%= form_tag add_user_path, class: 'typeahead-form' do %>
-  	<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus", value: "" %>
+<% if @conversation.new_record? %>
+  	<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus new-focus", value: "" %>
+<% else %>
+		<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus", value: "" %>
+<% end %>
 
   <%= hidden_field_tag "conversation[site_id]", site.id %>
   <%= hidden_field_tag :user_id, nil %>
