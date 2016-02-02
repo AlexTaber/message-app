@@ -261,6 +261,9 @@
         <p>Start messaging now</p>
       </div>
     </div>
+    <% if @site.has_conversations? %>
+      <a herf="#" class='close-new-convo'><i class="fa fa-times"></i></a>
+    <% end %>
   </div>
 <% end %>
 
