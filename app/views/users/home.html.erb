@@ -25,7 +25,7 @@
       <% end %>
       </div>
     <% end %>
-  <section class="tabs">  
+  <section class="tabs">
     <div class="overflow-visible">
       <ul class="tab-list">
         <li class="tab1 active-tab"><a href="#"></a>Add Users</a></li>
@@ -168,7 +168,7 @@
     <% end %>
       <% if current_user.has_unread_conversations_by_site?(site) %>
         <li class="is-unread-site">
-      <% else %>   
+      <% else %>
         <li>
       <% end %>
           <% if site == @admin_site %>
@@ -262,7 +262,9 @@
       </div>
     </div>
     <% if @site.has_conversations? %>
-      <a herf="#" class='close-new-convo'><i class="fa fa-times"></i></a>
+      <%= link_to home_path(site_id: @site.id), class: "close-new-convo" do %>
+        <i class="fa fa-times"></i>
+      <% end %>
     <% end %>
   </div>
 <% end %>

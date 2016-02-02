@@ -111,22 +111,22 @@ $('.close-modal').click(function(){
 //Tabs
 
 $(".tab-list .tab1 a").click(function(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     $(".tabs .active-tab").removeClass("active-tab");
     $(".tab1").addClass("active-tab");
 });
 
 $(".tab-list .tab2 a").click(function(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     $(".tabs .active-tab").removeClass("active-tab");
     $(".tab2").addClass("active-tab");
 });
 
-$(".close-new-convo").on('click', function(e){
-  e.preventDefault();
-  $('.new-convo-placeholder').hide();
-});
-  
+// $(".close-new-convo").on('click', function(e){
+//   e.preventDefault();
+//   $('.new-convo-placeholder').hide();
+// });
+
 
 });
 $(window).on('load',function(){
