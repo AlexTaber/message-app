@@ -164,7 +164,7 @@ class UsersController < ApplicationController
         @conversation.users << users
       end
     else
-      @conversation = user.conversations_by_site(@site).first
+      @conversation = user.ordered_conversations_by_site(@site).first
     end
   end
 
