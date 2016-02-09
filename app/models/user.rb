@@ -185,6 +185,10 @@ class User < ActiveRecord::Base
     !is_member_of_site?(site)
   end
 
+  def pending_request_by_site(site)
+    requests.find_by(site_id: site.id)
+  end
+
   def has_request_for_site?(site)
     requests.where(site_id: site.id).count > 0
   end
