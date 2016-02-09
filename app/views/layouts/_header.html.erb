@@ -1,2 +1,37 @@
-<% if current_user %>
-<% end %>
+<!-- Desktop Navbar -->
+<div class="menu-bar desktop-nav">
+  <span><%= link_to 'MercuryApp', splash_path %></span>
+  <!-- User Account Section -->
+  <nav class="profile-data">
+    <span><%= current_user.name %> (<%= current_user.username %>)</span>
+    <i class="fa fa-user"></i>
+    <i id="users-account" class="fa fa-chevron-down menu-caret" title="Edit your account"></i>
+    <nav id="current-account">
+     <p><b>Your Acount</b></p>
+     <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+     <li><%= link_to 'Upgrade', edit_subscription_path(current_user.subscription) %></li>
+     <li><%= link_to 'Logout', logout_path %></li>
+   </nav>
+ </nav>
+</div>
+<!-- End Desktop Navbar -->
+<!-- Mobile Navbar -->
+<div class="menu-bar mobile-nav">
+  <span><%= link_to 'MercuryApp', splash_path %></span>
+  <!-- User Account Section -->
+  <% if @site %>
+    <nav class="profile-data">
+      <span><%= @site.name %></span>
+   </nav>
+  <% end %>
+</div>
+ <nav class="mobile-info mobile-nav">
+    <div class="mobile-icons">
+      <i class="fa fa-globe mobile-active" id="mobile-sites"></i>
+      <i class="fa fa-comments" id="mobile-convos"></i>
+      <i class="fa fa-comment" id="mobile-messages"></i>
+      <i class="fa fa-user" id="msg-bx-acct-btn"></i>
+    </div>
+    <p class="user-name"><%= current_user.name %></p>
+ </nav>
+<!-- End Mobile Navbar -->

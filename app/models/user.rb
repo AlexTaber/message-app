@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def messages_by_site(site)
-    conversations.where(site_id: site.id).collect(&:messages)
+    messages.select{ |message| message.conversation.site_id == site.id }
   end
 
   def conversations_by_site(site)

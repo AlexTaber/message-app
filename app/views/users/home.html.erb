@@ -150,115 +150,118 @@
  </nav>
 <!-- End Mobile Navbar -->
 <!-- End Menu Bar -->
+<!-- overflow hidden wrapper -->
+<div class="home-wrapper">
 <!-- INBOX SIDEBAR -->
-<div class="inbox-sidebar mobile-target">
-  <header>
-    <b>Your</b> sites
-      <%= link_to new_site_path, class: "activate-modal add-btn", name: "window" do %>
-      <i class="fa fa-plus" title="Add a new site"></i>
-      <% end %>
-    </header>
-  <nav class="site-list">
-    <% current_user.active_sites_ordered_by_admin.each do |site| %>
+  <div class="inbox-sidebar mobile-target">
+    <header>
+      <b>Your</b> sites
+        <%= link_to new_site_path, class: "activate-modal add-btn", name: "window" do %>
+        <i class="fa fa-plus" title="Add a new site"></i>
+        <% end %>
+      </header>
+    <nav class="site-list">
+      <% current_user.active_sites_ordered_by_admin.each do |site| %>
 
-    <% unless current_user.admin_of_site?(site) %>
-      <div class="non-admin-user">
-    <% else %>
-      <div>
-    <% end %>
-      <% if current_user.has_unread_conversations_by_site?(site) %>
-        <li class="is-unread-site">
+      <% unless current_user.admin_of_site?(site) %>
+        <div class="non-admin-user">
       <% else %>
-        <li>
+        <div>
       <% end %>
-          <% if site == @admin_site %>
-              <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
-          <% end %>
-          <% if current_user.admin_of_site?(site) %>
-            <i class="fa fa-user admin-profile"></i>
-          <% end %>
-          <% if site == @site %>
-          <b class="open-accordian site-target"><%= link_to site.name, '#' %></b>
-          <% else %>
-          <%= link_to site.name, home_path(site_id: site.id) %>
-          <% end %>
-          <% if site == @admin_site %>
-            <div class="accordian-content">
+        <% if current_user.has_unread_conversations_by_site?(site) %>
+          <li class="is-unread-site">
+        <% else %>
+          <li>
+        <% end %>
+            <% if site == @admin_site %>
+                <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
+            <% end %>
+            <% if current_user.admin_of_site?(site) %>
+              <i class="fa fa-user admin-profile"></i>
+            <% end %>
+            <% if site == @site %>
+            <b class="open-accordian site-target"><%= link_to site.name, '#' %></b>
+            <% else %>
+            <%= link_to site.name, home_path(site_id: site.id) %>
+            <% end %>
+            <% if site == @admin_site %>
+              <div class="accordian-content">
 
-            <ul class="edit-site-list">
-                <li>
-                  <%= link_to "Add/Remove Users", "#", class: "activate-modal", name: "manage-users" %>
-                </li>
-                <li>
-                  <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
-                </li>
-                <li>
-                  <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
-                </li>
-                <li>
-                  <%= link_to "Remove", "#", class: "activate-modal", name: "delete" %>
-                </li>
-            </ul>
-          </div>
-          <% end %>
-        </li>
-      </div>
-    <% end %>
-    <% if current_user.has_unapproved_sites? %>
-      <div class="text-center" id="invites-title">Invites</div>
-    <% end %>
-    <% current_user.unapproved_sites.each do |site| %>
-      <%= render partial: "user_sites/form", locals: { user_site: current_user.find_user_site(site) } %>
-    <% end %>
-      <% unless current_user.has_active_sites? %>
-    <div class="welcome-msg">
-      <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <!-- <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p> -->
-      <div class="text-center">
-        <button class="button button-primary activate-modal" name="window">Add Site</button>
-      </div>
-    </div>
-  <% end %>
-    <div class="send-request">
+              <ul class="edit-site-list">
+                  <li>
+                    <%= link_to "Add/Remove Users", "#", class: "activate-modal", name: "manage-users" %>
+                  </li>
+                  <li>
+                    <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
+                  </li>
+                  <li>
+                    <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
+                  </li>
+                  <li>
+                    <%= link_to "Remove", "#", class: "activate-modal", name: "delete" %>
+                  </li>
+              </ul>
+            </div>
+            <% end %>
+          </li>
+        </div>
+      <% end %>
+      <% if current_user.has_unapproved_sites? %>
+        <div class="text-center" id="invites-title">Invites</div>
+      <% end %>
+      <% current_user.unapproved_sites.each do |site| %>
+        <%= render partial: "user_sites/form", locals: { user_site: current_user.find_user_site(site) } %>
+      <% end %>
+        <% unless current_user.has_active_sites? %>
       <div class="welcome-msg">
-        <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>
+        <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <!-- <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p> -->
         <div class="text-center">
-          <button class="button button-primary activate-modal" name="send-request">Send Request</button>
+          <button class="button button-primary activate-modal" name="window">Add Site</button>
         </div>
       </div>
-    </div>
-  </nav>
-</div>
-<!-- End Your Sites Sidebar -->
-<!-- Current Site Data and Conversations Area -->
-<div class="message-bar mobile-target">
-  <nav class="current-site-data">
-   <header>
-      <b><%= @site.name %></b> &nbsp; Conversations
-      <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
-        <i class="fa fa-plus"></i>
-      <% end %>
-      <div id="new-message">
+    <% end %>
+      <div class="send-request">
+        <div class="welcome-msg">
+          <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>
+          <div class="text-center">
+            <button class="button button-primary activate-modal" name="send-request">Send Request</button>
+          </div>
+        </div>
       </div>
-    </header>
-  </nav>
+    </nav>
+  </div>
+  <!-- End Your Sites Sidebar -->
+  <!-- Current Site Data and Conversations Area -->
+  <div class="message-bar mobile-target">
+    <nav class="current-site-data">
+     <header>
+        <b><%= @site.name %></b> &nbsp; Conversations
+        <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
+          <i class="fa fa-plus"></i>
+        <% end %>
+        <div id="new-message">
+        </div>
+      </header>
+    </nav>
 
-  <% if @conversation.new_record? && current_user.has_active_sites?  %>
-    <div class="message-item msg-item-current new-convo-placeholder">
-    <div class="media">
-         <% if current_user.image %>
-        <div class="profile-pic u-pull-left app-view-p-img">
-          <img class="profile-pic" src="<%= current_user.image_url %>">
+    <% if @conversation.new_record? && current_user.has_active_sites?  %>
+      <div class="message-item msg-item-current new-convo-placeholder">
+      <div class="media">
+           <% if current_user.image %>
+          <div class="profile-pic u-pull-left app-view-p-img">
+            <img class="profile-pic" src="<%= current_user.image_url %>">
+          </div>
+        <% else %>
+          <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
+            <p><%= current_user.first_name[0] %></p>
+          </div>
+        <% end %>
+        <div class="bd">
+          <h4>
+            New Conversation
+          </h4>
+          <p>Start messaging now</p>
         </div>
-      <% else %>
-        <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
-          <p><%= current_user.first_name[0] %></p>
-        </div>
-      <% end %>
-      <div class="bd">
-        <h4>
-          New Conversation
-        </h4>
-        <p>Start messaging now</p>
       </div>
     </div>
     <% if @site.has_conversations? %>
@@ -269,35 +272,37 @@
   </div>
 <% end %>
 
-<% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
-  <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
-    <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user } %>
+  <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
+    <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
+      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user } %>
+    </div>
+  <% end %>
+
   </div>
-<% end %>
+  <!-- End Current Site Data and Conversations Area -->
+  <!-- Message Content Section -->
+  <div class="message-center mobile-target">
+      <header>
+      <i>To:</i>
+      <b> <%= @conversation.other_users_to_s(current_user) %> </b>
+      <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
+       <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
+      </header>
 
-</div>
-<!-- End Current Site Data and Conversations Area -->
-<!-- Message Content Section -->
-<div class="message-center mobile-target">
-    <header>
-    <i>To:</i>
-    <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-    <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
-     <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
-    </header>
-
-    <div class="msg-bx-convo app-view">
-      <% @conversation.messages.each do |message| %>
-        <%= render partial: "messages/message", locals: { message: message } %>
+      <div class="msg-bx-convo app-view">
+        <% @conversation.messages.each do |message| %>
+          <%= render partial: "messages/message", locals: { message: message } %>
+        <% end %>
+      </div>
+    <div id="form-wrapper">
+      <% if @conversation.new_record? %>
+        <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation } %>
+      <% else %>
+        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
       <% end %>
     </div>
-  <div id="form-wrapper">
-    <% if @conversation.new_record? %>
-      <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation } %>
-    <% else %>
-      <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
-    <% end %>
   </div>
+
 </div>
 <% if current_user.active_sites_ordered_by_admin.length > 0 %>
 
