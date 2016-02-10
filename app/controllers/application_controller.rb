@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_owner
-    unless current_user.owner
+    unless current_user && current_user.owner
       flash[:warn] = "You do not have permission to view this page"
       redirect_to home_path
     end
