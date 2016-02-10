@@ -51,7 +51,7 @@ input:-webkit-autofill {
       margin-bottom:20px;
 
   label {
-    display: inline;
+    display: block;
     margin:10px;
     cursor: pointer;
     font-weight: normal;
@@ -70,30 +70,35 @@ input:-webkit-autofill {
 
 .subscription-form-wrapper {
   display: inline-table;
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   background-color: $white;
   vertical-align: top;
+  overflow-y: scroll;
 }
 
 .subscription-info {
   position: relative;
   display: inline-block;
   background-color: #56688f;
-  width: 50%;
-  height: 100%;
-  padding: 30px;
+  width: calc(100% - 10px);
+  height: 50%;
+  padding: 5px;
   color: $white;
   text-align: center;
-  -webkit-transition: 1s; /* Safari */
-  transition: 1s;
+  -webkit-transition: 1s background; /* Safari */
+  transition: 1s background;
+
+  h2 {
+    display: none;
+  }
 
   .dollars {
-    margin-top: 80px;
+    margin-top: 20px;
 
     i {
-      margin-right: 10px;
-      margin-left: 10px;
+      margin-right: 4px;
+      margin-left: 4px;
       -webkit-transition: 1s; /* Safari */
       transition: 1s;
 
@@ -105,11 +110,15 @@ input:-webkit-autofill {
 
   .subscription-text {
     position: absolute;
-    width: calc(100% - 60px);
-    margin-top: 80px;
+    width: calc(100% - 10px);
+    margin-top: 20px;
     opacity: 1;
     -webkit-transition: 1s; /* Safari */
     transition: 1s;
+
+    p {
+      margin-top: 10px;
+    }
 
     &.is-hidden {
       opacity: 0;
@@ -136,5 +145,64 @@ input:-webkit-autofill {
 
   input {
     margin-bottom: 10px;
+  }
+}
+
+@media(min-width: 550px) {
+  .subscription-form-wrapper {
+    height: 100%;
+    width: 60%;
+  }
+
+  .subscription-info {
+    height: 100%;
+    padding: 5px;
+    width: calc(40% - 10px);
+
+    .subscription-text {
+      width: calc(100% - 10px);
+    }
+
+    .dollars {
+      margin-top: 80px;
+    }
+
+    .subscription-text {
+      margin-top: 80px;
+    }
+  }
+
+  .tier-select label {
+    display: inline;
+  }
+}
+
+@media(min-width: 800px) {
+  .subscription-form-wrapper {
+    height: 100%;
+    width: 50%;
+  }
+
+  .subscription-info {
+    height: 100%;
+    padding: 30px;
+    width: 50%;
+
+    h2 {
+      display: inline;
+    }
+
+    i {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    .subscription-text {
+      width: calc(100% - 60px);
+    }
+  }
+
+  .tier-select label {
+    display: inline;
   }
 }
