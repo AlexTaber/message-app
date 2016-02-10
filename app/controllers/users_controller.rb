@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_by_id, only: [:edit, :update]
+  before_action :require_permitted_user, only: [:home, :message_box]
 
   def new
     @default_tier_id = params[:default_tier_id] || 1
