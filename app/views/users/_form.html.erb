@@ -1,6 +1,7 @@
 <%= form_for user do |f| %>
   <div style="margin:15px 0;">
     <%= f.text_field :username, placeholder: "Username" %> &nbsp;
+    <%= f.text_field :email, placeholder:"Email" %>
   </div>
 
   <div style="margin:15px 0;">
@@ -11,10 +12,6 @@
   <div style="margin:15px 0;">
     <%= f.password_field :password, placeholder: "Password" %> &nbsp;
     <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %>
-  </div>
-
-  <div style="margin:15px 0;">
-    <%= f.text_field :email, placeholder:"Email" %> &nbsp;
   </div><br>
 
   <div style="margin:15px 0;">
@@ -22,7 +19,9 @@
   </div>
 
   <div style="margin:15px 0;">
-   <span style="margin-left:110px;"></span><%= f.file_field :file %>
+  <%= f.file_field :file, name: 'profile-uploader', id: 'profile-uploader', class: 'inputfile' %>
+   <label for='profile-uploader' class="button button-primary">Upload</label><br>
+   <img id="img-input" class="profile-preview" src="#">
   </div>
 
   <% if @invite_token %>
