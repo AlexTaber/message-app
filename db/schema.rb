@@ -132,15 +132,16 @@ ActiveRecord::Schema.define(version: 20160210155608) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",                    null: false
-    t.string   "first_name",                  null: false
-    t.string   "last_name",                   null: false
-    t.string   "email",                       null: false
-    t.string   "password_digest",             null: false
-    t.integer  "tier_id",         default: 1, null: false
-    t.integer  "visits",          default: 0, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "username",                        null: false
+    t.string   "first_name",                      null: false
+    t.string   "last_name",                       null: false
+    t.string   "email",                           null: false
+    t.string   "password_digest",                 null: false
+    t.integer  "tier_id",         default: 1,     null: false
+    t.integer  "visits",          default: 0,     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "owner",           default: false
   end
 
 end

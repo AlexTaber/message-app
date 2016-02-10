@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :user_by_id, only: [:edit, :update]
   before_action :require_permitted_user, only: [:home, :message_box]
+  before_action :user_by_id, only: [:edit, :update, :user_owner_data]
 
   def new
     @default_tier_id = params[:default_tier_id] || 1
@@ -140,6 +140,15 @@ class UsersController < ApplicationController
         all_sites: Site.all_sites_data
       }.to_json
     end
+  end
+
+  def owner_data
+    require_owner
+    @users = User.all
+  end
+
+  def user_owner_data
+
   end
 
   private

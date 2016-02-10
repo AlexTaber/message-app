@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :edit, :update, :destroy]
+  resources :users, only: [:new, :create, :edit, :update, :destroy] do
+    member do
+      get :user_owner_data
+    end
+  end
   resources :sites, only: [:new, :create, :edit, :update, :destroy] do
     member do
       get :add_users
+      get :site_owner_data
     end
   end
   resources :conversations, only: [:new, :create, :destroy]
@@ -17,7 +22,7 @@ Rails.application.routes.draw do
       post :verify
     end
   end
-  resources :bans, only: [:create]
+  resources :bans, only: [:new, :create, :update]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -28,6 +33,7 @@ Rails.application.routes.draw do
   get '/message_box' => 'users#message_box'
   get '/token_redirect' => 'users#token_redirect'
   get '/typeahead' => 'users#typeahead'
+  get '/owner-data' => 'users#owner_data'
   post '/add_user' => 'conversations#add_user'
 
   root 'users#home'

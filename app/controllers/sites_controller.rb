@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_action :site_by_id, only: [:edit, :update, :add_users, :destroy]
+  before_action :site_by_id, only: [:edit, :update, :add_users, :destroy, :site_owner_data]
 
   def new
     @site = Site.new
@@ -54,6 +54,10 @@ class SitesController < ApplicationController
   end
 
   def add_users
+  end
+
+  def site_owner_data
+
   end
 
   private

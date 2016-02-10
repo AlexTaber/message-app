@@ -1,0 +1,43 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <h3><%= @site.name %> Data</h3>
+        <h5>Users</h5>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Admin?</th>
+              <th>Total Conversations on <%= @site.name %></th>
+              <th>Total Messages on <%= @site.name %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @site.users.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= link_to user.name, user_owner_data_user_path(user) %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td>
+                  <%= user.admin_of_site?(@site) %>
+                  <% if user.admin_of_site?(@site) %>
+                    <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
+                  <% else %>
+                    <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+                  <% end %>
+                </td>
+                <td><%= user.conversations_by_site(@site).count %></td>
+                <td><%= user.messages_by_site(@site).count %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

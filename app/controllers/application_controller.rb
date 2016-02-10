@@ -19,6 +19,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_owner
+    unless current_user && current_user.owner
+      flash[:warn] = "You do not have permission to view this page"
+      redirect_to home_path
+    end
+  end
+
   def current_user
     @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
   end

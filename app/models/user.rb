@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_initial}"
   end
 
+  def messages_by_site(site)
+    messages.select{ |message| message.conversation.site_id == site.id }
+  end
+
   def conversations_by_site(site)
     conversations.where(site_id: site.id)
   end
@@ -214,6 +218,10 @@ class User < ActiveRecord::Base
 
   def current_ban
     active_bans.select(&:not_expired).first
+  end
+
+  def is_banned?
+    current_ban ? true : false
   end
 
   def active_bans
