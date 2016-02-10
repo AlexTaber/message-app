@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_one  :subscription
   has_many :password_recoveries
+  has_many :bans
 
   has_many :requests
 
