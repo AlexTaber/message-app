@@ -2,7 +2,6 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   <div class="tier-select">
-    <p><b> Choose Your Level</b></p>
     <%= collection_radio_buttons nil, :tier_id, Tier.all_published, :id, :name, checked: tier_id %>
   </div>
 

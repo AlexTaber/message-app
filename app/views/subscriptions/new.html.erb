@@ -1,11 +1,43 @@
-<div class="display-table text-center">
+<div class="text-center subscription-form-wrapper">
 	<div class="centered">
-		<h2>Please enter a credit card to get <br> a premium account</h2>
+		<h2>Please Select Your Tier</h2>
+    <%= render partial: "form", locals: { subscription: @subscription, tier_id: @tier_id, card_token: @card_token } %>
 
-<%= render partial: "form", locals: { subscription: @subscription, tier_id: @tier_id, card_token: @card_token } %>
+    <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+    </div>
+  </div>
+</div><!--
 
-<div id="stripe_error">
-  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-</div>
-</div>
+--><div class="subscription-info">
+  <h2>MercuryApp is the Messaging Solution for Your Site, Large or Small</h2>
+  <div class="dollars">
+    <i class="fa fa-usd fa-2x is-transitioned" id="dollar-1"></i>
+    <i class="fa fa-usd fa-3x" id="dollar-2"></i>
+    <i class="fa fa-usd fa-4x" id="dollar-3"></i>
+  </div>
+
+  <div class="subscription-text" id="subscription-text-1">
+    <h3>Basic Tier</h3>
+    <h3>Free</h3>
+    <p>One Admin site</p>
+    <p>Up to three users</p>
+    <p>Belong to unlimited sites</p>
+  </div>
+
+  <div class="subscription-text is-hidden"  id="subscription-text-2">
+    <h3>Single Site</h3>
+    <h3>$10</h3>
+    <p>One Admin site</p>
+    <p>Unlimited users</p>
+    <p>Belong to unlimited sites</p>
+  </div>
+
+  <div class="subscription-text is-hidden"  id="subscription-text-3">
+    <h3>Multi Site</h3>
+    <h3>$20</h3>
+    <p>5 Admin sites</p>
+    <p>Unlimited users</p>
+    <p>Belong to unlimited sites</p>
+  </div>
 </div>
