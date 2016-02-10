@@ -67,7 +67,53 @@ input:-webkit-autofill {
     display:none;
   }
 }
-#profile-uploader{
+
+.subscription-form-wrapper {
+  display: inline-table;
+  width: 50%;
+  height: 100%;
+  background-color: rgba($brand-color, 0.3);
+  vertical-align: top;
+}
+
+.subscription-info {
+  position: relative;
+  display: inline-block;
+  background-color: $white;
+  width: 50%;
+  height: 100%;
+  padding: 30px;
+  color: $brand-color;
+  text-align: center;
+
+  .dollars {
+    margin-top: 80px;
+
+    i {
+      margin-right: 10px;
+      margin-left: 10px;
+      -webkit-transition: 1s; /* Safari */
+      transition: 1s;
+
+      &.is-transitioned {
+        color: $pwdlight;
+      }
+    }
+  }
+
+  .subscription-text {
+    position: absolute;
+    width: calc(100% - 60px);
+    margin-top: 80px;
+    opacity: 1;
+    -webkit-transition: 1s; /* Safari */
+    transition: 1s;
+
+    &.is-hidden {
+      opacity: 0;
+    }
+  }
+}#profile-uploader{
   display:none;
 }
 #img-input{

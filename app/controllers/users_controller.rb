@@ -69,6 +69,8 @@ class UsersController < ApplicationController
 
   def home
     if current_user
+      redirect_to new_subscription_path and return unless current_user.subscription
+
       current_user.has_active_sites? ? find_user_site : @site = Site.new
       if params[:new_conversation]
         set_up_new_conversation
