@@ -211,4 +211,12 @@ class User < ActiveRecord::Base
   def invalidate_password_recoveries
     password_recoveries.each { |password_recovery| password_recovery.update_attributes(active: false) }
   end
+
+  def current_ban
+    active_bans.select(&:not_expired).first
+  end
+
+  def active_bans
+    bans.where(active: true)
+  end
 end

@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_permitted_user
+    if current_user.current_ban
+      flash[:warn] = current_user.current_ban.message
+      redirect_to splash_path
+    end
+  end
+
   def current_user
     @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
   end
