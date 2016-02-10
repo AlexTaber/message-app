@@ -68,7 +68,30 @@
 
     newST = $("#subscription-text-" + index);
     curST.addClass("is-hidden");
-    newST.removeClass("is-hidden");
+    setTimeout(function() {
+      newST.removeClass("is-hidden");
+    }, 500);
     curST = newST;
+
+    subTransition(parseInt(index));
+  }
+
+  function subTransition(index) {
+    var colors = [
+      "#56688f",
+      "#455372",
+      "#133c64"
+    ]
+
+    var fontColors = [
+      "#fff",
+      "#fff",
+      "#fff"
+    ]
+
+    $(".subscription-info").css({
+      "background-color": colors[index - 1],
+      "color": fontColors[index - 1]
+    });
   }
 }).call(this);
