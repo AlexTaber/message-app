@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_permitted_user
-    if current_user.current_ban
+    if current_user && current_user.current_ban
       flash[:warn] = current_user.current_ban.message
       redirect_to splash_path
     end
