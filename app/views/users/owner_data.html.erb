@@ -18,6 +18,7 @@
                 <th>Total Messages</th>
                 <th>Total Visits</th>
                 <th>Tier</th>
+                <th>Banned?</th>
               </tr>
             </thead>
             <tbody>
@@ -33,6 +34,14 @@
                   <td><%= user.messages.count %></td>
                   <td><%= user.visits %></td>
                   <td><%= user.tier.name %></td>
+                  <td>
+                    <%= user.is_banned? %>
+                    <% if user.is_banned? %>
+                      <%= link_to "Remove Ban", ban_path(user.current_ban, ban: { user_id: user.id, active: false }), method: "PUT" %>
+                    <% else %>
+                      <%= link_to "Ban", new_ban_path(user_id: user.id) %>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

@@ -220,6 +220,10 @@ class User < ActiveRecord::Base
     active_bans.select(&:not_expired).first
   end
 
+  def is_banned?
+    current_ban ? true : false
+  end
+
   def active_bans
     bans.where(active: true)
   end
