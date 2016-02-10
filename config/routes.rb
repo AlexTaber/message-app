@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post :verify
     end
   end
+  resources :bans, only: [:create]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
