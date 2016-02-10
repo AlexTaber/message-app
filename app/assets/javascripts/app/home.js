@@ -133,12 +133,57 @@ $("#profile-uploader").change(function(){
     readURL(this);
 });
 
+$('.username-next').on('click', function(){
+  if(!$('#user_username').val()){
+    $('#user_username').addClass('signup-warning')
+  } else {
+    nextButton(this)
+  }
+});
+
+$('.email-next').on('click', function(){
+  if(!$('#user_email').val()){
+    $('#user_email').addClass('signup-warning')
+  } else if(!$('#user_first_name').val()) {
+    $('#user_first_name').addClass('signup-warning')
+  } else if(!$('#user_last_name').val()) {
+    $('#user_last_name').addClass('signup-warning')
+  } else {
+    nextButton(this)
+  }
+});
+
+$('.password-next').on('click', function(){
+  if(!$('#user_password').val()){
+    $('#user_password').addClass('signup-warning')
+  } else if (!$('#confirm_password').val()){
+    $('#confirm_password').addClass('signup-warning')
+  } else if ($('#user_password').val() !== $('#confirm_password').val()){
+    $('#confirm_password, #user_password').addClass('signup-warning')
+  } else {
+    nextButton(this)
+  }
+});
+$('.signup input').on('blur', function(){
+  if( $(this).val()){
+    $(this).removeClass('signup-warning');
+  }
+});
+
+
+$('.back-button').on('click', function(){
+  $(this).parent().fadeOut(0).prev().fadeIn();
+});
+
 });
 $(window).on('load',function(){
   $('.new-focus').focus();
 });
 
 //Functions
+function nextButton(target){
+  $(target).parent().fadeOut(0).next().fadeIn();
+}
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
