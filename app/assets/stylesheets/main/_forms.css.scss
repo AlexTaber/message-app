@@ -70,3 +70,11 @@ input:-webkit-autofill {
 #profile-uploader{
   display:none;
 }
+#img-input{
+  display:none;
+  width:200px;
+  height:200px;
+  object-fit: cover;
+  object-position: middle middle;
+  border-radius:100%;
+}

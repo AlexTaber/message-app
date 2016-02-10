@@ -19,7 +19,9 @@
   </div>
 
   <div style="margin:15px 0;">
-   <label for='profile-uploader' class="button button-primary">Upload</label><%= f.file_field :file, name: 'profile-uploader', id: 'profile-uploader' %>
+  <%= f.file_field :file, name: 'profile-uploader', id: 'profile-uploader', class: 'inputfile' %>
+   <label for='profile-uploader' class="button button-primary">Upload</label><br>
+   <img id="img-input" class="profile-preview" src="#">
   </div>
 
   <% if @invite_token %>

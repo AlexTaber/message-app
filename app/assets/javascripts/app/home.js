@@ -122,11 +122,16 @@ $(".tab-list .tab2 a").click(function(e) {
     $(".tab2").addClass("active-tab");
 });
 
+
 // $(".close-new-convo").on('click', function(e){
 //   e.preventDefault();
 //   $('.new-convo-placeholder').hide();
 // });
 
+
+$("#profile-uploader").change(function(){
+    readURL(this);
+});
 
 });
 $(window).on('load',function(){
@@ -134,6 +139,17 @@ $(window).on('load',function(){
 });
 
 //Functions
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#img-input').fadeIn().attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 function dropdowns(clicked, target){
   $(clicked).on('click',function(){
       $(target).slideToggle();
