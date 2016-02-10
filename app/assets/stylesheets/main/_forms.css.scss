@@ -79,6 +79,7 @@ input:-webkit-autofill {
   object-fit: cover;
   object-position: middle middle;
   border-radius:100%;
+  margin: 20px;
 }
 .signup{
   text-align:center;
@@ -93,6 +94,9 @@ input:-webkit-autofill {
   i {
     font-size:50px;
   }
+}
+.signup-warning{
+  border:1px solid #ED1C24 !important;
 }
 
 .subscription-form-wrapper {
@@ -227,4 +231,4 @@ input:-webkit-autofill {
   .tier-select label {
     display: inline;
   }
-}
+

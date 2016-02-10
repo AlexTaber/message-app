@@ -6,7 +6,7 @@
     <h1>Thanks for choosing Mercury App!</h1>
     <h4>Signing up is easy. First choose a username for your new account. This is how site owners will search for you on Mercury App.</h4>
       <%= f.text_field :username, placeholder: "Username" %> <br><br>
-      <a href="#" class="button button-primary next-button">Next</a> <br><br>
+      <a href="#" class="button button-primary username-next">Next</a> <br><br>
       Already a user? <%= link_to 'Log In', login_path %> here.
   </div>
 
@@ -18,7 +18,7 @@
     <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
     <%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
     <a href="#" class="button button-primary back-button">Back</a>
-    <a href="#" class="button button-primary next-button">Next</a>
+    <a href="#" class="button button-primary next-button email-next">Next</a>
   </div>
 
   <div class="signup-page" style="display:none;">
@@ -28,7 +28,7 @@
     <%= f.password_field :password, placeholder: "Password" %> &nbsp;
     <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %><br><br>
     <a href="#" class="button button-primary back-button">Back</a>
-    <a href="#" class="button button-primary next-button">Next</a>
+    <a href="#" class="button button-primary next-button password-next">Next</a>
   </div>
 
   <div class="signup-page" style="display:none;">
@@ -36,8 +36,8 @@
     <h1>Upload a profile image</h1>
     <h4>Upload an image so other users can see who you are! This is optional and the first letter of your first name will appear if you choose not to upload an image.</h4>
     <%= f.file_field :file, name: 'profile-uploader', id: 'profile-uploader', class: 'inputfile' %> 
-     <label for='profile-uploader' class="button button-primary">Upload</label><br><br>
-     <img id="img-input" class="profile-preview" src="#"><br><br>
+     <label for='profile-uploader' class="button button-primary">Upload</label><br>
+     <img id="img-input" class="profile-preview" src="#">
     <% if @invite_token %>
       <%= hidden_field_tag :invite_token, @invite_token %>
     <% end %><br>
