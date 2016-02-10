@@ -30,6 +30,8 @@
   <% end %>
   <% if @conversation %>
     <%= javascript_tag "curConvoToken = #{@conversation.token.to_json.html_safe};" %>
+  <% else %>
+    <%= javascript_tag "curConvoToken = false;" %>
   <% end %>
   <% if @site %>
     <%= javascript_tag "siteId = #{@site.id.to_json.html_safe};" %>
