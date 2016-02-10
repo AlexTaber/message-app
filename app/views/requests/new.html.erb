@@ -1,105 +1,69 @@
 <%= javascript_include_tag "message_box/message_box" %>
 <div id="msg-bx">
-	<% if current_user.has_unread_conversations_by_site?(@site) %>
-    <header class="mb-header is-unread">
-  <% else %>
+	 <!--# Message Box Header #-->
     <header class="mb-header">
-  <% end %>
-    <p>
-      <span>This is Your Message Center</span>
-      <span id="mb-header_icons">
-        <%= link_to login_path, target: '_blank' do %>
-        <i class="fa fa-home"></i>
+      <p>
+        <% if current_user.has_unread_conversations? %>
+          <span class="is-unread-mb"> &bull; </span> &nbsp;
         <% end %>
-        <i class="fa fa-globe" id="sites-btn"></i>
-        <i class="fa fa-comment" id="convos-btn"></i>
-        <i class="fa fa-user" id="acct-btn"></i>
-      </span>
-    </p>
+        <%= link_to login_path, target: '_blank' do %>
+          <span>Mercury<b>App</b></span>
+        <% end %>
+|       <%= current_user.name %>
+        <span id="mb-header_icons">
+        <% if current_user.has_unread_conversations_other_sites?(@site) %>
+          <i class="fa fa-globe is-unread-icon" id="sites-btn"></i>
+        <% else %>
+          <i class="fa fa-globe" id="sites-btn"></i>
+        <% end %>
+          <i class="fa fa-user" id="acct-btn"></i>
+        </span>
+      </p>
+    </header>
+    <!--# END Message Box Header #-->
 
-    <div id="mb-convos-dropdown" class="mb-dropdown">
-      <div class="mb-convos-dropdown_tabs">
-        <a href="#" class="is-inactive"><b>Users on this site</b></a>
-        <a href="#"><b>Your Conversations</b></a>
-      </div>
-      <div class="mb-convos-dropdown">
-        <div id="mb-convos-dropdown_users">
-          <ul id="mb-user-list">
-            <% @site.other_users(current_user).each do |user| %>
-            <%= link_to message_box_path(token: current_user.sites.first.token, user_ids: [user.id, current_user.id]) do %>
-            <li>
-              <% if user.image %>
-              <div class="profile-pic">
-                <div class="table-cell">
-                  <img src="<%= user.image_url %>">
-                </div>
-              </div>
-              <% else %>
-              <div class="profile-pic has-no-pic">
-                <div class="table-cell"><%= user.first_name[0] %></div>
-              </div>
-              <% end %>
-              <span class="table-cell"><%= "#{user.last_name}, #{user.first_name}" %></span>
-            </li>
-            <% end %>
-            <% end %>
-          </ul>
-        </div>
 
-        <div id="mb-convos-dropdown_convos">
-          <div id='convos-list'>
-            <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
-            <% if conversation.has_unread_messages?(current_user) %>
-            <div class="msg-bx-convo-item unread-bg">
-              <% else %>
-              <div class="msg-bx-convo-item">
-                <% end %>
-                <%= link_to message_box_path(user_ids: conversation.user_ids, token: @site.token) do %>
-                <i><%= conversation.messages.last.date_to_s %></i>
-                <i><%= conversation.messages.last.time_to_s %></i>
-                <div class="msg-bx-convo-data">
-                  <h4><%= conversation.abbreviated_other_users_to_s(current_user, 30, true) %></h4>
-                  <%= "#{conversation.messages.last.user.first_name}: #{conversation.content_preview(30)}" %>
-                </div>
-                <% end %>
-              </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <!--# Sites Dropdown #-->
       <div id="mb-sites-dropdown" class="mb-dropdown">
         <p><b>Your Sites</b></p>
         <ul id='site-list'>
           <% current_user.sites.each do |site| %>
-          <li>
-            <% if @site == site %>
-            	<%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'active' %>
-            <% else %>
-            	<%= link_to site.name, "http://#{site.url}", target: '_blank' %>
-            <% end %>
-          </li>
+            <li>
+              <% if @site == site %>
+                <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'is-active' %>
+              <% else %>
+                <% if current_user.has_unread_conversations_by_site?(site) %>
+                  <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'is-unread-site' %>
+                <% else %>
+                  <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+                <% end %>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
+      <!--# END Sites Dropdown #-->
 
+      <!--# Sites Dropdown #-->
       <div id="mb-acct-dropdown" class="mb-dropdown">
         <p><b>Your Account</b></p>
         <ul id='acct-list'>
           <li>
-            <%= link_to 'Edit Account', edit_user_path(current_user) %>
+            <%= link_to 'Dashboard', login_path, target: '_blank' %>
           </li>
           <li>
-            <%= link_to 'Upgrade', root_path, target: '_blank' %>
+            <%= link_to 'Edit Account', edit_user_path(current_user), target: '_blank' %>
+          </li>
+          <li>
+            <%= link_to 'Upgrade', edit_user_path(current_user), target: '_blank' %>
           </li>
           <li>
             <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
           </li>
         </ul>
       </div>
+      <!--# END Sites Dropdown #-->
 
-    </header>
 
 
 			<%= render partial: "form", locals: { request: @request, site: @site } %>
