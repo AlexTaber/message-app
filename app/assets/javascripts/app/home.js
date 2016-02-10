@@ -133,6 +133,13 @@ $("#profile-uploader").change(function(){
     readURL(this);
 });
 
+$('.next-button').on('click', function(){
+  $(this).parent().fadeOut(0).next().fadeIn();
+});
+$('.back-button').on('click', function(){
+  $(this).parent().fadeOut(0).prev().fadeIn();
+});
+
 });
 $(window).on('load',function(){
   $('.new-focus').focus();

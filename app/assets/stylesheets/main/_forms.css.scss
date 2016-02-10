@@ -68,6 +68,33 @@ input:-webkit-autofill {
   }
 }
 
+#profile-uploader{
+  display:none;
+}
+
+#img-input{
+  display:none;
+  width:200px;
+  height:200px;
+  object-fit: cover;
+  object-position: middle middle;
+  border-radius:100%;
+}
+.signup{
+  text-align:center;
+}
+.signup-page{
+  width:100vw;
+  display:table-cell;
+  vertical-align: middle;
+  height:100vh;
+  padding-right:100px;
+  padding-left:100px;
+  i {
+    font-size:50px;
+  }
+}
+
 .subscription-form-wrapper {
   display: inline-table;
   width: 100%;
@@ -125,18 +152,7 @@ input:-webkit-autofill {
   }
 }
 
-#profile-uploader{
-  display:none;
-}
 
-#img-input{
-  display:none;
-  width:200px;
-  height:200px;
-  object-fit: cover;
-  object-position: middle middle;
-  border-radius:100%;
-}
 
 
 #card-form {
@@ -212,4 +228,3 @@ input:-webkit-autofill {
     display: inline;
   }
 }
-

@@ -1,34 +1,50 @@
 <%= form_for user do |f| %>
-  <div style="margin:15px 0;">
-    <%= f.text_field :username, placeholder: "Username" %> &nbsp;
-    <%= f.text_field :email, placeholder:"Email" %>
+<div class="signup">
+
+  <div class="signup-page">
+    <i class="fa fa-comment-o"></i><br><br>
+    <h1>Thanks for choosing Mercury App!</h1>
+    <h4>Signing up is easy. First choose a username for your new account. This is how site owners will search for you on Mercury App.</h4>
+      <%= f.text_field :username, placeholder: "Username" %> <br><br>
+      <a href="#" class="button button-primary next-button">Next</a> <br><br>
+      Already a user? <%= link_to 'Log In', login_path %> here.
   </div>
 
-  <div style="margin:15px 0;">
+  <div class="signup-page" style="display:none;">
+    <i class="fa fa-street-view"></i><br><br>
+    <h1>Tell us about yourself</h1>
+    <h4>Enter your Email. You will use it later to log in (we will never give your info to out to third parties). Next enter your name, this is what will display when you are messaging other people on Mercury.</h4>
+    <%= f.text_field :email, placeholder:"Email" %> <br>
     <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
-    <%= f.text_field :last_name, placeholder: "Last Name" %>
+    <%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
+    <a href="#" class="button button-primary back-button">Back</a>
+    <a href="#" class="button button-primary next-button">Next</a>
   </div>
 
-  <div style="margin:15px 0;">
+  <div class="signup-page" style="display:none;">
+    <i class="fa fa-lock"></i><br><br>
+    <h1>Create a Password</h1>
+    <h4>It must be 8 characters long and include a number.</h4>
     <%= f.password_field :password, placeholder: "Password" %> &nbsp;
-    <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %>
-  </div><br>
-
-  <div style="margin:15px 0;">
-    <%= f.label :image, "Upload a Profile Image" %>
+    <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %><br><br>
+    <a href="#" class="button button-primary back-button">Back</a>
+    <a href="#" class="button button-primary next-button">Next</a>
   </div>
 
-  <div style="margin:15px 0;">
-  <%= f.file_field :file, name: 'profile-uploader', id: 'profile-uploader', class: 'inputfile' %>
-   <label for='profile-uploader' class="button button-primary">Upload</label><br>
-   <img id="img-input" class="profile-preview" src="#">
-  </div>
-
-  <% if @invite_token %>
-    <%= hidden_field_tag :invite_token, @invite_token %>
-  <% end %>
-
-  <div style="margin:20px 0 15px;">
+  <div class="signup-page" style="display:none;">
+   <i class="fa fa-camera"></i><br><br>
+    <h1>Upload a profile image</h1>
+    <h4>Upload an image so other users can see who you are! This is optional and the first letter of your first name will appear if you choose not to upload an image.</h4>
+    <%= f.file_field :file, name: 'profile-uploader', id: 'profile-uploader', class: 'inputfile' %> 
+     <label for='profile-uploader' class="button button-primary">Upload</label><br><br>
+     <img id="img-input" class="profile-preview" src="#"><br><br>
+    <% if @invite_token %>
+      <%= hidden_field_tag :invite_token, @invite_token %>
+    <% end %><br>
+    <a href="#" class="button button-primary back-button">Back</a>
     <%= f.submit class: 'button button-primary' %>
   </div>
+
+</div>
+
 <% end %>
