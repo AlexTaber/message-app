@@ -1,8 +1,14 @@
 class BansController < ApplicationController
+  def new
+    @user = User.find_by(id: params[:user_id])
+    @ban = Ban.new
+  end
+
   def create
     @ban = Ban.new(ban_params)
 
     if @ban.valid?
+      @ban.save
       flash[:notice] = "#{@ban.user.name} has been successfully banned"
     else
       flash[:warn] = "Unable to process ban, please try again"
