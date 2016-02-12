@@ -17,8 +17,8 @@
     <%= f.text_field :email, placeholder:"Email" %> <br>
     <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
     <%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
-    <a href="#" class="button button-primary back-button">Back</a>
     <a href="#" class="button button-primary next-button email-next">Next</a>
+    <a href="#" class="back-button">Back</a>
   </div>
 
   <div class="signup-page" style="display:none;">
@@ -27,8 +27,8 @@
     <h4>It must be 8 characters long and include a number.</h4>
     <%= f.password_field :password, placeholder: "Password" %> &nbsp;
     <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %><br><br>
-    <a href="#" class="button button-primary back-button">Back</a>
     <a href="#" class="button button-primary next-button password-next">Next</a>
+    <a href="#" class="back-button">Back</a>
   </div>
 
   <div class="signup-page" style="display:none;">
@@ -41,8 +41,8 @@
     <% if @invite_token %>
       <%= hidden_field_tag :invite_token, @invite_token %>
     <% end %><br>
-    <a href="#" class="button button-primary back-button">Back</a>
     <%= f.submit class: 'button button-primary' %>
+    <a href="#" class="back-button">Back</a>
   </div>
 
 </div>
