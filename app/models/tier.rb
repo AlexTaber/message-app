@@ -9,7 +9,7 @@ class Tier < ActiveRecord::Base
   end
 
   def permit_site_user(site)
-    site.users.count < users_per_site
+    site.non_owner_users.count < users_per_site
   end
 
   def self.all_published

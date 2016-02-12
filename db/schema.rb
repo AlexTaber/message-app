@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160210155608) do
 
   create_table "bans", force: :cascade do |t|
     t.integer  "user_id",                                                null: false
-    t.date     "expiration", default: '2016-02-24',                      null: false
+    t.date     "expiration", default: '2016-02-26',                      null: false
     t.boolean  "active",     default: true,                              null: false
     t.string   "message",    default: "Your account has been suspended", null: false
     t.datetime "created_at",                                             null: false
