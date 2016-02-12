@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     if @subscription.save_with_payment(params[:tier_id].to_i)
       flash[:notice] = "Thank you for subscribing!"
-      redirect_to home_path
+      redirect_to new_site_path
     else
       flash[:warn] = "Unable to process subscription, please try again"
       redirect_to :back

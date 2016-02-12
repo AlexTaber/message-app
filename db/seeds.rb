@@ -35,7 +35,7 @@ jerry = User.create(
   first_name: "Jerry",
   last_name: "Patterson",
   email: "info@peekskillwebdesign.com",
-  password: "123",
+  password: "Pwd_2015",
   tier_id: admin_tier.id,
   owner: true
 )
@@ -55,7 +55,7 @@ alex = User.create(
   first_name: "Alex",
   last_name: "Taber",
   email: "alex.taber0@gmail.com",
-  password: "123",
+  password: "Pwd_2015",
   tier_id: admin_tier.id,
   owner: true
 )
@@ -75,7 +75,7 @@ dan = User.create(
   first_name: "Dan",
   last_name: "Intriligator",
   email: "daniel@peekskillwebdesign.com",
-  password: "123",
+  password: "Pwd_2015",
   tier_id: admin_tier.id,
   owner: true
 )

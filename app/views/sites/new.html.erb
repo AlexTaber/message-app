@@ -1,10 +1,21 @@
-<div class="background-class">
-	<div class="container">
-		<div class="row">
-			<div class="six offset-by-three columns">
-				<h1>Awesome! Let's add a new site to your Organization</h1>	
-				<%= render partial: "form", locals: { site: @site } %>
-			</div>
-		</div>
-	</div>
+<div class="site-form-container">
+  <span>
+    <div class="hidden-text">
+      <h2>Create Your Site</h2>
+      <p>Go ahead and create your first administative site! You will be emailed your unique site token.</p>
+      <p>This is an optional step, you can create a site at anytime!</p>
+      <br>
+    </div>
+    <%= render partial: "form", locals: { site: @site } %>
+    <br>
+    <%= link_to "Skip for Now", home_path %>
+  </span>
+</div><!--
+
+--><div class="site-form-info">
+  <span>
+    <h2>Create Your Site</h2>
+    <p>Go ahead and create your first administative site! You will be emailed your unique site token.</p>
+    <p>This is an optional step, you can create a site at anytime!</p>
+  </span>
 </div>

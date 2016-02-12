@@ -174,6 +174,46 @@ input:-webkit-autofill {
   margin-bottom: 30px;
 }
 
+.site-form-container {
+  height: 100vh;
+  width: calc(100% - 60px);
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  display: inline-table;
+  vertical-align: top;
+
+  span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  p {
+    padding-bottom: 12px;
+  }
+}
+
+.site-form-info {
+  height: 100vh;
+  width: 50%;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  background-color: rgba($brand-color, 0.3);
+  display: none;
+  color: $pwddark;
+
+  span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  p {
+    font-size: 1.6rem;
+    padding-bottom: 12px;
+  }
+}
+
 
 //MEDIA QUERIES----------------------------------------------------
 
@@ -203,6 +243,18 @@ input:-webkit-autofill {
 
   .tier-select label {
     display: inline;
+  }
+
+  .site-form-container {
+    width: 50%;
+
+    .hidden-text {
+      display: none;
+    }
+  }
+
+  .site-form-info {
+    display: inline-table;
   }
 }
 

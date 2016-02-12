@@ -5,6 +5,9 @@ jQuery(document).ready(function($){
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
+  //typeahead ajax-loader
+  $(".typeahead-form").submit(typeaheadAjaxLoader)
+
   //PUSHER--------------------------
   if(typeof conversationTokens !== 'undefined') {
     var channel;
@@ -237,6 +240,7 @@ function sendMessage(e) {
   e.preventDefault();
   if(messageSendable()) {
     canSendMessage = false;
+    $("#ajax-loader-message").show();
     $.ajax({
       url: e.target.action,
       method: "POST",
@@ -244,6 +248,7 @@ function sendMessage(e) {
     }).done(function(response){
       canSendMessage = true;
       $(".new_message").find("#message_content").val("");
+      $("#ajax-loader-message").hide();
     });
   }
 }
@@ -252,6 +257,7 @@ function startConversation(e) {
   e.preventDefault();
   if(newMessageSendable()) {
     canSendMessage = false;
+    $("#ajax-loader-message").show();
     $.ajax({
       url: e.target.action,
       method: "POST",
@@ -266,6 +272,7 @@ function startConversation(e) {
       subscribeToConvo(data.token, curConvoToken);
       $(".new_conversation").find("#content").val("");
       $('.new-convo-placeholder').slideUp();
+      $("#ajax-loader-message").hide();
     });
   }
 }
@@ -328,6 +335,8 @@ function listenForNewConvos() {
 }
 
 function validateUserData(data, element) {
+  $("#ajax-loader-message").show();
+
   $.ajax({
     url: "/validate",
     method: "GET",
@@ -340,5 +349,10 @@ function validateUserData(data, element) {
     } else {
       nextButton(element)
     }
+    $("#ajax-loader-message").hide();
   }.bind(element));
+}
+
+function typeaheadAjaxLoader(e) {
+  $("#ajax-loader-message").show();
 }
