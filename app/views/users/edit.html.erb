@@ -1,8 +1,5 @@
-<div class="display-table text-center">
+<div class="display-table text-center eight offset-by-two columns">
 	<div class="centered">
-<h4 class="text-center">
-Make changes to your account below
-</h4>
 <%= render partial: "form", locals: { user: @user, default_tier_id: @default_tier_id} %>
 <br>
 <%= link_to 'cancel', :back %>
