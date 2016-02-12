@@ -153,6 +153,14 @@ class UsersController < ApplicationController
 
   end
 
+  def validate
+    @user = User.new(user_params)
+
+    if request.xhr?
+      render json: @user.validation_response.to_json
+    end
+  end
+
   private
 
   def user_by_id

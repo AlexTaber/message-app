@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/token_redirect' => 'users#token_redirect'
   get '/typeahead' => 'users#typeahead'
   get '/owner-data' => 'users#owner_data'
+  get '/validate' => 'users#validate'
   post '/add_user' => 'conversations#add_user'
 
   root 'users#home'
