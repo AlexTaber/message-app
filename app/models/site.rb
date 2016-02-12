@@ -60,4 +60,8 @@ class Site < ActiveRecord::Base
   def typeahead_data
     { name: name, id: id }
   end
+
+  def non_owner_users
+    users.where(owner: false)
+  end
 end

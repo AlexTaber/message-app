@@ -56,7 +56,8 @@ alex = User.create(
   last_name: "Taber",
   email: "alex.taber0@gmail.com",
   password: "123",
-  tier_id: admin_tier.id
+  tier_id: admin_tier.id,
+  owner: true
 )
 
 alex_sub = Subscription.create(
@@ -75,7 +76,8 @@ dan = User.create(
   last_name: "Intriligator",
   email: "daniel@peekskillwebdesign.com",
   password: "123",
-  tier_id: admin_tier.id
+  tier_id: admin_tier.id,
+  owner: true
 )
 
 dan_image = Image.create(
