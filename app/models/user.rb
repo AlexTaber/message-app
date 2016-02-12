@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
 
   validates :username, :first_name, :last_name, :email, :password_digest, presence: true
   validates :email, :username, uniqueness: true
+  validates :username, length: { minimum: 5 }
+  validates :password, length: { minimum: 8 }
+  validates :first_name, :last_name, :email, length: { minimum: 1 }
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 
   def name
@@ -226,5 +229,36 @@ class User < ActiveRecord::Base
 
   def active_bans
     bans.where(active: true)
+  end
+
+  def valid_attribute?(attribute_name)
+    self.valid?
+    self.errors[attribute_name].blank?
+  end
+
+  def get_attribute_errors(attribute_name)
+    self.valid?
+    self.errors[attribute_name].join(", ")
+  end
+
+  def validation_response
+    response = check_attributes
+    response = { error: false } unless response
+    response
+  end
+
+  def check_attributes
+    attributes.keys.each do |attribute|
+      response = check_attribute(attribute)
+      return response if response
+    end
+
+    nil
+  end
+
+  def check_attribute(attribute)
+    if send(attribute)
+      { error: true, attribute: attribute.to_s, message: "#{attribute.capitalize} #{get_attribute_errors(attribute)}" } unless valid_attribute?(attribute)
+    end
   end
 end

@@ -136,31 +136,17 @@ $("#profile-uploader").change(function(){
 
 //signup-form validation
 $('.username-next').on('click', function(){
-  if(!$('#user_username').val()){
-    $('#user_username').addClass('signup-warning');
-    $('.warning-text').fadeOut(0);
-    $(this).before('<p class="warning-text">Please enter a username</p>');
-  } else {
-    nextButton(this)
-  }
+  validateUserData({ user: {
+    username: $('#user_username').val()
+  } }, this);
 });
 
 $('.email-next').on('click', function(){
-  if(!$('#user_email').val()){
-    $('#user_email').addClass('signup-warning');
-    $('.warning-text').fadeOut(0);
-    $(this).prev().before('<p class="warning-text">Please enter an email</p>');
-  } else if(!$('#user_first_name').val()) {
-    $('#user_first_name').addClass('signup-warning');
-    $('.warning-text').fadeOut(0);
-    $(this).prev().before('<p class="warning-text">Please enter your first name</p>');
-  } else if(!$('#user_last_name').val()) {
-    $('#user_last_name').addClass('signup-warning');
-    $('.warning-text').fadeOut(0);
-    $(this).prev().before('<p class="warning-text">Please enter your last name</p>');
-  } else {
-    nextButton(this)
-  }
+  validateUserData({ user: {
+    email: $('#user_email').val(),
+    first_name: $('#user_first_name').val(),
+    last_name: $('#user_last_name').val()
+  } }, this);
 });
 
 $('.password-next').on('click', function(){
@@ -176,6 +162,10 @@ $('.password-next').on('click', function(){
     $('#confirm_password, #user_password').addClass('signup-warning');
     $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Your password and confirmatin must match.</p>');
+  } else if ($('#user_password').val().length < 8) {
+    $('#confirm_password, #user_password').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
+    $(this).prev().before('<p class="warning-text">Your password must be at least 8 characters</p>');
   } else {
     nextButton(this)
   }
@@ -335,4 +325,20 @@ function listenForNewConvos() {
       }
     }
   });
+}
+
+function validateUserData(data, element) {
+  $.ajax({
+    url: "/validate",
+    method: "GET",
+    data: data
+  }).done(function(response){
+    if(response.error) {
+      $('#user_' + String(response.attribute)).addClass('signup-warning');
+      $('.warning-text').fadeOut(0);
+      $(element).before("<p class='warning-text'>" + response.message + "</p>");
+    } else {
+      nextButton(element)
+    }
+  }.bind(element));
 }
