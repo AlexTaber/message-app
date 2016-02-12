@@ -138,6 +138,7 @@ $("#profile-uploader").change(function(){
 $('.username-next').on('click', function(){
   if(!$('#user_username').val()){
     $('#user_username').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
     $(this).before('<p class="warning-text">Please enter a username</p>');
   } else {
     nextButton(this)
@@ -147,12 +148,15 @@ $('.username-next').on('click', function(){
 $('.email-next').on('click', function(){
   if(!$('#user_email').val()){
     $('#user_email').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please enter an email</p>');
   } else if(!$('#user_first_name').val()) {
     $('#user_first_name').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please enter your first name</p>');
   } else if(!$('#user_last_name').val()) {
     $('#user_last_name').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please enter your last name</p>');
   } else {
     nextButton(this)
@@ -162,12 +166,15 @@ $('.email-next').on('click', function(){
 $('.password-next').on('click', function(){
   if(!$('#user_password').val()){
     $('#user_password').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please choose a password</p>');
   } else if (!$('#confirm_password').val()){
     $('#confirm_password').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please confirm your password</p>');
   } else if ($('#user_password').val() !== $('#confirm_password').val()){
     $('#confirm_password, #user_password').addClass('signup-warning');
+    $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Your password and confirmatin must match.</p>');
   } else {
     nextButton(this)
