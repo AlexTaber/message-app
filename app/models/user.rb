@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   validates :username, :first_name, :last_name, :email, :password_digest, presence: true
   validates :email, :username, uniqueness: true
   validates :username, length: { minimum: 5 }
-  validates :password, length: { minimum: 8 }
   validates :first_name, :last_name, :email, length: { minimum: 1 }
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create
 
