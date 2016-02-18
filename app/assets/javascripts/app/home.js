@@ -1,12 +1,14 @@
 ///APP Header
 var canSendMessage = true;
+var curNext = 1;
+
 jQuery(document).ready(function($){
   scrollToBottom();
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
   //typeahead ajax-loader
-  $(".typeahead-form").submit(typeaheadAjaxLoader)
+  $(".typeahead-form").submit(typeaheadAjaxLoader);
 
   //PUSHER--------------------------
   if(typeof conversationTokens !== 'undefined') {
@@ -62,6 +64,9 @@ jQuery(document).ready(function($){
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');
   //-----------
+
+  //sign-in form
+  $(".new_user").keydown(signInSubmit);
 
 	$('#users-account').on('click', function () {
 		$('nav#current-account').slideToggle(500);
@@ -195,6 +200,7 @@ $(window).on('load',function(){
 //Functions
 function nextButton(target){
   $(target).parent().fadeOut(0).next().fadeIn();
+  curNext += 1;
 }
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -355,4 +361,15 @@ function validateUserData(data, element) {
 
 function typeaheadAjaxLoader(e) {
   $("#ajax-loader-message").show();
+}
+
+function signInSubmit(e) {
+  if(curNext < 4) {
+    if(e.keyCode == 13) {
+      var target = $("#next-" + String(curNext));
+      e.preventDefault();
+
+      target.click();
+    }
+  }
 }
