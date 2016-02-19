@@ -40,7 +40,6 @@ class ConversationsController < ApplicationController
   end
 
   def add_user
-    binding.pry
     user = User.find_by(id: params[:user_id])
     @site = Site.find_by(id: params[:conversation][:site_id])
     if user
