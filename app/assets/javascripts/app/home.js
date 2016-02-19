@@ -118,16 +118,12 @@ $('.close-modal').click(function(){
 
 //Tabs
 
-$(".tab-list .tab1 a").click(function(e) {
+$('.tab-list li a').on('click', function(e){
     e.preventDefault();
-    $(".tabs .active-tab").removeClass("active-tab");
-    $(".tab1").addClass("active-tab");
-});
-
-$(".tab-list .tab2 a").click(function(e) {
-    e.preventDefault();
-    $(".tabs .active-tab").removeClass("active-tab");
-    $(".tab2").addClass("active-tab");
+  if(!$(this).hasClass('.active-tab')){
+      $(".tabs .active-tab").removeClass("active-tab");
+      $(this).addClass('.active-tab')
+  }
 });
 
 

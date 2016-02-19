@@ -10,6 +10,11 @@
     <nav id="current-account">
      <p><b>Your Acount</b></p>
      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+     <% if current_user.owner %>
+      <li>
+        <%= link_to 'Admin', owner_data_path %>
+      </li>
+    <% end %>
      <li><%= link_to 'Upgrade', edit_subscription_path(current_user.subscription) %></li>
      <li><%= link_to 'Logout', logout_path %></li>
    </nav>
@@ -206,35 +211,39 @@
   <div>
     <h1>Manage Users of <%= @site.name %></h1>
     <hr>
-    <% if @site.has_other_users?(current_user) %>
-      <h4><%= @site.name %> Users</h4>
-        <div id="site-user-list">
-      <% @site.other_users(current_user).each do |user| %>
-        <p>
-          <%= user.name %>
-          <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
-          <% if user.find_user_site(@site).admin %>
-            <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
-          <% else %>
-            <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
-          <% end %> </span>
-          <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
-        </p>
-      <% end %>
-      </div>
-    <% end %>
   <section class="tabs">
     <div class="overflow-visible">
       <ul class="tab-list">
-        <li class="tab1 active-tab"><a href="#"></a>Add Users</a></li>
-        <li class="tab2"><a href="#"></a>Invite Users</a></li>
+        <li class="tab1 active-tab"><a href="#"><%= @site.name %> Users</h4></li>
+        <li class="tab2"><a href="#">Add Users</a></li>
+        <li class="tab3"><a href="#">Invite Users</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab1 active-tab">
+          <% if @site.has_other_users?(current_user) %>
+            <div id="site-user-list">
+              <% @site.other_users(current_user).each do |user| %>
+              <p>
+                <%= user.name %>
+                <span class="manage-user-opts">
+                  <%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
+                  <% if user.find_user_site(@site).admin %>
+                    <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
+                  <% else %>
+                  <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+                  <% end %> 
+                </span>
+                <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+        <div class="tab2">
         <p>If the person is already a MercuryApp user, use the search form below.</p>
         <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
         </div>
-        <div class="tab2">
+        <div class="tab3">
          <p>If the person isn't on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
         <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
         </div>

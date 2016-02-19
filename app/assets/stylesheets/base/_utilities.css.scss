@@ -167,11 +167,8 @@ a.close-modal{
   list-style: none;
   padding-left: 0; 
   li {
-   position: relative;
    background: #f5f5f5;
    float: left;
-   width: 150px;
-   height: 40px;
    border: 1px solid #ccc;
    border-bottom: none;
    -moz-border-top-left-radius: 8px;
@@ -181,30 +178,31 @@ a.close-modal{
    border-top-left-radius: 8px;
    border-top-right-radius: 8px;
    a {
-    position: absolute;
-    font-size: 20px;
-    width: 150px;
-    height: 40px;
+    font-size: 15px;
+    padding:10px;
+    padding-left:20px;
+    padding-right:20px;
     text-align: center;
-    padding-top: 100px;
-    box-sizing: border-box;
-    color: #777;
+    color: #222;
     text-decoration: none;
+    display: block;
   }
 }
 .active-tab {
  background:#fff;
  z-index: 10;
+ margin-top: 1px;
+ margin-bottom:-1px;
 }
 }
 .tab-content {
   border: 1px solid #ccc;
-  border-bottom: none;
+  border-radius: 0 0 5px 5px;
   padding: 30px;
   clear: both;
-  z-index: 1;
+  z-index: -1;
+  margin-top:-1px;
   position: relative;
-  top: -1px;
 }
 .tab-content > div {
   display: none;
