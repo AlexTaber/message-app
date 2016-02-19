@@ -259,7 +259,14 @@
   <div class="message-bar mobile-target">
     <nav class="current-site-data">
      <header>
-        <b><%= @site.name %></b> &nbsp; Conversations
+        <b><%= @site.name %></b> &nbsp;
+        <% if @tasks %>
+          <%= link_to "Conversations", root_path, class: "convo-links" %>  |
+          Tasks
+        <% else %>
+          Conversations  |
+          <%= link_to "Tasks", root_path(tasks: true), class: "convo-links" %>
+        <% end %>
         <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
           <i class="fa fa-plus"></i>
         <% end %>
@@ -297,13 +304,7 @@
 
   <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
     <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
-      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user } %>
-    </div>
-  <% end %>
-
-  <% if @site.tasks.count > 0 %>
-    <div class="tasks-conversation">
-      <h3>Tasks</h3>
+      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user, tasks: @tasks } %>
     </div>
   <% end %>
 
@@ -319,16 +320,22 @@
       </header>
 
       <div class="msg-bx-convo app-view">
-        <% @conversation.messages.each do |message| %>
-          <%= render partial: "messages/message", locals: { message: message } %>
+        <% if @tasks %>
+          <% @conversation.tasks.each do |task| %>
+            <%= render partial: "tasks/task", locals: { task: task } %>
+          <% end %>
+        <% else %>
+          <% @conversation.messages.each do |message| %>
+            <%= render partial: "messages/message", locals: { message: message } %>
+          <% end %>
         <% end %>
       </div>
     <div id="form-wrapper">
     <% if @conversation.other_users(current_user).length > 0 %>
       <% if @conversation.new_record? %>
-        <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation } %>
+        <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation, tasks: @tasks } %>
       <% else %>
-        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks } %>
       <% end %>
     <% end %>
     </div>

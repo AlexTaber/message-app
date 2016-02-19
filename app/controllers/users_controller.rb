@@ -86,6 +86,7 @@ class UsersController < ApplicationController
       current_user.add_visit
       @invite = Invite.new
       @request = Request.new
+      @tasks = params[:tasks]
     else
       redirect_to splash_path
     end

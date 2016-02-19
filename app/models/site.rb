@@ -69,4 +69,8 @@ class Site < ActiveRecord::Base
   def non_owner_users
     users.where(owner: false)
   end
+
+  def incomplete_tasks
+    tasks.where(completed: false)
+  end
 end
