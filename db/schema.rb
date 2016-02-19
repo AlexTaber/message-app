@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218204634) do
+ActiveRecord::Schema.define(version: 20160219194309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bans", force: :cascade do |t|
     t.integer  "user_id",                                                null: false
-    t.date     "expiration", default: '2016-02-24',                      null: false
+    t.date     "expiration",                                             null: false
     t.boolean  "active",     default: true,                              null: false
     t.string   "message",    default: "Your account has been suspended", null: false
     t.datetime "created_at",                                             null: false
