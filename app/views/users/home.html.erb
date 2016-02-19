@@ -267,7 +267,7 @@
           Conversations  |
           <%= link_to "Tasks", root_path(tasks: true), class: "convo-links" %>
         <% end %>
-        <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
+        <%= link_to home_path(tasks: @tasks, site_id: @site.id, new_conversation: true), class: "add-btn" do %>
           <i class="fa fa-plus"></i>
         <% end %>
         <div id="new-message">
