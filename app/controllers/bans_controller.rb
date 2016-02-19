@@ -7,6 +7,7 @@ class BansController < ApplicationController
 
   def create
     @ban = Ban.new(ban_params)
+    @ban.update_attributes(expiration: Date.today + 2.weeks) unless @ban.expiration
 
     if @ban.valid?
       @ban.save
