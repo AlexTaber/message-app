@@ -369,13 +369,20 @@
 
     a {
       text-decoration: none;
+      color: $darkgrey;
+    }
 
+    a:hover {
       .fa-check-circle {
         color: green;
       }
 
       .fa-minus-circle, .fa-undo {
         color: red;
+      }
+
+      .fa-exclamation-circle {
+        color: $pwdlight;
       }
     }
   }
