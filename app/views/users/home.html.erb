@@ -1,119 +1,4 @@
-<!-- MODALS -->
-<% if(current_user.first_visit?) %>
-<div class='mask close-modal' style="display:block;"></div>
-<% else %>
-<div class='mask close-modal'></div>
-<% end %>
-<div id='manage-users' class='modal-window'>
-  <div>
-    <h1>Manage Users of <%= @site.name %></h1>
-    <hr>
-    <% if @site.has_other_users?(current_user) %>
-      <h4><%= @site.name %> Users</h4>
-        <div id="site-user-list">
-      <% @site.other_users(current_user).each do |user| %>
-        <p>
-          <%= user.name %>
-          <span class="manage-user-opts"><%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
-          <% if user.find_user_site(@site).admin %>
-            <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
-          <% else %>
-            <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
-          <% end %> </span>
-          <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
-        </p>
-      <% end %>
-      </div>
-    <% end %>
-  <section class="tabs">
-    <div class="overflow-visible">
-      <ul class="tab-list">
-        <li class="tab1 active-tab"><a href="#"></a>Add Users</a></li>
-        <li class="tab2"><a href="#"></a>Invite Users</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab1 active-tab">
-        <p>If the person is already a MercuryApp user, use the search form below.</p>
-        <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
-        </div>
-        <div class="tab2">
-         <p>If the person isn't on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
-        <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
-        </div>
-      </div>
-    </div>
-  </section>
- <div>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-    </div>
-  </div>
-</div>
-<div class='mask close-modal'></div>
-<div id='window' class='modal-window'>
-  <div>
-    <h1>Awesome! Let's add a new site to your Organization</h1>
-    <%= render partial: "sites/form", locals: { site: @new_site } %>
-    <div>&nbsp;</div>
-    <p>You will be emailed a site token to be used to validate our WordPress Plugin</p>
-    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-  </div>
-</div>
 
-<div id='edit-site' class='modal-window'>
-  <div>
-    <h1>Awesome! Let's update your site</h1>
-    <%= render partial: "sites/form", locals: { site: @site } %>
-    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-  </div>
-</div>
-
-<div id='send-request' class='modal-window'>
-  <div>
-    <h1>Send Request</h1>
-    <%= render partial: "requests/typeahead", locals: { my_request: @request } %>
-    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-  </div>
-</div>
-
-<div id='delete' class='modal-window'>
-  <div>
-    <h1>Are you sure you want to delete your site?</h1>
-    <%= form_for @site do |f| %>
-      <%= f.hidden_field :active, value: false %>
-      <%= f.submit "Delete #{@site.name}", class: "button button-primary" %>
-    <% end %>
-    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-  </div>
-</div>
-
-<% if current_user.admin_of_site?(@site) %>
-  <div id='requests' class='modal-window'>
-    <div>
-      <% if @site.has_pending_requests? %>
-      <h1>All Pending Requests</h1>
-      <% @site.pending_requests.each do |request| %>
-      <%= render partial: "requests/card", locals: { request: request } %>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-      <% end %>
-      <% else %>
-      <h1> You have no pending requests </h1>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
-<% if(current_user.first_visit?) %>
-  <div id='edit-site' class='modal-window' style="display:block;">
-    <div>
-      <h1>Welcome to Mercury<b>App</b></h1>
-      <p>Thank you for signing up. Please take some time to learn our features by visiting our <a href="#">tutorials page</a>. Happy messaging!</p>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-    </div>
-  </div>
-<% end %>
-
-<!-- END MODALS -->
 <!-- Desktop Navbar -->
 <div class="menu-bar desktop-nav show-desktop">
   <span><%= link_to 'MercuryApp', splash_path %></span>
@@ -125,6 +10,11 @@
     <nav id="current-account">
      <p><b>Your Acount</b></p>
      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+     <% if current_user.owner %>
+      <li>
+        <%= link_to 'Admin', owner_data_path %>
+      </li>
+    <% end %>
      <li><%= link_to 'Upgrade', edit_subscription_path(current_user.subscription) %></li>
      <li><%= link_to 'Logout', logout_path %></li>
    </nav>
@@ -310,6 +200,126 @@
     </div>
   </div>
 </div>
+
+<!-- MODALS -->
+<% if(current_user.first_visit?) %>
+<div class='mask close-modal' style="display:block;"></div>
+<% else %>
+<div class='mask close-modal'></div>
+<% end %>
+<div id='manage-users' class='modal-window'>
+  <div>
+    <h1>Manage Users of <%= @site.name %></h1>
+  <section class="tabs">
+    <div class="overflow-visible">
+      <ul class="tab-list">
+        <li class="tab1 active-tab"><a href="#"><%= @site.name %> Users</a></li>
+        <li class="tab2"><a href="#">Add Users</a></li>
+        <li class="tab3"><a href="#">Invite Users</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab1 active-tab">
+          <% if @site.has_other_users?(current_user) %>
+            <div id="site-user-list">
+              <% @site.other_users(current_user).each do |user| %>
+              <p>
+                <%= user.name %>
+                <span class="manage-user-opts">
+                  <%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
+                  <% if user.find_user_site(@site).admin %>
+                    <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
+                  <% else %>
+                  <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+                  <% end %> 
+                </span>
+                <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+        <div class="tab2">
+        <p>If the person is already a MercuryApp user, use the search form below.</p>
+        <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
+        </div>
+        <div class="tab3">
+         <p>If the person isn't on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
+        <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
+        </div>
+      </div>
+    </div>
+  </section>
+ <div>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+    </div>
+  </div>
+</div>
+<div class='mask close-modal'></div>
+<div id='window' class='modal-window'>
+  <div>
+    <h1>Awesome! Let's add a new site to your Organization</h1>
+    <%= render partial: "sites/form", locals: { site: @new_site } %>
+    <div>&nbsp;</div>
+    <p>You will be emailed a site token to be used to validate our WordPress Plugin</p>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+</div>
+
+<div id='edit-site' class='modal-window'>
+  <div>
+    <h1>Awesome! Let's update your site</h1>
+    <%= render partial: "sites/form", locals: { site: @site } %>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+</div>
+
+<div id='send-request' class='modal-window'>
+  <div>
+    <h1>Send Request</h1>
+    <%= render partial: "requests/typeahead", locals: { my_request: @request } %>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+</div>
+
+<div id='delete' class='modal-window'>
+  <div>
+    <h1>Are you sure you want to delete your site?</h1>
+    <%= form_for @site do |f| %>
+      <%= f.hidden_field :active, value: false %>
+      <%= f.submit "Delete #{@site.name}", class: "button button-primary" %>
+    <% end %>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+</div>
+
+<% if current_user.admin_of_site?(@site) %>
+  <div id='requests' class='modal-window'>
+    <div>
+      <% if @site.has_pending_requests? %>
+      <h1>All Pending Requests</h1>
+      <% @site.pending_requests.each do |request| %>
+      <%= render partial: "requests/card", locals: { request: request } %>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+      <% end %>
+      <% else %>
+      <h1> You have no pending requests </h1>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if(current_user.first_visit?) %>
+  <div id='edit-site' class='modal-window' style="display:block;">
+    <div>
+      <h1>Welcome to Mercury<b>App</b></h1>
+      <p>Thank you for signing up. Please take some time to learn our features by visiting our <a href="#">tutorials page</a>. Happy messaging!</p>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+    </div>
+  </div>
+<% end %>
+
+<!-- END MODALS -->
 <% if current_user.active_sites_ordered_by_admin.length > 0 %>
 
     <div id="mobile-current-account" class="mobile-target">

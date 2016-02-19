@@ -85,6 +85,7 @@ $(".mobile-icons i"). on('click', function(){
   $('#current-account').slideUp();
   i = $(this).parent().children().index(this)
   $('.mobile-target').eq(i).fadeIn();
+  
 });
 
 ///Modal
@@ -118,16 +119,15 @@ $('.close-modal').click(function(){
 
 //Tabs
 
-$(".tab-list .tab1 a").click(function(e) {
+$('.tab-list li').on('click', function(e){
     e.preventDefault();
-    $(".tabs .active-tab").removeClass("active-tab");
-    $(".tab1").addClass("active-tab");
-});
-
-$(".tab-list .tab2 a").click(function(e) {
-    e.preventDefault();
-    $(".tabs .active-tab").removeClass("active-tab");
-    $(".tab2").addClass("active-tab");
+    var i = $(this).parent().children().index(this)
+  if(!$(this).hasClass('.active-tab')){
+      $(".active-tab").removeClass("active-tab");
+      $(this).addClass('active-tab')
+      console.log(i)
+      $('.tab-content>div').eq(i).addClass('active-tab')
+  }
 });
 
 
