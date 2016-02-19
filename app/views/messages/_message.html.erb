@@ -1,5 +1,5 @@
 <% if message.from_user?(current_user) %>
-  <%= render partial: "messages/current_user_message", locals: { message: message } %>
+  <%= render partial: "messages/current_user_message", locals: { message: message, task: message.task } %>
 <% else %>
-  <%= render partial: "messages/other_user_message", locals: { message: message } %>
+  <%= render partial: "messages/other_user_message", locals: { message: message, task: message.task } %>
 <% end %>

@@ -355,6 +355,37 @@
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   z-index: -1;
+  .icon-bar {
+    clear: both;
+
+    &.self {
+      float: right;
+      margin-right: 50px;
+    }
+
+    &.them {
+      margin-left: 50px;
+    }
+
+    a {
+      text-decoration: none;
+      color: $darkgrey;
+    }
+
+    a:hover {
+      .fa-check-circle {
+        color: green;
+      }
+
+      .fa-minus-circle, .fa-undo {
+        color: red;
+      }
+
+      .fa-exclamation-circle {
+        color: $pwdlight;
+      }
+    }
+  }
   p {
     max-width:225px;
     min-width: 100px;
@@ -362,15 +393,31 @@
     border-radius: 0 10px 10px 10px;
     display:inline-block;
     padding: 1rem;
+    margin-bottom: 0px;
     background: #ddd;
     word-break: break-word;
+
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-style: italic;
+    }
   }
   .self-pwd {
     float:right;
     margin-right: 10px;
     border-radius: 10px 0 10px 10px;
     background: #8dbce9;
+
   }
+  .complete {
+    background: #a7eba6;
+  }
+
+  .incomplete {
+    background: #ffb3b3;
+  }
+
   .them-msg-wrapper  {
     position: relative;
     clear:both;

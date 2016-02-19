@@ -4,6 +4,7 @@ class Message < ActiveRecord::Base
   belongs_to :user
   has_many :message_users
   has_many :recipients, through: :message_users, source: :user
+  has_one :task
 
   validates :user_id, :conversation_id, :content, presence: true
 
