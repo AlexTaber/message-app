@@ -78,7 +78,7 @@ a:hover {
 
 .mobile-nav {
     display: block;
-    background: lighten($pwdlight, 10%);
+    background-color: rgba($pwdlight, .8);
     color: #fff;
     padding: 1rem 0;
     z-index: 1000;

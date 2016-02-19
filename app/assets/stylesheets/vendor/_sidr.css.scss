@@ -10,7 +10,7 @@
   width: 260px;
   overflow-x: none;
   overflow-y: auto;
-  background: lighten($pwdlight, 10%);
+  background-color: rgba($pwdlight, .8);
   color: $white;
   -webkit-box-shadow: inset 0 0 1px 1px #666;
   -moz-box-shadow: inset 0 0 1px 1px #666;
@@ -35,6 +35,7 @@
   font-size: 2.4rem;
   font-weight: 300;
   line-height: 48px; 
+  border-bottom: 1px solid #ddd;
 }
 
 .sidr ul li:hover, .sidr ul li.active, .sidr ul li.sidr-class-active {
