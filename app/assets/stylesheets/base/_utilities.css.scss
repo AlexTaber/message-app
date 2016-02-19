@@ -177,6 +177,8 @@ a.close-modal{
    -webkit-border-top-right-radius: 8px;
    border-top-left-radius: 8px;
    border-top-right-radius: 8px;
+   position:relative;
+   z-index: 10;
    a {
     font-size: 15px;
     padding:10px;
@@ -191,7 +193,7 @@ a.close-modal{
 .active-tab {
  background:#fff;
  z-index: 10;
- margin-top: 1px;
+ padding-top: 1px;
  margin-bottom:-1px;
 }
 }
@@ -202,6 +204,7 @@ a.close-modal{
   clear: both;
   margin-top:-1px;
   position: relative;
+  min-height:300px;
 }
 .tab-content > div {
   display: none;
