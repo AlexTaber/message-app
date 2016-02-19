@@ -5,6 +5,7 @@ class Site < ActiveRecord::Base
   has_many :user_sites
   has_many :users, through: :user_sites
   has_many :requests
+  has_many :tasks, through: :conversations
 
   validates :name, :url, presence: true
   validates :name, :url, uniqueness: true

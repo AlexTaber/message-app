@@ -4,6 +4,7 @@ class Conversation < ActiveRecord::Base
   has_many :conversers
   has_many :users, through: :conversers
   has_many :messages
+  has_many :tasks, through: :messages
   belongs_to :site
 
   validates :site_id, presence: true
