@@ -85,7 +85,7 @@ $(".mobile-icons i"). on('click', function(){
   $('#current-account').slideUp();
   i = $(this).parent().children().index(this)
   $('.mobile-target').eq(i).fadeIn();
-  
+
 });
 
 ///Modal
@@ -125,7 +125,6 @@ $('.tab-list li').on('click', function(e){
   if(!$(this).hasClass('.active-tab')){
       $(".active-tab").removeClass("active-tab");
       $(this).addClass('active-tab')
-      console.log(i)
       $('.tab-content>div').eq(i).addClass('active-tab')
   }
 });
