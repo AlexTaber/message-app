@@ -10,8 +10,8 @@ class MessagesController < ApplicationController
         Pusher.trigger("conversation#{@message.conversation.token}#{user.id}", 'new-message', {
           user_id: @message.user.id,
           conversation_token: @message.conversation.token,
-          current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: @message }),
-          other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message }),
+          current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: @message, task: @message.task }),
+          other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message, task: @message.task }),
           conversation_id: @message.conversation.id,
           app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @message.conversation, current_conversation: current_conversation, site: @message.conversation.site, user: user })
         })

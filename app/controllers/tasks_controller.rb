@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :task_by_id, only: [:update, :destroy]
+
   def create
     @task = Task.new(task_params)
 
@@ -13,7 +15,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find_by(id: params[:id])
     @task.assign_attributes(task_params)
 
     if @task.valid?
@@ -26,9 +27,24 @@ class TasksController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    if @task
+      @task.delete
+      flash[:notice] = "Task Deleted"
+    else
+      flash[:warn] = "No task by that id"
+    end
+
+    redirect_to :back
+  end
+
   private
 
   def task_params
     params.require(:task).permit(:message_id, :completed)
+  end
+
+  def task_by_id
+    @task = Task.find_by(id: params[:id])
   end
 end

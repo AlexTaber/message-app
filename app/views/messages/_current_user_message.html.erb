@@ -5,8 +5,36 @@
   <% else %>
     <div class="profile-pic has-no-pic"><div class="table-cell"><%= message.user.first_name[0] %></div></div>
   <% end %>
-  <p class="self-pwd">
+  <% if task %>
+    <p class="self-pwd <%= task.html_class %>">
+  <% else %>
+    <p class="self-pwd">
+  <% end %>
     <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br> <a>')), :tags => %w(br a)) %>
   </p>
+  <div class="icon-bar self">
+    <% if task %>
+
+      <% if task.completed %>
+        <%= link_to task_path(message.task, task: { completed: false }), title: "Mark as Incomplete", method: "PUT" do %>
+          <i class="fa fa-undo"></i>
+        <% end %>
+      <% else %>
+        <%= link_to task_path(message.task, task: { completed: true }), title: "Mark as Complete", method: "PUT" do %>
+          <i class="fa fa-check-circle"></i>
+        <% end %>
+      <% end %>
+
+      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE" do %>
+        <i class="fa fa-minus-circle"></i>
+      <% end %>
+
+    <% else %>
+
+      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST" do %>
+        <i class="fa fa-exclamation-circle"></i>
+      <% end %>
+
+    <% end %>
+  </div>
 </div>
-<%= link_to "Taskify!", tasks_path, method: "POST" %>
