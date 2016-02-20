@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     if @message.valid?
       @message.save!
       set_up_recipients
+      set_up_task if params[:tasks]
       @message.conversation.users.each do |user|
         user == current_user ? current_conversation = @message.conversation : current_conversation = nil
         Pusher.trigger("conversation#{@message.conversation.token}#{user.id}", 'new-message', {
@@ -42,5 +43,9 @@ class MessagesController < ApplicationController
         message_id: @message.id
       )
     end
+  end
+
+  def set_up_task
+    @task = Task.create(message_id: @message.id)
   end
 end

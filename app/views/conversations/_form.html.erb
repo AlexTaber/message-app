@@ -9,5 +9,7 @@
   <% @conversation.user_ids.each do |user_id| %>
     <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
   <% end %>
-  <%= hidden_field_tag :tasks, tasks %>
+  <% if tasks %>
+    <%= hidden_field_tag :tasks, tasks %>
+  <% end %>
 <% end %>

@@ -265,7 +265,7 @@
           Tasks
         <% else %>
           Conversations  |
-          <%= link_to "Tasks", root_path(tasks: true), class: "convo-links" %>
+          <%= link_to "Tasks", root_path(tasks: true, site_id: @site.id), class: "convo-links" %>
         <% end %>
         <%= link_to home_path(tasks: @tasks, site_id: @site.id, new_conversation: true), class: "add-btn" do %>
           <i class="fa fa-plus"></i>
@@ -315,7 +315,7 @@
       <header>
       <i>To:</i>
       <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-      <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
+      <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil, tasks: @tasks } %>
        <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
       </header>
 

@@ -23,14 +23,22 @@ class ConversationsController < ApplicationController
       pusher_new_conversation unless @conversation.new_record?
 
       if request.xhr?
-        render json: {
-          html: (render_to_string partial: "messages/message", locals: { message: @message }),
-          form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation }),
-          token: @conversation.token
-        }
+        if params[:tasks]
+          render json: {
+            html: (render_to_string partial: "tasks/task", locals: { task: @task }),
+            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, tasks: params[:tasks] }),
+            token: @conversation.token
+          }
+        else
+          render json: {
+            html: (render_to_string partial: "messages/message", locals: { message: @message }),
+            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, tasks: params[:tasks] }),
+            token: @conversation.token
+          }
+        end
       else
         flash[:notice] = "Conversation successfully created"
-        redirect_to home_path
+        redirect_to home_path(tasks: params[:tasks])
       end
 
     else
@@ -49,9 +57,9 @@ class ConversationsController < ApplicationController
 
       set_up_users(users) unless @conversation.users.count > 0
       if params[:token].empty?
-        redirect_to home_path(user_ids: @conversation.user_ids, site_id: @site.id)
+        redirect_to home_path(user_ids: @conversation.user_ids, site_id: @site.id, tasks: params[:tasks])
       else
-        redirect_to message_box_path(token: params[:token], user_ids: @conversation.user_ids)
+        redirect_to message_box_path(token: params[:token], user_ids: @conversation.user_ids, tasks: params[:tasks])
       end
     else
       flash[:warn] = "Unable to find user"
@@ -80,7 +88,7 @@ class ConversationsController < ApplicationController
   def pusher_new_conversation
     @conversation.users.each do |user|
       user == current_user ? current_conversation = @conversation : current_conversation = nil
-       Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
+      Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
          app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @conversation, current_conversation: current_conversation, site: @site, user: user }),
          mb_html: (render_to_string partial: "conversations/mb_card", locals: { conversation: @conversation, current_conversation: current_conversation, site: @site, user: user }),
          site_id: @site.id
@@ -90,6 +98,7 @@ class ConversationsController < ApplicationController
 
   def create_message
     @message = Message.create(content: params[:content], user_id: current_user.id, conversation_id: @conversation.id)
+    create_task if params[:tasks]
     set_up_recipients
   end
 
@@ -100,5 +109,9 @@ class ConversationsController < ApplicationController
         message_id: @message.id
       )
     end
+  end
+
+  def create_task
+    @task = Task.create(message_id: @message.id)
   end
 end

@@ -118,6 +118,7 @@ class UsersController < ApplicationController
             @conversation.read_all_messages(current_user) unless @conversation.new_record?
             @message = Message.new
           end
+          @tasks = params[:tasks]
         else
           redirect_to new_request_path(token: token)
         end
