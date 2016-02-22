@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get '/typeahead' => 'users#typeahead'
   get '/owner-data' => 'users#owner_data'
   get '/validate' => 'users#validate'
+  get '/support' => 'users#support'
   post '/add_user' => 'conversations#add_user'
 
   root 'users#home'

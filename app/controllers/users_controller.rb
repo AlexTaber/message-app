@@ -161,6 +161,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def support
+
+  end
+
   private
 
   def user_by_id
