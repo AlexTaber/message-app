@@ -1,1 +1,96 @@
-MAKE IT BEAUTIFUL, JERRY
+<div style="height:100%; width:100%; overflow: scroll;">
+
+  <div class="desktop-nav show-desktop">
+    <div id="header" class="navbar">
+       <div class="container">
+        <div class="row">
+          <span class="home-link"><%= link_to 'MercuryApp', splash_path %></span>
+          <ul>
+            <li><a href="/splash#features">Features</a></li>
+            <li><a href="/splash#plans">Plans</a></li>
+            <li><a href="/splash#why">Why MAP</a></li>
+            <li><a href="/splash#getting-started">Getting Started</a></li>
+            <li><a href="/support">Support</a></li>
+          </ul>
+          <ul class="u-pull-right">
+            <% if current_user %>
+            <li><%= link_to 'Dashboard', home_path %></li>
+            <li><%= link_to 'Logout', logout_path %></li>
+            <% else %>
+            <li class="pill"><%= link_to 'Sign Up', new_user_path %></li>
+            <li><%= link_to 'Login', login_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav show-mobile">
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <a href="/"><h2>MercuryApp</h2></a>
+          <a id="right-menu" class="u-pull-right" href="#right-menu"><i class="fa fa-bars fa-2x"></i></a>
+          <div id="sidr-right" class="sidr right">
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#plans">Plans</a></li>
+              <li><a href="#why">Why MAP</a></li>
+              <li><a href="#getting-started">Getting Started</a></li>
+              <% if current_user %>
+              <li><%= link_to 'Dashboard', home_path %></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+              <% else %>
+              <li class="pill"><%= link_to 'Sign Up', login_path %></li>
+              <li><%= link_to 'Login', login_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End mobile menu -->
+<!--nav-bar-->
+<!--
+Feature Area
+-->
+<section class="feature">
+  <h1 class="text-center">Mercury App Support</h1>
+</section>
+<!-- End Feature -->
+<!-- main body -->
+<div class="main">
+  <section class="intro">
+   <div class="container">
+     <div class="row">
+       <div class="twelve columns text-center">
+         <h1>Your WordPress site just got a lot more productive</h1>
+       </div>
+       <div class="ten offset-by-one columns text-center">
+         <p>Communicate with your clients and team. <b><i>All in one place.</i></b> The Mercury messenger app is a widget that is docked to your web browser when you are logged in as a WordPress admin. Anyone who visits your site will not see the messenger app, but anyone who is logged in has the ability to message and send data to single user or group  on their respective site.</p>
+       </div>
+     </div>
+   </div>
+   </section>
+  </div>
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="four columns">
+      </div>
+    </div><!--row-->
+  </div>
+</footer>
+<footer class="copyright-footer">
+  <div class="container">
+   <div class="row">
+    <p>Copyright 2016 | Mercury Messenger App</p>
+  </div><!--row-->
+</div>
+</footer>
+ </div>
+
+
+
