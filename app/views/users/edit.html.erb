@@ -1,6 +1,23 @@
 <div class="display-table text-center eight offset-by-two columns">
-	<div class="centered">
-<%= render partial: "form", locals: { user: @user, default_tier_id: @default_tier_id} %>
+	<div class="centered edit-form">
+	<h1>Your Account</h1>
+	<h4>Change any information below and hit the "Update" button to edit your account info.</h4>
+<%= form_for current_user do |f| %>
+	<p>Username: </p><%= f.text_field :username, placeholder: "Username" %> <br><br>
+	<p>Email: </p><%= f.text_field :email, placeholder:"Email" %> <br><br>
+  <p>First Name: </p><%= f.text_field :first_name, placeholder: "First Name" %><br><br>
+  <p>Last Name: </p><%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
+  <p>Password: </p><%= f.password_field :password, placeholder: "Password" %> <br><br>
+  <p>Confirm Password: </p><%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %><br><br>
+  <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
+  <% if current_user.image %>
+  <img id="img-input" class="profile-preview" src="<%= current_user.image_url %>">
+<% else %>
+  <img id="img-input" class="profile-preview" src="#">
+<% end %>
+     <label for='profile-uploader' class="button button-primary">Upload a New Profile Image</label><br>
+     <%= f.submit class: 'button button-primary' %>
+<% end %>
 <br>
 <%= link_to 'cancel', :back %>
 
