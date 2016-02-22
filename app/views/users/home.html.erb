@@ -109,10 +109,12 @@
 <% end %>
 
 <% if(current_user.first_visit?) %>
-  <div id='edit-site' class='modal-window' style="display:block;">
+  <div id='welcome' class='modal-window' style="display:block;">
     <div>
+
+      <i class="fa fa-certificate welcome_icon"></i>
       <h1>Welcome to Mercury<b>App</b></h1>
-      <p>Thank you for signing up. Please take some time to learn our features by visiting our <a href="#">tutorials page</a>. Happy messaging!</p>
+      <h5>Thank you for signing up. Please take some time to learn our <br> features by visiting our <%= link_to 'FAQ page', support_path %>. Happy messaging!</h5 >
       <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
     </div>
   </div>
