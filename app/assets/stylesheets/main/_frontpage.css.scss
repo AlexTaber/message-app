@@ -95,6 +95,12 @@ i.admin-profile {
 	padding-top:20px;
 	padding-bottom:20px;
 }
+#welcome{
+	.welcome_icon{
+		font-size: 40px;
+		margin-top:100px;
+	}
+}
 @media (min-width: 750px) {
 	.profile-data{
 		padding:0;
