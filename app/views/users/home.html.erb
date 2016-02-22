@@ -314,11 +314,13 @@
         <% end %>
       </div>
     <div id="form-wrapper">
+    <% if @conversation.other_users(current_user).length > 0 %>
       <% if @conversation.new_record? %>
         <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation } %>
       <% else %>
         <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
       <% end %>
+    <% end %>
     </div>
   </div>
 </div>
