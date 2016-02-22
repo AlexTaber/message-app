@@ -260,4 +260,8 @@ class User < ActiveRecord::Base
       { error: true, attribute: attribute.to_s, message: "#{attribute.capitalize} #{get_attribute_errors(attribute)}" } unless valid_attribute?(attribute)
     end
   end
+
+  def remove_image
+    image.delete
+  end
 end
