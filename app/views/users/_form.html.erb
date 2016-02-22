@@ -35,7 +35,7 @@
    <i class="fa fa-camera"></i><br><br>
     <h1>Upload a profile image</h1>
     <h4>Upload an image so other users can see who you are! This is optional and the first letter of your first name will appear if you choose not to upload an image.</h4>
-    <%= f.file_field :file, name: 'profile-uploader', id: 'profile-uploader', class: 'inputfile' %>
+    <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
      <label for='profile-uploader' class="button button-primary">Upload</label><br>
      <img id="img-input" class="profile-preview" src="#">
     <% if @invite_token %>
