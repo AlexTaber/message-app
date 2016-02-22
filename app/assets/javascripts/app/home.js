@@ -240,6 +240,11 @@ function enterSubmit(input, form) {
     }
   });
 }
+function addNewLine(form) {
+  var tar = $(form).find("textarea");
+  var value = tar.val();
+  tar.val(value);
+}
 
 function sendMessage(e) {
   e.preventDefault();
