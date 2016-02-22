@@ -46,6 +46,7 @@ class UsersController < ApplicationController
       redirect_to :back and return
     end
 
+    set_update_password
     @user.assign_attributes(user_params)
 
     if @user.confirm_password(params[:confirm_password])
@@ -200,7 +201,7 @@ class UsersController < ApplicationController
     obj = S3_BUCKET.object(file.original_filename)
 
     obj.upload_file(file.tempfile, acl:'public-read')
-
+    @user.remove_image if @user.image
     @image = Image.new(url: obj.public_url, imageable_id: @user.id, imageable_type: "User")
     unless @image.save
       flash[:warn] = "There was a problem uploading your image, please try again"
@@ -235,5 +236,12 @@ class UsersController < ApplicationController
 
   def send_welcome_email(user)
     UserMailer.welcome_email(user).deliver_now
+  end
+
+  def set_update_password
+    if params[:user][:password] == ""
+      params[:user].delete("password")
+      params.delete("confirm_password")
+    end
   end
 end

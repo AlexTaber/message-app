@@ -211,7 +211,7 @@ class User < ActiveRecord::Base
   end
 
   def confirm_password(checked_password)
-    checked_password == password
+    checked_password ? checked_password == password : true
   end
 
   def invalidate_password_recoveries
@@ -259,5 +259,9 @@ class User < ActiveRecord::Base
     if send(attribute)
       { error: true, attribute: attribute.to_s, message: "#{attribute.capitalize} #{get_attribute_errors(attribute)}" } unless valid_attribute?(attribute)
     end
+  end
+
+  def remove_image
+    image.delete
   end
 end
