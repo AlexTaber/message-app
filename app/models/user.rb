@@ -211,12 +211,7 @@ class User < ActiveRecord::Base
   end
 
   def confirm_password(checked_password)
-    needs_confirmed_password?(checked_password) ? checked_password == password : true
-  end
-
-  def needs_confirmed_password?(checked_password)
-    binding.pry
-    self.new_record? || checked_password
+    checked_password ? checked_password == password : true
   end
 
   def invalidate_password_recoveries
