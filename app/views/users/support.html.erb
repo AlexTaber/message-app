@@ -2,22 +2,47 @@
 
   <div class="desktop-nav show-desktop">
     <div id="header" class="navbar">
-       <div class="container">
-        <div class="row">
-          <span class="home-link"><%= link_to 'MercuryApp', splash_path %></span>
+     <div class="container">
+      <div class="row">
+        <span class="home-link"><%= link_to 'MercuryApp', splash_path %></span>
+        <ul>
+          <li><a href="/splash#features">Features</a></li>
+          <li><a href="/splash#plans">Plans</a></li>
+          <li><a href="/splash#why">Why MAP</a></li>
+          <li><a href="/splash#getting-started">Getting Started</a></li>
+          <li><a href="/support">Support</a></li>
+        </ul>
+        <ul class="u-pull-right">
+          <% if current_user %>
+          <li><%= link_to 'Dashboard', home_path %></li>
+          <li><%= link_to 'Logout', logout_path %></li>
+          <% else %>
+          <li class="pill"><%= link_to 'Sign Up', new_user_path %></li>
+          <li><%= link_to 'Login', login_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-nav show-mobile">
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <a href="/"><h2>MercuryApp</h2></a>
+        <a id="right-menu" class="u-pull-right" href="#right-menu"><i class="fa fa-bars fa-2x"></i></a>
+        <div id="sidr-right" class="sidr right">
           <ul>
-            <li><a href="/splash#features">Features</a></li>
-            <li><a href="/splash#plans">Plans</a></li>
-            <li><a href="/splash#why">Why MAP</a></li>
-            <li><a href="/splash#getting-started">Getting Started</a></li>
-            <li><a href="/support">Support</a></li>
-          </ul>
-          <ul class="u-pull-right">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#why">Why MAP</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
             <% if current_user %>
             <li><%= link_to 'Dashboard', home_path %></li>
             <li><%= link_to 'Logout', logout_path %></li>
             <% else %>
-            <li class="pill"><%= link_to 'Sign Up', new_user_path %></li>
+            <li class="pill"><%= link_to 'Sign Up', login_path %></li>
             <li><%= link_to 'Login', login_path %></li>
             <% end %>
           </ul>
@@ -25,33 +50,8 @@
       </div>
     </div>
   </div>
-
-  <div class="mobile-nav show-mobile">
-    <div class="container">
-      <div class="row">
-        <div class="twelve columns">
-          <a href="/"><h2>MercuryApp</h2></a>
-          <a id="right-menu" class="u-pull-right" href="#right-menu"><i class="fa fa-bars fa-2x"></i></a>
-          <div id="sidr-right" class="sidr right">
-            <ul>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#plans">Plans</a></li>
-              <li><a href="#why">Why MAP</a></li>
-              <li><a href="#getting-started">Getting Started</a></li>
-              <% if current_user %>
-              <li><%= link_to 'Dashboard', home_path %></li>
-              <li><%= link_to 'Logout', logout_path %></li>
-              <% else %>
-              <li class="pill"><%= link_to 'Sign Up', login_path %></li>
-              <li><%= link_to 'Login', login_path %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End mobile menu -->
+</div>
+<!-- End mobile menu -->
 <!--nav-bar-->
 <!--
 Feature Area
@@ -62,47 +62,42 @@ Feature Area
 <!-- End Feature -->
 <!-- main body -->
 <div class="main">
-  <section class="intro">
-   <div class="container">
-     <div class="row">
-       <div class="twelve columns text-center">
-         <h1>Your WordPress site just got a lot more productive</h1>
-       </div>
-       <div class="ten offset-by-one columns text-center">
-         <p>Communicate with your clients and team. <b><i>All in one place.</i></b> The Mercury messenger app is a widget that is docked to your web browser when you are logged in as a WordPress admin. Anyone who visits your site will not see the messenger app, but anyone who is logged in has the ability to message and send data to single user or group  on their respective site.</p>
-         <hr>
-       </div>
-     </div>
-   </div>
-   </section>
-   <section>
+ <section>
    <div class="container">
      <div class="row">
        <div class="twelve columns text-center">
          <h1>Support and Frequently Asked Questions</h1>
+         <p>Totally awesome WordPress messaging!</p>
        </div>
-       <div class="ten offset-by-one columns text-center">
-         <p>Totally awesome stuff to come!</p>
-         <hr>
-       </div>
-     </div>
-   </div>
-   </section>
-   <section class="intro">
+       <div class="eight offset-by-two columns">
+       <hr>
+          <h2>Sign Up</h2>
+            <ol>
+              <li><b>Create a unique user name</b><br>This allows you to be found by other Mercury users.</li>
+              <li><b>Add a site</b><br>If you have a site to work on add it to your account, if not you can still use the Mercury app to communicate with other sites and users.</li>
+              <li><b>Join or request to join a conversation</b><br>You can send a request to be added to a site or add and send requests to anyone you would like to be messaging on your site.</li>
+            </ol>
+            <h3>It's that simple</h3>
+            <hr>
+        </div>
+      </div>
+    </div>
+  </section>
    <div class="container">
      <div class="row">
        <div class="ten offset-by-one columns text-center">
          <h1>Not a Mercury user?</h1>
          <h3>Sign up for a free account</h3>
-        <%= link_to 'Sign Up', new_user_path, class: "button button-primary"  %>
-      	<p>&nbsp;</p>
+         <%= link_to 'Sign Up', new_user_path, class: "button button-primary"  %>
+         <p>&nbsp;</p>
+         <p>&nbsp;</p>
        </div>
      </div>
    </div>
-   </section>
-   
-  </div>
-  <footer>
+
+
+</div>
+<footer>
   <div class="container">
     <div class="row">
       <div class="four columns">
@@ -117,7 +112,7 @@ Feature Area
   </div><!--row-->
 </div>
 </footer>
- </div>
+</div>
 
 
 
