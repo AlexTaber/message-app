@@ -39,4 +39,12 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: user.email, subject: "Monthly Newsletter from MercuryApp", from: "MercuryApp Newsletter <no-reply@mercuryapp.co>")
   end
+
+  def new_message_email(message, user)
+    @url = home_url(tasks: nil, user_ids: message.conversation.user_ids, site_id: message.conversation.site.id)
+    @message = message
+    @user = user
+    @site = message.conversation.site
+    mail(to: user.email, subject: "New Message from #{message.user.name}", from: "MercuryApp <no-reply@mercuryapp.co>")
+  end
 end

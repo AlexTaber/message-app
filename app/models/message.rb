@@ -53,4 +53,8 @@ class Message < ActiveRecord::Base
   def auto_linked_content
     Rinku.auto_link(content, :all, 'target="_blank"')
   end
+
+  def is_recent?
+    created_at > DateTime.now - 10.minutes
+  end
 end
