@@ -44,10 +44,6 @@
         $('.is-active').removeClass('is-active');
         $(this).addClass('is-active');
       }
-      if(!$(this>'div').is('visible')){
-        $('.tier_accordian').slideUp();
-        $(this).children('div').slideDown();
-      }
       if(!$('.tier-select input').eq(i).is(':checked')){
        $('.tier-select input').eq(i).prop('checked', true);
       }

@@ -125,8 +125,8 @@ input:-webkit-autofill {
   margin-bottom: 30px;
 }
 .tiers_card{
-  padding-top:50px;
-  padding-bottom:50px;
+  padding-top:5px;
+  padding-bottom:5px;
   border-radius: 10px;
   margin-bottom:50px;
 }
@@ -136,9 +136,6 @@ input:-webkit-autofill {
   color:white;
 }
 .tier-select{
-  display:none;
-}
-.tier_accordian{
   display:none;
 }
 
@@ -197,6 +194,11 @@ input:-webkit-autofill {
   .tier_accordian{
     display:block;
   }
+  .tiers_card{
+  padding-top:50px;
+  padding-bottom:50px;
+  margin-bottom:50px;
+}
   .subscription-info {
     height: 100%;
     padding: 5px;
