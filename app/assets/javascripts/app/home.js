@@ -100,6 +100,15 @@ $('.completed-tasks-btn').on('click', function(e){
   $('.completed-tasks').slideToggle();
 });
 
+//mobile menu tasks
+  if($('.convo-links').text() == 'Tasks') {
+    $('#mobile-messages').removeClass('fa-check-circle-o');
+    $('#mobile-messages').addClass('fa-comment');
+  } else {
+    $('#mobile-messages').removeClass('fa-comment');
+    $('#mobile-messages').addClass('fa-check-circle-o');
+  }
+
 ///Modal
 var window_width = $(window).width();
 var window_height = $(window).height();
