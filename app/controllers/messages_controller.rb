@@ -19,6 +19,8 @@ class MessagesController < ApplicationController
         })
       end
 
+      new_message_email if current_user.needs_notification?
+
       if request.xhr?
         render partial: "messages/message", locals: { message: @message }
       else
@@ -53,5 +55,9 @@ class MessagesController < ApplicationController
   def task_html
     return false unless @message.task
     (render_to_string partial: "tasks/task", locals: { task: @message.task } )
+  end
+
+  def new_message_email
+    @message.conversation.other_users(current_user).each { |user| UserMailer.new_message_email(@message, user).deliver_now }
   end
 end

@@ -264,4 +264,21 @@ class User < ActiveRecord::Base
   def remove_image
     image.delete
   end
+
+  def needs_notification?
+    !does_not_need_notification?
+  end
+
+  def does_not_need_notification?
+    recently_messaged? || recently_online?
+  end
+
+  def recently_messaged?
+    message = messages.last
+    message ? messages.last.is_recent? : false
+  end
+
+  def recently_online?
+    last_online ? last_online > DateTime.now - 15.minutes : false
+  end
 end
