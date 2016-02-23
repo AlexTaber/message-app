@@ -322,14 +322,14 @@
       <div class="msg-bx-convo app-view">
         <% if @tasks %>
           <div class="pending-tasks">
-            <% @conversation.pending_tasks.each do |task| %>
+            <% @conversation.sorted_pending_tasks.each do |task| %>
               <%= render partial: "tasks/task", locals: { task: task } %>
             <% end %>
           </div>
 
           <h5 class="text-center"><a href="#" class="button button-primary completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
           <div class="completed-tasks">
-            <% @conversation.completed_tasks.each do |task| %>
+            <% @conversation.sorted_completed_tasks.each do |task| %>
               <%= render partial: "tasks/task", locals: { task: task } %>
             <% end %>
           </div>
