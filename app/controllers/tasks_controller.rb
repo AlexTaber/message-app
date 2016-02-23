@@ -72,6 +72,6 @@ class TasksController < ApplicationController
   end
 
   def task_html(task, new_record)
-    (render_to_string partial: "tasks/task", locals: { task: task } )
+    task ? (render_to_string partial: "tasks/task", locals: { task: task } ) : ""
   end
 end
