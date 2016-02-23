@@ -8,7 +8,7 @@
 <small class="u-full-width them-meta-data"><b><%= message.user.first_name_last_initial %></b> <i>on <%= message.date_to_s %> <%= message.time_to_s %></i></small>
   <% if task %>
     <p class="<%= task.html_class %>">
-      <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br> <a>')), :tags => %w(br a)) %>
+      <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
     </p>
   <% else %>
     <p>
