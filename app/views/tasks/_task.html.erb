@@ -1,5 +1,5 @@
 <div class="task-container" id="task-<%= task.id %>">
-<small><b><%= task.user.first_name_last_initial %></b> <i>on <%= task.message.date_to_s %> <%= task.message.time_to_s %></i></small>
+<small><b><%= task.user.first_name_last_initial %></b> <i>on <%= task.message.date_to_s %> <%= task.message.time_ago_to_s %></i></small>
   <div class="task-item content">
   <div class="task-item icon">
   </div>

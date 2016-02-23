@@ -3,6 +3,7 @@
   background: $grey;
   margin-bottom: 3px;
   padding: 5px;
+  border-radius: 5px;
 
   small{
     display:block;
@@ -47,5 +48,14 @@
     float: none;
     padding-top: 5px;
     padding-left:10px;
+  }
+}
+.completed-tasks-btn{
+  margin-top:15px;
+}
+.completed-tasks{
+  display:none;
+  .icon{
+    background:$black !important;
   }
 }

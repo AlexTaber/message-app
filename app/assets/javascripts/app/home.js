@@ -89,6 +89,17 @@ $(".mobile-icons i"). on('click', function(){
 
 });
 
+//show completed tasks
+$('.completed-tasks-btn').on('click', function(e){
+  e.preventDefault();
+  if($(".completed-tasks-btn span").text() === 'Show') {
+    $(".completed-tasks-btn span").text('Hide');
+  } else {
+    $(".completed-tasks-btn span").text('Show');
+  }
+  $('.completed-tasks').slideToggle();
+});
+
 ///Modal
 var window_width = $(window).width();
 var window_height = $(window).height();
