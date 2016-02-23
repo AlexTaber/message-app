@@ -1,15 +1,10 @@
 <div class="task-container" id="task-<%= task.id %>">
-  <div class="task-item icon">
-    <i class="fa fa-check-circle"></i>
-  </div>
+<small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
   <div class="task-item content">
+  <div class="task-item icon">
+  </div>
     <p>
       <%= task.content %>
-    </p>
-  </div>
-  <div class="task-item user">
-    <p>
-      <%= task.user.first_name %>
     </p>
   </div>
 </div>
