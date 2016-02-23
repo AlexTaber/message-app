@@ -1,6 +1,37 @@
 <div class="text-center subscription-form-wrapper">
 	<div class="centered">
 		<h2>Please Select Your Tier</h2>
+    <div class="container tiers">
+      <div class="row">
+        <div class="four columns tiers_card is-active">
+          <h3>Basic Tier</h3>
+            <h4>Free</h4>
+          <div class="tier_accordian">
+            <p>One Admin site</p>
+            <p>Up to three users</p>
+            <p>Belong to unlimited sites</p>
+          </div>
+        </div>
+        <div class="four columns tiers_card">
+            <h3>Single Site</h3>
+            <h4>$10</h4>
+          <div class="tier_accordian">
+            <p>One Admin site</p>
+            <p>Unlimited users</p>
+            <p>Belong to unlimited sites</p>
+          </div>
+        </div>
+        <div class="four columns tiers_card">
+            <h3>Multi Site</h3>
+            <h4>$20</h4>
+          <div class="tier_accordian">
+            <p>5 Admin sites</p>
+            <p>Unlimited users</p>
+            <p>Belong to unlimited sites</p>
+          </div>
+      </div>
+    </div>
+  </div>
     <%= render partial: "form", locals: { subscription: @subscription, tier_id: @tier_id, card_token: @card_token } %>
 
     <div id="stripe_error">
@@ -9,7 +40,7 @@
   </div>
 </div><!--
 
---><div class="subscription-info">
+<div class="subscription-info">
   <h2>MercuryApp is the Messaging Solution for Your Site, Large or Small</h2>
   <div class="dollars">
     <i class="fa fa-usd fa-2x is-transitioned" id="dollar-1"></i>
@@ -19,10 +50,7 @@
 
   <div class="subscription-text" id="subscription-text-1">
     <h3>Basic Tier</h3>
-    <h3>Free</h3>
-    <p>One Admin site</p>
-    <p>Up to three users</p>
-    <p>Belong to unlimited sites</p>
+
   </div>
 
   <div class="subscription-text is-hidden"  id="subscription-text-2">
@@ -40,4 +68,4 @@
     <p>Unlimited users</p>
     <p>Belong to unlimited sites</p>
   </div>
-</div>
+</div> -->
