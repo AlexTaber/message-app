@@ -337,7 +337,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
       if(tasksMode) {
-        $(".app-view").append(data.task_html);
+        $(".pending-tasks").prepend(data.task_html);
       } else {
         if(userId == data.user_id) {
           $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
@@ -379,7 +379,6 @@ function listenForNewTasks(conversationToken, curConvoToken) {
 
         if(data.completed) {
           $(".completed-tasks").prepend(data.task_html);
-          console.log($(".completed-tasks"))
         } else {
           $(".pending-tasks").prepend(data.task_html);
         }
