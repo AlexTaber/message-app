@@ -110,56 +110,6 @@ input:-webkit-autofill {
   vertical-align: top;
 }
 
-.subscription-info {
-  position: relative;
-  display: inline-block;
-  background-color: #56688f;
-  width: calc(100% - 10px);
-  height: 50%;
-  padding: 5px;
-  color: $white;
-  text-align: center;
-  -webkit-transition: 1s background; /* Safari */
-  transition: 1s background;
-
-  h2 {
-    display: none;
-  }
-
-  .dollars {
-    margin-top: 20px;
-
-    i {
-      margin-right: 4px;
-      margin-left: 4px;
-      -webkit-transition: 1s; /* Safari */
-      transition: 1s;
-
-      &.is-transitioned {
-        color: #a2d4f6;
-      }
-    }
-  }
-
-  .subscription-text {
-    position: absolute;
-    width: calc(100% - 10px);
-    margin-top: 20px;
-    opacity: 1;
-    -webkit-transition: 1s; /* Safari */
-    transition: 1s;
-
-    p {
-      margin-top: 10px;
-    }
-
-    &.is-hidden {
-      opacity: 0;
-    }
-  }
-}
-
-
 
 
 #card-form {
@@ -170,8 +120,26 @@ input:-webkit-autofill {
   }
 }
 
+
 #subscription-form {
   margin-bottom: 30px;
+}
+.tiers_card{
+  padding-top:50px;
+  padding-bottom:50px;
+  border-radius: 10px;
+  margin-bottom:50px;
+}
+.tiers_card:hover, .tiers_card.is-active{
+  cursor:pointer;
+  background:rgba($pwdlight, .8);
+  color:white;
+}
+.tier-select{
+  display:none;
+}
+.tier_accordian{
+  display:none;
 }
 
 .site-form-container {
@@ -224,25 +192,14 @@ input:-webkit-autofill {
 @media(min-width: 550px) {
   .subscription-form-wrapper {
     height: 100%;
-    width: 60%;
+    width: 100%;
   }
-
+  .tier_accordian{
+    display:block;
+  }
   .subscription-info {
     height: 100%;
     padding: 5px;
-    width: calc(40% - 10px);
-
-    .subscription-text {
-      width: calc(100% - 10px);
-    }
-
-    .dollars {
-      margin-top: 80px;
-    }
-
-    .subscription-text {
-      margin-top: 80px;
-    }
   }
 
   .tier-select label {
@@ -250,11 +207,8 @@ input:-webkit-autofill {
   }
 
   .site-form-container {
-    width: 50%;
+    width: 100%;
 
-    .hidden-text {
-      display: none;
-    }
   }
 
   .site-form-info {
@@ -265,27 +219,9 @@ input:-webkit-autofill {
 @media(min-width: 800px) {
   .subscription-form-wrapper {
     height: 100%;
-    width: 50%;
+    width: 100%;
   }
 
-  .subscription-info {
-    height: 100%;
-    padding: 30px;
-    width: 50%;
-
-    h2 {
-      display: inline;
-    }
-
-    i {
-      margin-right: 10px;
-      margin-left: 10px;
-    }
-
-    .subscription-text {
-      width: calc(100% - 60px);
-    }
-  }
 
   .tier-select label {
     display: inline;

@@ -1,7 +1,5 @@
 (function() {
-  var curST;
-  var curDollar
-  var subscription;
+  
   jQuery(function() {
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
     return subscription.setupForm();
@@ -40,13 +38,21 @@
   };
 
   $(document).ready(function() {
-    $("#_tier_id_1").click(hideCardForm);
-    $("#_tier_id_2, #_tier_id_3").click(showCardForm)
-
-    //subscription form click events
-    curST = $("#subscription-text-1");
-    curDollar = $("#dollar-1");
-    $("#_tier_id_1, #_tier_id_2, #_tier_id_3").on('click', transitionSubscriptionText);
+    $('.tiers_card').on('click', function(){
+    var i = $(this).parent().children().index(this)
+      if(!$(this).hasClass('is-active')){
+        $('.is-active').removeClass('is-active');
+        $(this).addClass('is-active');
+      }
+      if(!$('.tier-select input').eq(i).is(':checked')){
+       $('.tier-select input').eq(i).prop('checked', true);
+      }
+      if($(this).is(':first-of-type')){
+        hideCardForm();
+      } else {
+        showCardForm();
+      }
+    });
   });
 
   function hideCardForm() {
@@ -54,44 +60,42 @@
   }
 
   function showCardForm() {
-    console.log("HERE");
     $("#card-form").slideDown(500);
   }
+  // function transitionSubscriptionText() {
+  //   index = $(this).attr("value");
 
-  function transitionSubscriptionText() {
-    index = $(this).attr("value");
+  //   newDollar = $("#dollar-" + index);
+  //   curDollar.removeClass("is-transitioned");
+  //   newDollar.addClass("is-transitioned");
+  //   curDollar = newDollar;
 
-    newDollar = $("#dollar-" + index);
-    curDollar.removeClass("is-transitioned");
-    newDollar.addClass("is-transitioned");
-    curDollar = newDollar;
+  //   newST = $("#subscription-text-" + index);
+  //   curST.addClass("is-hidden");
+  //   setTimeout(function() {
+  //     newST.removeClass("is-hidden");
+  //   }, 500);
+  //   curST = newST;
 
-    newST = $("#subscription-text-" + index);
-    curST.addClass("is-hidden");
-    setTimeout(function() {
-      newST.removeClass("is-hidden");
-    }, 500);
-    curST = newST;
+  //   subTransition(parseInt(index));
+  // }
 
-    subTransition(parseInt(index));
-  }
+  // function subTransition(index) {
+  //   var colors = [
+  //     "#56688f",
+  //     "#455372",
+  //     "#133c64"
+  //   ]
 
-  function subTransition(index) {
-    var colors = [
-      "#56688f",
-      "#455372",
-      "#133c64"
-    ]
+  //   var fontColors = [
+  //     "#fff",
+  //     "#fff",
+  //     "#fff"
+  //   ]
 
-    var fontColors = [
-      "#fff",
-      "#fff",
-      "#fff"
-    ]
-
-    $(".subscription-info").css({
-      "background-color": colors[index - 1],
-      "color": fontColors[index - 1]
-    });
-  }
+  //   $(".subscription-info").css({
+  //     "background-color": colors[index - 1],
+  //     "color": fontColors[index - 1]
+  //   });
+  // }
 }).call(this);
