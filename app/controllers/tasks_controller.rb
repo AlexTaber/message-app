@@ -9,7 +9,11 @@ class TasksController < ApplicationController
       flash[:notice] = "Task successfully created"
       @task.message.conversation.users.each do |user|
         Pusher.trigger("task#{@task.message.conversation.token}#{user.id}", 'new-task', {
-          message: "HER"
+          message_id: @task.message.id,
+          conversation_token: @task.message.conversation.token,
+          current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: @task.message, task: @task }),
+          other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @task.message, task: @task }),
+          task_html: (render_to_string partial: "tasks/task", locals: { task: @task } )
         })
       end
     else

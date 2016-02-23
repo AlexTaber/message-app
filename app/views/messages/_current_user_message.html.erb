@@ -1,4 +1,4 @@
-<div class="self-msg-wrapper">
+<div class="self-msg-wrapper" id="message-<%= message.id %>">
   <small class="self-meta-data text-right u-full-width"><b>Me</b> <i>on <%= message.date_to_s %> <%= message.time_to_s %></i></small>
   <% if message.user.image %>
     <img class="profile-pic" src="<%= message.user.image_url %>">

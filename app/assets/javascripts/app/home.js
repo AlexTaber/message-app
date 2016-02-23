@@ -352,7 +352,18 @@ function listenForNewConvos() {
 function listenForNewTasks(conversationToken, curConvoToken) {
   channel = pusher.subscribe('task' + String(conversationToken) + String(userId));
   channel.bind('new-task', function(data) {
-
+    if(curConvoToken == data.conversation_token) {
+      //if current convo
+      if(tasksMode) {
+        $(".app-view").append(data.task_html);
+      } else {
+        if(userId == data.user_id) {
+          $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);
+        } else {
+          $("#message-" + String(data.message_id)).replaceWith(data.other_user_html);
+        }
+      }
+    }
   });
 }
 
