@@ -38,11 +38,11 @@
         <% end %>
         </div>
         <div class="tab2">
-        <p>If the person is already a MercuryApp user, use the search form below.</p>
+        <p>If the person is already a MercuryApp user, use the search form below, then press enter.</p>
         <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
         </div>
         <div class="tab3">
-         <p>If the person isn't on MercuryApp yet, <br>enter their email below and we'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
+         <p>If the person isn't on MercuryApp yet, enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
         <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
         </div>
       </div>
@@ -75,6 +75,7 @@
 <div id='send-request' class='modal-window'>
   <div>
     <h1>Send Request</h1>
+    <p>Type in site name you want to join and press enter</p>
     <%= render partial: "requests/typeahead", locals: { my_request: @request } %>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
