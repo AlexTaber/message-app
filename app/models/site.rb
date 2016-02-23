@@ -53,6 +53,10 @@ class Site < ActiveRecord::Base
     pending_requests.count > 0
   end
 
+  def has_alert?(user)
+    has_pending_requests? || user.has_unread_conversations_by_site?(self)
+  end  
+
   def self.all_sites_data
     all.map(&:typeahead_data)
   end
