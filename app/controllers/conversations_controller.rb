@@ -100,6 +100,7 @@ class ConversationsController < ApplicationController
     @message = Message.create(content: params[:content], user_id: current_user.id, conversation_id: @conversation.id)
     create_task if params[:tasks]
     set_up_recipients
+    new_message_email
   end
 
   def set_up_recipients
@@ -113,5 +114,9 @@ class ConversationsController < ApplicationController
 
   def create_task
     @task = Task.create(message_id: @message.id)
+  end
+
+  def new_message_email
+    @conversation.other_users(current_user).each { |user| UserMailer.new_message_email(@message, user).deliver_now }
   end
 end
