@@ -10,7 +10,7 @@
   <% else %>
     <p class="self-pwd">
   <% end %>
-    <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br> <a>')), :tags => %w(br a)) %>
+    <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
   </p>
   <div class="icon-bar self">
     <% if task %>
