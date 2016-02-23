@@ -7,6 +7,11 @@ class TasksController < ApplicationController
     if @task.valid?
       @task.save
       flash[:notice] = "Task successfully created"
+      @task.message.conversation.users.each do |user|
+        Pusher.trigger("task#{@task.message.conversation.token}#{user.id}", 'new-task', {
+          message: "HER"
+        })
+      end
     else
       flash[:warn] = "Unable to create task"
     end

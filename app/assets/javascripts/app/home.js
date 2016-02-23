@@ -17,6 +17,7 @@ jQuery(document).ready(function($){
     for(var i = 0; i < conversationTokens.length; i++) {
       conversationToken = conversationTokens[i];
       subscribeToConvo(conversationToken, curConvoToken);
+      listenForNewTasks(conversationToken, curConvoToken);
     }
     listenForNewConvos();
   }
@@ -316,7 +317,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
       if(tasksMode) {
-        $(".app-view").append(anchorme.js(data.task_html, { "target":"_blank" }));
+        $(".app-view").append(data.task_html);
       } else {
         if(userId == data.user_id) {
           $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
@@ -345,6 +346,13 @@ function listenForNewConvos() {
         $(".current-site-data").after(data.app_html);
       }
     }
+  });
+}
+
+function listenForNewTasks(conversationToken, curConvoToken) {
+  channel = pusher.subscribe('task' + String(conversationToken) + String(userId));
+  channel.bind('new-task', function(data) {
+
   });
 }
 
