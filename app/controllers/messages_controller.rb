@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
         })
       end
 
-      new_message_email if current_user.needs_notification?
+      new_message_email if current_user.needs_notification?(@message)
 
       if request.xhr?
         render partial: "messages/message", locals: { message: @message }

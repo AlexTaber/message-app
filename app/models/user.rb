@@ -265,8 +265,8 @@ class User < ActiveRecord::Base
     image.delete
   end
 
-  def needs_notification?
-    !does_not_need_notification?
+  def needs_notification?(message)
+    !does_not_need_notification?(message)
   end
 
   def does_not_need_notification?(message)
