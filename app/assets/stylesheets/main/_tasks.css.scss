@@ -10,7 +10,12 @@
   }
   .delete-task {
     padding-right:10px;
-    &:hover {
+
+    a {
+      color: $black;
+    }
+
+    a:hover {
       color: red;
       cursor:pointer;
     }
@@ -20,6 +25,10 @@
     display: inline-block;
     vertical-align: top;
     padding: 5px;
+
+    a {
+      text-decoration: none;
+    }
 
     &.icon {
       height: 15px;

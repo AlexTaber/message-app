@@ -1,13 +1,22 @@
 <div class="task-container" id="task-<%= task.id %>">
 <small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
   <div class="task-item content">
-  <div class="task-item icon">
-  </div>
+    <% if task.completed %>
+      <%= link_to task_path(task, task: { completed: false }), method: "PUT" do %>
+        <div class="task-item icon"></div>
+      <% end %>
+    <% else %>
+      <%= link_to task_path(task, task: { completed: true }), method: "PUT" do %>
+        <div class="task-item icon"></div>
+      <% end %>
+    <% end %>
     <p>
       <%= task.content %>
     </p>
   </div>
   <div class="delete-task u-pull-right">
-    <i class="fa fa-times"></i>
+    <%= link_to task_path(task), method: "DELETE" do %>
+      <i class="fa fa-times"></i>
+    <% end %>
   </div>
 </div>
