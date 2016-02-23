@@ -8,7 +8,13 @@
   small{
     display:block;
   }
-
+  .delete-task {
+    padding-right:10px;
+    &:hover {
+      color: red;
+      cursor:pointer;
+    }
+  }
 
   .task-item {
     display: inline-block;
@@ -30,6 +36,7 @@
 
     &.content {
       width: 75%;
+      padding-right:30px;
 
     }
 

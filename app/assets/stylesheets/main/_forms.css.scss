@@ -80,6 +80,9 @@ input:-webkit-autofill {
   object-position: middle middle;
   border-radius:100%;
   margin: 20px;
+  &.edit-page{
+    display:inline-block !important;
+  }
 }
 .signup{
   text-align:center;
