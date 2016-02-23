@@ -5,6 +5,7 @@ class Site < ActiveRecord::Base
   has_many :user_sites
   has_many :users, through: :user_sites
   has_many :requests
+  has_many :tasks, through: :conversations
 
   validates :name, :url, presence: true
   validates :name, :url, uniqueness: true
@@ -67,5 +68,9 @@ class Site < ActiveRecord::Base
 
   def non_owner_users
     users.where(owner: false)
+  end
+
+  def incomplete_tasks
+    tasks.where(completed: false)
   end
 end

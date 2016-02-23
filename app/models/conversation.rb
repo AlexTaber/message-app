@@ -4,6 +4,7 @@ class Conversation < ActiveRecord::Base
   has_many :conversers
   has_many :users, through: :conversers
   has_many :messages
+  has_many :tasks, through: :messages
   belongs_to :site
 
   validates :site_id, presence: true
@@ -61,5 +62,13 @@ class Conversation < ActiveRecord::Base
 
   def self.ordered_conversations(conversations)
     conversations.sort_by { |conversation| conversation.messages.last.updated_at }.reverse!
+  end
+
+  def completed_tasks
+    tasks.where(completed: true)
+  end
+
+  def pending_tasks
+    tasks.where(completed: false)
   end
 end

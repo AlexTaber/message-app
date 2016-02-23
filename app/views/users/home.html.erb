@@ -259,8 +259,15 @@
   <div class="message-bar mobile-target">
     <nav class="current-site-data">
      <header>
-        <b><%= @site.name %></b> &nbsp; Conversations
-        <%= link_to home_path(site_id: @site.id, new_conversation: true), class: "add-btn" do %>
+        <b><%= @site.name %></b> &nbsp;
+        <% if @tasks %>
+          <%= link_to "Conversations", root_path(site_id: @site.id), class: "convo-links" %>  |
+          Tasks
+        <% else %>
+          Conversations  |
+          <%= link_to "Tasks", root_path(tasks: true, site_id: @site.id), class: "convo-links" %>
+        <% end %>
+        <%= link_to home_path(tasks: @tasks, site_id: @site.id, new_conversation: true), class: "add-btn" do %>
           <i class="fa fa-plus"></i>
         <% end %>
         <div id="new-message">
@@ -297,7 +304,7 @@
 
   <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
     <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
-      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user } %>
+      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user, tasks: @tasks } %>
     </div>
   <% end %>
 
@@ -308,21 +315,36 @@
       <header>
       <i>To:</i>
       <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-      <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil } %>
+      <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil, tasks: @tasks } %>
        <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
       </header>
 
       <div class="msg-bx-convo app-view">
-        <% @conversation.messages.each do |message| %>
-          <%= render partial: "messages/message", locals: { message: message } %>
+        <% if @tasks %>
+          <div class="pending-tasks">
+            <% @conversation.pending_tasks.each do |task| %>
+              <%= render partial: "tasks/task", locals: { task: task } %>
+            <% end %>
+          </div>
+
+          <h5><%= @conversation.completed_tasks.count %> Completed Tasks</h5>
+          <div class="completed-tasks">
+            <% @conversation.completed_tasks.each do |task| %>
+              <%= render partial: "tasks/task", locals: { task: task } %>
+            <% end %>
+          </div>
+        <% else %>
+          <% @conversation.messages.each do |message| %>
+            <%= render partial: "messages/message", locals: { message: message } %>
+          <% end %>
         <% end %>
       </div>
     <div id="form-wrapper">
     <% if @conversation.other_users(current_user).length > 0 %>
       <% if @conversation.new_record? %>
-        <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation } %>
+        <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation, tasks: @tasks } %>
       <% else %>
-        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation } %>
+        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks } %>
       <% end %>
     <% end %>
     </div>

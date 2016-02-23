@@ -5,4 +5,7 @@
 
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :conversation_id, value: conversation.id %>
+  <% if tasks %>
+    <%= hidden_field_tag :tasks, tasks %>
+  <% end %>
 <% end %>

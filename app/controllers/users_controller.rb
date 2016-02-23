@@ -86,6 +86,7 @@ class UsersController < ApplicationController
       current_user.add_visit
       @invite = Invite.new
       @request = Request.new
+      @tasks = params[:tasks]
     else
       redirect_to splash_path
     end
@@ -117,6 +118,7 @@ class UsersController < ApplicationController
             @conversation.read_all_messages(current_user) unless @conversation.new_record?
             @message = Message.new
           end
+          @tasks = params[:tasks]
         else
           redirect_to new_request_path(token: token)
         end

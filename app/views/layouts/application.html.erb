@@ -36,6 +36,11 @@
   <% if @site %>
     <%= javascript_tag "siteId = #{@site.id.to_json.html_safe};" %>
   <% end %>
+  <% if @tasks %>
+    <%= javascript_tag "tasksMode = true;" %>
+  <% else %>
+    <%= javascript_tag "tasksMode = false;" %>
+  <% end %>
   <!-- END JS DATA -->
 
   <!-- Touch Icons -->

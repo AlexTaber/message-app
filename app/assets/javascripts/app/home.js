@@ -17,6 +17,7 @@ jQuery(document).ready(function($){
     for(var i = 0; i < conversationTokens.length; i++) {
       conversationToken = conversationTokens[i];
       subscribeToConvo(conversationToken, curConvoToken);
+      listenForNewTasks(conversationToken, curConvoToken);
     }
     listenForNewConvos();
   }
@@ -315,10 +316,14 @@ function subscribeToConvo(conversationToken, curConvoToken) {
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
-      if(userId == data.user_id) {
-        $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
+      if(tasksMode) {
+        $(".app-view").append(data.task_html);
       } else {
-        $(".app-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
+        if(userId == data.user_id) {
+          $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
+        } else {
+          $(".app-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
+        }
       }
 
       scrollToBottom();
@@ -339,6 +344,31 @@ function listenForNewConvos() {
         newConvoEl.after(anchorme.js(data.app_html, { "target":"_blank" }));
       } else {
         $(".current-site-data").after(data.app_html);
+      }
+    }
+  });
+}
+
+function listenForNewTasks(conversationToken, curConvoToken) {
+  channel = pusher.subscribe('task' + String(conversationToken) + String(userId));
+  channel.bind('new-task', function(data) {
+    if(curConvoToken == data.conversation_token) {
+      //if current convo
+      if(tasksMode) {
+        $("#task-" + String(data.task_id)).replaceWith("");
+
+        if(data.completed) {
+          $(".completed-tasks").prepend(data.task_html);
+          console.log($(".completed-tasks"))
+        } else {
+          $(".pending-tasks").prepend(data.task_html);
+        }
+      } else {
+        if(userId == data.user_id) {
+          $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);
+        } else {
+          $("#message-" + String(data.message_id)).replaceWith(data.other_user_html);
+        }
       }
     }
   });

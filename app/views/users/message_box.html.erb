@@ -102,7 +102,7 @@
           <div class="mb-body_info">
             <p style="display:inline"><i>To: </i><b><%= @conversation.other_users_to_s(current_user) %> </b> <a herf="#" class='mb-body_add-users-btn'><i class="fa fa-plus add-btn" style="padding-right:10px"></i></a></p>
             <div class="mb-body_add-users-form">
-              <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token } %>
+              <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token, tasks: @tasks } %>
             </div>
           </div>
           <div class="msg-bx-convo">

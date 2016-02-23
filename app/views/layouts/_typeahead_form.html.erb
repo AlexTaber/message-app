@@ -1,4 +1,4 @@
-<%= form_tag add_user_path, class: 'typeahead-form' do %>
+<%= form_tag add_user_path(tasks: tasks), class: 'typeahead-form' do %>
 <% if @conversation.new_record? %>
   	<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus new-focus", value: "" %>
 <% else %>
