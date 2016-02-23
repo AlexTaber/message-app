@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_permitted_user, only: [:home, :message_box]
   before_action :user_by_id, only: [:edit, :update, :user_owner_data]
-  before_action :update_last_online, only: [:home, :message_box]
 
   def new
     @default_tier_id = params[:default_tier_id] || 1
@@ -71,6 +70,7 @@ class UsersController < ApplicationController
 
   def home
     if current_user
+      update_last_online
       redirect_to new_subscription_path and return unless current_user.subscription
 
       current_user.has_active_sites? ? find_user_site : @site = Site.new
@@ -107,6 +107,7 @@ class UsersController < ApplicationController
     token = params[:token]
 
     if current_user
+      update_last_online
       @site = token_site(token)
       unless @site
         redirect_to token_redirect_path

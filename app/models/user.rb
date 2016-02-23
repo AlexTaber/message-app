@@ -269,16 +269,21 @@ class User < ActiveRecord::Base
     !does_not_need_notification?
   end
 
-  def does_not_need_notification?
-    recently_messaged? || recently_online?
+  def does_not_need_notification?(message)
+    recently_sent_message? || recently_online? || recently_messaged(message)
   end
 
-  def recently_messaged?
+  def recently_sent_message?
     message = messages.last
     message ? messages.last.is_recent? : false
   end
 
   def recently_online?
     last_online ? last_online > DateTime.now - 15.minutes : false
+  end
+
+  def recently_messaged(message)
+    old_message = message.conversation.messages[-2]
+    old_message ? old_message.is_recent? : false
   end
 end
