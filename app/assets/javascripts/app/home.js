@@ -356,6 +356,10 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       //if current convo
       if(tasksMode) {
         $(".app-view").append(data.task_html);
+
+        if(data.deleted) {
+          $("#task-" + String(data.task_id)).replaceWith("");
+        }
       } else {
         if(userId == data.user_id) {
           $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);

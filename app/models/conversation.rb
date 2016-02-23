@@ -63,4 +63,8 @@ class Conversation < ActiveRecord::Base
   def self.ordered_conversations(conversations)
     conversations.sort_by { |conversation| conversation.messages.last.updated_at }.reverse!
   end
+
+  def pending_tasks
+    tasks.where(completed: false)
+  end
 end
