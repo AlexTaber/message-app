@@ -1,6 +1,10 @@
 <%= form_for message, html: { id: "av-message-form" } do |f| %>
   <div>
-    <%= f.text_area :content, placeholder: "Type message here..." %>
+    <% if tasks %>
+      <%= f.text_area :content, placeholder: "Type task here..." %>
+    <% else %>
+      <%= f.text_area :content, placeholder: "Type message here..." %>
+    <% end %>
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
