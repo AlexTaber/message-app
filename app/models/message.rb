@@ -1,4 +1,5 @@
 class Message < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
 
   belongs_to :conversation
   belongs_to :user
@@ -18,6 +19,10 @@ class Message < ActiveRecord::Base
 
   def time_to_s
     created_at.strftime('%l:%M%P')
+  end
+
+  def time_ago_to_s
+    "#{distance_of_time_in_words(DateTime.now, created_at)} ago"
   end
 
   def set_json
