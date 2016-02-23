@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
         })
       end
 
-      new_message_email if current_user.needs_notification?(@message)
+      new_message_emails
 
       if request.xhr?
         render partial: "messages/message", locals: { message: @message }
@@ -57,7 +57,9 @@ class MessagesController < ApplicationController
     (render_to_string partial: "tasks/task", locals: { task: @message.task } )
   end
 
-  def new_message_email
-    @message.conversation.other_users(current_user).each { |user| UserMailer.new_message_email(@message, user).deliver_now }
+  def new_message_emails
+    @message.conversation.other_users(current_user).each do |user|
+      UserMailer.new_message_email(@message, user).deliver_now if user.needs_notification?(@message)
+    end
   end
 end
