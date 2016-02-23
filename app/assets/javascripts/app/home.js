@@ -355,10 +355,13 @@ function listenForNewTasks(conversationToken, curConvoToken) {
     if(curConvoToken == data.conversation_token) {
       //if current convo
       if(tasksMode) {
-        $(".app-view").append(data.task_html);
+        $("#task-" + String(data.task_id)).replaceWith("");
 
-        if(data.deleted) {
-          $("#task-" + String(data.task_id)).replaceWith("");
+        if(data.completed) {
+          $(".completed-tasks").prepend(data.task_html);
+          console.log($(".completed-tasks"))
+        } else {
+          $(".pending-tasks").prepend(data.task_html);
         }
       } else {
         if(userId == data.user_id) {

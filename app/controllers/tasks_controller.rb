@@ -65,12 +65,13 @@ class TasksController < ApplicationController
         current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: message, task: task }),
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
         task_html: task_html(task, new_record),
-        deleted: deleted
+        deleted: deleted,
+        completed: task ? task.completed : false
       })
     end
   end
 
   def task_html(task, new_record)
-    new_record ? (render_to_string partial: "tasks/task", locals: { task: task } ) : ""
+    (render_to_string partial: "tasks/task", locals: { task: task } )
   end
 end
