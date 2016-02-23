@@ -315,10 +315,14 @@ function subscribeToConvo(conversationToken, curConvoToken) {
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
-      if(userId == data.user_id) {
-        $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
+      if(tasksMode) {
+        $(".app-view").append(anchorme.js(data.task_html, { "target":"_blank" }));
       } else {
-        $(".app-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
+        if(userId == data.user_id) {
+          $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
+        } else {
+          $(".app-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
+        }
       }
 
       scrollToBottom();
