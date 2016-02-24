@@ -56,10 +56,10 @@ hr {
       vertical-align:middle;
 }
 .color-green{
-  color:$green;
+  color:darken(#a7eba6, 30%);
 }
 .color-red {
-  color: #ffb3b3;
+  color: darken(#ffb3b3, 20%);
 }
 .ellipsis {
   white-space: nowrap;
