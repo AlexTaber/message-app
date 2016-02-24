@@ -274,7 +274,7 @@ class User < ActiveRecord::Base
   end
 
   def needs_task_notification(task)
-    @does_not_need_task_notification(task)
+    !does_not_need_task_notification(task)
   end
 
   def does_not_need_task_notification(task)
