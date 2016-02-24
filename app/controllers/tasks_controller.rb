@@ -74,4 +74,10 @@ class TasksController < ApplicationController
   def task_html(task, new_record)
     task ? (render_to_string partial: "tasks/task", locals: { task: task } ) : ""
   end
+
+  def new_task_emails
+    @task.message.conversation.other_users(current_user).each do |user|
+      UserMailer.new_task_email(@task, user).deliver_now if user.needs_task_notification?(@task.message)
+    end
+  end
 end

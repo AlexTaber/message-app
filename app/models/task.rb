@@ -16,4 +16,8 @@ class Task < ActiveRecord::Base
   def content
     message.content
   end
+
+  def from_recent_message?
+    message.create_at > DateTime.now - 15.minutes
+  end
 end

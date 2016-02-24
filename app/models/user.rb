@@ -273,6 +273,14 @@ class User < ActiveRecord::Base
     recently_sent_message? || recently_online? || recently_messaged(message)
   end
 
+  def needs_task_notification(task)
+    @does_not_need_task_notification(task)
+  end
+
+  def does_not_need_task_notification(task)
+    does_not_need_notification(task.message) || task.from_recent_message?
+  end
+
   def recently_sent_message?
     message = messages.last
     message ? messages.last.is_recent? : false
