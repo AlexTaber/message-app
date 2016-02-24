@@ -190,9 +190,9 @@
         <div>
       <% end %>
         <% if site.has_alert?(current_user) %>
-          <li class="is-unread-site">
+          <li class="is-unread-site ellipsis">
         <% else %>
-          <li>
+          <li class="ellipsis">
         <% end %>
             <% if site == @admin_site %>
                 <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>

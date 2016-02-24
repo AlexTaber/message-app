@@ -55,6 +55,12 @@ hr {
       display:inline-table;
       vertical-align:middle;
 }
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
 .display-table {
   display:table;
   width:100%;
