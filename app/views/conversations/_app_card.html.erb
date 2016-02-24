@@ -27,13 +27,13 @@
           <small>
           <% if conversation.has_completed_tasks? || conversation.has_pending_tasks? %>
             <% if conversation.has_pending_tasks? %>
-              <%= conversation.pending_tasks.count %> Pending Tasks
+              <span class="color-red"><%= conversation.pending_tasks.count %> Pending Tasks</span>
             <% end %> 
             <% if conversation.has_completed_tasks? && conversation.has_pending_tasks? %> 
              | 
             <% end %>
             <% if conversation.has_completed_tasks? %>
-              <%= conversation.completed_tasks.count %> Completed Tasks
+              <span class="color-green"><%= conversation.completed_tasks.count %> Completed Tasks</span>
             <% end %>
             <% else %>
             0 Tasks
