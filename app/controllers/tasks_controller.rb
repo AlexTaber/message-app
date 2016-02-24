@@ -8,6 +8,7 @@ class TasksController < ApplicationController
       @task.save
       flash[:notice] = "Task successfully created"
       fire_pusher_event(@task.id, @task.message, @task.message.conversation.users, true, false)
+      new_task_emails
     else
       flash[:warn] = "Unable to create task"
     end
@@ -77,7 +78,7 @@ class TasksController < ApplicationController
 
   def new_task_emails
     @task.message.conversation.other_users(current_user).each do |user|
-      UserMailer.new_task_email(@task, user).deliver_now if user.needs_task_notification?(@task.message)
+      UserMailer.new_task_email(@task, user).deliver_now if user.needs_task_notification?(@task)
     end
   end
 end

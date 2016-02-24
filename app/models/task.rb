@@ -18,6 +18,6 @@ class Task < ActiveRecord::Base
   end
 
   def from_recent_message?
-    message.recent?
+    message.is_recent?
   end
 end

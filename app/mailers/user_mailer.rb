@@ -49,7 +49,7 @@ class UserMailer < ApplicationMailer
   end
 
   def new_task_email(task, user)
-    @url = home_url(tasks: true, user_ids: task.message.conversation.user_ids, site_id: message.conversation.site.id)
+    @url = home_url(tasks: true, user_ids: task.message.conversation.user_ids, site_id: task.message.conversation.site.id)
     @task = task
     @user = user
     @site = task.message.conversation.site
