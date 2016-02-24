@@ -25,6 +25,7 @@
         </p>
         <p>
           <small>
+          <% if conversation.has_completed_tasks? || conversation.has_pending_tasks? %>
             <% if conversation.has_pending_tasks? %>
               <%= conversation.pending_tasks.count %> Pending Tasks
             <% end %> 
@@ -33,7 +34,10 @@
             <% end %>
             <% if conversation.has_completed_tasks? %>
               <%= conversation.completed_tasks.count %> Completed Tasks
-            <% end %> &nbsp;
+            <% end %>
+            <% else %>
+            0 Tasks
+            <% end %>
           </small>
         </p>
       </div>
