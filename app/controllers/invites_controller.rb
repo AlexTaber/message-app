@@ -5,6 +5,7 @@ class InvitesController < ApplicationController
 
   def create
     @invite = Invite.new(invite_params)
+    @invite.assign_attributes(email: @invite.email.downcase)
 
     if @invite.can_be_sent?
       @invite.save

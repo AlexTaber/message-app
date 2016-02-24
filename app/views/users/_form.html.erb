@@ -14,7 +14,11 @@
     <i class="fa fa-street-view"></i><br><br>
     <h1>Tell us about yourself</h1>
     <h4>Enter your Email. You will use it later to log in (we will never give your info to out to third parties). Next enter your name, this is what will display when you are messaging other people on Mercury.</h4>
-    <%= f.text_field :email, placeholder:"Email" %> <br>
+    <% if @invite %>
+      <%= f.text_field :email, value: @invite.email, placeholder:"Email" %> <br>
+    <% else %>
+      <%= f.text_field :email, placeholder:"Email" %> <br>
+    <% end %>
     <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
     <%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
     <a href="#" class="button button-primary next-button email-next" id="next-2">Next</a>
@@ -38,8 +42,8 @@
     <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
      <label for='profile-uploader' class="button button-primary">Upload</label><br>
      <img id="img-input" class="profile-preview" src="#">
-    <% if @invite_token %>
-      <%= hidden_field_tag :invite_token, @invite_token %>
+    <% if @invite %>
+      <%= hidden_field_tag :invite_token, @invite.token %>
     <% end %><br>
     <%= f.submit class: 'button button-primary' %>
     <a href="#" class="back-button">Back</a>

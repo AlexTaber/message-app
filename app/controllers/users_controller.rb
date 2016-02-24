@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(current_user, default_tier_id: @default_tier_id)
     else
       @user = User.new
-      @invite_token = params[:invite_token]
+      @invite = token_invite(params[:invite_token])
     end
   end
 
@@ -215,17 +215,15 @@ class UsersController < ApplicationController
 
   def set_up_invite
     @invite = token_invite(params[:invite_token])
-    validate_and_create_site if @invite
+    create_user_site if @invite
   end
 
-  def validate_and_create_site
-    if @invite.email == @user.email
-      UserSite.create(
-        user_id: @user.id,
-        site_id: @invite.site.id,
-        admin: false
-      )
-    end
+  def create_user_site
+    UserSite.create(
+      user_id: @user.id,
+      site_id: @invite.site.id,
+      admin: false
+    )
   end
 
   def set_up_new_conversation
