@@ -55,4 +55,12 @@ class UserMailer < ApplicationMailer
     @site = task.message.conversation.site
     mail(to: user.email, subject: "New Task on #{@site.name}", from: "MercuryApp <no-reply@mercuryapp.co>")
   end
+
+  def completed_task_email(task, user)
+    @url = home_url(tasks: true, user_ids: task.message.conversation.user_ids, site_id: task.message.conversation.site.id)
+    @task = task
+    @user = user
+    @site = task.message.conversation.site
+    mail(to: user.email, subject: "Completed Task on #{@site.name}", from: "MercuryApp <no-reply@mercuryapp.co>")
+  end
 end

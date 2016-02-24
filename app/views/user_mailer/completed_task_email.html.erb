@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hello <%= @user.name %>!</h3>
+    <p>
+      A following task has been completed to the site <%= @site.name %>.
+    </p>
+    <p>
+      <%= simple_format(@task.message.content) %>
+    </p>
+    <p><a href="<%= @url %>">Click here</a> to view this message!</p>
+    <p>Have a great day!</p>
+    <p>The MercuryApp Dev Team</p>
+  </body>
+</html>
