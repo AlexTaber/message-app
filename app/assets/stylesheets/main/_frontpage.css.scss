@@ -250,6 +250,9 @@ ul.edit-site-list {
 	&:hover {
 		background: rgba($darkgrey, .1);
 	}
+	p{
+		margin-bottom: 0;
+	}
 }
 .msg-item-current{
 	background: #e5e5e5;
