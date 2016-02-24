@@ -388,7 +388,9 @@ ul.edit-site-list {
 	border: 1px solid #ddd;
 	z-index: 100;
 }
-
+.message-item .profile-pic {
+	display:none !important;
+}
 
 .app-view {
 	width:100vw !important;
@@ -451,7 +453,10 @@ ul.edit-site-list {
 	margin-right:0px;
 }
 }
-@media (min-width: 550px) {
+@media (min-width: 950px) {
+.conversation-wrapper .profile-pic {
+	display:block !important;
+}
 	.app-view {
 		font-size:14px;
 		.profile-pic {
