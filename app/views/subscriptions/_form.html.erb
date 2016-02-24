@@ -41,11 +41,7 @@
     <%= f.hidden_field :stripe_card_token, value: card_token %>
   <% else %>
 
-    <% if tier_id == 1 %>
       <div id="card-form" class="hidden">
-    <% else %>
-      <div id="card-form">
-    <% end %>
 
       <%= f.hidden_field :stripe_card_token %>
 
@@ -66,4 +62,5 @@
   <% end %>
 
   <%= f.submit "Submit Subscription", class: "primary button-primary" %>
+<br><br>  <%= link_to 'cancel', :back %>
 <% end %>
