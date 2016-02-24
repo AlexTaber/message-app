@@ -20,7 +20,6 @@
       cursor:pointer;
     }
   }
-
   .task-item {
     display: inline-block;
     vertical-align: top;
@@ -74,5 +73,15 @@
   display:none;
   .icon{
     background:$black !important;
+  }
+}
+.pending-tasks {
+  .task-container{
+    background:$red;
+  }
+}
+.completed-tasks {
+  .task-container{
+    background: $green;
   }
 }
