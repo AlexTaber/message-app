@@ -31,7 +31,7 @@
 
     <% else %>
 
-      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST" do %>
+      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST", class: "new-task" do %>
         <i class="fa fa-exclamation-circle"></i>
       <% end %>
 
