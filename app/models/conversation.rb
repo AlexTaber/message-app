@@ -78,6 +78,7 @@ class Conversation < ActiveRecord::Base
 
   def sorted_completed_tasks
     completed_tasks.sort{ |a,b| b.message.created_at <=> a.message.created_at }
+  end
 
   def has_pending_tasks?
     pending_tasks.count > 0
