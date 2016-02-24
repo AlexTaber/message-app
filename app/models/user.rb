@@ -294,4 +294,8 @@ class User < ActiveRecord::Base
     old_message = message.conversation.messages[-2]
     old_message ? old_message.is_recent? : false
   end
+
+  def format_new_user
+    assign_attributes(first_name: first_name.capitalize, last_name: last_name.capitalize, email: email.downcase)
+  end
 end

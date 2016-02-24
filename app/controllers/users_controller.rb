@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.assign_attributes(email: @user.email.downcase)
+    @user.format_new_user
 
     if @user.confirm_password(params[:confirm_password])
       if @user.valid?
