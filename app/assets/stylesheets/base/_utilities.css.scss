@@ -55,6 +55,12 @@ hr {
       display:inline-table;
       vertical-align:middle;
 }
+.color-green{
+  color:$green;
+}
+.color-red {
+  color: #ffb3b3;
+}
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;

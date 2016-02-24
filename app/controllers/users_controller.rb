@@ -88,6 +88,7 @@ class UsersController < ApplicationController
       @invite = Invite.new
       @request = Request.new
       @tasks = params[:tasks]
+      @mobile_conversations = params[:mobile_conversations]
     else
       redirect_to splash_path
     end
