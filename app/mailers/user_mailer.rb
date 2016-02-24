@@ -41,7 +41,7 @@ class UserMailer < ApplicationMailer
   end
 
   def new_message_email(message, user)
-    @url = home_url(tasks: nil, user_ids: message.conversation.user_ids, site_id: message.conversation.site.id)
+    @url = "#{home_url(tasks: nil, user_ids: message.conversation.user_ids, site_id: message.conversation.site.id)}#message-#{message.id}"
     @message = message
     @user = user
     @site = message.conversation.site
