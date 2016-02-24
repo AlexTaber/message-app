@@ -459,8 +459,13 @@ ul.edit-site-list {
 }
 }
 @media (min-width: 950px) {
-.conversation-wrapper .profile-pic {
+.conversation-wrapper { 
+	.profile-pic {
 	display:block !important;
+}
+.has-no-pic {
+	display:table !important;
+}
 }
 	.app-view {
 		font-size:14px;
