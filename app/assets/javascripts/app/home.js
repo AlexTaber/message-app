@@ -60,8 +60,8 @@ jQuery(document).ready(function($){
   //--------------------------------
 
   //Update Tasks-----------------
-  $(".uncomplete-task").on('click', uncompleteTask);
-  $(".complete-task").on('click', completeTask);
+  $(".uncomplete-task, .complete-task").on('click', updateTask);
+  $(".new-task").on('click', newTask);
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -402,8 +402,8 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         }
       }
 
-      $(".uncomplete-task").on('click', uncompleteTask);
-      $(".complete-task").on('click', completeTask);
+      $(".uncomplete-task, .complete-task").on('click', updateTask);
+      $(".new-task").on('click', newTask);
     }
   });
 }
@@ -448,22 +448,33 @@ function uncompleteTask(e) {
 
   $.ajax({
     url: $(this).attr("href"),
-    method: "PUT",
-    data: { task: { completed: false } }
+    method: "PUT"
   }).done(function(response){
 
   });
 }
 
-function completeTask(e) {
+function updateTask(e) {
   e.preventDefault();
   e.stopPropagation();
 
   $.ajax({
     url: $(this).attr("href"),
-    method: "PUT",
-    data: { task: { completed: true } }
+    method: "PUT"
   }).done(function(response){
 
   });
 }
+
+function newTask(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "POST"
+  }).done(function(response){
+
+  });
+}
+
