@@ -28,7 +28,11 @@ class TasksController < ApplicationController
       flash[:warn] = "Unable to update task"
     end
 
-    redirect_to :back
+    if request.xhr?
+      render text: "Done"
+    else
+      redirect_to :back
+    end
   end
 
   def destroy

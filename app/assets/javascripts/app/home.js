@@ -59,6 +59,10 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //--------------------------------
 
+  //Update Tasks-----------------
+  $(".uncomplete-task").on('click', uncompleteTask);
+  $(".complete-task").on('click', completeTask);
+
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
     $('.add-focus').focus();
@@ -397,6 +401,9 @@ function listenForNewTasks(conversationToken, curConvoToken) {
           $("#message-" + String(data.message_id)).replaceWith(data.other_user_html);
         }
       }
+
+      $(".uncomplete-task").on('click', uncompleteTask);
+      $(".complete-task").on('click', completeTask);
     }
   });
 }
@@ -433,4 +440,30 @@ function signInSubmit(e) {
       target.click();
     }
   }
+}
+
+function uncompleteTask(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "PUT",
+    data: { task: { completed: false } }
+  }).done(function(response){
+
+  });
+}
+
+function completeTask(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "PUT",
+    data: { task: { completed: true } }
+  }).done(function(response){
+
+  });
 }
