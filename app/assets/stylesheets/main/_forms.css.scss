@@ -189,10 +189,33 @@ input:-webkit-autofill {
 .edit-form p {
   display:inline;
 }
-
+// message form -----------
+#form-wrapper{
+  background:#eee;
+  height:30vh;
+  textarea{
+    background-color:#fff;
+    height:10vh;
+    margin:10px;
+    margin-bottom:0;
+    width:calc(100% - 20px);
+    border:1px solid #ddd;
+  }
+  .button {
+    width: calc(100% - 20px);
+    margin: 10px;
+  }
+}
 //MEDIA QUERIES----------------------------------------------------
 
 @media(min-width: 550px) {
+  #form-wrapper{
+  .button {
+    float:right;
+    width:auto;
+    margin: 10px;
+  }
+}
   .subscription-form-wrapper {
     height: 100%;
     width: 100%;
