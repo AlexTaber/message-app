@@ -23,9 +23,9 @@
         <p>
           <%= sanitize(simple_format(conversation.content_preview(30)), :tags => %w(br a)) %>
         </p>
-        <% if conversation.has_pending_tasks? || conversation.has_completed_tasks? %>
         <p>
           <small>
+          <% if conversation.has_completed_tasks? || conversation.has_pending_tasks? %>
             <% if conversation.has_pending_tasks? %>
               <%= conversation.pending_tasks.count %> Pending Tasks
             <% end %> 
@@ -35,9 +35,11 @@
             <% if conversation.has_completed_tasks? %>
               <%= conversation.completed_tasks.count %> Completed Tasks
             <% end %>
+            <% else %>
+            0 Tasks
+            <% end %>
           </small>
         </p>
-        <% end %>
       </div>
     </div>
   </div>
