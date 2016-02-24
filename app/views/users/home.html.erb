@@ -261,7 +261,7 @@
      <header>
         <b><%= @site.name %></b> &nbsp;
         <% if @tasks %>
-          <%= link_to "Conversations", root_path(site_id: @site.id), class: "convo-links" %>  |
+          <%= link_to "Conversations", root_path(site_id: @site.id, mobile_conversations: true), class: "convo-links" %>  |
           Tasks
         <% else %>
           Conversations  |
