@@ -1,7 +1,11 @@
 <%= form_for conversation do |f| %>
 
   <div>
-    <%= text_area_tag :content, nil, placeholder: "Type message here..." %>
+    <% if tasks %>
+      <%= text_area_tag :content, nil, placeholder: "Type task here..." %>
+    <% else %>
+      <%= text_area_tag :content, nil, placeholder: "Type message here..." %>
+    <% end %>
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
