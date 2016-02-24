@@ -8,6 +8,7 @@ class TasksController < ApplicationController
       @task.save
       flash[:notice] = "Task successfully created"
       fire_pusher_event(@task.id, @task.message, @task.message.conversation.users, true, false)
+      new_task_emails
     else
       flash[:warn] = "Unable to create task"
     end
@@ -22,6 +23,7 @@ class TasksController < ApplicationController
       @task.save
       flash[:notice] = "Task successfully updated"
       fire_pusher_event(@task.id, @task.message, @task.message.conversation.users, false, false)
+      completed_task_emails if @task.completed
     else
       flash[:warn] = "Unable to update task"
     end
@@ -73,5 +75,17 @@ class TasksController < ApplicationController
 
   def task_html(task, new_record)
     task ? (render_to_string partial: "tasks/task", locals: { task: task } ) : ""
+  end
+
+  def new_task_emails
+    @task.message.conversation.other_users(current_user).each do |user|
+      UserMailer.new_task_email(@task, user).deliver_now if user.needs_task_notification?(@task)
+    end
+  end
+
+  def completed_task_emails
+    @task.message.conversation.other_users(current_user).each do |user|
+      UserMailer.completed_task_email(@task, user).deliver_now if user.needs_task_notification?(@task)
+    end
   end
 end
