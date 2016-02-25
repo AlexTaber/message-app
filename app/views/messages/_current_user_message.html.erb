@@ -25,7 +25,7 @@
         <% end %>
       <% end %>
 
-      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE" do %>
+      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE", class: "remove-task" do %>
         <i class="fa fa-minus-circle"></i>
       <% end %>
 

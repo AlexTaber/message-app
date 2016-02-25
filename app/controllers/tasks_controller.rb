@@ -47,7 +47,11 @@ class TasksController < ApplicationController
       flash[:warn] = "No task by that id"
     end
 
-    redirect_to :back
+    if request.xhr?
+      render text: "Done"
+    else
+      redirect_to :back
+    end
   end
 
   private

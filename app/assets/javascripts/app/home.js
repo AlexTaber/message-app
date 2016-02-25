@@ -62,6 +62,7 @@ jQuery(document).ready(function($){
   //Update Tasks-----------------
   $(".uncomplete-task, .complete-task").on('click', updateTask);
   $(".new-task").on('click', newTask);
+  $(".remove-task").on('click', removeTask);
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -404,6 +405,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
 
       $(".uncomplete-task, .complete-task").on('click', updateTask);
       $(".new-task").on('click', newTask);
+      $(".remove-task").on('click', removeTask);
     }
   });
 }
@@ -442,39 +444,42 @@ function signInSubmit(e) {
   }
 }
 
-function uncompleteTask(e) {
-  e.preventDefault();
-  e.stopPropagation();
-
-  $.ajax({
-    url: $(this).attr("href"),
-    method: "PUT"
-  }).done(function(response){
-
-  });
-}
-
 function updateTask(e) {
   e.preventDefault();
   e.stopPropagation();
+  $("#ajax-loader-message").show();
 
   $.ajax({
     url: $(this).attr("href"),
     method: "PUT"
   }).done(function(response){
-
+    $("#ajax-loader-message").hide();
   });
 }
 
 function newTask(e) {
   e.preventDefault();
   e.stopPropagation();
+  $("#ajax-loader-message").show();
 
   $.ajax({
     url: $(this).attr("href"),
     method: "POST"
   }).done(function(response){
+    $("#ajax-loader-message").hide();
+  });
+}
 
+function removeTask(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "DELETE"
+  }).done(function(response){
+    $("#ajax-loader-message").hide();
   });
 }
 
