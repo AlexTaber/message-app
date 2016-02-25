@@ -2,11 +2,11 @@
 <small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
   <div class="task-item content">
     <% if task.completed %>
-      <%= link_to task_path(task, task: { completed: false }), method: "PUT" do %>
+      <%= link_to task_path(task, task: { completed: false }), method: "PUT", class: "uncomplete-task" do %>
         <div class="task-item icon"></div>
       <% end %>
     <% else %>
-      <%= link_to task_path(task, task: { completed: true }), method: "PUT" do %>
+      <%= link_to task_path(task, task: { completed: true }), method: "PUT", class: "complete-task" do %>
         <div class="task-item icon"></div>
       <% end %>
     <% end %>
@@ -15,7 +15,7 @@
     </p>
   </div>
   <div class="delete-task u-pull-right">
-    <%= link_to task_path(task), method: "DELETE" do %>
+    <%= link_to task_path(task), method: "DELETE", class: "remove-task" do %>
       <i class="fa fa-times"></i>
     <% end %>
   </div>

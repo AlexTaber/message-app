@@ -395,6 +395,8 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         } else {
           $(".pending-tasks").prepend(data.task_html);
         }
+
+        $(".completed-tasks-btn").html(tasksButtonHtml(data.completed_tasks_count));
       } else {
         if(userId == data.user_id) {
           $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);
@@ -452,7 +454,7 @@ function updateTask(e) {
   $.ajax({
     url: $(this).attr("href"),
     method: "PUT"
-  }).done(function(response){
+  }).done(function(count){
     $("#ajax-loader-message").hide();
   });
 }
@@ -483,3 +485,6 @@ function removeTask(e) {
   });
 }
 
+function tasksButtonHtml(count) {
+  return "<span>Show</span> " + String(count) + " Completed Tasks";
+}

@@ -76,7 +76,8 @@ class TasksController < ApplicationController
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
         task_html: task_html(task, new_record),
         deleted: deleted,
-        completed: task ? task.completed : false
+        completed: task ? task.completed : false,
+        completed_tasks_count: message.conversation.completed_tasks.count
       })
     end
   end
