@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :task_by_id, only: [:update, :destroy]
 
   def create
+    redirect_to :back and return if existing_task?
     @task = Task.new(task_params)
 
     if @task.valid?
@@ -28,7 +29,11 @@ class TasksController < ApplicationController
       flash[:warn] = "Unable to update task"
     end
 
-    redirect_to :back
+    if request.xhr?
+      render text: "Done"
+    else
+      redirect_to :back
+    end
   end
 
   def destroy
@@ -43,7 +48,11 @@ class TasksController < ApplicationController
       flash[:warn] = "No task by that id"
     end
 
-    redirect_to :back
+    if request.xhr?
+      render text: "Done"
+    else
+      redirect_to :back
+    end
   end
 
   private
@@ -68,7 +77,8 @@ class TasksController < ApplicationController
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
         task_html: task_html(task, new_record),
         deleted: deleted,
-        completed: task ? task.completed : false
+        completed: task ? task.completed : false,
+        completed_tasks_count: message.conversation.completed_tasks.count
       })
     end
   end
@@ -87,5 +97,10 @@ class TasksController < ApplicationController
     @task.message.conversation.other_users(current_user).each do |user|
       UserMailer.completed_task_email(@task, user).deliver_now if user.needs_task_notification?(@task)
     end
+  end
+
+  def existing_task?
+    message = Message.find_by(id: params[:task][:message_id])
+    message ? message.task : false
   end
 end

@@ -16,22 +16,22 @@
     <% if task %>
 
       <% if task.completed %>
-        <%= link_to task_path(message.task, task: { completed: false }), title: "Mark as Incomplete", method: "PUT" do %>
+        <%= link_to task_path(message.task, task: { completed: false }), title: "Mark as Incomplete", method: "PUT", class: "uncomplete-task" do %>
           <i class="fa fa-undo"></i>
         <% end %>
       <% else %>
-        <%= link_to task_path(message.task, task: { completed: true }), title: "Mark as Complete", method: "PUT" do %>
+        <%= link_to task_path(message.task, task: { completed: true }), title: "Mark as Complete", method: "PUT", class: "complete-task" do %>
           <i class="fa fa-check-circle"></i>
         <% end %>
       <% end %>
 
-      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE" do %>
+      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE", class: "remove-task" do %>
         <i class="fa fa-minus-circle"></i>
       <% end %>
 
     <% else %>
 
-      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST" do %>
+      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST", class: "new-task" do %>
         <i class="fa fa-exclamation-circle"></i>
       <% end %>
 

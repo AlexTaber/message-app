@@ -59,6 +59,11 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //--------------------------------
 
+  //Update Tasks-----------------
+  $(".uncomplete-task, .complete-task").on('click', updateTask);
+  $(".new-task").on('click', newTask);
+  $(".remove-task").on('click', removeTask);
+
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
     $('.add-focus').focus();
@@ -390,6 +395,8 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         } else {
           $(".pending-tasks").prepend(data.task_html);
         }
+
+        $(".completed-tasks-btn").html(tasksButtonHtml(data.completed_tasks_count));
       } else {
         if(userId == data.user_id) {
           $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);
@@ -397,6 +404,10 @@ function listenForNewTasks(conversationToken, curConvoToken) {
           $("#message-" + String(data.message_id)).replaceWith(data.other_user_html);
         }
       }
+
+      $(".uncomplete-task, .complete-task").on('click', updateTask);
+      $(".new-task").on('click', newTask);
+      $(".remove-task").on('click', removeTask);
     }
   });
 }
@@ -433,4 +444,47 @@ function signInSubmit(e) {
       target.click();
     }
   }
+}
+
+function updateTask(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "PUT"
+  }).done(function(count){
+    $("#ajax-loader-message").hide();
+  });
+}
+
+function newTask(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "POST"
+  }).done(function(response){
+    $("#ajax-loader-message").hide();
+  });
+}
+
+function removeTask(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "DELETE"
+  }).done(function(response){
+    $("#ajax-loader-message").hide();
+  });
+}
+
+function tasksButtonHtml(count) {
+  return "<span>Show</span> " + String(count) + " Completed Tasks";
 }
