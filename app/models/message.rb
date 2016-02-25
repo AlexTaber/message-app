@@ -57,4 +57,8 @@ class Message < ActiveRecord::Base
   def is_recent?
     created_at > DateTime.now - 10.minutes
   end
+
+  def delete_old_task
+    task.delete if task
+  end
 end

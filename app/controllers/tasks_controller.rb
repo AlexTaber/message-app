@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :task_by_id, only: [:update, :destroy]
 
   def create
+    redirect_to :back and return if existing_task?
     @task = Task.new(task_params)
 
     if @task.valid?
@@ -96,5 +97,10 @@ class TasksController < ApplicationController
     @task.message.conversation.other_users(current_user).each do |user|
       UserMailer.completed_task_email(@task, user).deliver_now if user.needs_task_notification?(@task)
     end
+  end
+
+  def existing_task?
+    message = Message.find_by(id: params[:task][:message_id])
+    message ? message.task : false
   end
 end
