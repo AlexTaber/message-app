@@ -145,21 +145,14 @@
 </div>
 <!-- End Desktop Navbar -->
 <!-- Mobile Navbar -->
-<div class="menu-bar mobile-nav show-mobile">
-  <span><%= link_to 'MercuryApp', splash_path %></span>
-  <!-- User Account Section -->
-  <nav class="profile-data">
-    <span><%= @site.name %></span>
- </nav>
-</div>
  <nav class="mobile-info mobile-nav show-mobile">
     <div class="mobile-icons">
+      <%= link_to splash_path do %><i class="fa fa-home"></i> <% end %>
       <i class="fa fa-globe mobile-active" id="mobile-sites"></i>
       <i class="fa fa-comments" id="mobile-convos"></i>
       <i class="fa fa-comment" id="mobile-messages"></i>
       <i class="fa fa-user" id="msg-bx-acct-btn"></i>
     </div>
-    <p class="user-name"><%= current_user.name %></p>
  </nav>
 <!-- End Mobile Navbar -->
 <!-- End Menu Bar -->
@@ -349,16 +342,16 @@
     <% end %>
     </div>
   </div>
-</div>
-
-<% if current_user.active_sites_ordered_by_admin.length > 0 %>
-
     <div id="mobile-current-account" class="mobile-target">
-     <p><b>Your Acount</b></p>
+     <p><b><%= current_user.name %>'s Acount</b></p>
      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
      <li><%= link_to 'Upgrade', root_path %></li>
      <li><%= link_to 'Logout', logout_path %></li>
    </div>
+</div>
+
+<% if current_user.active_sites_ordered_by_admin.length > 0 %>
+
   <!-- I-Frame -->
   <div id="fixed-iframe" class="pwd-init pwd-closed is-draggable">
     <a href="#" id="pwd-open-btn" draggable="false"> <span>+</span></a>
