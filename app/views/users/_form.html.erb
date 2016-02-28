@@ -3,9 +3,10 @@
 
   <div class="signup-page">
     <i class="fa fa-comment-o"></i><br><br>
-    <h1>Thanks for choosing Mercury App!</h1>
-    <h4>Signing up is easy. First choose a username for your new account. This is how site owners will search for you on Mercury App.</h4>
-      <%= f.text_field :username, placeholder: "Username" %> <br><br>
+    <h1>Thank You for choosing Mercury App!</h1>
+    <h3>Sign up is easy</h3> <h4>First choose a <b>username</b> for your new account. This is how you will be found on the Mercury Messenger App.</h4>
+      <%= f.text_field :username, placeholder: "Username" %> 
+     <p>&nbsp;</p>
       <a href="#" class="button button-primary username-next" id="next-1">Next</a> <br><br>
       Already a user? <%= link_to 'Log In', login_path %> here.
   </div>
@@ -13,14 +14,17 @@
   <div class="signup-page" style="display:none;">
     <i class="fa fa-street-view"></i><br><br>
     <h1>Tell us about yourself</h1>
-    <h4>Enter your Email. You will use it later to log in (we will never give your info to out to third parties). Next enter your name, this is what will display when you are messaging other people on Mercury.</h4>
-    <% if @invite %>
-      <%= f.text_field :email, value: @invite.email, placeholder:"Email" %> <br>
-    <% else %>
-      <%= f.text_field :email, placeholder:"Email" %> <br>
-    <% end %>
-    <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
-    <%= f.text_field :last_name, placeholder: "Last Name" %><br><br>
+    <h3>Enter your email</h3> <h4>You will use it later to log in (we will never give your info to out to third parties).</h4>
+       <% if @invite %>
+        <%= f.text_field :email, value: @invite.email, placeholder:"Email" %> <br>
+      <% else %>
+        <%= f.text_field :email, placeholder:"Email" %> <br>
+      <% end %>
+    <p>&nbsp;</p>
+    <h3>Enter your name</h3> <h4>This is what will display when you are messaging other people on Mercury.</h4>
+      <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
+      <%= f.text_field :last_name, placeholder: "Last Name" %>
+    <p>&nbsp;</p>
     <a href="#" class="button button-primary next-button email-next" id="next-2">Next</a>
     <a href="#" class="back-button">Back</a>
   </div>
@@ -30,7 +34,8 @@
     <h1>Create a Password</h1>
     <h4>It must be 8 characters long and include a number.</h4>
     <%= f.password_field :password, placeholder: "Password" %> &nbsp;
-    <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %><br><br>
+    <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %>
+     <p>&nbsp;</p>
     <a href="#" class="button button-primary next-button password-next" id="next-3">Next</a>
     <a href="#" class="back-button">Back</a>
   </div>
@@ -39,6 +44,7 @@
    <i class="fa fa-camera"></i><br><br>
     <h1>Upload a profile image</h1>
     <h4>Upload an image so other users can see who you are! This is optional and the first letter of your first name will appear if you choose not to upload an image.</h4>
+    <p>&nbsp;</p>
     <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
      <label for='profile-uploader' class="button button-primary">Upload</label><br>
      <img id="img-input" class="profile-preview" src="#">
