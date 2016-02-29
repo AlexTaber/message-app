@@ -24,6 +24,11 @@ jQuery(document).ready(function($){
   msgBxDropdowns('#convos-btn', '#mb-convos-dropdown');
   msgBxDropdowns('#acct-btn', '#mb-acct-dropdown');
 
+ var tasksUrl = window.location.href.indexOf("tasks") > -1
+ if(tasksUrl){
+  $('#tasks-btn').addClass('is-active');
+ }
+
   enterSubmit('#message_content', '#new_message');
   enterSubmit('#content', '#new-conversation-form');
 
