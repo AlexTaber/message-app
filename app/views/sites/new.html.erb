@@ -1,21 +1,15 @@
 <div class="site-form-container">
   <span>
     <div class="hidden-text">
-      <h2>Create Your Site</h2>
-      <p>Go ahead and create your first administative site! You will be emailed your unique site token.</p>
+      <h1>Create Your Site</h1>
+      <!-- <h4>Go ahead and create your first adminisrtative site!</h4>-->      
+      <h4>Messaging on Mercury revolves around <strong><em>a site</em></strong>, invite team <br>members and clients to become part of your site.</h4>
+      <!-- <h4>You will be emailed your unique site token. Use it to activate our <br>WordPress Plugin for even more messaging power</h4> -->
       <p>This is an optional step, you can create a site at anytime!</p>
       <br>
     </div>
     <%= render partial: "form", locals: { site: @site } %>
     <br>
     <%= link_to "Skip for Now", home_path %>
-  </span>
-</div><!--
-
---><div class="site-form-info">
-  <span>
-    <h2>Create Your Site</h2>
-    <p>Go ahead and create your first administative site! You will be emailed your unique site token.</p>
-    <p>This is an optional step, you can create a site at anytime!</p>
   </span>
 </div>
