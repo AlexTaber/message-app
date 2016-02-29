@@ -132,11 +132,11 @@ input:-webkit-autofill {
   padding-bottom:50px;
   border-radius: 10px;
   margin-bottom:50px;
+  border:2px solid #fff;
 }
 .tiers_card:hover, .tiers_card.is-active{
   cursor:pointer;
-  background:rgba($pwdlight, .8);
-  color:white;
+  border:2px solid rgba($pwdlight, .8);
 }
 .tier-select{
   display:none;
