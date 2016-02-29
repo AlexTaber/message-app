@@ -24,6 +24,9 @@
         <% else %>
           <i class="fa fa-comment" id="convos-btn"></i>
         <% end %>
+        <%= link_to message_box_path(token: @site.token, tasks: true, site_id: @site.id) do %>
+          <i class="fa fa-check-circle-o" id="tasks-btn"></i>
+        <% end %>
           <i class="fa fa-user" id="acct-btn"></i>
         </span>
       </p>
@@ -106,6 +109,20 @@
             </div>
           </div>
           <div class="msg-bx-convo">
+          <% if @tasks %>
+          <div class="pending-tasks">
+            <% @conversation.sorted_pending_tasks.each do |task| %>
+              <%= render partial: "tasks/task", locals: { task: task } %>
+            <% end %>
+          </div>
+
+          <h5 class="text-center"><a href="#" class="button button-primary completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
+          <div class="completed-tasks">
+            <% @conversation.sorted_completed_tasks.each do |task| %>
+              <%= render partial: "tasks/task", locals: { task: task } %>
+            <% end %>
+          </div>
+        <% else %>
             <% @conversation.messages.each do |message| %>
               <%= render partial: "messages/message", locals: { message: message } %>
             <% end %>
@@ -117,6 +134,7 @@
               <div class="text-center" >
                 Add users to this conversation by pressing the plus icon above!
               </div>
+            <% end %>
             <% end %>
           </div>
           <!--# END Message Box Body #-->
@@ -147,6 +165,8 @@
             <% end %>
           <% end %>
         </div>
+
+
       </div>
     <% else %>
     <!-- default conversation view -->
@@ -155,5 +175,7 @@
         <p> You can get started by clicking the <i class="fa fa-comment"></i> icon above.</p>
       </div>
     <% end %>
+
+
   </div>
 </div>
