@@ -141,30 +141,16 @@
 
           <!--# Message Box Form #-->
           <div class="msg-bx-bottom">
-            <% if @conversation.new_record? %>
-              <%= form_for @conversation, html: { id: "new-conversation-form" } do |f| %>
-                <p>
-                  <% if @conversation.users.length > 1 %>
-                    <%= text_area_tag :content, nil, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
-                  <% end %>
-                </p>
-                <% @conversation.user_ids.each do |user_id| %>
-                  <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
+            <div id="mb-form-wrapper">
+               <% if @conversation.other_users(current_user).length > 0 %>
+                <% if @conversation.new_record? %>
+                  <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation, tasks: @tasks } %>
+                <% else %>
+                  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks } %>
                 <% end %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= f.hidden_field :site_id, value: @site.id %>
               <% end %>
-            <% else %>
-              <%= form_for @message do |f| %>
-              <p>
-                <%= f.text_area :content, placeholder: "Send a message to #{@conversation.other_user_name(current_user)}..." %>
-              </p>
-              <%= f.hidden_field :conversation_id, value: @conversation.id %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.hidden_field :site_id, value: @site.id %>
-            <% end %>
-          <% end %>
-        </div>
+            </div>
+          </div>
 
 
       </div>
