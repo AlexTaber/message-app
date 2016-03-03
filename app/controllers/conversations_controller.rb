@@ -72,7 +72,8 @@ class ConversationsController < ApplicationController
   end
 
   def lazy_load
-    render partial: "lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load] }
+    @conversation = token_conversation(params[:token])
+    render partial: "lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i }
   end
 
   private
