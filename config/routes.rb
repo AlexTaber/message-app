@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get '/validate' => 'users#validate'
   get '/support' => 'users#support'
   post '/add_user' => 'conversations#add_user'
+  get '/plugin-info' => 'users#plugin_info'
 
   root 'users#home'
 end

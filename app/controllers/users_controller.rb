@@ -171,6 +171,10 @@ class UsersController < ApplicationController
 
   end
 
+  def plugin_info
+
+  end
+
   private
 
   def user_by_id
