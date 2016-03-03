@@ -71,6 +71,10 @@ class ConversationsController < ApplicationController
 
   end
 
+  def lazy_load
+    render partial: "lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load] }
+  end
+
   private
 
   def conversation_by_id

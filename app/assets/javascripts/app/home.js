@@ -59,6 +59,8 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //--------------------------------
 
+
+
   //Update Tasks-----------------
   $(".uncomplete-task, .complete-task").on('click', updateTask);
   $(".new-task").on('click', newTask);
@@ -491,4 +493,14 @@ function removeTask(e) {
 
 function tasksButtonHtml(count) {
   return "<span>Show</span> " + String(count) + " Completed Tasks";
+}
+
+function lazyLoad() {
+  $.ajax({
+    url: '/lazy_load',
+    method: "GET",
+    data: { lazy_load: // }
+  }).done(function(response){
+    $("#ajax-loader-message").hide();
+  });
 }
