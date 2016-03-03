@@ -115,7 +115,7 @@
 
       <i class="fa fa-certificate welcome_icon"></i>
       <h1>Welcome to Mercury<b>App</b></h1>
-      <h5>Thank you for signing up. Please take some time to learn our <br> features by visiting our <%= link_to 'Support page', support_path %>. 
+      <h5>Thank you for signing up. Please take some time to learn our <br> features by visiting our <%= link_to 'Support page', support_path %>.
       <br>
       <div>&nbsp;</div>
       Happy messaging!</h5 >
@@ -257,11 +257,11 @@
      <header>
         <b><%= @site.name %></b> &nbsp;
         <% if @tasks %>
-          <%= link_to "Conversations", root_path(site_id: @site.id, mobile_conversations: true), class: "convo-links" %>  |
+          <%= link_to "Conversations", root_path(site_id: @site.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
           Tasks
         <% else %>
           Conversations  |
-          <%= link_to "Tasks", root_path(tasks: true, site_id: @site.id), class: "convo-links" %>
+          <%= link_to "Tasks", root_path(tasks: true, site_id: @site.id, user_ids: @conversation.user_ids), class: "convo-links" %>
         <% end %>
         <%= link_to home_path(tasks: @tasks, site_id: @site.id, new_conversation: true), class: "add-btn" do %>
           <i class="fa fa-plus"></i>
