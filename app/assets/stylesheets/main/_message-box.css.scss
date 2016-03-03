@@ -359,8 +359,9 @@
 
 .msg-bx-convo {
   padding: 8px;
+  padding-top: 26px;
   overflow-y: scroll;
-  height: 264px;
+  height: 262px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   z-index: -1;
@@ -451,6 +452,7 @@
   }
   .them-meta-data{
     display:block;
+    margin-top: 10px;
     margin-bottom:5px;
     padding-left:50px;
   }
@@ -462,12 +464,18 @@
 .msg-bx-meta {
   position: absolute;
   width: 100%;
-  background: rgba($pwdlight, 0.7);
-  z-index: 100;
+  background: rgba($grey, 0.8);
+  z-index: 10;
   text-align: center;
+  padding-top: 1px;
+  height: 22px;
 
   p {
     margin-bottom: 0;
+  }
+
+  a {
+    text-decoration: none;
   }
 }
 
@@ -486,7 +494,7 @@
   }
   textarea{
     background-color:#fff;
-    height:64px;
+    height:62px;
     margin:10px;
     margin-bottom:0;
     min-width:calc(100% - 100px);
@@ -497,7 +505,7 @@
     display:inline-block;
     min-width: 70px !important;
     position:absolute;
-    padding:32px 0;
+    padding:31px 0;
     top:10px;
     right:10px;
     line-height: 0px;

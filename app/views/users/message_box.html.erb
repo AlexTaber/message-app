@@ -14,16 +14,24 @@
         <% end %>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
-        <% if current_user.has_unread_conversations_other_sites?(@site) %>
-          <i class="fa fa-globe is-unread-icon" id="sites-btn"></i>
-        <% else %>
-          <i class="fa fa-globe" id="sites-btn"></i>
-        <% end %>
-        <% if current_user.has_unread_conversations_by_site?(@site) %>
-          <i class="fa fa-comment is-unread-icon" id="convos-btn"></i>
-        <% else %>
-          <i class="fa fa-comment" id="convos-btn"></i>
-        <% end %>
+          <% if current_user.has_unread_conversations_other_sites?(@site) %>
+            <i class="fa fa-globe is-unread-icon" id="sites-btn"></i>
+          <% else %>
+            <i class="fa fa-globe" id="sites-btn"></i>
+          <% end %>
+          <% if @tasks %>
+            <% if current_user.has_unread_conversations_by_site?(@site) %>
+              <i class="fa fa-check-circle-o is-unread-icon" id="convos-btn"></i>
+            <% else %>
+              <i class="fa fa-check-circle-o" id="convos-btn"></i>
+            <% end %>
+          <% else %>
+            <% if current_user.has_unread_conversations_by_site?(@site) %>
+              <i class="fa fa-comment is-unread-icon" id="convos-btn"></i>
+            <% else %>
+              <i class="fa fa-comment" id="convos-btn"></i>
+            <% end %>
+          <% end %>
           <i class="fa fa-user" id="acct-btn"></i>
         </span>
       </p>
@@ -39,12 +47,12 @@
             <div id='convos-list'>
             <p class="text-center">
               <b>Your Conversations</b>
-                <%= link_to message_box_path(token: @site.token, new_conversation: true), class: 'u-pull-right'  do %>
+                <%= link_to message_box_path(token: @site.token, new_conversation: true, tasks: @tasks), class: 'u-pull-right'  do %>
                   <i class="fa fa-plus add-btn" style="right: 25px; top:10px; position:absolute;"></i>
                 <% end %>
             </p>
               <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
-                <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user } %>
+                <%= render partial: "conversations/mb_card", locals: { site: @site, conversation: conversation, current_conversation: @conversation, user: current_user, tasks: @tasks } %>
               <% end %>
             </div>
           </div>
@@ -106,48 +114,54 @@
             </div>
           </div>
 
-          <div class="msg-bx-meta">
-            <p><small>
-              <!-- <b><%= @site.name %>&nbsp;</b> -->
+          <% if @conversation.other_users(current_user).length > 0 %>
+            <div class="msg-bx-meta">
+              <p><small>
+                <!-- <b><%= @site.name %>&nbsp;</b> -->
+                <% if @tasks %>
+                  <%= link_to "Conversations", message_box_path(token: @site.token, site_id: @site.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+                  Tasks
+                <% else %>
+                  Conversations  |
+                  <%= link_to "Tasks", message_box_path(token: @site.token, tasks: true, site_id: @site.id, user_ids: @conversation.user_ids), class: "convo-links" %>
+                <% end %>
+              </small></p>
+            </div>
+
+            <div class="msg-bx-convo">
               <% if @tasks %>
-                <%= link_to "Conversations", message_box_path(token: @site.token, site_id: @site.id, mobile_conversations: true), class: "convo-links" %>  |
-                Tasks
+                <div class="pending-tasks">
+                  <% @conversation.sorted_pending_tasks.each do |task| %>
+                    <%= render partial: "tasks/task", locals: { task: task } %>
+                  <% end %>
+                </div>
+
+                <h5 class="text-center"><a href="#" class="button button-primary completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
+
+                <div class="completed-tasks">
+                  <% @conversation.sorted_completed_tasks.each do |task| %>
+                    <%= render partial: "tasks/task", locals: { task: task } %>
+                  <% end %>
+                </div>
               <% else %>
-                Conversations  |
-                <%= link_to "Tasks", message_box_path(token: @site.token, tasks: true, site_id: @site.id), class: "convo-links" %>
+                <% @conversation.messages.each do |message| %>
+                  <%= render partial: "messages/message", locals: { message: message } %>
+                <% end %>
               <% end %>
-            </small></p>
-          </div>
-
-          <div class="msg-bx-convo">
-          <% if @tasks %>
-          <div class="pending-tasks">
-            <% @conversation.sorted_pending_tasks.each do |task| %>
-              <%= render partial: "tasks/task", locals: { task: task } %>
-            <% end %>
-          </div>
-
-          <h5 class="text-center"><a href="#" class="button button-primary completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
-          <div class="completed-tasks">
-            <% @conversation.sorted_completed_tasks.each do |task| %>
-              <%= render partial: "tasks/task", locals: { task: task } %>
-            <% end %>
-          </div>
-        <% else %>
-            <% @conversation.messages.each do |message| %>
-              <%= render partial: "messages/message", locals: { message: message } %>
-            <% end %>
-            <% if @site.users.length == 1 %>
-              <div class="text-center">
-                Looks as if your don't have any users for this site. Head over to <%= link_to "mercuryapp.co", home_path, target: "blank" %> to add some!
-              </div>
-            <% elsif @conversation.users.length <= 1 %>
-              <div class="text-center" >
-                Add users to this conversation by pressing the plus icon above!
-              </div>
-            <% end %>
-            <% end %>
-          </div>
+            </div>
+          <% else %>
+            <div class="msg-bx-convo">
+              <% if @site.users.length == 1 %>
+                <div class="text-center">
+                  Looks as if your don't have any users for this site. Head over to <%= link_to "mercuryapp.co", home_path, target: "blank" %> to add some!
+                </div>
+              <% elsif @conversation.users.length <= 1 %>
+                <div class="text-center" >
+                  Add users to this conversation by pressing the plus icon above!
+                </div>
+              <% end %>
+            </div>
+          <% end %>
           <!--# END Message Box Body #-->
 
           <!--# Message Box Form #-->
