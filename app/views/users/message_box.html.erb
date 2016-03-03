@@ -24,9 +24,6 @@
         <% else %>
           <i class="fa fa-comment" id="convos-btn"></i>
         <% end %>
-        <%= link_to message_box_path(token: @site.token, tasks: true, site_id: @site.id) do %>
-          <i class="fa fa-check-circle-o" id="tasks-btn"></i>
-        <% end %>
           <i class="fa fa-user" id="acct-btn"></i>
         </span>
       </p>
@@ -108,6 +105,20 @@
               <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: @site.token, tasks: @tasks } %>
             </div>
           </div>
+
+          <div class="msg-bx-meta">
+            <p><small>
+              <!-- <b><%= @site.name %>&nbsp;</b> -->
+              <% if @tasks %>
+                <%= link_to "Conversations", message_box_path(token: @site.token, site_id: @site.id, mobile_conversations: true), class: "convo-links" %>  |
+                Tasks
+              <% else %>
+                Conversations  |
+                <%= link_to "Tasks", message_box_path(token: @site.token, tasks: true, site_id: @site.id), class: "convo-links" %>
+              <% end %>
+            </small></p>
+          </div>
+
           <div class="msg-bx-convo">
           <% if @tasks %>
           <div class="pending-tasks">
