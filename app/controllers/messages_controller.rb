@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
           other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message, task: @message.task }),
           task_html: task_html,
           conversation_id: @message.conversation.id,
+          site_id: @message.conversation.site.id,
           app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @message.conversation, current_conversation: current_conversation, site: @message.conversation.site, user: user })
         })
       end

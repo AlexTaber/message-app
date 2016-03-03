@@ -363,6 +363,10 @@ function subscribeToConvo(conversationToken, curConvoToken) {
     }
 
     $("#conversation" + String(data.conversation_id)).html(data.app_html);
+
+    if(userId != data.user_id && siteId != data.site_id) {
+      $("#site-" + String(data.site_id)).addClass("is-unread-site");
+    }
   });
 }
 
