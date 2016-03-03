@@ -501,7 +501,9 @@ function tasksButtonHtml(count) {
 
 function checkLazyLoad() {
   if ($(".msg-bx-convo").scrollTop() == 0) {
-    lazyLoad();
+    if(!tasksMode) {
+      lazyLoad();
+    }
   }
 }
 
