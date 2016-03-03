@@ -87,4 +87,10 @@ class Conversation < ActiveRecord::Base
   def has_completed_tasks?
     completed_tasks.count > 0
   end
+
+  def lazy_load_messages(index)
+    start_index = index * 15
+    end_index = start_index + 15
+    messages.order(created_at: :desc)[start_index...end_index].reverse
+  end
 end

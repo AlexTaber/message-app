@@ -89,6 +89,7 @@ class UsersController < ApplicationController
       @request = Request.new
       @tasks = params[:tasks]
       @mobile_conversations = params[:mobile_conversations]
+      @lazy_load = find_lazy_load
     else
       redirect_to splash_path
     end
@@ -254,5 +255,9 @@ class UsersController < ApplicationController
 
   def update_last_online
     current_user.update_attributes(last_online: DateTime.now)
+  end
+
+  def find_lazy_load
+    params[:lazy_load] ? params[:lazy_load].to_i + 1 : 0;
   end
 end
