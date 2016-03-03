@@ -181,7 +181,7 @@
       <% current_user.active_sites_ordered_by_admin.each do |site| %>
 
       <% unless current_user.admin_of_site?(site) %>
-        <div class="non-admin-user">
+        <div class="non-admin-user" id="site-<%= site.id %>">
       <% else %>
         <div>
       <% end %>
