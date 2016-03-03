@@ -330,9 +330,7 @@
             <% end %>
           </div>
         <% else %>
-          <% @conversation.messages.each do |message| %>
-            <%= render partial: "messages/message", locals: { message: message } %>
-          <% end %>
+          <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
         <% end %>
       </div>
     <div id="form-wrapper">

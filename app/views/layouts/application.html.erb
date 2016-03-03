@@ -41,6 +41,9 @@
   <% else %>
     <%= javascript_tag "tasksMode = false;" %>
   <% end %>
+  <% if @lazy_load %>
+    <%= javascript_tag "lazyLoadIndex = #{@lazy_load}" %>
+  <% end %>
   <!-- END JS DATA -->
 
   <!-- Touch Icons -->

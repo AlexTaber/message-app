@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get '/owner-data' => 'users#owner_data'
   get '/validate' => 'users#validate'
   get '/support' => 'users#support'
+  get '/lazy_load' => 'conversations#lazy_load'
   post '/add_user' => 'conversations#add_user'
   get '/plugin-info' => 'users#plugin_info'
 

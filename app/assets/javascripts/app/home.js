@@ -59,6 +59,12 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //--------------------------------
 
+  //lazy load -----------------------
+  setTimeout(function() {
+    $(".msg-bx-convo").on('scroll', checkLazyLoad);
+  }, 500);
+  //---------------------------------
+
   //Update Tasks-----------------
   $(".uncomplete-task, .complete-task").on('click', updateTask);
   $(".new-task").on('click', newTask);
@@ -491,4 +497,35 @@ function removeTask(e) {
 
 function tasksButtonHtml(count) {
   return "<span>Show</span> " + String(count) + " Completed Tasks";
+}
+
+function checkLazyLoad() {
+  if ($(".msg-bx-convo").scrollTop() == 0) {
+    lazyLoad();
+  }
+}
+
+function lazyLoad() {
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: '/lazy_load',
+    method: "GET",
+    data: { lazy_load: lazyLoadIndex + 1, token: curConvoToken }
+  }).done(function(response){
+    var msgBox = $(".msg-bx-convo");
+    $("#ajax-loader-message").hide();
+
+    if (response.length > 0) {
+      lazyLoadIndex += 1;
+      var originalHeight = msgBox[0].scrollHeight;
+
+      $(".msg-bx-convo").prepend(response);
+      var heightDifference = msgBox[0].scrollHeight - originalHeight;
+      msgBox[0].scrollTop += heightDifference;
+
+    } else {
+      msgBox.off( "scroll", checkLazyLoad )
+    }
+  });
 }
