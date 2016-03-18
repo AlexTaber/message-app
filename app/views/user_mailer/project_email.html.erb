@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello!</h1>
+    <h1>Hello <%= @user.name %>!</h1>
     <p>
-      Thank you for adding the project <%= @project.name %>!
+      Thank you for adding the project <b><%= @project.name %></b>!
       <br>
     </p>
     <p>
