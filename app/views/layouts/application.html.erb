@@ -33,8 +33,8 @@
   <% else %>
     <%= javascript_tag "curConvoToken = false;" %>
   <% end %>
-  <% if @site %>
-    <%= javascript_tag "siteId = #{@site.id.to_json.html_safe};" %>
+  <% if @project %>
+    <%= javascript_tag "projectId = #{@project.id.to_json.html_safe};" %>
   <% end %>
   <% if @tasks %>
     <%= javascript_tag "tasksMode = true;" %>

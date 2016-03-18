@@ -50,7 +50,7 @@ jQuery(document).ready(function($){
   $('.menu-caret').on('click', function(){
     $(this).toggleClass('rotated');
   });
-  $('.site-target').on('click', function(){
+  $('.project-target').on('click', function(){
     $(this).siblings('.menu-caret').toggleClass('rotated');
   });
 
@@ -370,8 +370,8 @@ function subscribeToConvo(conversationToken, curConvoToken) {
 
     $("#conversation" + String(data.conversation_id)).html(data.app_html);
 
-    if(userId != data.user_id && siteId != data.site_id) {
-      $("#site-" + String(data.site_id)).addClass("is-unread-site");
+    if(userId != data.user_id && projectId != data.project_id) {
+      $("#project-" + String(data.project_id)).addClass("is-unread-project");
     }
   });
 }
@@ -380,13 +380,13 @@ function listenForNewConvos() {
   channel = pusher.subscribe('new-conversation' + String(userId));
   channel.bind('new-conversation', function(data){
 
-    if(siteId == data.site_id) {
+    if(projectId == data.project_id) {
       var newConvoEl = $(".new-convo-placeholder");
 
       if(newConvoEl.length) {
         newConvoEl.after(anchorme.js(data.app_html, { "target":"_blank" }));
       } else {
-        $(".current-site-data").after(data.app_html);
+        $(".current-project-data").after(data.app_html);
       }
     }
   });

@@ -5,9 +5,9 @@ class Conversation < ActiveRecord::Base
   has_many :users, through: :conversers
   has_many :messages
   has_many :tasks, through: :messages
-  belongs_to :site
+  belongs_to :project
 
-  validates :site_id, presence: true
+  validates :project_id, presence: true
 
   def content_preview(length)
     messages.last.content_preview(length)
@@ -44,8 +44,8 @@ class Conversation < ActiveRecord::Base
     other_users.count > 1 ? "everyone" : other_users.first.first_name
   end
 
-  def self.find_conversation_by_users_and_site(users, site)
-    users ? site.find_conversation_by_users(users) : nil
+  def self.find_conversation_by_users_and_project(users, project)
+    users ? project.find_conversation_by_users(users) : nil
   end
 
   def read_all_messages(user)

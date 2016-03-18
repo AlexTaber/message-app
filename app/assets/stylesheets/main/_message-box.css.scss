@@ -257,7 +257,7 @@
   }
 }
 //makes each dropdown scrollable, cannot be added to mb-dropdown without losing tooltip
-#convos-list, #mb-user-list, #site-list   {
+#convos-list, #mb-user-list, #project-list   {
   max-height: 200px;
   overflow-y: scroll;
 }
@@ -274,7 +274,7 @@
   z-index: 99;
 }
 // edits the position of the tooltip triangle for each section
-#mb-sites-dropdown:before{
+#mb-projects-dropdown:before{
   right:95px;
 }
 #mb-convos-dropdown:before{
@@ -283,7 +283,7 @@
 #mb-acct-dropdown:before{
   right:31px;
 }
-.mb-sites-request-dropdown:before{
+.mb-projects-request-dropdown:before{
   right:61px !important;
 }
 
@@ -321,9 +321,9 @@
   border-bottom: 1px solid #ddd;
 }
 
-//------sites dropdown
+//------projects dropdown
 
-#mb-sites-dropdown a.is-active {
+#mb-projects-dropdown a.is-active {
   background: #f5f5f5 !important;
   font-weight: normal;
 }

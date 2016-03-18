@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223175524) do
+ActiveRecord::Schema.define(version: 20160318170039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160223175524) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.integer  "site_id",    null: false
+    t.integer  "project_id", null: false
     t.string   "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20160223175524) do
   create_table "invites", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.string   "email",      null: false
-    t.integer  "site_id",    null: false
+    t.integer  "project_id", null: false
     t.string   "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,21 +88,21 @@ ActiveRecord::Schema.define(version: 20160223175524) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "requests", force: :cascade do |t|
-    t.integer  "user_id",                   null: false
-    t.integer  "site_id",                   null: false
-    t.boolean  "active",     default: true, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  create_table "sites", force: :cascade do |t|
+  create_table "projects", force: :cascade do |t|
     t.string   "name",                      null: false
     t.string   "url",                       null: false
     t.string   "token"
     t.boolean  "active",     default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "user_id",                   null: false
+    t.integer  "project_id",                null: false
+    t.boolean  "active",     default: true, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -121,16 +121,16 @@ ActiveRecord::Schema.define(version: 20160223175524) do
   end
 
   create_table "tiers", force: :cascade do |t|
-    t.string   "name",                          null: false
-    t.integer  "admin_sites",                   null: false
-    t.integer  "users_per_site",                null: false
-    t.boolean  "published",      default: true, null: false
+    t.string   "name",                             null: false
+    t.integer  "admin_projects",                   null: false
+    t.integer  "users_per_project",                null: false
+    t.boolean  "published",         default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "user_sites", force: :cascade do |t|
-    t.integer  "site_id",                    null: false
+  create_table "user_projects", force: :cascade do |t|
+    t.integer  "project_id",                 null: false
     t.integer  "user_id",                    null: false
     t.boolean  "admin",      default: false, null: false
     t.boolean  "approved",   default: false, null: false

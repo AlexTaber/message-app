@@ -1,9 +1,9 @@
-class Site < ActiveRecord::Base
+class Project < ActiveRecord::Base
   has_secure_token
 
   has_many :conversations
-  has_many :user_sites
-  has_many :users, through: :user_sites
+  has_many :user_projects
+  has_many :users, through: :user_projects
   has_many :requests
   has_many :tasks, through: :conversations
 
@@ -35,7 +35,7 @@ class Site < ActiveRecord::Base
   end
 
   def find_admin
-    user_sites.find_by(admin: true)
+    user_projects.find_by(admin: true)
   end
 
   def typeahead_users_data(user)
@@ -55,10 +55,10 @@ class Site < ActiveRecord::Base
   end
 
   def has_alert?(user)
-    has_pending_requests? || user.has_unread_conversations_by_site?(self)
-  end  
+    has_pending_requests? || user.has_unread_conversations_by_project?(self)
+  end
 
-  def self.all_sites_data
+  def self.all_projects_data
     all.map(&:typeahead_data)
   end
 

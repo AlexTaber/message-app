@@ -8,10 +8,10 @@
 * 12/29/2014
 */
 a {
-  color: rgba($brand-color, .8); 
+  color: rgba($brand-color, .8);
 }
 a:hover {
-  color: rgba($brand-color, 1); 
+  color: rgba($brand-color, 1);
 // text-shadow: 0 1px 1px $white;
 }
 .menu-bar {
@@ -33,7 +33,7 @@ a:hover {
 .active {
   background: rgba($white, .25);
 }
-.current-site-data {
+.current-project-data {
  border-bottom: 1px solid $grey;
  color: $black;
  header {

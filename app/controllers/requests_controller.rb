@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   def new
-    @site = token_site(params[:token])
-    @request = current_user.pending_request_by_site(@site) || Request.new
+    @project = token_project(params[:token])
+    @request = current_user.pending_request_by_project(@project) || Request.new
   end
 
   def create
@@ -35,13 +35,13 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:user_id, :site_id, :active)
+    params.require(:request).permit(:user_id, :project_id, :active)
   end
 
   def set_up_user
-    UserSite.create(
+    UserProject.create(
       user_id: @request.user.id,
-      site_id: @request.site.id,
+      project_id: @request.project.id,
       admin: false
     )
   end

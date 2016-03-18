@@ -111,34 +111,34 @@ i.admin-profile {
 	float: left;
 }
 }
-// Site List Accordian
-@keyframes unread-site {
+// project List Accordian
+@keyframes unread-project {
   0%{}
   45%{background:lighten($pwdlight, 40%)}
   100%{}
 }
-@-webkit-keyframes unread-site {
+@-webkit-keyframes unread-project {
   0%{}
   45%{background:lighten($pwdlight, 40%)}
   100%{}
 }
-  @-moz-keyframes unread-site {
+  @-moz-keyframes unread-project {
   0%{}
   45%{background:lighten($pwdlight, 40%)}
   100%{}
 }
-  @-o-keyframes unread-site {
+  @-o-keyframes unread-project {
   0%{}
   45%{background:lighten($pwdlight, 40%)}
   100%{}
 }
-.is-unread-site{
-	  animation: unread-site 2s infinite;
-  -webkit-animation: unread-site 2s infinite;
-  -moz-animation: unread-site 2s infinite;
-  -o-animation: unread-site 2s infinite;
+.is-unread-project{
+	  animation: unread-project 2s infinite;
+  -webkit-animation: unread-project 2s infinite;
+  -moz-animation: unread-project 2s infinite;
+  -o-animation: unread-project 2s infinite;
 }
-.site-list {
+.project-list {
 padding : 0;
 }
 //////Accordian
@@ -151,7 +151,7 @@ padding : 0;
 .accordian-content {
 	display:none;
 }
-ul.edit-site-list {
+ul.edit-project-list {
 	padding-left: 10px;
 	color:$black !important;
 	li {
@@ -523,8 +523,8 @@ ul.edit-site-list {
 	float:right;
 }
 .manage-user-opts{display:none;}
-.site-user-list{overflow:scroll}
-.site-target{display:inline;}
+.project-user-list{overflow:scroll}
+.project-target{display:inline;}
 
 .send-request {
 	background: $grey;
@@ -537,7 +537,7 @@ ul.edit-site-list {
 	font-size: 16px;
 }
 
-.site-approval {
+.project-approval {
 	background-color: rgba($white, 0.5px);
 	border-bottom: 1px solid $darkgrey;
 	padding-left: 25px;
