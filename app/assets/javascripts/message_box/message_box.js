@@ -117,7 +117,11 @@ function startMbConversation(e) {
     $(".msg-bx-bottom").html(data.form_html);
     $("#av-message-form").submit(sendMbMessage);
     enterSubmit('#message_content', '#av-message-form');
-    $(".msg-bx-convo").append(data.html);
+    if(tasksMode) {
+      $(".pending-tasks-mb").prepend(data.html);
+    } else {
+      $(".msg-bx-convo").append(data.html);
+    }
     subscribeToMbConvo(data.token, curConvoToken);
     $("#new-conversation-form").find("#content").val("");
   });

@@ -318,7 +318,11 @@ function startConversation(e) {
       $("#form-wrapper").html(data.form_html);
       $("#av-message-form").submit(sendMessage);
       enterSubmit('#message_content', '#av-message-form');
-      $(".app-view").append(data.html);
+      if(tasksMode) {
+        $(".pending-tasks").prepend(data.html);
+      } else {
+        $(".app-view").append(anchorme.js(data.html, { "target":"_blank" }));
+      }
       subscribeToConvo(data.token, curConvoToken);
       $(".new_conversation").find("#content").val("");
       $('.new-convo-placeholder').slideUp();
