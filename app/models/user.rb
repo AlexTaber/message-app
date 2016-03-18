@@ -266,8 +266,7 @@ class User < ActiveRecord::Base
   end
 
   def needs_notification?(message)
-    true # DELETE THIS LINE, UNCOMMMENT BELOW
-    # !does_not_need_notification?(message)
+    !does_not_need_notification?(message)
   end
 
   def does_not_need_notification?(message)
