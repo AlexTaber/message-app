@@ -29,10 +29,10 @@ jQuery(document).ready(function($){
   $('#tasks-btn').addClass('is-active');
  }
 
-  enterSubmit('#message_content', '#new_message');
+  //enterSubmit('#message_content', '#new_message');
   enterSubmit('#content', '#new-conversation-form');
 
-  $(".new_message").submit(sendMbMessage);
+  //$(".new_message").submit(sendMbMessage);
   $("#new-conversation-form").submit(startMbConversation);
   //conversation dropdown tabs
 
@@ -148,10 +148,14 @@ function subscribeToMbConvo(conversationToken, curConvoToken) {
   channel = pusher.subscribe('conversation' + String(conversationToken) + String(userId));
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
-      if(userId == data.user_id) {
-        $(".msg-bx-convo").append(data.current_user_html);
+      if(tasksMode) {
+        $(".pending-tasks-mb").prepend(data.task_html);
       } else {
-        $(".msg-bx-convo").append(data.other_user_html);
+        if(userId == data.user_id) {
+          $(".msg-bx-convo").append(data.current_user_html);
+        } else {
+          $(".msg-bx-convo").append(data.other_user_html);
+        }
       }
 
       scrollToBottom();

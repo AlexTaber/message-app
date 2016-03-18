@@ -130,7 +130,7 @@
 
             <div class="msg-bx-convo">
               <% if @tasks %>
-                <div class="pending-tasks">
+                <div class="pending-tasks-mb">
                   <% @conversation.sorted_pending_tasks.each do |task| %>
                     <%= render partial: "tasks/task", locals: { task: task } %>
                   <% end %>
@@ -169,9 +169,9 @@
             <div id="mb-form-wrapper">
                <% if @conversation.other_users(current_user).length > 0 %>
                 <% if @conversation.new_record? %>
-                  <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks } %>
+                  <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: true } %>
                 <% else %>
-                  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks } %>
+                  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: true } %>
                 <% end %>
               <% end %>
             </div>
