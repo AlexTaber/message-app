@@ -422,8 +422,19 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       $(".uncomplete-task, .complete-task").on('click', updateTask);
       $(".new-task").on('click', newTask);
       $(".remove-task").on('click', removeTask);
+      $("#conversation" + String(data.conversation_id)).html(data.app_html);
     }
   });
+}
+
+function updateTasksTally(completed, convoId) {
+  var target = $("#tally" + String(convoId));
+
+  if(completed) {
+    target.html()
+  } else {
+
+  }
 }
 
 function validateUserData(data, element) {

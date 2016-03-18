@@ -68,17 +68,20 @@ class TasksController < ApplicationController
   def fire_pusher_event(task_id, message, users, new_record, deleted)
     task = Task.find_by(id: task_id)
     users.each do |user|
+      user == current_user ? current_conversation = task.message.conversation : current_conversation = nil
       Pusher.trigger("task#{message.conversation.token}#{user.id}", 'new-task', {
         message_id: message.id,
         task_id: task_id,
         user_id: message.user.id,
         conversation_token: message.conversation.token,
+        conversation_id: message.conversation.id,
         current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: message, task: task }),
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
         task_html: task_html(task, new_record),
         deleted: deleted,
         completed: task ? task.completed : false,
-        completed_tasks_count: message.conversation.completed_tasks.count
+        completed_tasks_count: message.conversation.completed_tasks.count,
+        app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: task.message.conversation, current_conversation: current_conversation, project: task.message.conversation.project, user: user })
       })
     end
   end
