@@ -6,11 +6,11 @@
   <body>
     <h3>Hello <%= @user.name %>!</h3>
     <p>
-      You have just been sent the following message by <%= @message.user.name %>:
+      You have just been sent the following message by <b><%= @message.user.name %></b>
     </p>
-    <p>
+    <em>
       <%= simple_format(@message.content) %>
-    </p>
+    </em>
     <p><a href="<%= @url %>">Click here</a> to view this message!</p>
     <p>Have a great day!</p>
     <p>The MercuryApp Dev Team</p>

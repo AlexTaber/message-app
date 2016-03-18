@@ -6,10 +6,10 @@
   <body>
     <h1>Hello!</h1>
     <p>
-      You have just been invited by <%= @user.name %> to join Mercury! <%= @user.first_name %> uses Mercury for his project <%= @project.name %>.<br>
+      You have just been invited by <b><%= @user.name %></b> to join Mercury! <b><%= @user.first_name %></b> uses Mercury for their project <b><%= @project.name %></b>.<br>
     </p>
     <p>
-      To accept this invitation, <a href="<%= @url %>">click here</a>. Be sure to tell <%= @user.first_name %> thanks for adding you!
+      To accept this invitation, <a href="<%= @url %>">click here</a>. Be sure to tell <b><%= @user.first_name %></b> thanks for adding you!
     </p>
     <p>Thanks for your time and have a great day!</p>
   </body>
