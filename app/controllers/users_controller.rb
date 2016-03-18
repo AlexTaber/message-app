@@ -73,17 +73,17 @@ class UsersController < ApplicationController
       update_last_online
       redirect_to new_subscription_path and return unless current_user.subscription
 
-      current_user.has_active_sites? ? find_user_site : @site = Site.new
+      current_user.has_active_projects? ? find_user_project : @project = Project.new
       if params[:new_conversation]
         set_up_new_conversation
       else
-        current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
+        current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
       end
       @conversation.read_all_messages(current_user) unless @conversation.new_record?
       @message = Message.new
-      @new_site = Site.new
+      @new_project = Project.new
       @new_conversation = Conversation.new
-      current_user.admin_of_site?(@site) ? @admin_site = @site : @admin_site = nil
+      current_user.admin_of_project?(@project) ? @admin_project = @project : @admin_project = nil
       current_user.add_visit
       @invite = Invite.new
       @request = Request.new
@@ -97,8 +97,8 @@ class UsersController < ApplicationController
 
   def message_box_data
     @json = Hash.new
-    @json[:site] = current_user.find_site_by_url(params[:url])
-    if @json[:site]
+    @json[:project] = current_user.find_project_by_url(params[:url])
+    if @json[:project]
       set_up_json
     end
 
@@ -110,15 +110,15 @@ class UsersController < ApplicationController
 
     if current_user
       update_last_online
-      @site = token_site(token)
-      unless @site
+      @project = token_project(token)
+      unless @project
         redirect_to token_redirect_path
       else
-        if current_user.sites.include?(@site)
+        if current_user.projects.include?(@project)
           if params[:new_conversation]
             set_up_new_conversation
           else
-            current_user.has_conversations_by_site?(@site) ? find_conversation(current_user) : set_up_new_conversation
+            current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
             @conversation.read_all_messages(current_user) unless @conversation.new_record?
             @message = Message.new
           end
@@ -137,16 +137,16 @@ class UsersController < ApplicationController
   end
 
   def typeahead
-    site = Site.find_by(id: params[:site_id])
-    if site
+    project = Project.find_by(id: params[:project_id])
+    if project
       render json: {
-        site_users: site.typeahead_users_data(current_user),
-        all_users: site.non_member_users_data,
-        all_sites: Site.all_sites_data
+        project_users: project.typeahead_users_data(current_user),
+        all_users: project.non_member_users_data,
+        all_projects: Project.all_projects_data
       }.to_json
     else
       render json: {
-        all_sites: Site.all_sites_data
+        all_projects: Project.all_projects_data
       }.to_json
     end
   end
@@ -186,25 +186,25 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :first_name, :last_name, :password, :email, :tier_id)
   end
 
-  def find_user_site
-    params[:site_id] ? @site = Site.find_by(id: params[:site_id]) : @site = current_user.active_sites_ordered_by_admin.first
+  def find_user_project
+    params[:project_id] ? @project = Project.find_by(id: params[:project_id]) : @project = current_user.active_projects_ordered_by_admin.first
   end
 
   def find_conversation(user)
     if params[:user_ids]
       users = User.where(id: params[:user_ids])
-      @conversation = Conversation.find_conversation_by_users_and_site(users, @site)
+      @conversation = Conversation.find_conversation_by_users_and_project(users, @project)
       unless @conversation
-        @conversation = Conversation.new(site_id: @site.id)
+        @conversation = Conversation.new(project_id: @project.id)
         @conversation.users << users
       end
     else
-      @conversation = user.ordered_conversations_by_site(@site).first
+      @conversation = user.ordered_conversations_by_project(@project).first
     end
   end
 
   def set_up_json
-    @json[:conversations] = current_user.conversations_to_json(@json[:site])
+    @json[:conversations] = current_user.conversations_to_json(@json[:project])
   end
 
   def upload_image(file)
@@ -221,13 +221,13 @@ class UsersController < ApplicationController
 
   def set_up_invite
     @invite = token_invite(params[:invite_token])
-    create_user_site if @invite
+    create_user_project if @invite
   end
 
-  def create_user_site
-    UserSite.create(
+  def create_user_project
+    UserProject.create(
       user_id: @user.id,
-      site_id: @invite.site.id,
+      project_id: @invite.project.id,
       admin: false
     )
   end

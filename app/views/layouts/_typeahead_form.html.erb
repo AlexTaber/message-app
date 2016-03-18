@@ -5,7 +5,7 @@
 		<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus", value: "" %>
 <% end %>
 
-  <%= hidden_field_tag "conversation[site_id]", site.id %>
+  <%= hidden_field_tag "conversation[project_id]", project.id %>
   <%= hidden_field_tag :user_id, nil %>
   <%= hidden_field_tag :token, token %>
 

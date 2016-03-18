@@ -1,0 +1,10 @@
+<div class="project-approval">
+  <p><%= user_project.project.name %>
+    <%= link_to user_project_path(user_project, user_project: { approved: true }), method: "PUT" do %>
+      <i class="fa fa-check-circle"></i>
+    <% end %>
+    <%= link_to user_project_path(user_project), method: "DELETE" do %>
+      <i class="fa fa-times-circle"></i>
+    <% end %>
+  </p>
+</div>

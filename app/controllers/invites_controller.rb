@@ -21,7 +21,7 @@ class InvitesController < ApplicationController
   private
 
   def invite_params
-    params.require(:invite).permit(:user_id, :site_id, :email)
+    params.require(:invite).permit(:user_id, :project_id, :email)
   end
 
   def send_invite_email

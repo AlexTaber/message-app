@@ -7,26 +7,26 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 basic = Tier.create(
   name: "Basic",
-  admin_sites: 1,
-  users_per_site: 4
+  admin_projects: 1,
+  users_per_project: 4
 )
 
 start_up = Tier.create(
   name: "Start Up",
-  admin_sites: 1,
-  users_per_site: 500
+  admin_projects: 1,
+  users_per_project: 500
 )
 
-multi_site = Tier.create(
-  name: "Multi Site",
-  admin_sites: 5,
-  users_per_site: 500
+multi_project = Tier.create(
+  name: "Multi project",
+  admin_projects: 5,
+  users_per_project: 500
 )
 
 admin_tier = Tier.create(
   name: "Admin",
-  admin_sites: 1001,
-  users_per_site: 1000,
+  admin_projects: 1001,
+  users_per_project: 1000,
   published: false
 )
 
@@ -90,36 +90,36 @@ dan_sub = Subscription.create(
   user_id: dan.id
 )
 
-google = Site.create(
+google = Project.create(
   name: "Google",
   url: "www.google.com"
 )
 
-UserSite.create(user_id: jerry.id, site_id: google.id, admin: true, approved: true)
-UserSite.create(user_id: dan.id, site_id: google.id, admin: false, approved: true)
-UserSite.create(user_id: alex.id, site_id: google.id, admin: false, approved: true)
+UserProject.create(user_id: jerry.id, project_id: google.id, admin: true, approved: true)
+UserProject.create(user_id: dan.id, project_id: google.id, admin: false, approved: true)
+UserProject.create(user_id: alex.id, project_id: google.id, admin: false, approved: true)
 
-amazon = Site.create(
+amazon = Project.create(
   name: "Amazon",
   url: "www.amazon.com"
 )
 
-UserSite.create(user_id: jerry.id, site_id: amazon.id, admin: true, approved: true)
-UserSite.create(user_id: dan.id, site_id: amazon.id, admin: false, approved: true)
-UserSite.create(user_id: alex.id, site_id: amazon.id, admin: false, approved: true)
+UserProject.create(user_id: jerry.id, project_id: amazon.id, admin: true, approved: true)
+UserProject.create(user_id: dan.id, project_id: amazon.id, admin: false, approved: true)
+UserProject.create(user_id: alex.id, project_id: amazon.id, admin: false, approved: true)
 
-base = Site.create(
+base = Project.create(
   name: "Base",
   url: "localhost:3000"
 )
 
-UserSite.create(user_id: jerry.id, site_id: base.id, admin: true, approved: true)
-UserSite.create(user_id: dan.id, site_id: base.id, admin: false, approved: true)
-UserSite.create(user_id: alex.id, site_id: base.id, admin: false, approved: false)
+UserProject.create(user_id: jerry.id, project_id: base.id, admin: true, approved: true)
+UserProject.create(user_id: dan.id, project_id: base.id, admin: false, approved: true)
+UserProject.create(user_id: alex.id, project_id: base.id, admin: false, approved: false)
 
-Site.all.each do |site|
+Project.all.each do |project|
   convo = Conversation.create(
-    site_id: site.id
+    project_id: project.id
   )
 
   convo.users << jerry
@@ -128,7 +128,7 @@ Site.all.each do |site|
   message = Message.create(
     user_id: dan.id,
     conversation_id: convo.id,
-    content: "Sup Jerry, I heart #{site.name}"
+    content: "Sup Jerry, I heart #{project.name}"
   )
 
   message_user = MessageUser.create(
@@ -139,7 +139,7 @@ Site.all.each do |site|
   message = Message.create(
     user_id: jerry.id,
     conversation_id: convo.id,
-    content: "Sup Dan, I heart #{site.name}"
+    content: "Sup Dan, I heart #{project.name}"
   )
 
   message_user = MessageUser.create(

@@ -2,9 +2,9 @@ class Invite < ActiveRecord::Base
   has_secure_token
 
   belongs_to :user
-  belongs_to :site
+  belongs_to :project
 
-  validates :user_id, :site_id, :email, presence: true
+  validates :user_id, :project_id, :email, presence: true
 
   def can_be_sent?
     valid? && no_existing_user?

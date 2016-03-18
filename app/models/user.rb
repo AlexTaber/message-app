@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :user_sites
-  has_many :sites, through: :user_sites
+  has_many :user_projects
+  has_many :projects, through: :user_projects
   has_many :messages
   has_many :conversers
   has_many :conversations, through: :conversers
@@ -37,28 +37,28 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_initial}"
   end
 
-  def messages_by_site(site)
-    messages.select{ |message| message.conversation.site_id == site.id }
+  def messages_by_project(project)
+    messages.select{ |message| message.conversation.project_id == project.id }
   end
 
-  def conversations_by_site(site)
-    conversations.where(site_id: site.id)
+  def conversations_by_project(project)
+    conversations.where(project_id: project.id)
   end
 
-  def has_conversations_by_site?(site)
-    conversations_by_site(site).count > 0
+  def has_conversations_by_project?(project)
+    conversations_by_project(project).count > 0
   end
 
-  def has_sites?
-    sites.count > 0
+  def has_projects?
+    projects.count > 0
   end
 
-  def active_sites
-    user_sites.where(approved: true).collect(&:site).select(&:active)
+  def active_projects
+    user_projects.where(approved: true).collect(&:project).select(&:active)
   end
 
-  def has_active_sites?
-    active_sites.count > 0
+  def has_active_projects?
+    active_projects.count > 0
   end
 
   def self.all_other_users(user)
@@ -69,23 +69,23 @@ class User < ActiveRecord::Base
     self.all_other_users(user).map(&:typeahead_data)
   end
 
-  def admin_of_site?(site)
-    user_site = user_sites.find_by(site_id: site.id)
-    user_site ? user_site.admin : false
+  def admin_of_project?(project)
+    user_project = user_projects.find_by(project_id: project.id)
+    user_project ? user_project.admin : false
   end
 
-  def find_site_by_url(query_url)
-    sites.find { |site| query_url.include?(site.url) }
+  def find_project_by_url(query_url)
+    projects.find { |project| query_url.include?(project.url) }
   end
 
-  def conversations_to_json(site)
+  def conversations_to_json(project)
     conversations_json = []
-    conversations_by_site(site).each_with_index { |conversation, index| conversations_json[index] = conversation.set_json(self) }
+    conversations_by_project(project).each_with_index { |conversation, index| conversations_json[index] = conversation.set_json(self) }
     conversations_json
   end
 
-  def ordered_conversations_by_site(site)
-    Conversation.ordered_conversations(conversations_by_site(site))
+  def ordered_conversations_by_project(project)
+    Conversation.ordered_conversations(conversations_by_project(project))
   end
 
   def unread_notifications
@@ -108,44 +108,44 @@ class User < ActiveRecord::Base
     unread_conversations.count
   end
 
-  def unread_conversations_by_site(site)
-    conversations_by_site(site).select { |conversation| conversation.has_unread_messages?(self) }
+  def unread_conversations_by_project(project)
+    conversations_by_project(project).select { |conversation| conversation.has_unread_messages?(self) }
   end
 
-  def has_unread_conversations_by_site?(site)
-    unread_conversations_by_site(site).count > 0
+  def has_unread_conversations_by_project?(project)
+    unread_conversations_by_project(project).count > 0
   end
 
-  def unread_conversations_other_sites(site)
-    conversations.where.not(site_id: site.id).select { |conversation| conversation.has_unread_messages?(self)}
+  def unread_conversations_other_projects(project)
+    conversations.where.not(project_id: project.id).select { |conversation| conversation.has_unread_messages?(self)}
   end
 
-  def has_unread_conversations_other_sites?(site)
-    unread_conversations_other_sites(site).count > 0
+  def has_unread_conversations_other_projects?(project)
+    unread_conversations_other_projects(project).count > 0
   end
 
-  def can_create_site
-    tier.permit_user_site(self)
+  def can_create_project
+    tier.permit_user_project(self)
   end
 
-  def can_add_user_to_site(site)
-    tier.permit_site_user(site)
+  def can_add_user_to_project(project)
+    tier.permit_project_user(project)
   end
 
-  def admin_sites
-    user_sites.where(admin: true).map(&:site)
+  def admin_projects
+    user_projects.where(admin: true).map(&:project)
   end
 
-  def active_admin_sites
-    admin_sites.select(&:active)
+  def active_admin_projects
+    admin_projects.select(&:active)
   end
 
   def image_url
     image ? image.url : "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"
   end
 
-  def find_user_site(site)
-    user_sites.find_by(site_id: site.id)
+  def find_user_project(project)
+    user_projects.find_by(project_id: project.id)
   end
 
   def add_visit
@@ -164,16 +164,16 @@ class User < ActiveRecord::Base
     { username: username, id: id, name: name }
   end
 
-  def active_sites_ordered_by_admin
-    user_sites.where(approved: true).order(admin: :desc).collect(&:site).select(&:active)
+  def active_projects_ordered_by_admin
+    user_projects.where(approved: true).order(admin: :desc).collect(&:project).select(&:active)
   end
 
-  def unapproved_sites
-    user_sites.where(approved: false).collect(&:site).select(&:active)
+  def unapproved_projects
+    user_projects.where(approved: false).collect(&:project).select(&:active)
   end
 
-  def has_unapproved_sites?
-    unapproved_sites.count > 0;
+  def has_unapproved_projects?
+    unapproved_projects.count > 0;
   end
 
   def self.send_monthly_emails
@@ -184,30 +184,30 @@ class User < ActiveRecord::Base
     UserMailer.monthly_email(self).deliver_now
   end
 
-  def is_member_of_site?(site)
-    user_sites.where(site_id: site.id).count > 0
+  def is_member_of_project?(project)
+    user_projects.where(project_id: project.id).count > 0
   end
 
-  def is_not_member_of_site?(site)
-    !is_member_of_site?(site)
+  def is_not_member_of_project?(project)
+    !is_member_of_project?(project)
   end
 
-  def pending_request_by_site(site)
-    requests.find_by(site_id: site.id)
+  def pending_request_by_project(project)
+    requests.find_by(project_id: project.id)
   end
 
-  def has_request_for_site?(site)
-    requests.where(site_id: site.id).count > 0
+  def has_request_for_project?(project)
+    requests.where(project_id: project.id).count > 0
   end
 
-  def has_no_requests_for_site?(site)
-    !has_request_for_site?(site)
+  def has_no_requests_for_project?(project)
+    !has_request_for_project?(project)
   end
 
   def can_send_request(potential_request)
     return false unless potential_request.valid?
-    return false if is_member_of_site?(potential_request.site)
-    has_no_requests_for_site?(potential_request.site)
+    return false if is_member_of_project?(potential_request.project)
+    has_no_requests_for_project?(potential_request.project)
   end
 
   def confirm_password(checked_password)

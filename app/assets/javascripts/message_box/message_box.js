@@ -20,7 +20,7 @@ jQuery(document).ready(function($){
 
   $('.mb-body').hide();
   //dropdowns
-  msgBxDropdowns('#sites-btn', '#mb-sites-dropdown');
+  msgBxDropdowns('#projects-btn', '#mb-projects-dropdown');
   msgBxDropdowns('#convos-btn', '#mb-convos-dropdown');
   msgBxDropdowns('#acct-btn', '#mb-acct-dropdown');
 
@@ -162,7 +162,7 @@ function subscribeToMbConvo(conversationToken, curConvoToken) {
 function listenForNewMbConvos() {
   channel = pusher.subscribe('new-conversation' + String(userId));
   channel.bind('new-conversation', function(data){
-    if(siteId == data.site_id) {
+    if(projectId == data.project_id) {
       $("#convos-list").append(data.mb_html);
     }
   });

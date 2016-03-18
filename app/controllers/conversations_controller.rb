@@ -2,14 +2,14 @@ class ConversationsController < ApplicationController
 
   def new
     @conversation = Conversation.new
-    @site = Site.find_by(id: params[:site_id])
+    @project = Project.find_by(id: params[:project_id])
   end
 
   def create
     users = User.where(id: params[:conversation][:user_ids].reject(&:empty?))
     users << current_user unless users.include?(current_user)
-    @site = Site.find_by(id: params[:conversation][:site_id])
-    @conversation = @site.find_conversation_by_users(users) || Conversation.new(conversation_params)
+    @project = Project.find_by(id: params[:conversation][:project_id])
+    @conversation = @project.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
     if @conversation.valid?
       set_up_users(users) unless @conversation.users.count > 0
@@ -49,15 +49,15 @@ class ConversationsController < ApplicationController
 
   def add_user
     user = User.find_by(id: params[:user_id])
-    @site = Site.find_by(id: params[:conversation][:site_id])
+    @project = Project.find_by(id: params[:conversation][:project_id])
     if user
       users = User.where(id: params[:user_ids].reject(&:empty?))
       users << user
-      @conversation = @site.find_conversation_by_users(users) || Conversation.new(conversation_params)
+      @conversation = @project.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
       set_up_users(users) unless @conversation.users.count > 0
       if params[:token].empty?
-        redirect_to home_path(user_ids: @conversation.user_ids, site_id: @site.id, tasks: params[:tasks])
+        redirect_to home_path(user_ids: @conversation.user_ids, project_id: @project.id, tasks: params[:tasks])
       else
         redirect_to message_box_path(token: params[:token], user_ids: @conversation.user_ids, tasks: params[:tasks])
       end
@@ -83,7 +83,7 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_params
-    params.require(:conversation).permit(:site_id)
+    params.require(:conversation).permit(:project_id)
   end
 
   def set_up_users(users)
@@ -94,9 +94,9 @@ class ConversationsController < ApplicationController
     @conversation.users.each do |user|
       user == current_user ? current_conversation = @conversation : current_conversation = nil
       Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
-         app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @conversation, current_conversation: current_conversation, site: @site, user: user }),
-         mb_html: (render_to_string partial: "conversations/mb_card", locals: { conversation: @conversation, current_conversation: current_conversation, site: @site, user: user }),
-         site_id: @site.id
+         app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @conversation, current_conversation: current_conversation, project: @project, user: user }),
+         mb_html: (render_to_string partial: "conversations/mb_card", locals: { conversation: @conversation, current_conversation: current_conversation, project: @project, user: user }),
+         project_id: @project.id
       })
     end
   end

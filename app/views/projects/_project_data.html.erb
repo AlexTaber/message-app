@@ -1,0 +1,6 @@
+<div class="project-data-partial">
+  <h5><%= project.name %></h5>
+  <p>Admin: <%= user.admin_of_project?(project) %></p>
+  <p>Total Conversations: <%= user.conversations_by_project(project).count %></p>
+  <p>Total Messages: <%= user.messages_by_project(project).count %></p>
+</div>

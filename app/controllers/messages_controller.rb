@@ -15,8 +15,8 @@ class MessagesController < ApplicationController
           other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message, task: @message.task }),
           task_html: task_html,
           conversation_id: @message.conversation.id,
-          site_id: @message.conversation.site.id,
-          app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @message.conversation, current_conversation: current_conversation, site: @message.conversation.site, user: user })
+          project_id: @message.conversation.project.id,
+          app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @message.conversation, current_conversation: current_conversation, project: @message.conversation.project, user: user })
         })
       end
 
@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
       if request.xhr?
         render partial: "messages/message", locals: { message: @message }
       else
-        redirect_to home_path(site_id: @message.conversation.site.id, conversation_id: @message.conversation.id)
+        redirect_to home_path(project_id: @message.conversation.project.id, conversation_id: @message.conversation.id)
       end
 
     else

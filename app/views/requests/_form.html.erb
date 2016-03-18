@@ -1,12 +1,12 @@
     <div class="mb-body text-center msg-bx-padding">
       <% if request.new_record? %>
       <h4>
-        Click below request to be added by the site owner
+        Click below request to be added by the project owner
       </h4>
-      <p>Once the site owner approves, you can start using the app immediately</p>
+      <p>Once the project owner approves, you can start using the app immediately</p>
   <%= form_for request do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :site_id, value: site.id %>
+    <%= f.hidden_field :project_id, value: project.id %>
 
     <%= f.submit "Send Request", class: "button button-primary" %>
     <% end %>

@@ -12,8 +12,8 @@
                 <th>Name</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Active Sites</th>
-                <th>Admin Sites</th>
+                <th>Active Projects</th>
+                <th>Admin Projects</th>
                 <th>Total Conversations</th>
                 <th>Total Messages</th>
                 <th>Total Visits</th>
@@ -28,8 +28,8 @@
                   <td><%= link_to user.name, user_owner_data_user_path(user) %></td>
                   <td><%= user.username %></td>
                   <td><%= user.email %></td>
-                  <td><%= user.active_sites.count %></td>
-                  <td><%= user.active_admin_sites.count %></td>
+                  <td><%= user.active_projects.count %></td>
+                  <td><%= user.active_admin_projects.count %></td>
                   <td><%= user.conversations.count %></td>
                   <td><%= user.messages.count %></td>
                   <td><%= user.visits %></td>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="table-wrapper">
-          <h4>Sites</h4>
+          <h4>Projects</h4>
           <table>
             <thead>
               <tr>
@@ -60,13 +60,13 @@
                 <th>Active?</th>
               </tr>
             </thead>
-            <% Site.all.each do |site| %>
+            <% Project.all.each do |project| %>
               <tr>
-                <td><%= site.id %></td>
-                <td><%= link_to site.name, site_owner_data_site_path(site) %></td>
-                <td><%= site.url %></td>
-                <td><%= site.token %></td>
-                <td><%= site.active %></td>
+                <td><%= project.id %></td>
+                <td><%= link_to project.name, project_owner_data_project_path(project) %></td>
+                <td><%= project.url %></td>
+                <td><%= project.token %></td>
+                <td><%= project.active %></td>
               </tr>
             <% end %>
           </table>

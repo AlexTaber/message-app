@@ -145,7 +145,7 @@ input:-webkit-autofill {
   display:none;
 }
 
-.site-form-container {
+.project-form-container {
   height: 100vh;
   width: calc(100% - 60px);
   padding-left: 30px;
@@ -164,7 +164,7 @@ input:-webkit-autofill {
   }
 }
 
-.site-form-info {
+.project-form-info {
   height: 100vh;
   width: 50%;
   padding-left: 30px;
@@ -232,12 +232,12 @@ input:-webkit-autofill {
     display: inline;
   }
 
-  .site-form-container {
+  .project-form-container {
     width: 100%;
 
   }
 
-  .site-form-info {
+  .project-form-info {
     display: inline-table;
   }
 }

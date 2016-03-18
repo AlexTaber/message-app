@@ -1,0 +1,15 @@
+<div class="project-form-container">
+  <span>
+    <div class="hidden-text">
+      <h1>Create Your Project</h1>
+      <!-- <h4>Go ahead and create your first adminisrtative project!</h4>-->
+      <h4>Messaging on Mercury revolves around <strong><em>a project</em></strong>, invite team <br>members and clients to become part of your project.</h4>
+      <!-- <h4>You will be emailed your unique project token. Use it to activate our <br>WordPress Plugin for even more messaging power</h4> -->
+      <p>This is an optional step, you can create a project at anytime!</p>
+      <br>
+    </div>
+    <%= render partial: "form", locals: { project: @project } %>
+    <br>
+    <%= link_to "Skip for Now", home_path %>
+  </span>
+</div>

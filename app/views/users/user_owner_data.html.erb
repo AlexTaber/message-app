@@ -3,7 +3,7 @@
     <div class="row">
       <div class="twelve columns">
         <h3><%= @user.name %> Data</h3>
-        <h5><%= @user.name %>'s Active Sites</h5>
+        <h5><%= @user.name %>'s Active Project</h5>
         <table>
           <thead>
             <tr>
@@ -15,20 +15,20 @@
             </tr>
           </thead>
           <tbody>
-            <% @user.active_sites.each do |site| %>
+            <% @user.active_project.each do |project| %>
               <tr>
-                <td><%= link_to site.name, site_owner_data_site_path(site) %></td>
-                <td><%= site.url %></td>
+                <td><%= link_to project.name, project_owner_data_project_path(project) %></td>
+                <td><%= project.url %></td>
                 <td>
-                  <%= @user.admin_of_site?(site) %>
-                  <% if @user.admin_of_site?(site) %>
-                    <%= link_to "Remove as Admin", user_site_path(@user.find_user_site(site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
+                  <%= @user.admin_of_project?(project) %>
+                  <% if @user.admin_of_project?(project) %>
+                    <%= link_to "Remove as Admin", user_project_path(@user.find_user_project(project), user_project: { admin: false }), method: "put", class: "button button-warning button-inline" %>
                   <% else %>
-                    <%= link_to "Set as Admin", user_site_path(@user.find_user_site(site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+                    <%= link_to "Set as Admin", user_project_path(@user.find_user_project(project), user_project: { admin: true }), method: "put", class: "button button-primary button-inline" %>
                   <% end %>
                 </td>
-                <td><%= @user.messages_by_site(site).count %></td>
-                <td><%= @user.conversations_by_site(site).count %></td>
+                <td><%= @user.messages_by_project(project).count %></td>
+                <td><%= @user.conversations_by_project(project).count %></td>
               </tr>
             <% end %>
           </tbody>

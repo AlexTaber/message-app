@@ -1,4 +1,4 @@
-//has to go on users site
+//has to go on users project
 jQuery(document).ready(function($){
     $( "#pwd-open-btn" ).click(function() {
         $( ".pwd-init" )
@@ -10,7 +10,7 @@ jQuery(document).ready(function($){
               } else {
                 $('#pwd-open-btn').text('_');
               }
-        
+
       });
     //https://css-tricks.com/snippets/jquery/draggable-without-jquery-ui/
 (function($) {

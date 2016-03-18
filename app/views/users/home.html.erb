@@ -6,27 +6,27 @@
 <% end %>
 <div id='manage-users' class='modal-window'>
   <div>
-    <h1>Manage Users of <%= @site.name %></h1>
+    <h1>Manage Users of <%= @project.name %></h1>
   <section class="tabs">
     <div class="overflow-visible">
       <ul class="tab-list">
-        <li class="tab1 active-tab"><a href="#"><%= @site.name %> Users</a></li>
+        <li class="tab1 active-tab"><a href="#"><%= @project.name %> Users</a></li>
         <li class="tab2"><a href="#">Add Users</a></li>
         <li class="tab3"><a href="#">Invite Users</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab1 active-tab">
-          <% if @site.has_other_users?(current_user) %>
-            <div id="site-user-list">
-              <% @site.other_users(current_user).each do |user| %>
+          <% if @project.has_other_users?(current_user) %>
+            <div id="project-user-list">
+              <% @project.other_users(current_user).each do |user| %>
               <p>
                 <%= user.name %>
                 <span class="manage-user-opts">
-                  <%= link_to "Remove", user_site_path(user.find_user_site(@site)), method: "delete", class: "button button-warning button-inline" %>
-                  <% if user.find_user_site(@site).admin %>
-                    <%= link_to "Remove as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: false }), method: "put", class: "button button-warning button-inline" %>
+                  <%= link_to "Remove", user_project_path(user.find_user_project(@project)), method: "delete", class: "button button-warning button-inline" %>
+                  <% if user.find_user_project(@project).admin %>
+                    <%= link_to "Remove as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: false }), method: "put", class: "button button-warning button-inline" %>
                   <% else %>
-                  <%= link_to "Set as Admin", user_site_path(user.find_user_site(@site), user_site: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+                  <%= link_to "Set as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "button button-primary button-inline" %>
                   <% end %>
                 </span>
                 <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
@@ -34,16 +34,16 @@
             <% end %>
           </div>
         <% else %>
-          <p>There aren't any other users on this site yet!</p>
+          <p>There aren't any other users on this project yet!</p>
         <% end %>
         </div>
         <div class="tab2">
         <p>If the person is already a MercuryApp user, use the search form below, then press enter.</p>
-        <%= render partial: "layouts/site_typeahead", locals: { site: @site } %>
+        <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
         </div>
         <div class="tab3">
-         <p>If the person isn't on MercuryApp yet, enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your site.</p>
-        <%= render partial: "invites/form", locals: { invite: @invite, site: @site } %>
+         <p>If the person isn't on MercuryApp yet, enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your project.</p>
+        <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
         </div>
       </div>
     </div>
@@ -56,18 +56,18 @@
 <div class='mask close-modal'></div>
 <div id='window' class='modal-window'>
   <div>
-    <h1>Awesome! Let's add a new site to your Organization</h1>
-    <%= render partial: "sites/form", locals: { site: @new_site } %>
+    <h1>Awesome! Let's add a new project to your Organization</h1>
+    <%= render partial: "projects/form", locals: { project: @new_project } %>
     <div>&nbsp;</div>
-    <p>You will be emailed a site token to be used to validate our WordPress Plugin</p>
+    <p>You will be emailed a project token to be used to validate our WordPress Plugin</p>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
 
-<div id='edit-site' class='modal-window'>
+<div id='edit-project' class='modal-window'>
   <div>
-    <h1>Awesome! Let's update your site</h1>
-    <%= render partial: "sites/form", locals: { site: @site } %>
+    <h1>Awesome! Let's update your project</h1>
+    <%= render partial: "projects/form", locals: { project: @project } %>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
@@ -75,7 +75,7 @@
 <div id='send-request' class='modal-window'>
   <div>
     <h1>Send Request</h1>
-    <p>Type in site name you want to join and press enter</p>
+    <p>Type in project name you want to join and press enter</p>
     <%= render partial: "requests/typeahead", locals: { my_request: @request } %>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
@@ -83,21 +83,21 @@
 
 <div id='delete' class='modal-window'>
   <div>
-    <h1>Are you sure you want to delete your site?</h1>
-    <%= form_for @site do |f| %>
+    <h1>Are you sure you want to delete your project?</h1>
+    <%= form_for @project do |f| %>
       <%= f.hidden_field :active, value: false %>
-      <%= f.submit "Delete #{@site.name}", class: "button button-primary" %>
+      <%= f.submit "Delete #{@project.name}", class: "button button-primary" %>
     <% end %>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
 
-<% if current_user.admin_of_site?(@site) %>
+<% if current_user.admin_of_project?(@project) %>
   <div id='requests' class='modal-window'>
     <div>
-      <% if @site.has_pending_requests? %>
+      <% if @project.has_pending_requests? %>
       <h1>All Pending Requests</h1>
-      <% @site.pending_requests.each do |request| %>
+      <% @project.pending_requests.each do |request| %>
       <%= render partial: "requests/card", locals: { request: request } %>
       <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
       <% end %>
@@ -151,7 +151,7 @@
  <nav class="mobile-info mobile-nav show-mobile">
     <div class="mobile-icons">
       <%= link_to splash_path do %><i class="fa fa-home"></i> <% end %>
-      <i class="fa fa-globe mobile-active" id="mobile-sites"></i>
+      <i class="fa fa-globe mobile-active" id="mobile-projects"></i>
       <i class="fa fa-comments" id="mobile-convos"></i>
       <i class="fa fa-comment" id="mobile-messages"></i>
       <i class="fa fa-user" id="msg-bx-acct-btn"></i>
@@ -172,48 +172,48 @@
   <!-- INBOX SIDEBAR -->
   <div class="inbox-sidebar mobile-target">
     <header>
-      <b>Your</b> sites
-        <%= link_to new_site_path, class: "activate-modal add-btn", name: "window" do %>
-        <i class="fa fa-plus" title="Add a new site"></i>
+      <b>Your</b> Projects
+        <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
+        <i class="fa fa-plus" title="Add a new project"></i>
         <% end %>
       </header>
-    <nav class="site-list">
-      <% current_user.active_sites_ordered_by_admin.each do |site| %>
+    <nav class="project-list">
+      <% current_user.active_projects_ordered_by_admin.each do |project| %>
 
-      <% unless current_user.admin_of_site?(site) %>
-        <div class="non-admin-user" id="site-<%= site.id %>">
+      <% unless current_user.admin_of_project?(project) %>
+        <div class="non-admin-user" id="project-<%= project.id %>">
       <% else %>
         <div>
       <% end %>
-        <% if site.has_alert?(current_user) %>
-          <li class="is-unread-site ellipsis">
+        <% if project.has_alert?(current_user) %>
+          <li class="is-unread-project ellipsis">
         <% else %>
           <li class="ellipsis">
         <% end %>
-            <% if site == @admin_site %>
-                <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit Site"></i>
+            <% if project == @admin_project %>
+                <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit project"></i>
             <% end %>
-            <% if current_user.admin_of_site?(site) %>
+            <% if current_user.admin_of_project?(project) %>
               <i class="fa fa-user admin-profile"></i>
             <% end %>
-            <% if site == @site %>
-            <b class="open-accordian site-target"><%= link_to site.name, '#' %></b>
+            <% if project == @project %>
+            <b class="open-accordian project-target"><%= link_to project.name, '#' %></b>
             <% else %>
-            <%= link_to site.name, home_path(site_id: site.id) %>
+            <%= link_to project.name, home_path(project_id: project.id) %>
             <% end %>
-            <% if site == @admin_site %>
+            <% if project == @admin_project %>
               <div class="accordian-content">
 
-              <ul class="edit-site-list">
+              <ul class="edit-project-list">
                   <li>
                     <%= link_to "Add/Remove Users", "#", class: "activate-modal", name: "manage-users" %>
                   </li>
                   <li>
-                    <%= link_to "Edit Site", edit_site_path(@site), class: "activate-modal", name: "edit-site" %>
+                    <%= link_to "Edit project", edit_project_path(@project), class: "activate-modal", name: "edit-project" %>
                   </li>
                   <li>
                     <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
-                  <% if site.has_pending_requests? %>
+                  <% if project.has_pending_requests? %>
                     &bull;
                   <% end %>
                   </li>
@@ -226,23 +226,23 @@
           </li>
         </div>
       <% end %>
-      <% if current_user.has_unapproved_sites? %>
+      <% if current_user.has_unapproved_projects? %>
         <div class="text-center" id="invites-title">Invites</div>
       <% end %>
-      <% current_user.unapproved_sites.each do |site| %>
-        <%= render partial: "user_sites/form", locals: { user_site: current_user.find_user_site(site) } %>
+      <% current_user.unapproved_projects.each do |project| %>
+        <%= render partial: "user_projects/form", locals: { user_project: current_user.find_user_project(project) } %>
       <% end %>
-        <% unless current_user.has_active_sites? %>
+        <% unless current_user.has_active_projects? %>
       <div class="welcome-msg">
-        <p>This section will list all of the sites you belong to automatically, as well as your admin sites.</p> <!-- <p>To create an admin site hit the plus next to "My Sites". You can always view message in the help section.</p> -->
+        <p>This section will list all of the projects you belong to automatically, as well as your admin projects.</p> <!-- <p>To create an admin project hit the plus next to "My projects". You can always view message in the help section.</p> -->
         <div class="text-center">
-          <button class="button button-primary activate-modal" name="window">Add Site</button>
+          <button class="button button-primary activate-modal" name="window">Add Project</button>
         </div>
       </div>
     <% end %>
       <div class="send-request">
         <div class="welcome-msg">
-          <p>If you wish to be added to an existing site, click below to send a request to the admin of that site.</p>
+          <p>If you wish to be added to an existing project, click below to send a request to the admin of that project.</p>
           <div class="text-center">
             <button class="button button-primary activate-modal" name="send-request">Send Request</button>
           </div>
@@ -250,20 +250,20 @@
       </div>
     </nav>
   </div>
-  <!-- End Your Sites Sidebar -->
-  <!-- Current Site Data and Conversations Area -->
+  <!-- End Your projects Sidebar -->
+  <!-- Current project Data and Conversations Area -->
   <div class="message-bar mobile-target">
-    <nav class="current-site-data">
+    <nav class="current-project-data">
      <header>
-        <b><%= @site.name %></b> &nbsp;
+        <b><%= @project.name %></b> &nbsp;
         <% if @tasks %>
-          <%= link_to "Conversations", root_path(site_id: @site.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+          <%= link_to "Conversations", root_path(project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
           Tasks
         <% else %>
           Conversations  |
-          <%= link_to "Tasks", root_path(tasks: true, site_id: @site.id, user_ids: @conversation.user_ids), class: "convo-links" %>
+          <%= link_to "Tasks", root_path(tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
         <% end %>
-        <%= link_to home_path(tasks: @tasks, site_id: @site.id, new_conversation: true), class: "add-btn" do %>
+        <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
           <i class="fa fa-plus"></i>
         <% end %>
         <div id="new-message">
@@ -271,7 +271,7 @@
       </header>
     </nav>
 
-    <% if @conversation.new_record? && current_user.has_active_sites?  %>
+    <% if @conversation.new_record? && current_user.has_active_projects?  %>
       <div class="message-item msg-item-current new-convo-placeholder">
       <div class="media">
            <% if current_user.image %>
@@ -290,28 +290,28 @@
           <p>Start messaging now</p>
         </div>
       </div>
-      <% if @site.has_conversations? %>
-        <%= link_to home_path(site_id: @site.id), class: "close-new-convo" do %>
+      <% if @project.has_conversations? %>
+        <%= link_to home_path(project_id: @project.id), class: "close-new-convo" do %>
           <i class="fa fa-times"></i>
         <% end %>
       <% end %>
     </div>
   <% end %>
 
-  <% current_user.ordered_conversations_by_site(@site).each do |conversation| %>
+  <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
     <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
-      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, site: @site, user: current_user, tasks: @tasks } %>
+      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
     </div>
   <% end %>
 
   </div>
-  <!-- End Current Site Data and Conversations Area -->
+  <!-- End Current project Data and Conversations Area -->
   <!-- Message Content Section -->
   <div class="message-center mobile-target">
       <header>
       <i>To:</i>
       <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-      <%= render partial: "layouts/typeahead_form", locals: { site: @site, conversation: @conversation, token: nil, tasks: @tasks } %>
+      <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
        <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
       </header>
 
@@ -336,7 +336,7 @@
     <div id="form-wrapper">
     <% if @conversation.other_users(current_user).length > 0 %>
       <% if @conversation.new_record? %>
-        <%= render partial: "conversations/form", locals: { site: @site, conversation: @conversation, tasks: @tasks } %>
+        <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks } %>
       <% else %>
         <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks } %>
       <% end %>
@@ -351,12 +351,12 @@
    </div>
 </div>
 
-<% if current_user.active_sites_ordered_by_admin.length > 0 %>
+<% if current_user.active_projects_ordered_by_admin.length > 0 %>
 
   <!-- I-Frame -->
   <div id="fixed-iframe" class="pwd-init pwd-closed is-draggable">
     <a href="#" id="pwd-open-btn" draggable="false"> <span>+</span></a>
     <a href="#" id="pwd-move-btn" draggable="false"> <span>&harr;</span></a>
-    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.active_sites.first.token %>"></iframe>
+    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.active_projects.first.token %>"></iframe>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
 class Request < ActiveRecord::Base
   belongs_to :user
-  belongs_to :site
+  belongs_to :project
 
-  validates :user_id, :site_id, presence: true
+  validates :user_id, :project_id, presence: true
 end

@@ -9,7 +9,7 @@
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :site_id, value: site.id %>
+  <%= f.hidden_field :project_id, value: project.id %>
   <% @conversation.user_ids.each do |user_id| %>
     <%= f.hidden_field :user_ids, multiple: true, value: user_id %>
   <% end %>

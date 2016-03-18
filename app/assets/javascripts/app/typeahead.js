@@ -1,15 +1,15 @@
 $(document).ready(function() {
-  if(typeof siteId !== 'undefined') {
+  if(typeof projectId !== 'undefined') {
     $.ajax({
       url: '/typeahead',
       method: "GET",
       data: {
-        site_id: siteId
+        project_id: projectId
       }
     }).done(function(response){
-      var site_users = response.site_users;
+      var project_users = response.project_users;
       var all_users = response.all_users;
-      var all_sites = response.all_sites;
+      var all_projects = response.all_projects;
       console.log(response);
 
       var substringMatcher = function(users, query) {
@@ -45,12 +45,12 @@ $(document).ready(function() {
         minLength: 1,
       },
       {
-        name: 'site_users',
+        name: 'project_users',
         displayKey: 'name',
-        source: substringMatcher(site_users, 'name')
+        source: substringMatcher(project_users, 'name')
       });
 
-      $('.site-typeahead').typeahead({
+      $('.project-typeahead').typeahead({
         hint: false,
         highlight: true,
         minLength: 1,
@@ -67,9 +67,9 @@ $(document).ready(function() {
         minLength: 1,
       },
       {
-        name: 'all_sites',
+        name: 'all_projects',
         displayKey: 'name',
-        source: substringMatcher(all_sites, 'name')
+        source: substringMatcher(all_projects, 'name')
       });
 
       $('.convo-typeahead').on('typeahead:select', function (e, datum) {
@@ -80,20 +80,20 @@ $(document).ready(function() {
         $("#user_id").val(datum['id']);
       });
 
-      $('.site-typeahead').on('typeahead:select', function (e, datum) {
+      $('.project-typeahead').on('typeahead:select', function (e, datum) {
         $("#add-user-id").val(datum['id']);
-        $('#site-typeahead').submit();
+        $('#project-typeahead').submit();
       });
-      $('.site-typeahead').on('typeahead:cursorchange', function (e, datum) {
+      $('.project-typeahead').on('typeahead:cursorchange', function (e, datum) {
         $("#add-user-id").val(datum['id']);
       });
 
       $('.request-typeahead').on('typeahead:select', function (e, datum) {
-        $("#request_site_id").val(datum['id']);
+        $("#request_project_id").val(datum['id']);
         $('#request-typeahead').submit();
       });
       $('.request-typeahead').on('typeahead:cursorchange', function (e, datum) {
-        $("#request_site_id").val(datum['id']);
+        $("#request_project_id").val(datum['id']);
       });
       //end ajax response---
     });

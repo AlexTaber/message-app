@@ -19,15 +19,15 @@
 <div class="menu-bar mobile-nav">
   <span><%= link_to 'MercuryApp', splash_path %></span>
   <!-- User Account Section -->
-  <% if @site %>
+  <% if @project %>
     <nav class="profile-data">
-      <span><%= @site.name %></span>
+      <span><%= @project.name %></span>
    </nav>
   <% end %>
 </div>
  <nav class="mobile-info mobile-nav">
     <div class="mobile-icons">
-      <i class="fa fa-globe mobile-active" id="mobile-sites"></i>
+      <i class="fa fa-globe mobile-active" id="mobile-projects"></i>
       <i class="fa fa-comments" id="mobile-convos"></i>
       <i class="fa fa-comment" id="mobile-messages"></i>
       <i class="fa fa-user" id="msg-bx-acct-btn"></i>

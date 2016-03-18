@@ -11,10 +11,10 @@
         <% end %>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
-        <% if current_user.has_unread_conversations_other_sites?(@site) %>
-          <i class="fa fa-globe is-unread-icon" id="sites-btn"></i>
+        <% if current_user.has_unread_conversations_other_projects?(@project) %>
+          <i class="fa fa-globe is-unread-icon" id="projects-btn"></i>
         <% else %>
-          <i class="fa fa-globe" id="sites-btn"></i>
+          <i class="fa fa-globe" id="projects-btn"></i>
         <% end %>
           <i class="fa fa-user" id="acct-btn"></i>
         </span>
@@ -23,28 +23,28 @@
     <!--# END Message Box Header #-->
 
 
-      <!--# Sites Dropdown #-->
-      <div id="mb-sites-dropdown" class="mb-dropdown mb-sites-request-dropdown">
-        <p><b>Your Sites</b></p>
-        <ul id='site-list'>
-          <% current_user.sites.each do |site| %>
+      <!--# projects Dropdown #-->
+      <div id="mb-projects-dropdown" class="mb-dropdown mb-projects-request-dropdown">
+        <p><b>Your projects</b></p>
+        <ul id='project-list'>
+          <% current_user.projects.each do |project| %>
             <li>
-              <% if @site == site %>
-                <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'is-active' %>
+              <% if @project == project %>
+                <%= link_to project.name, "http://#{project.url}", target: '_blank', class: 'is-active' %>
               <% else %>
-                <% if current_user.has_unread_conversations_by_site?(site) %>
-                  <%= link_to site.name, "http://#{site.url}", target: '_blank', class: 'is-unread-site' %>
+                <% if current_user.has_unread_conversations_by_project?(project) %>
+                  <%= link_to project.name, "http://#{project.url}", target: '_blank', class: 'is-unread-project' %>
                 <% else %>
-                  <%= link_to site.name, "http://#{site.url}", target: '_blank' %>
+                  <%= link_to project.name, "http://#{project.url}", target: '_blank' %>
                 <% end %>
               <% end %>
             </li>
           <% end %>
         </ul>
       </div>
-      <!--# END Sites Dropdown #-->
+      <!--# END projects Dropdown #-->
 
-      <!--# Sites Dropdown #-->
+      <!--# projects Dropdown #-->
       <div id="mb-acct-dropdown" class="mb-dropdown">
         <p><b>Your Account</b></p>
         <ul id='acct-list'>
@@ -58,15 +58,15 @@
             <%= link_to 'Upgrade', edit_user_path(current_user), target: '_blank' %>
           </li>
           <li>
-            <%= link_to 'Log Out', logout_path(message_box: true, token: @site.token) %>
+            <%= link_to 'Log Out', logout_path(message_box: true, token: @project.token) %>
           </li>
         </ul>
       </div>
-      <!--# END Sites Dropdown #-->
+      <!--# END projects Dropdown #-->
 
 
 
-			<%= render partial: "form", locals: { request: @request, site: @site } %>
+			<%= render partial: "form", locals: { request: @request, project: @project } %>
 
 		</div>
 	</div>

@@ -4,17 +4,17 @@ Rails.application.routes.draw do
       get :user_owner_data
     end
   end
-  resources :sites, only: [:new, :create, :edit, :update, :destroy] do
+  resources :projects, only: [:new, :create, :edit, :update, :destroy] do
     member do
       get :add_users
-      get :site_owner_data
+      get :project_owner_data
     end
   end
   resources :conversations, only: [:new, :create, :destroy]
   resources :messages, only: [:create]
   resources :requests, only: [:new, :create, :update]
   resources :invites, only: [:new, :create]
-  resources :user_sites, only: [:update, :destroy]
+  resources :user_projects, only: [:update, :destroy]
   resources :subscriptions, only: [:new, :create, :edit, :update, :destroy]
   resources :password_recoveries, only: [:new, :create] do
     member do
