@@ -256,14 +256,7 @@
     <nav class="current-project-data">
      <header>
         <b><%= @project.name %></b> &nbsp;
-        <% if @tasks %>
-          <%= link_to "Conversations", root_path(project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
-          Tasks
-        <% else %>
-          Conversations  |
-          <%= link_to "Tasks", root_path(tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
-        <% end %>
-        <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
+                <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
           <i class="fa fa-plus"></i>
         <% end %>
         <div id="new-message">
@@ -314,6 +307,15 @@
       <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
        <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
       </header>
+      <div class="task-conversation-switch text-center">
+      <% if @tasks %>
+          <%= link_to "View Conversations", root_path(project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+          Tasks
+        <% else %>
+          Conversations  |
+          <%= link_to "View Tasks", root_path(tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
+        <% end %>
+      </div>
 
       <div class="msg-bx-convo app-view">
         <% if @tasks %>
@@ -343,7 +345,7 @@
     <% end %>
     </div>
   </div>
-    <div id="mobile-current-account" class="mobile-target">
+  <div id="mobile-current-account" class="mobile-target">
      <p><b><%= current_user.name %>'s Acount</b></p>
      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
      <li><%= link_to 'Upgrade', root_path %></li>
