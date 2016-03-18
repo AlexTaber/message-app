@@ -1,4 +1,4 @@
-<%= form_for conversation do |f| %>
+<%= form_for conversation, html: { id: "#{mb ? 'new-conversation-form' : 'new_conversation'}" } do |f| %>
 
   <div>
     <% if tasks %>

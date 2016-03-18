@@ -336,9 +336,9 @@
     <div id="form-wrapper">
     <% if @conversation.other_users(current_user).length > 0 %>
       <% if @conversation.new_record? %>
-        <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks } %>
+        <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: false } %>
       <% else %>
-        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks } %>
+        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: false } %>
       <% end %>
     <% end %>
     </div>
