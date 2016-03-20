@@ -63,18 +63,18 @@ a:hover {
   }
 
   &.tab1 {
-    color: rgba($brand-color, 1);
-
-    a {
-      color: rgba($brand-color, 0.8);
-    }
-  }
-
-  &.tab2 {
     color: rgba($full-green, 1);
 
     a {
       color: rgba($full-green, 0.8);
+    }
+  }
+
+  &.tab2 {
+    color: rgba($full-red, 1);
+
+    a {
+      color: rgba($full-red, 0.8);
     }
   }
 
@@ -212,16 +212,30 @@ a:hover {
     position: absolute;
     width: 0px;
     height: 400px;
-    object-fit: cover;
-    object-position: center left;
+    background-size: cover;
+    background-position: center left;
     margin-left: 0px;
     margin-top: 100px;
     z-index: 0;
     -webkit-transition: 1.2s; /* Safari */
     transition: 1.2s;
 
+    div {
+      height: 400px;
+      width: 100%;
+      background-color: rgba($black, 0.32);
+    }
+
     &#lt-img-0 {
-      background-image: url('src="https://s3.amazonaws.com/mercury-app-assets/mercury-feature.jpg');
+      background-image: url('https://s3.amazonaws.com/mercury-app-assets/mercury-feature.jpg');
+    }
+
+    &#lt-img-1 {
+      background-image: url('https://s3.amazonaws.com/mercury-app-assets/home1.jpg');
+    }
+
+    &#lt-img-2 {
+      background-image: url('https://s3.amazonaws.com/mercury-app-assets/home2.jpg');
     }
   }
 
@@ -239,11 +253,11 @@ a:hover {
     }
 
     &.tab1 {
-      background-color: rgba($brand-color, 0.5);
+      background-color: rgba($full-green, 0.5);
     }
 
     &.tab2 {
-      background-color: rgba($full-green, 0.5);
+      background-color: rgba($full-red, 0.5);
     }
   }
 
@@ -261,18 +275,22 @@ a:hover {
 
   .lt-quip {
     position: absolute;
-    margin-left: 20%;
-    margin-top: 420px;
+    margin-left: 22%;
+    width: 62%;
+    margin-top: 370px;
     color: $white;
     z-index: 2;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: right;
 
     span {
-      display: inline-block;
       width: 20px;
       height: 2px;
       background-color: $white;
       vertical-align: middle;
       margin-right: 5px;
+      display: none;
     }
   }
 
@@ -289,11 +307,11 @@ a:hover {
     }
 
     &.tab1 {
-      color: rgba($brand-color, 0.5);
+      color: rgba($full-green, 0.5);
     }
 
     &.tab2 {
-      color: rgba($full-green, 0.5);
+      color: rgba($full-red, 0.5);
     }
   }
 
@@ -313,11 +331,11 @@ a:hover {
     }
 
     &.tab1 {
-      color: rgba($brand-color, 0.6);
+      color: rgba($full-green, 0.6);
     }
 
     &.tab2 {
-      color: rgba($full-green, 0.6);
+      color: rgba($full-red, 0.6);
     }
   }
 
@@ -359,11 +377,11 @@ a:hover {
   }
 
   &.tab1 span {
-    background-color: rgba($brand-color, 1);
+    background-color: rgba($full-green, 1);
   }
 
   &.tab2 span {
-    background-color: rgba($full-green, 1);
+    background-color: rgba($full-red, 1);
   }
 }
 
@@ -469,24 +487,24 @@ a:hover {
   .circle {
     position: relative;
     display: inline-block;
-    width: 10px;
-    height: 5px;
+    width: 12px;
+    height: 8px;
     border-radius: 0px;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 14px;
+    margin-right: 14px;
     background-color: rgba($black, 0.5);
     vertical-align: middle;
     -webkit-transition: 0.1s; /* Safari */
     transition: 0.1s;
 
     &:hover {
-      height: 10px;
+      height: 12px;
       border-radius: 3px;
     }
   }
 
   .is-active {
-    height: 10px;
+    height: 12px;
     border-radius: 3px;
 
     &.tab0 {
@@ -494,11 +512,11 @@ a:hover {
     }
 
     &.tab1 {
-      background-color: rgba($brand-color, 1);
+      background-color: rgba($full-green, 1);
     }
 
     &.tab2 {
-      background-color: rgba($full-green, 1);
+      background-color: rgba($full-red, 1);
     }
   }
 }
@@ -519,11 +537,11 @@ a:hover {
       }
 
       &.tab1 {
-        color: rgba($brand-color, 0.15);
+        color: rgba($full-green, 0.15);
       }
 
       &.tab2 {
-        color: rgba($full-green, 0.15);
+        color: rgba($full-red, 0.15);
       }
     }
 
@@ -538,6 +556,13 @@ a:hover {
 
     .lt-quip {
       margin-left: 200px;
+      width: 450px;
+      margin-top: 420px;
+      text-align: left;
+
+      span {
+        display: inline-block;
+      }
     }
 
     &.is-active {
