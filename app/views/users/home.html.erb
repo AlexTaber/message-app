@@ -199,7 +199,7 @@
       <% unless current_user.admin_of_project?(project) %>
         <div class="non-admin-user" id="project-<%= project.id %>">
       <% else %>
-        <div>
+        <div id="project-<%= project.id %>">
       <% end %>
         <% if project.has_alert?(current_user) %>
           <li class="is-unread-project ellipsis">
