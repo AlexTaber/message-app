@@ -97,6 +97,38 @@ input:-webkit-autofill {
   i {
     font-size:50px;
   }
+  input{
+    border-radius:5px;
+    border:1px solid #ddd;
+    margin:10px 5px 10px 5px;
+  }
+  #user_email{
+    width:calc(100% - 80px) !important;
+  }
+  .button{
+    margin-top:10px;
+  }
+  &>div{
+    display:inline-block;
+    width: 600px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    padding:50px;
+  }
+  img{
+    display: block;
+  }
+  .sign-up-button{
+    display:block;
+    margin: 0 auto;
+    width:200px;
+    padding:0;
+
+  }
+  .button-create{
+    background-color: $pwdlight !important;
+    margin-top:-5px;
+  }
 }
 .signup-warning{
   border:1px solid #ED1C24 !important;

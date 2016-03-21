@@ -182,22 +182,9 @@ $("#profile-uploader").change(function(){
 
 
 //signup-form validation
-$('.username-next').on('click', function(){
-  validateUserData({ user: {
-    username: $('#user_username').val()
-  } }, this);
-});
-
-$('.email-next').on('click', function(){
-  validateUserData({ user: {
-    email: $('#user_email').val(),
-    first_name: $('#user_first_name').val(),
-    last_name: $('#user_last_name').val()
-  } }, this);
-});
-
-$('.password-next').on('click', function(){
-  if(!$('#user_password').val()){
+$('.email-next').on('click', function(e){
+  e.preventDefault();
+   if(!$('#user_password').val()){
     $('#user_password').addClass('signup-warning');
     $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please choose a password</p>');
@@ -216,6 +203,23 @@ $('.password-next').on('click', function(){
   } else {
     nextButton(this)
   }
+  validateUserData({ user: {
+    email: $('#user_email').val(),
+    first_name: $('#user_first_name').val(),
+    last_name: $('#user_last_name').val()
+  } }, this);
+});
+
+
+$('.username-next').on('click', function(){
+  validateUserData({ user: {
+    username: $('#user_username').val()
+  } }, this);
+});
+
+
+$('.password-next').on('click', function(){
+ 
 });
 
 //remove validation warnings when field is not empty
