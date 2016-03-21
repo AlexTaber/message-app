@@ -325,10 +325,10 @@
       </header>
       <div class="task-conversation-switch text-center">
       <% if @tasks %>
-          <%= link_to "View Conversations", root_path(project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+          <%= link_to "View Conversation", root_path(project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
           Tasks
         <% else %>
-          Conversations  |
+          Conversation  |
           <%= link_to "View Tasks", root_path(tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
         <% end %>
       </div>

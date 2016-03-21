@@ -1,4 +1,7 @@
 <%= javascript_include_tag "message_box/message_box" %>
+<% if @lazy_load %>
+  <%= javascript_tag "lazyLoadIndex = #{@lazy_load}" %>
+<% end %>
 
 <div id="ajax-loader-message">
   <div class="cssload-thecube">
@@ -153,9 +156,7 @@
                   <% end %>
                 </div>
               <% else %>
-                <% @conversation.messages.each do |message| %>
-                  <%= render partial: "messages/message", locals: { message: message } %>
-                <% end %>
+                <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
               <% end %>
             </div>
           <% else %>
