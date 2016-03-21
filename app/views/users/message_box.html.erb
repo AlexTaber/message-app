@@ -31,19 +31,11 @@
           <% else %>
             <i class="fa fa-globe" id="projects-btn"></i>
           <% end %>
-          <% if @tasks %>
-            <% if current_user.has_unread_conversations_by_project?(@project) %>
-              <i class="fa fa-check-circle-o is-unread-icon" id="convos-btn"></i>
-            <% else %>
-              <i class="fa fa-check-circle-o" id="convos-btn"></i>
-            <% end %>
-          <% else %>
             <% if current_user.has_unread_conversations_by_project?(@project) %>
               <i class="fa fa-comment is-unread-icon" id="convos-btn"></i>
             <% else %>
               <i class="fa fa-comment" id="convos-btn"></i>
             <% end %>
-          <% end %>
           <i class="fa fa-user" id="acct-btn"></i>
         </span>
       </p>
@@ -128,7 +120,7 @@
 
           <% if @conversation.other_users(current_user).length > 0 %>
             <div class="msg-bx-meta">
-              <p><small>
+              <p>
                 <!-- <b><%= @project.name %>&nbsp;</b> -->
                 <% if @tasks %>
                   <%= link_to "Conversations", message_box_path(token: @project.token, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
@@ -137,7 +129,7 @@
                   Conversations  |
                   <%= link_to "Tasks", message_box_path(token: @project.token, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
                 <% end %>
-              </small></p>
+              </p>
             </div>
 
             <div class="msg-bx-convo">

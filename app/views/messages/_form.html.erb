@@ -12,5 +12,7 @@
   <% if tasks %>
     <%= hidden_field_tag :tasks, tasks %>
   <% end %>
-  <%= f.submit class: 'button button-primary', value: 'send' %>
+  <%= button_tag(class: "button button-primary") do %>
+    <i class="fa fa-paper-plane"></i>
+  <% end %>
 <% end %>
