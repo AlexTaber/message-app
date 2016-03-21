@@ -130,6 +130,17 @@ input:-webkit-autofill {
     margin-top:-5px;
   }
 }
+@media(min-width:550px){
+  .signup-page{
+    &>div{
+      display:inline-block;
+      width: calc(100% - 20px);
+      border-radius:10px;
+      border:1px solid #ddd;
+      padding:50px;
+    }
+  }
+}
 .signup-warning{
   border:1px solid #ED1C24 !important;
 }
