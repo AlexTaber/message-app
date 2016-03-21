@@ -1,11 +1,11 @@
 <%= form_for user do |f| %>
 <div class="signup">
 
-  <div class="signup-page" style="display:none;">
+  <div class="signup-page">
     <div>
       <i class="fa fa-comment-o"></i><br><br>
       <h2>Projects Messaging and Tasks.</h2>
-      <p><b>All In One Place - Sign Up for Free</b></p> 
+      <p><b>All In One Place - Sign Up for Free</b></p>
       <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
       <%= f.text_field :last_name, placeholder: "Last Name" %> <br>
       <% if @invite %>
@@ -23,11 +23,11 @@
     </div>
   </div>
 
-  <div class="signup-page" >
+  <div class="signup-page"  style="display:none;">
     <div>
       <i class="fa fa-street-view"></i><br><br>
       <h2>Create Your Profile</h2>
-      <p><b>Pick a username and Profile Image. Other users will be able to search for you with your unique username</b></p> 
+      <p><b>Pick a username and Profile Image. Other users will be able to search for you with your unique username</b></p>
       <%= f.text_field :username, placeholder: "Username" %><br>
       <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
      <label for='profile-uploader' class="button button-primary sign-up-button">Choose a Profile Picture</label>
@@ -39,7 +39,7 @@
       <a href="#" class="back-button">Back</a>
     </div>
   </div>
-  
+
 </div>
 
 <% end %>

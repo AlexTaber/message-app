@@ -184,25 +184,28 @@ $("#profile-uploader").change(function(){
 //signup-form validation
 $('.email-next').on('click', function(e){
   e.preventDefault();
-   if(!$('#user_password').val()){
+  if(!$('#user_password').val()){
     $('#user_password').addClass('signup-warning');
     $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please choose a password</p>');
+    return false;
   } else if (!$('#confirm_password').val()){
     $('#confirm_password').addClass('signup-warning');
     $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Please confirm your password</p>');
+    return false;
   } else if ($('#user_password').val() !== $('#confirm_password').val()){
     $('#confirm_password, #user_password').addClass('signup-warning');
     $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Your password and confirmatin must match.</p>');
+    return false;
   } else if ($('#user_password').val().length < 8) {
     $('#confirm_password, #user_password').addClass('signup-warning');
     $('.warning-text').fadeOut(0);
     $(this).prev().before('<p class="warning-text">Your password must be at least 8 characters</p>');
-  } else {
-    nextButton(this)
+    return false;
   }
+
   validateUserData({ user: {
     email: $('#user_email').val(),
     first_name: $('#user_first_name').val(),
@@ -215,11 +218,6 @@ $('.username-next').on('click', function(){
   validateUserData({ user: {
     username: $('#user_username').val()
   } }, this);
-});
-
-
-$('.password-next').on('click', function(){
- 
 });
 
 //remove validation warnings when field is not empty
@@ -242,7 +240,7 @@ $(window).on('load',function(){
 
 //Functions
 function nextButton(target){
-  $(target).parent().fadeOut(0).next().fadeIn();
+  $(target).parent().parent().fadeOut(0).next().fadeIn();
   curNext += 1;
 }
 function readURL(input) {
@@ -465,7 +463,7 @@ function typeaheadAjaxLoader(e) {
 }
 
 function signInSubmit(e) {
-  if(curNext < 4) {
+  if(curNext < 3) {
     if(e.keyCode == 13) {
       var target = $("#next-" + String(curNext));
       e.preventDefault();
