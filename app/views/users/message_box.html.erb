@@ -31,19 +31,11 @@
           <% else %>
             <i class="fa fa-globe" id="projects-btn"></i>
           <% end %>
-          <% if @tasks %>
-            <% if current_user.has_unread_conversations_by_project?(@project) %>
-              <i class="fa fa-check-circle-o is-unread-icon" id="convos-btn"></i>
-            <% else %>
-              <i class="fa fa-check-circle-o" id="convos-btn"></i>
-            <% end %>
-          <% else %>
             <% if current_user.has_unread_conversations_by_project?(@project) %>
               <i class="fa fa-comment is-unread-icon" id="convos-btn"></i>
             <% else %>
               <i class="fa fa-comment" id="convos-btn"></i>
             <% end %>
-          <% end %>
           <i class="fa fa-user" id="acct-btn"></i>
         </span>
       </p>
