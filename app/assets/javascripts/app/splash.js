@@ -16,10 +16,10 @@ window.onload = function() {
   if(totalTabs > 0) {
     //setup tabs
     setTimeout(function() {
-      $("#ajax-loader-message").fadeOut(1000);
+      $("#ajax-loader-message").fadeOut(500);
       nextTab();
       setUpNav();
-    }, 500);
+    }, 200);
 
     //setup arrows
     $("#right-arrow").on('click', nextTab);

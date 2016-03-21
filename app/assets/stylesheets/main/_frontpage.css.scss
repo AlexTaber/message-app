@@ -562,6 +562,10 @@ ul.edit-project-list {
 	text-align: center;
 	display: none;
 	z-index: 4440001;
+
+	&.full {
+		background-color: rgba($white, 1);
+	}
 }
 
 .convo-links {

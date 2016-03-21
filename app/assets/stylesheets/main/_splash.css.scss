@@ -6,6 +6,10 @@
   z-index: 5;
 }
 
+.lead-margin {
+  margin-top: 550px;
+}
+
 .intro {
   padding-top: 10px;
 }
@@ -79,16 +83,21 @@ a:hover {
   }
 
   &.is-transitioned {
-    background-color: rgba($pwdlight, 0.8);
-    color: rgba($white, 1);
+    background-color: rgba($white, 1);
+    color: rgba($pwdlight, 1);
     padding-top: 0px;
+    border-bottom: 1px solid $grey;
 
     a {
-      color: rgba($white, 0.8);
+      color: rgba($pwdlight, 0.8);
     }
   }
+
+  a:hover {
+    color: $black;
+  }
 }
-.pill {
+.navbar .pill {
 	background: rgba($white, .8);
 	padding: 2px 5px;
 	border-radius:2px;
@@ -98,7 +107,7 @@ a:hover {
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 	a {
-  color: $brand-color;
+  color: $black;
 }
 &:hover {
 		background: rgba($white, .25);
@@ -190,16 +199,20 @@ a:hover {
 //alt-splash-styles ---------------
 
 .landing-tabs {
-  position: relative;
+  position: absolute;
   height: 550px;
   z-index: -1;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transform: translateZ(0);
 }
 
 .landing-tab {
   position: fixed;
   width: 90%;
   height: 100%;
-  margin: 0 auto;
   opacity: 0;
   left: 0;
   right: 0;
@@ -221,7 +234,7 @@ a:hover {
     transition: 1.2s;
 
     div {
-      height: 400px;
+      height: 100%;
       width: 100%;
       background-color: rgba($black, 0.32);
     }
@@ -383,6 +396,10 @@ a:hover {
   &.tab2 span {
     background-color: rgba($full-red, 1);
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 #right-arrow {
@@ -500,6 +517,7 @@ a:hover {
     &:hover {
       height: 12px;
       border-radius: 3px;
+      cursor: pointer;
     }
   }
 
