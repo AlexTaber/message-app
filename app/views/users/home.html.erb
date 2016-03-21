@@ -38,12 +38,22 @@
         <% end %>
         </div>
         <div class="tab2">
-        <p>If the person is already a MercuryApp user, use the search form below, then press enter.</p>
-        <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
+          <% if current_user.tier.permit_project_user(@project) %>
+            <p>If the person is already a MercuryApp user, use the search form below, then press enter.</p>
+            <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
+          <% else %>
+            <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
+            <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
+          <% end %>
         </div>
         <div class="tab3">
-         <p>If the person isn't on MercuryApp yet, enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your project.</p>
-        <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
+          <% if current_user.tier.permit_project_user(@project) %>
+            <p>If the person isn't on MercuryApp yet, enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your project.</p>
+            <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
+          <% else %>
+            <p>You have reached the maximum number of users for this project. If you would like to invite more, please upgrade your account!</p>
+            <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -173,8 +183,14 @@
   <div class="inbox-sidebar mobile-target">
     <header>
       <b>Your</b> Projects
-        <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
-        <i class="fa fa-plus" title="Add a new project"></i>
+        <% if current_user.tier.permit_user_project(current_user) %>
+          <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
+            <i class="fa fa-plus" title="Add a new project"></i>
+          <% end %>
+        <% else %>
+          <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
+            <i class="fa fa-plus" title="Add a new project"></i>
+          <% end %>
         <% end %>
       </header>
     <nav class="project-list">
