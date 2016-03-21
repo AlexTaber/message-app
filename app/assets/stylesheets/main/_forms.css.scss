@@ -224,7 +224,11 @@ input:-webkit-autofill {
 // message form -----------
 #form-wrapper{
   background:#eee;
-  height:180px;
+  height:120px;
+  &>form>div{
+    width: calc(100% - 110px);
+    display:inline-block;
+  }
   textarea{
     background-color:#fff;
     height:100px;
@@ -234,20 +238,18 @@ input:-webkit-autofill {
     border:1px solid #ddd;
   }
   .button {
-    width: calc(100% - 20px);
+    width: 90px;
+    height:100px;
     margin: 10px;
+    position:absolute;
+    min-width:0;
+    right:5px;
+    font-size:30px;
   }
 }
 //MEDIA QUERIES----------------------------------------------------
 
 @media(min-width: 550px) {
-  #form-wrapper{
-  .button {
-    float:right;
-    width:auto;
-    margin: 10px;
-  }
-}
   .subscription-form-wrapper {
     height: 100%;
     width: 100%;
