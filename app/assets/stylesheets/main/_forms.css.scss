@@ -101,6 +101,7 @@ input:-webkit-autofill {
     border-radius:5px;
     border:1px solid #ddd;
     margin:10px 5px 10px 5px;
+    min-width:100%;
   }
   #user_email{
     width:calc(100% - 80px) !important;
@@ -110,10 +111,10 @@ input:-webkit-autofill {
   }
   &>div{
     display:inline-block;
-    width: 600px;
+    width: 100%;
     border-radius:10px;
-    border:1px solid #ddd;
-    padding:50px;
+    border:none;
+
   }
   img{
     display: block;
@@ -134,10 +135,13 @@ input:-webkit-autofill {
   .signup-page{
     &>div{
       display:inline-block;
-      width: calc(100% - 20px);
+      width: 600px;
       border-radius:10px;
       border:1px solid #ddd;
       padding:50px;
+    }
+    input {
+      min-width:0;
     }
   }
 }
