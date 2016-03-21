@@ -1,5 +1,5 @@
 (function() {
-  
+
   jQuery(function() {
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
     return subscription.setupForm();
@@ -27,6 +27,7 @@
       return Stripe.createToken(card, subscription.handleStripeResponse);
     },
     handleStripeResponse: function(status, response) {
+      debugger;
       if (status === 200) {
         $('#subscription_stripe_card_token').val(response.id);
         return $('#subscription-form')[0].submit();

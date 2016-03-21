@@ -20,12 +20,14 @@ class UsersController < ApplicationController
     if @user.confirm_password(params[:confirm_password])
       if @user.valid?
         @user.save
+        @subscription = Subscription.new(user_id: @user.id)
+        @subscription.save_with_payment(1)
         send_welcome_email(@user)
         upload_image(params[:user][:file]) if params[:user][:file]
         set_up_invite if params[:invite_token]
         flash[:notice] = "User successfully created"
         cookies.permanent.signed[:user_id] = @user.id
-        redirect_to new_subscription_path
+        redirect_to home_path
       else
         flash[:warn] = "Unable to create user, please try again"
         redirect_to :back
