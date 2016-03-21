@@ -123,6 +123,7 @@ class UsersController < ApplicationController
             @message = Message.new
           end
           @tasks = params[:tasks]
+          @lazy_load = find_lazy_load
         else
           redirect_to new_request_path(token: token)
         end
