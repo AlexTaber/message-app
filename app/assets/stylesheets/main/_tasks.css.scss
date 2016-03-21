@@ -1,9 +1,8 @@
 .task-container {
   width: 100%;
-  background: $grey;
-  margin-bottom: 3px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid $grey;
   padding: 5px;
-  border-radius: 5px;
 
   small{
     display:block;
@@ -30,12 +29,9 @@
     }
 
     &.icon {
-      height: 15px;
-      width:15px;
-      content: " ";
-      border-radius:5px;
-      border: 1px solid $black;
-      padding-top:7px;
+      padding: 7px;
+      border-radius:7px;
+      margin-top: 3px;
       &:hover{
         background: $black;
         cursor: pointer;
@@ -67,21 +63,34 @@
   }
 }
 .completed-tasks-btn{
+  display: block;
+  text-decoration: none;
   margin-top:15px;
 }
 .completed-tasks{
   display:none;
-  .icon{
-    background:$black !important;
-  }
 }
-.pending-tasks, .pending-tasks-mb {
-  .task-container{
-    background:$red;
+.pending-tasks {
+  .task-container {
+    .task-item .icon {
+      background: $red;
+
+      &:hover{
+        background: $green;
+        cursor: pointer;
+      }
+    }
   }
 }
 .completed-tasks {
-  .task-container{
-    background: $green;
+  .task-container {
+    .task-item .icon {
+      background: $green;
+
+      &:hover{
+        background: $red;
+        cursor: pointer;
+      }
+    }
   }
 }
