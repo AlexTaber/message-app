@@ -296,4 +296,12 @@ class User < ActiveRecord::Base
   def format_new_user
     assign_attributes(first_name: first_name.capitalize, last_name: last_name.capitalize, email: email.downcase)
   end
+
+  def claim_from_task(task)
+    claims.find_by(task_id: task.id)
+  end
+
+  def claimed?(task)
+    claim_from_task(task) != nil
+  end
 end

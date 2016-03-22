@@ -1,5 +1,21 @@
 <div class="task-container" id="task-<%= task.id %>">
-<small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
+  <div class="delete-task u-pull-right">
+    <%= link_to task_path(task), method: "DELETE", class: "remove-task" do %>
+      <i class="fa fa-times"></i>
+    <% end %>
+    <!-- claim icons -->
+    <% if current_user.claimed?(task) %>
+      <%= link_to task_path(current_user.claim_from_task(task)), method: "DELETE" do %>
+        <i class="fa fa-cog fa-spin"></i>
+      <% end %>
+    <% else %>
+      <%= link_to tasks_path(task: { user_id: current_user.id, task_id: task.id }), method: "POST" do %>
+        <i class="fa fa-cog"></i>
+      <% end %>
+    <% end %>
+    <!-- end claim icons -->
+  </div>
+  <small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
   <div class="task-item content">
     <% if task.completer_id %>
       <%= link_to task_path(task, task: { completer_id: nil }), method: "PUT", class: "uncomplete-task" do %>
@@ -14,12 +30,12 @@
         <div class="task-item icon"></div>
       <% end %>
 
-      <p><%= task.content %></p>
-    <% end %>
-  </div>
-  <div class="delete-task u-pull-right">
-    <%= link_to task_path(task), method: "DELETE", class: "remove-task" do %>
-      <i class="fa fa-times"></i>
+      <p>
+        <%= task.content %>
+        <% if task.has_claims? %>
+          <br><small><%= task.claim_text %></small>
+        <% end %>
+      </p>
     <% end %>
   </div>
 </div>
