@@ -1,4 +1,6 @@
 class Task < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
   belongs_to :message
 
   def status
@@ -19,5 +21,9 @@ class Task < ActiveRecord::Base
 
   def from_recent_message?
     message.is_recent?
+  end
+
+  def completed_date_s
+    "#{distance_of_time_in_words(DateTime.now, updated_at)} ago"
   end
 end

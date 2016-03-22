@@ -207,7 +207,7 @@
           <li class="ellipsis">
         <% end %>
             <% if project == @admin_project %>
-                <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret" title="Edit project"></i>
+                <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret rotated" title="Edit project"></i>
             <% end %>
             <% if current_user.admin_of_project?(project) %>
               <i class="fa fa-user admin-profile"></i>
@@ -336,9 +336,11 @@
       <div class="msg-bx-convo app-view">
         <% if @tasks %>
           <% unless @conversation.has_pending_tasks? %>
-            <p class="no-pending-tasks">
-              <b>You don't have any pending tasks.</b> <br> If you have completed tasks you can view them by clicking below <br> or add a new task by typing it into the form at the bottom of the page.
-            </p>
+            <div class="pending-tasks">
+              <p class="no-pending-tasks">
+                <b>You don't have any pending tasks.</b> <br> If you have completed tasks you can view them by clicking below <br> or add a new task by typing it into the form at the bottom of the page.
+              </p>
+            </div>
           <% else %>
             <div class="pending-tasks">
               <% @conversation.sorted_pending_tasks.each do |task| %>
