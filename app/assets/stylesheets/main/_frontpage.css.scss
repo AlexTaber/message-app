@@ -398,6 +398,14 @@ ul.edit-project-list {
 			text-decoration: none;
 		}
 	}
+	.no-pending-tasks{
+		text-align:center;
+		background-color: transparent !important;
+		display: block !important;
+		min-width:100% !important;
+		max-width:100% !important;
+		margin:0 !important;
+	}
 	.conversation-preview{
 		width:70%;
 		overflow:hidden;
