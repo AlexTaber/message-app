@@ -16,12 +16,12 @@
           <p><%= conversation.messages.last.user.first_name[0] %></p>
         </div>
       <% end %>
-      <div class="bd">
-        <h4>
-          <%= conversation.abbreviated_other_users_to_s(user, 20) %>
+      <div class="bd conversation-preview">
+        <h4 class="ellipsis">
+          <%= conversation.other_users_to_s(user) %>
         </h4>
-        <p>
-          <%= sanitize(simple_format(conversation.content_preview(30)), :tags => %w(br a)) %>
+        <p class="ellipsis">
+          <%= sanitize(simple_format(conversation.content_preview(100)), :tags => %w(br a)) %>
         </p>
         <p id="tally<%= conversation.id %>">
           <small>
