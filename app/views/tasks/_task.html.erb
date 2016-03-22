@@ -5,14 +5,17 @@
       <%= link_to task_path(task, task: { completed: false }), method: "PUT", class: "uncomplete-task" do %>
         <div class="task-item icon"></div>
       <% end %>
+      <p>
+        <%= task.content %><br>
+        <small>Completed <%= task.completed_date_s %></small>
+      </p>
     <% else %>
       <%= link_to task_path(task, task: { completed: true }), method: "PUT", class: "complete-task" do %>
         <div class="task-item icon"></div>
       <% end %>
+
+      <p><%= task.content %></p>
     <% end %>
-    <p>
-      <%= task.content %>
-    </p>
   </div>
   <div class="delete-task u-pull-right">
     <%= link_to task_path(task), method: "DELETE", class: "remove-task" do %>
