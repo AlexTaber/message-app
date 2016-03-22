@@ -1,7 +1,6 @@
 <%= form_for project do |f| %>
   <div>
     <%= f.text_field :name, placeholder: "Project Name" %> &nbsp;
-    <%= f.text_field :url, placeholder: "www.projectname.com" %>
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>

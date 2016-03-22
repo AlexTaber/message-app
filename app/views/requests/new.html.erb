@@ -30,12 +30,12 @@
           <% current_user.projects.each do |project| %>
             <li>
               <% if @project == project %>
-                <%= link_to project.name, "http://#{project.url}", target: '_blank', class: 'is-active' %>
+                <%= link_to project.name, home_path, target: '_blank', class: 'is-active' %>
               <% else %>
                 <% if current_user.has_unread_conversations_by_project?(project) %>
-                  <%= link_to project.name, "http://#{project.url}", target: '_blank', class: 'is-unread-project' %>
+                  <%= link_to project.name, home_path, target: '_blank', class: 'is-unread-project' %>
                 <% else %>
-                  <%= link_to project.name, "http://#{project.url}", target: '_blank' %>
+                  <%= link_to project.name, home_path, target: '_blank' %>
                 <% end %>
               <% end %>
             </li>

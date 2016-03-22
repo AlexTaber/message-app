@@ -74,10 +74,6 @@ class User < ActiveRecord::Base
     user_project ? user_project.admin : false
   end
 
-  def find_project_by_url(query_url)
-    projects.find { |project| query_url.include?(project.url) }
-  end
-
   def conversations_to_json(project)
     conversations_json = []
     conversations_by_project(project).each_with_index { |conversation, index| conversations_json[index] = conversation.set_json(self) }
