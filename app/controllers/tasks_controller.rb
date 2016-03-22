@@ -58,7 +58,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:message_id, :completed)
+    params.require(:task).permit(:message_id, :completer_id)
   end
 
   def task_by_id
@@ -79,7 +79,7 @@ class TasksController < ApplicationController
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
         task_html: task_html(task, new_record),
         deleted: deleted,
-        completed: task ? task.completed : false,
+        completer_id: task ? task.completer_id : false,
         completed_tasks_count: message.conversation.completed_tasks.count,
         app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: message.conversation, current_conversation: current_conversation, project: message.conversation.project, user: user })
       })

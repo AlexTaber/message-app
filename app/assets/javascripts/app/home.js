@@ -413,7 +413,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       if(tasksMode) {
         $("#task-" + String(data.task_id)).replaceWith("");
 
-        if(data.completed) {
+        if(data.completer_id) {
           $(".completed-tasks").append(data.task_html);
         } else {
           $(".no-pending-tasks").remove();
@@ -439,16 +439,6 @@ function updateTaskListeners() {
   $(".uncomplete-task, .complete-task").on('click', updateTask);
   $(".new-task").on('click', newTask);
   $(".remove-task").on('click', removeTask);
-}
-
-function updateTasksTally(completed, convoId) {
-  var target = $("#tally" + String(convoId));
-
-  if(completed) {
-    target.html()
-  } else {
-
-  }
 }
 
 function validateUserData(data, element) {

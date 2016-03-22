@@ -1,8 +1,8 @@
 <div class="task-container" id="task-<%= task.id %>">
 <small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
   <div class="task-item content">
-    <% if task.completed %>
-      <%= link_to task_path(task, task: { completed: false }), method: "PUT", class: "uncomplete-task" do %>
+    <% if task.completer_id %>
+      <%= link_to task_path(task, task: { completer_id: nil }), method: "PUT", class: "uncomplete-task" do %>
         <div class="task-item icon"></div>
       <% end %>
       <p>
@@ -10,7 +10,7 @@
         <small>Completed <%= task.completed_date_s %></small>
       </p>
     <% else %>
-      <%= link_to task_path(task, task: { completed: true }), method: "PUT", class: "complete-task" do %>
+      <%= link_to task_path(task, task: { completer_id: current_user.id }), method: "PUT", class: "complete-task" do %>
         <div class="task-item icon"></div>
       <% end %>
 
