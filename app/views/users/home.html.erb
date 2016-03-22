@@ -336,9 +336,11 @@
       <div class="msg-bx-convo app-view">
         <% if @tasks %>
           <% unless @conversation.has_pending_tasks? %>
-            <p class="no-pending-tasks">
-              <b>You don't have any pending tasks.</b> <br> If you have completed tasks you can view them by clicking below <br> or add a new task by typing it into the form at the bottom of the page.
-            </p>
+            <div class="pending-tasks">
+              <p class="no-pending-tasks">
+                <b>You don't have any pending tasks.</b> <br> If you have completed tasks you can view them by clicking below <br> or add a new task by typing it into the form at the bottom of the page.
+              </p>
+            </div>
           <% else %>
             <div class="pending-tasks">
               <% @conversation.sorted_pending_tasks.each do |task| %>

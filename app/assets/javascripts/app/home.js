@@ -324,7 +324,8 @@ function startConversation(e) {
       $("#av-message-form").submit(sendMessage);
       enterSubmit('#message_content', '#av-message-form');
       if(tasksMode) {
-        $(".pending-tasks").prepend(data.html);
+        $(".no-pending-tasks").remove();
+        $(".pending-tasks").append(data.html);
       } else {
         $(".app-view").append(anchorme.js(data.html, { "target":"_blank" }));
       }
@@ -365,6 +366,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
       if(tasksMode) {
+        $(".no-pending-tasks").remove();
         $(".pending-tasks").append(data.task_html);
       } else {
         if(userId == data.user_id) {
@@ -412,6 +414,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         if(data.completed) {
           $(".completed-tasks").append(data.task_html);
         } else {
+          $(".no-pending-tasks").remove();
           $(".pending-tasks").append(data.task_html);
         }
 
