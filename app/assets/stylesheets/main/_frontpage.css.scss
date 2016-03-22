@@ -223,7 +223,7 @@ ul.edit-project-list {
 		position:fixed;
 		display:none;
 	width:100%;
-		height: calc(100% - 30px);
+		height: 100%;
 	header {
 		padding: 10px;
 	}
@@ -404,7 +404,7 @@ ul.edit-project-list {
 	}
 .app-view {
 	width:100vw !important;
-	height: calc(100vh - 255px) !important;
+	height: calc(100vh - 195px) !important;
 	padding: 40px 20px 20px !important;
 	box-sizing:border-box;
 	font-size: 15px;
@@ -442,7 +442,7 @@ ul.edit-project-list {
 }
 @media (min-width: 750px) {
 	.app-view {
-		height: calc(100vh - 220px) !important;
+		height: calc(100vh - 160px) !important;
 		width:auto !important;
 		.them-msg-wrapper {
 			.them-meta-data{
@@ -467,8 +467,9 @@ ul.edit-project-list {
 	.self-meta-data{
 	margin-right:0px;
 }
+
 }
-@media (min-width: 950px) {
+@media (min-width: 750px) {
 .conversation-wrapper {
 	.profile-pic {
 	display:block !important;

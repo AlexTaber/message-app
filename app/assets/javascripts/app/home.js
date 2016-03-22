@@ -228,6 +228,7 @@ $('.signup input').on('blur', function(){
   }
 });
 
+$('#form-wrapper textarea').css('overflow', 'hidden').autogrow()
 
 $('.back-button').on('click', function(){
   $(this).parent().fadeOut(0).prev().fadeIn();
