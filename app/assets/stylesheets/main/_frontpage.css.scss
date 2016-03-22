@@ -211,10 +211,10 @@ ul.edit-project-list {
 	display: none;
 }
 .close-new-convo{
-	float:right;
+	position:absolute; 
 	color:#aaa;
-	margin-right: 20px;
-	margin-top: 32px;
+	right: 20px;
+	top: 32px;
 	&:hover{
 		color:#bbb;
 	}
