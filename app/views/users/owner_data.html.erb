@@ -55,7 +55,6 @@
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Url</th>
                 <th>Token</th>
                 <th>Active?</th>
               </tr>
@@ -64,7 +63,6 @@
               <tr>
                 <td><%= project.id %></td>
                 <td><%= link_to project.name, project_owner_data_project_path(project) %></td>
-                <td><%= project.url %></td>
                 <td><%= project.token %></td>
                 <td><%= project.active %></td>
               </tr>

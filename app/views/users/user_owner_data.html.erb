@@ -8,7 +8,6 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Url</th>
               <th>Admin</th>
               <th>Total Messages</th>
               <th>Total Conversations</th>
@@ -18,7 +17,6 @@
             <% @user.active_project.each do |project| %>
               <tr>
                 <td><%= link_to project.name, project_owner_data_project_path(project) %></td>
-                <td><%= project.url %></td>
                 <td>
                   <%= @user.admin_of_project?(project) %>
                   <% if @user.admin_of_project?(project) %>
