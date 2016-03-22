@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
 
   belongs_to :message
   belongs_to :completer, class_name: "User"
+  has_many :claims
 
   def status
     completer ? "Complete Task" : "Incomplete Task"

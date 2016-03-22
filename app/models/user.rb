@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :password_recoveries
   has_many :bans
   has_many :completions, foreign_key: "completer_id", class_name: "Task"
+  has_many :claims
 
   has_many :requests
 
