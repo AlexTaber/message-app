@@ -239,27 +239,31 @@ input:-webkit-autofill {
 // message form -----------
 #form-wrapper{
   background:#eee;
-  height:120px;
+  position:fixed;
+  bottom:0;
+  right:0;
+  width:100%;
+  border-top:1px solid #ddd;
   &>form>div{
     width: calc(100% - 110px);
     display:inline-block;
   }
   textarea{
     background-color:#fff;
-    height:100px;
+    height:40px;
+    min-height:40px;
     margin:10px;
-    margin-bottom:0;
     width:calc(100% - 20px);
     border:1px solid #ddd;
   }
   .button {
-    width: 90px;
-    height:100px;
+    width: 50px;
+    height:40px;
     margin: 10px;
     position:absolute;
     min-width:0;
     right:5px;
-    font-size:30px;
+    font-size:25px;
   }
 }
 //MEDIA QUERIES----------------------------------------------------
@@ -288,6 +292,9 @@ input:-webkit-autofill {
 
   .project-form-info {
     display: inline-table;
+  }
+  #form-wrapper{
+    width:50%;
   }
 }
 
