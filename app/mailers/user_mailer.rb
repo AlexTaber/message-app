@@ -52,6 +52,7 @@ class UserMailer < ApplicationMailer
     @url = home_url(tasks: true, user_ids: task.message.conversation.user_ids, project_id: task.message.conversation.project.id)
     @task = task
     @user = user
+    @tasker = @task.message.user
     @project = task.message.conversation.project
     mail(to: user.email, subject: "New Task on #{@project.name}", from: "MercuryApp <no-reply@mercuryapp.co>")
   end
