@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
   resources :bans, only: [:new, :create, :update]
   resources :tasks, only: [:create, :update, :destroy]
+  resources :claims, only: [:create, :destroy]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
