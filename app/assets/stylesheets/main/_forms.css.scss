@@ -293,9 +293,7 @@ input:-webkit-autofill {
   .project-form-info {
     display: inline-table;
   }
-  #form-wrapper{
-    width:50%;
-  }
+
 }
 
 @media(min-width: 800px) {
@@ -303,7 +301,9 @@ input:-webkit-autofill {
     height: 100%;
     width: 100%;
   }
-
+  #form-wrapper{
+    width:50%;
+  }
 
   .tier-select label {
     display: inline;
