@@ -1,19 +1,21 @@
 <div class="task-container" id="task-<%= task.id %>">
-  <div class="delete-task u-pull-right">
-    <%= link_to task_path(task), method: "DELETE", class: "remove-task" do %>
-      <i class="fa fa-times"></i>
-    <% end %>
+  <div class="task-icons u-pull-right">
     <!-- claim icons -->
-    <% if current_user.claimed?(task) %>
-      <%= link_to task_path(current_user.claim_from_task(task)), method: "DELETE" do %>
-        <i class="fa fa-cog fa-spin"></i>
-      <% end %>
-    <% else %>
-      <%= link_to tasks_path(task: { user_id: current_user.id, task_id: task.id }), method: "POST" do %>
-        <i class="fa fa-cog"></i>
+    <% if task.incomplete? %>
+      <% if current_user.claimed?(task) %>
+        <%= link_to claim_path(current_user.claim_from_task(task)), method: "DELETE" do %>
+          <i class="fa fa-cog claimed spin"></i>
+        <% end %>
+      <% else %>
+        <%= link_to claims_path(claim: { user_id: current_user.id, task_id: task.id }), method: "POST" do %>
+          <i class="fa fa-cog unclaimed hover-spin"></i>
+        <% end %>
       <% end %>
     <% end %>
     <!-- end claim icons -->
+    <%= link_to task_path(task), method: "DELETE", class: "remove-task" do %>
+      <i class="fa fa-times"></i>
+    <% end %>
   </div>
   <small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
   <div class="task-item content">

@@ -29,6 +29,14 @@ class Task < ActiveRecord::Base
     message.is_recent?
   end
 
+  def complete?
+    completer_id != nil
+  end
+
+  def incomplete?
+    !complete?
+  end
+
   def completed_date_s
     "#{distance_of_time_in_words(DateTime.now, updated_at)} by #{completer.name}"
   end

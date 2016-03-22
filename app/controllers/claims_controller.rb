@@ -29,4 +29,8 @@ class ClaimsController < ApplicationController
   def claim_params
     params.require(:claim).permit(:user_id, :task_id)
   end
+
+  def claim_by_id
+    @claim = Claim.find_by(id: params[:id])
+  end
 end
