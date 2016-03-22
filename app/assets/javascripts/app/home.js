@@ -3,7 +3,9 @@ var canSendMessage = true;
 var curNext = 1;
 
 jQuery(document).ready(function($){
-  scrollToBottom();
+  if(!tasksMode) {
+    scrollToBottom();
+  }
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
