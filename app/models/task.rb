@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
 
   belongs_to :message
+  belongs_to :completer, class_name: "User"
 
   def status
     completed ? "Complete Task" : "Incomplete Task"
