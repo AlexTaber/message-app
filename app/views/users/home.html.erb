@@ -347,7 +347,9 @@
                 <%= render partial: "tasks/task", locals: { task: task } %>
               <% end %>
             </div>
+          <% end %>
 
+          <% if @conversation.has_completed_tasks? %>
             <h5 class="text-center"><a href="#" class="completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
             <div class="completed-tasks">
               <% @conversation.sorted_completed_tasks.each do |task| %>
