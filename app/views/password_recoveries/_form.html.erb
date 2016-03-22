@@ -1,9 +1,6 @@
 <%= form_for password_recovery do |f| %>
-  <div class="field">
+ <p>We will email you with instructions to create a new password</p>
     <%= text_field_tag :email, nil, placeholder: "Email" %>
-  </div>
-
-  <p>We will email you with instructions to create a new password</p>
-
-  <%= f.submit 'Send Password Recovery Email', class: 'primary button-primary' %>
+ 		<%= f.submit 'Recover Password', class: 'button-primary' %>
+ <p><%= link_to 'Cancel', :back %></p>
 <% end %>

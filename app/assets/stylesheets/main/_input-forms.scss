@@ -1,0 +1,29 @@
+// Input form styles for password recovery, edit account etc
+
+.input-form-container {
+	  width: 100vw;
+    display: table-cell;
+    vertical-align: middle;
+    height: 100vh;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+    .wrapper {
+    	display:block;
+    width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 50px;
+    }
+    input {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin: 10px 5px 10px 5px;
+    min-width: 60%;
+    margin-bottom:30px;
+    }
+    input[type="submit"] {
+    	min-width: auto !important;
+    }
+  }
