@@ -329,6 +329,7 @@ function startConversation(e) {
       } else {
         $(".app-view").append(anchorme.js(data.html, { "target":"_blank" }));
       }
+      updateTaskListeners();
       subscribeToConvo(data.token, curConvoToken);
       $(".new_conversation").find("#content").val("");
       $('.new-convo-placeholder').slideUp();
@@ -376,6 +377,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
         }
       }
 
+      updateTaskListeners();
       scrollToBottom();
     }
 
@@ -427,12 +429,16 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         }
       }
 
-      $(".uncomplete-task, .complete-task").on('click', updateTask);
-      $(".new-task").on('click', newTask);
-      $(".remove-task").on('click', removeTask);
+      updateTaskListeners();
       $("#conversation" + String(data.conversation_id)).html(data.app_html);
     }
   });
+}
+
+function updateTaskListeners() {
+  $(".uncomplete-task, .complete-task").on('click', updateTask);
+  $(".new-task").on('click', newTask);
+  $(".remove-task").on('click', removeTask);
 }
 
 function updateTasksTally(completed, convoId) {
