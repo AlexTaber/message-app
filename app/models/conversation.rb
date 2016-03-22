@@ -65,11 +65,11 @@ class Conversation < ActiveRecord::Base
   end
 
   def completed_tasks
-    tasks.where(completed: true)
+    tasks.where.not(completer_id: nil)
   end
 
   def pending_tasks
-    tasks.where(completed: false)
+    tasks.where(completer_id: nil)
   end
 
   def sorted_pending_tasks

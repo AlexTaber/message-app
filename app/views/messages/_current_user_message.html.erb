@@ -15,12 +15,12 @@
   <div class="icon-bar self">
     <% if task %>
 
-      <% if task.completed %>
-        <%= link_to task_path(message.task, task: { completed: false }), title: "Mark as Incomplete", method: "PUT", class: "uncomplete-task" do %>
+      <% if task.completer %>
+        <%= link_to task_path(message.task, task: { completer_id: nil }), title: "Mark as Incomplete", method: "PUT", class: "uncomplete-task" do %>
           <i class="fa fa-undo"></i>
         <% end %>
       <% else %>
-        <%= link_to task_path(message.task, task: { completed: true }), title: "Mark as Complete", method: "PUT", class: "complete-task" do %>
+        <%= link_to task_path(message.task, task: { completer_id: current_user.id }), title: "Mark as Complete", method: "PUT", class: "complete-task" do %>
           <i class="fa fa-check-circle"></i>
         <% end %>
       <% end %>
