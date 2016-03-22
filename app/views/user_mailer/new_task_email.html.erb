@@ -6,8 +6,8 @@
   <body>
     <h3>Hello <%= @user.name %>!</h3>
     <p>
-      A following task has been added to the project <b><%= @project.name %></b>
-    </p>
+      The following task has been added to the project <b><%= @project.name %></b>
+     by <b><%= @tasker.name %></b></p>
     <em>
       <%= simple_format(@task.message.content) %>
     </em>
