@@ -265,7 +265,7 @@ ul.edit-project-list {
 	}
 	.mobile-active:after {
 		position:absolute;
-		bottom:0;
+		bottom:-2px;
 		content: "";
 		width: 0;
 		height: 0;
@@ -413,7 +413,7 @@ ul.edit-project-list {
 .app-view {
 	width:100vw !important;
 	height: calc(100vh - 195px) !important;
-	padding: 40px 20px 20px !important;
+	padding: 40px 20px 65px !important;
 	box-sizing:border-box;
 	font-size: 15px;
 		.profile-pic {

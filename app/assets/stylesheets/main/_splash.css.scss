@@ -67,18 +67,18 @@ a:hover {
   }
 
   &.tab1 {
-    color: rgba($full-green, 1);
+    color: rgba($pwdlight, 1);
 
     a {
-      color: rgba($full-green, 0.8);
+      color: rgba($pwdlight, 0.8);
     }
   }
 
   &.tab2 {
-    color: rgba($full-red, 1);
+    color: rgba($pwdlight, 1);
 
     a {
-      color: rgba($full-red, 0.8);
+      color: rgba($pwdlight, 0.8);
     }
   }
 
@@ -266,11 +266,11 @@ a:hover {
     }
 
     &.tab1 {
-      background-color: rgba($full-green, 0.5);
+      background-color: rgba($pwdlight, 0.5);
     }
 
     &.tab2 {
-      background-color: rgba($full-red, 0.5);
+      background-color: rgba($pwdlight, 0.5);
     }
   }
 
@@ -320,11 +320,11 @@ a:hover {
     }
 
     &.tab1 {
-      color: rgba($full-green, 0.5);
+      color: rgba($pwdlight, 0.5);
     }
 
     &.tab2 {
-      color: rgba($full-red, 0.5);
+      color: rgba($pwdlight, 0.5);
     }
   }
 
@@ -344,11 +344,11 @@ a:hover {
     }
 
     &.tab1 {
-      color: rgba($full-green, 0.6);
+      color: rgba($pwdlight, 0.6);
     }
 
     &.tab2 {
-      color: rgba($full-red, 0.6);
+      color: rgba($pwdlight, 0.6);
     }
   }
 
@@ -390,11 +390,11 @@ a:hover {
   }
 
   &.tab1 span {
-    background-color: rgba($full-green, 1);
+    background-color: rgba($pwdlight, 1);
   }
 
   &.tab2 span {
-    background-color: rgba($full-red, 1);
+    background-color: rgba($pwdlight, 1);
   }
 
   &:hover {
@@ -530,11 +530,11 @@ a:hover {
     }
 
     &.tab1 {
-      background-color: rgba($full-green, 1);
+      background-color: rgba($pwdlight, 1);
     }
 
     &.tab2 {
-      background-color: rgba($full-red, 1);
+      background-color: rgba($pwdlight, 1);
     }
   }
 }
@@ -555,11 +555,11 @@ a:hover {
       }
 
       &.tab1 {
-        color: rgba($full-green, 0.15);
+        color: rgba($pwdlight, 0.15);
       }
 
       &.tab2 {
-        color: rgba($full-red, 0.15);
+        color: rgba($pwdlight, 0.15);
       }
     }
 
