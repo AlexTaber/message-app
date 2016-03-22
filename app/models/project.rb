@@ -73,4 +73,20 @@ class Project < ActiveRecord::Base
   def incomplete_tasks
     tasks.where(completed: false)
   end
+
+  def completed_tasks
+    conversations.collect(&:completed_tasks)
+  end
+
+  def has_completed_tasks?
+    completed_tasks > 0
+  end
+
+  def pending_tasks
+    conversations.collect(&:pending_tasks)
+  end
+
+  def has_pending_tasks?
+    pending_tasks > 0
+  end
 end
