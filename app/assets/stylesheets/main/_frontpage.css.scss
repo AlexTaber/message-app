@@ -413,7 +413,7 @@ ul.edit-project-list {
 .app-view {
 	width:100vw !important;
 	height: calc(100vh - 195px) !important;
-	padding: 40px 20px 65px !important;
+	padding: 40px 20px 80px !important;
 	box-sizing:border-box;
 	font-size: 15px;
 		.profile-pic {
@@ -452,6 +452,7 @@ ul.edit-project-list {
 	.app-view {
 		height: calc(100vh - 160px) !important;
 		width:auto !important;
+		padding: 40px 20px 20px !important;
 		.them-msg-wrapper {
 			.them-meta-data{
 				padding-left:50px;
