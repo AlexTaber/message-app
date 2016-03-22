@@ -500,7 +500,65 @@ ul.edit-project-list {
 .conversation-wrapper {
 	overflow: visible;
 }
+//add button hover helpers
+.add-button-hover {
+		overflow-x:visible;
+}
+.add-button-hover-text{
+	height:0;
+	position:absolute;
+	background:#fff;
+	overflow-y:hidden;
+	overflow-x:visible;
+	white-space:nowrap;
+	z-index: 1000;
+	text-align: center;
 
+	color:#000;
+	margin-top:15px;
+	&.is-last{
+		margin-left: -230px;
+	}
+}
+.add-button-hover:hover .add-button-hover-text {
+	height:auto;
+	border:1px solid #ddd;
+	padding:10px;
+	overflow:visible;
+	&:before{
+		position:absolute;
+		top: -6px;
+		left:10px;
+		content: "";
+		width: 0;
+		height: 0;
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
+		border-bottom:6px solid #ddd;
+		margin-right:-1px;
+	}
+	&:after {
+		position:absolute;
+		top: -5px;
+		left: 11px;
+		content: "";
+		width: 0;
+		height: 0;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-bottom:5px solid #fff;
+		margin-right:-1px;
+	}
+	&.is-last:before{
+		left:auto;
+		right:10px;
+	}
+		&.is-last:after{
+				left:auto;
+		right:11px;
+	}
+
+}
 //typeahead-dropdown
 .message-center {
 	.typeahead-form{

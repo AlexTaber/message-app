@@ -185,11 +185,17 @@
       <b>Your</b> Projects
         <% if current_user.tier.permit_user_project(current_user) %>
           <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
-            <i class="fa fa-plus" title="Add a new project"></i>
+          <div class="add-button-hover">
+            <i class="fa fa-plus"></i>
+            <div class="add-button-hover-text">Add a new project</div>
+          </div>
           <% end %>
         <% else %>
           <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
-            <i class="fa fa-plus" title="Add a new project"></i>
+            <div class="add-button-hover">
+              <i class="fa fa-plus"></i>
+              <div class="add-button-hover-text">Add a new project</div>
+            </div>
           <% end %>
         <% end %>
       </header>
@@ -273,7 +279,10 @@
      <header>
         <b><%= @project.name %></b> &nbsp;
                 <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
-          <i class="fa fa-plus"></i>
+          <div class="add-button-hover">
+            <i class="fa fa-plus"></i>
+            <div class="add-button-hover-text">Add a new conversation</div>
+          </div>
         <% end %>
         <div id="new-message">
         </div>
@@ -321,7 +330,10 @@
       <i>To:</i>
       <b> <%= @conversation.other_users_to_s(current_user) %> </b>
       <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
-       <a href="#" class="add-user-to-convo add-btn"><i class="fa fa-plus"></i></a>
+       <a href="#" class="add-user-to-convo add-btn"><div class="add-button-hover">
+            <i class="fa fa-plus"></i>
+            <div class="add-button-hover-text is-last">Add a new person to the conversation</div>
+          </div></a>
       </header>
       <div class="task-conversation-switch text-center">
       <% if @tasks %>
