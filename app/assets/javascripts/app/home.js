@@ -363,7 +363,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
     if(curConvoToken == data.conversation_token) {
       //if the message is from the current conversation
       if(tasksMode) {
-        $(".pending-tasks").prepend(data.task_html);
+        $(".pending-tasks").append(data.task_html);
       } else {
         if(userId == data.user_id) {
           $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
@@ -408,9 +408,9 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         $("#task-" + String(data.task_id)).replaceWith("");
 
         if(data.completed) {
-          $(".completed-tasks").prepend(data.task_html);
+          $(".completed-tasks").append(data.task_html);
         } else {
-          $(".pending-tasks").prepend(data.task_html);
+          $(".pending-tasks").append(data.task_html);
         }
 
         $(".completed-tasks-btn").html(tasksButtonHtml(data.completed_tasks_count));
