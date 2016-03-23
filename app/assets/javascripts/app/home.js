@@ -20,6 +20,7 @@ jQuery(document).ready(function($){
       conversationToken = conversationTokens[i];
       subscribeToConvo(conversationToken, curConvoToken);
       listenForNewTasks(conversationToken, curConvoToken);
+      listenForNewClaims(conversationToken, curConvoToken);
     }
     listenForNewConvos();
   }
@@ -69,8 +70,8 @@ jQuery(document).ready(function($){
 
   //Update Tasks-----------------
   $(".uncomplete-task, .complete-task").on('click', updateTask);
-  $(".new-task").on('click', newTask);
-  $(".remove-task").on('click', removeTask);
+  $(".new-model").on('click', newModel);
+  $(".remove-model").on('click', removeModel);
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -427,10 +428,23 @@ function listenForNewTasks(conversationToken, curConvoToken) {
   });
 }
 
+function listenForNewClaims(conversationToken, curConvoToken) {
+  channel = pusher.subscribe('claim' + String(conversationToken) + String(userId));
+  channel.bind('new-claim', function(data) {
+    if(curConvoToken == data.conversation_token) {
+      //if current convo
+      if(tasksMode) {
+        $("#task-" + String(data.task_id)).replaceWith(data.task_html);
+        updateTaskListeners();
+      }
+    }
+  });
+}
+
 function updateTaskListeners() {
-  $(".uncomplete-task, .complete-task").on('click', updateTask);
-  $(".new-task").on('click', newTask);
-  $(".remove-task").on('click', removeTask);
+  $(".uncomplete-task, .complete-task").off('click').on('click', updateTask);
+  $(".new-model").off('click').on('click', newModel);
+  $(".remove-model").off('click').on('click', removeModel);
 }
 
 function validateUserData(data, element) {
@@ -480,7 +494,7 @@ function updateTask(e) {
   });
 }
 
-function newTask(e) {
+function newModel(e) {
   e.preventDefault();
   e.stopPropagation();
   $("#ajax-loader-message").show();
@@ -493,11 +507,10 @@ function newTask(e) {
   });
 }
 
-function removeTask(e) {
+function removeModel(e) {
   e.preventDefault();
   e.stopPropagation();
   $("#ajax-loader-message").show();
-
   $.ajax({
     url: $(this).attr("href"),
     method: "DELETE"
