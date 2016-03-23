@@ -38,6 +38,8 @@ jQuery(document).ready(function($){
     $('.mobile-target').eq(2).fadeIn();
     $('.mobile-active').removeClass('mobile-active')
     $('#mobile-messages').addClass('mobile-active');
+    scrollToBottom();
+    console.log("HERE");
   }
   if ((!messageUrl && tasksUrl) || (!messageUrl && mobileConvoUrl))  {
     $('.mobile-target').fadeOut(0);
@@ -108,7 +110,9 @@ $(".mobile-icons i:not(:first-child)").on('click', function(){
   $('#current-account').slideUp();
   i = $(this).parent().children().index(this) - 1
   $('.mobile-target').eq(i).fadeIn();
-
+  if(i == 2) {
+    scrollToBottom();
+  }
 });
 
 //show completed tasks
@@ -398,7 +402,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       //if current convo
       if(tasksMode) {
         $("#task-" + String(data.task_id)).replaceWith("");
-        updateTasksButton();
+        updateTasksButton(data.completed_tasks_count);
 
         if(data.completer_id) {
           $(".completed-tasks").append(data.task_html);
