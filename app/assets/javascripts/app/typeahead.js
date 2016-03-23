@@ -47,7 +47,7 @@ $(document).ready(function() {
       },
       {
         name: 'project_users',
-        displayKey: 'typeahead',
+        displayKey: 'name',
         source: substringMatcher(project_users, 'name')
       });
 
