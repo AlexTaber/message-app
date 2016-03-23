@@ -9,6 +9,14 @@ class UserProject < ActiveRecord::Base
   end
 
   def allowed?
-    user.tier.permit_user_project(user)
+    admin ? user.tier.permit_user_project(user) : true
+  end
+
+  def not_allowed?
+    !allowed?
+  end
+
+  def not_admin?
+    !admin
   end
 end
