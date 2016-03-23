@@ -154,20 +154,21 @@ padding : 0;
 	display:block;
 }
 ul.edit-project-list {
-	padding-left: 10px;
+	padding-left: 30px;
+	margin: 6px 0px 0px 0px;
 	color:$black !important;
 	li {
-		font-size: 16px;
+		font-size: 12px;
 		list-style: none;
 		border-bottom: none;
-		padding:5px;
+		padding:3px 0px 3px 0px;
 		&:hover {
 			background: transparent;
 		}
 		a {
 			color: $black;
 			&:hover {
-				opacity: .8;
+				color: $pwdlight;
 			}
 		}
 	}
