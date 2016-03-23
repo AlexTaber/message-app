@@ -316,6 +316,7 @@ function startConversation(e) {
       }
       updateTaskListeners();
       subscribeToConvo(data.token, curConvoToken);
+      listenForNewTasks(data.token, curConvoToken);
       $(".new_conversation").find("#content").val("");
       $('.new-convo-placeholder').slideUp();
       $("#ajax-loader-message").hide();
