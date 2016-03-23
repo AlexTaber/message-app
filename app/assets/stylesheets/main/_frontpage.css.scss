@@ -191,10 +191,12 @@ ul.edit-project-list {
 	background: #f5f5f5;
 	width: 100%;
 	height: calc(100vh - 30px);
-	overflow:visible;
-	border-right:1px solid #ababab;
 	    overflow-y: scroll;
 	    overflow-x: hidden;
+	.message-bar-border{
+		border-right:1px solid #ababab;
+		height: calc(100vh - 30px);
+	}
 	a {
 		font-size: 14px;
 		text-decoration: none;
