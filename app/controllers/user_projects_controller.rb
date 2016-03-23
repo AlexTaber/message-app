@@ -5,15 +5,15 @@ class UserProjectsController < ApplicationController
     params[:user_project][:approved] = params[:user_project][:approved] if params[:user_project][:approved]
     @user_project.assign_attributes(user_project_params)
 
-    if @user_project.valid_and_allowed?
-      @user_project.save
-      flash[:notice] = "Successfully updated user #{@user_project.user.name}"
-    else
-      if @user_project.valid?
+    if @user_project.valid?
+      if params[:user_project][:admin] && @user_project.not_allowed?
         flash[:warn]  = "#{@user_project.user.name} has reached their tier limit"
       else
-        flash[:warn] = "Unable to update user, please try again"
+        @user_project.save
+        flash[:notice] = "Successfully updated user #{@user_project.user.name}"
       end
+    else
+      flash[:warn] = "Unable to update user, please try again"
     end
 
     redirect_to :back

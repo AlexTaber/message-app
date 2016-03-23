@@ -6,21 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 basic = Tier.create(
-  name: "Basic",
-  admin_projects: 1,
+  name: "Personal",
+  admin_projects: 3,
   users_per_project: 4
 )
 
 start_up = Tier.create(
   name: "Start Up",
-  admin_projects: 1,
-  users_per_project: 500
+  admin_projects: 5,
+  users_per_project: 6
 )
 
 multi_project = Tier.create(
-  name: "Multi project",
-  admin_projects: 5,
-  users_per_project: 500
+  name: "Enterprise",
+  admin_projects: 15,
+  users_per_project: 15
 )
 
 admin_tier = Tier.create(
