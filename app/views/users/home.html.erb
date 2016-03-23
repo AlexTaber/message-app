@@ -187,14 +187,14 @@
           <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
           <div class="add-button-hover">
             <i class="fa fa-plus"></i>
-            <div class="add-button-hover-text">Add a new project</div>
+            <div class="add-button-hover-text is-first">Add a new project</div>
           </div>
           <% end %>
         <% else %>
           <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
             <div class="add-button-hover">
               <i class="fa fa-plus"></i>
-              <div class="add-button-hover-text">Add a new project</div>
+              <div class="add-button-hover-text is-first">Add a new project</div>
             </div>
           <% end %>
         <% end %>

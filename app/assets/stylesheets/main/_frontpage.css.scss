@@ -524,6 +524,10 @@ ul.edit-project-list {
 
 	color:#000;
 	margin-top:15px;
+	margin-left: -138px;
+	&.is-first{
+	margin-left:-103px;
+	}
 	&.is-last{
 		margin-left: -230px;
 	}
@@ -536,7 +540,7 @@ ul.edit-project-list {
 	&:before{
 		position:absolute;
 		top: -6px;
-		left:10px;
+		right:10px;
 		content: "";
 		width: 0;
 		height: 0;
@@ -548,7 +552,7 @@ ul.edit-project-list {
 	&:after {
 		position:absolute;
 		top: -5px;
-		left: 11px;
+		right: 11px;
 		content: "";
 		width: 0;
 		height: 0;
@@ -556,6 +560,14 @@ ul.edit-project-list {
 		border-right: 5px solid transparent;
 		border-bottom:5px solid #fff;
 		margin-right:-1px;
+	}
+		&.is-first:before{
+		left:auto;
+		right:10px;
+	}
+		&.is-first:after{
+		left:auto;
+		right:11px;
 	}
 	&.is-last:before{
 		left:auto;
