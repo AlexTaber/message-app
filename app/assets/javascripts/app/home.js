@@ -398,7 +398,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       //if current convo
       if(tasksMode) {
         $("#task-" + String(data.task_id)).replaceWith("");
-        updateTasksButton();
+        updateTasksButton(data.completed_tasks_count);
 
         if(data.completer_id) {
           $(".completed-tasks").append(data.task_html);
