@@ -112,15 +112,7 @@ $(".mobile-icons i:not(:first-child)").on('click', function(){
 });
 
 //show completed tasks
-$('.completed-tasks-btn').on('click', function(e){
-  e.preventDefault();
-  if($(".completed-tasks-btn span").text() === 'Show') {
-    $(".completed-tasks-btn span").text('Hide');
-  } else {
-    $(".completed-tasks-btn span").text('Show');
-  }
-  $('.completed-tasks').slideToggle();
-});
+$('.completed-tasks-btn').on('click', clickTaskButton);
 
 
 ///Modal
@@ -405,6 +397,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       //if current convo
       if(tasksMode) {
         $("#task-" + String(data.task_id)).replaceWith("");
+        updateTasksButton();
 
         if(data.completer_id) {
           $(".completed-tasks").append(data.task_html);
@@ -412,8 +405,6 @@ function listenForNewTasks(conversationToken, curConvoToken) {
           $(".no-pending-tasks").remove();
           $(".pending-tasks").append(data.task_html);
         }
-
-        $(".completed-tasks-btn").html(tasksButtonHtml(data.completed_tasks_count));
       } else {
         if(userId == data.user_id) {
           $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);
@@ -422,7 +413,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         }
       }
 
-      updateTaskListeners();
+      updateTaskListeners(data.completed_tasks_count);
       $("#conversation" + String(data.conversation_id)).html(data.app_html);
     }
   });
@@ -519,6 +510,22 @@ function removeModel(e) {
   });
 }
 
+function updateTasksButton(completedTasksCount) {
+  var button = $(".completed-tasks-btn");
+
+  if(button.length > 0) {
+    if(typeof completedTasksCount === 'undefined') {
+      button.remove();
+      $(".completed-tasks").remove();
+    } else {
+      button.html(tasksButtonHtml(completedTasksCount));
+    }
+  } else {
+    $(".pending-tasks").after("<h5 class='text-center'><a href='#' class='completed-tasks-btn'><span>Show</span> 1 Completed Tasks</a></h5><div class='completed-tasks'></div>");
+    $('.completed-tasks-btn').on('click', clickTaskButton);
+  }
+}
+
 function tasksButtonHtml(count) {
   return "<span>Show</span> " + String(count) + " Completed Tasks";
 }
@@ -554,4 +561,14 @@ function lazyLoad() {
       msgBox.off( "scroll", checkLazyLoad )
     }
   });
+}
+
+function clickTaskButton(e) {
+  e.preventDefault();
+  if($(".completed-tasks-btn span").text() === 'Show') {
+    $(".completed-tasks-btn span").text('Hide');
+  } else {
+    $(".completed-tasks-btn span").text('Show');
+  }
+  $('.completed-tasks').slideToggle();
 }
