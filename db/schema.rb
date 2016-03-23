@@ -97,7 +97,6 @@ ActiveRecord::Schema.define(version: 20160322195741) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name",                      null: false
-    t.string   "url",                       null: false
     t.string   "token"
     t.boolean  "active",     default: true, null: false
     t.datetime "created_at"
