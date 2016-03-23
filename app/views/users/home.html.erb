@@ -23,10 +23,12 @@
                 <%= user.name %>
                 <span class="manage-user-opts">
                   <%= link_to "Remove", user_project_path(user.find_user_project(@project)), method: "delete", class: "button button-warning button-inline" %>
-                  <% if user.find_user_project(@project).admin %>
-                    <%= link_to "Remove as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: false }), method: "put", class: "button button-warning button-inline" %>
-                  <% else %>
-                  <%= link_to "Set as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+                  <% if current_user.owner %>
+                    <% if user.find_user_project(@project).admin %>
+                      <%= link_to "Remove as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: false }), method: "put", class: "button button-warning button-inline" %>
+                    <% else %>
+                      <%= link_to "Set as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "button button-primary button-inline" %>
+                    <% end %>
                   <% end %>
                 </span>
                 <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
