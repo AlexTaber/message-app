@@ -59,8 +59,18 @@ class MessagesController < ApplicationController
   end
 
   def new_message_emails
+    if @message.task
+      new_task_emails
+    else
+      @message.conversation.other_users(current_user).each do |user|
+        UserMailer.new_message_email(@message, user).deliver_now if user.needs_notification?(@message)
+      end
+    end
+  end
+
+  def new_task_emails
     @message.conversation.other_users(current_user).each do |user|
-      UserMailer.new_message_email(@message, user).deliver_now if user.needs_notification?(@message)
+      UserMailer.new_task_email(@message.task, user).deliver_now if user.needs_task_notification?(@message.task)
     end
   end
 end
