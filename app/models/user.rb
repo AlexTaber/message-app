@@ -163,7 +163,7 @@ class User < ActiveRecord::Base
   end
 
   def typeahead_data
-    { username: username, id: id, name: name }
+    { username: username, id: id, name: name, typeahead: "#{name} (#{username})" }
   end
 
   def active_projects_ordered_by_admin
