@@ -25,12 +25,13 @@ $(document).ready(function() {
           // iterate through the pool of strings and for any string that
           // contains the substring `q`, add it to the `matches` array
           $.each(users, function(i, user) {
+            var user_full = user.name + "(" +user.username +")";
             if(query == 'name') {
-              if (substrRegex.test(user.name)) {
+              if (substrRegex.test(user_full)) {
                 matches.push(user);
               }
             } else {
-              if (substrRegex.test(user.username)) {
+              if (substrRegex.test(user_full)) {
                 matches.push(user);
               }
             }
@@ -57,7 +58,7 @@ $(document).ready(function() {
       },
       {
         name: 'all_users',
-        displayKey: 'username',
+        displayKey: 'typeahead',
         source: substringMatcher(all_users, 'username')
       });
 
