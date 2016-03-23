@@ -556,6 +556,7 @@ function lazyLoad() {
       $(".msg-bx-convo").prepend(response);
       var heightDifference = msgBox[0].scrollHeight - originalHeight;
       msgBox[0].scrollTop += heightDifference;
+      updateTaskListeners();
 
     } else {
       msgBox.off( "scroll", checkLazyLoad )
