@@ -377,6 +377,10 @@
       margin-left: 50px;
     }
 
+    .fa-eye{
+      font-size: 16px
+    }
+
     a {
       text-decoration: none;
       color: $darkgrey;
@@ -391,7 +395,7 @@
         color: red;
       }
 
-      .fa-exclamation-circle {
+      .fa-exclamation-circle, .fa-eye {
         color: $pwdlight;
       }
     }

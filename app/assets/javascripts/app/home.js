@@ -20,6 +20,7 @@ jQuery(document).ready(function($){
       conversationToken = conversationTokens[i];
       subscribeToConvo(conversationToken, curConvoToken);
       listenForNewTasks(conversationToken, curConvoToken);
+      listenForNewClaims(conversationToken, curConvoToken);
     }
     listenForNewConvos();
   }
@@ -69,8 +70,8 @@ jQuery(document).ready(function($){
 
   //Update Tasks-----------------
   $(".uncomplete-task, .complete-task").on('click', updateTask);
-  $(".new-task").on('click', newTask);
-  $(".remove-task").on('click', removeTask);
+  $(".new-model").on('click', newModel);
+  $(".remove-model").on('click', removeModel);
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -111,15 +112,7 @@ $(".mobile-icons i:not(:first-child)").on('click', function(){
 });
 
 //show completed tasks
-$('.completed-tasks-btn').on('click', function(e){
-  e.preventDefault();
-  if($(".completed-tasks-btn span").text() === 'Show') {
-    $(".completed-tasks-btn span").text('Hide');
-  } else {
-    $(".completed-tasks-btn span").text('Show');
-  }
-  $('.completed-tasks').slideToggle();
-});
+$('.completed-tasks-btn').on('click', clickTaskButton);
 
 
 ///Modal
@@ -404,6 +397,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       //if current convo
       if(tasksMode) {
         $("#task-" + String(data.task_id)).replaceWith("");
+        updateTasksButton();
 
         if(data.completer_id) {
           $(".completed-tasks").append(data.task_html);
@@ -411,8 +405,6 @@ function listenForNewTasks(conversationToken, curConvoToken) {
           $(".no-pending-tasks").remove();
           $(".pending-tasks").append(data.task_html);
         }
-
-        $(".completed-tasks-btn").html(tasksButtonHtml(data.completed_tasks_count));
       } else {
         if(userId == data.user_id) {
           $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);
@@ -421,16 +413,29 @@ function listenForNewTasks(conversationToken, curConvoToken) {
         }
       }
 
-      updateTaskListeners();
+      updateTaskListeners(data.completed_tasks_count);
       $("#conversation" + String(data.conversation_id)).html(data.app_html);
     }
   });
 }
 
+function listenForNewClaims(conversationToken, curConvoToken) {
+  channel = pusher.subscribe('claim' + String(conversationToken) + String(userId));
+  channel.bind('new-claim', function(data) {
+    if(curConvoToken == data.conversation_token) {
+      //if current convo
+      if(tasksMode) {
+        $("#task-" + String(data.task_id)).replaceWith(data.task_html);
+        updateTaskListeners();
+      }
+    }
+  });
+}
+
 function updateTaskListeners() {
-  $(".uncomplete-task, .complete-task").on('click', updateTask);
-  $(".new-task").on('click', newTask);
-  $(".remove-task").on('click', removeTask);
+  $(".uncomplete-task, .complete-task").off('click').on('click', updateTask);
+  $(".new-model").off('click').on('click', newModel);
+  $(".remove-model").off('click').on('click', removeModel);
 }
 
 function validateUserData(data, element) {
@@ -480,7 +485,7 @@ function updateTask(e) {
   });
 }
 
-function newTask(e) {
+function newModel(e) {
   e.preventDefault();
   e.stopPropagation();
   $("#ajax-loader-message").show();
@@ -493,17 +498,32 @@ function newTask(e) {
   });
 }
 
-function removeTask(e) {
+function removeModel(e) {
   e.preventDefault();
   e.stopPropagation();
   $("#ajax-loader-message").show();
-
   $.ajax({
     url: $(this).attr("href"),
     method: "DELETE"
   }).done(function(response){
     $("#ajax-loader-message").hide();
   });
+}
+
+function updateTasksButton(completedTasksCount) {
+  var button = $(".completed-tasks-btn");
+
+  if(button.length > 0) {
+    if(typeof completedTasksCount === 'undefined') {
+      button.remove();
+      $(".completed-tasks").remove();
+    } else {
+      button.html(tasksButtonHtml(completedTasksCount));
+    }
+  } else {
+    $(".pending-tasks").after("<h5 class='text-center'><a href='#' class='completed-tasks-btn'><span>Show</span> 1 Completed Tasks</a></h5><div class='completed-tasks'></div>");
+    $('.completed-tasks-btn').on('click', clickTaskButton);
+  }
 }
 
 function tasksButtonHtml(count) {
@@ -536,9 +556,20 @@ function lazyLoad() {
       $(".msg-bx-convo").prepend(response);
       var heightDifference = msgBox[0].scrollHeight - originalHeight;
       msgBox[0].scrollTop += heightDifference;
+      updateTaskListeners();
 
     } else {
       msgBox.off( "scroll", checkLazyLoad )
     }
   });
+}
+
+function clickTaskButton(e) {
+  e.preventDefault();
+  if($(".completed-tasks-btn span").text() === 'Show') {
+    $(".completed-tasks-btn span").text('Hide');
+  } else {
+    $(".completed-tasks-btn span").text('Show');
+  }
+  $('.completed-tasks').slideToggle();
 }

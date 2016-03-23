@@ -20,18 +20,22 @@
           <i class="fa fa-undo"></i>
         <% end %>
       <% else %>
+        <%= link_to root_path(tasks: true, project_id: message.conversation.project.id, user_ids: message.conversation.user_ids, anchor: "task-#{task.id}") do %>
+            <i class="fa fa-eye"></i>
+        <% end %>
+
         <%= link_to task_path(message.task, task: { completer_id: current_user.id }), title: "Mark as Complete", method: "PUT", class: "complete-task" do %>
           <i class="fa fa-check-circle"></i>
         <% end %>
       <% end %>
 
-      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE", class: "remove-task" do %>
+      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE", class: "remove-model" do %>
         <i class="fa fa-minus-circle"></i>
       <% end %>
 
     <% else %>
 
-      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST", class: "new-task" do %>
+      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST", class: "new-model" do %>
         <i class="fa fa-exclamation-circle"></i>
       <% end %>
 

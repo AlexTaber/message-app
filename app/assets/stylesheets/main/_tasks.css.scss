@@ -4,21 +4,44 @@
   border-bottom: 1px solid $grey;
   padding: 5px;
 
+  a {
+    text-decoration: none;
+  }
+
   small{
     display:block;
   }
-  .delete-task {
-    padding-right:10px;
+  .task-icons {
+    padding-right:0px;
+    font-size: 1.8rem;
+    margin-top: -5px;
 
     a {
       color: $black;
+
+      .claimed {
+        color: darken($green, 30%);
+      }
     }
 
     a:hover {
       color: red;
       cursor:pointer;
+
+      .claimed {
+        color: $black;
+        -webkit-animation-play-state: paused;
+        -moz-animation-play-state: paused;
+        -o-animation-play-state: paused;
+        animation-play-state: paused;
+      }
+
+      .unclaimed {
+        color: darken($green, 30%);;
+      }
     }
   }
+
   .task-item {
     display: inline-block;
     vertical-align: top;
@@ -41,7 +64,7 @@
     }
 
     &.content {
-      width: calc(100% - 100px);
+      width: calc(100% - 40px);
     }
 
     &.user {
@@ -61,6 +84,10 @@
     padding-top: 5px;
     padding-left:10px;
     background:transparent;
+
+    small {
+      margin-top: 3px;
+    }
   }
 }
 .completed-tasks-btn{

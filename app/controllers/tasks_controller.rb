@@ -37,12 +37,15 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    claims = @task.claims
+
     if @task
       task_id = @task.id
       message = @task.message
       users = @task.message.conversation.users
       @task.delete
       flash[:notice] = "Task Deleted"
+      delete_claims(claims)
       fire_pusher_event(task_id, message, users, false, true)
     else
       flash[:warn] = "No task by that id"
@@ -77,7 +80,7 @@ class TasksController < ApplicationController
         conversation_id: message.conversation.id,
         current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: message, task: task }),
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
-        task_html: task_html(task, new_record),
+        task_html: task_html(task, user),
         deleted: deleted,
         completer_id: task ? task.completer_id : false,
         completed_tasks_count: message.conversation.completed_tasks.count,
@@ -86,8 +89,8 @@ class TasksController < ApplicationController
     end
   end
 
-  def task_html(task, new_record)
-    task ? (render_to_string partial: "tasks/task", locals: { task: task } ) : ""
+  def task_html(task, user)
+    task ? (render_to_string partial: "tasks/task", locals: { task: task, user: user } ) : ""
   end
 
   def new_task_emails
@@ -105,5 +108,9 @@ class TasksController < ApplicationController
   def existing_task?
     message = Message.find_by(id: params[:task][:message_id])
     message ? message.task : false
+  end
+
+  def delete_claims(claims)
+    claims.each(&:delete)
   end
 end
