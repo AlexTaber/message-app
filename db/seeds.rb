@@ -91,8 +91,7 @@ dan_sub = Subscription.create(
 )
 
 google = Project.create(
-  name: "Google",
-  url: "www.google.com"
+  name: "Google"
 )
 
 UserProject.create(user_id: jerry.id, project_id: google.id, admin: true, approved: true)
@@ -100,8 +99,7 @@ UserProject.create(user_id: dan.id, project_id: google.id, admin: false, approve
 UserProject.create(user_id: alex.id, project_id: google.id, admin: false, approved: true)
 
 amazon = Project.create(
-  name: "Amazon",
-  url: "www.amazon.com"
+  name: "Amazon"
 )
 
 UserProject.create(user_id: jerry.id, project_id: amazon.id, admin: true, approved: true)
@@ -109,8 +107,7 @@ UserProject.create(user_id: dan.id, project_id: amazon.id, admin: false, approve
 UserProject.create(user_id: alex.id, project_id: amazon.id, admin: false, approved: true)
 
 base = Project.create(
-  name: "Base",
-  url: "localhost:3000"
+  name: "Base"
 )
 
 UserProject.create(user_id: jerry.id, project_id: base.id, admin: true, approved: true)
