@@ -94,4 +94,8 @@ class Conversation < ActiveRecord::Base
     lazy_messages = messages.order(created_at: :desc)[start_index...end_index]
     lazy_messages ? lazy_messages.reverse : []
   end
+
+  def has_active_project?
+    project.active
+  end
 end

@@ -95,7 +95,11 @@ class User < ActiveRecord::Base
   end
 
   def unread_conversations
-    conversations.select { |conversation| conversation.has_unread_messages?(self) }
+    active_conversations.select { |conversation| conversation.has_unread_messages?(self) }
+  end
+
+  def active_conversations
+    conversations.select(&:has_active_project?)
   end
 
   def has_unread_conversations?
