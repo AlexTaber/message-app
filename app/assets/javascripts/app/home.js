@@ -292,6 +292,7 @@ function sendMessage(e) {
     }).done(function(response){
       canSendMessage = true;
       $(".new_message").find("#message_content").val("");
+      $('#form-wrapper textarea').css('height', '40px');
       $("#ajax-loader-message").hide();
     });
   }
@@ -323,6 +324,7 @@ function startConversation(e) {
       listenForNewTasks(data.token, curConvoToken);
       $(".new_conversation").find("#content").val("");
       $('.new-convo-placeholder').slideUp();
+      $('#form-wrapper textarea').css('height', '40px');
       $("#ajax-loader-message").hide();
     });
   }
