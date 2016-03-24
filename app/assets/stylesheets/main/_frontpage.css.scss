@@ -502,9 +502,7 @@ ul.edit-project-list {
 		}
 	}
 }
-.app-view-typeahead {
-	display: block;
-}
+
 
 .conversation-wrapper {
 	overflow: visible;
@@ -581,6 +579,28 @@ ul.edit-project-list {
 
 }
 //typeahead-dropdown
+
+.app-view-typeahead {
+	display: block;
+}
+.typeahead-image{
+	width:40px;
+	height:40px;
+	border-radius:100%;
+	padding:10px;
+	margin-top:-10px;
+}
+.typeahead-image-container{
+	display:inline-block;
+	height:100%;
+	float:left;
+}
+#project-typeahead .tt-suggestion{
+	min-height:40px;
+	.text-centered{
+		height:100%;
+	}
+}
 .message-center {
 	.typeahead-form{
 		display:inline-block;
@@ -611,6 +631,7 @@ ul.edit-project-list {
 		cursor: pointer;
 	}
 }
+
 .tt-cursor {
 	background: #f5f5f5!important;
 }
