@@ -62,7 +62,7 @@ $(document).ready(function() {
         source: substringMatcher(all_users, 'username'),
         templates: {
           suggestion: function(data) {
-          return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br>(<span class="grey-color">'+ data.username +'</span>)</p>';
+          return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
           console.log('asdf')
           }
         },
