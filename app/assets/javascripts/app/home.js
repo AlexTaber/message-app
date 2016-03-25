@@ -122,13 +122,6 @@ $('.completed-tasks-btn').on('click', clickTaskButton);
 ///Modal
 var window_width = $(window).width();
 var window_height = $(window).height();
-$('.modal-window').each(function(){
-	var modal_height = $(this).outerHeight();
-	var modal_width = $(this).outerWidth();
-	var top = (window_height-modal_height)/2;
-	var left = (window_width-modal_width)/2;
-	$(this).css({'top' : top , 'left' : left});
-});
 
 $('.activate-modal').click(function(e){
   e.preventDefault();

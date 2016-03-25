@@ -113,16 +113,21 @@ hr.fifty{
   .modal-window{
     position:absolute;
     width: 50vw;
+    margin-left:25vw;
     display:none;
     padding: 2rem;
     background: #fff;
     text-align: center;
+    top:50%;
+    transform: translateY(-50%);
     z-index: 4440000;
     border-radius: 5px;
     overflow:visible;
     -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+    -webkit-transition: height 2s linear;
+    transition: height 2s linear;
     &>div{
       height: 100%;
       width:100%;
