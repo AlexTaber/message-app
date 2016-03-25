@@ -48,7 +48,18 @@ $(document).ready(function() {
       {
         name: 'project_users',
         displayKey: 'name',
-        source: substringMatcher(project_users, 'name')
+        source: substringMatcher(project_users, 'name'),
+                templates: {
+          suggestion: function(data) {
+            if (data.image_url == "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"){
+              var name = data.name;
+              var first_initial = name.charAt(0);
+              return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><span class="profile-pic has-no-pic typeahead-image">' + first_initial + '</span></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
+            } else {
+              return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
+          }
+        }
+      }
       });
 
       $('.project-typeahead').typeahead({
@@ -62,10 +73,15 @@ $(document).ready(function() {
         source: substringMatcher(all_users, 'username'),
         templates: {
           suggestion: function(data) {
-          return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
-          console.log('asdf')
+            if (data.image_url == "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"){
+              var name = data.name;
+              var first_initial = name.charAt(0);
+              return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><span class="profile-pic has-no-pic typeahead-image">' + first_initial + '</span></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
+            } else {
+              return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
           }
-        },
+        }
+      },
 
       });
 
