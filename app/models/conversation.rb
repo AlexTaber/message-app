@@ -13,15 +13,16 @@ class Conversation < ActiveRecord::Base
     messages.last.content_preview(length)
   end
 
-  def other_users_to_s(user, first_names_only = false)
-    str = ""
-    other_users(user).each { |user| first_names_only ? str += "#{user.first_name}, " : str += "#{user.name}, " }
-    str[0...-2]
+  def other_users_to_s(user, first_name_only = true)
+    first_name_only ? name_method = :first_name : name_method = :name
+    other_users(user).map(&name_method).join(', ')
   end
 
-  def abbreviated_other_users_to_s(user, length, first_names_only = false)
-    str = other_users_to_s(user, first_names_only)
-    str.length > length ? "#{str[0...length]}..." : str[0...length]
+  def abbreviated_other_users_to_s(user, length, first_name_only = true)
+    first_name_only ? name_method = :first_name : name_method = :name
+    all_other_users = other_users(user)
+    str = all_other_users[0...length].map(&name_method).join(', ')
+    all_other_users.count > length ? "#{str} and #{all_other_users.count - length} other(s)" : str
   end
 
   def other_users(user)

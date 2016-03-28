@@ -336,15 +336,17 @@
       <header>
         <% if @conversation.has_inactive_users? %>
           <i class="fa fa-exclamation-circle inactive-icon">
-            <p>Inactive users in this conversation:<br>
-              <% @conversation.inactive_users.each do |user| %>
-                <%= user.name %><br>
-              <% end %>
+            <p>The following users no longer belong to this project:<br>
+              <b>
+                <% @conversation.inactive_users.each do |user| %>
+                  <%= user.name %><br>
+                <% end %>
+              </b>
             </p>
           </i>
         <% end %>
         <i>To:</i>
-        <b> <%= @conversation.other_users_to_s(current_user) %> </b>
+        <b> <%= @conversation.abbreviated_other_users_to_s(current_user, 2) %> </b>
         <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
         <a href="#" class="add-user-to-convo add-btn"><div class="add-button-hover">
             <i class="fa fa-plus"></i>

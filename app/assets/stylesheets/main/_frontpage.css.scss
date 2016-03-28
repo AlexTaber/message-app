@@ -234,7 +234,7 @@ ul.edit-project-list {
 	}
 
 	.inactive-icon {
-		color: red;
+		color: lighten(red, 20%);
 
 		p {
 			z-index: 999;
