@@ -233,24 +233,34 @@ ul.edit-project-list {
 		padding: 10px;
 	}
 
-	.inactive-icon {
-		color: lighten(red, 20%);
-
+	.other-users {
 		p {
-			z-index: 999;
-			color: $black;
-			padding: 5px;
-			margin-top: 10px;
-			position: absolute;
-			background: $white;
-			display: none;
-			border: 1px solid $grey;
+			margin-top: 7px;
 		}
 
 		&:hover p {
 			display: block;
 		}
 	}
+
+	.inactive-icon {
+		color: lighten(red, 20%);
+
+		&:hover p {
+			display: block;
+		}
+	}
+}
+
+.hover-item {
+	z-index: 999;
+	color: $black;
+	padding: 5px;
+	margin-top: 10px;
+	position: absolute;
+	background: $white;
+	display: none;
+	border: 1px solid $grey;
 }
 @media (min-width: 750px) {
 .message-center {
@@ -628,6 +638,7 @@ ul.edit-project-list {
 }
 .tt-suggestion {
 	padding:10px;
+	width: calc(100% - 20px);
 	border-bottom: 1px solid #ddd;
 	text-align:center;
 	&:hover, &:focus{
@@ -639,8 +650,8 @@ ul.edit-project-list {
 .tt-cursor {
 	background: #f5f5f5!important;
 }
-.tt-menu, .tt-suggestion, .tt-dataset {
-	overflow: hidden;
+.tt-menu, .tt-dataset {
+	overflow-x: visible;
 	width: 240px;
 }
 .add-btn {
