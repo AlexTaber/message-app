@@ -28,6 +28,10 @@ class Conversation < ActiveRecord::Base
     users.select { |checked_user| checked_user != user }
   end
 
+  def other_active_users(user)
+    users.select { |checked_user| checked_user != user && checked_user.active_conversation?(self) }
+  end
+
   def has_messages?
     messages.count > 0
   end
@@ -97,5 +101,21 @@ class Conversation < ActiveRecord::Base
 
   def has_active_project?
     project.active
+  end
+
+  def inactive_users
+    users.select { |user| user.inactive_conversation?(self) }
+  end
+
+  def has_inactive_users?
+    inactive_users.count > 0
+  end
+
+  def active_users
+    users.select { |user| user.active_conversation?(self) }
+  end
+
+  def has_active_users?
+    active_users.count > 0
   end
 end
