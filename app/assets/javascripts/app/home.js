@@ -407,6 +407,8 @@ function listenForNewTasks(conversationToken, curConvoToken) {
           $(".no-pending-tasks").remove();
           $(".pending-tasks").append(data.task_html);
         }
+      } else if(notesMode) {
+        $("#note-" + String(data.message_id)).replaceWith(data.note_html);
       } else {
         if(userId == data.user_id) {
           $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);

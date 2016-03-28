@@ -426,12 +426,12 @@
       </div>
     <div id="form-wrapper">
       <% if @notes %>
-        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: false } %>
+        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, notes: @notes, tasks: @tasks, mb: false } %>
       <% elsif @conversation.other_active_users(current_user).length > 0 %>
         <% if @conversation.new_record? %>
           <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: false } %>
         <% else %>
-          <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: false } %>
+          <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, notes: @notes, tasks: @tasks, mb: false } %>
         <% end %>
       <% end %>
     </div>

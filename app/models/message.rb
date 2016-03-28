@@ -61,4 +61,8 @@ class Message < ActiveRecord::Base
   def delete_old_task
     task.delete if task
   end
+
+  def has_task?
+    task ? task.persisted? : false
+  end
 end

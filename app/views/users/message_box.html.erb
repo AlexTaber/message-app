@@ -173,7 +173,7 @@
                 <% if @conversation.new_record? %>
                   <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: true } %>
                 <% else %>
-                  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: true } %>
+                  <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, notes: @notes, tasks: @tasks, mb: true } %>
                 <% end %>
               <% end %>
             </div>

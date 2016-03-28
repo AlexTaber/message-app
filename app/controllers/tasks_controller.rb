@@ -81,6 +81,7 @@ class TasksController < ApplicationController
         current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: message, task: task }),
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
         task_html: task_html(task, user),
+        note_html: note_html(message),
         deleted: deleted,
         completer_id: task ? task.completer_id : false,
         completed_tasks_count: message.conversation.completed_tasks.count,
@@ -91,6 +92,10 @@ class TasksController < ApplicationController
 
   def task_html(task, user)
     task ? (render_to_string partial: "tasks/task", locals: { task: task, user: user } ) : ""
+  end
+
+  def note_html(message)
+    (render_to_string partial: "messages/note", locals: { message: message } )
   end
 
   def new_task_emails
