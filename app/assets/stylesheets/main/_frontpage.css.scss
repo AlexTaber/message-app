@@ -46,9 +46,6 @@ body {
 	header  {
 		padding: 10px;
 		border-bottom: 1px solid rgba($darkgrey, 1);
-		i{
-			padding-left: 10px;
-		}
 		h4 {
 			display: inline-block;
 			line-height: 0;
@@ -515,13 +512,7 @@ ul.edit-project-list {
 
 	color:#000;
 	margin-top:15px;
-	margin-left: -138px;
-	&.is-first{
-	margin-left:-103px;
-	}
-	&.is-last{
-		margin-left: -230px;
-	}
+	transform: translateX(calc(-100% + 18px))
 }
 .add-button-hover:hover .add-button-hover-text {
 	height:auto;
@@ -531,7 +522,6 @@ ul.edit-project-list {
 	&:before{
 		position:absolute;
 		top: -6px;
-		right:10px;
 		content: "";
 		width: 0;
 		height: 0;

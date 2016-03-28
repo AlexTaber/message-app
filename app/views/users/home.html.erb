@@ -153,7 +153,11 @@
         <%= link_to 'Admin', owner_data_path %>
       </li>
     <% end %>
-     <li><%= link_to 'Upgrade', edit_subscription_path(current_user.subscription) %></li>
+      <li>
+        <%= link_to edit_subscription_path(current_user.subscription) do %>
+          Upgrade<br><small>Current Tier: <b><%= current_user.tier.name %></b></small>
+        <% end %>
+      </li>
      <li><%= link_to 'Logout', logout_path %></li>
    </nav>
  </nav>
@@ -189,14 +193,14 @@
           <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
           <div class="add-button-hover">
             <i class="fa fa-plus"></i>
-            <div class="add-button-hover-text is-first">Add a new project</div>
+            <div class="add-button-hover-text is-first">Add a new project<br><small><%= current_user.remaining_projects_count %> Remaining</small></div>
           </div>
           <% end %>
         <% else %>
           <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
             <div class="add-button-hover">
               <i class="fa fa-plus"></i>
-              <div class="add-button-hover-text is-first">Add a new project</div>
+              <div class="add-button-hover-text is-first"><small>Upgrade to Add Project</small></div>
             </div>
           <% end %>
         <% end %>
