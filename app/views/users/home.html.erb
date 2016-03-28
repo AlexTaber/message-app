@@ -153,7 +153,11 @@
         <%= link_to 'Admin', owner_data_path %>
       </li>
     <% end %>
-     <li><%= link_to 'Upgrade', edit_subscription_path(current_user.subscription) %></li>
+      <li>
+        <%= link_to edit_subscription_path(current_user.subscription) do %>
+          Upgrade<br><small>Current Tier: <b><%= current_user.tier.name %></b></small>
+        <% end %>
+      </li>
      <li><%= link_to 'Logout', logout_path %></li>
    </nav>
  </nav>
