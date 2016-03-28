@@ -334,10 +334,31 @@
   <!-- Message Content Section -->
   <div class="message-center mobile-target">
       <header>
-      <i>To:</i>
-      <b> <%= @conversation.other_users_to_s(current_user) %> </b>
-      <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
-       <a href="#" class="add-user-to-convo add-btn"><div class="add-button-hover">
+        <% if @conversation.has_inactive_users? %>
+          <i class="fa fa-exclamation-circle inactive-icon">
+            <p class="hover-item">The following users no longer belong to this project:<br>
+              <b>
+                <% @conversation.inactive_users.each do |user| %>
+                  <%= user.name %><br>
+                <% end %>
+              </b>
+            </p>
+          </i>
+        <% end %>
+        <i>To:</i>
+        <span class="other-users">
+          <b> <%= @conversation.abbreviated_other_users_to_s(current_user, 2) %> </b>
+          <p class="hover-item">
+            Users in this conversation:<br>
+            <b>
+              <% @conversation.other_users(current_user).each do |user| %>
+                <%= user.name %><br>
+              <% end %>
+            </b>
+          </p>
+        </span>
+        <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
+        <a href="#" class="add-user-to-convo add-btn"><div class="add-button-hover">
             <i class="fa fa-plus"></i>
             <div class="add-button-hover-text is-last">Add a new person to the conversation</div>
           </div></a>
@@ -381,21 +402,22 @@
         <% end %>
       </div>
     <div id="form-wrapper">
-    <% if @conversation.other_users(current_user).length > 0 %>
-      <% if @conversation.new_record? %>
-        <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: false } %>
-      <% else %>
-        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: false } %>
+      <% if @conversation.other_active_users(current_user).length > 0 %>
+        <% if @conversation.new_record? %>
+          <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: false } %>
+        <% else %>
+          <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: false } %>
+        <% end %>
       <% end %>
-    <% end %>
     </div>
   </div>
+
   <div id="mobile-current-account" class="mobile-target">
-     <p><b><%= current_user.name %>'s Acount</b></p>
-     <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
-     <li><%= link_to 'Upgrade', root_path %></li>
-     <li><%= link_to 'Logout', logout_path %></li>
-   </div>
+    <p><b><%= current_user.name %>'s Acount</b></p>
+    <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+    <li><%= link_to 'Upgrade', root_path %></li>
+    <li><%= link_to 'Logout', logout_path %></li>
+  </div>
 </div>
 
 <% if current_user.active_projects_ordered_by_admin.length > 0 %>

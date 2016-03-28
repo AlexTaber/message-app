@@ -13,19 +13,24 @@ class Conversation < ActiveRecord::Base
     messages.last.content_preview(length)
   end
 
-  def other_users_to_s(user, first_names_only = false)
-    str = ""
-    other_users(user).each { |user| first_names_only ? str += "#{user.first_name}, " : str += "#{user.name}, " }
-    str[0...-2]
+  def other_users_to_s(user, first_name_only = true)
+    first_name_only ? name_method = :first_name : name_method = :name
+    other_users(user).map(&name_method).join(', ')
   end
 
-  def abbreviated_other_users_to_s(user, length, first_names_only = false)
-    str = other_users_to_s(user, first_names_only)
-    str.length > length ? "#{str[0...length]}..." : str[0...length]
+  def abbreviated_other_users_to_s(user, length, first_name_only = true)
+    first_name_only ? name_method = :first_name : name_method = :name
+    all_other_users = other_users(user)
+    str = all_other_users[0...length].map(&name_method).join(', ')
+    all_other_users.count > length ? "#{str} and #{all_other_users.count - length} other(s)" : str
   end
 
   def other_users(user)
     users.select { |checked_user| checked_user != user }
+  end
+
+  def other_active_users(user)
+    users.select { |checked_user| checked_user != user && checked_user.active_conversation?(self) }
   end
 
   def has_messages?
@@ -97,5 +102,21 @@ class Conversation < ActiveRecord::Base
 
   def has_active_project?
     project.active
+  end
+
+  def inactive_users
+    users.select { |user| user.inactive_conversation?(self) }
+  end
+
+  def has_inactive_users?
+    inactive_users.count > 0
+  end
+
+  def active_users
+    users.select { |user| user.active_conversation?(self) }
+  end
+
+  def has_active_users?
+    active_users.count > 0
   end
 end

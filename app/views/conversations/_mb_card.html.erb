@@ -7,7 +7,7 @@
     <i><%= conversation.messages.last.date_to_s %></i>
     <i><%= conversation.messages.last.time_to_s %></i>
     <div class="msg-bx-convo-data">
-      <h4><%= conversation.abbreviated_other_users_to_s(user, 30, true) %></h4>
+      <h4><%= conversation.abbreviated_other_users_to_s(user, 2) %></h4>
       <%= "#{conversation.messages.last.user.first_name}: #{sanitize(simple_format(conversation.content_preview(30)), :tags => %w(br a))}" %>
     </div>
   <% end %>

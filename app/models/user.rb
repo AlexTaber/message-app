@@ -312,4 +312,12 @@ class User < ActiveRecord::Base
   def remaining_projects_count
     tier.admin_projects - active_admin_projects.count
   end
+
+  def active_conversation?(conversation)
+    user_projects.find_by(project_id: conversation.project.id)
+  end
+
+  def inactive_conversation?(conversation)
+    !active_conversation?(conversation)
+  end
 end

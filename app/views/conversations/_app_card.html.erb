@@ -18,7 +18,7 @@
       <% end %>
       <div class="bd conversation-preview">
         <h4 class="ellipsis">
-          <%= conversation.other_users_to_s(user) %>
+          <%= conversation.other_users_to_s(user, false) %>
         </h4>
         <p class="ellipsis">
           <%= sanitize(simple_format(conversation.content_preview(100)), :tags => %w(br a)) %>
