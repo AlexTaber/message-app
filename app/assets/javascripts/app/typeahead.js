@@ -51,7 +51,7 @@ $(document).ready(function() {
         source: substringMatcher(project_users, 'name'),
                 templates: {
           suggestion: function(data) {
-            if (data.image_url == "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"){
+            if (data.image_url === null){
               var name = data.name;
               var first_initial = name.charAt(0);
               return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><span class="profile-pic has-no-pic typeahead-image">' + first_initial + '</span></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
@@ -73,7 +73,7 @@ $(document).ready(function() {
         source: substringMatcher(all_users, 'username'),
         templates: {
           suggestion: function(data) {
-            if (data.image_url == "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"){
+            if (data.image_url == null){
               var name = data.name;
               var first_initial = name.charAt(0);
               return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><span class="profile-pic has-no-pic typeahead-image">' + first_initial + '</span></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';

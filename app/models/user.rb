@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
   end
 
   def image_url
-    image ? image.url : "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png"
+    image ? image.url : nil
   end
 
   def find_user_project(project)
