@@ -314,7 +314,7 @@ class User < ActiveRecord::Base
   end
 
   def active_conversation?(conversation)
-    user_projects.find_by(project_id: conversation.project.id)
+    conversation.project ? user_projects.find_by(project_id: conversation.project.id) : false
   end
 
   def inactive_conversation?(conversation)
