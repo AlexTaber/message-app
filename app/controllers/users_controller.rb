@@ -78,6 +78,8 @@ class UsersController < ApplicationController
       current_user.has_active_projects? ? find_user_project : @project = Project.new
       if params[:new_conversation]
         set_up_new_conversation
+      elsif params[:notes]
+        set_up_notes
       else
         current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
       end
@@ -90,6 +92,7 @@ class UsersController < ApplicationController
       @invite = Invite.new
       @request = Request.new
       @tasks = params[:tasks]
+      @notes = params[:notes]
       @mobile_conversations = params[:mobile_conversations]
       @lazy_load = find_lazy_load
     else
@@ -262,5 +265,13 @@ class UsersController < ApplicationController
 
   def find_lazy_load
     params[:lazy_load] ? params[:lazy_load].to_i + 1 : 0;
+  end
+
+  def set_up_notes
+    @conversation = @project.find_notes
+    unless @conversation
+      @conversation = Conversation.create(project: @project)
+      @conversation.users << current_user
+    end
   end
 end

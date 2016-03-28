@@ -1,0 +1,21 @@
+<div class="note">
+  <p>
+    <small><i><%= message.time_ago_to_s %></i></small>
+  </p>
+  <p><%= message.content %></p>
+  <div class="icon-bar">
+    <% if message.task %>
+      <%= link_to task_path(message.task, task: { completer_id: current_user.id }), title: "Mark as Complete", method: "PUT", class: "complete-task" do %>
+        <i class="fa fa-check-circle"></i>
+      <% end %>
+
+      <%= link_to task_path(message.task), title: "Remove Task", method: "DELETE", class: "remove-model" do %>
+        <i class="fa fa-minus-circle"></i>
+      <% end %>
+    <% else %>
+      <%= link_to tasks_path(task: { message_id: message.id } ), title: "Add Task", method: "POST", class: "new-model" do %>
+        <i class="fa fa-exclamation-circle"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>

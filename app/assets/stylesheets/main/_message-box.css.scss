@@ -365,41 +365,7 @@
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   z-index: -1;
-  .icon-bar {
-    clear: both;
 
-    &.self {
-      float: right;
-      margin-right: 50px;
-    }
-
-    &.them {
-      margin-left: 50px;
-    }
-
-    .fa-eye{
-      font-size: 16px
-    }
-
-    a {
-      text-decoration: none;
-      color: $darkgrey;
-    }
-
-    a:hover {
-      .fa-check-circle {
-        color: green;
-      }
-
-      .fa-minus-circle, .fa-undo {
-        color: red;
-      }
-
-      .fa-exclamation-circle, .fa-eye {
-        color: $pwdlight;
-      }
-    }
-  }
   p {
     max-width:225px;
     min-width: 100px;
@@ -461,6 +427,43 @@
     padding-left:50px;
   }
 }
+
+.icon-bar {
+  clear: both;
+
+  &.self {
+    float: right;
+    margin-right: 50px;
+  }
+
+  &.them {
+    margin-left: 50px;
+  }
+
+  .fa-eye{
+    font-size: 16px
+  }
+
+  a {
+    text-decoration: none;
+    color: $darkgrey;
+  }
+
+  a:hover {
+    .fa-check-circle {
+      color: green;
+    }
+
+    .fa-minus-circle, .fa-undo {
+      color: red;
+    }
+
+    .fa-exclamation-circle, .fa-eye {
+      color: $pwdlight;
+    }
+  }
+}
+
 .msg-bx-padding{
   padding:80px;
 }

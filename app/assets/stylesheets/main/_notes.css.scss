@@ -1,0 +1,56 @@
+.notes-convo {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid $grey;
+  text-align: center;
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  i {
+    opacity: 0;
+  }
+
+  &:hover {
+    background-color: #eee;
+
+    i {
+      opacity: 1;
+    }
+  }
+}
+
+.notes-convo-container {
+  margin-top: -20px;
+  .notes-header {
+    background: #674B3C;
+    height: 30px;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .notes-container {
+    background: lighten(yellow, 35%);
+    min-height: 50vh;
+
+    .notes {
+      min-height: 50vh;
+      margin-left: 40px;
+      border-left: 1px solid red;
+    }
+
+    .note {
+      margin-left: -40px;
+      border-bottom: 1px solid $grey;
+    }
+
+    .icon-bar {
+      margin-left: 60px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      display: block;
+      padding-top: 3px;
+      background: transparent;
+    }
+  }
+}

@@ -45,6 +45,11 @@
   <% if @lazy_load %>
     <%= javascript_tag "lazyLoadIndex = #{@lazy_load}" %>
   <% end %>
+ <% if @notes %>
+    <%= javascript_tag "notesMode = true;" %>
+  <% else %>
+    <%= javascript_tag "notesMode = false;" %>
+  <% end %>
   <!-- END JS DATA -->
 
   <!-- Touch Icons -->

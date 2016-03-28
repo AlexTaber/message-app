@@ -296,6 +296,13 @@
       </header>
     </nav>
 
+    <%= link_to root_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: @project.id) do %>
+      <div class="notes-convo">
+        Notes for <%= @project.name %>
+        <i class="fa fa-edit"></i>
+      </div>
+    <% end %>
+
     <% if @conversation.new_record? && current_user.has_active_projects?  %>
       <div class="message-item msg-item-current new-convo-placeholder">
       <div class="media">
@@ -334,42 +341,49 @@
   <!-- Message Content Section -->
   <div class="message-center mobile-target">
       <header>
-        <% if @conversation.has_inactive_users? %>
-          <i class="fa fa-exclamation-circle inactive-icon">
-            <p class="hover-item">The following users no longer belong to this project:<br>
+        <% if @notes %>
+          Your Notes for <b><%= @project.name %></b>
+        <% else %>
+          <% if @conversation.has_inactive_users? %>
+            <i class="fa fa-exclamation-circle inactive-icon">
+              <p class="hover-item">The following users no longer belong to this project:<br>
+                <b>
+                  <% @conversation.inactive_users.each do |user| %>
+                    <%= user.name %><br>
+                  <% end %>
+                </b>
+              </p>
+            </i>
+          <% end %>
+
+          <i>To:</i>
+          <span class="other-users">
+            <b> <%= @conversation.abbreviated_other_users_to_s(current_user, 2) %> </b>
+            <p class="hover-item">
+              Users in this conversation:<br>
               <b>
-                <% @conversation.inactive_users.each do |user| %>
+                <% @conversation.other_users(current_user).each do |user| %>
                   <%= user.name %><br>
                 <% end %>
               </b>
             </p>
-          </i>
+          </span>
+          <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
+          <a href="#" class="add-user-to-convo add-btn">
+            <div class="add-button-hover">
+              <i class="fa fa-plus"></i>
+              <div class="add-button-hover-text is-last">Add a new person to the conversation</div>
+            </div>
+          </a>
         <% end %>
-        <i>To:</i>
-        <span class="other-users">
-          <b> <%= @conversation.abbreviated_other_users_to_s(current_user, 2) %> </b>
-          <p class="hover-item">
-            Users in this conversation:<br>
-            <b>
-              <% @conversation.other_users(current_user).each do |user| %>
-                <%= user.name %><br>
-              <% end %>
-            </b>
-          </p>
-        </span>
-        <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
-        <a href="#" class="add-user-to-convo add-btn"><div class="add-button-hover">
-            <i class="fa fa-plus"></i>
-            <div class="add-button-hover-text is-last">Add a new person to the conversation</div>
-          </div></a>
       </header>
       <div class="task-conversation-switch text-center">
       <% if @tasks %>
-          <%= link_to "View Conversation", root_path(project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+          <%= link_to "View Conversation", root_path(notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
           Tasks
         <% else %>
           Conversation  |
-          <%= link_to "View Tasks", root_path(tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
+          <%= link_to "View Tasks", root_path(notes: @notes, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
         <% end %>
       </div>
 
@@ -397,12 +411,23 @@
               <% end %>
             </div>
           <% end %>
+        <% elsif @notes %>
+          <div class="notes-convo-container">
+            <div class="notes-header"></div>
+            <div class="notes-container">
+              <div class="notes">
+                <%= render partial: "conversations/notes_lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+              </div>
+            </div>
+          </div>
         <% else %>
           <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
         <% end %>
       </div>
     <div id="form-wrapper">
-      <% if @conversation.other_active_users(current_user).length > 0 %>
+      <% if @notes %>
+        <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, tasks: @tasks, mb: false } %>
+      <% elsif @conversation.other_active_users(current_user).length > 0 %>
         <% if @conversation.new_record? %>
           <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: false } %>
         <% else %>
