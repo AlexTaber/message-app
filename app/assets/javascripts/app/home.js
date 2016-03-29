@@ -39,7 +39,6 @@ jQuery(document).ready(function($){
     $('.mobile-active').removeClass('mobile-active')
     $('#mobile-messages').addClass('mobile-active');
     scrollToBottom();
-    console.log("HERE");
   }
   if ((!messageUrl && tasksUrl) || (!messageUrl && mobileConvoUrl))  {
     $('.mobile-target').fadeOut(0);
