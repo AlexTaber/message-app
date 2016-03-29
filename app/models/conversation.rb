@@ -93,6 +93,10 @@ class Conversation < ActiveRecord::Base
     completed_tasks.count > 0
   end
 
+  def has_complete_and_incomplete_tasks?
+    has_completed_tasks? && has_pending_tasks?
+  end
+
   def lazy_load_messages(index)
     start_index = index * 15
     end_index = start_index + 15
