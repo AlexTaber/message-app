@@ -297,7 +297,9 @@
     </nav>
 
     <% unless @project.new_record? %>
-      <%= render partial: "conversations/notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
+      <div class="notes-wrapper" id="notes<%= @notes_conversation.id %>">
+        <%= render partial: "conversations/notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
+      </div>
     <% end %>
 
     <% if @conversation.new_record? && current_user.has_active_projects?  %>

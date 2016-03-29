@@ -1,4 +1,4 @@
-<%= link_to home_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: @project.id) do %>
+<%= link_to home_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: conversation.project.id) do %>
   <% if conversation == current_conversation %>
     <div class="message-item msg-item-current">
   <% elsif conversation.has_unread_messages?(user) %>
