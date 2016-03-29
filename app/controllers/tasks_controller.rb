@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :task_by_id, only: [:update, :destroy]
+  before_action :task_by_id, only: [:update, :destroy, :transfer]
 
   def create
     redirect_to :back and return if existing_task?
@@ -19,7 +19,6 @@ class TasksController < ApplicationController
 
   def update
     @task.assign_attributes(task_params)
-    @task.update_conversation(params[:task][:conversation_id]) if params[:task][:conversation_id]
 
     if @task.valid?
       @task.save
@@ -57,6 +56,12 @@ class TasksController < ApplicationController
     else
       redirect_to :back
     end
+  end
+
+  def transfer
+    @task.update_conversation(params[:conversation_id])
+
+    render text: "Done"
   end
 
   private

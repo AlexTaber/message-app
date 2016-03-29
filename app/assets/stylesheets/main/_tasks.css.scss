@@ -16,6 +16,10 @@
     font-size: 1.8rem;
     margin-top: -5px;
 
+    .fa-exchange:hover {
+      color: darken($green, 30%);
+    }
+
     a {
       color: $black;
 

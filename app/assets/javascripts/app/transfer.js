@@ -31,12 +31,11 @@ function selectTransfer(e) {
 }
 
 function sendTransfer() {
-  debugger;
   $.ajax({
-    url: "/tasks/" + String(transferTask),
+    url: "/tasks/" + String(transferTask) + "/transfer",
     method: "PUT",
-    data: { task: { conversation_id: transferConvo } }
+    data: { conversation_id: transferConvo }
   }).done(function(response){
-    console.log(response);
+    //done
   });
 }
