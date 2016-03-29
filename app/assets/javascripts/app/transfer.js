@@ -23,6 +23,14 @@ function activateTransfer() {
   transferTask = parseInt(el.attr('id').replace("task-", ""));
   $("#transfer-cover").addClass("is-transitioned");
   $("#transfer-header").addClass("is-transitioned");
+
+  var el = $("#mobile-convos");
+  $('.mobile-active').removeClass('mobile-active')
+  $(el).addClass('mobile-active')
+  $('.mobile-target').fadeOut(0);
+  $('#current-account').slideUp();
+  i = $(el).parent().children().index(el) - 1
+  $('.mobile-target').eq(i).fadeIn();
 }
 
 function closeTransfer() {
