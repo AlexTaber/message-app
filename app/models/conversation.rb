@@ -109,7 +109,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def has_inactive_users?
-    inactive_users.count > 0
+    inactive_users.count > 0 && persisted?
   end
 
   def active_users
