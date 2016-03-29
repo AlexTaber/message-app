@@ -1,11 +1,7 @@
 var transferTask = -1;
 var transferConvo = -1;
 
-window.addEventListener ?
-window.addEventListener("load",transferLoad,false) :
-window.attachEvent && window.attachEvent("onload",transferLoad);
-
-function transferLoad() {
+$(document).ready(function() {
   $(".transfer-icon").on('click', activateTransfer);
   $("#transfer-close").on('click', closeTransfer);
   $(".conversation-wrapper, .notes-wrapper").on('click', selectTransfer);
@@ -20,7 +16,7 @@ function transferLoad() {
       listenForNewTransferedTasks(conversationToken, curConvoToken);
     }
   }
-}
+});
 
 function activateTransfer() {
   var el = $(this).parents(".task-container");
