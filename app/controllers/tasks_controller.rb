@@ -59,6 +59,7 @@ class TasksController < ApplicationController
   def transfer
     old_convo_id = @task.message.conversation.id
     @task.update_conversation(params[:conversation_id])
+    @task.delete_claims
     fire_pusher_transfer(old_convo_id)
 
     render text: "Done"
