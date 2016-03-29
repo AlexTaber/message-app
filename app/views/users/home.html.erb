@@ -296,11 +296,13 @@
       </header>
     </nav>
 
-    <%= link_to root_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: @project.id) do %>
-      <div class="notes-convo">
-        Notes for <%= @project.name %>
-        <i class="fa fa-edit"></i>
-      </div>
+    <% unless @project.new_record? %>
+      <%= link_to root_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: @project.id) do %>
+        <div class="notes-convo">
+          Notes for <%= @project.name %>
+          <i class="fa fa-edit"></i>
+        </div>
+      <% end %>
     <% end %>
 
     <% if @conversation.new_record? && current_user.has_active_projects?  %>
@@ -416,7 +418,19 @@
             <div class="notes-header"></div>
             <div class="notes-container">
               <div class="notes">
-                <%= render partial: "conversations/notes_lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+                <% if @conversation.has_messages? %>
+                  <%= render partial: "conversations/notes_lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+                <% else %>
+                  <div class="note no-note">
+                    <p>You don't have any notes written for <%= @project.name %> yet.</p>
+                  </div>
+                  <div class="note no-note">
+                    <p>Notes are a great place to store information/tasks only you need!</p>
+                  </div>
+                  <div class="note no-note">
+                    <p>Go ahead, write a note in the form below.</p>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>

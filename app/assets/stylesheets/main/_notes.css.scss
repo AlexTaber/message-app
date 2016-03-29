@@ -1,17 +1,21 @@
 .notes-convo {
   background-color: #f5f5f5;
   border-bottom: 1px solid $grey;
-  text-align: center;
   margin: 0;
+  text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 8px;
+  padding-left: 20px;
+  color: $black;
   i {
     opacity: 0;
+    -webkit-transition: opacity 0.4s; /* Safari */
+    transition: opacity 0.4s;
   }
 
   &:hover {
     background-color: #eee;
+    color: $pwdlight;
 
     i {
       opacity: 1;
@@ -23,16 +27,16 @@
   margin-top: -20px;
   .notes-header {
     background: $black;
-    height: 30px;
-    border-radius: 10px 10px 0px 0px;
+    height: 20px;
+    border-radius: 15px 15px 0px 0px;
   }
 
   .notes-container {
     background: #f2f2f2;
-    min-height: 50vh;
+    min-height: calc(100vh - 230px);
 
     .notes {
-      min-height: 50vh;
+      min-height: calc(100vh - 230px);
       margin-left: 40px;
       border-left: 1px solid red;
     }
@@ -40,6 +44,11 @@
     .note {
       margin-left: -40px;
       border-bottom: 1px solid lighten($pwdlight, 38%);
+
+      &.no-note {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
     }
 
     .icon-bar {

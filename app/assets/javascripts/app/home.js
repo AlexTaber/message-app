@@ -355,6 +355,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
         $(".no-pending-tasks").remove();
         $(".pending-tasks").append(data.task_html);
       } else if(notesMode) {
+        $(".no-note").remove();
         $(".notes").append(data.note_html);
       } else {
         if(userId == data.user_id) {

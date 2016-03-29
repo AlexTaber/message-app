@@ -240,7 +240,7 @@ class UsersController < ApplicationController
   end
 
   def set_up_new_conversation
-    @conversation = Conversation.new
+    @conversation = Conversation.new(project_id: @project.id)
     if params[:user_ids]
       users = User.where(id: params[:user_ids])
       @conversation.users << users
@@ -269,7 +269,7 @@ class UsersController < ApplicationController
   end
 
   def set_up_notes
-    @conversation = @project.find_notes
+    @conversation = @project.find_notes(current_user)
     unless @conversation
       @conversation = Conversation.create(project: @project)
       @conversation.users << current_user

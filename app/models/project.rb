@@ -90,7 +90,7 @@ class Project < ActiveRecord::Base
     pending_tasks > 0
   end
 
-  def find_notes
-    conversations.find(&:is_notes?)
+  def find_notes(user)
+    conversations.find { |conversation| conversation.user_ids == [user.id] }
   end
 end
