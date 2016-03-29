@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :task_by_id, only: [:update, :destroy]
+  before_action :task_by_id, only: [:update, :destroy, :transfer]
 
   def create
     redirect_to :back and return if existing_task?
@@ -37,15 +37,13 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    claims = @task.claims
-
     if @task
       task_id = @task.id
       message = @task.message
       users = @task.message.conversation.users
+      @task.delete_claims
       @task.delete
       flash[:notice] = "Task Deleted"
-      delete_claims(claims)
       fire_pusher_event(task_id, message, users, false, true)
     else
       flash[:warn] = "No task by that id"
@@ -56,6 +54,14 @@ class TasksController < ApplicationController
     else
       redirect_to :back
     end
+  end
+
+  def transfer
+    old_convo_id = @task.message.conversation.id
+    @task.update_conversation(params[:conversation_id])
+    fire_pusher_transfer(old_convo_id)
+
+    render text: "Done"
   end
 
   private
@@ -91,6 +97,41 @@ class TasksController < ApplicationController
     end
   end
 
+  def fire_pusher_transfer(old_convo_id)
+    old_convo = Conversation.find_by(id: old_convo_id)
+    users = old_convo.users
+    users.each do |user|
+      user == current_user ? current_conversation = old_convo : current_conversation = nil
+      Pusher.trigger("transferOldTask#{old_convo.token}#{user.id}", 'transfer-old-task', {
+        task_id: @task.id,
+        message_id: @task.message.id,
+        convo_id: old_convo_id,
+        convo_token: old_convo.token,
+        app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: old_convo, current_conversation: current_conversation, project: old_convo.project, user: user }
+        ),
+        notes_html: (render_to_string partial: "conversations/notes_card", locals: { conversation: old_convo, current_conversation: current_conversation, project: old_convo.project, user: user }
+        )
+      })
+    end
+
+    users = @task.message.conversation.users
+    users.each do |user|
+      user == current_user ? current_conversation = old_convo : current_conversation = nil
+
+      Pusher.trigger("transferNewTask#{@task.message.conversation.token}#{user.id}", 'transfer-new-task', {
+        task_id: @task.id,
+        message_id: @task.message.id,
+        convo_id: @task.message.conversation.id,
+        convo_token: @task.message.conversation.token,
+        app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @task.message.conversation, current_conversation: current_conversation, project: @task.message.conversation.project, user: user }
+        ),
+        notes_html: (render_to_string partial: "conversations/notes_card", locals: { conversation: @task.message.conversation, current_conversation: current_conversation, project: @task.message.conversation.project, user: user }
+        ),
+        task_html: task_html(@task, user)
+      })
+    end
+  end
+
   def task_html(task, user)
     task ? (render_to_string partial: "tasks/task", locals: { task: task, user: user } ) : ""
   end
@@ -114,9 +155,5 @@ class TasksController < ApplicationController
   def existing_task?
     message = Message.find_by(id: params[:task][:message_id])
     message ? message.task : false
-  end
-
-  def delete_claims(claims)
-    claims.each(&:delete)
   end
 end
