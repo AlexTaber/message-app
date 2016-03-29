@@ -13,6 +13,10 @@ class Conversation < ActiveRecord::Base
     messages.last.content_preview(length)
   end
 
+  def notes_preview
+    has_messages? ? messages.last.content : "Write notes for #{project.name} here"
+  end
+
   def other_users_to_s(user, first_name_only = true)
     first_name_only ? name_method = :first_name : name_method = :name
     other_users(user).map(&name_method).join(', ')

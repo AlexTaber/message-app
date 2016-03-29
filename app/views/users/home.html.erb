@@ -297,12 +297,7 @@
     </nav>
 
     <% unless @project.new_record? %>
-      <%= link_to root_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: @project.id) do %>
-        <div class="notes-convo">
-          Notes for <%= @project.name %>
-          <i class="fa fa-edit"></i>
-        </div>
-      <% end %>
+      <%= render partial: "conversations/notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
     <% end %>
 
     <% if @conversation.new_record? && current_user.has_active_projects?  %>

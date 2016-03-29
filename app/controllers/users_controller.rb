@@ -78,11 +78,10 @@ class UsersController < ApplicationController
       current_user.has_active_projects? ? find_user_project : @project = Project.new
       if params[:new_conversation]
         set_up_new_conversation
-      elsif params[:notes]
-        set_up_notes
       else
         current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
       end
+      set_up_notes
       @conversation.read_all_messages(current_user) unless @conversation.new_record?
       @message = Message.new
       @new_project = Project.new
@@ -269,10 +268,12 @@ class UsersController < ApplicationController
   end
 
   def set_up_notes
-    @conversation = @project.find_notes(current_user)
-    unless @conversation
-      @conversation = Conversation.create(project: @project)
-      @conversation.users << current_user
+    @notes_conversation = @project.find_notes(current_user)
+    unless @notes_conversation
+      @notes_conversation = Conversation.create(project: @project)
+      @notes_conversation.users << current_user
     end
+
+    @conversation = @notes_conversation if params[:notes]
   end
 end
