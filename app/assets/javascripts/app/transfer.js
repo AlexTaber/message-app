@@ -5,6 +5,17 @@ window.onload = function() {
   $(".transfer-icon").on('click', activateTransfer);
   $("#transfer-close").on('click', closeTransfer);
   $(".conversation-wrapper, .notes-wrapper").on('click', selectTransfer);
+
+  //pusher
+  if(typeof conversationTokens !== 'undefined') {
+    var channel;
+    var conversationToken;
+    for(var i = 0; i < conversationTokens.length; i++) {
+      conversationToken = conversationTokens[i];
+      listenForOldTransferedTasks(conversationToken, curConvoToken);
+      listenForNewTransferedTasks(conversationToken, curConvoToken);
+    }
+  }
 }
 
 function activateTransfer() {
@@ -31,11 +42,47 @@ function selectTransfer(e) {
 }
 
 function sendTransfer() {
+  $("#ajax-loader-message").show();
+
   $.ajax({
     url: "/tasks/" + String(transferTask) + "/transfer",
     method: "PUT",
     data: { conversation_id: transferConvo }
   }).done(function(response){
     //done
+    $("#ajax-loader-message").hide();
+  });
+}
+
+function listenForOldTransferedTasks(conversationToken, curConvoToken) {
+  channel = pusher.subscribe('transferOldTask' + String(conversationToken) + String(userId));
+  channel.bind('transfer-old-task', function(data) {
+    $("#conversation" + String(data.convo_id)).html(data.app_html);
+    $("#notes" + String(data.convo_id)).html(data.notes_html);
+
+    if(curConvoToken == data.convo_token) {
+      $("#task-" + String(data.task_id)).remove();
+      $("#message-" + String(data.message_id)).remove();
+    }
+
+    $(".conversation-wrapper, .notes-wrapper").on('click', selectTransfer);
+  });
+}
+
+function listenForNewTransferedTasks(conversationToken, curConvoToken) {
+  channel = pusher.subscribe('transferNewTask' + String(conversationToken) + String(userId));
+  channel.bind('transfer-new-task', function(data) {
+    $("#conversation" + String(data.convo_id)).html(data.app_html);
+    $("#notes" + String(data.convo_id)).html(data.notes_html);
+
+    if(curConvoToken == data.convo_token) {
+      if(tasksMode) {
+        $(".no-pending-tasks").remove();
+        $(".pending-tasks").append(data.task_html);
+        updateTaskListeners();
+      }
+    }
+
+    $(".conversation-wrapper, .notes-wrapper").on('click', selectTransfer);
   });
 }

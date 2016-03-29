@@ -59,7 +59,9 @@ class TasksController < ApplicationController
   end
 
   def transfer
+    old_convo_id = @task.message.conversation.id
     @task.update_conversation(params[:conversation_id])
+    fire_pusher_transfer(old_convo_id)
 
     render text: "Done"
   end
@@ -93,6 +95,41 @@ class TasksController < ApplicationController
         completer_id: task ? task.completer_id : false,
         completed_tasks_count: message.conversation.completed_tasks.count,
         app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: message.conversation, current_conversation: current_conversation, project: message.conversation.project, user: user })
+      })
+    end
+  end
+
+  def fire_pusher_transfer(old_convo_id)
+    old_convo = Conversation.find_by(id: old_convo_id)
+    users = old_convo.users
+    users.each do |user|
+      user == current_user ? current_conversation = old_convo : current_conversation = nil
+      Pusher.trigger("transferOldTask#{old_convo.token}#{user.id}", 'transfer-old-task', {
+        task_id: @task.id,
+        message_id: @task.message.id,
+        convo_id: old_convo_id,
+        convo_token: old_convo.token,
+        app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: old_convo, current_conversation: current_conversation, project: old_convo.project, user: user }
+        ),
+        notes_html: (render_to_string partial: "conversations/notes_card", locals: { conversation: old_convo, current_conversation: current_conversation, project: old_convo.project, user: user }
+        )
+      })
+    end
+
+    users = @task.message.conversation.users
+    users.each do |user|
+      user == current_user ? current_conversation = old_convo : current_conversation = nil
+
+      Pusher.trigger("transferNewTask#{@task.message.conversation.token}#{user.id}", 'transfer-new-task', {
+        task_id: @task.id,
+        message_id: @task.message.id,
+        convo_id: @task.message.conversation.id,
+        convo_token: @task.message.conversation.token,
+        app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @task.message.conversation, current_conversation: current_conversation, project: @task.message.conversation.project, user: user }
+        ),
+        notes_html: (render_to_string partial: "conversations/notes_card", locals: { conversation: @task.message.conversation, current_conversation: current_conversation, project: @task.message.conversation.project, user: user }
+        ),
+        task_html: task_html(@task, user)
       })
     end
   end
