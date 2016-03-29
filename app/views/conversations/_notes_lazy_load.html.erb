@@ -1,0 +1,3 @@
+<% conversation.lazy_load_messages(lazy_load).each do |message| %>
+  <%= render partial: "messages/note", locals: { message: message } %>
+<% end %>

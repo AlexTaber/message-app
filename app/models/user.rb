@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def conversations_by_project(project)
-    conversations.where(project_id: project.id)
+    non_note_conversations.select { |conversation| conversation.project_id == project.id }
   end
 
   def has_conversations_by_project?(project)
@@ -319,5 +319,9 @@ class User < ActiveRecord::Base
 
   def inactive_conversation?(conversation)
     !active_conversation?(conversation)
+  end
+
+  def non_note_conversations
+    conversations.select { |conversation| conversation.users.count > 1 }
   end
 end

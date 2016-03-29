@@ -26,13 +26,13 @@ class ConversationsController < ApplicationController
         if params[:tasks]
           render json: {
             html: (render_to_string partial: "tasks/task", locals: { task: @task, user: current_user }),
-            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, tasks: params[:tasks] }),
+            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, notes: params[:notes], tasks: params[:tasks] }),
             token: @conversation.token
           }
         else
           render json: {
             html: (render_to_string partial: "messages/message", locals: { message: @message }),
-            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, tasks: params[:tasks] }),
+            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, notes: params[:notes], tasks: params[:tasks] }),
             token: @conversation.token
           }
         end
@@ -73,7 +73,11 @@ class ConversationsController < ApplicationController
 
   def lazy_load
     @conversation = token_conversation(params[:token])
-    render partial: "lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i }
+    if params[:notes]
+      render partial: "notes_lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i }
+    else
+      render partial: "lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i }
+    end
   end
 
   private

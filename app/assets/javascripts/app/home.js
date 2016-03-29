@@ -354,6 +354,9 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       if(tasksMode) {
         $(".no-pending-tasks").remove();
         $(".pending-tasks").append(data.task_html);
+      } else if(notesMode) {
+        $(".no-note").remove();
+        $(".notes").append(data.note_html);
       } else {
         if(userId == data.user_id) {
           $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
@@ -405,6 +408,8 @@ function listenForNewTasks(conversationToken, curConvoToken) {
           $(".no-pending-tasks").remove();
           $(".pending-tasks").append(data.task_html);
         }
+      } else if(notesMode) {
+        $("#note-" + String(data.message_id)).replaceWith(data.note_html);
       } else {
         if(userId == data.user_id) {
           $("#message-" + String(data.message_id)).replaceWith(data.current_user_html);
@@ -544,7 +549,7 @@ function lazyLoad() {
   $.ajax({
     url: '/lazy_load',
     method: "GET",
-    data: { lazy_load: lazyLoadIndex + 1, token: curConvoToken }
+    data: { lazy_load: lazyLoadIndex + 1, token: curConvoToken, notes: notesMode }
   }).done(function(response){
     var msgBox = $(".msg-bx-convo");
     $("#ajax-loader-message").hide();
@@ -553,7 +558,12 @@ function lazyLoad() {
       lazyLoadIndex += 1;
       var originalHeight = msgBox[0].scrollHeight;
 
-      $(".msg-bx-convo").prepend(response);
+      if(notesMode) {
+        $(".notes").prepend(response);
+      } else {
+        $(".msg-bx-convo").prepend(response);
+      }
+
       var heightDifference = msgBox[0].scrollHeight - originalHeight;
       msgBox[0].scrollTop += heightDifference;
       updateTaskListeners();

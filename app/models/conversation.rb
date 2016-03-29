@@ -109,7 +109,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def has_inactive_users?
-    inactive_users.count > 0
+    inactive_users.count > 0 && persisted?
   end
 
   def active_users
@@ -118,5 +118,9 @@ class Conversation < ActiveRecord::Base
 
   def has_active_users?
     active_users.count > 0
+  end
+
+  def is_notes?
+    users.count == 1 && !new_record?
   end
 end

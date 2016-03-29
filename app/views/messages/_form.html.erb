@@ -2,6 +2,8 @@
   <div>
     <% if tasks %>
       <%= f.text_area :content, placeholder: "Type task here..." %>
+    <% elsif notes %>
+      <%= f.text_area :content, placeholder: "Type note here..." %>
     <% else %>
       <%= f.text_area :content, placeholder: "Type message here..." %>
     <% end %>

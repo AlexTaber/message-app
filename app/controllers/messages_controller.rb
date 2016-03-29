@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
           current_user_html: (render_to_string partial: "messages/current_user_message", locals: { message: @message, task: @message.task }),
           other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: @message, task: @message.task }),
           task_html: task_html(user),
+          note_html: note_html,
           conversation_id: @message.conversation.id,
           project_id: @message.conversation.project.id,
           app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @message.conversation, current_conversation: current_conversation, project: @message.conversation.project, user: user })
@@ -56,6 +57,10 @@ class MessagesController < ApplicationController
   def task_html(user)
     return false unless @message.task
     (render_to_string partial: "tasks/task", locals: { task: @message.task, user: user } )
+  end
+
+  def note_html
+    (render_to_string partial: "messages/note", locals: { message: @message } )
   end
 
   def new_message_emails
