@@ -152,7 +152,9 @@ function subscribeToMbConvo(conversationToken, curConvoToken) {
   channel = pusher.subscribe('conversation' + String(conversationToken) + String(userId));
   channel.bind('new-message', function(data) {
     if(curConvoToken == data.conversation_token) {
-      if(tasksMode) {
+      if(notesMode) {
+
+      } else if(tasksMode) {
         $(".pending-tasks-mb").prepend(data.task_html);
       } else {
         if(userId == data.user_id) {

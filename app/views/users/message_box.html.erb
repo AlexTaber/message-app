@@ -49,12 +49,19 @@
         <div class="mb-convos-dropdown">
           <div id="mb-convos-dropdown_convos">
             <div id='convos-list'>
-            <p class="text-center">
-              <b>Your Conversations</b>
+              <p class="text-center">
+                <b>Your Conversations</b>
                 <%= link_to message_box_path(token: @project.token, new_conversation: true, tasks: @tasks), class: 'u-pull-right'  do %>
                   <i class="fa fa-plus add-btn" style="right: 25px; top:10px; position:absolute;"></i>
                 <% end %>
-            </p>
+              </p>
+
+              <% unless @project.new_record? %>
+                <div class="mb-notes-wrapper" id="mb-notes<%= @notes_conversation.id %>">
+                  <%= render partial: "conversations/mb_notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
+                </div>
+              <% end %>
+
               <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
                 <%= render partial: "conversations/mb_card", locals: { project: @project, conversation: conversation, current_conversation: @conversation, user: current_user, tasks: @tasks } %>
               <% end %>
@@ -118,41 +125,71 @@
             </div>
           </div>
 
-          <% if @conversation.other_users(current_user).length > 0 %>
+          <% unless @conversation.new_record? %>
             <div class="msg-bx-meta">
               <p>
-                <!-- <b><%= @project.name %>&nbsp;</b> -->
                 <% if @tasks %>
-                  <%= link_to "Conversations", message_box_path(token: @project.token, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+                  <%= link_to "Conversations", message_box_path(token: @project.token, notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
                   Tasks
                 <% else %>
                   Conversations  |
-                  <%= link_to "Tasks", message_box_path(token: @project.token, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
+                  <%= link_to "Tasks", message_box_path(token: @project.token, notes: @notes, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
                 <% end %>
               </p>
             </div>
+          <% end %>
 
-            <div class="msg-bx-convo">
-              <% if @tasks %>
-                <div class="pending-tasks">
-                  <% @conversation.sorted_pending_tasks.each do |task| %>
-                    <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
-                  <% end %>
+          <div class="msg-bx-convo">
+            <% if @tasks %>
+              <div class="pending-tasks">
+                <% @conversation.sorted_pending_tasks.each do |task| %>
+                  <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
+                <% end %>
+              </div>
+
+              <h5 class="text-center"><a href="#" class="button button-primary completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
+
+              <div class="completed-tasks">
+                <% @conversation.sorted_completed_tasks.each do |task| %>
+                  <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
+                <% end %>
+              </div>
+            <% elsif @notes %>
+              <% if @notes_conversation.has_messages? %>
+
+                <div class="notes-convo-container">
+                  <div class="notes-header"></div>
+                  <div class="notes-container">
+                    <div class="notes">
+                      <%= render partial: "conversations/notes_lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+                    </div>
+                  </div>
                 </div>
 
-                <h5 class="text-center"><a href="#" class="button button-primary completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
-
-                <div class="completed-tasks">
-                  <% @conversation.sorted_completed_tasks.each do |task| %>
-                    <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
-                  <% end %>
-                </div>
               <% else %>
-                <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+
+                <div class="notes-convo-container">
+                  <div class="notes-header"></div>
+                  <div class="notes-container">
+                    <div class="notes">
+                      <div class="note no-note">
+                        <p>You don't have any notes written for <%= @project.name %> yet.</p>
+                      </div>
+                      <div class="note no-note">
+                        <p>Notes are a great place to store information/tasks only you need!</p>
+                      </div>
+                      <div class="note no-note">
+                        <p>Go ahead, write a note in the form below.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               <% end %>
-            </div>
-          <% else %>
-            <div class="msg-bx-convo">
+
+            <% elsif @conversation.other_users(current_user).length > 0 %>
+              <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+            <% else %>
               <% if @project.users.length == 1 %>
                 <div class="text-center">
                   Looks as if your don't have any users for this project. Head over to <%= link_to "mercuryapp.co", home_path, target: "blank" %> to add some!
@@ -162,16 +199,18 @@
                   Add users to this conversation by pressing the plus icon above!
                 </div>
               <% end %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
           <!--# END Message Box Body #-->
 
           <!--# Message Box Form #-->
           <div class="msg-bx-bottom">
             <div id="mb-form-wrapper">
-               <% if @conversation.other_users(current_user).length > 0 %>
+              <% if @notes %>
+                <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, notes: @notes, tasks: @tasks, mb: true } %>
+               <% elsif @conversation.other_users(current_user).length > 0 %>
                 <% if @conversation.new_record? %>
-                  <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, tasks: @tasks, mb: true } %>
+                  <%= render partial: "conversations/form", locals: { project: @project, conversation: @conversation, notes: @notes, tasks: @tasks, mb: true } %>
                 <% else %>
                   <%= render partial: "messages/form", locals: { message: @message, conversation: @conversation, notes: @notes, tasks: @tasks, mb: true } %>
                 <% end %>
