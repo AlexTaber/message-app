@@ -10,7 +10,11 @@ var transitionTime = 5000;
 var nextEvent;
 var canTransition = true;
 
-window.onload = function() {
+window.addEventListener ?
+window.addEventListener("load",splashLoad,false) :
+window.attachEvent && window.attachEvent("onload",splashLoad);
+
+function splashLoad() {
   totalTabs = $(".landing-tab").length;
 
   if(totalTabs > 0) {

@@ -1,7 +1,11 @@
 var transferTask = -1;
 var transferConvo = -1;
 
-window.onload = function() {
+window.addEventListener ?
+window.addEventListener("load",transferLoad,false) :
+window.attachEvent && window.attachEvent("onload",transferLoad);
+
+function transferLoad() {
   $(".transfer-icon").on('click', activateTransfer);
   $("#transfer-close").on('click', closeTransfer);
   $(".conversation-wrapper, .notes-wrapper").on('click', selectTransfer);
