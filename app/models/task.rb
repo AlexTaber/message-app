@@ -52,4 +52,8 @@ class Task < ActiveRecord::Base
   def claim_text
     claims.count > 1 ? "#{abbreviated_claim_names} are working on this" : "#{abbreviated_claim_names} is working on this"
   end
+
+  def update_conversation(conversation_id)
+    message.update_attributes(conversation_id: conversation_id)
+  end
 end

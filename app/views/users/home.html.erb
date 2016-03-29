@@ -183,6 +183,9 @@
     <div class="cssload-cube cssload-c3"></div>
   </div>
 </div>
+
+<div id="transfer-cover"></div>
+
 <!-- overflow hidden wrapper -->
 <div class="home-wrapper">
   <!-- INBOX SIDEBAR -->
@@ -281,6 +284,10 @@
   <!-- End Your projects Sidebar -->
   <!-- Current project Data and Conversations Area -->
   <div class="message-bar mobile-target">
+    <div id="transfer-header">
+      Select conversation to transfer task to
+      <i class="fa fa-times" id="transfer-close"></i>
+    </div>
     <div class="message-bar-border">
     <nav class="current-project-data">
      <header>
@@ -297,7 +304,7 @@
     </nav>
 
     <% unless @project.new_record? %>
-      <div class="notes-wrapper" id="notes<%= @notes_conversation.id %>">
+      <div class="notes-wrapper" id="notes<%= @notes_conversation.id %>" data-convo-id="<%= @notes_conversation.id %>">
         <%= render partial: "conversations/notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
       </div>
     <% end %>
@@ -330,7 +337,7 @@
   <% end %>
 
   <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
-    <div class="conversation-wrapper" id="conversation<%= conversation.id %>">
+    <div class="conversation-wrapper" id="conversation<%= conversation.id %>" data-convo-id="<%= conversation.id %>">
       <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
     </div>
   <% end %>

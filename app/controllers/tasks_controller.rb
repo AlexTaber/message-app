@@ -19,6 +19,7 @@ class TasksController < ApplicationController
 
   def update
     @task.assign_attributes(task_params)
+    @task.update_conversation(params[:task][:conversation_id]) if params[:task][:conversation_id]
 
     if @task.valid?
       @task.save
