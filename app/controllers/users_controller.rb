@@ -126,6 +126,7 @@ class UsersController < ApplicationController
             @conversation.read_all_messages(current_user) unless @conversation.new_record?
             @message = Message.new
           end
+          set_up_notes
           @tasks = params[:tasks]
           @notes = params[:notes]
           @lazy_load = find_lazy_load

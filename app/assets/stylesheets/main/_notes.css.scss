@@ -24,7 +24,6 @@
 }
 
 .notes-convo-container {
-  margin-top: -20px;
   .notes-header {
     background: $black;
     height: 20px;
@@ -33,10 +32,10 @@
 
   .notes-container {
     background: #f2f2f2;
-    min-height: calc(100vh - 230px);
+    min-height: calc(100vh - 260px);
 
     .notes {
-      min-height: calc(100vh - 230px);
+      min-height: calc(100vh - 260px);
       margin-left: 40px;
       border-left: 1px solid red;
     }
