@@ -1,14 +1,16 @@
 <div class="task-container" id="task-<%= task.id %>">
   <div class="task-icons u-pull-right">
-    <i class="fa fa-exchange transfer-icon"></i>
+    <% if user == task.message.user %>
+      <i class="fa fa-exchange transfer-icon" title="Transfer task to another conversation"></i>
+    <% end %>
     <!-- claim icons -->
     <% if task.incomplete? %>
       <% if user.claimed?(task) %>
-        <%= link_to claim_path(user.claim_from_task(task)), method: "DELETE", class: "remove-model", title: "Claim this task" do %>
+        <%= link_to claim_path(user.claim_from_task(task)), method: "DELETE", class: "remove-model", title: "Remove claim on this task" do %>
           <i class="fa fa-cog claimed spin"></i>
         <% end %>
       <% else %>
-        <%= link_to claims_path(claim: { user_id: user.id, task_id: task.id }), method: "POST", class: "new-model" do %>
+        <%= link_to claims_path(claim: { user_id: user.id, task_id: task.id }), method: "POST", class: "new-model", title: "Claim this task" do %>
           <i class="fa fa-cog unclaimed hover-spin"></i>
         <% end %>
       <% end %>

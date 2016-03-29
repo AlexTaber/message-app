@@ -404,7 +404,7 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       //if current convo
       if(tasksMode) {
         $("#task-" + String(data.task_id)).replaceWith("");
-        updateTasksButton(data.completed_tasks_count);
+        updateTasksButton(data.completed_tasks_count, data.deleted);
 
         if(data.completer_id) {
           $(".completed-tasks").append(data.task_html);
@@ -450,6 +450,7 @@ function updateTaskListeners() {
   $(".uncomplete-task, .complete-task").off('click').on('click', updateTask);
   $(".new-model").off('click').on('click', newModel);
   $(".remove-model").off('click').on('click', removeModel);
+  $(".transfer-icon").on('click', activateTransfer);
 }
 
 function validateUserData(data, element) {
@@ -524,7 +525,7 @@ function removeModel(e) {
   });
 }
 
-function updateTasksButton(completedTasksCount) {
+function updateTasksButton(completedTasksCount, deleted) {
   var button = $(".completed-tasks-btn");
 
   if(button.length > 0) {
@@ -534,7 +535,7 @@ function updateTasksButton(completedTasksCount) {
     } else {
       button.html(tasksButtonHtml(completedTasksCount));
     }
-  } else {
+  } else if(!deleted) {
     $(".pending-tasks").after("<h5 class='text-center'><a href='#' class='completed-tasks-btn'><span>Show</span> 1 Completed Tasks</a></h5><div class='completed-tasks'></div>");
     $('.completed-tasks-btn').on('click', clickTaskButton);
   }

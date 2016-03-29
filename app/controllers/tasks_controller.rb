@@ -37,15 +37,13 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    claims = @task.claims
-
     if @task
       task_id = @task.id
       message = @task.message
       users = @task.message.conversation.users
+      @task.delete_claims
       @task.delete
       flash[:notice] = "Task Deleted"
-      delete_claims(claims)
       fire_pusher_event(task_id, message, users, false, true)
     else
       flash[:warn] = "No task by that id"
@@ -157,9 +155,5 @@ class TasksController < ApplicationController
   def existing_task?
     message = Message.find_by(id: params[:task][:message_id])
     message ? message.task : false
-  end
-
-  def delete_claims(claims)
-    claims.each(&:delete)
   end
 end

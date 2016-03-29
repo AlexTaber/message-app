@@ -56,4 +56,8 @@ class Task < ActiveRecord::Base
   def update_conversation(conversation_id)
     message.update_attributes(conversation_id: conversation_id)
   end
+
+  def delete_claims
+    claims.each(&:delete)
+  end
 end
