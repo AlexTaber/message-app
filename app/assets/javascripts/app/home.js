@@ -369,7 +369,11 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       scrollToBottom();
     }
 
-    $("#conversation" + String(data.conversation_id)).html(data.app_html);
+    if(notesMode) {
+      $("#notes" + String(data.conversation_id)).html(data.notes_html);
+    } else {
+      $("#conversation" + String(data.conversation_id)).html(data.app_html);
+    }
 
     if(userId != data.user_id && projectId != data.project_id) {
       $("#project-" + String(data.project_id)).addClass("is-unread-project");
@@ -419,7 +423,12 @@ function listenForNewTasks(conversationToken, curConvoToken) {
       }
 
       updateTaskListeners(data.completed_tasks_count);
-      $("#conversation" + String(data.conversation_id)).html(data.app_html);
+
+      if(notesMode) {
+        $("#notes" + String(data.conversation_id)).html(data.notes_html);
+      } else {
+        $("#conversation" + String(data.conversation_id)).html(data.app_html);
+      }
     }
   });
 }

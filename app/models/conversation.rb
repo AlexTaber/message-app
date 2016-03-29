@@ -13,6 +13,10 @@ class Conversation < ActiveRecord::Base
     messages.last.content_preview(length)
   end
 
+  def notes_preview
+    has_messages? ? messages.last.content : "Write notes for #{project.name} here"
+  end
+
   def other_users_to_s(user, first_name_only = true)
     first_name_only ? name_method = :first_name : name_method = :name
     other_users(user).map(&name_method).join(', ')
@@ -91,6 +95,10 @@ class Conversation < ActiveRecord::Base
 
   def has_completed_tasks?
     completed_tasks.count > 0
+  end
+
+  def has_complete_and_incomplete_tasks?
+    has_completed_tasks? && has_pending_tasks?
   end
 
   def lazy_load_messages(index)

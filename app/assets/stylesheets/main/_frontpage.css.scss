@@ -279,11 +279,24 @@ ul.edit-project-list {
 .message-item {
 	border-bottom: 1px solid $grey;
 	color: $black;
-	&:hover {
-		background: rgba($darkgrey, .1);
-	}
+
 	p{
 		margin-bottom: 0;
+	}
+
+	.fa-edit {
+		margin-left: 10px;
+		margin-right: 16px;
+		font-size: 20px;
+		vertical-align: top;
+	}
+
+	&:hover {
+		background: rgba($darkgrey, .1);
+
+		.fa-edit {
+			color: $pwdlight;
+		}
 	}
 }
 .msg-item-current{

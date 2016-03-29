@@ -1,4 +1,4 @@
-<%= link_to home_path(tasks: @tasks, user_ids: conversation.user_ids, project_id: project.id) do%>
+<%= link_to home_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: conversation.project.id) do %>
   <% if conversation == current_conversation %>
     <div class="message-item msg-item-current">
   <% elsif conversation.has_unread_messages?(user) %>
@@ -7,21 +7,15 @@
     <div class="message-item">
   <% end %>
     <div class="media">
-      <% if conversation.messages.last.user.image %>
-        <div class="profile-pic u-pull-left app-view-p-img">
-          <img class="profile-pic" src="<%= conversation.messages.last.user.image_url %>">
-        </div>
-      <% else %>
-        <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
-          <p><%= conversation.messages.last.user.first_name[0] %></p>
-        </div>
-      <% end %>
+
+      <i class="fa fa-edit"></i>
+
       <div class="bd conversation-preview">
         <h4 class="ellipsis">
-          <%= conversation.other_users_to_s(user, false) %>
+          Your Notes for <%= conversation.project.name %>
         </h4>
         <p class="ellipsis">
-          <%= sanitize(simple_format(conversation.content_preview(100)), :tags => %w(br a)) %>
+          <%= sanitize(simple_format(conversation.notes_preview), :tags => %w(br a)) %>
         </p>
         <p id="tally<%= conversation.id %>">
           <small>

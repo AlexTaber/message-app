@@ -82,6 +82,7 @@ class TasksController < ApplicationController
         other_user_html: (render_to_string partial: "messages/other_user_message", locals: { message: message, task: task }),
         task_html: task_html(task, user),
         note_html: note_html(message),
+        notes_html: (render_to_string partial: "conversations/notes_card", locals: { conversation: message.conversation, current_conversation: current_conversation, project: message.conversation.project, user: user }),
         deleted: deleted,
         completer_id: task ? task.completer_id : false,
         completed_tasks_count: message.conversation.completed_tasks.count,
