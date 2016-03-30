@@ -10,14 +10,16 @@ section  {
 }
 .intro {
 	padding: 60px 0;
-	i {
-		margin-top: 60px;
-	}
 }
-#why
- {
+#why {
 	padding-top: 80px;
 	border-bottom: 1px solid $grey;
+	background: lighten($pwdlight, 10%);
+  background: -webkit-linear-gradient(left, $pwddark , lighten($pwdlight, 10%));
+  background: -o-linear-gradient(right, $pwddark, lighten($pwdlight, 10%));
+  background: -moz-linear-gradient(right, $pwddark, lighten($pwdlight, 10%));
+  background: linear-gradient(to right, $pwddark , lighten($pwdlight, 10%));
+	color: $white;
 	i {
 		margin: 20px 0;
 		padding: 0 20px;
@@ -39,7 +41,7 @@ section  {
 	padding: 80px 0;
 	background: #fafafa;
 	border-bottom: 1px solid $grey;
-	h1 
+	h1
 	{
 		margin-bottom: 60px;
 	}

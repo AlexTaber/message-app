@@ -10,8 +10,47 @@
   margin-top: 550px;
 }
 
+.splash-header {
+  font-weight: 300;
+  font-size: 45px;
+}
+
 .intro {
-  padding-top: 10px;
+  padding-top: 100px;
+
+  img {
+    display: inline-block;
+    margin-left: -50%;
+    width: 100%;
+    margin-right: 2%;
+  }
+
+  .intro-content {
+    display: inline-block;
+    width: 47%;
+    vertical-align: top;
+
+    i, p {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    p {
+      width: calc(100% - 130px);
+      margin-left: 20px;
+    }
+
+    i {
+      text-align: center;
+      width: 100px;
+      color: $pwdlight;
+    }
+
+  }
+
+  .intro-item {
+    margin-top: 50px;
+  }
 }
 
 a {
@@ -139,62 +178,50 @@ a:hover {
 }
 
 ///Page Styles
-.feature-sign-up {
-	padding-top: 4rem;
-	background-color: rgba($pwdlight, .8);
-	h1 {
-		font-weight: bold;
-		color: $white;
-		letter-spacing: normal;
-		small {
-			margin-left: 2rem;
-			color: $black;
-			font-size: 50%;
-		}
-	}
+
+#plans {
+  padding-top: 60px;
+
+  .lead-in-text {
+    padding-bottom: 30px;
+  }
+
+  ul {
+    margin: 0px;
+  }
+
+  .price {
+    margin-top: 50px;
+  }
+
+  .card-data {
+    padding: 25px;
+    border-radius: 25px;
+    border: 3px solid $pwdlight;
+    margin-bottom: 30px;
+
+    .fade-in {
+      color: $pwdlight;
+      opacity: 0;
+      -webkit-transition: 0.5s; /* Safari */
+      transition: 0.5s;
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    &:hover {
+      border-color: lighten($pwdlight, 15%);
+
+      .fade-in {
+        opacity: 1;
+      }
+    }
+  }
 }
-.sign-up-plans {
-	padding: 6rem 0;
-	background: rgba($grey, .6);
-	h4 {
-		font-weight: 700;
-	}
-}
-.card {
-	padding: 1.5rem;
-	border: 1px solid rgba(0,0,0,0.08);
-	border-radius: 10px;
-	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.08);
-	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.08);
-	box-shadow: 1px 1px 2px rgba(0,0,0,0.08);
-	background: $white;
-}
-.lead-in {
-	margin-bottom: 30px;
-}
-@media (min-width: 1000px) {
-	.lead-in {
-		max-width: 60%;
-	}
-}
-.card-data {
-	margin-top: 2rem;
-	margin-bottom : 15px;
-	padding-bottom : 20px;
-	border-bottom: 1px solid $grey;
-	ul {
-		margin-bottom: 4rem;
-		color: rgba($black, .8);
-	}
-}
-@media (min-width: 1000px) {
-	.card-data {
-		border-bottom: none;
-		ul {
-			padding-left: 10rem;
-		}
-	}
-}
+
 
 //alt-splash-styles ---------------
 
