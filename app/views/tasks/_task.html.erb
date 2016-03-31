@@ -27,7 +27,7 @@
         <div class="task-item icon"></div>
       <% end %>
       <p>
-        <%= task.content %><br>
+        <%= sanitize(simple_format(task.message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %><br>
         <small>Completed <%= task.completed_date_s %></small>
       </p>
     <% else %>
@@ -36,7 +36,7 @@
       <% end %>
 
       <p>
-        <%= task.content %>
+        <%= sanitize(simple_format(task.message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
         <% if task.has_claims? %>
           <br><small><%= task.claim_text %></small>
         <% end %>
