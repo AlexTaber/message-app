@@ -6,10 +6,8 @@
       <div class="row">
         <span class="home-link"><%= link_to 'MercuryApp', splash_path %></span>
         <ul>
-          <li><a href="/splash#features">Features</a></li>
-          <li><a href="/splash#plans">Plans</a></li>
           <li><a href="/splash#why">Why MAP</a></li>
-          <li><a href="/splash#getting-started">Getting Started</a></li>
+          <li><a href="/splash#features">Features</a></li>
           <li><a href="/support">Support</a></li>
         </ul>
         <ul class="u-pull-right">
@@ -61,44 +59,92 @@ Feature Area
 </section>
 <!-- End Feature -->
 <!-- main body -->
-<div class="main">
+<div>
  <section>
    <div class="container">
      <div class="row">
-       <div class="twelve columns text-center">
-         <h1>Support and Frequently Asked Questions</h1>
-         <p>Totally awesome WordPress messaging!</p>
-       </div>
-       <div class="eight offset-by-two columns">
-       <hr>
-          <h2>Sign Up</h2>
-            <ol>
-              <li><b>Create a unique user name</b><br>This allows you to be found by other Mercury users.</li>
-              <li><b>Add a project</b><br>If you have a project to work on add it to your account, if not you can still use the Mercury app to communicate with other projects and users.</li>
-              <li><b>Join or request to join a project</b><br>You can send a request to be added to a project or add and send requests to anyone you would like to be messaging on your project.</li>
-            </ol>
-            <h3>It's that simple</h3>
-            <hr>
-        </div>
-      </div>
-    </div>
-  </section>
-   <div class="container">
-     <div class="row">
        <div class="ten offset-by-one columns text-center">
-         <h1>Not a Mercury user?</h1>
-         <h3>Sign up for a free account</h3>
-         <%= link_to 'Sign Up', new_user_path, class: "button button-primary"  %>
-         <p>&nbsp;</p>
-         <p>&nbsp;</p>
-         <hr>
+        <h2>FAQ</h2>
+        <hr class="fifty">
+
+        <div>
+          <div class="list-div">
+            <h4 class="list-drop-down">What is Mercury?<i class="fa fa-caret-down list-caret"></i></h4>
+          </div>
+          <div class="drop-list">
+              <p>Mercury is a messaging app designed to help you get group projects done quicker and more efficiently. With Mercury you can keep all of your communications about a specific project in one place and make those messages into tasks so everyone in your group knows what needs to get done!</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="list-div">
+            <h4 class="list-drop-down">How much does it cost?<i class="fa fa-caret-down list-caret"></i></h4>
+          </div>
+          <div class="drop-list">
+              <p>Mercury is free to use for up to three projects and you can add up to three other users to each project. You can upgrade your account to get more projects and to add more users to projects. Check out all of our plans <%= link_to 'here', edit_subscription_path(current_user.subscription) %> </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="list-div">
+            <h4 class="list-drop-down">How do I sign up?<i class="fa fa-caret-down list-caret"></i></h4>
+          </div>
+          <div class="drop-list">
+              <h4><b>1. Visit our <%= link_to 'signup page', new_user_path %></b></h4>
+             <p class="welcome-text">Here you will tell us some information about your self including your name and email address. You will use your email address to sign in to your account.</p>
+             <h4><b>2. Create a unique username</b></h4>
+             <p class="welcome-text">This allows you to be found by other Mercury users.</p>
+             <h4><b>2. Choose a profile image</b></h4>
+             <p class="welcome-text">If you don't set up a profile image other users will see the first letter of your name in a blue circle.</p>
+          </div>
+        </div>
+
+
+        <div>
+          <div class="list-div">
+            <h4 class="list-drop-down">How do I get started?<i class="fa fa-caret-down list-caret"></i></h4>
+          </div>
+          <div class="drop-list">
+            <h4><b>1. Add a project</b></h4>
+            <p class="welcome-text">Projects are at the core of how Mercury App works. A project can be anything from a group school project to a place for messages and task to be shared for an entire company. Add a project by hitting "New Project" in the left most column of your dashboard.</p>
+
+            <br>
+            <h4><b>2. Add Some Users</b></h4>
+            <p class="welcome-text">You can't message anyone without other people in your project! Go go to the manage users button under your project name to add people to your project. If they are already Mercury App users you can simply add them or you can invite them by email if they are not!</p>
+            <br>
+
+            <h4><b>3. Start a New Conversation</b></h4>
+            <p class="welcome-text">Click new conversation to open a new message thread in the next section. Choose what users you want to talk to in the messages section by typing their name into the area after <b>to:</b></p>
+            <br>
+
+            <h4><b>4. Start Messaging</b></h4>
+            <p class="welcome-text">This section will allow you to message a single user in your project or multiple users. Keep all of your communication about a project in one place! You can make any message a task by clicking the icon below the message. When the message turns red you'll know it is a pending task. When it is complete it will turn green!</p>
+            <br>
+
+            <h4><b>5. Start Setting Tasks</b></h4>
+            <p class="welcome-text">Checkout all of your conversation's tasks by clicking view tasks at the top of the message section. From there, you can claim the task to tell everyone you are working on it. If you created the task you can even move it to a different conversation. Don't forget to mark it done by clicking the red dot when you're finished!</p>
+            <br>
+          </div>
+        </div>
+
+        <div>
+          <div class="list-div">
+            <h4 class="list-drop-down">How do I edit my account?<i class="fa fa-caret-down list-caret"></i></h4>
+          </div>
+          <div class="drop-list">
+              <p>On the top right corner of your dashboard, click the triangle to get to your account menu. From here you can hit the edit button to change any of the information on your account. Remember your username and email still have to be unique!</p>
+          </div>
+        </div>
+
+        </div>
        </div>
      </div>
    </div>
+   </section>
    <div class="container">
      <div class="row">
        <div class="ten offset-by-one columns text-center">
-         <h1>Need help?</h1>
+         <h1>Need more help?</h1>
          <h3>Our team will be happy to assist you. </h3>
          <a href="mailto:admin@mercuryapp.co">Send us an email</a>
          <p>&nbsp;</p>
@@ -107,22 +153,14 @@ Feature Area
      </div>
    </div>
 
-</div>
 <footer>
-  <div class="container">
-    <div class="row">
-      <div class="four columns">
-      </div>
-    </div><!--row-->
-  </div>
-</footer>
-<footer class="copyright-footer">
   <div class="container">
    <div class="row">
     <p>Copyright 2016 | Mercury Messenger App</p>
   </div><!--row-->
 </div>
 </footer>
+</div>
 </div>
 
 

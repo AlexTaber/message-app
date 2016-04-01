@@ -132,6 +132,22 @@ i.admin-profile {
 		margin-top:20px;
 	}
 }
+.list-div {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  text-align:left;
+  cursor: pointer; }
+  .list-div:hover {
+    opacity: 0.8; }
+
+.list-caret {
+  color: #777;
+  float: right; }
+  .drop-list{
+  	text-align:left;
+  	padding:20px;
+  	padding-top:0;
+  }
 @media (min-width: 750px) {
 	.profile-data{
 		padding:0;

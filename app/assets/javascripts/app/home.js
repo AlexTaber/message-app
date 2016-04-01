@@ -117,6 +117,21 @@ $(".mobile-icons i:not(:first-child)").on('click', function(){
 //show completed tasks
 $('.completed-tasks-btn').on('click', clickTaskButton);
 
+//support dropdowns
+
+  jQuery('.drop-list').hide();
+  jQuery('.list-div').on('click',function(e){
+      e.preventDefault();
+      jQuery('.list-div').siblings(".drop-list").slideUp();
+      if (jQuery(this).siblings(".drop-list").is(':hidden')) {
+        jQuery(this).siblings(".drop-list").slideToggle();
+      }
+      if (!jQuery(this).children().children(".list-caret").hasClass('fa-caret-up')) {
+      jQuery('.fa-caret-up').removeClass('fa-caret-up').addClass('fa-caret-down');
+    }
+      jQuery(this).children().children(".list-caret").toggleClass("fa-caret-up fa-caret-down");
+  });
+
 
 ///Modal
 var window_width = $(window).width();
