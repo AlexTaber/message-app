@@ -1,40 +1,29 @@
 <%= link_to home_path(notes: true, tasks: @tasks, user_ids: current_user.id, project_id: conversation.project.id) do %>
-  <% if conversation == current_conversation %>
-    <div class="message-item msg-item-current">
-  <% elsif conversation.has_unread_messages?(user) %>
-    <div class="message-item is-unread-convo">
-  <% else %>
-    <div class="message-item">
-  <% end %>
-    <div class="media">
+  <div class="message-item note-item">
 
-      <i class="fa fa-edit"></i>
+    <i class="fa fa-edit"></i>
 
-      <div class="bd conversation-preview">
-        <h4 class="ellipsis">
-          Your Notes for <%= conversation.project.name %>
-        </h4>
-        <p class="ellipsis">
-          <%= sanitize(simple_format(conversation.notes_preview), :tags => %w(br a)) %>
-        </p>
-        <p id="tally<%= conversation.id %>">
-          <small>
-            <% if conversation.has_completed_tasks? || conversation.has_pending_tasks? %>
-              <% if conversation.has_pending_tasks? %>
-                <span class="color-red"><%= conversation.pending_tasks.count %> Pending Tasks</span>
-              <% end %>
-              <% if conversation.has_complete_and_incomplete_tasks? %>
-               |
-              <% end %>
-              <% if conversation.has_completed_tasks? %>
-                <span class="color-green"><%= conversation.completed_tasks.count %> Completed Tasks</span>
-              <% end %>
-            <% else %>
-              0 Tasks
+    <div class="bd conversation-preview">
+      <h4 class="ellipsis">
+        Your Notes for <%= conversation.project.name %>
+      </h4>
+      <p id="tally<%= conversation.id %>">
+        <small>
+          <% if conversation.has_completed_tasks? || conversation.has_pending_tasks? %>
+            <% if conversation.has_pending_tasks? %>
+              <span class="color-red"><%= conversation.pending_tasks.count %> Pending Tasks</span>
             <% end %>
-          </small>
-        </p>
-      </div>
+            <% if conversation.has_complete_and_incomplete_tasks? %>
+             |
+            <% end %>
+            <% if conversation.has_completed_tasks? %>
+              <span class="color-green"><%= conversation.completed_tasks.count %> Completed Tasks</span>
+            <% end %>
+          <% else %>
+            0 Tasks
+          <% end %>
+        </small>
+      </p>
     </div>
   </div>
 <% end %>

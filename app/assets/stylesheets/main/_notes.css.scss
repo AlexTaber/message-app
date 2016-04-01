@@ -1,3 +1,22 @@
+.notes-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 50.1%;
+  width: 29.9%;
+  border-top: 1px solid $grey;
+  height: 66px;
+  background: #f5f5f5;
+  z-index: 1;
+
+  h4, i {
+    margin: 8px 0 0px 0;
+  }
+
+  .note-item {
+    height: 66px;
+  }
+}
+
 .notes-convo {
   background-color: #f5f5f5;
   border-bottom: 1px solid $grey;
