@@ -256,9 +256,15 @@ a:hover {
   padding-top: 140px;
   padding-bottom: 120px;
   border-bottom: 2px solid $grey;
+  background-image: url('https://s3.amazonaws.com/mercury-app-assets/sign-up-photo.jpg');
+  background-size: cover;
+  background-position: center center;
 
   .lead-in-text {
     padding-top: 30px;
+    color: $white;
+    text-shadow: 1px 1px $black;
+    font-size: 1.8rem;
   }
 
   ul {
@@ -270,14 +276,16 @@ a:hover {
     border-radius: 20px;
     padding: 20px;
     padding-top: 30px;
-    border: 2px solid $pwdlight;
+    border: 2px solid $white;
+    color: $pwdlight;
+    background: rgba($white, 0.8);
 
     a {
       text-decoration: none;
     }
 
     &:hover {
-      background: $pwdlight;
+      background: rgba($pwdlight, 0.8);
       color: $white;
     }
   }
