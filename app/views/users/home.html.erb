@@ -228,11 +228,19 @@
       <b>Your</b> Projects
         <% if current_user.tier.permit_user_project(current_user) %>
           <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
-          <p>New Project</p>
+            <div class="add-button-hover">
+              <p>New Project</p>
+              <div class="add-button-hover-text is-first"><small><%= current_user.remaining_projects_count %> Remaining</small>
+              </div>
+            </div>
           <% end %>
         <% else %>
           <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
-            <p>New Project</p>
+            <div class="add-button-hover">
+              <p>New Project</p>
+              <div class="add-button-hover-text is-first"><small>Upgrade to Add New Project</small>
+              </div>
+            </div>
           <% end %>
         <% end %>
       </header>
