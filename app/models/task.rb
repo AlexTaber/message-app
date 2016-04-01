@@ -38,7 +38,7 @@ class Task < ActiveRecord::Base
   end
 
   def completed_date_s
-    "#{distance_of_time_in_words(DateTime.now, updated_at)} by #{completer.name}"
+    "#{distance_of_time_in_words(DateTime.now, updated_at)} ago by #{completer.name}"
   end
 
   def abbreviated_claim_names

@@ -5,9 +5,8 @@
         <div class="row">
           <span><b>M</b>ercury<b>A</b>pp</span>
           <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#plans">Plans</a></li>
             <li><a href="#why">Why MAP</a></li>
+            <li><a href="#features">Features</a></li>
             <li><a href="/support">Support</a></li>
           </ul>
           <ul class="u-pull-right">
@@ -32,9 +31,8 @@
           <a id="right-menu" class="u-pull-right" href="#right-menu"><i class="fa fa-bars fa-2x"></i></a>
           <div id="sidr-right" class="sidr right">
             <ul>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#plans">Plans</a></li>
               <li><a href="#why">Why MAP</a></li>
+              <li><a href="#features">Features</a></li>
               <% if current_user %>
               <li><%= link_to 'Dashboard', home_path %></li>
               <li><%= link_to 'Logout', logout_path %></li>
@@ -190,6 +188,35 @@
     </div>
    </section>
 
+   <section id="features">
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns text-center">
+          <h1 class="splash-header">Full of great features and benefits</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="four columns">
+          <li><b>Task management, simplified.</b> Mark any message as a task.</li>
+          <li><b>Real-time everything.</b> No refreshing required.</li>
+          <li><b>Group messages.</b> Message single users or message as many groups as you want.</li>
+        </div>
+        <div class="four columns">
+          <li><b>Search enabled.</b> Find everything you need by searching through messages and tasks.</li>
+          <li><b>Mobile friendly.</b> Responsive design to give you access on the go.</li>
+          <li><b>Moniter productivity.</b> A simple interface to see pending tasks and who's working on them</li>
+        </div>
+        <div class="four columns">
+          <li><b>Trasfer tasks.</b> Accidentally put a task in the wrong conversation? Transfer it to the correct one with ease.</li>
+          <li><b>Easy onboarding.</b> Get your project members set up in no time.</li>
+          <li><b>SSL-encryption.</b> Conversations stay safe and sound.</li>
+        </div>
+      </div>
+    </div>
+   </section>
+
    <section id="plans" class="sign-up-plans">
      <div class="container card">
 
@@ -211,35 +238,6 @@
     </div>
   </section>
 
-  <section id="features">
-   <div class="container">
-     <div class="row">
-       <div class="twelve columns text-center">
-         <h1 class="splash-header">Full of great features and benefits</h1>
-       </div>
-     </div>
-   </div>
-   <div class="container">
-     <div class="row">
-       <div class="four columns">
-         <li><b>Task management, simplified.</b> Mark any message as a task.</li>
-         <li><b>Real-time everything.</b> No refreshing required.</li>
-         <li><b>Group messages.</b> Message single users or message as many groups as you want.</li>
-       </div>
-       <div class="four columns">
-         <li><b>Search enabled.</b> Find everything you need by searching through messages and tasks.</li>
-         <li><b>Mobile friendly.</b> Responsive design to give you access on the go.</li>
-         <li><b>Moniter productivity.</b> A simple interface to see pending tasks and who's working on them</li>
-       </div>
-       <div class="four columns">
-         <li><b>Trasfer tasks.</b> Accidentally put a task in the wrong conversation? Transfer it to the correct one with ease.</li>
-         <li><b>Easy onboarding.</b> Get your project members set up in no time.</li>
-         <li><b>SSL-encryption.</b> Conversations stay safe and sound.</li>
-       </div>
-     </div>
-   </div>
-  </section>
-
   <section id="support-info">
    <div class="container">
      <div class="row">
@@ -257,7 +255,7 @@
   <footer class="copyright-footer">
     <div class="container">
      <div class="row">
-      <p>Copyright 2016 | Mercury Messenger App</p>
+      <p class="text-center">Copyright 2016 | Mercury Messenger App</p>
     </div><!--row-->
   </div>
   </footer>
