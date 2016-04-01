@@ -187,22 +187,32 @@ a.close-modal{
 .tab-list {
   list-style: none;
   padding-left: 0;
+  text-align:left;
   li {
     display:inline;
+    text-align:center;
+    padding:10px;
+    border-radius:5px 5px 0 0;
+    border:1px solid #ddd;
+    background:#ddd;
+    a{
+      text-decoration: none;
+    }
   }
 
 .active-tab {
  background:#fff;
  z-index: 10;
- padding-top: 1px;
  margin-bottom:-1px;
+ border-bottom:0;
 }
 }
 .tab-content {
   padding: 30px;
   clear: both;
-  margin-top:-1px;
+  margin-top:-5px;
   position: relative;
+  border:1px solid $grey;
 }
 .tab-content > div {
   display: none;
