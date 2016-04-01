@@ -99,6 +99,19 @@ i.admin-profile {
 	padding-bottom:20px;
 }
 #welcome{
+	max-height:70%;
+	overflow-y:scroll;
+	.welcome-text{
+		width:50%;
+		display:inline-block;
+		text-align:left;
+		padding-left:15px;
+		vertical-align: top;
+	}
+	.welcome-image{
+		width:30%;
+		height:auto;
+	}
 	.welcome_icon{
 		font-size: 40px;
 		margin-top:20px;
@@ -783,3 +796,4 @@ ul.edit-project-list {
 .empty-message{
 	padding:10px;
 }
+

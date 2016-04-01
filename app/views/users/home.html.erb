@@ -71,7 +71,6 @@
     <h1>Awesome! Let's add a new project to your Organization</h1>
     <%= render partial: "projects/form", locals: { project: @new_project } %>
     <div>&nbsp;</div>
-    <p>You will be emailed a project token to be used to validate our WordPress Plugin</p>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
@@ -121,20 +120,28 @@
   </div>
 <% end %>
 
-<% if(current_user.first_visit?) %>
+<% # if(current_user.first_visit?) %>
   <div id='welcome' class='modal-window' style="display:block;">
     <div>
 
       <i class="fa fa-certificate welcome_icon"></i>
       <h1>Welcome to Mercury<b>App</b></h1>
-      <h5>Thank you for signing up. Please take some time to learn our <br> features by visiting our <%= link_to 'Support page', support_path %>.
+      <h3>Getting started is easy!</h3>
+      <hr class="fifty">
+      <h4><b>1. Add a project</b></h4>
+      <%= image_tag 'welcome-modal-1',class: 'welcome-image' %>
+      <p class="welcome-text">Projects are at the core of how Mercury App works. A project can be anything from a group school project to a place for messages and task to be shared for an entire company.</p>
+      <hr class="fifty">
       <br>
-      <div>&nbsp;</div>
-      Happy messaging!</h5 >
+      <h4><b>2. Add Some Users</b></h4>
+      <%= image_tag 'welcome-modal-2',class: 'welcome-image' %>
+      <p class="welcome-text">You can't message anyone without other people in your project. Go go to the manage users button under your project name to add people to your project. If they are already Mercury App users you can simply add them or you can invite them by email if they are not!</p>
+      <br>
+      <hr class="fifty">
       <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
     </div>
   </div>
-<% end %>
+<% # end %>
 
 <!-- END MODALS -->
 <!-- Desktop Navbar -->
