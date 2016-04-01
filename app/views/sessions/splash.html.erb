@@ -8,7 +8,6 @@
             <li><a href="#features">Features</a></li>
             <li><a href="#plans">Plans</a></li>
             <li><a href="#why">Why MAP</a></li>
-            <li><a href="#getting-started">Getting Started</a></li>
             <li><a href="/support">Support</a></li>
           </ul>
           <ul class="u-pull-right">
@@ -36,7 +35,6 @@
               <li><a href="#features">Features</a></li>
               <li><a href="#plans">Plans</a></li>
               <li><a href="#why">Why MAP</a></li>
-              <li><a href="#getting-started">Getting Started</a></li>
               <% if current_user %>
               <li><%= link_to 'Dashboard', home_path %></li>
               <li><%= link_to 'Logout', logout_path %></li>
@@ -144,225 +142,148 @@
 
   <div class="main lead-margin">
     <section class="intro">
-     <div class="container">
-       <div class="row">
-         <div class="twelve columns text-center">
-           <h1>Your Next Project Just Got a Lot More Productive</h1>
-         </div>
-         <div class="ten offset-by-one columns text-center">
-           <p>Communicate with your clients and team. <b><i>All in one place.</i></b> <!-- The Mercury messenger app is a widget that is docked to your web browser when you are logged in as a WordPress admin. Anyone who visits your project will not see the messenger app, but anyone who is logged in has the ability to message and send data to single user or group  on their respective project. --></p>
-           <hr>
-         </div>
-       </div>
-     </div>
-     <div class="container">
-       <div class="row">
-         <div class="four columns text-center">
-           <p><i class="fa fa-folder-open fa-5x"></i></p>
-           <h3>Eliminate Barriers</h3> <p class="text-left">How many times do we mean to send an email about something we need updated or fixed on our project and forget. Now it is all in one place, just send a quick message.</p>
-         </div>
-         <div class="four columns text-center">
-           <p><i class="fa fa-smile-o fa-5x"></i></p>
-           <h3>Convenient Messaging</h3> <p class="text-left">Communicate immediately with team members and clients, just send a quick message. Now it is native on your WordPress website.</p>
-         </div>
-         <div class="four columns text-center">
-           <p><i class="fa fa-envelope-o fa-5x"></i></p>
-           <h3>Work Directly with Clients</h3><p class="text-left"> Web Developers can manage all of their clients needs and requests neatly and efficiently. Need to communicate immediately just send a quick message.</p>
-         </div>
-       </div>
-     </div>
+      <div class="container">
+        <div class="row">
+          <img class="into-img transitionable" id="transition-0" src="https://s3.amazonaws.com/mercury-app-assets/laptop-preview.png">
+
+          <div class="intro-content">
+            <h1 class="text-center splash-header">Your Next Project Just Got a Lot More Productive</h1>
+            <div class="intro-item transitionable" id="transition-1">
+              <i class="fa fa-envelope-o"></i>
+              <p><b>Task Management, Simplified.</b> As you message your team, mark any message as a task. It's easy.</p>
+            </div>
+
+            <div class="intro-item transitionable" id="transition-2">
+              <i class="fa fa-line-chart"></i>
+              <p><b>Eliminate Barriers.</b> How often does an email or text go  forgotten? MercuryApp keeps your messages and tasks in one place.</p>
+            </div>
+
+            <div class="intro-item transitionable" id="transition-3">
+              <i class="fa fa-smile-o"></i>
+              <p><b>Stay Busy.</b> MercuryApp gives you the tools to keep your team happy, organized, and on task.</p>
+            </div>
+          </div>
+        </div>
+      </div>
    </section>
-   <section class="feature-sign-up">
-     <div class="container">
-       <div class="row">
-         <div class="twelve columns">
-           <h1>Sign Up <small>For a better CMS experience</small></h1>
-         </div>
-       </div>
-     </div>
+
+   <section id="why">
+    <div class="container">
+      <div class="row">
+        <div class="eight offset-by-two columns text-center">
+          <h1 class="splash-header">Why Mercury? It's Simple</h1>
+          <p > Mercury was made to increase productivity for your next project. Email and other productivity apps can be clunky, busy, or counterintuitive. MercuryApp layers powerful task-management features on top of a simple, familiar messaging interface.
+          </p>
+          <h3>Keep Your Projects in One Place</h3>
+          <p>
+            <i class="fa fa-coffee fa-4x transitionable" id="transition-4"></i>
+            <i class="fa fa-commenting-o fa-5x transitionable" id="transition-5"></i>
+            <i class="fa fa-check fa-5x transitionable" id="transition-6"></i>
+          </p>
+        </div>
+      </div>
+    </div>
    </section>
+
    <section id="plans" class="sign-up-plans">
      <div class="container card">
       <div class="row">
         <div class="twelve columns">
-          <!--     <img src="/assets/j-profile.png"> -->
-          <h3> Mercury is an "Everything In One Place app"</h3>
-          <p class="lead-in">
-         Helping you to communicate with your team and clients. Allowing you to  share and store website management data and tasks.</p>
+          <h1 class="text-center splash-header">Pricing</h1>
+          <p class="text-center lead-in-text">
+            Scaled to Your Needs
+          </p>
          </div>
        </div>
-       <div class="row">
-        <div class="twelve columns">
-          <h4><b>Pick a Plan:</b></h4>
-         </div>
-       </div>
-       <div class="row">
+
+       <div class="row transitionable" id="transition-7">
          <div class="four columns card-data">
-           <h4 class="text-center">Personal</h4>
+            <%= link_to new_user_path, class: "splash-button" do %>
+             <h4>Personal</h4>
+             <ul>
+               <li>Create three projects</li>
+               <li>Add up to three users<small> (per project)</small></li>
+               <li>Belong to unlimited projects</li>
+             </ul>
+             <p class="price text-center"><b>FREE</b></p>
+             <p class="text-center fade-in">
+              Sign Up Today
+            </p>
+           <% end %>
+        </div>
+
+        <div class="four columns card-data">
+          <%= link_to new_user_path(default_tier_id: 2), class: "splash-button" do %>
+           <h4>Startup</h4>
            <ul>
-             <li>Create three projects</li>
-             <li>Add up to three users<small> (per project)</small></li>
+             <li>Create five projects</li>
+             <li>Add up to five users<small> (per project)</small></li>
              <li>Belong to unlimited projects</li>
            </ul>
-           <p class="text-center"><b>FREE</b></p>
-           <p class="text-center">
-            <%= link_to new_user_path, class: "button button-primary" do %>
-            Sign Up
-            <% end %>
-          </p>
-        </div>
-        <div class="four columns card-data">
-         <h4 class="text-center">Startup</h4>
-         <ul>
-           <li>Create five projects</li>
-           <li>Add up to five users<small> (per project)</small></li>
-           <li>Belong to unlimited projects</li>
-         </ul>
-         <p class="text-center"><b>$9.99<small>/year</small></b></p>
-         <p class="text-center">
-           <%= link_to new_user_path(default_tier_id: 2), class: "button button-primary" do %>
-           Sign Up
-           <% end %>
-         </p>
+           <p class="price text-center"><b>$9.99<small>/year</small></b></p>
+           <p class="text-center fade-in">
+             Sign Up Today
+           </p>
+          <% end %>
        </div>
        <div class="four columns card-data">
-         <h4 class="text-center">Enterprise</h4>
-         <ul>
-           <li>Create ten projects</li>
-           <li>Add up to 50 users <small> (per project)</small></li>
-           <li>Belong to unlimited projects</li>
-         </ul>
-         <p class="text-center"><b>$19.99<small>/year</small></b></p>
-         <p class="text-center">
-           <%= link_to new_user_path(default_tier_id: 3), class: "button button-primary" do %>
-           Sign Up
-           <% end %>
-         </p>
-         <p class="text-center"><small><i>Need more? <a href="mailto:admin@mercuryapp.co">Contact us</a> for business solutions.</i></small></p>
+        <%= link_to new_user_path(default_tier_id: 3), class: "splash-button" do %>
+          <h4>Enterprise</h4>
+          <ul>
+            <li>Create ten projects</li>
+            <li>Add up to 50 users <small> (per project)</small></li>
+            <li>Belong to unlimited projects</li>
+          </ul>
+          <p class="price text-center"><b>$19.99<small>/year</small></b></p>
+          <p class="text-center fade-in">
+            Sign Up Today
+          </p>
+        <% end %>
        </div>
-     </div>
-   </div>
-  </section>
-  <section id="why">
-   <div class="container">
+      </div>
+
      <div class="row">
-       <div class="eight offset-by-two columns text-center">
-         <h1>Why Mercury? It's Simple</h1>
-         <p > Mercury was made to increase productivity for content managers and website managers. Email and other productivity apps can be clunky and corporate. The Mercury Messenger App is active only to admins and is a simple way to commmunicate with your team and clients.<h3>All in one place.</h3>
-         </p>
-         <p>
-           <i class="fa fa-coffee fa-4x"></i>
-           <i class="fa fa-commenting-o fa-5x"></i>
-           <i class="fa fa-check fa-5x"></i>
-         </p>
-       </div>
+      <div class="twelve columns">
+        <p class="text-center transitionable more" id="transition-8"><small><i>Need more? <a href="mailto:admin@mercuryapp.co">Contact us</a> for business solutions.</i></small></p>
+      </div>
      </div>
    </div>
   </section>
+
   <section id="features">
    <div class="container">
      <div class="row">
        <div class="twelve columns text-center">
-         <h1>Full of great features and benefits</h1>
+         <h1 class="splash-header">Full of great features and benefits</h1>
        </div>
      </div>
    </div>
    <div class="container">
-     <div class="row">
+     <div class="row transitionable" id="transition-9">
        <div class="four columns">
-         <li><b>SSL-encryption.</b> Conversations stay safe and sound.</li>
-         <li><b>Multi-browser support.</b> From Firefox to Windows, Safari and Chrome.</li>
+         <li><b>Task management, simplified.</b> Mark any message as a task.</li>
+         <li><b>Real-time everything.</b> No refreshing required.</li>
          <li><b>Group messages.</b> Message single users or message as many groups as you want.</li>
-         <li><b>Conversation history.</b> Admins and users have access to all past messages.</li>
        </div>
        <div class="four columns">
-         <li><b>Profile image ready.</b> Personalize with a profile image and add personality to your team.</li>
-         <li><b>Emoji support.</b> What would messaging be without emoji support ;)</li>
-         <li><b>Username enabled.</b> Create a unique username so you can be easily discovered.</li>
-         <li><b>Cloud dashboard.</b> Admins and users have access to cloud based home screen to view all of their projects in one convenient place.</li>
-         <li><b>Mobile friendly.</b> Mobile enabled to give you access on the go.</li>
+         <li><b>Search enabled.</b> Find everything you need by searching through messages and tasks.</li>
+         <li><b>Mobile friendly.</b> Responsive design to give you access on the go.</li>
+         <li><b>Moniter productivity.</b> A simple interface to see pending tasks and who's working on them</li>
        </div>
        <div class="four columns">
-         <li><b>Easy onboarding.</b> Mercury App makes project management and team organization extremely effective.</li>
-         <li><b>Quick referencing.</b> Read back through you messages to find tasks, instruction and approvals.</li>
-         <li><b>Fast approvals.</b> Admins and users can quickly communicate with clients and each other.</li>
-         <li><b>Clean task management.</b> Communicate and create with your team all within your own website.</li>
+         <li><b>Trasfer tasks.</b> Accidentally put a task in the wrong conversation? Transfer it to the correct one with ease.</li>
+         <li><b>Easy onboarding.</b> Get your project members set up in no time.</li>
+         <li><b>SSL-encryption.</b> Conversations stay safe and sound.</li>
        </div>
      </div>
    </div>
   </section>
-  <section id="getting-started">
-   <div class="container">
-     <div class="row">
-       <div class="twelve columns text-center">
-         <h1>Getting Started is Easy</h1>
-         <h3>Download the Mercury App Plugin</h3>
-         <p class="show-desktop"><a class="button button-primary" href="https://github.com/PeekskillWebDesign/MercuryApp-WP/archive/master.zip" target="_blank">Download Plugin</a></p>
-         <p>&nbsp;</p>
-       </div>
-     </div>
-   </div>
-   <div class="container">
-     <div class="row">
-       <div class="twelve columns">
-         <h2>For Project Admins</h2>
-       </div>
-     </div>
-   </div>
-   <div class="container">
-     <div class="row">
-       <div class="four columns">
-         <p><b>1. Sign Up for a Free Mercury account and add your project.</b> Once you add your project you will recieve a unique token in your email. Insert your token in the Plugin Settings for the Mercury App.
-         </p>
-       </div>
-       <div class="four columns">
-         <p><b>2. Download and install the Mercury App plugin.</b> In your WordPress dashboard select Plugins > Add New and upload the Mercury App plugin .zip file.
 
-         </p>
-       </div>
-       <div class="four columns">
-         <p><b>3. Start communicating with your team.</b> Add any Mercury App user immediately to your project. You can also send invites to other team members and request access to other Admin projects.</p>
-       </div>
-     </div>
-   </div>
+  <section id="support-info">
    <div class="container">
      <div class="row">
        <div class="ten offset-by-one columns text-center">
-         <p><b>More.</b> You can add and remove users at anytime through your account settings tab. Each user and admin also has a full screen dashboard  view of all of their conversations, user permissions and projects they belong to.</p>
-         <hr>
-       </div>
-     </div>
-   </div>
-   <div class="container">
-     <div class="row">
-       <div class="twelve columns">
-         <h2>For All Users</h2>
-       </div>
-     </div>
-   </div>
-   <div class="container">
-     <div class="row">
-       <div class="six columns">
-         <p><b>1. Sign Up for a Free Mercury account.</b> Once you sign up you will have the ability to added to and communicate with unlimited admin projects.
-         </p>
-       </div>
-       <div class="six columns">
-         <p><b>2. Start communicating with others.</b> You can send requests or be added to other admin projects through your unique user name. You also have the ability to add one admin project for yourself. </p>
-         <!-- <ul>
-           <li>Sign up and create an account</li>
-           <li>Add users to your account</li>
-           <li>Install the WordPress Plugin</li>
-           <li><b></b></li>
-         </ul> -->
-       </div>
-     </div>
-   </div>
-  </section>
-  <section class="">
-   <div class="container">
-     <div class="row">
-       <div class="ten offset-by-one columns text-center">
-         <h1>Need help?</h1>
+         <h1 class="splash-header">Need help?</h1>
          <h3>Our team will be happy to assist you. </h3>
          <a href="mailto:admin@mercuryapp.co">Send us an email</a>
          <p>&nbsp;</p>

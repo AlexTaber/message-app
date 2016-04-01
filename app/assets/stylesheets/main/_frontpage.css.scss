@@ -699,6 +699,8 @@ ul.edit-project-list {
 }
 .add-btn {
 	float:right;
+		font-size:80% !important;
+	text-decoration:none !important;
 }
 .manage-user-opts{display:none;}
 .project-user-list{overflow:scroll}
@@ -735,13 +737,16 @@ ul.edit-project-list {
 #transfer-cover {
 	position: absolute;
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 30px);
 	background: rgba($pwddark, 0.8);
-	z-index: 1;
-	display: none;
+	z-index: -5;
+	opacity: 0;
+	-webkit-transition: opacity 0.4s; /* Safari */
+  transition: opacity 0.4s;
 
 	&.is-transitioned {
-		display: block;
+		z-index: 1;
+		opacity: 1;
 	}
 }
 
@@ -761,4 +766,8 @@ ul.edit-project-list {
 
 .convo-links {
 	color: $darkgrey;
+}
+.header-username{
+	font-size:80% !important;
+	color:$grey;
 }

@@ -9,6 +9,10 @@ var navTransitioned = false;
 var transitionTime = 5000;
 var nextEvent;
 var canTransition = true;
+var totalTransitions;
+var curTransition = 0;
+var curTransitionEl;
+var transitionOffset = $(window).height() * 0.7;
 
 window.addEventListener ?
 window.addEventListener("load",splashLoad,false) :
@@ -16,6 +20,7 @@ window.attachEvent && window.attachEvent("onload",splashLoad);
 
 function splashLoad() {
   totalTabs = $(".landing-tab").length;
+  totalTransitions = $(".transitionable").length;
 
   if(totalTabs > 0) {
     //setup tabs
@@ -23,6 +28,7 @@ function splashLoad() {
       $("#ajax-loader-message").fadeOut(500);
       nextTab();
       setUpNav();
+      setUpTransitions();
     }, 200);
 
     //setup arrows
@@ -90,9 +96,11 @@ function scrollNav() {
   if(top > 500) {
     if(!navTransitioned) {
       transitionNav();
+      clearTimeout(nextEvent);
     }
   } else if(navTransitioned) {
     untransitionNav();
+    setUpTabs();
   }
 }
 
@@ -109,4 +117,38 @@ function untransitionNav() {
 function clickCircle() {
   var id = $(this).attr('id').slice(-1);
   setTab(parseInt(id));
+}
+
+function setUpTransitions() {
+  scrollDiv = $(".scroll-div");
+  scrollDiv.on('scroll', scrollTransitions);
+  curTransitionEl = $("#transition-" + String(curTransition));
+  scrollTransitions();
+}
+
+function scrollTransitions() {
+  var top = curTransitionEl.offset().top;
+  console.log("HERE");
+
+  if(top < transitionOffset) {
+    transitionElement(curTransitionEl);
+    setNextTransition();
+  }
+}
+
+function transitionElement(el) {
+  el.addClass("is-transitioned");
+}
+
+function setNextTransition() {
+  curTransition += 1;
+
+  curTransitionEl = $("#transition-" + String(curTransition));
+  scrollDiv.off('scroll', scrollTransitions);
+
+  if(curTransition < totalTransitions) {
+    setTimeout(function() {
+      setUpTransitions();
+    }, 50);
+  }
 }
