@@ -71,7 +71,6 @@
     <h1>Awesome! Let's add a new project to your Organization</h1>
     <%= render partial: "projects/form", locals: { project: @new_project } %>
     <div>&nbsp;</div>
-    <p>You will be emailed a project token to be used to validate our WordPress Plugin</p>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
@@ -127,11 +126,38 @@
 
       <i class="fa fa-certificate welcome_icon"></i>
       <h1>Welcome to Mercury<b>App</b></h1>
-      <h5>Thank you for signing up. Please take some time to learn our <br> features by visiting our <%= link_to 'Support page', support_path %>.
+      <h3>Getting started is easy!</h3>
+      <hr class="fifty">
+      <h4><b>1. Add a project</b></h4>
+      <%= image_tag 'https://s3.amazonaws.com/mercury-app-assets/welcome-modal-1.jpg',class: 'welcome-image' %>
+      <p class="welcome-text">Projects are at the core of how Mercury App works. A project can be anything from a group school project to a place for messages and task to be shared for an entire company.</p>
+      <hr class="fifty">
       <br>
-      <div>&nbsp;</div>
-      Happy messaging!</h5 >
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+      <h4><b>2. Add Some Users</b></h4>
+      <%= image_tag 'https://s3.amazonaws.com/mercury-app-assets/welcome-modal-2.jpg',class: 'welcome-image' %>
+      <p class="welcome-text">You can't message anyone without other people in your project! Go go to the manage users button under your project name to add people to your project. If they are already Mercury App users you can simply add them or you can invite them by email if they are not!</p>
+      <br>
+      <hr class="fifty">
+      <h4><b>3. Start a New Conversation</b></h4>
+      <%= image_tag 'https://s3.amazonaws.com/mercury-app-assets/welcome-modal-3.jpg',class: 'welcome-image' %>
+      <p class="welcome-text">Click new conversation to open a new message thread in the next section. Choose what users you want to talk to in the messages section by typing their name into the area after <b>to:</b></p>
+      <br>
+      <hr class="fifty">
+      <h4><b>4. Start Messaging</b></h4>
+      <%= image_tag 'https://s3.amazonaws.com/mercury-app-assets/welcome-modal-4.jpg',class: 'welcome-image' %>
+      <p class="welcome-text">This section will allow you to message a single user in your project or multiple users. Keep all of your communication about a project in one place! You can make any message a task by clicking the icon below the message. When the message turns red you'll know it is a pending task. When it is complete it will turn green!</p>
+      <br>
+      <hr class="fifty">
+      <h4><b>5. Start Setting Tasks</b></h4>
+      <%= image_tag 'https://s3.amazonaws.com/mercury-app-assets/welcome-modal-5.jpg',class: 'welcome-image' %>
+      <p class="welcome-text">Checkout all of your conversation's tasks by clicking view tasks at the top of the message section. From there, you can claim the task to tell everyone you are working on it. If you created the task you can even move it to a different conversation. Don't forget to mark it done by clicking the red dot when you're finished!</p>
+      <br>
+      <hr class="fifty">
+
+      <p>if you need more help please visit our <%= link_to 'support page', support_path %> to se the FAQ and to message our support team.</p>
+
+      <h3>Happy Messaging!</h3>
+      <a href="#" class="close-modal-text">Close this page</a>
     </div>
   </div>
 <% end %>

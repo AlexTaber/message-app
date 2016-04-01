@@ -128,7 +128,7 @@ $('.activate-modal').click(function(e){
 	show_modal(modal_id);
 });
 
-$('.close-modal').click(function(){
+$('.close-modal, .close-modal-text').click(function(){
 	close_modal();
 });
 
