@@ -50,6 +50,11 @@ $(document).ready(function() {
         displayKey: 'name',
         source: substringMatcher(project_users, 'name'),
                 templates: {
+          empty: [
+            '<div class="empty-message">',
+              '<b class="text-center" style="display:block;">There are no users by this name in this project.</b><br> Add them by going to <b>MANAGE USERS</b> under this project\'s name on the left of your dashboard.',
+            '</div>'
+          ].join('\n'),
           suggestion: function(data) {
             if (data.image_url === null){
               var name = data.name;
@@ -59,7 +64,6 @@ $(document).ready(function() {
               return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
           }  
         }
-          empty: '<p>test</>'
       }
       });
 
