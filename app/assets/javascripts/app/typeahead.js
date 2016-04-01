@@ -57,8 +57,9 @@ $(document).ready(function() {
               return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><span class="profile-pic has-no-pic typeahead-image">' + first_initial + '</span></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
             } else {
               return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
-          }
+          }  
         }
+          empty: '<p>test</>'
       }
       });
 
