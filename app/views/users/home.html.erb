@@ -142,7 +142,7 @@
   <span><%= link_to 'MercuryApp', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
-    <span><%= current_user.name %> (<%= current_user.username %>)</span>
+    <span><%= current_user.name %> | <span class="header-username"><%= current_user.username %></span></span>
     <i class="fa fa-user"></i>
     <i id="users-account" class="fa fa-chevron-down menu-caret" title="Edit your account"></i>
     <nav id="current-account">
@@ -194,17 +194,11 @@
       <b>Your</b> Projects
         <% if current_user.tier.permit_user_project(current_user) %>
           <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
-          <div class="add-button-hover">
-            <i class="fa fa-plus"></i>
-            <div class="add-button-hover-text is-first">Add a new project<br><small><%= current_user.remaining_projects_count %> Remaining</small></div>
-          </div>
+          <p>New Project</p>
           <% end %>
         <% else %>
           <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
-            <div class="add-button-hover">
-              <i class="fa fa-plus"></i>
-              <div class="add-button-hover-text is-first"><small>Upgrade to Add Project</small></div>
-            </div>
+            <p>New Project</p>
           <% end %>
         <% end %>
       </header>
@@ -292,11 +286,9 @@
     <nav class="current-project-data">
      <header>
         <b><%= @project.name %></b> &nbsp;
-                <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
-          <div class="add-button-hover">
-            <i class="fa fa-plus"></i>
-            <div class="add-button-hover-text">Add a new conversation</div>
-          </div>
+        
+        <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
+          <p>New Conversation</p>
         <% end %>
         <div id="new-message">
         </div>
@@ -376,10 +368,7 @@
           </span>
           <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: nil, tasks: @tasks } %>
           <a href="#" class="add-user-to-convo add-btn">
-            <div class="add-button-hover">
-              <i class="fa fa-plus"></i>
-              <div class="add-button-hover-text is-last">Add a new person to the conversation</div>
-            </div>
+            <p>Add a User to Conversation</p>
           </a>
         <% end %>
       </header>

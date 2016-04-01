@@ -699,6 +699,8 @@ ul.edit-project-list {
 }
 .add-btn {
 	float:right;
+		font-size:80% !important;
+	text-decoration:none !important;
 }
 .manage-user-opts{display:none;}
 .project-user-list{overflow:scroll}
@@ -764,4 +766,8 @@ ul.edit-project-list {
 
 .convo-links {
 	color: $darkgrey;
+}
+.header-username{
+	font-size:80% !important;
+	color:$grey;
 }
