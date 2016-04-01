@@ -41,6 +41,10 @@
     position: relative;
     top: auto;
     transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -o-transform: translateY(0%);
     margin-top: 60px;
     display: inline-block;
     width: 100%;
@@ -90,6 +94,10 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
 
       p {
         width: calc(100% - 120px);
