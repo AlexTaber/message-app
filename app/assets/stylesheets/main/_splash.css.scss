@@ -7,7 +7,7 @@
 }
 
 .lead-margin {
-  margin-top: 550px;
+  margin-top: 530px;
 }
 
 .splash-header {
@@ -26,16 +26,22 @@
 }
 
 .intro {
-  padding-top: 100px;
+  padding-top: 10px;
 
   img {
     display: none;
     margin-left: -60%;
+    margin-top: 30px;
     width: 100%;
     margin-right: 2%;
+    vertical-align: top;
   }
 
   .intro-content {
+    position: relative;
+    top: auto;
+    transform: translateY(0%);
+    margin-top: 60px;
     display: inline-block;
     width: 100%;
     vertical-align: top;
@@ -60,7 +66,8 @@
   }
 
   .intro-item {
-    margin-top: 50px;
+    margin-top: 0px;
+    padding-bottom: 60px;
     margin-left: 60px;
     width: 100%;
 
@@ -72,10 +79,6 @@
 
 @media(min-width: 750px) {
 
-  .splash-header {
-    font-size: 40px;
-  }
-
   .intro {
 
     img {
@@ -84,6 +87,9 @@
 
     .intro-content {
       width: 57%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
 
       p {
         width: calc(100% - 120px);
@@ -99,7 +105,7 @@
 
 @media(min-width: 1000px) {
   .splash-header {
-    font-size: 45px;
+    font-size: 38px;
   }
 
   .intro {
@@ -107,11 +113,15 @@
     img {
       margin-left: -50%;
       width: 100%;
-      margin-right: 2%;
+      margin-right: 1%;
     }
 
     .intro-content {
-      width: 47%;
+      width: 48%;
+
+      .intro-item {
+        padding-bottom: 100px;
+      }
     }
   }
 }
@@ -243,10 +253,12 @@ a:hover {
 ///Page Styles
 
 #plans {
-  padding-top: 60px;
+  padding-top: 140px;
+  padding-bottom: 120px;
+  border-bottom: 2px solid $grey;
 
   .lead-in-text {
-    padding-bottom: 30px;
+    padding-top: 30px;
   }
 
   ul {
@@ -255,29 +267,18 @@ a:hover {
 
 
   .card-data {
-    padding: 25px;
-    border-radius: 25px;
-    border: 3px solid $pwdlight;
-    margin-bottom: 30px;
-
-    .fade-in {
-      color: $pwdlight;
-      opacity: 0;
-      -webkit-transition: 0.5s; /* Safari */
-      transition: 0.5s;
-    }
+    border-radius: 20px;
+    padding: 20px;
+    padding-top: 30px;
+    border: 2px solid $pwdlight;
 
     a {
-      color: black;
       text-decoration: none;
     }
 
     &:hover {
-      border-color: lighten($pwdlight, 15%);
-
-      .fade-in {
-        opacity: 1;
-      }
+      background: $pwdlight;
+      color: $white;
     }
   }
 }
@@ -287,7 +288,7 @@ a:hover {
 
 .landing-tabs {
   position: absolute;
-  height: 550px;
+  height: 530px;
   z-index: -1;
   left: 0;
   right: 0;
@@ -311,7 +312,7 @@ a:hover {
   .lt-img {
     position: absolute;
     width: 0px;
-    height: 400px;
+    height: 380px;
     background-size: cover;
     background-position: center left;
     margin-left: 0px;
@@ -341,7 +342,7 @@ a:hover {
 
   .lt-block {
     position: absolute;
-    height: 280px;
+    height: 260px;
     width: 400px;
     margin-top: 0px;
     z-index: 1;
@@ -365,7 +366,7 @@ a:hover {
     position: absolute;
     color: $white;
     margin-left: 40px;
-    margin-top: 250px;
+    margin-top: 230px;
     z-index: 2;
     font-size: 3rem;
     width: 80%;
@@ -376,7 +377,7 @@ a:hover {
     position: absolute;
     margin-left: 22%;
     width: 62%;
-    margin-top: 370px;
+    margin-top: 350px;
     color: $white;
     z-index: 2;
     font-weight: 700;
@@ -579,7 +580,7 @@ a:hover {
 
 .circles {
   position: absolute;
-  top: 510px;
+  top: 490px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -661,7 +662,7 @@ a:hover {
     .lt-quip {
       margin-left: 200px;
       width: 450px;
-      margin-top: 420px;
+      margin-top: 390px;
       text-align: left;
 
       span {
