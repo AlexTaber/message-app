@@ -12,7 +12,7 @@ var canTransition = true;
 var totalTransitions;
 var curTransition = 0;
 var curTransitionEl;
-var transitionOffset = $(window).height() * 0.7;
+var transitionOffset = $(window).height() * 0.75;
 
 window.addEventListener ?
 window.addEventListener("load",splashLoad,false) :

@@ -144,10 +144,15 @@
     <section class="intro">
       <div class="container">
         <div class="row">
+          <h1 class="text-center splash-header">Your Next Project Just Got a Lot More Productive</h1>
+          <p class="text-center">Group Messaging and Task Management. <b>All In One Place.</b></p>
+          <hr class="fifty"></hr>
+        </div>
+
+        <div class="row">
           <img class="into-img transitionable" id="transition-0" src="https://s3.amazonaws.com/mercury-app-assets/laptop-preview.png">
 
           <div class="intro-content">
-            <h1 class="text-center splash-header">Your Next Project Just Got a Lot More Productive</h1>
             <div class="intro-item transitionable" id="transition-1">
               <i class="fa fa-envelope-o"></i>
               <p><b>Task Management, Simplified.</b> As you message your team, mark any message as a task. It's easy.</p>
@@ -171,7 +176,7 @@
     <div class="container">
       <div class="row">
         <div class="eight offset-by-two columns text-center">
-          <h1 class="splash-header">Why Mercury? It's Simple</h1>
+          <h1 class="splash-header">Why MercuryApp? It's Simple</h1>
           <p > Mercury was made to increase productivity for your next project. Email and other productivity apps can be clunky, busy, or counterintuitive. MercuryApp layers powerful task-management features on top of a simple, familiar messaging interface.
           </p>
           <h3>Keep Your Projects in One Place</h3>
@@ -187,67 +192,23 @@
 
    <section id="plans" class="sign-up-plans">
      <div class="container card">
+
+      <div class="row">
+        <%= link_to new_user_path, class: "splash-button" do %>
+          <div class="six offset-by-three columns card-data">
+            <h1 class="text-center splash-header">Join Today for Free!</h1>
+          </div>
+        <% end %>
+      </div>
+
       <div class="row">
         <div class="twelve columns">
-          <h1 class="text-center splash-header">Pricing</h1>
           <p class="text-center lead-in-text">
-            Scaled to Your Needs
+            <i>Start Getting Stuff Done</i>
           </p>
-         </div>
-       </div>
-
-       <div class="row transitionable" id="transition-7">
-         <div class="four columns card-data">
-            <%= link_to new_user_path, class: "splash-button" do %>
-             <h4>Personal</h4>
-             <ul>
-               <li>Create three projects</li>
-               <li>Add up to three users<small> (per project)</small></li>
-               <li>Belong to unlimited projects</li>
-             </ul>
-             <p class="price text-center"><b>FREE</b></p>
-             <p class="text-center fade-in">
-              Sign Up Today
-            </p>
-           <% end %>
         </div>
-
-        <div class="four columns card-data">
-          <%= link_to new_user_path(default_tier_id: 2), class: "splash-button" do %>
-           <h4>Startup</h4>
-           <ul>
-             <li>Create five projects</li>
-             <li>Add up to five users<small> (per project)</small></li>
-             <li>Belong to unlimited projects</li>
-           </ul>
-           <p class="price text-center"><b>$9.99<small>/year</small></b></p>
-           <p class="text-center fade-in">
-             Sign Up Today
-           </p>
-          <% end %>
-       </div>
-       <div class="four columns card-data">
-        <%= link_to new_user_path(default_tier_id: 3), class: "splash-button" do %>
-          <h4>Enterprise</h4>
-          <ul>
-            <li>Create ten projects</li>
-            <li>Add up to 50 users <small> (per project)</small></li>
-            <li>Belong to unlimited projects</li>
-          </ul>
-          <p class="price text-center"><b>$19.99<small>/year</small></b></p>
-          <p class="text-center fade-in">
-            Sign Up Today
-          </p>
-        <% end %>
-       </div>
       </div>
-
-     <div class="row">
-      <div class="twelve columns">
-        <p class="text-center transitionable more" id="transition-8"><small><i>Need more? <a href="mailto:admin@mercuryapp.co">Contact us</a> for business solutions.</i></small></p>
-      </div>
-     </div>
-   </div>
+    </div>
   </section>
 
   <section id="features">
@@ -259,7 +220,7 @@
      </div>
    </div>
    <div class="container">
-     <div class="row transitionable" id="transition-9">
+     <div class="row">
        <div class="four columns">
          <li><b>Task management, simplified.</b> Mark any message as a task.</li>
          <li><b>Real-time everything.</b> No refreshing required.</li>
