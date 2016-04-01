@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.valid?
+      redirect_to home_path and return unless current_user.is_member_of_project?(@message.conversation.project)
       @message.save!
       set_up_recipients
       set_up_task if params[:tasks]
