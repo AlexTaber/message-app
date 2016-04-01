@@ -36,13 +36,18 @@ body {
 .inbox-sidebar {
 	width: 100vw;
 	height: 100vh;
-		position:fixed;
-		background:rgba($grey, 1);
+	position:fixed;
+	background:rgba($grey, 1);
 	height: 100%;
 	border-right: 1px solid rgba($darkgrey, 1);
 	color: $black;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	z-index: 0;
+
+	&.is-transitioned {
+		z-index: 2;
+	}
 	header  {
 		padding: 10px;
 		border-bottom: 1px solid rgba($darkgrey, 1);
@@ -189,10 +194,14 @@ ul.edit-project-list {
 	display:none;
 	background: #f5f5f5;
 	width: 100%;
-	z-index: 2;
 	height: calc(100vh - 30px);
-	    overflow-y: scroll;
-	    overflow-x: hidden;
+	overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 0;
+
+  &.is-transitioned {
+  	z-index: 2;
+  }
 	.message-bar-border{
 		border-right:1px solid #ababab;
 		height: calc(100vh - 30px);
@@ -738,7 +747,7 @@ ul.edit-project-list {
 	position: absolute;
 	width: 100%;
 	height: calc(100% - 30px);
-	background: rgba($pwddark, 0.8);
+	background: rgba($pwddark, 0.3);
 	z-index: -5;
 	opacity: 0;
 	-webkit-transition: opacity 0.4s; /* Safari */

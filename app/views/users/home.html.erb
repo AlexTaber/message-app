@@ -184,12 +184,20 @@
   </div>
 </div>
 
-<div id="transfer-cover"></div>
+<% if @has_active_projects %>
+  <div id="transfer-cover"></div>
+<% else %>
+  <div class="is-transitioned" id="transfer-cover"></div>
+<% end %>
 
 <!-- overflow hidden wrapper -->
 <div class="home-wrapper">
   <!-- INBOX SIDEBAR -->
-  <div class="inbox-sidebar mobile-target">
+  <% if @has_active_projects %>
+    <div class="inbox-sidebar mobile-target">
+  <% else %>
+    <div class="inbox-sidebar mobile-target is-transitioned">
+  <% end %>
     <header>
       <b>Your</b> Projects
         <% if current_user.tier.permit_user_project(current_user) %>

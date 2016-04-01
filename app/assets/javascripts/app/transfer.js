@@ -23,6 +23,7 @@ function activateTransfer() {
   transferTask = parseInt(el.attr('id').replace("task-", ""));
   $("#transfer-cover").addClass("is-transitioned");
   $("#transfer-header").addClass("is-transitioned");
+  $(".message-bar").addClass("is-transitioned");
 
   var el = $("#mobile-convos");
   $('.mobile-active').removeClass('mobile-active')
@@ -36,6 +37,7 @@ function activateTransfer() {
 function closeTransfer() {
   $("#transfer-cover").removeClass("is-transitioned");
   $("#transfer-header").removeClass("is-transitioned");
+  $(".message-bar").removeClass("is-transitioned");
   transferTask = -1;
   transferConvo = -1;
 }
