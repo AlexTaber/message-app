@@ -228,11 +228,19 @@
       <b>Your</b> Projects
         <% if current_user.tier.permit_user_project(current_user) %>
           <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
-          <p>New Project</p>
+            <div class="add-button-hover">
+              <p>New Project</p>
+              <div class="add-button-hover-text is-first"><small><%= current_user.remaining_projects_count %> Remaining</small>
+              </div>
+            </div>
           <% end %>
         <% else %>
           <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
-            <p>New Project</p>
+            <div class="add-button-hover">
+              <p>New Project</p>
+              <div class="add-button-hover-text is-first"><small>Upgrade to Add New Project</small>
+              </div>
+            </div>
           <% end %>
         <% end %>
       </header>
@@ -291,22 +299,18 @@
       <% current_user.unapproved_projects.each do |project| %>
         <%= render partial: "user_projects/form", locals: { user_project: current_user.find_user_project(project) } %>
       <% end %>
-        <% unless current_user.has_active_projects? %>
-      <div class="welcome-msg">
-        <p>This section will list all of the projects you belong to automatically, as well as your admin projects.</p> <!-- <p>To create an admin project hit the plus next to "My projects". You can always view message in the help section.</p> -->
+
+      <% unless current_user.has_active_projects? %>
+        <div class="welcome-msg new-project-cta">
+          <p><b>Click 'New Project' to add your first project!</b></p>
+          <i class="fa fa-level-up u-pull-right"></i>
+        </div>
+      <% end %>
+<!--       <div class="send-request activate-modal"  name="send-request">
         <div class="text-center">
-          <button class="button button-primary activate-modal" name="window">Add Project</button>
+          <div><small>If you would like to join a project, click here to send a <b>Request</b> to that project's leader.</small></div>
         </div>
-      </div>
-    <% end %>
-      <div class="send-request">
-        <div class="welcome-msg">
-          <p>If you wish to be added to an existing project, click below to send a request to the admin of that project.</p>
-          <div class="text-center">
-            <button class="button button-primary activate-modal" name="send-request">Send Request</button>
-          </div>
-        </div>
-      </div>
+      </div> -->
     </nav>
   </div>
   <!-- End Your projects Sidebar -->
@@ -362,11 +366,13 @@
     </div>
   <% end %>
 
-  <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
-    <div class="conversation-wrapper" id="conversation<%= conversation.id %>" data-convo-id="<%= conversation.id %>">
-      <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
-    </div>
-  <% end %>
+  <div class="conversations-wrapper">
+    <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
+      <div class="conversation-wrapper" id="conversation<%= conversation.id %>" data-convo-id="<%= conversation.id %>">
+        <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
+      </div>
+    <% end %>
+  </div>
     </div>
   </div>
   <!-- End Current project Data and Conversations Area -->
