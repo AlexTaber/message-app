@@ -81,7 +81,12 @@ Feature Area
             <h4 class="list-drop-down">How much does it cost?<i class="fa fa-caret-down list-caret"></i></h4>
           </div>
           <div class="drop-list">
-              <p>Mercury is free to use for up to three projects and you can add up to three other users to each project. You can upgrade your account to get more projects and to add more users to projects. Check out all of our plans <%= link_to 'here', edit_subscription_path(current_user.subscription) %> </p>
+            <p>Mercury is free to use for up to three projects and you can add up to three other users to each project. You can upgrade your account to get more projects and to add more users to projects.</p>
+            <% if current_user %>
+              <p>
+                Check out all of our plans <%= link_to 'here', edit_subscription_path(current_user.subscription) %>
+              </p>
+            <% end %>
           </div>
         </div>
 
