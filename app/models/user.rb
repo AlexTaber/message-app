@@ -324,4 +324,8 @@ class User < ActiveRecord::Base
   def non_note_conversations
     conversations.select { |conversation| conversation.users.count > 1 }
   end
+
+  def permitted_on_project?(project)
+    project.new_record? ? true : is_member_of_project?(project)
+  end
 end

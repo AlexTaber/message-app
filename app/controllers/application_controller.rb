@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def require_current_user
     unless current_user
       flash.now[:warn] = "You must be logged in to perform that action"
-      redirect_to home_path
+      redirect_to splash_path
     end
   end
 

@@ -12,6 +12,7 @@ class ConversationsController < ApplicationController
     @conversation = @project.find_conversation_by_users(users) || Conversation.new(conversation_params)
 
     if @conversation.valid?
+      redirect_to home_path and return unless current_user.is_member_of_project?(@conversation.project)
       set_up_users(users) unless @conversation.users.count > 0
       if @conversation.users.length > 1
         @conversation.save

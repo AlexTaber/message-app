@@ -1,5 +1,5 @@
 class BansController < ApplicationController
-
+  before_action :require_owner, only: [:create, :update]
   def new
     @user = User.find_by(id: params[:user_id])
     @ban = Ban.new

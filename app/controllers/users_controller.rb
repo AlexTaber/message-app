@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_current_user, only: [:home]
   before_action :require_permitted_user, only: [:home, :message_box]
   before_action :user_by_id, only: [:edit, :update, :user_owner_data]
 
@@ -71,33 +72,34 @@ class UsersController < ApplicationController
   end
 
   def home
-    if current_user
-      update_last_online
-      redirect_to new_subscription_path and return unless current_user.subscription
+    update_last_online
+    redirect_to new_subscription_path and return unless current_user.subscription
 
-      current_user.has_active_projects? ? find_user_project : @project = Project.new
-      if params[:new_conversation]
-        set_up_new_conversation
-      else
-        current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
-      end
-      set_up_notes
-      @conversation.read_all_messages(current_user) unless @conversation.new_record?
-      @message = Message.new
-      @new_project = Project.new
-      @new_conversation = Conversation.new
-      current_user.admin_of_project?(@project) ? @admin_project = @project : @admin_project = nil
-      current_user.add_visit
-      @invite = Invite.new
-      @request = Request.new
-      @tasks = params[:tasks]
-      @notes = params[:notes]
-      @mobile_conversations = params[:mobile_conversations]
-      @lazy_load = find_lazy_load
-      @has_active_projects = current_user.has_active_projects?
-    else
-      redirect_to splash_path
+    current_user.has_active_projects? ? find_user_project : @project = Project.new
+    unless current_user.permitted_on_project?(@project)
+      flash[:warn] = "You are not permitted to view this project"
+      redirect_to home_path and return
     end
+
+    if params[:new_conversation]
+      set_up_new_conversation
+    else
+      current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
+    end
+    set_up_notes
+    @conversation.read_all_messages(current_user) unless @conversation.new_record?
+    @message = Message.new
+    @new_project = Project.new
+    @new_conversation = Conversation.new
+    current_user.admin_of_project?(@project) ? @admin_project = @project : @admin_project = nil
+    current_user.add_visit
+    @invite = Invite.new
+    @request = Request.new
+    @tasks = params[:tasks]
+    @notes = params[:notes]
+    @mobile_conversations = params[:mobile_conversations]
+    @lazy_load = find_lazy_load
+    @has_active_projects = current_user.has_active_projects?
   end
 
   def message_box_data
