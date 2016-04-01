@@ -190,17 +190,19 @@ $('.email-next').on('click', function(e){
   }
 
   validateUserData({ user: {
-    email: $('#user_email').val(),
+    email: $('#user_email').val().toLowerCase(),
     first_name: $('#user_first_name').val(),
     last_name: $('#user_last_name').val()
-  } }, this);
+  } }, this, false);
 });
 
 
-$('.username-next').on('click', function(){
+$('.username-next').on('click', function(e){
+  e.preventDefault();
+
   validateUserData({ user: {
     username: $('#user_username').val()
-  } }, this);
+  } }, this, true);
 });
 
 //remove validation warnings when field is not empty
@@ -452,7 +454,7 @@ function updateTaskListeners() {
   $(".transfer-icon").on('click', activateTransfer);
 }
 
-function validateUserData(data, element) {
+function validateUserData(data, element, submit) {
   $("#ajax-loader-message").show();
 
   $.ajax({
@@ -465,7 +467,11 @@ function validateUserData(data, element) {
       $('.warning-text').fadeOut(0);
       $(element).before("<p class='warning-text'>" + response.message + "</p>");
     } else {
-      nextButton(element)
+      if(submit) {
+        $('.new_user').submit();
+      } else {
+        nextButton(element);
+      }
     }
     $("#ajax-loader-message").hide();
   }.bind(element));
