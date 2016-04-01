@@ -109,8 +109,10 @@ i.admin-profile {
 		vertical-align: top;
 	}
 	.welcome-image{
+		border:1px solid $pwdlight;
 		width:30%;
 		height:auto;
+		border-radius:5px;
 	}
 	.welcome_icon{
 		font-size: 40px;
