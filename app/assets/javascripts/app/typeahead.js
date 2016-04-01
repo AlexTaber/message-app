@@ -52,7 +52,7 @@ $(document).ready(function() {
                 templates: {
           empty: [
             '<div class="empty-message">',
-              '<b class="text-center" style="display:block;">There are no users by this name in this project.</b><br> Add them by going to <b>MANAGE USERS</b> under this project\'s name on the left of your dashboard.',
+              '<b class="text-center" style="display:block;">There are no users by this name in this project.</b><br> <span style="font-size:80%;"">If you created this project, add them by going to <b>MANAGE USERS</b> under this project\'s name on the left of your dashboard.</span>',
             '</div>'
           ].join('\n'),
           suggestion: function(data) {
