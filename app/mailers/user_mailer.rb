@@ -25,7 +25,7 @@ class UserMailer < ApplicationMailer
   def project_email(user, project)
     @user = user
     @project = project
-    mail(to: user.email, subject: "Here's Your Token for #{@project.name}", from: "MercuryApp <admin@mercuryapp.co>")
+    mail(to: user.email, subject: "Thank You for Adding a New Project", from: "MercuryApp <admin@mercuryapp.co>")
   end
 
   def password_recovery_email(user, password_recovery)

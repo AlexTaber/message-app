@@ -286,7 +286,7 @@
     <nav class="current-project-data">
      <header>
         <b><%= @project.name %></b> &nbsp;
-        
+
         <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
           <p>New Conversation</p>
         <% end %>
@@ -455,9 +455,9 @@
 <% if current_user.active_projects_ordered_by_admin.length > 0 %>
 
   <!-- I-Frame -->
-  <div id="fixed-iframe" class="pwd-init pwd-closed is-draggable">
+<!--   <div id="fixed-iframe" class="pwd-init pwd-closed is-draggable">
     <a href="#" id="pwd-open-btn" draggable="false"> <span>+</span></a>
     <a href="#" id="pwd-move-btn" draggable="false"> <span>&harr;</span></a>
     <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.active_projects.first.token %>"></iframe>
-  </div>
+  </div> -->
 <% end %>
