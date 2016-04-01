@@ -94,6 +94,7 @@ class UsersController < ApplicationController
       @notes = params[:notes]
       @mobile_conversations = params[:mobile_conversations]
       @lazy_load = find_lazy_load
+      @has_active_projects = current_user.has_active_projects?
     else
       redirect_to splash_path
     end
