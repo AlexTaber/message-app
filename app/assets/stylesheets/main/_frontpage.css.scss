@@ -515,6 +515,10 @@ ul.edit-project-list {
 		a{
 			color: $pwdlight;
 			text-decoration: none;
+
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 	.no-pending-tasks{

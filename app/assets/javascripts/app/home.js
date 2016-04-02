@@ -454,7 +454,8 @@ function updateTaskListeners() {
   $(".uncomplete-task, .complete-task").off('click').on('click', updateTask);
   $(".new-model").off('click').on('click', newModel);
   $(".remove-model").off('click').on('click', removeModel);
-  $(".transfer-icon").on('click', activateTransfer);
+  $(".transfer-icon").off('click').on('click', activateTransfer);
+  $(".convo-links").off('click').on('click', toggleTasks);
 }
 
 function validateUserData(data, element, submit) {
@@ -637,12 +638,28 @@ function messagesEvents() {
 
   //lazy load -----------------------
   setTimeout(function() {
-    $(".msg-bx-convo").on('scroll', checkLazyLoad);
+    $(".msg-bx-convo").off('scroll').on('scroll', checkLazyLoad);
   }, 500);
   //---------------------------------
 
   updateTaskListeners();
 
   //show completed tasks
-  $('.completed-tasks-btn').on('click', clickTaskButton);
+  $('.completed-tasks-btn').off('click').on('click', clickTaskButton);
+}
+
+function toggleTasks(e) {
+  e.preventDefault();
+  tasksMode = !tasksMode;
+  lazyLoadIndex = 0;
+  var el = $(".task-conversation-switch");
+  var str = notesMode ? "Notes" : "Conversation";
+
+  if(tasksMode) {
+    el.html("<a class='convo-links'>View " + str + "</a> | Tasks");
+  } else {
+    el.html(str + " | <a class='convo-links'>View Tasks</a>");
+  }
+
+  sendMessageAjaxInit();
 }
