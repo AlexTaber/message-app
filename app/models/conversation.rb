@@ -143,4 +143,12 @@ class Conversation < ActiveRecord::Base
   def image_char
     has_messages? ? messages.last.user.first_name[0] : users.first.first_name[0]
   end
+
+  def user_is_member?(user)
+    conversers.where(user_id: user.id).size > 0
+  end
+
+  def user_is_permitted?(user)
+    new_record? ? true : user_is_member?(user)
+  end
 end
