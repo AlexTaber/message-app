@@ -58,7 +58,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def read_all_messages(user)
-    messages.each { |message| message.read(user) unless message.user == user }
+    messages.where.not(user_id: user.id).each { |message| message.read(user) }
   end
 
   def has_unread_messages?(user)
