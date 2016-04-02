@@ -83,6 +83,9 @@ class UsersController < ApplicationController
 
     if params[:new_conversation]
       set_up_new_conversation
+    elsif params[:conversation_token]
+      @conversation = token_conversation(params[:conversation_token])
+      set_up_new_conversation unless @conversation
     else
       current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
     end
