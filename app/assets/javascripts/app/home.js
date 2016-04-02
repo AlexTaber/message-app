@@ -604,9 +604,7 @@ function clickTaskButton(e) {
 }
 
 function setUpMessageAjaxInit() {
-  var appView = $(".app-view");
-
-  if(appView.length > 0) {
+  if(curConvoToken !== null) {
     sendMessageAjaxInit();
   }
 }
@@ -657,8 +655,10 @@ function toggleTasks(e) {
 
   if(tasksMode) {
     el.html("<a class='convo-links'>View " + str + "</a> | Tasks");
+    $("#message_conversation_id").append("<input type='hidden' name='tasks' id='tasks' value='true'>");
   } else {
     el.html(str + " | <a class='convo-links'>View Tasks</a>");
+    $("#tasks").remove();
   }
 
   sendMessageAjaxInit();
