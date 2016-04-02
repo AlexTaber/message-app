@@ -82,7 +82,7 @@ class ConversationsController < ApplicationController
   end
 
   def app_messages
-    conversation = token_conversation(params[:conversation_token])
+    conversation = token_conversation(params[:conversation_token]) || Conversation.new
     project = Project.find_by(id: params[:project_id])
     tasks = is_true?(params[:tasks])
     notes = is_true?(params[:notes])

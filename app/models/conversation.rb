@@ -10,7 +10,7 @@ class Conversation < ActiveRecord::Base
   validates :project_id, presence: true
 
   def content_preview(length)
-    messages.last.content_preview(length)
+    has_messages? ? messages.last.content_preview(length) : "Start messaging now"
   end
 
   def notes_preview
@@ -70,7 +70,11 @@ class Conversation < ActiveRecord::Base
   end
 
   def self.ordered_conversations(conversations)
-    conversations.sort_by { |conversation| conversation.messages.last.updated_at }.reverse!
+    conversations.sort_by { |conversation| conversation.last_updated }.reverse!
+  end
+
+  def last_updated
+    has_messages? ? messages.last.updated_at : updated_at
   end
 
   def completed_tasks
@@ -130,5 +134,13 @@ class Conversation < ActiveRecord::Base
 
   def is_notes?
     users.count == 1 && !new_record?
+  end
+
+  def image
+    has_messages? ? messages.last.user.image : nil
+  end
+
+  def image_char
+    has_messages? ? messages.last.user.first_name[0] : users.first.first_name[0]
   end
 end
