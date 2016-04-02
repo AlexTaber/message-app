@@ -562,7 +562,7 @@ function checkLazyLoad() {
 }
 
 function lazyLoad() {
-  $("#ajax-loader").show();
+  $("#ajax-loader-message").show();
 
   $.ajax({
     url: '/lazy_load',
@@ -570,7 +570,7 @@ function lazyLoad() {
     data: { lazy_load: lazyLoadIndex + 1, token: curConvoToken, notes: notesMode }
   }).done(function(response){
     var msgBox = $(".msg-bx-convo");
-    $("#ajax-loader").hide();
+    $("#ajax-loader-message").hide();
 
     if (response.length > 0) {
       lazyLoadIndex += 1;
