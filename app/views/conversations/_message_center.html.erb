@@ -1,0 +1,67 @@
+<header>
+  <% if notes %>
+    Your Notes for <b><%= project.name %></b>
+  <% else %>
+    <% if conversation.has_inactive_users? %>
+      <i class="fa fa-exclamation-circle inactive-icon">
+        <p class="hover-item">The following users no longer belong to this project:<br>
+          <b>
+            <% conversation.inactive_users.each do |user| %>
+              <%= user.name %><br>
+            <% end %>
+          </b>
+        </p>
+      </i>
+    <% end %>
+
+    <i>To:</i>
+    <span class="other-users">
+      <b> <%= conversation.abbreviated_other_users_to_s(current_user, 2) %> </b>
+      <p class="hover-item">
+        Users in this conversation:<br>
+        <b>
+          <% conversation.other_users(current_user).each do |user| %>
+            <%= user.name %><br>
+          <% end %>
+        </b>
+      </p>
+    </span>
+    <%= render partial: "layouts/typeahead_form", locals: { project: project, conversation: conversation, token: nil, tasks: tasks } %>
+    <a href="#" class="add-user-to-convo add-btn">
+      <p>Add a User to Conversation</p>
+    </a>
+  <% end %>
+</header>
+
+<div id="ajax-loader-message">
+ <div class="cssload-thecube">
+   <div class="cssload-cube cssload-c1"></div>
+   <div class="cssload-cube cssload-c2"></div>
+   <div class="cssload-cube cssload-c4"></div>
+   <div class="cssload-cube cssload-c3"></div>
+ </div>
+</div>
+<div class="task-conversation-switch text-center">
+  <% if tasks %>
+    <%= link_to "View #{notes ? 'Notes' : 'Conversation'}", root_path(notes: notes, project_id: project.id, mobile_conversations: true, user_ids: conversation.user_ids), class: "convo-links" %>  |
+      Tasks
+  <% else %>
+    <%= "#{notes ? 'Notes' : 'Conversation'}" %>  |
+    <%= link_to "View Tasks", root_path(notes: notes, tasks: true, project_id: project.id, user_ids: conversation.user_ids), class: "convo-links" %>
+  <% end %>
+</div>
+
+<div class="msg-bx-convo app-view hide-scrollbar">
+  <!-- messages are loaded here via ajax in coversations/app_messages view -->
+</div>
+<div id="form-wrapper">
+  <% if notes %>
+    <%= render partial: "messages/form", locals: { message: message, conversation: conversation, notes: notes, tasks: tasks, mb: false } %>
+  <% elsif conversation.other_active_users(current_user).length > 0 %>
+    <% if conversation.new_record? %>
+      <%= render partial: "conversations/form", locals: { project: project, conversation: conversation, tasks: tasks, mb: false } %>
+    <% else %>
+      <%= render partial: "messages/form", locals: { message: message, conversation: conversation, notes: notes, tasks: tasks, mb: false } %>
+    <% end %>
+  <% end %>
+</div>

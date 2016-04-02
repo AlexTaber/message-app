@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get :project_owner_data
     end
   end
-  resources :conversations, only: [:new, :create, :destroy]
+  resources :conversations, only: [:new, :create, :show, :destroy]
   resources :messages, only: [:create]
   resources :requests, only: [:new, :create, :update]
   resources :invites, only: [:new, :create]

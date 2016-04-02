@@ -48,6 +48,15 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def show
+    @conversation = Conversation.find_by(id: params[:id])
+    project = Project.find_by(id: params[:project_id])
+    tasks = is_true?(params[:tasks])
+    notes = is_true?(params[:notes])
+    message = Message.new
+    render partial: "message_center", locals: { conversation: @conversation, project: project, notes: notes, tasks: tasks, message: message }
+  end
+
   def add_user
     user = User.find_by(id: params[:user_id])
     @project = Project.find_by(id: params[:conversation][:project_id])

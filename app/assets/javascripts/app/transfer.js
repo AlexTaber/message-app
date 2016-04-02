@@ -45,6 +45,7 @@ function closeTransfer() {
 function selectTransfer(e) {
   if(transferTask != -1) {
     e.preventDefault();
+    changeConvoBool = false;
     transferConvo = parseInt($(this).data('convo-id'));
     sendTransfer();
     closeTransfer();
@@ -61,6 +62,7 @@ function sendTransfer() {
   }).done(function(response){
     //done
     $("#ajax-loader").hide();
+    changeConvoBool = true;
   });
 }
 
