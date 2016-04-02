@@ -604,7 +604,7 @@ function clickTaskButton(e) {
 }
 
 function setUpMessageAjaxInit() {
-  if(curConvoToken !== null) {
+  if(true) {
     sendMessageAjaxInit();
   }
 }
