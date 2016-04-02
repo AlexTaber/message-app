@@ -81,6 +81,15 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def app_messages
+    conversation = token_conversation(params[:conversation_token])
+    project = Project.find_by(id: params[:project_id])
+    tasks = is_true?(params[:tasks])
+    notes = is_true?(params[:notes])
+    lazy_load = params[:lazy_load].to_i
+    render partial: "app_messages", locals: { conversation: conversation, tasks: tasks, notes: notes, lazy_load: lazy_load, project: project }
+  end
+
   private
 
   def conversation_by_id

@@ -52,7 +52,7 @@ function selectTransfer(e) {
 }
 
 function sendTransfer() {
-  $("#ajax-loader-message").show();
+  $("#ajax-loader").show();
 
   $.ajax({
     url: "/tasks/" + String(transferTask) + "/transfer",
@@ -60,7 +60,7 @@ function sendTransfer() {
     data: { conversation_id: transferConvo }
   }).done(function(response){
     //done
-    $("#ajax-loader-message").hide();
+    $("#ajax-loader").hide();
   });
 }
 

@@ -3,9 +3,7 @@ var canSendMessage = true;
 var curNext = 1;
 
 jQuery(document).ready(function($){
-  if(!tasksMode) {
-    scrollToBottom();
-  }
+
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
@@ -63,16 +61,9 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //--------------------------------
 
-  //lazy load -----------------------
-  setTimeout(function() {
-    $(".msg-bx-convo").on('scroll', checkLazyLoad);
-  }, 500);
-  //---------------------------------
-
-  //Update Tasks-----------------
-  $(".uncomplete-task, .complete-task").on('click', updateTask);
-  $(".new-model").on('click', newModel);
-  $(".remove-model").on('click', removeModel);
+  //set up message init ajax
+  setUpMessageAjaxInit();
+  //----------------------
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -113,9 +104,6 @@ $(".mobile-icons i:not(:first-child)").on('click', function(){
     scrollToBottom();
   }
 });
-
-//show completed tasks
-$('.completed-tasks-btn').on('click', clickTaskButton);
 
 //support dropdowns
 
@@ -293,7 +281,7 @@ function sendMessage(e) {
   e.preventDefault();
   if(messageSendable()) {
     canSendMessage = false;
-    $("#ajax-loader-message").show();
+    $("#ajax-loader").show();
     $.ajax({
       url: e.target.action,
       method: "POST",
@@ -302,7 +290,7 @@ function sendMessage(e) {
       canSendMessage = true;
       $(".new_message").find("#message_content").val("");
       $('#form-wrapper textarea').css('height', '40px');
-      $("#ajax-loader-message").hide();
+      $("#ajax-loader").hide();
     });
   }
 }
@@ -311,7 +299,7 @@ function startConversation(e) {
   e.preventDefault();
   if(newMessageSendable()) {
     canSendMessage = false;
-    $("#ajax-loader-message").show();
+    $("#ajax-loader").show();
     $.ajax({
       url: e.target.action,
       method: "POST",
@@ -334,7 +322,7 @@ function startConversation(e) {
       $(".new_conversation").find("#content").val("");
       $('.new-convo-placeholder').slideUp();
       $('#form-wrapper textarea').css('height', '40px');
-      $("#ajax-loader-message").hide();
+      $("#ajax-loader").hide();
     });
   }
 }
@@ -470,7 +458,7 @@ function updateTaskListeners() {
 }
 
 function validateUserData(data, element, submit) {
-  $("#ajax-loader-message").show();
+  $("#ajax-loader").show();
 
   $.ajax({
     url: "/validate",
@@ -488,12 +476,12 @@ function validateUserData(data, element, submit) {
         nextButton(element);
       }
     }
-    $("#ajax-loader-message").hide();
+    $("#ajax-loader").hide();
   }.bind(element));
 }
 
 function typeaheadAjaxLoader(e) {
-  $("#ajax-loader-message").show();
+  $("#ajax-loader").show();
 }
 
 function signInSubmit(e) {
@@ -510,38 +498,38 @@ function signInSubmit(e) {
 function updateTask(e) {
   e.preventDefault();
   e.stopPropagation();
-  $("#ajax-loader-message").show();
+  $("#ajax-loader").show();
 
   $.ajax({
     url: $(this).attr("href"),
     method: "PUT"
   }).done(function(count){
-    $("#ajax-loader-message").hide();
+    $("#ajax-loader").hide();
   });
 }
 
 function newModel(e) {
   e.preventDefault();
   e.stopPropagation();
-  $("#ajax-loader-message").show();
+  $("#ajax-loader").show();
 
   $.ajax({
     url: $(this).attr("href"),
     method: "POST"
   }).done(function(response){
-    $("#ajax-loader-message").hide();
+    $("#ajax-loader").hide();
   });
 }
 
 function removeModel(e) {
   e.preventDefault();
   e.stopPropagation();
-  $("#ajax-loader-message").show();
+  $("#ajax-loader").show();
   $.ajax({
     url: $(this).attr("href"),
     method: "DELETE"
   }).done(function(response){
-    $("#ajax-loader-message").hide();
+    $("#ajax-loader").hide();
   });
 }
 
@@ -612,4 +600,49 @@ function clickTaskButton(e) {
     $(".completed-tasks-btn span").text('Show');
   }
   $('.completed-tasks').slideToggle();
+}
+
+function setUpMessageAjaxInit() {
+  var appView = $(".app-view");
+
+  if(appView.length > 0) {
+    sendMessageAjaxInit();
+  }
+}
+
+function sendMessageAjaxInit() {
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: '/app-messages',
+    method: "GET",
+    data: {
+      conversation_token: curConvoToken,
+      project_id: projectId,
+      tasks: tasksMode,
+      notes: notesMode,
+      lazy_load: lazyLoadIndex
+    }
+  }).done(function(response){
+    $(".app-view").html(response);
+    $("#ajax-loader-message").hide();
+    messagesEvents();
+  });
+}
+
+function messagesEvents() {
+  if(!tasksMode) {
+    scrollToBottom();
+  }
+
+  //lazy load -----------------------
+  setTimeout(function() {
+    $(".msg-bx-convo").on('scroll', checkLazyLoad);
+  }, 500);
+  //---------------------------------
+
+  updateTaskListeners();
+
+  //show completed tasks
+  $('.completed-tasks-btn').on('click', clickTaskButton);
 }

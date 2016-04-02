@@ -201,7 +201,7 @@
  </nav>
 <!-- End Mobile Navbar -->
 <!-- End Menu Bar -->
-<div id="ajax-loader-message">
+<div id="ajax-loader">
   <div class="cssload-thecube">
     <div class="cssload-cube cssload-c1"></div>
     <div class="cssload-cube cssload-c2"></div>
@@ -412,6 +412,14 @@
           </a>
         <% end %>
       </header>
+      <div id="ajax-loader-message">
+        <div class="cssload-thecube">
+          <div class="cssload-cube cssload-c1"></div>
+          <div class="cssload-cube cssload-c2"></div>
+          <div class="cssload-cube cssload-c4"></div>
+          <div class="cssload-cube cssload-c3"></div>
+        </div>
+      </div>
       <div class="task-conversation-switch text-center">
       <% if @tasks %>
           <%= link_to "View #{@notes ? 'Notes' : 'Conversation'}", root_path(notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
@@ -423,53 +431,7 @@
       </div>
 
       <div class="msg-bx-convo app-view hide-scrollbar">
-        <% if @tasks %>
-          <% unless @conversation.has_pending_tasks? %>
-            <div class="pending-tasks">
-              <p class="no-pending-tasks">
-                <b>You don't have any pending tasks.</b> <br> If you have completed tasks you can view them by clicking below <br> or add a new task by typing it into the form at the bottom of the page.
-              </p>
-            </div>
-          <% else %>
-            <div class="pending-tasks">
-              <% @conversation.sorted_pending_tasks.each do |task| %>
-                <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
-              <% end %>
-            </div>
-          <% end %>
-
-          <% if @conversation.has_completed_tasks? %>
-            <h5 class="text-center"><a href="#" class="completed-tasks-btn"><span>Show</span> <%= @conversation.completed_tasks.count %> Completed Tasks</a></h5>
-            <div class="completed-tasks">
-              <% @conversation.sorted_completed_tasks.each do |task| %>
-                <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
-              <% end %>
-            </div>
-          <% end %>
-        <% elsif @notes %>
-          <div class="notes-convo-container">
-            <div class="notes-header"></div>
-            <div class="notes-container">
-              <div class="notes">
-                <% if @conversation.has_messages? %>
-                  <%= render partial: "conversations/notes_lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
-                <% else %>
-                  <div class="note no-note">
-                    <p>You don't have any notes written for <%= @project.name %> yet.</p>
-                  </div>
-                  <div class="note no-note">
-                    <p>Notes are a great place to store information/tasks only you need!</p>
-                  </div>
-                  <div class="note no-note">
-                    <p>Go ahead, write a note in the form below.</p>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% else %>
-          <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
-        <% end %>
+        <!-- messages are loaded here via ajax in coversations/app_messages view -->
       </div>
     <div id="form-wrapper">
       <% if @notes %>

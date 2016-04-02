@@ -825,7 +825,7 @@ ul.edit-project-list {
 	}
 }
 
-#ajax-loader-message {
+#ajax-loader {
 	position: absolute;
 	height: 100%;
 	width: 100%;
@@ -837,6 +837,16 @@ ul.edit-project-list {
 	&.full {
 		background-color: rgba($white, 1);
 	}
+}
+
+#ajax-loader-message {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba($white, 0.7);
+	text-align: center;
+	display: none;
+	z-index: 4440001;
 }
 
 .convo-links {
