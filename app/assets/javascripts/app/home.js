@@ -3,9 +3,7 @@ var canSendMessage = true;
 var curNext = 1;
 
 jQuery(document).ready(function($){
-  if(!tasksMode) {
-    scrollToBottom();
-  }
+
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
@@ -63,16 +61,9 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //--------------------------------
 
-  //lazy load -----------------------
-  setTimeout(function() {
-    $(".msg-bx-convo").on('scroll', checkLazyLoad);
-  }, 500);
-  //---------------------------------
-
-  //Update Tasks-----------------
-  $(".uncomplete-task, .complete-task").on('click', updateTask);
-  $(".new-model").on('click', newModel);
-  $(".remove-model").on('click', removeModel);
+  //set up message init ajax
+  setUpMessageAjaxInit();
+  //----------------------
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -612,4 +603,46 @@ function clickTaskButton(e) {
     $(".completed-tasks-btn span").text('Show');
   }
   $('.completed-tasks').slideToggle();
+}
+
+function setUpMessageAjaxInit() {
+  var appView = $(".app-view");
+
+  if(appView.length > 0) {
+    sendMessageAjaxInit();
+  }
+}
+
+function sendMessageAjaxInit() {
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: '/app-messages',
+    method: "GET",
+    data: {
+      conversation_token: curConvoToken,
+      project_id: projectId,
+      tasks: tasksMode,
+      notes: notesMode,
+      lazy_load: lazyLoadIndex
+    }
+  }).done(function(response){
+    $(".app-view").html(response);
+    $("#ajax-loader-message").hide();
+    messagesEvents();
+  });
+}
+
+function messagesEvents() {
+  if(!tasksMode) {
+    scrollToBottom();
+  }
+
+  //lazy load -----------------------
+  setTimeout(function() {
+    $(".msg-bx-convo").on('scroll', checkLazyLoad);
+  }, 500);
+  //---------------------------------
+
+  updateTaskListeners();
 }

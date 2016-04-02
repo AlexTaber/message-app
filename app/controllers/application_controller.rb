@@ -49,4 +49,8 @@ class ApplicationController < ActionController::Base
       {}
     end
   end
+
+  def is_true?(string)
+    ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(string)
+  end
 end
