@@ -220,9 +220,9 @@
 <div class="home-wrapper">
   <!-- INBOX SIDEBAR -->
   <% if @has_active_projects %>
-    <div class="inbox-sidebar mobile-target">
+    <div class="inbox-sidebar mobile-target hide-scrollbar">
   <% else %>
-    <div class="inbox-sidebar mobile-target is-transitioned">
+    <div class="inbox-sidebar mobile-target hide-scrollbar is-transitioned">
   <% end %>
     <header>
       <b>Your</b> Projects
@@ -315,7 +315,7 @@
   </div>
   <!-- End Your projects Sidebar -->
   <!-- Current project Data and Conversations Area -->
-  <div class="message-bar mobile-target">
+  <div class="message-bar hide-scrollbar mobile-target">
     <div id="transfer-header">
       Select conversation to transfer task to
       <i class="fa fa-times u-pull-right" id="transfer-close"></i>
@@ -422,7 +422,7 @@
         <% end %>
       </div>
 
-      <div class="msg-bx-convo app-view">
+      <div class="msg-bx-convo app-view hide-scrollbar">
         <% if @tasks %>
           <% unless @conversation.has_pending_tasks? %>
             <div class="pending-tasks">
@@ -495,9 +495,8 @@
 <% if current_user.active_projects_ordered_by_admin.length > 0 %>
 
   <!-- I-Frame -->
-<!--   <div id="fixed-iframe" class="pwd-init pwd-closed is-draggable">
-    <a href="#" id="pwd-open-btn" draggable="false"> <span>+</span></a>
-    <a href="#" id="pwd-move-btn" draggable="false"> <span>&harr;</span></a>
-    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="http://localhost:3000/message_box?token=<%= current_user.active_projects.first.token %>"></iframe>
+<!--   <div id="fixed-iframe" class="pwd-init pwd-closed">
+    <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
+    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="https://guarded-eyrie-2585.herokuapp.com/message_box?token=<%= current_user.active_projects_ordered_by_admin.first.token %>"></iframe>
   </div> -->
 <% end %>

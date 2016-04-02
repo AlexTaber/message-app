@@ -99,6 +99,10 @@ hr {
 hr.fifty{
   width:50%;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
 //Modal window
  .mask {
     position:fixed;
