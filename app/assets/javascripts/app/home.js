@@ -604,9 +604,7 @@ function clickTaskButton(e) {
 }
 
 function setUpMessageAjaxInit() {
-  var appView = $(".app-view");
-
-  if(appView.length > 0) {
+  if(curConvoToken !== null) {
     sendMessageAjaxInit();
   }
 }
