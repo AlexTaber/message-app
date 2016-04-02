@@ -611,7 +611,7 @@ function setUpMessageAjaxInit() {
 }
 
 function sendMessageAjaxInit() {
-  $("#ajax-loader").show();
+  $("#ajax-loader-message").show();
 
   $.ajax({
     url: '/app-messages',
@@ -625,7 +625,7 @@ function sendMessageAjaxInit() {
     }
   }).done(function(response){
     $(".app-view").html(response);
-    $("#ajax-loader").hide();
+    $("#ajax-loader-message").hide();
     messagesEvents();
   });
 }

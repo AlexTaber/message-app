@@ -412,6 +412,14 @@
           </a>
         <% end %>
       </header>
+      <div id="ajax-loader-message">
+        <div class="cssload-thecube">
+          <div class="cssload-cube cssload-c1"></div>
+          <div class="cssload-cube cssload-c2"></div>
+          <div class="cssload-cube cssload-c4"></div>
+          <div class="cssload-cube cssload-c3"></div>
+        </div>
+      </div>
       <div class="task-conversation-switch text-center">
       <% if @tasks %>
           <%= link_to "View #{@notes ? 'Notes' : 'Conversation'}", root_path(notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
@@ -423,6 +431,7 @@
       </div>
 
       <div class="msg-bx-convo app-view hide-scrollbar">
+        <!-- messages are loaded here via ajax in coversations/app_messages view -->
       </div>
     <div id="form-wrapper">
       <% if @notes %>
