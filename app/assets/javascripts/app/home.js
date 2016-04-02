@@ -455,7 +455,6 @@ function updateTaskListeners() {
   $(".new-model").off('click').on('click', newModel);
   $(".remove-model").off('click').on('click', removeModel);
   $(".transfer-icon").off('click').on('click', activateTransfer);
-  $(".convo-links").off('click').on('click', toggleTasks);
 }
 
 function validateUserData(data, element, submit) {
@@ -604,7 +603,7 @@ function clickTaskButton(e) {
 }
 
 function setUpMessageAjaxInit() {
-  if(true) {
+  if(projectId !== null) {
     sendMessageAjaxInit();
   }
 }
@@ -641,6 +640,11 @@ function messagesEvents() {
   //---------------------------------
 
   updateTaskListeners();
+
+  //toggle tasks
+  if(curConvoToken !== null) {
+    $(".convo-links").off('click').on('click', toggleTasks);
+  }
 
   //show completed tasks
   $('.completed-tasks-btn').off('click').on('click', clickTaskButton);
