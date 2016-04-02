@@ -25,7 +25,7 @@ function splashLoad() {
   if(totalTabs > 0) {
     //setup tabs
     setTimeout(function() {
-      $("#ajax-loader-message").fadeOut(500);
+      $("#ajax-loader").fadeOut(500);
       nextTab();
       setUpNav();
       setUpTransitions();
