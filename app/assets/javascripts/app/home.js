@@ -682,6 +682,7 @@ function changeConvo(e) {
     var el = $(this);
     var convoId = el.data('convo-id');
     var convoToken = el.data('convo-token');
+    var oldConvoToken = curConvoToken;
 
     if(el.attr("class") == "notes-wrapper") {
       notesMode = true;
@@ -691,18 +692,21 @@ function changeConvo(e) {
 
     if(typeof convoId !== undefined) {
       //pusher------
-        pusher.unsubscribe('conversation' + String(curConvoToken) + String(userId));
-        pusher.unsubscribe('conversation' + String(convoToken) + String(userId));
-        pusher.unsubscribe('new-task' + String(curConvoToken) + String(userId));
-        pusher.unsubscribe('new-task' + String(convoToken) + String(userId));
-        subscribeToConvo(curConvoToken, convoToken);
-        subscribeToConvo(convoToken, convoToken);
-        listenForNewTasks(curConvoToken, convoToken);
-        listenForNewTasks(convoToken, convoToken);
+      pusher.unsubscribe('conversation' + String(oldConvoToken) + String(userId));
+      pusher.unsubscribe('conversation' + String(convoToken) + String(userId));
+      pusher.unsubscribe('task' + String(oldConvoToken) + String(userId));
+      pusher.unsubscribe('task' + String(convoToken) + String(userId));
+      subscribeToConvo(oldConvoToken, convoToken);
+      subscribeToConvo(convoToken, convoToken);
+      listenForNewTasks(oldConvoToken, convoToken);
+      listenForNewTasks(convoToken, convoToken);
       //-----------
+      lazyLoadIndex = 0;
       curConvoToken = convoToken;
       $(".msg-item-current").removeClass("msg-item-current");
-      el.find(".message-item").addClass("msg-item-current");
+      var newMsgItem = el.find(".message-item");
+      newMsgItem.addClass("msg-item-current");
+      newMsgItem.removeClass("is-unread-convo");
       $(".new-convo-placeholder").slideUp(500);
 
       $("#ajax-loader-message").show();
