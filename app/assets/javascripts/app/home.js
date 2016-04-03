@@ -1,6 +1,7 @@
 ///APP Header
 var canSendMessage = true;
 var curNext = 1;
+var changeConvoBool = true;
 
 jQuery(document).ready(function($){
 
@@ -646,6 +647,8 @@ function messagesEvents() {
     $(".convo-links").off('click').on('click', toggleTasks);
   }
 
+  //listen for change convo
+  $(".conversation-wrapper, .notes-wrapper").off('click', changeConvo).on('click', changeConvo);
   //show completed tasks
   $('.completed-tasks-btn').off('click').on('click', clickTaskButton);
 }
@@ -656,14 +659,91 @@ function toggleTasks(e) {
   lazyLoadIndex = 0;
   var el = $(".task-conversation-switch");
   var str = notesMode ? "Notes" : "Conversation";
+  var formString = tasksMode ? "task" : "message";
 
   if(tasksMode) {
     el.html("<a class='convo-links'>View " + str + "</a> | Tasks");
     $("#message_conversation_id").append("<input type='hidden' name='tasks' id='tasks' value='true'>");
+
+    $("#message_content").attr("placeholder", "Type " + formString + " here...");
   } else {
     el.html(str + " | <a class='convo-links'>View Tasks</a>");
     $("#tasks").remove();
+    $("#message_content").attr("placeholder", "Type message here...");
   }
 
   sendMessageAjaxInit();
+}
+
+function changeConvo(e) {
+  if(changeConvoBool) {
+    e.preventDefault();
+
+    var el = $(this);
+    var convoId = el.data('convo-id');
+    var convoToken = el.data('convo-token');
+    var oldConvoToken = curConvoToken;
+
+    if(el.attr("class") == "notes-wrapper") {
+      notesMode = true;
+    } else {
+      notesMode = false;
+    }
+
+    if(typeof convoId !== undefined) {
+      //pusher------
+      pusher.unsubscribe('conversation' + String(oldConvoToken) + String(userId));
+      pusher.unsubscribe('conversation' + String(convoToken) + String(userId));
+      pusher.unsubscribe('task' + String(oldConvoToken) + String(userId));
+      pusher.unsubscribe('task' + String(convoToken) + String(userId));
+      subscribeToConvo(oldConvoToken, convoToken);
+      subscribeToConvo(convoToken, convoToken);
+      listenForNewTasks(oldConvoToken, convoToken);
+      listenForNewTasks(convoToken, convoToken);
+      //-----------
+      lazyLoadIndex = 0;
+      curConvoToken = convoToken;
+      $(".msg-item-current").removeClass("msg-item-current");
+      var newMsgItem = el.find(".message-item");
+      newMsgItem.addClass("msg-item-current");
+      newMsgItem.removeClass("is-unread-convo");
+      $(".new-convo-placeholder").slideUp(500);
+      updateReadMessages(convoId);
+
+      $("#ajax-loader-message").show();
+
+      $.ajax({
+        url: '/conversations/' + convoId,
+        method: "GET",
+        data: {
+          project_id: projectId,
+          tasks: tasksMode,
+          notes: notesMode
+        }
+      }).done(function(response){
+        $(".message-center").html(response);
+        sendMessageAjaxInit();
+        changeConvoListeners();
+        setUpTypeahead();
+      });
+    }
+  }
+}
+
+function changeConvoListeners() {
+  $(".typeahead-form").off('submit').on('submit', typeaheadAjaxLoader);
+  $("#av-message-form").off('submit').submit(sendMessage);
+  $("#new_conversation").off('submit').submit(startConversation);
+  enterSubmit('#message_content', '#av-message-form');
+  enterSubmit('#content', '#new_conversation');
+}
+
+function updateReadMessages(convoId) {
+  $.ajax({
+    url: 'read-messages',
+    method: "POST",
+    data: {
+      id: convoId
+    }
+  })
 }

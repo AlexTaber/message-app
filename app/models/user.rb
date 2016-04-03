@@ -48,11 +48,11 @@ class User < ActiveRecord::Base
   end
 
   def has_conversations_by_project?(project)
-    conversations_by_project(project).count > 0
+    conversations_by_project(project).size > 0
   end
 
   def has_projects?
-    projects.count > 0
+    projects.size > 0
   end
 
   def active_projects
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def has_active_projects?
-    active_projects.count > 0
+    active_projects.size > 0
   end
 
   def self.all_other_users(user)
@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
   end
 
   def has_unread_notifications?
-    unread_notifications.count > 0
+    unread_notifications.size > 0
   end
 
   def unread_conversations
@@ -103,11 +103,11 @@ class User < ActiveRecord::Base
   end
 
   def has_unread_conversations?
-    unread_conversations.count > 0
+    unread_conversations.size > 0
   end
 
   def unread_conversations_count
-    unread_conversations.count
+    unread_conversations.size
   end
 
   def unread_conversations_by_project(project)
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
   end
 
   def has_unread_conversations_by_project?(project)
-    unread_conversations_by_project(project).count > 0
+    unread_conversations_by_project(project).size > 0
   end
 
   def unread_conversations_other_projects(project)
@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
   end
 
   def has_unread_conversations_other_projects?(project)
-    unread_conversations_other_projects(project).count > 0
+    unread_conversations_other_projects(project).size > 0
   end
 
   def can_create_project
@@ -175,7 +175,7 @@ class User < ActiveRecord::Base
   end
 
   def has_unapproved_projects?
-    unapproved_projects.count > 0;
+    unapproved_projects.size > 0;
   end
 
   def self.send_monthly_emails
@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
   end
 
   def is_member_of_project?(project)
-    user_projects.where(project_id: project.id).count > 0
+    user_projects.where(project_id: project.id).size > 0
   end
 
   def is_not_member_of_project?(project)
@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
   end
 
   def has_request_for_project?(project)
-    requests.where(project_id: project.id).count > 0
+    requests.where(project_id: project.id).size > 0
   end
 
   def has_no_requests_for_project?(project)
@@ -310,7 +310,7 @@ class User < ActiveRecord::Base
   end
 
   def remaining_projects_count
-    tier.admin_projects - active_admin_projects.count
+    tier.admin_projects - active_admin_projects.size
   end
 
   def active_conversation?(conversation)
@@ -322,7 +322,7 @@ class User < ActiveRecord::Base
   end
 
   def non_note_conversations
-    conversations.select { |conversation| conversation.users.count > 1 }
+    conversations.select { |conversation| conversation.users.size > 1 }
   end
 
   def permitted_on_project?(project)

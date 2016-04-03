@@ -48,6 +48,15 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def show
+    @conversation = Conversation.find_by(id: params[:id])
+    project = Project.find_by(id: params[:project_id])
+    tasks = is_true?(params[:tasks])
+    notes = is_true?(params[:notes])
+    message = Message.new
+    render partial: "message_center", locals: { conversation: @conversation, project: project, notes: notes, tasks: tasks, message: message }
+  end
+
   def add_user
     user = User.find_by(id: params[:user_id])
     @project = Project.find_by(id: params[:conversation][:project_id])
@@ -88,6 +97,13 @@ class ConversationsController < ApplicationController
     notes = is_true?(params[:notes])
     lazy_load = params[:lazy_load].to_i
     render partial: "app_messages", locals: { conversation: conversation, tasks: tasks, notes: notes, lazy_load: lazy_load, project: project }
+  end
+
+  def read_messages
+    conversation_by_id
+    @conversation.read_all_messages(current_user)
+
+    render text: "done"
   end
 
   private

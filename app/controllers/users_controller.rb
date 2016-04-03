@@ -83,9 +83,17 @@ class UsersController < ApplicationController
 
     if params[:new_conversation]
       set_up_new_conversation
+    elsif params[:conversation_id]
+      @conversation = Conversation.find_by(id: params[:conversation_id])
+      set_up_new_conversation unless @conversation
     else
       current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
     end
+    unless @conversation.user_is_permitted?(current_user)
+      flash[:warn] = "You are not permitted to view this conversation"
+      redirect_to home_path and return
+    end
+
     set_up_notes
     @conversation.read_all_messages(current_user) unless @conversation.new_record?
     @message = Message.new

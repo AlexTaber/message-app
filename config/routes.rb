@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get :project_owner_data
     end
   end
-  resources :conversations, only: [:new, :create, :destroy]
+  resources :conversations, only: [:new, :create, :show, :destroy]
   resources :messages, only: [:create]
   resources :requests, only: [:new, :create, :update]
   resources :invites, only: [:new, :create]
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   post '/add_user' => 'conversations#add_user'
   get '/plugin-info' => 'users#plugin_info'
   get '/app-messages' => 'conversations#app_messages'
+  post '/read-messages' => 'conversations#read_messages'
 
   root 'users#home'
 end
