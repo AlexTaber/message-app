@@ -51,7 +51,7 @@ class ClaimsController < ApplicationController
       Pusher.trigger("claim#{task.message.conversation.token}#{user.id}", 'new-claim', {
         task_id: task.id,
         conversation_token: task.message.conversation.token,
-        task_html: (render_to_string partial: "tasks/task", locals: { task: task, user: user } )
+        task_html: (render_to_string partial: "tasks/task", locals: { task: task, message: task.message, user: user } )
       })
     end
   end

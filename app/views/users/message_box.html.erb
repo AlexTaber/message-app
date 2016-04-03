@@ -143,7 +143,7 @@
             <% if @tasks %>
               <div class="pending-tasks">
                 <% @conversation.sorted_pending_tasks.each do |task| %>
-                  <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
+                  <%= render partial: "tasks/task", locals: { task: task, message: task.message, user: current_user } %>
                 <% end %>
               </div>
 
@@ -151,7 +151,7 @@
 
               <div class="completed-tasks">
                 <% @conversation.sorted_completed_tasks.each do |task| %>
-                  <%= render partial: "tasks/task", locals: { task: task, user: current_user } %>
+                  <%= render partial: "tasks/task", locals: { task: task, message: task.message, user: current_user } %>
                 <% end %>
               </div>
             <% elsif @notes %>

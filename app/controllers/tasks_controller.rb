@@ -134,7 +134,7 @@ class TasksController < ApplicationController
   end
 
   def task_html(task, user)
-    task ? (render_to_string partial: "tasks/task", locals: { task: task, user: user } ) : ""
+    task ? (render_to_string partial: "tasks/task", locals: { task: task, message: task.message, user: user } ) : ""
   end
 
   def note_html(message)
