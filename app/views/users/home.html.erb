@@ -334,7 +334,7 @@
     </nav>
 
     <% unless @project.new_record? %>
-      <div class="notes-wrapper" id="notes<%= @notes_conversation.id %>" data-convo-id="<%= @notes_conversation.id %>">
+      <div class="notes-wrapper" id="notes<%= @notes_conversation.id %>" data-convo-id="<%= @notes_conversation.id %>" data-convo-token="<%= @notes_conversation.token %>">
         <%= render partial: "conversations/notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
       </div>
     <% end %>
