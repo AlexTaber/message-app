@@ -58,7 +58,7 @@ class MessagesController < ApplicationController
 
   def task_html(user)
     return false unless @message.task
-    (render_to_string partial: "tasks/task", locals: { task: @message.task, user: user } )
+    (render_to_string partial: "tasks/task", locals: { task: @message.task, message: @message, user: user } )
   end
 
   def note_html

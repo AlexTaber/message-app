@@ -1,6 +1,6 @@
 <div class="task-container" id="task-<%= task.id %>">
   <div class="task-icons u-pull-right">
-    <% if user == task.message.user %>
+    <% if user == message.user %>
       <i class="fa fa-exchange transfer-icon" title="Transfer task to another conversation"></i>
     <% end %>
     <!-- claim icons -->
@@ -20,14 +20,14 @@
       <i class="fa fa-times"></i>
     <% end %>
   </div>
-  <small><b><%= task.user.first_name_last_initial %></b> <i><%= task.message.time_ago_to_s %></i></small>
+  <small><b><%= task.user.first_name_last_initial %></b> <i><%= message.time_ago_to_s %></i></small>
   <div class="task-item content">
     <% if task.completer_id %>
       <%= link_to task_path(task, task: { completer_id: nil }), method: "PUT", class: "uncomplete-task", title: "Mark task as not done" do %>
         <div class="task-item icon"></div>
       <% end %>
       <p>
-        <%= sanitize(simple_format(task.message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %><br>
+        <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %><br>
         <small>Completed <%= task.completed_date_s %></small>
       </p>
     <% else %>
@@ -36,7 +36,7 @@
       <% end %>
 
       <p>
-        <%= sanitize(simple_format(task.message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
+        <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
         <% if task.has_claims? %>
           <br><small><%= task.claim_text %></small>
         <% end %>
