@@ -696,10 +696,22 @@ function changeConvo(e) {
       pusher.unsubscribe('conversation' + String(convoToken) + String(userId));
       pusher.unsubscribe('task' + String(oldConvoToken) + String(userId));
       pusher.unsubscribe('task' + String(convoToken) + String(userId));
+      pusher.unsubscribe('claim' + String(oldConvoToken) + String(userId));
+      pusher.unsubscribe('claim' + String(convoToken) + String(userId));
+      pusher.unsubscribe('transferOldTask' + String(oldConvoToken) + String(userId));
+      pusher.unsubscribe('transferOldTask' + String(convoToken) + String(userId));
+      pusher.unsubscribe('transferNewTask' + String(oldConvoToken) + String(userId));
+      pusher.unsubscribe('transferNewTask' + String(convoToken) + String(userId));
       subscribeToConvo(oldConvoToken, convoToken);
       subscribeToConvo(convoToken, convoToken);
       listenForNewTasks(oldConvoToken, convoToken);
       listenForNewTasks(convoToken, convoToken);
+      listenForNewClaims(oldConvoToken, convoToken);
+      listenForNewClaims(convoToken, convoToken);
+      listenForOldTransferedTasks(oldConvoToken, convoToken);
+      listenForOldTransferedTasks(convoToken, convoToken);
+      listenForNewTransferedTasks(oldConvoToken, convoToken);
+      listenForNewTransferedTasks(convoToken, convoToken);
       //-----------
       lazyLoadIndex = 0;
       curConvoToken = convoToken;
@@ -710,6 +722,7 @@ function changeConvo(e) {
       $(".new-convo-placeholder").slideUp(500);
       updateReadMessages(convoId);
 
+      $(".app-view").html("");
       $("#ajax-loader-message").show();
 
       $.ajax({
@@ -720,9 +733,11 @@ function changeConvo(e) {
           tasks: tasksMode,
           notes: notesMode
         }
-      }).done(function(response){
-        $(".message-center").html(response);
-        sendMessageAjaxInit();
+      }).done(function(data){
+        $(".message-center").html(data.message_center);
+        $(".app-view").html(data.app_messages);
+        $("#ajax-loader-message").hide();
+        messagesEvents();
         changeConvoListeners();
         setUpTypeahead();
       });

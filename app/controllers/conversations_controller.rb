@@ -54,7 +54,10 @@ class ConversationsController < ApplicationController
     tasks = is_true?(params[:tasks])
     notes = is_true?(params[:notes])
     message = Message.new
-    render partial: "message_center", locals: { conversation: @conversation, project: project, notes: notes, tasks: tasks, message: message }
+    render json: {
+      message_center: (render_to_string partial: "message_center", locals: { conversation: @conversation, project: project, notes: notes, tasks: tasks, message: message }),
+      app_messages: (render_to_string partial: "app_messages", locals: { conversation: @conversation, tasks: tasks, notes: notes, lazy_load: 0, project: project })
+    }
   end
 
   def add_user
