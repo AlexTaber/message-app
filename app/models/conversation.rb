@@ -107,9 +107,8 @@ class Conversation < ActiveRecord::Base
 
   def lazy_load_messages(index)
     start_index = index * 15
-    end_index = start_index + 15
-    lazy_messages = messages.order(created_at: :desc)[start_index...end_index]
-    lazy_messages ? lazy_messages.reverse : []
+    lazy_messages = messages.order(created_at: :desc).offset(start_index).limit(15).reverse
+    lazy_messages || []
   end
 
   def has_active_project?
