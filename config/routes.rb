@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   post '/add_user' => 'conversations#add_user'
   get '/plugin-info' => 'users#plugin_info'
   get '/app-messages' => 'conversations#app_messages'
+  post '/read-messages' => 'conversations#read_messages'
 
   root 'users#home'
 end

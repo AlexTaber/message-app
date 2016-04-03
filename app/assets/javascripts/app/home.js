@@ -708,6 +708,7 @@ function changeConvo(e) {
       newMsgItem.addClass("msg-item-current");
       newMsgItem.removeClass("is-unread-convo");
       $(".new-convo-placeholder").slideUp(500);
+      updateReadMessages(convoId);
 
       $("#ajax-loader-message").show();
 
@@ -735,4 +736,14 @@ function changeConvoListeners() {
   $("#new_conversation").off('submit').submit(startConversation);
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');
+}
+
+function updateReadMessages(convoId) {
+  $.ajax({
+    url: 'read-messages',
+    method: "POST",
+    data: {
+      id: convoId
+    }
+  })
 }

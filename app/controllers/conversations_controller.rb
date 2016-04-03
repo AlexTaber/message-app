@@ -99,6 +99,13 @@ class ConversationsController < ApplicationController
     render partial: "app_messages", locals: { conversation: conversation, tasks: tasks, notes: notes, lazy_load: lazy_load, project: project }
   end
 
+  def read_messages
+    conversation_by_id
+    @conversation.read_all_messages(current_user)
+
+    render text: "done"
+  end
+
   private
 
   def conversation_by_id
