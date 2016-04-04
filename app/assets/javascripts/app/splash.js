@@ -128,7 +128,6 @@ function setUpTransitions() {
 
 function scrollTransitions() {
   var top = curTransitionEl.offset().top;
-  console.log("HERE");
 
   if(top < transitionOffset) {
     transitionElement(curTransitionEl);
