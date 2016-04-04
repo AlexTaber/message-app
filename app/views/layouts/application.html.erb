@@ -36,6 +36,8 @@
   <% end %>
   <% if @project %>
     <%= javascript_tag "projectId = #{@project.id.to_json.html_safe};" %>
+  <% else %>
+    <%= javascript_tag "projectId = null;" %>
   <% end %>
   <% if @tasks %>
     <%= javascript_tag "tasksMode = true;" %>
