@@ -4,6 +4,46 @@
     <div class="row">
       <div class="twelve columns">
         <div class="table-wrapper">
+
+          <h4>Global Data</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Total Users</th>
+                <th>Total Conversations</th>
+                <th>Total Messages</th>
+              </tr>
+            </thead>
+            <tr>
+              <td><%= User.count %></td>
+              <td><%= Conversation.count %></td>
+              <td><%= Message.count %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-wrapper">
+          <h4>Recent Data (<%= @time %> Days)</h4>
+          <%= form_tag owner_data_path, method: 'GET' do %>
+            <%= number_field_tag 'time' %>
+          <% end %>
+          <table>
+            <thead>
+              <tr>
+                <th>Recent Users</th>
+                <th>Recent Conversations</th>
+                <th>Recent Messages</th>
+              </tr>
+            </thead>
+            <tr>
+              <td><%= User.recent_count_by_days(@time) %></td>
+              <td><%= Conversation.recent_count_by_days(@time) %></td>
+              <td><%= Message.recent_count_by_days(@time) %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-wrapper">
           <h4>Users</h4>
           <table>
             <thead>

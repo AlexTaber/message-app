@@ -332,4 +332,8 @@ class User < ActiveRecord::Base
   def permitted_on_project?(project)
     project.new_record? ? true : is_member_of_project?(project)
   end
+
+  def self.recent_count_by_days(number)
+    where("created_at > ?", DateTime.now - number.days).count
+  end
 end

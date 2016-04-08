@@ -172,6 +172,7 @@ class UsersController < ApplicationController
   def owner_data
     require_owner
     @users = User.all
+    @time = params[:time].to_i || 7
   end
 
   def user_owner_data

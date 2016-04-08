@@ -150,4 +150,8 @@ class Conversation < ActiveRecord::Base
   def user_is_permitted?(user)
     new_record? ? true : user_is_member?(user)
   end
+
+  def self.recent_count_by_days(number)
+    where("created_at > ?", DateTime.now - number.days).count
+  end
 end
