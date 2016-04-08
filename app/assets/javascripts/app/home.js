@@ -35,7 +35,7 @@ jQuery(document).ready(function($){
   if (( messageUrl || newConversationUrl) && mediaSize) {
     $('.mobile-target').fadeOut(0);
     $('#current-account').slideUp();
-    $('.mobile-target').eq(1).fadeIn();
+    $('.mobile-target').eq(3).fadeIn();
     $('.mobile-active').removeClass('mobile-active')
     $('#mobile-messages').addClass('mobile-active');
     scrollToBottom();
@@ -756,6 +756,8 @@ function changeConvo(e) {
 
       changeConvoBool = false;
 
+      showMessageCenter();
+
       $.ajax({
         url: '/conversations/' + convoId,
         method: "GET",
@@ -793,4 +795,11 @@ function updateReadMessages(convoId) {
       id: convoId
     }
   })
+}
+
+function showMessageCenter() {
+  $('.mobile-target').eq(1).hide();
+  $('.mobile-target').eq(3).show();
+  $('.mobile-active').removeClass('mobile-active')
+
 }

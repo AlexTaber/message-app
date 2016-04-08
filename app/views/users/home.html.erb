@@ -364,19 +364,19 @@
   </div>
   <!-- End Current project Data and Conversations Area -->
 
+
   <div id="mobile-current-account" class="mobile-target">
     <p><b><%= current_user.name %>'s Acount</b></p>
     <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
     <li><%= link_to 'Upgrade', root_path %></li>
     <li><%= link_to 'Logout', logout_path %></li>
   </div>
-</div>
-
   <!-- Message Content Section -->
   <div class="message-center mobile-target">
     <%= render partial: "conversations/message_center", locals: { notes: @notes, message: @message, tasks: @tasks, conversation: @conversation, project: @project } %>
   </div>
 
+</div>
 
 
 <% if current_user.active_projects_ordered_by_admin.length > 0 %>
