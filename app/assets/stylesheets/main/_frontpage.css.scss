@@ -385,10 +385,11 @@ ul.edit-project-list {
 			background: rgba($darkgrey, .1);
 		}
 	}
-	//tooltips
+
 	.mobile-active{
 		background:#fff;
-		color:$pwdlight !important;
+		color:$brand-color !important;
+		border-color:#fff;
 	}
 	.fa-globe:after{
 		border-bottom-color:#dddddd;
