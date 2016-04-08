@@ -676,6 +676,10 @@ function messagesEvents() {
 
   //listen for change convo
   $(".conversation-wrapper, .notes-wrapper").off('click', changeConvo).on('click', changeConvo);
+
+  //mobile show messages
+  $(".conversation-wrapper, .notes-wrapper").off('click', showMessageCenter).on('click', showMessageCenter);
+
   //show completed tasks
   $('.completed-tasks-btn').off('click').on('click', clickTaskButton);
 }
@@ -756,8 +760,6 @@ function changeConvo(e) {
 
       changeConvoBool = false;
 
-      showMessageCenter();
-
       $.ajax({
         url: '/conversations/' + convoId,
         method: "GET",
@@ -801,5 +803,4 @@ function showMessageCenter() {
   $('.mobile-target').eq(1).hide();
   $('.mobile-target').eq(3).show();
   $('.mobile-active').removeClass('mobile-active')
-
 }
