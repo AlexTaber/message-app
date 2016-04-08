@@ -35,7 +35,7 @@ jQuery(document).ready(function($){
   if (( messageUrl || newConversationUrl) && mediaSize) {
     $('.mobile-target').fadeOut(0);
     $('#current-account').slideUp();
-    $('.mobile-target').eq(2).fadeIn();
+    $('.mobile-target').eq(1).fadeIn();
     $('.mobile-active').removeClass('mobile-active')
     $('#mobile-messages').addClass('mobile-active');
     scrollToBottom();
@@ -43,7 +43,7 @@ jQuery(document).ready(function($){
   if ((!messageUrl && tasksUrl) || (!messageUrl && mobileConvoUrl))  {
     $('.mobile-target').fadeOut(0);
     $('#current-account').slideUp();
-    $('.mobile-target').eq(1).fadeIn();
+    $('.mobile-target').eq(0).fadeIn();
     $('.mobile-active').removeClass('mobile-active')
     $('#mobile-convos').addClass('mobile-active');
   }
@@ -95,12 +95,12 @@ $(".open-accordian").on('click',function() {
 });
 
 //mobile-nav
-$(".mobile-icons i:not(:first-child)").on('click', function(){
+$(".mobile-icons a").on('click', function(){
   $('.mobile-active').removeClass('mobile-active')
   $(this).addClass('mobile-active')
   $('.mobile-target').fadeOut(0);
   $('#current-account').slideUp();
-  i = $(this).parent().children().index(this) - 1
+  i = $(this).parent().children().index(this)
   $('.mobile-target').eq(i).fadeIn();
   if(i == 2) {
     scrollToBottom();

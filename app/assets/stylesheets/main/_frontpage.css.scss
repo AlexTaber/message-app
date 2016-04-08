@@ -387,20 +387,8 @@ ul.edit-project-list {
 	}
 	//tooltips
 	.mobile-active{
-		position:relative;
-	}
-	.mobile-active:after {
-		position:absolute;
-		bottom:-2px;
-		content: "";
-		width: 0;
-		height: 0;
-				border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-bottom:10px solid #fff;
-		margin-right:50%;
-		left: 4px;
-		margin-bottom:-15px;
+		background:#fff;
+		color:$pwdlight !important;
 	}
 	.fa-globe:after{
 		border-bottom-color:#dddddd;
