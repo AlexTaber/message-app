@@ -309,6 +309,10 @@ class User < ActiveRecord::Base
     claim_from_task(task) != nil
   end
 
+  def unclaimed(task)
+    !claimed(task)
+  end
+
   def remaining_projects_count
     tier.admin_projects - active_admin_projects.size
   end
