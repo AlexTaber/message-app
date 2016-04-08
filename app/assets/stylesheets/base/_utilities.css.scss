@@ -118,7 +118,7 @@ hr.fifty{
     position:absolute;
     box-sizing:border-box;
     width: calc(100vw - 20px);
-    min-height:calc(100vh - 20px);
+    height:calc(100vh - 20px);
     margin-left:10px;
     margin-top:10px;
     display:none;
@@ -143,7 +143,7 @@ hr.fifty{
 @media (min-width: 750px) {
   .modal-window{
     width:50vw;
-    max-height:auto;
+    height:auto;
     margin-left:25vw;
     top:50%;
     transform: translateY(-50%);
@@ -235,7 +235,6 @@ a.close-modal{
   margin-top:-6px;
   position: relative;
   border:1px solid $grey;
-  overflow-y: scroll;
 }
 .tab-content > div {
   display: none;

@@ -557,6 +557,10 @@ ul.edit-project-list {
 			}
 		}
 }
+.project-user-list{
+	max-height:70vh;
+	overflow-y:scroll;
+}
 .self-meta-data{
 	margin-right:10px;
 }
