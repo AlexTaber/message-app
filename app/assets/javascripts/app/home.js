@@ -370,6 +370,11 @@ function subscribeToConvo(conversationToken, curConvoToken) {
         }
       }
 
+      //remove ajax loader if message user == current user
+      if(userId == data.user_id) {
+        $("#ajax-loader").hide();
+      }
+
       updateTaskListeners();
       scrollToBottom();
     }
