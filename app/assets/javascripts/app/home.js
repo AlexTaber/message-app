@@ -40,13 +40,13 @@ jQuery(document).ready(function($){
     $('#mobile-messages').addClass('mobile-active');
     scrollToBottom();
   }
-  if ((!messageUrl && tasksUrl) || (!messageUrl && mobileConvoUrl))  {
-    $('.mobile-target').fadeOut(0);
-    $('#current-account').slideUp();
-    $('.mobile-target').eq(0).fadeIn();
-    $('.mobile-active').removeClass('mobile-active')
-    $('#mobile-convos').addClass('mobile-active');
-  }
+  // if ((!messageUrl && tasksUrl) || (!messageUrl && mobileConvoUrl))  {
+  //   $('.mobile-target').fadeOut(0);
+  //   $('#current-account').slideUp();
+  //   $('.mobile-target').eq(0).fadeIn();
+  //   $('.mobile-active').removeClass('mobile-active')
+  //   $('#mobile-convos').addClass('mobile-active');
+  // }
 
   //END PUSHER----------------------
 
@@ -470,6 +470,8 @@ function updateTaskListeners() {
   $(".remove-model").off('click').on('click', removeModel);
   $(".transfer-icon").off('click').on('click', activateTransfer);
   $(".remove-notes").off('click').on('click', removeNote);
+  //mobile show messages
+  $(".conversation-wrapper, .notes-wrapper").off('click', showMessageCenter).on('click', showMessageCenter);
 }
 
 function validateUserData(data, element, submit) {
@@ -676,6 +678,7 @@ function messagesEvents() {
 
   //listen for change convo
   $(".conversation-wrapper, .notes-wrapper").off('click', changeConvo).on('click', changeConvo);
+
   //show completed tasks
   $('.completed-tasks-btn').off('click').on('click', clickTaskButton);
 }
@@ -756,8 +759,6 @@ function changeConvo(e) {
 
       changeConvoBool = false;
 
-      showMessageCenter();
-
       $.ajax({
         url: '/conversations/' + convoId,
         method: "GET",
@@ -801,5 +802,4 @@ function showMessageCenter() {
   $('.mobile-target').eq(1).hide();
   $('.mobile-target').eq(3).show();
   $('.mobile-active').removeClass('mobile-active')
-
 }

@@ -65,4 +65,8 @@ class Message < ActiveRecord::Base
   def has_task?
     task ? task.persisted? : false
   end
+
+  def self.recent_count_by_days(number)
+    where("created_at > ?", DateTime.now - number.days).count
+  end
 end
