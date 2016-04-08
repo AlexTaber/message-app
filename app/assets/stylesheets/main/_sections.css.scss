@@ -23,6 +23,13 @@ section  {
 	i {
 		margin: 20px 0;
 		padding: 0 20px;
+		font-size:40px;
+	}
+}
+/* Larger than tablet */
+@media (min-width: 750px) {
+	#why i {
+		font-size:5rem;
 	}
 }
 #getting-started {

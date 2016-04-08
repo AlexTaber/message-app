@@ -27,8 +27,13 @@
     <div class="container">
       <div class="row">
         <div class="twelve columns">
-          <a href="/"><h2>MercuryApp</h2></a>
+          <a href="/"><h2 class="mobile-logo">MercuryApp</h2></a>
           <a id="right-menu" class="u-pull-right" href="#right-menu"><i class="fa fa-bars fa-2x"></i></a>
+          <% if current_user %>
+          <%= link_to 'Dashboard', home_path, class: 'button button-primary button-mobile-signup u-pull-right' %>
+          <% else %>
+          <%= link_to 'Sign Up', new_user_path, class: 'button button-primary button-mobile-signup u-pull-right' %>
+          <% end %>
           <div id="sidr-right" class="sidr right">
             <ul>
               <li><a href="#why">Why MAP</a></li>
@@ -37,7 +42,7 @@
               <li><%= link_to 'Dashboard', home_path %></li>
               <li><%= link_to 'Logout', logout_path %></li>
               <% else %>
-              <li class="pill"><%= link_to 'Sign Up', login_path %></li>
+              
               <li><%= link_to 'Login', login_path %></li>
               <% end %>
             </ul>

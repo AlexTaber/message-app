@@ -284,7 +284,7 @@ ul.edit-project-list {
 }
 @media (min-width: 750px) {
 	.message-bar {
-			position:relative;
+		position:relative;
 		display:block !important;
 		width: 30%;
 		float: left;
@@ -343,7 +343,7 @@ ul.edit-project-list {
 }
 @media (min-width: 750px) {
 .message-center {
-		position:relative;
+	position:relative;
 	display:block !important;
 	float: left;
 	width: 50%;
@@ -385,22 +385,11 @@ ul.edit-project-list {
 			background: rgba($darkgrey, .1);
 		}
 	}
-	//tooltips
+
 	.mobile-active{
-		position:relative;
-	}
-	.mobile-active:after {
-		position:absolute;
-		bottom:-2px;
-		content: "";
-		width: 0;
-		height: 0;
-				border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-bottom:10px solid #fff;
-		margin-right:50%;
-		left: 4px;
-		margin-bottom:-15px;
+		background:#fff;
+		color:$brand-color !important;
+		border-color:#fff;
 	}
 	.fa-globe:after{
 		border-bottom-color:#dddddd;

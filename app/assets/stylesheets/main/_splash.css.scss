@@ -24,7 +24,9 @@
     opacity: 1;
   }
 }
-
+.mobile-logo{
+  margin-top:5px;
+}
 .intro {
   padding-top: 10px;
 
@@ -298,6 +300,7 @@ a:hover {
 
 .landing-tabs {
   position: absolute;
+  background:$white;
   height: 530px;
   z-index: -1;
   left: 0;
