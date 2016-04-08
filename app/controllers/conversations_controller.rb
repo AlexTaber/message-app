@@ -106,7 +106,7 @@ class ConversationsController < ApplicationController
     conversation_by_id
     @conversation.read_all_messages(current_user)
 
-    render text: "done"
+    render text: "Done"
   end
 
   private

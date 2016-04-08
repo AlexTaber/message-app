@@ -465,6 +465,7 @@ function updateTaskListeners() {
   $(".new-model").off('click').on('click', newModel);
   $(".remove-model").off('click').on('click', removeModel);
   $(".transfer-icon").off('click').on('click', activateTransfer);
+  $(".remove-notes").off('click').on('click', removeNote);
 }
 
 function validateUserData(data, element, submit) {
@@ -540,7 +541,18 @@ function removeModel(e) {
     method: "DELETE"
   }).done(function(response){
     $("#ajax-loader").hide();
+
+    if(typeof response != "string") {
+      //replace notes wrapper
+      $(".notes-wrapper").html(response.html);
+    }
   });
+}
+
+function removeNote(e) {
+  removeModel.bind(this, e)();
+
+  $(this).parents('.note').remove();
 }
 
 function updateTasksButton(completedTasksCount, deleted) {
