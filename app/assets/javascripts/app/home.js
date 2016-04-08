@@ -555,9 +555,11 @@ function tasksButtonHtml(count) {
 }
 
 function checkLazyLoad() {
-  if ($(".msg-bx-convo").scrollTop() == 0) {
-    if(!tasksMode) {
-      lazyLoad();
+  if(changeConvoBool) {
+    if ($(".msg-bx-convo").scrollTop() == 0) {
+      if(!tasksMode) {
+        lazyLoad();
+      }
     }
   }
 }
@@ -676,8 +678,9 @@ function toggleTasks(e) {
 }
 
 function changeConvo(e) {
+  e.preventDefault();
+
   if(changeConvoBool) {
-    e.preventDefault();
 
     var el = $(this);
     var convoId = el.data('convo-id');
@@ -690,7 +693,7 @@ function changeConvo(e) {
       notesMode = false;
     }
 
-    if(typeof convoId !== undefined) {
+    if(typeof convoId !== undefined && convoToken != oldConvoToken) {
       //pusher------
       pusher.unsubscribe('conversation' + String(oldConvoToken) + String(userId));
       pusher.unsubscribe('conversation' + String(convoToken) + String(userId));
@@ -725,6 +728,8 @@ function changeConvo(e) {
       $(".app-view").html("");
       $("#ajax-loader-message").show();
 
+      changeConvoBool = false;
+
       $.ajax({
         url: '/conversations/' + convoId,
         method: "GET",
@@ -740,6 +745,7 @@ function changeConvo(e) {
         messagesEvents();
         changeConvoListeners();
         setUpTypeahead();
+        changeConvoBool = true;
       });
     }
   }
