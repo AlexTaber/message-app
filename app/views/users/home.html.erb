@@ -83,15 +83,6 @@
   </div>
 </div>
 
-<div id='send-request' class='modal-window'>
-  <div>
-    <h1>Send Request</h1>
-    <p>Type in project name you want to join and press enter</p>
-    <%= render partial: "requests/typeahead", locals: { my_request: @request } %>
-    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-  </div>
-</div>
-
 <div id='delete' class='modal-window'>
   <div>
     <h1>Are you sure you want to delete your project?</h1>
@@ -102,23 +93,6 @@
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
-
-<% if current_user.admin_of_project?(@project) %>
-  <div id='requests' class='modal-window'>
-    <div>
-      <% if @project.has_pending_requests? %>
-      <h1>All Pending Requests</h1>
-      <% @project.pending_requests.each do |request| %>
-      <%= render partial: "requests/card", locals: { request: request } %>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-      <% end %>
-      <% else %>
-      <h1> You have no pending requests </h1>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-      <% end %>
-    </div>
-  </div>
-<% end %>
 
 <% if(current_user.first_visit?) %>
   <div id='welcome' class='modal-window' style="display:block;">
@@ -279,12 +253,6 @@
                     <%= link_to "Edit project", edit_project_path(@project), class: "activate-modal", name: "edit-project" %>
                   </li>
                   <li>
-                    <%= link_to "Requests", "#", class: "activate-modal", name: "requests" %>
-                  <% if project.has_pending_requests? %>
-                    &bull;
-                  <% end %>
-                  </li>
-                  <li>
                     <%= link_to "Remove", "#", class: "activate-modal", name: "delete" %>
                   </li>
               </ul>
@@ -306,11 +274,6 @@
           <i class="fa fa-level-up u-pull-right"></i>
         </div>
       <% end %>
-<!--       <div class="send-request activate-modal"  name="send-request">
-        <div class="text-center">
-          <div><small>If you would like to join a project, click here to send a <b>Request</b> to that project's leader.</small></div>
-        </div>
-      </div> -->
     </nav>
   </div>
   <!-- End Your projects Sidebar -->
