@@ -288,12 +288,16 @@ function sendMessage(e) {
       method: "POST",
       data: $(e.target).serialize()
     }).done(function(response){
-      canSendMessage = true;
-      $(".new_message").find("#message_content").val("");
-      $('#form-wrapper textarea').css('height', '40px');
-      $("#ajax-loader").hide();
+      //send message events called from pusher event
     });
   }
+}
+
+function sendMessageEvents() {
+  canSendMessage = true;
+  $(".new_message").find("#message_content").val("");
+  $('#form-wrapper textarea').css('height', '40px');
+  $("#ajax-loader").hide();
 }
 
 function startConversation(e) {
@@ -372,7 +376,7 @@ function subscribeToConvo(conversationToken, curConvoToken) {
 
       //remove ajax loader if message user == current user
       if(userId == data.user_id) {
-        $("#ajax-loader").hide();
+        sendMessageEvents();
       }
 
       updateTaskListeners();
