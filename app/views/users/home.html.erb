@@ -111,7 +111,7 @@
   </div>
 <% end %>
 
-<% #if(current_user.first_visit?) %>
+<% if(current_user.first_visit?) %>
 
   <div id='welcome' class='modal-window' style="display:block;">
     <div>
@@ -152,7 +152,7 @@
       <a href="#" class="close-modal-text">Close this page</a>
     </div>
   </div>
-<% #end %>
+<% end %>
 
 <!-- END MODALS -->
 <!-- Desktop Navbar -->

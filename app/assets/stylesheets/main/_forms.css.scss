@@ -1,5 +1,5 @@
 // input styling
-input[type='text'], input[type='password'] {
+input[type='text'],{
   border-radius: 0;
   border: none;
   border-bottom: 1px solid #ddd;
@@ -25,11 +25,7 @@ input[type='text'], input[type='password'] {
 }
 
 //main sign in form
-#sign-in-form {
- input[type='text'], input[type='password'] {
-  width:30%;
- }
-}
+
 #new_user{
   input[type='text'], input[type='password'] {
   width:200px;
