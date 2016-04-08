@@ -2,6 +2,7 @@
 var canSendMessage = true;
 var curNext = 1;
 var changeConvoBool = true;
+var totalMessages = 0;
 
 jQuery(document).ready(function($){
 
@@ -328,6 +329,7 @@ function startConversation(e) {
       $('.new-convo-placeholder').slideUp();
       $('#form-wrapper textarea').css('height', '40px');
       $("#ajax-loader").hide();
+      totalMessages += 1;
     });
   }
 }
@@ -381,6 +383,8 @@ function subscribeToConvo(conversationToken, curConvoToken) {
 
       updateTaskListeners();
       scrollToBottom();
+
+      totalMessages += 1;
     }
 
     if(notesMode) {
@@ -591,7 +595,7 @@ function lazyLoad() {
   $.ajax({
     url: '/lazy_load',
     method: "GET",
-    data: { lazy_load: lazyLoadIndex + 1, token: curConvoToken, notes: notesMode }
+    data: { lazy_load: lazyLoadIndex + 1, offset: totalMessages, token: curConvoToken, notes: notesMode }
   }).done(function(response){
     var msgBox = $(".msg-bx-convo");
     $("#ajax-loader-message").hide();
@@ -738,6 +742,7 @@ function changeConvo(e) {
       listenForNewTransferedTasks(convoToken, convoToken);
       //-----------
       lazyLoadIndex = 0;
+      totalMessages = 0;
       curConvoToken = convoToken;
       $(".msg-item-current").removeClass("msg-item-current");
       var newMsgItem = el.find(".message-item");

@@ -27,7 +27,7 @@
     <div class="notes-container">
       <div class="notes">
         <% if conversation.has_messages? %>
-          <%= render partial: "conversations/notes_lazy_load", locals: { conversation: conversation, lazy_load: lazy_load } %>
+          <%= render partial: "conversations/notes_lazy_load", locals: { conversation: conversation, lazy_load: lazy_load, offset: 0 } %>
         <% else %>
           <div class="note no-note">
             <p>You don't have any notes written for <%= project.name %> yet.</p>
@@ -43,5 +43,5 @@
     </div>
   </div>
 <% else %>
-  <%= render partial: "conversations/lazy_load", locals: { conversation: conversation, lazy_load: lazy_load } %>
+  <%= render partial: "conversations/lazy_load", locals: { conversation: conversation, lazy_load: lazy_load, offset: 0 } %>
 <% end %>

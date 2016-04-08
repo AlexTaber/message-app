@@ -105,8 +105,8 @@ class Conversation < ActiveRecord::Base
     has_completed_tasks? && has_pending_tasks?
   end
 
-  def lazy_load_messages(index)
-    start_index = index * 15
+  def lazy_load_messages(index, offset = 0)
+    start_index = (index * 15) + offset
     lazy_messages = messages.order(created_at: :desc).offset(start_index).limit(15).reverse
     lazy_messages || []
   end
