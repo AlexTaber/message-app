@@ -82,6 +82,20 @@
       margin-bottom: 8px;
     }
 
+    .note-icons {
+      padding-right:10px;
+      margin-top: 4px;
+
+      i {
+        font-size: 1.2rem;
+        color: $black;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+
     p {
       display: block;
       padding-top: 3px;

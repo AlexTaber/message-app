@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
   resources :conversations, only: [:new, :create, :show, :destroy]
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :destroy]
   resources :requests, only: [:new, :create, :update]
   resources :invites, only: [:new, :create]
   resources :user_projects, only: [:update, :destroy]
