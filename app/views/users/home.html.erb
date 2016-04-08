@@ -10,7 +10,7 @@
   <section class="tabs">
     <div class="overflow-visible">
       <ul class="tab-list">
-        <li class="tab1 active-tab"><a class="users-tab" href="#"><%= @project.name %> Users</a></li>
+        <li class="tab1 active-tab"><a class="users-tab" href="#">Current Users</a></li>
         <li class="tab2"><a class="users-tab" href="#">Add Users</a></li>
         <li class="tab3"><a class="users-tab" href="#">Invite Users</a></li>
       </ul>
@@ -111,7 +111,7 @@
   </div>
 <% end %>
 
-<% if(current_user.first_visit?) %>
+<% #if(current_user.first_visit?) %>
 
   <div id='welcome' class='modal-window' style="display:block;">
     <div>
@@ -152,7 +152,7 @@
       <a href="#" class="close-modal-text">Close this page</a>
     </div>
   </div>
-<% end %>
+<% #end %>
 
 <!-- END MODALS -->
 <!-- Desktop Navbar -->
