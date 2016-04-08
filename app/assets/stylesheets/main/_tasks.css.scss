@@ -23,8 +23,12 @@
     a {
       color: $black;
 
-      .claimed {
+      .user-claimed {
         color: darken($green, 30%);
+      }
+
+      .claimed {
+        color: #ffdc02;
       }
     }
 
@@ -32,7 +36,7 @@
       color: red;
       cursor:pointer;
 
-      .claimed {
+      .user-claimed {
         color: $black;
         -webkit-animation-play-state: paused;
         -moz-animation-play-state: paused;
@@ -40,7 +44,7 @@
         animation-play-state: paused;
       }
 
-      .unclaimed {
+      .unclaimed, .claimed {
         color: darken($green, 30%);;
       }
     }

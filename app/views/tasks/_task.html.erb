@@ -7,6 +7,10 @@
     <% if task.incomplete? %>
       <% if user.claimed?(task) %>
         <%= link_to claim_path(user.claim_from_task(task)), method: "DELETE", class: "remove-model", title: "Remove claim on this task" do %>
+          <i class="fa fa-cog user-claimed spin"></i>
+        <% end %>
+      <% elsif task.has_claims? %>
+        <%= link_to claims_path(claim: { user_id: user.id, task_id: task.id }), method: "POST", class: "new-model", title: "Claim this task" do %>
           <i class="fa fa-cog claimed spin"></i>
         <% end %>
       <% else %>

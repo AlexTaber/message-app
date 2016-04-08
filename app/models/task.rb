@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   has_many :claims
 
   def has_claims?
-    claims.count > 0
+    claims.size > 0
   end
 
   def status
@@ -46,11 +46,11 @@ class Task < ActiveRecord::Base
   end
 
   def extra_claim_names
-    claims.count > 2 ? " and #{claims.count - 2} more" : ""
+    claims.size > 2 ? " and #{claims.size - 2} more" : ""
   end
 
   def claim_text
-    claims.count > 1 ? "#{abbreviated_claim_names} are working on this" : "#{abbreviated_claim_names} is working on this"
+    claims.size > 1 ? "#{abbreviated_claim_names} are working on this" : "#{abbreviated_claim_names} is working on this"
   end
 
   def update_conversation(conversation_id)
