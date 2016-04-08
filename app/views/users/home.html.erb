@@ -94,23 +94,6 @@
   </div>
 </div>
 
-<% if current_user.admin_of_project?(@project) %>
-  <div id='requests' class='modal-window'>
-    <div>
-      <% if @project.has_pending_requests? %>
-      <h1>All Pending Requests</h1>
-      <% @project.pending_requests.each do |request| %>
-      <%= render partial: "requests/card", locals: { request: request } %>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-      <% end %>
-      <% else %>
-      <h1> You have no pending requests </h1>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
 <% if(current_user.first_visit?) %>
 
   <div id='welcome' class='modal-window' style="display:block;">
