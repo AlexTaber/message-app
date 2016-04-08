@@ -40,13 +40,13 @@ jQuery(document).ready(function($){
     $('#mobile-messages').addClass('mobile-active');
     scrollToBottom();
   }
-  if ((!messageUrl && tasksUrl) || (!messageUrl && mobileConvoUrl))  {
-    $('.mobile-target').fadeOut(0);
-    $('#current-account').slideUp();
-    $('.mobile-target').eq(0).fadeIn();
-    $('.mobile-active').removeClass('mobile-active')
-    $('#mobile-convos').addClass('mobile-active');
-  }
+  // if ((!messageUrl && tasksUrl) || (!messageUrl && mobileConvoUrl))  {
+  //   $('.mobile-target').fadeOut(0);
+  //   $('#current-account').slideUp();
+  //   $('.mobile-target').eq(0).fadeIn();
+  //   $('.mobile-active').removeClass('mobile-active')
+  //   $('#mobile-convos').addClass('mobile-active');
+  // }
 
   //END PUSHER----------------------
 
