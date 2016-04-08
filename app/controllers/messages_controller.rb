@@ -37,6 +37,24 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @message = Message.find_by(id: params[:id])
+    conversation = @message.conversation
+
+    if @message.destroy
+      if request.xhr?
+        render json: {
+          id: conversation.id,
+          html: (render_to_string partial: "conversations/notes_card", locals: { conversation: conversation, current_conversation: conversation, project: conversation.project, user: current_user })
+        }
+      else
+        redirect_to home_path
+      end
+    else
+      flash[:warn] = "Unable to delete message, please try again"
+    end
+  end
+
   private
 
   def message_params
