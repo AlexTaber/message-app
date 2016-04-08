@@ -8,7 +8,6 @@ class Project < ActiveRecord::Base
   has_many :tasks, through: :conversations
 
   validates :name, presence: true
-  validates :name, uniqueness: true
 
   def has_conversations?
     conversations.count > 0
