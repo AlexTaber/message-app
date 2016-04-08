@@ -470,6 +470,8 @@ function updateTaskListeners() {
   $(".remove-model").off('click').on('click', removeModel);
   $(".transfer-icon").off('click').on('click', activateTransfer);
   $(".remove-notes").off('click').on('click', removeNote);
+  //mobile show messages
+  $(".conversation-wrapper, .notes-wrapper").off('click', showMessageCenter).on('click', showMessageCenter);
 }
 
 function validateUserData(data, element, submit) {
@@ -676,9 +678,6 @@ function messagesEvents() {
 
   //listen for change convo
   $(".conversation-wrapper, .notes-wrapper").off('click', changeConvo).on('click', changeConvo);
-
-  //mobile show messages
-  $(".conversation-wrapper, .notes-wrapper").off('click', showMessageCenter).on('click', showMessageCenter);
 
   //show completed tasks
   $('.completed-tasks-btn').off('click').on('click', clickTaskButton);
