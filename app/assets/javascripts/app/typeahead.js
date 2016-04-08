@@ -47,7 +47,7 @@ function setUpTypeahead() {
       $('.convo-typeahead').typeahead({
         hint: false,
         highlight: true,
-        minLength: 1,
+        minLength: 0,
       },
       {
         name: 'project_users',
@@ -74,7 +74,7 @@ function setUpTypeahead() {
       $('.project-typeahead').typeahead({
         hint: false,
         highlight: true,
-        minLength: 1,
+        minLength: 3,
       },
       {
         name: 'all_users',
@@ -97,7 +97,7 @@ function setUpTypeahead() {
       $('.request-typeahead').typeahead({
         hint: false,
         highlight: true,
-        minLength: 1,
+        minLength: 3,
       },
       {
         name: 'all_projects',
