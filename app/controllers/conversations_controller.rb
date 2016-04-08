@@ -87,9 +87,9 @@ class ConversationsController < ApplicationController
   def lazy_load
     @conversation = token_conversation(params[:token])
     if params[:notes] == "true"
-      render partial: "notes_lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i }
+      render partial: "notes_lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i, offset: params[:offset].to_i }
     else
-      render partial: "lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i }
+      render partial: "lazy_load", locals: { conversation: @conversation, lazy_load: params[:lazy_load].to_i, offset: params[:offset].to_i }
     end
   end
 

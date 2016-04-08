@@ -161,7 +161,7 @@
                   <div class="notes-header"></div>
                   <div class="notes-container">
                     <div class="notes">
-                      <%= render partial: "conversations/notes_lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+                      <%= render partial: "conversations/notes_lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load, offset: 0 } %>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@
               <% end %>
 
             <% elsif @conversation.other_users(current_user).length > 0 %>
-              <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load } %>
+              <%= render partial: "conversations/lazy_load", locals: { conversation: @conversation, lazy_load: @lazy_load, offset: 0 } %>
             <% else %>
               <% if @project.users.length == 1 %>
                 <div class="text-center">
