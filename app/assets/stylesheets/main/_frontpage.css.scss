@@ -692,6 +692,12 @@ ul.edit-project-list {
 .app-view-typeahead {
 	display: block;
 }
+
+.add-users-typeahead .tt-menu {
+	left:auto !important;
+  right:0 !important;
+}
+
 .typeahead-image{
 	width:40px;
 	height:40px;
@@ -720,7 +726,9 @@ ul.edit-project-list {
 			font-size: 100%;
 			height:18px;
 			padding:0;
-			width: 100px;
+			width: 135px;
+			border: none;
+			font-size: 11px;
 		}
 		input[type="submit"] {
 			padding:0 20px;

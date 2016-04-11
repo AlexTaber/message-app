@@ -33,6 +33,10 @@ class Conversation < ActiveRecord::Base
     users.select { |checked_user| checked_user != user }
   end
 
+  def has_other_users?(user)
+    other_users(user).length > 0
+  end
+
   def other_active_users(user)
     users.select { |checked_user| checked_user != user && checked_user.active_conversation?(self) }
   end

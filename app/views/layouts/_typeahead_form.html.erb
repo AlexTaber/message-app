@@ -1,8 +1,8 @@
-<%= form_tag add_user_path(tasks: tasks), class: 'typeahead-form' do %>
+<%= form_tag add_user_path(tasks: tasks), class: 'typeahead-form u-pull-right add-users-typeahead' do %>
 <% if @conversation.new_record? %>
-  	<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus new-focus", value: "" %>
+  	<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus new-focus", value: "", placeholder: "Add User to Conversation" %>
 <% else %>
-		<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus", value: "" %>
+		<%= text_field_tag :user_name, nil, class: "typeahead app-view-typeahead convo-typeahead add-focus", value: "", placeholder: "Add User to Conversation" %>
 <% end %>
 
   <%= hidden_field_tag "conversation[project_id]", project.id %>
