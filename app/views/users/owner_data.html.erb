@@ -6,7 +6,7 @@
         <div class="table-wrapper">
 
           <h4>Global Data</h4>
-          <table>
+          <table class="tablesorter">
             <thead>
               <tr>
                 <th>Total Users</th>
@@ -27,7 +27,7 @@
           <%= form_tag owner_data_path, method: 'GET' do %>
             <%= number_field_tag 'time' %>
           <% end %>
-          <table>
+          <table class="tablesorter">
             <thead>
               <tr>
                 <th>Recent Users</th>
@@ -45,7 +45,7 @@
 
         <div class="table-wrapper">
           <h4>Users</h4>
-          <table>
+          <table class="tablesorter">
             <thead>
               <tr>
                 <th>ID</th>
@@ -90,7 +90,7 @@
 
         <div class="table-wrapper">
           <h4>Projects</h4>
-          <table>
+          <table class="tablesorter">
             <thead>
               <tr>
                 <th>ID</th>
