@@ -1,9 +1,14 @@
-<!-- MODALS -->
+<!-- ********************* MODALS *********************** -->
+
+<!-- MODAL MASK -->
 <% if(current_user.first_visit?) %>
 <div class='mask close-modal' style="display:block;"></div>
 <% else %>
 <div class='mask close-modal'></div>
 <% end %>
+<!-- END MODAL MASK -->
+
+<!-- MANAGE USERS MODAL -->
 <div id='manage-users' class='modal-window'>
   <div>
     <h1>Manage Users of <%= @project.name %></h1>
@@ -19,7 +24,28 @@
           <% if @project.has_other_users?(current_user) %>
             <div id="project-user-list">
               <% @project.other_users(current_user).each do |user| %>
-              <p>
+              <div class="user-card">
+                <div class="remove-user"> 
+                  <i class="fa fa-times"></i>
+                </div>
+                <div class="media">
+                  <% if user.image %>
+                  <div class="profile-pic u-pull-left app-view-p-img">
+                    <img class="profile-pic" src="<%= current_user.image_url %>">
+                  </div>
+                  <% else %>
+                  <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
+                    <p><%= user.first_name[0] %></p>
+                  </div>
+                  <% end %>
+                  <div class="user-card_info">
+                    <p>
+                      <%= user.name %>
+                    </p>
+                  </div>
+              </div>
+            </div>
+              <!--<p>
                 <%= user.name %>
                 <span class="manage-user-opts">
                   <%= link_to "Remove", user_project_path(user.find_user_project(@project)), method: "delete", class: "button button-warning button-inline" %>
@@ -29,10 +55,10 @@
                     <% else %>
                       <%= link_to "Set as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "button button-primary button-inline" %>
                     <% end %>
-                  <% end %>
+                  <% end %> 
                 </span>
                 <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
-              </p>
+              </p>-->
             <% end %>
           </div>
         <% else %>
@@ -65,16 +91,22 @@
     </div>
   </div>
 </div>
+<!-- END MANAGE USERS MODAL -->
+
+<!-- NEW PROJECT MODAL -->
 <div class='mask close-modal'></div>
 <div id='window' class='modal-window'>
   <div>
-    <h1>Awesome! What is the name of your project?</h1>
+    <h1>Let's make a new project!</h1>
+    <p class="modal-text">Please enter a name for your new project. Once you've created your project you can add users to message by clicking <b>MANAGE USERS</b> under the project name in your dashboard. You have <b><%= current_user.remaining_projects_count %> projects</b> left. If you would like to add more projects please visit our <%= link_to 'Edit Subscription Page', edit_subscription_path(current_user.subscription) %></p>
     <%= render partial: "projects/form", locals: { project: @new_project } %>
     <div>&nbsp;</div>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
+<!-- END NEW PROJECT MODAL -->
 
+<!-- EDIT PROJECT MODAL -->
 <div id='edit-project' class='modal-window'>
   <div>
     <h1>Awesome! Let's update your project</h1>
@@ -82,7 +114,9 @@
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
+<!-- END EDIT PROJECT MODAL -->
 
+<!-- DELETE PROJECT MODAL -->
 <div id='delete' class='modal-window'>
   <div>
     <h1>Are you sure you want to delete your project?</h1>
@@ -93,7 +127,9 @@
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
+<!-- END DELETE PROJECT MODAL-->
 
+<!-- WELCOME MODAL-->
 <% if(current_user.first_visit?) %>
 
   <div id='welcome' class='modal-window' style="display:block;">
@@ -136,8 +172,10 @@
     </div>
   </div>
 <% end %>
+<!-- WELCOME MODAL-->
 
-<!-- END MODALS -->
+<!-- ********************* END MODALS *********************** -->
+
 <!-- Desktop Navbar -->
 <div class="menu-bar desktop-nav show-desktop">
   <span><%= link_to 'MercuryApp', splash_path %></span>

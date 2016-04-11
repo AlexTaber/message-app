@@ -1,0 +1,18 @@
+<div class="user-card">
+	<div class="media">
+           <% if user.image %>
+          <div class="profile-pic u-pull-left app-view-p-img">
+            <img class="profile-pic" src="<%= current_user.image_url %>">
+          </div>
+        <% else %>
+          <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
+            <p><%= user.first_name[0] %></p>
+          </div>
+        <% end %>
+        <div class="bd conversation-preview">
+          <p>
+            <%= user.name %>
+          <p>
+          <p>Start messaging now</p>
+     </div>
+</div>
