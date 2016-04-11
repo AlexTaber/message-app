@@ -48,6 +48,7 @@ function setUpTypeahead() {
         hint: false,
         highlight: true,
         minLength: 0,
+        items: 200,
       },
       {
         name: 'project_users',
