@@ -14,7 +14,7 @@
     <h1>Manage Users of <%= @project.name %></h1>
   <section class="tabs">
     <div class="overflow-visible">
-      <ul class="tab-list">
+    <ul class="tab-list">
         <li class="tab1 active-tab"><a class="users-tab" href="#">Current Users</a></li>
         <li class="tab2"><a class="users-tab" href="#">Add Users</a></li>
         <li class="tab3"><a class="users-tab" href="#">Invite Users</a></li>
@@ -26,7 +26,9 @@
               <% @project.other_users(current_user).each do |user| %>
               <div class="user-card">
                 <div class="remove-user"> 
+                <%= link_to user_project_path(user.find_user_project(@project)), method: "delete" do%>
                   <i class="fa fa-times"></i>
+                <% end %>
                 </div>
                 <div class="media">
                   <% if user.image %>

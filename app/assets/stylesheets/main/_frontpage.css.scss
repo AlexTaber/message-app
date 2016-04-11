@@ -562,9 +562,10 @@ ul.edit-project-list {
 			}
 		}
 }
-.project-user-list{
-	max-height:70vh;
+#project-user-list{
+	max-height:50vh;
 	overflow-y:scroll;
+	text-align:left !important;
 }
 .self-meta-data{
 	margin-right:10px;
@@ -873,9 +874,12 @@ ul.edit-project-list {
 	padding:10px;
 }
 
+.section .tabs{
+	padding-bottom:0;
+}
 .user-card{
 	border: 1px solid #ddd;
-	width:100%;
+	width:95%;
 	display:inline-block;
 	margin:10px;
 	text-align:left;
@@ -883,7 +887,7 @@ ul.edit-project-list {
 	.media{
 		padding-top:10px;
 	}
-	p{
+	.user-card_info{
 		padding-top:10px;
 	}
 }
@@ -891,11 +895,19 @@ ul.edit-project-list {
 		position:absolute;
 		top:5px;
 		right:5px; 
+		& a:hover{
+			color:$full-red;
+			cursor:pointer !important;
+
+		}
 	}
 	/* Larger than tablet */
 @media (min-width: 750px) {
 	.user-card{
-		width:50%;
+		width:45%;
+		&:last-child{
+			text-align:left;
+		}
 	}
 }
 
