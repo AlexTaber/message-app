@@ -106,7 +106,7 @@
 <div id='window' class='modal-window'>
   <div>
     <h1>Let's make a new project!</h1>
-    <p class="modal-text">Please enter a name for your new project. Once you've created your project you can add users to message by clicking <b>MANAGE USERS</b> under the project name in your dashboard. You have <b><%= current_user.remaining_projects_count %> projects</b> left. If you would like to add more projects please visit our <%= link_to 'Edit Subscription Page', edit_subscription_path(current_user.subscription) %></p>
+    <p class="modal-text">Please enter a name for your new project. Once you've created your project you can add users to message by clicking <b>MANAGE USERS</b> under the project name in your dashboard.</p><p><b>Projects Remaining: <%= current_user.remaining_projects_count %></b>.</p> <p>If you would like to add more projects please visit our <%= link_to 'Edit Subscription Page', edit_subscription_path(current_user.subscription) %></p>
     <%= render partial: "projects/form", locals: { project: @new_project } %>
     <div>&nbsp;</div>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
@@ -117,8 +117,14 @@
 <!-- EDIT PROJECT MODAL -->
 <div id='edit-project' class='modal-window'>
   <div>
-    <h1>Awesome! Let's update your project</h1>
+    
+    <h1>Edit <%= @project.name %></h1>
+    <hr class="fifty">
+    <p>Change your project's name by changing it below and hitting <b>UPDATE PROJECT</b>
     <%= render partial: "projects/form", locals: { project: @project } %>
+    <hr class="fifty">
+    <p> Do you want to delete <%= @project.name %>? This cannot be undone</p>
+    <a href="#" class="activate-modal" name="delete">Delete</a>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
@@ -127,10 +133,11 @@
 <!-- DELETE PROJECT MODAL -->
 <div id='delete' class='modal-window'>
   <div>
-    <h1>Are you sure you want to delete your project?</h1>
+    <h1>Are you sure you want to delete <%= @project.name %>?</h1>
+    <h4>This cannot be undone</h4>
     <%= form_for @project do |f| %>
       <%= f.hidden_field :active, value: false %>
-      <%= f.submit "Delete #{@project.name}", class: "button button-primary" %>
+      <%= f.submit "Delete #{@project.name}", class: "button button-warning" %>
     <% end %>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
@@ -264,7 +271,6 @@
         <% else %>
           <%= link_to edit_subscription_path(current_user.subscription), class: "add-btn" do %>
             <div class="add-button-hover">
-              <p>New Project</p>
               <div class="add-button-hover-text is-first"><small>Upgrade to Add New Project</small>
               </div>
             </div>
@@ -304,9 +310,6 @@
                   </li>
                   <li>
                     <%= link_to "Edit project", edit_project_path(@project), class: "activate-modal", name: "edit-project" %>
-                  </li>
-                  <li>
-                    <%= link_to "Remove", "#", class: "activate-modal", name: "delete" %>
                   </li>
               </ul>
             </div>
