@@ -22,7 +22,8 @@ class UsersController < ApplicationController
       if @user.valid?
         @user.save
         @subscription = Subscription.new(user_id: @user.id)
-        @subscription.save_with_payment(1)
+        tier = Tier.find_by(id: 1)
+        @subscription.save_with_payment(tier, false)
         send_welcome_email(@user)
         upload_image(params[:user][:file]) if params[:user][:file]
         set_up_invite if params[:invite_token]

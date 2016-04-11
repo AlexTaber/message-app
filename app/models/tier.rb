@@ -15,4 +15,8 @@ class Tier < ActiveRecord::Base
   def self.all_published
     all.where(published: true)
   end
+
+  def find_subscription_by_type(yearly)
+    yearly ? yearly_id : monthly_id
+  end
 end
