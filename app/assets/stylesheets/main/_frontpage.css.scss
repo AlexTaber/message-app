@@ -709,6 +709,10 @@ ul.edit-project-list {
 		height:100%;
 	}
 }
+.tt-dataset-project_users{
+	max-height:270px;
+	overflow-y:scroll;
+}
 .message-center {
 	.typeahead-form{
 		display:inline-block;
