@@ -94,7 +94,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def sorted_completed_tasks
-    completed_tasks.sort{ |a,b| b.message.created_at <=> a.message.created_at }
+    completed_tasks.order(created_at: :desc)
   end
 
   def has_pending_tasks?
@@ -113,6 +113,12 @@ class Conversation < ActiveRecord::Base
     start_index = (index * 15) + offset
     lazy_messages = messages.order(created_at: :desc).offset(start_index).limit(15).reverse
     lazy_messages || []
+  end
+
+  def lazy_load_tasks(index, offset = 0)
+    start_index = (index * 10) + offset
+    lazy_tasks = sorted_completed_tasks.offset(start_index).limit(10)
+    lazy_tasks || []
   end
 
   def has_active_project?
