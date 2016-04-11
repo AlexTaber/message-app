@@ -1,36 +1,27 @@
-    <h1>Please Select Your Tier</h1>
-    <div>&nbsp;</div>
-    <div class="container tiers">
-      <div class="row">
-        <div class="four columns tiers_card is-active">
-          <h3>Basic Tier</h3>
-            <h4>Personal</h4>
-          <div class="tier_accordian">
-            <p>Create three project</p>
-            <p>Add up to three users<small> (per project)</small></p>
-            <p>Belong to unlimited projects</p>
-          </div>
-        </div>
-        <div class="four columns tiers_card">
-            <h3>Start Up</h3>
-            <h4>$10/year</h4>
-          <div class="tier_accordian">
-            <p>Create five projects</p>
-            <p>Add up to five users<small> (per project)</small></p>
-            <p>Belong to unlimited projects</p>
-          </div>
-        </div>
-        <div class="four columns tiers_card">
-            <h3>Enterprise</h3>
-            <h4>$20/year</h4>
-          <div class="tier_accordian">
-            <p>Create ten projects</p>
-            <p>Add up to 50 users<small> (per project)</small></p>
-            <p>Belong to unlimited projects</p>
-          </div>
+<h1>Please Select Your Tier</h1>
+<div>&nbsp;</div>
+<div class="container tiers">
+  <div class="row">
+    <div class="six columns tiers_card is-active">
+      <h3>Personal</h3>
+      <h4>Free</h4>
+      <div class="tier_accordian">
+        <p>Create three project</p>
+        <p>Add up to three users<small> (per project)</small></p>
+        <p>Belong to unlimited projects</p>
+      </div>
+    </div>
+    <div class="six columns tiers_card">
+      <h3>Pro</h3>
+      <h4>$5.99/month - $49.99/year</h4>
+      <div class="tier_accordian">
+        <p>Create 10 projects</p>
+        <p>Add up to 15 users<small> (per project)</small></p>
+        <p>Belong to unlimited projects</p>
       </div>
     </div>
   </div>
+</div>
 <%= form_for subscription, html: { id: "subscription-form" } do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -58,6 +49,12 @@
         <%= label_tag :card_month, "Card Expiration" %>
         <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
         <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+      </div>
+      <div class="field">
+        <select name="yearly">
+          <option value="false">Monthly - $5.99</option>
+          <option value="true">Yearly - $49.99</option>
+        </select>
       </div>
     </div>
   <% end %>
