@@ -14,7 +14,11 @@
       </i>
     <% end %>
 
-    <i>To:</i>
+    <% if conversation.has_other_users?(current_user) %>
+      <i>To:</i>
+    <% else %>
+      <i>&nbsp;</i>
+    <% end %>
     <span class="other-users">
       <b> <%= conversation.abbreviated_other_users_to_s(current_user, 2) %> </b>
       <p class="hover-item">
@@ -27,9 +31,9 @@
       </p>
     </span>
     <%= render partial: "layouts/typeahead_form", locals: { project: project, conversation: conversation, token: nil, tasks: tasks } %>
-    <a href="#" class="add-user-to-convo add-btn">
+    <!-- <a href="#" class="add-user-to-convo add-btn">
       <p>Add a User to Conversation</p>
-    </a>
+    </a> -->
   <% end %>
 </header>
 
