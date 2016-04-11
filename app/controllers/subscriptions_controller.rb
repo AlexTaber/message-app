@@ -10,7 +10,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     tier = Tier.find_by(id: params[:tier_id])
-    if @subscription.save_with_payment(tier, params[:yearly])
+    if @subscription.save_with_payment(tier, params[:yearly].to_b)
       flash[:notice] = "Thank you for subscribing!"
       redirect_to home_path
     else
@@ -29,7 +29,7 @@ class SubscriptionsController < ApplicationController
 
     if @subscription.valid?
       tier = Tier.find_by(id: params[:tier_id])
-      if @subscription.upgrade(tier, params[:yearly])
+      if @subscription.upgrade(tier, params[:yearly].to_b)
         flash[:notice] = "Your tier has been updated!"
         redirect_to home_path
       else
