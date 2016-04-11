@@ -93,7 +93,7 @@ function setUpTypeahead() {
         },
         empty: [
             '<div class="empty-message">',
-              '<p style="padding-top:20px;">Oops! We can\'t seem to find this user. Are they a Mercury user yet? if not, click below to invite them by email.</p>',
+              '<p style="padding-top:20px;">Oops! We can\'t seem to find this user. Are they a <b>MercuryApp</b> user yet? if not, click below to invite them by email.</p>',
             '</div>'
           ].join('\n')
       },

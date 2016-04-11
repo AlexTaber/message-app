@@ -106,7 +106,7 @@
 <div id='window' class='modal-window'>
   <div>
     <h1>Let's make a new project!</h1>
-    <p class="modal-text">Please enter a name for your new project. Once you've created your project you can add users to message by clicking <b>MANAGE USERS</b> under the project name in your dashboard.</p><p><b>Projects Remaining: <%= current_user.remaining_projects_count %></b>.</p> <p>If you would like to add more projects please visit our <%= link_to 'Edit Subscription Page', edit_subscription_path(current_user.subscription) %></p>
+    <p class="modal-text">Please enter a name for your new project. Once you've created your project you can add users to message by clicking <b>MANAGE USERS</b> under the project name in your dashboard.</p><p><b>Projects Remaining: <%= current_user.remaining_projects_count %></b>.</p> <p><small>If you would like to add more projects please visit our <%= link_to 'Edit Subscription Page', edit_subscription_path(current_user.subscription) %></small></p>
     <%= render partial: "projects/form", locals: { project: @new_project } %>
     <div>&nbsp;</div>
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
