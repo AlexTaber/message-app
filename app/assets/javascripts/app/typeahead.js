@@ -89,10 +89,14 @@ function setUpTypeahead() {
               return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><span class="profile-pic has-no-pic typeahead-image">' + first_initial + '</span></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
             } else {
               return '<p style="margin-bottom:0;"><span class="typeahead-image-container"><img class="typeahead-image" src="' + data.image_url + '"></span>' + data.name + '<br><span class="grey-color">'+ data.username +'</span></p>';
-          }
-        }
+            } 
+        },
+        empty: [
+            '<div class="empty-message">',
+              '<p style="padding-top:20px;">Oops! We can\'t seem to find this user. Are they a <b>MercuryApp</b> user yet? if not, click below to invite them by email.</p>',
+            '</div>'
+          ].join('\n')
       },
-
       });
 
       $('.request-typeahead').typeahead({
