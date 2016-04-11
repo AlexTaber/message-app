@@ -130,6 +130,7 @@ var window_height = $(window).height();
 
 $('.activate-modal').click(function(e){
   e.preventDefault();
+  $('.modal-window').fadeOut(500);
 	var modal_id = $(this).attr('name');
 	show_modal(modal_id);
 });

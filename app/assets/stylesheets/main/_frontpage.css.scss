@@ -498,31 +498,35 @@ ul.edit-project-list {
 }
 
 
-	.task-conversation-switch {
-		background-color: #f5f5f5;
-		border-top:1px solid #ddd;
-		padding: 5px 0 5px 0;
-		a{
-			color: $pwdlight;
-			text-decoration: none;
+.task-conversation-switch {
+	background-color: #f5f5f5;
+	border-top:1px solid #ddd;
+	padding: 5px 0 5px 0;
+	a{
+		color: $pwdlight;
+		text-decoration: none;
 
-			&:hover {
-				cursor: pointer;
-			}
+		&:hover {
+			cursor: pointer;
 		}
 	}
-	.no-pending-tasks{
-		text-align:center;
-		background-color: transparent !important;
-		display: block !important;
-		min-width:100% !important;
-		max-width:100% !important;
-		margin:0 !important;
-	}
-	.conversation-preview{
-		width:70%;
-		overflow:hidden;
-	}
+}
+.no-pending-tasks{
+	text-align:center;
+	background-color: transparent !important;
+	display: block !important;
+	min-width:100% !important;
+	max-width:100% !important;
+	margin:0 !important;
+}
+.conversation-preview{
+	width:70%;
+	overflow:hidden;
+}
+.modal-text {
+	padding-right:100px;
+	padding-left:100px;
+}
 .app-view {
 	width:100vw !important;
 	height: calc(100vh - 200px) !important;
@@ -558,10 +562,7 @@ ul.edit-project-list {
 			}
 		}
 }
-.project-user-list{
-	max-height:70vh;
-	overflow-y:scroll;
-}
+
 .self-meta-data{
 	margin-right:10px;
 }
@@ -620,10 +621,10 @@ ul.edit-project-list {
 	overflow: visible;
 }
 //add button hover helpers
-.add-button-hover {
+.tool-button-hover {
 		overflow-x:visible;
 }
-.add-button-hover-text{
+.tool-button-hover-text{
 	height:0;
 	position:absolute;
 	background:#fff;
@@ -641,7 +642,7 @@ ul.edit-project-list {
 	-moz-transform: translateX(calc(-100% + 55px));
 	-o-transform: translateX(calc(-100% + 55px));
 }
-.add-button-hover:hover .add-button-hover-text {
+.tool-button-hover:hover .tool-button-hover-text {
 	height:auto;
 	border:1px solid #ddd;
 	padding:10px;
@@ -869,3 +870,86 @@ ul.edit-project-list {
 	padding:10px;
 }
 
+.section .tabs{
+	padding-bottom:0;
+}
+#project-user-list{
+	max-height:55vh;
+	overflow-y:scroll;
+	text-align:left !important;
+	border:1px solid #ddd;
+}
+.project-typeahead{
+	width:238px;
+	max-width:100%;
+	display:block;
+}
+.tabs {
+	hr{
+		margin-top:20px;
+		margin-bottom:20px;
+	}
+	h4{
+		margin-top:20px;
+	}
+}
+.user-card{
+	border: 1px solid #ddd;
+	width:95%;
+	display:inline-block;
+	margin:2.2%;
+	text-align:left;
+	position:relative;
+	.media{
+		padding-top:10px;
+	}
+	.user-card_info{
+		padding-top:10px;
+	}
+}
+.remove-user{
+	position:absolute;
+	top:5px;
+	right:5px; 
+	& a:hover{
+		color:$full-red;
+		cursor:pointer !important;
+
+	}
+}
+.admin-select {
+	padding-right:5px;
+}
+a.is-not-admin{
+	color:#ddd !important;
+	&:hover {
+		color:$pwdlight !important;
+	}
+}
+a.is-admin{
+	color:$pwdlight !important;
+	&:hover {
+		color:#ddd !important;
+	}
+}
+/* Larger than tablet */
+@media (min-width: 750px) {
+	.user-card{
+		width:45%;
+		&:last-child{
+			text-align:left;
+		}
+	}
+}
+#invite-users a.activate-modal{
+	padding-top:20px;
+	display:block;
+	text-decoration:underline;
+	cursor:pointer;
+}
+.user-tooltip{
+	left:0;
+	&:before, &:after {
+		display:none;
+	}
+}

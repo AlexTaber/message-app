@@ -1,8 +1,7 @@
 // input styling
 input[type='text'],{
-  border-radius: 0;
-  border: none;
-  border-bottom: 1px solid #ddd;
+  border-radius: 5px;
+  border: 1px solid #ddd;
   font-size:125%;
     &:focus {
     background-color:#DBEDFC;

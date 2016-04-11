@@ -137,6 +137,9 @@ hr.fifty{
       position:relative;
       overflow:visible;
     }
+    h1{
+      font-size:2.5rem;
+    }
 
   }
 /* Larger than tablet */
@@ -197,6 +200,7 @@ a.close-modal{
 .tabs {
   margin-top: 20px;
   padding-top:0;
+  position:relative;
 }
 .tab-list {
   list-style: none;
