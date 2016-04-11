@@ -52,6 +52,7 @@ function setUpTypeahead() {
       {
         name: 'project_users',
         displayKey: 'name',
+        limit: 100,
         source: substringMatcher(project_users, 'name'),
                 templates: {
           empty: [

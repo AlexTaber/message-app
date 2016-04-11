@@ -696,7 +696,6 @@ ul.edit-project-list {
 	width:40px;
 	height:40px;
 	border-radius:100%;
-	margin:10px;
 	margin-top:0px !important;
 }
 .typeahead-image-container{
@@ -709,6 +708,10 @@ ul.edit-project-list {
 	.text-centered{
 		height:100%;
 	}
+}
+.tt-dataset-project_users{
+	max-height:270px;
+	overflow-y:scroll;
 }
 .message-center {
 	.typeahead-form{
