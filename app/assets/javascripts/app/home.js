@@ -480,7 +480,7 @@ function updateTaskListeners() {
   $(".transfer-icon").off('click').on('click', activateTransfer);
   $(".remove-notes").off('click').on('click', removeNote);
   //mobile show messages
-  $(".conversation-wrapper, .notes-wrapper").off('click', showMessageCenter).on('click', showMessageCenter);
+  $(".conversation-wrapper, .notes-wrapper, .new-convo-placeholder").off('click', showMessageCenter).on('click', showMessageCenter);
 }
 
 function validateUserData(data, element, submit) {
