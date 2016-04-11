@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :invites, only: [:new, :create]
   resources :user_projects, only: [:update, :destroy]
   resources :subscriptions, only: [:new, :create, :edit, :update, :destroy]
+  resources :tiers, only: [:index]
   resources :password_recoveries, only: [:new, :create] do
     member do
       get :check
