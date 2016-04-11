@@ -382,8 +382,6 @@ function subscribeToConvo(conversationToken, curConvoToken) {
         sendMessageEvents();
       }
 
-      updateTaskListeners();
-
       if(!tasksMode) {
         scrollToBottom();
       }
@@ -394,12 +392,23 @@ function subscribeToConvo(conversationToken, curConvoToken) {
     if(notesMode) {
       $("#notes" + String(data.conversation_id)).html(data.notes_html);
     } else {
-      $("#conversation" + String(data.conversation_id)).html(data.app_html);
+      //target is the targeted conversation care
+      var target = $("#conversation" + String(data.conversation_id));
+      //update targets html
+      target.html(data.app_html);
+      //copy targets new html
+      var targetHtml = target[0].outerHTML;
+      //remove target
+      target.remove();
+      //prepend copied html to the top of the conversations section
+      $(".conversations-wrapper").prepend(targetHtml);
     }
 
     if(userId != data.user_id && projectId != data.project_id) {
       $("#project-" + String(data.project_id)).addClass("is-unread-project");
     }
+
+    messagesEvents();
   });
 }
 
@@ -408,14 +417,9 @@ function listenForNewConvos() {
   channel.bind('new-conversation', function(data){
 
     if(projectId == data.project_id) {
-      var newConvoEl = $(".new-convo-placeholder");
-
-      if(newConvoEl.length) {
-        newConvoEl.after(anchorme.js(data.app_html, { "target":"_blank" }));
-      } else {
-        $(".current-project-data").after(data.app_html);
-      }
+      $(".conversations-wrapper").prepend(data.app_html);
     }
+
   });
 }
 
@@ -748,6 +752,11 @@ function changeConvo(e) {
       notesMode = false;
     }
 
+    $(".msg-item-current").removeClass("msg-item-current");
+    var newMsgItem = el.find(".message-item");
+    newMsgItem.addClass("msg-item-current");
+    newMsgItem.removeClass("is-unread-convo");
+
     if(typeof convoId !== undefined && convoToken != oldConvoToken) {
       //pusher------
       pusher.unsubscribe('conversation' + String(oldConvoToken) + String(userId));
@@ -774,10 +783,7 @@ function changeConvo(e) {
       lazyLoadIndex = 0;
       totalMessages = 0;
       curConvoToken = convoToken;
-      $(".msg-item-current").removeClass("msg-item-current");
-      var newMsgItem = el.find(".message-item");
-      newMsgItem.addClass("msg-item-current");
-      newMsgItem.removeClass("is-unread-convo");
+
       $(".new-convo-placeholder").slideUp(500);
       updateReadMessages(convoId);
 
