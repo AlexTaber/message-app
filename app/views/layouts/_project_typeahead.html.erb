@@ -1,5 +1,7 @@
 <%= form_for project, html: { class: 'typeahead-form', id: "project-typeahead" } do |f| %>
-  <%= text_field_tag :user_name, nil, class:"typeahead app-view-typeahead project-typeahead", value: "", placeholder: "Search Mercury Users" %>
+  <%= text_field_tag :user_name, nil, class:"typeahead project-typeahead", value: "", placeholder: "Search Mercury Users" %>
 
   <%= f.hidden_field :user_ids, :multiple => true, :value => nil, id: 'add-user-id' %>
 <% end %>
+
+<hr class="fifty">

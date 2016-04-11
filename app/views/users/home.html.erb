@@ -13,19 +13,27 @@
   <div>
     <h1>Manage Users of <%= @project.name %></h1>
   <section class="tabs">
+    <hr class="fifty">
     <div class="overflow-visible">
-    <ul class="tab-list">
+    <!-- <ul class="tab-list">
         <li class="tab1 active-tab"><a class="users-tab" href="#">Current Users</a></li>
         <li class="tab2"><a class="users-tab" href="#">Add Users</a></li>
         <li class="tab3"><a class="users-tab" href="#">Invite Users</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab1 active-tab">
+      </ul> -->
+      <h4>Add a user to <%= @project.name %></h4>
+      <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
+      <div class="edit-users">
           <% if @project.has_other_users?(current_user) %>
+            <h4>Current <%= @project.name %> Users</h4>
             <div id="project-user-list">
               <% @project.other_users(current_user).each do |user| %>
               <div class="user-card">
                 <div class="remove-user"> 
+                <% if user.find_user_project(@project).admin %>
+                      <%= link_to "", user_project_path(user.find_user_project(@project), user_project: { admin: false }), method: "put", class: "fa fa-user is-admin admin-select" %>
+                    <% else %>
+                      <%= link_to "", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "fa fa-user is-not-admin admin-select" %>
+                    <% end %>
                 <%= link_to user_project_path(user.find_user_project(@project)), method: "delete" do%>
                   <i class="fa fa-times"></i>
                 <% end %>
@@ -47,27 +55,15 @@
                   </div>
               </div>
             </div>
-              <!--<p>
-                <%= user.name %>
-                <span class="manage-user-opts">
-                  <%= link_to "Remove", user_project_path(user.find_user_project(@project)), method: "delete", class: "button button-warning button-inline" %>
-                  <% if current_user.owner %>
-                    <% if user.find_user_project(@project).admin %>
-                      <%= link_to "Remove as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: false }), method: "put", class: "button button-warning button-inline" %>
-                    <% else %>
-                      <%= link_to "Set as Admin", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "button button-primary button-inline" %>
-                    <% end %>
-                  <% end %> 
-                </span>
-                <a href="#" class="manage-user-edit"> &nbsp;<i class="fa fa-pencil"></i></a>
-              </p>-->
             <% end %>
           </div>
+          <p style="padding-top:20px;">Do you want to invite someone who isn't a mercury user yet? <a href="#">Click here</a> to send them an invite via email.</p>
         <% else %>
           <p>There aren't any other users on this project yet!</p>
         <% end %>
-        </div>
-        <div class="tab2">
+      </div>
+
+<!--         <div class="tab2">
           <% if current_user.tier.permit_project_user(@project) %>
             <p>If the person is already a MercuryApp user, use the search form below, then press enter.</p>
             <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
@@ -85,7 +81,7 @@
             <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
           <% end %>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
  <div>

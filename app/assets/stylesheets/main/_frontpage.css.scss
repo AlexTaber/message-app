@@ -562,11 +562,7 @@ ul.edit-project-list {
 			}
 		}
 }
-#project-user-list{
-	max-height:50vh;
-	overflow-y:scroll;
-	text-align:left !important;
-}
+
 .self-meta-data{
 	margin-right:10px;
 }
@@ -877,11 +873,31 @@ ul.edit-project-list {
 .section .tabs{
 	padding-bottom:0;
 }
+#project-user-list{
+	max-height:55vh;
+	overflow-y:scroll;
+	text-align:left !important;
+	border:1px solid #ddd;
+}
+.project-typeahead{
+	width:238px;
+	max-width:100%;
+	display:block;
+}
+.tabs {
+	hr{
+		margin-top:20px;
+		margin-bottom:20px;
+	}
+	h4{
+		margin-top:20px;
+	}
+}
 .user-card{
 	border: 1px solid #ddd;
 	width:95%;
 	display:inline-block;
-	margin:10px;
+	margin:2.2%;
 	text-align:left;
 	position:relative;
 	.media{
@@ -891,17 +907,32 @@ ul.edit-project-list {
 		padding-top:10px;
 	}
 }
-	.remove-user{
-		position:absolute;
-		top:5px;
-		right:5px; 
-		& a:hover{
-			color:$full-red;
-			cursor:pointer !important;
+.remove-user{
+	position:absolute;
+	top:5px;
+	right:5px; 
+	& a:hover{
+		color:$full-red;
+		cursor:pointer !important;
 
-		}
 	}
-	/* Larger than tablet */
+}
+.admin-select {
+	padding-right:5px;
+}
+a.is-not-admin{
+	color:#ddd !important;
+	&:hover {
+		color:$pwdlight !important;
+	}
+}
+a.is-admin{
+	color:$pwdlight !important;
+	&:hover {
+		color:#ddd !important;
+	}
+}
+/* Larger than tablet */
 @media (min-width: 750px) {
 	.user-card{
 		width:45%;
