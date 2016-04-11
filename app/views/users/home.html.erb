@@ -20,8 +20,13 @@
         <li class="tab2"><a class="users-tab" href="#">Add Users</a></li>
         <li class="tab3"><a class="users-tab" href="#">Invite Users</a></li>
       </ul> -->
-      <h4>Add a user to <%= @project.name %></h4>
-      <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
+      <% if current_user.tier.permit_project_user(@project) %>
+        <h4>Add a user to <%= @project.name %></h4>
+        <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
+      <% else %>
+        <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
+        <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
+      <% end %>
       <div class="edit-users">
           <% if @project.has_other_users?(current_user) %>
             <h4>Current <%= @project.name %> Users</h4>
@@ -29,14 +34,24 @@
               <% @project.other_users(current_user).each do |user| %>
               <div class="user-card">
                 <div class="remove-user"> 
-                <% if user.find_user_project(@project).admin %>
+                <div class="tool-button-hover">
+                <%= link_to user_project_path(user.find_user_project(@project)), method: "delete" do%>
+                  <i class="fa fa-times"></i>
+                <% end %>
+                <div class="tool-button-hover-text user-tooltip">
+                    <small>Remove User</small>
+                  </div>
+                </div>
+                  <div class="tool-button-hover">
+                    <% if user.find_user_project(@project).admin %>
                       <%= link_to "", user_project_path(user.find_user_project(@project), user_project: { admin: false }), method: "put", class: "fa fa-user is-admin admin-select" %>
                     <% else %>
                       <%= link_to "", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "fa fa-user is-not-admin admin-select" %>
                     <% end %>
-                <%= link_to user_project_path(user.find_user_project(@project)), method: "delete" do%>
-                  <i class="fa fa-times"></i>
-                <% end %>
+                  <div class="tool-button-hover-text user-tooltip">
+                    <small>Make user an Admin</small>
+                  </div>
+                </div>
                 </div>
                 <div class="media">
                   <% if user.image %>
@@ -57,31 +72,11 @@
             </div>
             <% end %>
           </div>
-          <p style="padding-top:20px;">Do you want to invite someone who isn't a mercury user yet? <a href="#">Click here</a> to send them an invite via email.</p>
+          <p style="padding-top:20px;">Do you want to invite someone who isn't a mercury user yet? <a href="#" class="activate-modal" name="invite-users">Click here</a> to send them an invite via email.</p>
         <% else %>
           <p>There aren't any other users on this project yet!</p>
         <% end %>
       </div>
-
-<!--         <div class="tab2">
-          <% if current_user.tier.permit_project_user(@project) %>
-            <p>If the person is already a MercuryApp user, use the search form below, then press enter.</p>
-            <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
-          <% else %>
-            <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
-            <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
-          <% end %>
-        </div>
-        <div class="tab3">
-          <% if current_user.tier.permit_project_user(@project) %>
-            <p>If the person isn't on MercuryApp yet, enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your project.</p>
-            <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
-          <% else %>
-            <p>You have reached the maximum number of users for this project. If you would like to invite more, please upgrade your account!</p>
-            <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
-          <% end %>
-        </div>
-      </div> -->
     </div>
   </section>
  <div>
@@ -90,6 +85,21 @@
   </div>
 </div>
 <!-- END MANAGE USERS MODAL -->
+
+<!-- INVITE USERS MODAL -->
+<div class='mask close-modal'></div>
+<div id='invite-users' class='modal-window'>
+  <h1>Invite someone to use Mercury</h1>
+  <% if current_user.tier.permit_project_user(@project) %>
+    <p>Enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your project.</p>
+    <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
+  <% else %>
+    <p>You have reached the maximum number of users for this project. If you would like to invite more, please upgrade your account!</p>
+    <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
+  <% end %>
+  <a herf="#" class='activate-modal' name="manage-users">Cancel</a>
+</div>
+<!-- END INVITE USERS MODAL -->
 
 <!-- NEW PROJECT MODAL -->
 <div class='mask close-modal'></div>
@@ -245,9 +255,9 @@
       <b>Your</b> Projects
         <% if current_user.tier.permit_user_project(current_user) %>
           <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
-            <div class="add-button-hover">
+            <div class="tool-button-hover">
               <p>New Project</p>
-              <div class="add-button-hover-text is-first"><small><%= current_user.remaining_projects_count %> Remaining</small>
+              <div class="tool-button-hover-text is-first"><small><%= current_user.remaining_projects_count %> Remaining</small>
               </div>
             </div>
           <% end %>

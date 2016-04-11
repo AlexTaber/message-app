@@ -621,10 +621,10 @@ ul.edit-project-list {
 	overflow: visible;
 }
 //add button hover helpers
-.add-button-hover {
+.tool-button-hover {
 		overflow-x:visible;
 }
-.add-button-hover-text{
+.tool-button-hover-text{
 	height:0;
 	position:absolute;
 	background:#fff;
@@ -642,7 +642,7 @@ ul.edit-project-list {
 	-moz-transform: translateX(calc(-100% + 55px));
 	-o-transform: translateX(calc(-100% + 55px));
 }
-.add-button-hover:hover .add-button-hover-text {
+.tool-button-hover:hover .tool-button-hover-text {
 	height:auto;
 	border:1px solid #ddd;
 	padding:10px;
@@ -941,4 +941,15 @@ a.is-admin{
 		}
 	}
 }
-
+#invite-users a.activate-modal{
+	padding-top:20px;
+	display:block;
+	text-decoration:underline;
+	cursor:pointer;
+}
+.user-tooltip{
+	left:0;
+	&:before, &:after {
+		display:none;
+	}
+}
