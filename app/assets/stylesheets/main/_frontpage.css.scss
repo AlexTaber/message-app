@@ -953,3 +953,11 @@ a.is-admin{
 		display:none;
 	}
 }
+.notes-wrapper .msg-item-current{
+	&:before{
+		display:none;
+	}
+	&:after{
+		display:none;
+	}
+}
