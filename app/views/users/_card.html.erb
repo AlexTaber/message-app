@@ -1,7 +1,7 @@
 <div class="user-card">
   <div class="remove-user">
     <div class="tool-button-hover">
-      <%= link_to user_project_path(user.find_user_project(project)), method: "delete" do%>
+      <%= link_to user_project_path(user.find_user_project(project)), class: "remove-user-link", method: "delete" do%>
         <i class="fa fa-times"></i>
       <% end %>
       <div class="tool-button-hover-text user-tooltip">

@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Project successfully saved" if set_up_users
 
       if request.xhr?
-        # render approprate ajax here!
+        render partial: 'users/manage_users', locals: { user: current_user, project: @project }
       else
         redirect_to home_path(project_id: @project.id)
       end
