@@ -86,6 +86,30 @@ input[type="reset"].button-warning:focus,
 input[type="button"].button-warning:focus {
   opacity: .8}
 
+//White button
+.button.button-white,
+button.button-white,
+input[type="submit"].button-white,
+input[type="reset"].button-white,
+input[type="button"].button-white {
+  color: $pwdlight;
+  background-color: rgba($white, .6);
+  border-color: #fff }
+.button.button-white:hover,
+button.button-white:hover,
+input[type="submit"].button-white:hover,
+input[type="reset"].button-white:hover,
+input[type="button"].button-white:hover,
+.button.button-white:focus,
+button.button-white:focus,
+input[type="submit"].button-white:focus,
+input[type="reset"].button-white:focus,
+input[type="button"].button-white:focus {
+  color: #FFF;
+  background-color: rgba($pwdlight, 1);
+  border-color: rgba($pwdlight, 1) }
+
+
 .button-inline{
   padding:2px;
   height:auto;
