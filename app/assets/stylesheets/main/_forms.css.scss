@@ -181,7 +181,7 @@ input:-webkit-autofill {
   border:2px solid rgba($pwdlight, .8);
   position:relative;
   &:after{
-    background:url('https://s3.amazonaws.com/mercury-app-assets/mercury-feature.jpg');
+    background:url('https://s3.amazonaws.com/mercury-app-assets/mercury-feature.jpg') no-repeat;
     background-position:center;
     background-size:cover;
     opacity:.3;
@@ -194,8 +194,15 @@ input:-webkit-autofill {
     z-index:-1;
   }
 }
-.tiers_card.is-active:first-child{
+.tiers_card.is-active:first-child:after, .tiers_card:hover:first-child:after{
+  background:url('https://s3.amazonaws.com/mercury-app-assets/mercury-feature.jpg') no-repeat;
   background-position:left;
+  background-size:cover;
+}
+.tiers_card.is-active:last-child:after, .tiers_card:hover:last-child:after{
+  background:url('https://s3.amazonaws.com/mercury-app-assets/mercury-feature.jpg') no-repeat;
+  background-position:right;
+  background-size:cover;
 }
 .tier-select{
   display:none;
