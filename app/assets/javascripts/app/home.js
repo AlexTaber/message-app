@@ -68,6 +68,9 @@ jQuery(document).ready(function($){
   //set add/remove user ajax
   setManageUserEvents();
 
+  //set up pricing button
+  setUpPricing();
+
   //set up message init ajax
   setUpMessageAjaxInit();
   //----------------------

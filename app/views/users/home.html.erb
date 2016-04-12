@@ -8,6 +8,7 @@
 <% end %>
 <!-- END MODAL MASK -->
 
+
 <!-- MANAGE USERS MODAL (partial - users/manage_users) -->
 <%= render partial: 'users/manage_users', locals: { user: current_user, project: @project } %>
 <!-- END MANAGE USERS MODAL -->
@@ -134,7 +135,7 @@
       </li>
     <% end %>
       <li>
-        <%= link_to edit_subscription_path(current_user.subscription) do %>
+        <%= link_to pricing_path do %>
           Upgrade<br><small>Current Tier: <b><%= current_user.tier.name %></b></small>
         <% end %>
       </li>

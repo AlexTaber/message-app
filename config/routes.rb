@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :invites, only: [:new, :create]
   resources :user_projects, only: [:update, :destroy]
   resources :subscriptions, only: [:new, :create, :edit, :update, :destroy]
+  resources :tiers, only: [:index]
   resources :password_recoveries, only: [:new, :create] do
     member do
       get :check
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
   get '/plugin-info' => 'users#plugin_info'
   get '/app-messages' => 'conversations#app_messages'
   post '/read-messages' => 'conversations#read_messages'
+  get '/pricing' => 'tiers#pricing'
 
   root 'users#home'
 end

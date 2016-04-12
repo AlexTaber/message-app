@@ -13,14 +13,14 @@
 		top:0;
 		left:0;
 		background-image: linear-gradient(to bottom right,darken($pwdlight, 50%),$pwdlight);
-		opacity: .7; 
+		opacity: .7;
   	}
   h2.pro-large-text{
   	font-size:100px;
   }
   h2.enterprise-large-text{
-  	font-size:75px; 
-  	margin-bottom:35px; 
+  	font-size:75px;
+  	margin-bottom:35px;
   	margin-top:35px;
   }
   .white{
@@ -38,6 +38,38 @@
 	}
 
 }
+
+#pricing-button {
+  position: fixed;
+  right: 0;
+  margin-right: -100px;
+  bottom: 20px;
+  z-index: 10;
+  opacity: 0;
+  padding: 10px 20px 10px 20px;
+  background: $white;
+  border-radius: 5px 0px 0px 5px;
+  border: 1px solid $pwdlight;
+  text-align: center;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  text-decoration: none;
+  color: $pwdlight;
+  font-size: 1.5rem;
+
+  &.is-transitioned {
+    opacity: 1;
+    margin-right: -1px;
+  }
+
+  &:hover {
+    color: $white;
+    background: rgba($pwdlight, 0.8);
+    border-color: $white;
+    font-size: 1.8rem;
+  }
+}
+
 .pricing-details{
 	background:url('https://s3.amazonaws.com/mercury-app-assets/pricing.jpg') no-repeat center center;
 	background-size:cover;
@@ -52,7 +84,7 @@
 		height:100%;
 		top:0;
 		background-image: linear-gradient(to bottom left,darken($pwdlight, 30%),lighten($pwdlight,40%));
-		opacity: .6; 
+		opacity: .6;
   	}
   	.white-background{
   		margin-top:20px;
@@ -71,7 +103,7 @@
 /* Larger than tablet */
 @media (min-width: 750px) {
 	.pricing-featured{
-		margin-top:70px;
+		margin-top:48px;
 		background:url('https://s3.amazonaws.com/mercury-app-assets/home2.jpg') no-repeat top center;
 		background-size:cover;
 	}
