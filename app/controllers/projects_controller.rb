@@ -1,4 +1,4 @@
-gclass ProjectsController < ApplicationController
+class ProjectsController < ApplicationController
   before_action :project_by_id, only: [:edit, :update, :add_users, :destroy, :project_owner_data]
 
   def new
