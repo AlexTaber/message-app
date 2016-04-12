@@ -1,0 +1,38 @@
+<div class="user-card">
+  <div class="remove-user">
+    <div class="tool-button-hover">
+      <%= link_to user_project_path(user.find_user_project(project)), method: "delete" do%>
+        <i class="fa fa-times"></i>
+      <% end %>
+      <div class="tool-button-hover-text user-tooltip">
+        <small>Remove User</small>
+      </div>
+    </div>
+    <div class="tool-button-hover">
+      <% if user.find_user_project(project).admin %>
+        <%= link_to "", user_project_path(user.find_user_project(project), user_project: { admin: false }), method: "put", class: "fa fa-user is-admin admin-select" %>
+      <% else %>
+        <%= link_to "", user_project_path(user.find_user_project(project), user_project: { admin: true }), method: "put", class: "fa fa-user is-not-admin admin-select" %>
+      <% end %>
+      <div class="tool-button-hover-text user-tooltip">
+        <small>Make user an Admin</small>
+      </div>
+    </div>
+  </div>
+  <div class="media">
+    <% if user.image %>
+      <div class="profile-pic u-pull-left app-view-p-img">
+        <img class="profile-pic" src="<%= current_user.image_url %>">
+      </div>
+    <% else %>
+      <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
+        <p><%= user.first_name[0] %></p>
+      </div>
+    <% end %>
+    <div class="user-card_info">
+      <p>
+        <%= user.name %>
+      </p>
+    </div>
+  </div>
+</div>

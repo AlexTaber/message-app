@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+gclass ProjectsController < ApplicationController
   before_action :project_by_id, only: [:edit, :update, :add_users, :destroy, :project_owner_data]
 
   def new
@@ -35,7 +35,12 @@ class ProjectsController < ApplicationController
     if @project.valid?
       @project.save
       flash[:notice] = "Project successfully saved" if set_up_users
-      redirect_to home_path(project_id: @project.id)
+
+      if request.xhr?
+        # render approprate ajax here!
+      else
+        redirect_to home_path(project_id: @project.id)
+      end
     else
       flash[:warn] = "Unable to save updates to project, please try again"
       redirect_to :back
