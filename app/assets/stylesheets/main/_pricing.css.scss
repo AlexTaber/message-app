@@ -1,0 +1,66 @@
+.pricing-featured{
+	height:500px;
+	margin-top:57px;
+	position:relative;
+	background:url('https://s3.amazonaws.com/mercury-app-assets/home2.jpg') no-repeat 80% top;
+	background-size:cover;
+	  &:before {
+    content: '';
+		position: absolute;
+		width:100%;
+		height:100%;
+		background-image: linear-gradient(to bottom right,darken($pwdlight, 50%),$pwdlight);
+		opacity: .7; 
+  	}
+	.pricing-featured_text {
+		color:#fff;
+		padding:20px;
+		display:inline-block;
+	}
+	a{
+		color:#ddd;
+	}
+	p{
+		margin-top:20px;
+		font-size:11px;
+	}
+
+}
+.pricing-details{
+	background:url('https://s3.amazonaws.com/mercury-app-assets/pricing.jpg') no-repeat center center;
+	background-size:cover;
+	height:500px;
+	position:relative;
+	padding-top:0;
+	margin-top:50px;
+	&:before {
+    content: '';
+		position: absolute;
+		width:100%;
+		height:100%;
+		background-image: linear-gradient(to bottom left,darken($pwdlight, 30%),lighten($pwdlight,40%));
+		opacity: .6; 
+  	}
+  	.white-background{
+  		background-color:rgba($white, .8);
+  		border-radius:10px;
+  		padding:10px;
+  		margin-bottom:20px;
+  		hr{
+  			border:none;
+  			border-bottom:1px solid #999;
+  			margin-top:10px;
+  			margin-bottom:10px;
+  		}
+  	}
+}
+/* Larger than tablet */
+@media (min-width: 750px) {
+	.pricing-featured{
+		margin-top:70px;
+		background:url('https://s3.amazonaws.com/mercury-app-assets/home2.jpg') no-repeat top center;
+		.pricing-featured_text {
+			padding-left:200px;
+		}
+	}
+}
