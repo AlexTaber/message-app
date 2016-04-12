@@ -1,5 +1,5 @@
 class TiersController < ApplicationController
-  def index
+  def pricing
     @pro = Tier.find_by(name: "Pro")
     @tiers = Tier.all
   end
