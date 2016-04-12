@@ -9,7 +9,6 @@ var navTransitioned = false;
 var transitionTime = 5000;
 var nextEvent;
 var canTransition = true;
-var totalTransitions;
 var curTransition = 0;
 var curTransitionEl;
 var transitionOffset = $(window).height() * 0.75;
@@ -28,7 +27,6 @@ function splashLoad() {
       $("#ajax-loader").fadeOut(500);
       nextTab();
       setUpNav();
-      setUpTransitions();
     }, 200);
 
     //setup arrows
@@ -117,37 +115,4 @@ function untransitionNav() {
 function clickCircle() {
   var id = $(this).attr('id').slice(-1);
   setTab(parseInt(id));
-}
-
-function setUpTransitions() {
-  scrollDiv = $(".scroll-div");
-  scrollDiv.on('scroll', scrollTransitions);
-  curTransitionEl = $("#transition-" + String(curTransition));
-  scrollTransitions();
-}
-
-function scrollTransitions() {
-  var top = curTransitionEl.offset().top;
-
-  if(top < transitionOffset) {
-    transitionElement(curTransitionEl);
-    setNextTransition();
-  }
-}
-
-function transitionElement(el) {
-  el.addClass("is-transitioned");
-}
-
-function setNextTransition() {
-  curTransition += 1;
-
-  curTransitionEl = $("#transition-" + String(curTransition));
-  scrollDiv.off('scroll', scrollTransitions);
-
-  if(curTransition < totalTransitions) {
-    setTimeout(function() {
-      setUpTransitions();
-    }, 50);
-  }
 }
