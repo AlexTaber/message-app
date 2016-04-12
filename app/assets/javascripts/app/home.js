@@ -604,7 +604,7 @@ function checkLazyLoad() {
 function checkTasksLazyLoad() {
   if(changeConvoBool) {
     var msgBox = $(".msg-bx-convo");
-    var checkedScroll = msgBox[0].scrollHeight - msgBox.height() - 60;
+    var checkedScroll = msgBox[0].scrollHeight - msgBox.height() - 120;
     if (msgBox.scrollTop() >= checkedScroll) {
       if(tasksMode && completedTasksShow) {
         lazyLoad();
@@ -615,6 +615,7 @@ function checkTasksLazyLoad() {
 
 function lazyLoad() {
   $("#ajax-loader-message").show();
+  changeConvoBool = false;
 
   $.ajax({
     url: '/lazy_load',
@@ -622,6 +623,7 @@ function lazyLoad() {
     data: { lazy_load: lazyLoadIndex + 1, offset: totalMessages, token: curConvoToken, notes: notesMode, tasks: tasksMode }
   }).done(function(response){
     var msgBox = $(".msg-bx-convo");
+    changeConvoBool = true;
     $("#ajax-loader-message").hide();
 
     if (response.length > 0) {
