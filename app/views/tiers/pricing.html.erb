@@ -43,19 +43,19 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="four columns text-center">
+				<div class="four columns text-center transitionable" id="transition-0">
 					<i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
 					<p>&nbsp;</p>
 					<h4><b>More Projects</b></h4>
 					<p>Get more projects to better organize your groups. With all of those projects you'll be able to create more specific conversations and tasks.</p>
 				</div>
-				<div class="four columns text-center">
+				<div class="four columns text-center transitionable" id="transition-1">
 					<i class="fa fa-users fa-4x" aria-hidden="true"></i>
 					<p>&nbsp;</p>
 					<h4><b>More Users per Project</b></h4>
 					<p>Upgrade your MercuryApp accout to get more users per project. That way you can invite the whole team to communicate with and get tasks done quicker!</p>
 				</div>
-				<div class="four columns text-center">
+				<div class="four columns text-center transitionable" id="transition-2">
 					<i class="fa fa-file-text fa-4x" aria-hidden="true"></i>
 					<p>&nbsp;</p>
 					<h4><b>More File Sharing</b></h4>
@@ -97,11 +97,11 @@
 						<li><b>Unlimited</b> Projects</li>
 						<li><b>Unlimited</b> Users per Project</li>
 						<li><b>Unlimited</b> file sharing <small>(Coming Soon)</small></li>
-						<li>Prioity Support</li>
+						<li>Priority Support</li>
 					</ul>
 				</div>
 			</div>
-			<div class="text-center">
+			<div class="text-center top-50">
 				<% if current_user %>
 					<%= link_to "Upgrade Today", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
 				<% else %>

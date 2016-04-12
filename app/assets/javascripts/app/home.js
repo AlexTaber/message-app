@@ -4,6 +4,7 @@ var curNext = 1;
 var changeConvoBool = true;
 var totalMessages = 0;
 var completedTasksShow = false;
+var totalTransitions;
 
 jQuery(document).ready(function($){
 
@@ -59,6 +60,12 @@ jQuery(document).ready(function($){
   $('.project-target').on('click', function(){
     $(this).siblings('.menu-caret').toggleClass('rotated');
   });
+
+  //set up transitions
+  totalTransitions = $(".transitionable").length;
+  if(totalTransitions > 0) {
+    setUpTransitions();
+  }
 
   // Send Message-------------------
   $("#av-message-form").submit(sendMessage);
@@ -235,7 +242,10 @@ $('.back-button').on('click', function(){
 
 });
 $(window).on('load',function(){
-  $('.new-focus').focus();
+  var newLoad = $('.new-focus');
+  if(newLoad.length > 0) {
+    newLoad.focus();
+  }
 });
 
 //Functions
@@ -906,9 +916,42 @@ function lostConnectionWarning(){
 }
 
 function updateIndicator() {
-  if(!navigator.onLine) { 
+  if(!navigator.onLine) {
     $('.home-logo').after('<span class="connection-warning">Connection Lost</span>');
   } else {
     $('.connection-warning').hide();
+  }
+}
+
+function setUpTransitions() {
+  scrollDiv = $(".scroll-div");
+  scrollDiv.on('scroll', scrollTransitions);
+  curTransitionEl = $("#transition-" + String(curTransition));
+  scrollTransitions();
+}
+
+function scrollTransitions() {
+  var top = curTransitionEl.offset().top;
+
+  if(top < transitionOffset) {
+    transitionElement(curTransitionEl);
+    setNextTransition();
+  }
+}
+
+function transitionElement(el) {
+  el.addClass("is-transitioned");
+}
+
+function setNextTransition() {
+  curTransition += 1;
+
+  curTransitionEl = $("#transition-" + String(curTransition));
+  scrollDiv.off('scroll', scrollTransitions);
+
+  if(curTransition < totalTransitions) {
+    setTimeout(function() {
+      setUpTransitions();
+    }, 50);
   }
 }
