@@ -7,9 +7,6 @@ var completedTasksShow = false;
 
 jQuery(document).ready(function($){
 
-  if(notify.permissionLevel() === notify.PERMISSION_DEFAULT){
-    notify.requestPermission();
-  }
 
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
