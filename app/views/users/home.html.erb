@@ -136,7 +136,7 @@
     <% end %>
       <li>
         <%= link_to pricing_path do %>
-          Upgrade<br><small>Current Tier: <b><%= current_user.tier.name %></b></small>
+          Upgrade<br><small>Current Plan: <b><%= current_user.tier.name %></b></small>
         <% end %>
       </li>
      <li><%= link_to 'Logout', logout_path %></li>
