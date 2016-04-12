@@ -64,6 +64,9 @@ jQuery(document).ready(function($){
   $("#new_conversation").submit(startConversation);
   //--------------------------------
 
+  //set add/remove user ajax
+  setManageUserEvents();
+
   //set up message init ajax
   setUpMessageAjaxInit();
   //----------------------
@@ -135,9 +138,7 @@ $('.activate-modal').click(function(e){
 	show_modal(modal_id);
 });
 
-$('.close-modal, .close-modal-text').click(function(){
-	close_modal();
-});
+$('.close-modal, .close-modal-text').on('click', close_modal);
 
 	$('.dismiss').on('click', function(e) {
 		e.preventDefault;
@@ -816,7 +817,7 @@ function changeConvo(e) {
 }
 
 function changeConvoListeners() {
-  $(".typeahead-form").off('submit').on('submit', typeaheadAjaxLoader);
+  $(".typeahead-form").off('submit', typeaheadAjaxLoader).on('submit', typeaheadAjaxLoader);
   $("#av-message-form").off('submit').submit(sendMessage);
   $("#new_conversation").off('submit').submit(startConversation);
   enterSubmit('#message_content', '#av-message-form');
@@ -837,4 +838,55 @@ function showMessageCenter() {
   $('.mobile-target').eq(1).hide();
   $('.mobile-target').eq(3).show();
   $('.mobile-active').removeClass('mobile-active')
+}
+
+function removeUser(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $("#ajax-loader").show();
+
+  $.ajax({
+    url: $(this).attr("href"),
+    method: "DELETE"
+  }).done(function(response){
+    $("#ajax-loader").hide();
+
+    $("#manage-users").replaceWith(response);
+    removeTypeahead();
+    setUpTypeahead();
+    show_modal('manage-users');
+    $('.close-modal, .close-modal-text').on('click', close_modal);
+    setManageUserEvents();
+  });
+}
+
+function addUser(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $("#ajax-loader").show();
+
+  $.ajax({
+    url: $(this).attr("action"),
+    method: "PUT",
+    data: $(this).serialize()
+  }).done(function(response){
+    $("#ajax-loader").hide();
+
+    $("#manage-users").replaceWith(response);
+    removeTypeahead();
+    setUpTypeahead();
+    show_modal('manage-users');
+    $('.close-modal, .close-modal-text').on('click', close_modal);
+    setManageUserEvents();
+  });
+}
+
+function setManageUserEvents() {
+  //remove user ajax
+  $(".remove-user-link").off('click').on('click', removeUser);
+
+  //add user ajax
+  $("#project-typeahead").off('submit', addUser).on('submit', addUser);
 }

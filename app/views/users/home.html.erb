@@ -8,82 +8,8 @@
 <% end %>
 <!-- END MODAL MASK -->
 
-<!-- MANAGE USERS MODAL -->
-<div id='manage-users' class='modal-window'>
-  <div>
-    <h1>Manage Users of <%= @project.name %></h1>
-  <section class="tabs">
-    <hr class="fifty">
-    <div class="overflow-visible">
-    <!-- <ul class="tab-list">
-        <li class="tab1 active-tab"><a class="users-tab" href="#">Current Users</a></li>
-        <li class="tab2"><a class="users-tab" href="#">Add Users</a></li>
-        <li class="tab3"><a class="users-tab" href="#">Invite Users</a></li>
-      </ul> -->
-      <% if current_user.tier.permit_project_user(@project) %>
-        <h4>Add a user to <%= @project.name %></h4>
-        <%= render partial: "layouts/project_typeahead", locals: { project: @project } %>
-      <% else %>
-        <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
-        <%= link_to "Upgrade Now", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
-      <% end %>
-      <div class="edit-users">
-          <% if @project.has_other_users?(current_user) %>
-            <h4>Current <%= @project.name %> Users</h4>
-            <div id="project-user-list">
-              <% @project.other_users(current_user).each do |user| %>
-              <div class="user-card">
-                <div class="remove-user"> 
-                <div class="tool-button-hover">
-                <%= link_to user_project_path(user.find_user_project(@project)), method: "delete" do%>
-                  <i class="fa fa-times"></i>
-                <% end %>
-                <div class="tool-button-hover-text user-tooltip">
-                    <small>Remove User</small>
-                  </div>
-                </div>
-                  <div class="tool-button-hover">
-                    <% if user.find_user_project(@project).admin %>
-                      <%= link_to "", user_project_path(user.find_user_project(@project), user_project: { admin: false }), method: "put", class: "fa fa-user is-admin admin-select" %>
-                    <% else %>
-                      <%= link_to "", user_project_path(user.find_user_project(@project), user_project: { admin: true }), method: "put", class: "fa fa-user is-not-admin admin-select" %>
-                    <% end %>
-                  <div class="tool-button-hover-text user-tooltip">
-                    <small>Make user an Admin</small>
-                  </div>
-                </div>
-                </div>
-                <div class="media">
-                  <% if user.image %>
-                  <div class="profile-pic u-pull-left app-view-p-img">
-                    <img class="profile-pic" src="<%= current_user.image_url %>">
-                  </div>
-                  <% else %>
-                  <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
-                    <p><%= user.first_name[0] %></p>
-                  </div>
-                  <% end %>
-                  <div class="user-card_info">
-                    <p>
-                      <%= user.name %>
-                    </p>
-                  </div>
-              </div>
-            </div>
-            <% end %>
-          </div>
-          <p style="padding-top:20px;">Do you want to invite someone who isn't a mercury user yet? <a href="#" class="activate-modal" name="invite-users">Click here</a> to send them an invite via email.</p>
-        <% else %>
-          <p>There aren't any other users on this project yet!</p>
-        <% end %>
-      </div>
-    </div>
-  </section>
- <div>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-    </div>
-  </div>
-</div>
+<!-- MANAGE USERS MODAL (partial - users/manage_users) -->
+<%= render partial: 'users/manage_users', locals: { user: current_user, project: @project } %>
 <!-- END MANAGE USERS MODAL -->
 
 <!-- INVITE USERS MODAL -->
@@ -117,7 +43,7 @@
 <!-- EDIT PROJECT MODAL -->
 <div id='edit-project' class='modal-window'>
   <div>
-    
+
     <h1>Edit <%= @project.name %></h1>
     <hr class="fifty">
     <p>Change your project's name by changing it below and hitting <b>UPDATE PROJECT</b>

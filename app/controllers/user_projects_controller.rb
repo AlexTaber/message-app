@@ -21,10 +21,15 @@ class UserProjectsController < ApplicationController
 
   def destroy
     @user_project = UserProject.find_by(id: params[:id])
+    project = @user_project.project
 
     @user_project.delete ? flash[:notice] = "#{@user_project.user.name} removed" : flash[:warn] = "Unable to remove #{@user_project.user.name}, please try again"
 
-    redirect_to :back
+    if request.xhr?
+      render partial: 'users/manage_users', locals: { user: current_user, project: project }
+    else
+      redirect_to :back
+    end
   end
 
   private

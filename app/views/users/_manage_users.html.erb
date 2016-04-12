@@ -1,0 +1,38 @@
+<div id='manage-users' class='modal-window'>
+  <div>
+    <h1>Manage Users of <%= project.name %></h1>
+    <section class="tabs">
+      <hr class="fifty">
+      <div class="overflow-visible">
+        <!-- <ul class="tab-list">
+            <li class="tab1 active-tab"><a class="users-tab" href="#">Current Users</a></li>
+            <li class="tab2"><a class="users-tab" href="#">Add Users</a></li>
+            <li class="tab3"><a class="users-tab" href="#">Invite Users</a></li>
+          </ul> -->
+        <% if user.tier.permit_project_user(project) %>
+          <h4>Add a user to <%= project.name %></h4>
+          <%= render partial: "layouts/project_typeahead", locals: { project: project } %>
+        <% else %>
+          <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
+          <%= link_to "Upgrade Now", edit_subscription_path(user.subscription), class: "button button-primary" %>
+        <% end %>
+        <div class="edit-users">
+          <% if project.has_other_users?(user) %>
+            <h4>Current <%= project.name %> Users</h4>
+            <div id="project-user-list">
+              <% project.other_users(user).each do |user| %>
+                <%= render partial: 'users/card', locals: { user: user, project: project } %>
+              <% end %>
+            </div>
+            <p style="padding-top:20px;">Do you want to invite someone who isn't a mercury user yet? <a href="#" class="activate-modal" name="invite-users">Click here</a> to send them an invite via email.</p>
+          <% else %>
+            <p>There aren't any other users on this project yet!</p>
+          <% end %>
+        </div>
+      </div>
+    </section>
+    <div>
+      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+    </div>
+  </div>
+</div>

@@ -35,7 +35,12 @@ class ProjectsController < ApplicationController
     if @project.valid?
       @project.save
       flash[:notice] = "Project successfully saved" if set_up_users
-      redirect_to home_path(project_id: @project.id)
+
+      if request.xhr?
+        render partial: 'users/manage_users', locals: { user: current_user, project: @project }
+      else
+        redirect_to home_path(project_id: @project.id)
+      end
     else
       flash[:warn] = "Unable to save updates to project, please try again"
       redirect_to :back

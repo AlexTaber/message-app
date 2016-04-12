@@ -874,7 +874,7 @@ ul.edit-project-list {
 	padding-bottom:0;
 }
 #project-user-list{
-	max-height:55vh;
+	max-height:35vh;
 	overflow-y:scroll;
 	text-align:left !important;
 	border:1px solid #ddd;
@@ -910,7 +910,7 @@ ul.edit-project-list {
 .remove-user{
 	position:absolute;
 	top:5px;
-	right:5px; 
+	right:5px;
 	& a:hover{
 		color:$full-red;
 		cursor:pointer !important;
