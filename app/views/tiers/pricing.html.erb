@@ -103,7 +103,7 @@
 			</div>
 			<div class="text-center">
 				<% if current_user %>
-					<%= link_to "Get More Done Today", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
+					<%= link_to "Upgrade Today", edit_subscription_path(current_user.subscription), class: "button button-primary" %>
 				<% else %>
 					<%= link_to "Get More Done Today", new_user_path, class: "button button-primary" %>
 				<% end %>
