@@ -179,6 +179,23 @@ input:-webkit-autofill {
 .tiers_card:hover, .tiers_card.is-active{
   cursor:pointer;
   border:2px solid rgba($pwdlight, .8);
+  position:relative;
+  &:after{
+    background:url('https://s3.amazonaws.com/mercury-app-assets/mercury-feature.jpg');
+    background-position:center;
+    background-size:cover;
+    opacity:.3;
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    content:" ";
+    z-index:-1;
+  }
+}
+.tiers_card.is-active:first-child{
+  background-position:left;
 }
 .tier-select{
   display:none;
