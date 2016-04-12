@@ -7,6 +7,10 @@ var completedTasksShow = false;
 
 jQuery(document).ready(function($){
 
+  if(notify.permissionLevel() === notify.PERMISSION_DEFAULT){
+    notify.requestPermission();
+  }
+
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
@@ -70,6 +74,8 @@ jQuery(document).ready(function($){
   //set up message init ajax
   setUpMessageAjaxInit();
   //----------------------
+
+  lostConnectionWarning();
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -891,4 +897,18 @@ function setManageUserEvents() {
 
   //add user ajax
   $("#project-typeahead").off('submit', addUser).on('submit', addUser);
+}
+function lostConnectionWarning(){
+  // Update the online status icon based on connectivity
+  window.addEventListener('online',  updateIndicator);
+  window.addEventListener('offline', updateIndicator);
+  updateIndicator();
+}
+
+function updateIndicator() {
+  if(!navigator.onLine) { 
+    $('.home-logo').after('<span class="connection-warning">Connection Lost</span>');
+  } else {
+    $('.connection-warning').hide();
+  }
 }

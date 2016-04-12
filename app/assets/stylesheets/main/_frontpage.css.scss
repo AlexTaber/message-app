@@ -159,7 +159,11 @@ i.admin-profile {
 	float: left;
 }
 }
-
+.connection-warning{
+	color:$red;
+	margin-left:20px;
+	font-size:12px;
+}
 // project List Accordian
 @keyframes unread-project {
   0%{}
