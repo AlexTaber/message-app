@@ -423,19 +423,21 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       totalMessages += 1;
     }
 
-    if(notesMode) {
-      $("#notes" + String(data.conversation_id)).html(data.notes_html);
-    } else {
-      //target is the targeted conversation care
-      var target = $("#conversation" + String(data.conversation_id));
-      //update targets html
-      target.html(data.app_html);
-      //copy targets new html
-      var targetHtml = target[0].outerHTML;
-      //remove target
-      target.remove();
-      //prepend copied html to the top of the conversations section
-      $(".conversations-wrapper").prepend(targetHtml);
+    if(data.project_id == projectId) {
+      if(notesMode) {
+        $("#notes" + String(data.conversation_id)).html(data.notes_html);
+      } else {
+        //target is the targeted conversation care
+        var target = $("#conversation" + String(data.conversation_id));
+        //update targets html
+        target.html(data.app_html);
+        //copy targets new html
+        var targetHtml = target[0].outerHTML;
+        //remove target
+        target.remove();
+        //prepend copied html to the top of the conversations section
+        $(".conversations-wrapper").prepend(targetHtml);
+      }
     }
 
     if(userId != data.user_id && projectId != data.project_id) {
