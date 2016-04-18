@@ -139,7 +139,9 @@ class ConversationsController < ApplicationController
   end
 
   def create_message
-    @message = Message.create(content: params[:content], user_id: current_user.id, conversation_id: @conversation.id)
+    @message = Message.new(content: params[:content], user_id: current_user.id, conversation_id: @conversation.id)
+    @message.default_content
+    @message.save
     create_task if params[:tasks]
     set_up_recipients
     new_message_email

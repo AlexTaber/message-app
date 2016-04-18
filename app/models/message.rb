@@ -74,4 +74,8 @@ class Message < ActiveRecord::Base
   def has_attachments?
     attachments.size > 0
   end
+
+  def default_content
+    assign_attributes(content: "(No Content)") if content.empty?
+  end
 end

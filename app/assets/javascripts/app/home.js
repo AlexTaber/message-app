@@ -380,17 +380,15 @@ function scrollToBottom() {
 
 function messageSendable() {
   var content = $(".new_message").find("#message_content").val();
-  if(canSendMessage && content != "") {
-    return true;
-  }
+  if(canSendMessage && content != "") { return true; }
+  if($("#message_files")[0].files.length > 0) { return true; }
   return false;
 }
 
 function newMessageSendable() {
   var content = $(".new_conversation").find("#content").val();
-  if(canSendMessage && content != "") {
-    return true;
-  }
+  if(canSendMessage && content != "") { return true; }
+  if($("#message_files")[0].files.length > 0) { return true; }
   return false;
 }
 

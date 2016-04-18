@@ -1,11 +1,11 @@
 <%= form_for message, html: { id: "av-message-form" } do |f| %>
   <div>
     <% if tasks %>
-      <%= f.text_area :content, placeholder: "Type task here..." %>
+      <%= f.text_area :content, placeholder: "Type task here...", value: "" %>
     <% elsif notes %>
-      <%= f.text_area :content, placeholder: "Type note here..." %>
+      <%= f.text_area :content, placeholder: "Type note here...", value: "" %>
     <% else %>
-      <%= f.text_area :content, placeholder: "Type message here..." %>
+      <%= f.text_area :content, placeholder: "Type message here...", value: "" %>
     <% end %>
 
     <div class="file-wrapper">

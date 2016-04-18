@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
+    @message.default_content
 
     if @message.valid?
       redirect_to home_path and return unless current_user.is_member_of_project?(@message.conversation.project)
