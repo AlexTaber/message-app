@@ -333,13 +333,19 @@ function sendMessageEvents() {
 
 function startConversation(e) {
   e.preventDefault();
+  var formData = new FormData($(e.target)[0]);
+
+  formData.append("invalid_files", invalidFiles.join(","));
+
   if(newMessageSendable()) {
     canSendMessage = false;
     $("#ajax-loader").show();
     $.ajax({
       url: e.target.action,
       method: "POST",
-      data: $(e.target).serialize()
+      data: formData,
+      processData: false,  // tell jQuery not to process the data
+      contentType: false  // tell jQuery not to set contentType
     }).done(function(data){
       canSendMessage = true;
       curConvoToken = data.token;

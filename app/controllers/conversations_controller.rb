@@ -141,6 +141,7 @@ class ConversationsController < ApplicationController
     create_task if params[:tasks]
     set_up_recipients
     new_message_email
+    set_up_attachments(params[:conversation][:files]) if params[:conversation][:files]
   end
 
   def set_up_recipients
@@ -158,5 +159,22 @@ class ConversationsController < ApplicationController
 
   def new_message_email
     @conversation.other_users(current_user).each { |user| UserMailer.new_message_email(@message, user).deliver_now }
+  end
+
+  def set_up_attachments(files)
+    invalid_files = params[:invalid_files].split(",").map(&:to_i)
+    files.each_with_index do |file, index|
+      unless invalid_files.include?(index)
+        obj = S3_BUCKET.object(file.original_filename)
+
+        obj.upload_file(file.tempfile, acl:'public-read')
+
+        attachment = Attachment.new(url: obj.public_url, message_id: @message.id, name: file.original_filename)
+        unless attachment.save
+          flash[:warn] = "There was a problem uploading your image, please try again"
+          redirect_to :back
+        end
+      end
+    end
   end
 end
