@@ -178,13 +178,12 @@ $('.tab-list li').on('click', function(e){
 //   $('.new-convo-placeholder').hide();
 // });
 
+$("#message_files").change(function(){
+    attachmentPreview(this);
+});
 
 $("#profile-uploader").change(function(){
     readURL(this);
-});
-
-$("#message_files").change(function(){
-    attachmentPreview(this);
 });
 
 
@@ -853,6 +852,9 @@ function changeConvoListeners() {
   $("#new_conversation").off('submit').submit(startConversation);
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');
+  $("#message_files").change(function(){
+      attachmentPreview(this);
+  });
 }
 
 function updateReadMessages(convoId) {

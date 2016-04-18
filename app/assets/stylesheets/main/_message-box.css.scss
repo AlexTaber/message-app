@@ -376,33 +376,6 @@
     margin-bottom: 0px;
     background: #ddd;
     word-break: break-word;
-
-    .attachments {
-      margin-top: 20px;
-      display: block;
-      padding: 5px;
-      background: rgba($white, 1);
-      border-radius: 5px;
-
-      a {
-        color: $black;
-        text-decoration: none;
-
-        &:hover {
-          color: $pwdlight;
-        }
-      }
-
-      img {
-        object-fit: cover;
-        object-position: center center;
-        width: 220px;
-        display: block;
-        border-radius: 5px;
-        margin-top: 20px;
-        height: auto;
-      }
-    }
   }
   .self-pwd {
     float:right;
@@ -446,6 +419,54 @@
     margin-top: 10px;
     margin-bottom:5px;
     padding-left:50px;
+  }
+}
+
+.attachments {
+  margin-top: 20px;
+  display: block;
+  max-width: 220px;
+  padding: 5px;
+  background: $white;
+  border-radius: 5px;
+  height: auto;
+
+  &.task-attachments {
+    background: rgba($pwdlight, 0.1);
+    display: inline-block;
+    max-width: none;
+    width: auto;
+  }
+
+  a {
+    padding-top: 10px;
+    color: $black;
+    text-decoration: none;
+    display: block;
+    padding-bottom: 10px;
+
+    &.task-attachment {
+      display: inline-block;
+      padding-right: 5px;
+
+      img {
+        height: 200px;
+      }
+    }
+
+    &:hover {
+      color: $pwdlight;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center center;
+    width: 220px;
+    display: block;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: auto;
   }
 }
 

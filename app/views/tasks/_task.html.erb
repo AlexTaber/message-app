@@ -32,8 +32,12 @@
       <% end %>
       <p>
         <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %><br>
+      </p>
+
+      <p class="task-no-left">
         <small>Completed <%= task.completed_date_s %></small>
       </p>
+
     <% else %>
       <%= link_to task_path(task, task: { completer_id: user.id }), method: "PUT", class: "complete-task", title: "Mark task as done" do %>
         <div class="task-item icon"></div>
@@ -41,10 +45,26 @@
 
       <p>
         <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
-        <% if task.has_claims? %>
-          <br><small><%= task.claim_text %></small>
-        <% end %>
       </p>
+
+      <% if task.has_claims? %>
+        <p class="task-no-left">
+          <small><%= task.claim_text %></small>
+        </p>
+      <% end %>
     <% end %>
   </div>
+
+  <% if message.has_attachments? %>
+    <span class="attachments task-attachments">
+      <% message.attachments.each do |attachment| %>
+        <%= link_to attachment.url, class: "task-attachment", target: "_blank" do %>
+          <%= attachment.name %>
+          <% if attachment.is_image? %>
+            <%= image_tag attachment.url %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </span>
+  <% end %>
 </div>
