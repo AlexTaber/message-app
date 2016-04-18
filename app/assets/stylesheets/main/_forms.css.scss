@@ -328,3 +328,42 @@ input:-webkit-autofill {
     display: inline;
   }
 }
+
+//file upload
+#av-message-form:hover {
+  .file-wrapper {
+    opacity: 0.8;
+  }
+}
+
+.file-wrapper {
+  opacity: 0.5;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  right: 120px;
+
+  label {
+    position: absolute;
+    border: none;
+    color: #666;
+    padding: 3px 5px;
+    border-radius: 5px;
+    position: relative;
+    margin-top: -38px;
+    z-index: 1;
+
+    &:hover {
+      cursor: pointer;
+      color: $pwdlight;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.attachments-preview {
+  padding-left: 14px;
+}

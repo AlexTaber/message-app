@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
       @message.save!
       set_up_recipients
       set_up_task if params[:tasks]
+      set_up_attachments(params[:message][:files]) if params[:message][:files]
       @message.conversation.users.each do |user|
         user == current_user ? current_conversation = @message.conversation : current_conversation = nil
         Pusher.trigger("conversation#{@message.conversation.token}#{user.id}", 'new-message', {
@@ -96,6 +97,20 @@ class MessagesController < ApplicationController
   def new_task_emails
     @message.conversation.other_users(current_user).each do |user|
       UserMailer.new_task_email(@message.task, user).deliver_now if user.needs_task_notification?(@message.task)
+    end
+  end
+
+  def set_up_attachments(files)
+    files.each do |file|
+      obj = S3_BUCKET.object(file.original_filename)
+
+      obj.upload_file(file.tempfile, acl:'public-read')
+
+      attachment = Attachment.new(url: obj.public_url, message_id: @message.id, name: file.original_filename)
+      unless attachment.save
+        flash[:warn] = "There was a problem uploading your image, please try again"
+        redirect_to :back
+      end
     end
   end
 end

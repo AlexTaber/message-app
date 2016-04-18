@@ -70,4 +70,8 @@ class Message < ActiveRecord::Base
   def self.recent_count_by_days(number)
     where("created_at > ?", DateTime.now - number.days).count
   end
+
+  def has_attachments?
+    attachments.size > 0
+  end
 end

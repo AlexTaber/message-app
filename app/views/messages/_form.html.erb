@@ -7,6 +7,14 @@
     <% else %>
       <%= f.text_area :content, placeholder: "Type message here..." %>
     <% end %>
+
+    <div class="file-wrapper">
+      <%= f.label :files do %>
+        <i class="fa fa-paperclip"></i>
+      <% end %>
+
+      <%= f.file_field :files, multiple: true %>
+    </div>
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>

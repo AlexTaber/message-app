@@ -8,7 +8,6 @@ var totalTransitions;
 
 jQuery(document).ready(function($){
 
-
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
@@ -184,6 +183,10 @@ $("#profile-uploader").change(function(){
     readURL(this);
 });
 
+$("#message_files").change(function(){
+    attachmentPreview(this);
+});
+
 
 //signup-form validation
 $('.email-next').on('click', function(e){
@@ -253,6 +256,7 @@ function nextButton(target){
   $(target).parent().parent().fadeOut(0).next().fadeIn();
   curNext += 1;
 }
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -299,6 +303,12 @@ function addNewLine(form) {
 }
 
 function sendMessage(e) {
+  var formData = new FormData($(e.target)[0]);
+  var files = $('#message_files')[0].files;
+  for(var i = 0; i < files.length; i++) {
+    formData.append('files', files[i]);
+  }
+
   e.preventDefault();
   if(messageSendable()) {
     canSendMessage = false;
@@ -306,7 +316,9 @@ function sendMessage(e) {
     $.ajax({
       url: e.target.action,
       method: "POST",
-      data: $(e.target).serialize()
+      data: formData,
+      processData: false,  // tell jQuery not to process the data
+      contentType: false,  // tell jQuery not to set contentType
     }).done(function(response){
       //send message events called from pusher event
     });
@@ -318,6 +330,7 @@ function sendMessageEvents() {
   $(".new_message").find("#message_content").val("");
   $('#form-wrapper textarea').css('height', '40px');
   $("#ajax-loader").hide();
+  $(".attachments-preview").html("");
 }
 
 function startConversation(e) {
@@ -953,5 +966,23 @@ function setNextTransition() {
     setTimeout(function() {
       setUpTransitions();
     }, 50);
+  }
+}
+
+function attachmentPreview(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (input, e) {
+      var files = input.files;
+      var target = $(".attachments-preview");
+      target.html("");
+
+      for(var i = 0; i < files.length; i++) {
+        target.append("<p>" + files[i].name + "</p>");
+      }
+    }.bind(this, input);
+
+    reader.readAsDataURL(input.files[0]);
   }
 }

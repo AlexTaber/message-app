@@ -377,10 +377,31 @@
     background: #ddd;
     word-break: break-word;
 
-    span {
-      font-size: 1.2rem;
-      font-weight: bold;
-      font-style: italic;
+    .attachments {
+      margin-top: 20px;
+      display: block;
+      padding: 5px;
+      background: rgba($white, 1);
+      border-radius: 5px;
+
+      a {
+        color: $black;
+        text-decoration: none;
+
+        &:hover {
+          color: $pwdlight;
+        }
+      }
+
+      img {
+        object-fit: cover;
+        object-position: center center;
+        width: 220px;
+        display: block;
+        border-radius: 5px;
+        margin-top: 20px;
+        height: auto;
+      }
     }
   }
   .self-pwd {
