@@ -452,7 +452,11 @@ function listenForNewConvos() {
   channel.bind('new-conversation', function(data){
 
     if(projectId == data.project_id) {
-      $(".conversations-wrapper").prepend(data.app_html);
+      $(".conversations-wrapper").prepend(
+        "<div class='conversation-wrapper' id='conversation" + String(data.conversation_id) + "' data-convo-id='" + String(data.conversation_id) + "' data-convo-token='" + String(data.conversation_token) + "'>"
+        + data.app_html +
+        "</div>"
+      );
     }
 
   });

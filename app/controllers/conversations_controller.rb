@@ -131,7 +131,9 @@ class ConversationsController < ApplicationController
       Pusher.trigger("new-conversation#{user.id}", 'new-conversation', {
          app_html: (render_to_string partial: "conversations/app_card", locals: { conversation: @conversation, current_conversation: current_conversation, project: @project, user: user }),
          mb_html: (render_to_string partial: "conversations/mb_card", locals: { conversation: @conversation, current_conversation: current_conversation, project: @project, user: user }),
-         project_id: @project.id
+         project_id: @project.id,
+         conversation_id: @conversation.id,
+         conversation_token: @conversation.token
       })
     end
   end
