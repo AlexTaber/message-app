@@ -350,6 +350,7 @@ function startConversation(e) {
       canSendMessage = true;
       curConvoToken = data.token;
       $("#form-wrapper").html(data.form_html);
+      $("#form-wrapper").append("<div class='attachments-preview'></div>")
       $("#av-message-form").submit(sendMessage);
       enterSubmit('#message_content', '#av-message-form');
       if(tasksMode) {
@@ -519,8 +520,9 @@ function updateTaskListeners() {
   $(".remove-notes").off('click').on('click', removeNote);
   //mobile show messages
   $(".conversation-wrapper, .notes-wrapper, .new-convo-placeholder").off('click', showMessageCenter).on('click', showMessageCenter);
+  //preview attachments
   $("#message_files").change(function(){
-      attachmentPreview(this);
+    attachmentPreview(this);
   });
 }
 
