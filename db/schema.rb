@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411190711) do
+ActiveRecord::Schema.define(version: 20160418202523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "url",        null: false
+    t.integer  "message_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
 
   create_table "bans", force: :cascade do |t|
     t.integer  "user_id",                                                null: false
@@ -72,11 +80,11 @@ ActiveRecord::Schema.define(version: 20160411190711) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "user_id",         null: false
-    t.text     "content",         null: false
-    t.integer  "conversation_id", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "user_id",                                  null: false
+    t.text     "content",         default: "(No Content)", null: false
+    t.integer  "conversation_id",                          null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "notifications", force: :cascade do |t|

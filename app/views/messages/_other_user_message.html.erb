@@ -9,11 +9,39 @@
   <% if task %>
     <p class="<%= task.html_class %>">
       <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
+
+      <% if message.has_attachments? %>
+        <span class="attachments">
+          <% message.attachments.each do |attachment| %>
+            <%= link_to attachment.url, class: "ellipsis", target: "_blank" do %>
+              <%= attachment.name %>
+              <% if attachment.is_image? %>
+                <%= image_tag attachment.url %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </span>
+      <% end %>
+
     </p>
   <% else %>
     <p>
       <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %>
+
+      <% if message.has_attachments? %>
+        <span class="attachments">
+          <% message.attachments.each do |attachment| %>
+            <%= link_to attachment.url, class: "ellipsis", target: "_blank" do %>
+              <%= attachment.name %>
+              <% if attachment.is_image? %>
+                <%= image_tag attachment.url %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </span>
+      <% end %>
     </p>
+
   <% end %>
 
   <div class="icon-bar them">

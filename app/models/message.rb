@@ -6,6 +6,7 @@ class Message < ActiveRecord::Base
   has_many :message_users
   has_many :recipients, through: :message_users, source: :user
   has_one :task
+  has_many :attachments
 
   validates :user_id, :conversation_id, :content, presence: true
 
@@ -68,5 +69,13 @@ class Message < ActiveRecord::Base
 
   def self.recent_count_by_days(number)
     where("created_at > ?", DateTime.now - number.days).count
+  end
+
+  def has_attachments?
+    attachments.size > 0
+  end
+
+  def default_content
+    assign_attributes(content: "(No Content)") if content.empty?
   end
 end

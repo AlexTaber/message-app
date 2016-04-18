@@ -376,12 +376,6 @@
     margin-bottom: 0px;
     background: #ddd;
     word-break: break-word;
-
-    span {
-      font-size: 1.2rem;
-      font-weight: bold;
-      font-style: italic;
-    }
   }
   .self-pwd {
     float:right;
@@ -425,6 +419,57 @@
     margin-top: 10px;
     margin-bottom:5px;
     padding-left:50px;
+  }
+}
+
+.attachments {
+  margin-top: 20px;
+  display: block;
+  max-width: 220px;
+  padding: 5px;
+  background: $white;
+  border-radius: 5px;
+  height: auto;
+
+  &.task-attachments {
+    background: rgba($grey, 1);
+    display: inline-block;
+    max-width: none;
+    width: auto;
+    margin-left: 30px;
+    margin-bottom: 10px;
+  }
+
+  a {
+    padding-top: 10px;
+    color: $black;
+    text-decoration: none;
+    display: block;
+    padding-bottom: 10px;
+
+    &.task-attachment {
+      display: inline-block;
+      padding-right: 5px;
+      width: 170px;
+
+      img {
+        height: 200px;
+      }
+    }
+
+    &:hover {
+      color: $pwdlight;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center center;
+    width: 220px;
+    display: block;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: auto;
   }
 }
 

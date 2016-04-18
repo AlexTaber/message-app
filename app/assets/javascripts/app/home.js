@@ -5,9 +5,9 @@ var changeConvoBool = true;
 var totalMessages = 0;
 var completedTasksShow = false;
 var totalTransitions;
+var invalidFiles = [];
 
 jQuery(document).ready(function($){
-
 
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
@@ -179,6 +179,9 @@ $('.tab-list li').on('click', function(e){
 //   $('.new-convo-placeholder').hide();
 // });
 
+$("#message_files").change(function(){
+    attachmentPreview(this);
+});
 
 $("#profile-uploader").change(function(){
     readURL(this);
@@ -253,6 +256,7 @@ function nextButton(target){
   $(target).parent().parent().fadeOut(0).next().fadeIn();
   curNext += 1;
 }
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -299,6 +303,10 @@ function addNewLine(form) {
 }
 
 function sendMessage(e) {
+  var formData = new FormData($(e.target)[0]);
+
+  formData.append("invalid_files", invalidFiles.join(","));
+
   e.preventDefault();
   if(messageSendable()) {
     canSendMessage = false;
@@ -306,7 +314,9 @@ function sendMessage(e) {
     $.ajax({
       url: e.target.action,
       method: "POST",
-      data: $(e.target).serialize()
+      data: formData,
+      processData: false,  // tell jQuery not to process the data
+      contentType: false,  // tell jQuery not to set contentType
     }).done(function(response){
       //send message events called from pusher event
     });
@@ -318,21 +328,29 @@ function sendMessageEvents() {
   $(".new_message").find("#message_content").val("");
   $('#form-wrapper textarea').css('height', '40px');
   $("#ajax-loader").hide();
+  $(".attachments-preview").html("");
 }
 
 function startConversation(e) {
   e.preventDefault();
+  var formData = new FormData($(e.target)[0]);
+
+  formData.append("invalid_files", invalidFiles.join(","));
+
   if(newMessageSendable()) {
     canSendMessage = false;
     $("#ajax-loader").show();
     $.ajax({
       url: e.target.action,
       method: "POST",
-      data: $(e.target).serialize()
+      data: formData,
+      processData: false,  // tell jQuery not to process the data
+      contentType: false  // tell jQuery not to set contentType
     }).done(function(data){
       canSendMessage = true;
       curConvoToken = data.token;
       $("#form-wrapper").html(data.form_html);
+      $("#form-wrapper").append("<div class='attachments-preview'></div>")
       $("#av-message-form").submit(sendMessage);
       enterSubmit('#message_content', '#av-message-form');
       if(tasksMode) {
@@ -362,17 +380,15 @@ function scrollToBottom() {
 
 function messageSendable() {
   var content = $(".new_message").find("#message_content").val();
-  if(canSendMessage && content != "") {
-    return true;
-  }
+  if(canSendMessage && content != "") { return true; }
+  if($("#message_files")[0].files.length > 0) { return true; }
   return false;
 }
 
 function newMessageSendable() {
   var content = $(".new_conversation").find("#content").val();
-  if(canSendMessage && content != "") {
-    return true;
-  }
+  if(canSendMessage && content != "") { return true; }
+  if($("#message_files")[0].files.length > 0) { return true; }
   return false;
 }
 
@@ -435,7 +451,11 @@ function listenForNewConvos() {
   channel.bind('new-conversation', function(data){
 
     if(projectId == data.project_id) {
-      $(".conversations-wrapper").prepend(data.app_html);
+      $(".conversations-wrapper").prepend(
+        "<div class='conversation-wrapper' id='conversation" + String(data.conversation_id) + "' data-convo-id='" + String(data.conversation_id) + "' data-convo-token='" + String(data.conversation_token) + "'>"
+        + data.app_html +
+        "</div>"
+      );
     }
 
   });
@@ -498,6 +518,10 @@ function updateTaskListeners() {
   $(".remove-notes").off('click').on('click', removeNote);
   //mobile show messages
   $(".conversation-wrapper, .notes-wrapper, .new-convo-placeholder").off('click', showMessageCenter).on('click', showMessageCenter);
+  //preview attachments
+  $("#message_files").change(function(){
+    attachmentPreview(this);
+  });
 }
 
 function validateUserData(data, element, submit) {
@@ -954,4 +978,37 @@ function setNextTransition() {
       setUpTransitions();
     }, 50);
   }
+}
+
+function attachmentPreview(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (input, e) {
+      invalidFiles = [];
+      var files = input.files;
+      drawAttPreview(files);
+
+    }.bind(this, input);
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function drawAttPreview(files) {
+  var target = $(".attachments-preview");
+  target.html("");
+
+  for(var i = 0; i < files.length; i++) {
+    target.append("<p class='att-preview' id='att-preview-" + String(i) + "' data-index='" + String(i) + "'>" + files[i].name + " <i class='fa fa-times'></i></p>");
+  }
+
+  $(".att-preview").children("i").on('click', removeAttPreview);
+}
+
+function removeAttPreview() {
+  var index = parseInt($(this).parent("p").data("index"));
+
+  invalidFiles.push(index);
+  $('#att-preview-' + String(index)).remove();
 }
