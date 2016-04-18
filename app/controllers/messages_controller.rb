@@ -101,15 +101,18 @@ class MessagesController < ApplicationController
   end
 
   def set_up_attachments(files)
-    files.each do |file|
-      obj = S3_BUCKET.object(file.original_filename)
+    invalid_files = params[:invalid_files].split(",").map(&:to_i)
+    files.each_with_index do |file, index|
+      unless invalid_files.include?(index)
+        obj = S3_BUCKET.object(file.original_filename)
 
-      obj.upload_file(file.tempfile, acl:'public-read')
+        obj.upload_file(file.tempfile, acl:'public-read')
 
-      attachment = Attachment.new(url: obj.public_url, message_id: @message.id, name: file.original_filename)
-      unless attachment.save
-        flash[:warn] = "There was a problem uploading your image, please try again"
-        redirect_to :back
+        attachment = Attachment.new(url: obj.public_url, message_id: @message.id, name: file.original_filename)
+        unless attachment.save
+          flash[:warn] = "There was a problem uploading your image, please try again"
+          redirect_to :back
+        end
       end
     end
   end

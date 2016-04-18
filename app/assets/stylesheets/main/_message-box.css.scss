@@ -432,10 +432,12 @@
   height: auto;
 
   &.task-attachments {
-    background: rgba($pwdlight, 0.1);
+    background: rgba($grey, 1);
     display: inline-block;
     max-width: none;
     width: auto;
+    margin-left: 30px;
+    margin-bottom: 10px;
   }
 
   a {
@@ -448,6 +450,7 @@
     &.task-attachment {
       display: inline-block;
       padding-right: 5px;
+      width: 170px;
 
       img {
         height: 200px;

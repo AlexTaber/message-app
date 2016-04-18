@@ -15,7 +15,7 @@
     <% if message.has_attachments? %>
       <span class="attachments">
         <% message.attachments.each do |attachment| %>
-          <%= link_to attachment.url, target: "_blank" do %>
+          <%= link_to attachment.url, class: "ellipsis", target: "_blank" do %>
             <%= attachment.name %>
             <% if attachment.is_image? %>
               <%= image_tag attachment.url %>

@@ -5,6 +5,7 @@ var changeConvoBool = true;
 var totalMessages = 0;
 var completedTasksShow = false;
 var totalTransitions;
+var invalidFiles = [];
 
 jQuery(document).ready(function($){
 
@@ -303,10 +304,8 @@ function addNewLine(form) {
 
 function sendMessage(e) {
   var formData = new FormData($(e.target)[0]);
-  var files = $('#message_files')[0].files;
-  for(var i = 0; i < files.length; i++) {
-    formData.append('files', files[i]);
-  }
+
+  formData.append("invalid_files", invalidFiles.join(","));
 
   e.preventDefault();
   if(messageSendable()) {
@@ -510,6 +509,9 @@ function updateTaskListeners() {
   $(".remove-notes").off('click').on('click', removeNote);
   //mobile show messages
   $(".conversation-wrapper, .notes-wrapper, .new-convo-placeholder").off('click', showMessageCenter).on('click', showMessageCenter);
+  $("#message_files").change(function(){
+      attachmentPreview(this);
+  });
 }
 
 function validateUserData(data, element, submit) {
@@ -852,9 +854,6 @@ function changeConvoListeners() {
   $("#new_conversation").off('submit').submit(startConversation);
   enterSubmit('#message_content', '#av-message-form');
   enterSubmit('#content', '#new_conversation');
-  $("#message_files").change(function(){
-      attachmentPreview(this);
-  });
 }
 
 function updateReadMessages(convoId) {
@@ -976,15 +975,30 @@ function attachmentPreview(input) {
     var reader = new FileReader();
 
     reader.onload = function (input, e) {
+      invalidFiles = [];
       var files = input.files;
-      var target = $(".attachments-preview");
-      target.html("");
+      drawAttPreview(files);
 
-      for(var i = 0; i < files.length; i++) {
-        target.append("<p>" + files[i].name + "</p>");
-      }
     }.bind(this, input);
 
     reader.readAsDataURL(input.files[0]);
   }
+}
+
+function drawAttPreview(files) {
+  var target = $(".attachments-preview");
+  target.html("");
+
+  for(var i = 0; i < files.length; i++) {
+    target.append("<p class='att-preview' id='att-preview-" + String(i) + "' data-index='" + String(i) + "'>" + files[i].name + " <i class='fa fa-times'></i></p>");
+  }
+
+  $(".att-preview").children("i").on('click', removeAttPreview);
+}
+
+function removeAttPreview() {
+  var index = parseInt($(this).parent("p").data("index"));
+
+  invalidFiles.push(index);
+  $('#att-preview-' + String(index)).remove();
 }
