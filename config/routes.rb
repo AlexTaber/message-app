@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   get '/plugin-info' => 'users#plugin_info'
   get '/app-messages' => 'conversations#app_messages'
   post '/read-messages' => 'conversations#read_messages'
+  get '/search' => 'conversations#search'
   get '/pricing' => 'tiers#pricing'
 
   root 'users#home'

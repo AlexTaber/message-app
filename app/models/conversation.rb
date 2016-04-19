@@ -164,4 +164,12 @@ class Conversation < ActiveRecord::Base
   def self.recent_count_by_days(number)
     where("created_at > ?", DateTime.now - number.days).count
   end
+
+  def search_messages(query)
+    messages.where("lower(content) LIKE ?", "%#{query.downcase}%")
+  end
+
+  def search_tasks(query)
+    search_messages(query).includes(:task).where.not(tasks: { id: nil })
+  end
 end

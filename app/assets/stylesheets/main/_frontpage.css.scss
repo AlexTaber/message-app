@@ -506,12 +506,78 @@ ul.edit-project-list {
 	background-color: #f5f5f5;
 	border-top:1px solid #ddd;
 	padding: 5px 0 5px 0;
+
+	#switch-wrapper {
+		opacity: 1;
+
+		&.is-transitioned {
+			opacity: 0;
+		}
+	}
+
 	a{
 		color: $pwdlight;
 		text-decoration: none;
 
 		&:hover {
 			cursor: pointer;
+		}
+	}
+
+	.search-wrapper {
+		position: absolute;
+		right: 5px;
+		margin-top: -5px;
+	}
+
+	i {
+		color: rgba($black, 0.5);
+
+		&:hover {
+			color: $pwdlight;
+		}
+	}
+
+	#search-show {
+		display: inline-block;
+		padding-top: 7px;
+
+		&.is-transitioned {
+			display: none;
+		}
+	}
+
+	#search-hide {
+		display: none;
+
+		&.is-transitioned {
+			display: inline-block;
+		}
+	}
+
+	#search-form {
+		display: inline-block;
+	}
+
+	input[type='text'] {
+		display: inline-block;
+		line-height: 27px;
+		height: 27px;
+		background: transparent;
+		border: none;
+		opacity: 0;
+		width: 0px;
+		-webkit-transition: width 0.6s; /* Safari */
+  	transition: width 0.6s;
+
+		&:focus {
+			background: transparent;
+			border: none;
+		}
+
+		&.is-transitioned {
+			opacity: 1;
+			width: 200px;
 		}
 	}
 }

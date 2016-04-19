@@ -111,6 +111,15 @@ class ConversationsController < ApplicationController
     render text: "Done"
   end
 
+  def search
+    tasks = params[:tasks].to_b
+    query = params[:query]
+    @conversation = token_conversation(params[:token])
+    @messages = search_messages(tasks, query)
+
+    render partial: "conversations/search", locals: { messages: @messages, tasks: tasks, query: query }
+  end
+
   private
 
   def conversation_by_id
@@ -180,5 +189,9 @@ class ConversationsController < ApplicationController
         end
       end
     end
+  end
+
+  def search_messages(task_search, query)
+    task_search ? @conversation.search_tasks(query) : @conversation.search_messages(query)
   end
 end

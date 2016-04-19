@@ -78,4 +78,12 @@ class Message < ActiveRecord::Base
   def default_content
     assign_attributes(content: "(No Content)") if content.empty?
   end
+
+  def self.search(query)
+    where("lower(content) LIKE ?", "#{query.downcase}")
+  end
+
+  def self.task_search(query)
+    search(query).includes(:task).where(tasks: { id: nil })
+  end
 end

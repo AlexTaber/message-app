@@ -1,0 +1,21 @@
+<% if messages.count > 0 %>
+
+  <h4 class="text-center">Search Results for "<%= query %>"</h4>
+
+  <% if tasks %>
+    <% messages.each do |message| %>
+      <%= render partial: "tasks/task", locals: { task: message.task, message: message, user: current_user } %>
+    <% end %>
+  <% else %>
+    <% messages.each do |message| %>
+      <%= render partial: "messages/message", locals: { message: message } %>
+    <% end %>
+  <% end %>
+
+<% else %>
+
+  <h4 class="text-center">Sorry, no <%= tasks ? 'tasks' : 'messages' %> match your query for "<%= query %>"</h4>
+
+  <a href="#"><h4 class="text-center search-hide"><small>Back to <%= tasks ? 'tasks' : 'conversation' %></small></h4></a>
+
+<% end %>
