@@ -1068,8 +1068,7 @@ function hideSearch() {
   $("#search-form").removeClass("is-transitioned");
   $("#switch-wrapper").removeClass("is-transitioned");
 
-  //simulate changeConvoClick
-  $("#conversation" + String(curConvoId)).trigger("click");
+  sendMessageAjaxInit();
 }
 
 function sendQuery(e) {
