@@ -474,7 +474,9 @@ function listenForNewTasks(conversationToken, curConvoToken) {
   channel.bind('new-task', function(data) {
     if(curConvoToken == data.conversation_token) {
       //if current convo
-      if(tasksMode) {
+      if(searchMode) {
+        $("#task-" + String(data.task_id)).replaceWith(data.task_html);
+      } else if(tasksMode) {
         $("#task-" + String(data.task_id)).replaceWith("");
         updateTasksButton(data.completed_tasks_count, data.deleted);
 
@@ -1103,5 +1105,8 @@ function sendQuery(e) {
 
     //scroll to top
     scrollToTop();
+
+    //reset search input text
+    $("#search-input").val("");
   });
 }
