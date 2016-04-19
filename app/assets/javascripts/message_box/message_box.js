@@ -107,14 +107,17 @@ function sendMbMessage(e) {
 
 function startMbConversation(e) {
   e.preventDefault();
+  $("#ajax-loader").show();
+
   $.ajax({
     url: e.target.action,
     method: "POST",
     data: $(e.target).serialize()
   }).done(function(data){
+    $("#ajax-loader").hide();
     canSendMbMessage = true;
     curConvoToken = data.token;
-    $(".msg-bx-bottom").html(data.form_html);
+    $("#mb-form-wrapper").html(data.form_html);
     $("#av-message-form").submit(sendMbMessage);
     enterSubmit('#message_content', '#av-message-form');
     if(tasksMode) {
@@ -123,7 +126,6 @@ function startMbConversation(e) {
       $(".msg-bx-convo").append(data.html);
     }
     subscribeToMbConvo(data.token, curConvoToken);
-    $("#new-conversation-form").find("#content").val("");
   });
 }
 

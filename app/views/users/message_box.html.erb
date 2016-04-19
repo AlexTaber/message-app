@@ -12,6 +12,15 @@
   </div>
 </div>
 
+<div id="ajax-loader-message">
+  <div class="cssload-thecube">
+    <div class="cssload-cube cssload-c1"></div>
+    <div class="cssload-cube cssload-c2"></div>
+    <div class="cssload-cube cssload-c4"></div>
+    <div class="cssload-cube cssload-c3"></div>
+  </div>
+</div>
+
 <!--# Message Box #-->
 <div id="msg-bx">
 
@@ -119,23 +128,32 @@
         <div class="mb-body">
           <!-- view for saved conversation -->
           <div class="mb-body_info">
-            <p style="display:inline"><i>To: </i><b><%= @conversation.other_users_to_s(current_user) %> </b> <a herf="#" class='mb-body_add-users-btn'><i class="fa fa-plus add-btn" style="padding-right:10px"></i></a></p>
-            <div class="mb-body_add-users-form">
+            <p style="display:inline"><i>To: </i><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+            <div class="mb-body_add-users-form u-pull-right">
               <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: @project.token, tasks: @tasks } %>
             </div>
           </div>
 
           <% unless @conversation.new_record? %>
-            <div class="msg-bx-meta">
-              <p>
+            <div class="task-conversation-switch text-center">
+
+              <div class="search-wrapper u-pull-right">
+                <form id="search-form">
+                  <input id="search-input" type="text" placeholder="Search...">
+                </form>
+                <i class="fa fa-search" id="search-show"></i>
+                <i class="fa fa-times search-hide" id="search-hide"></i>
+              </div>
+
+              <span id="switch-wrapper">
                 <% if @tasks %>
-                  <%= link_to "Conversations", message_box_path(token: @project.token, notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
-                  Tasks
+                  <%= link_to "View #{@notes ? 'Notes' : 'Conversation'}", root_path(notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+                    Tasks
                 <% else %>
-                  Conversations  |
-                  <%= link_to "Tasks", message_box_path(token: @project.token, notes: @notes, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
+                  <%= "#{@notes ? 'Notes' : 'Conversation'}" %>  |
+                  <%= link_to "View Tasks", root_path(notes: @notes, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
                 <% end %>
-              </p>
+              </span>
             </div>
           <% end %>
 

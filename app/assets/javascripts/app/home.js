@@ -358,7 +358,7 @@ function startConversation(e) {
         $(".no-pending-tasks").remove();
         $(".pending-tasks").append(data.html);
       } else {
-        $(".app-view").append(anchorme.js(data.html, { "target":"_blank" }));
+        $(".app-view, .msg-bx-convo").append(anchorme.js(data.html, { "target":"_blank" }));
       }
       updateTaskListeners();
       subscribeToConvo(data.token, curConvoToken);
@@ -411,9 +411,9 @@ function subscribeToConvo(conversationToken, curConvoToken) {
         $(".notes").append(data.note_html);
       } else {
         if(userId == data.user_id) {
-          $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
+          $(".app-view, .msg-bx-convo").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
         } else {
-          $(".app-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
+          $(".app-view, .msg-bx-convo").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
         }
       }
 
@@ -740,7 +740,7 @@ function sendMessageAjaxInit() {
       lazy_load: lazyLoadIndex
     }
   }).done(function(response){
-    $(".app-view").html(response);
+    $(".app-view, .msg-bx-convo").html(response);
     $("#ajax-loader-message").hide();
     messagesEvents();
   });
@@ -1087,8 +1087,8 @@ function sendQuery(e) {
     //turn on search mode
     searchMode = true;
 
-    //append response to app-view
-    $(".app-view").html(response);
+    //append response to view
+    $(".app-view, .msg-bx-convo").html(response);
 
     //hid ajax loader
     $("#ajax-loader-message").hide();
