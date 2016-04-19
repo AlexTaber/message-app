@@ -6,6 +6,7 @@ var totalMessages = 0;
 var completedTasksShow = false;
 var totalTransitions;
 var invalidFiles = [];
+var searchMode = false;
 
 jQuery(document).ready(function($){
 
@@ -378,6 +379,11 @@ function scrollToBottom() {
   }
 }
 
+function scrollToTop() {
+  var tar = $(".msg-bx-convo");
+  tar.scrollTop(0);
+}
+
 function messageSendable() {
   var content = $(".new_message").find("#message_content").val();
   if(canSendMessage && content != "") { return true; }
@@ -524,6 +530,10 @@ function updateTaskListeners() {
   $("#message_files").change(function(){
     attachmentPreview(this);
   });
+  //search
+  $("#search-show").on('click', showSearch);
+  $(".search-hide").on('click', hideSearch);
+  $("#search-form").on('submit', sendQuery);
 }
 
 function validateUserData(data, element, submit) {
@@ -687,10 +697,14 @@ function lazyLoad() {
       updateTaskListeners();
 
     } else {
-      msgBox.off( "scroll", checkLazyLoad )
-      msgBox.off( "scroll", checkTasksLazyLoad )
+      disableLazyLoad(msgBox);
     }
   });
+}
+
+function disableLazyLoad(msgBox) {
+  msgBox.off( "scroll", checkLazyLoad )
+  msgBox.off( "scroll", checkTasksLazyLoad )
 }
 
 function clickTaskButton(e) {
@@ -764,7 +778,7 @@ function toggleTasks(e) {
   tasksMode = !tasksMode;
   lazyLoadIndex = 0;
   completedTasksShow = false;
-  var el = $(".task-conversation-switch");
+  var el = $("#switch-wrapper");
   var str = notesMode ? "Notes" : "Conversation";
   var formString = tasksMode ? "task" : "message";
 
@@ -798,37 +812,19 @@ function changeConvo(e) {
       notesMode = false;
     }
 
-    $(".msg-item-current").removeClass("msg-item-current");
-    var newMsgItem = el.find(".message-item");
-    newMsgItem.addClass("msg-item-current");
-    newMsgItem.removeClass("is-unread-convo");
+    if(canChangeConvo(convoId, convoToken, oldConvoToken)) {
+      $(".msg-item-current").removeClass("msg-item-current");
+      var newMsgItem = el.find(".message-item");
+      newMsgItem.addClass("msg-item-current");
+      newMsgItem.removeClass("is-unread-convo");
 
-    if(typeof convoId !== undefined && convoToken != oldConvoToken) {
       //pusher------
-      pusher.unsubscribe('conversation' + String(oldConvoToken) + String(userId));
-      pusher.unsubscribe('conversation' + String(convoToken) + String(userId));
-      pusher.unsubscribe('task' + String(oldConvoToken) + String(userId));
-      pusher.unsubscribe('task' + String(convoToken) + String(userId));
-      pusher.unsubscribe('claim' + String(oldConvoToken) + String(userId));
-      pusher.unsubscribe('claim' + String(convoToken) + String(userId));
-      pusher.unsubscribe('transferOldTask' + String(oldConvoToken) + String(userId));
-      pusher.unsubscribe('transferOldTask' + String(convoToken) + String(userId));
-      pusher.unsubscribe('transferNewTask' + String(oldConvoToken) + String(userId));
-      pusher.unsubscribe('transferNewTask' + String(convoToken) + String(userId));
-      subscribeToConvo(oldConvoToken, convoToken);
-      subscribeToConvo(convoToken, convoToken);
-      listenForNewTasks(oldConvoToken, convoToken);
-      listenForNewTasks(convoToken, convoToken);
-      listenForNewClaims(oldConvoToken, convoToken);
-      listenForNewClaims(convoToken, convoToken);
-      listenForOldTransferedTasks(oldConvoToken, convoToken);
-      listenForOldTransferedTasks(convoToken, convoToken);
-      listenForNewTransferedTasks(oldConvoToken, convoToken);
-      listenForNewTransferedTasks(convoToken, convoToken);
-      //-----------
+      updatePusherListeners(convoToken, oldConvoToken);
+
       lazyLoadIndex = 0;
       totalMessages = 0;
       curConvoToken = convoToken;
+      curConvoId = convoId;
 
       $(".new-convo-placeholder").slideUp(500);
       updateReadMessages(convoId);
@@ -855,9 +851,39 @@ function changeConvo(e) {
         changeConvoListeners();
         setUpTypeahead();
         changeConvoBool = true;
+        searchMode = false;
       });
     }
   }
+}
+
+function canChangeConvo(convoId, convoToken, oldConvoToken) {
+  return typeof convoId !== undefined && (convoToken != oldConvoToken || searchMode);
+}
+
+function updatePusherListeners(convoToken, oldConvoToken) {
+  //pusher------
+  pusher.unsubscribe('conversation' + String(oldConvoToken) + String(userId));
+  pusher.unsubscribe('conversation' + String(convoToken) + String(userId));
+  pusher.unsubscribe('task' + String(oldConvoToken) + String(userId));
+  pusher.unsubscribe('task' + String(convoToken) + String(userId));
+  pusher.unsubscribe('claim' + String(oldConvoToken) + String(userId));
+  pusher.unsubscribe('claim' + String(convoToken) + String(userId));
+  pusher.unsubscribe('transferOldTask' + String(oldConvoToken) + String(userId));
+  pusher.unsubscribe('transferOldTask' + String(convoToken) + String(userId));
+  pusher.unsubscribe('transferNewTask' + String(oldConvoToken) + String(userId));
+  pusher.unsubscribe('transferNewTask' + String(convoToken) + String(userId));
+  subscribeToConvo(oldConvoToken, convoToken);
+  subscribeToConvo(convoToken, convoToken);
+  listenForNewTasks(oldConvoToken, convoToken);
+  listenForNewTasks(convoToken, convoToken);
+  listenForNewClaims(oldConvoToken, convoToken);
+  listenForNewClaims(convoToken, convoToken);
+  listenForOldTransferedTasks(oldConvoToken, convoToken);
+  listenForOldTransferedTasks(convoToken, convoToken);
+  listenForNewTransferedTasks(oldConvoToken, convoToken);
+  listenForNewTransferedTasks(convoToken, convoToken);
+  //-----------
 }
 
 function changeConvoListeners() {
@@ -1013,4 +1039,69 @@ function removeAttPreview() {
 
   invalidFiles.push(index);
   $('#att-preview-' + String(index)).remove();
+}
+
+function showSearch() {
+  var input = $("#search-input");
+  input.addClass("is-transitioned");
+  input.focus();
+  $("#search-show").addClass("is-transitioned");
+  $("#search-hide").addClass("is-transitioned");
+  $("#search-form").addClass("is-transitioned");
+  $("#switch-wrapper").addClass("is-transitioned");
+
+  if(tasksMode) {
+    input.attr("placeholder", "Search Tasks");
+  } else {
+    input.attr("placeholder", "Search Conversation");
+  }
+}
+
+function hideSearch() {
+  $("#search-input").removeClass("is-transitioned");
+  $("#search-show").removeClass("is-transitioned");
+  $("#search-hide").removeClass("is-transitioned");
+  $("#search-form").removeClass("is-transitioned");
+  $("#switch-wrapper").removeClass("is-transitioned");
+
+  //simulate changeConvoClick
+  $("#conversation" + String(curConvoId)).trigger("click");
+}
+
+function sendQuery(e) {
+  e.preventDefault();
+
+  $("#ajax-loader-message").show();
+
+  $.ajax({
+    url: "/search",
+    method: "GET",
+    data: {
+      query: $("#search-input").val(),
+      tasks: tasksMode,
+      token: curConvoToken
+    }
+  }).done(function(response){
+    //turn on search mode
+    searchMode = true;
+
+    //append response to app-view
+    $(".app-view").html(response);
+
+    //hid ajax loader
+    $("#ajax-loader-message").hide();
+
+    //hide forms
+    $("#form-wrapper").hide();
+
+    //disable lazy load
+    var msgBox = $(".msg-bx-convo");
+    disableLazyLoad(msgBox);
+
+    //update listeners
+    updateTaskListeners();
+
+    //scroll to top
+    scrollToTop();
+  });
 }
