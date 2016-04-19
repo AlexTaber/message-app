@@ -1,7 +1,7 @@
 <% if conversation.has_unread_messages?(user) %>
-  <div class="msg-bx-convo-item is-unread-mb-convo">
+  <div class="msg-bx-convo-item is-unread-mb-convo" id="conversation<%= conversation.id %>">
 <% else %>
-  <div class="msg-bx-convo-item">
+  <div class="msg-bx-convo-item" id="conversation<%= conversation.id %>">
 <% end %>
   <%= link_to message_box_path(user_ids: conversation.user_ids, token: project.token, tasks: @tasks) do %>
     <i><%= conversation.messages.last.date_to_s %></i>

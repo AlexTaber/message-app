@@ -358,7 +358,7 @@ function startConversation(e) {
         $(".no-pending-tasks").remove();
         $(".pending-tasks").append(data.html);
       } else {
-        $(".app-view").append(anchorme.js(data.html, { "target":"_blank" }));
+        $(".app-view, .mb-view").append(anchorme.js(data.html, { "target":"_blank" }));
       }
       updateTaskListeners();
       subscribeToConvo(data.token, curConvoToken);
@@ -411,9 +411,9 @@ function subscribeToConvo(conversationToken, curConvoToken) {
         $(".notes").append(data.note_html);
       } else {
         if(userId == data.user_id) {
-          $(".app-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
+          $(".app-view, .mb-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
         } else {
-          $(".app-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
+          $(".app-view, .mb-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
         }
       }
 
@@ -435,14 +435,16 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       } else {
         //target is the targeted conversation care
         var target = $("#conversation" + String(data.conversation_id));
-        //update targets html
-        target.html(data.app_html);
-        //copy targets new html
-        var targetHtml = target[0].outerHTML;
-        //remove target
-        target.remove();
-        //prepend copied html to the top of the conversations section
-        $(".conversations-wrapper").prepend(targetHtml);
+        if(target.length > 0) {
+          //update targets html
+          target.html(data.app_html);
+          //copy targets new html
+          var targetHtml = target[0].outerHTML;
+          //remove target
+          target.remove();
+          //prepend copied html to the top of the conversations section
+          $(".conversations-wrapper").prepend(targetHtml);
+        }
       }
     }
 
@@ -533,9 +535,9 @@ function updateTaskListeners() {
     attachmentPreview(this);
   });
   //search
-  $("#search-show").on('click', showSearch);
-  $(".search-hide").on('click', hideSearch);
-  $("#search-form").on('submit', sendQuery);
+  $("#search-show").off('click',showSearch).on('click', showSearch);
+  $(".search-hide").off('click',hideSearch).on('click', hideSearch);
+  $("#search-form").off('click',sendQuery).on('submit', sendQuery);
 }
 
 function validateUserData(data, element, submit) {
@@ -740,7 +742,7 @@ function sendMessageAjaxInit() {
       lazy_load: lazyLoadIndex
     }
   }).done(function(response){
-    $(".app-view").html(response);
+    $(".app-view, .mb-view").html(response);
     $("#ajax-loader-message").hide();
     messagesEvents();
   });
@@ -1066,8 +1068,7 @@ function hideSearch() {
   $("#search-form").removeClass("is-transitioned");
   $("#switch-wrapper").removeClass("is-transitioned");
 
-  //simulate changeConvoClick
-  $("#conversation" + String(curConvoId)).trigger("click");
+  sendMessageAjaxInit();
 }
 
 function sendQuery(e) {
@@ -1087,8 +1088,8 @@ function sendQuery(e) {
     //turn on search mode
     searchMode = true;
 
-    //append response to app-view
-    $(".app-view").html(response);
+    //append response to view
+    $(".app-view, .mb-view").html(response);
 
     //hid ajax loader
     $("#ajax-loader-message").hide();

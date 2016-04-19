@@ -342,7 +342,7 @@
 
 .mb-body_info {
   padding:8px;
-  height:45px;
+  height:40px;
   background: #f5f5f5;
   overflow:visible;
   p {
@@ -538,34 +538,39 @@
 }
 
 //message form
+.msg-bx-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  margin-bottom: 10px;
+}
 #mb-form-wrapper{
- background:#eee;
-  height:81px;
-  position:relative;
-  div{
+  background:#eee;
+  position:fixed;
+  bottom:0;
+  right:0;
+  width:100%;
+  border-top:1px solid #ddd;
+  &>form>div{
+    width: calc(100% - 110px);
     display:inline-block;
-    min-width:calc(100% - 100px);
   }
   textarea{
     background-color:#fff;
-    height:62px;
+    height:40px;
+    min-height:40px;
     margin:10px;
-    margin-bottom:0;
-    min-width:calc(100% - 100px);
+    width:calc(100% - 20px);
     border:1px solid #ddd;
-    display:inline-block;
   }
   .button {
-    display:inline-block;
-    min-width: 70px !important;
+    width: 90px;
+    height:40px;
+    margin: 10px;
     position:absolute;
-    padding:0;
-    top:10px;
-    right:10px;
-    height:65px;
-    line-height: 0px;
-    font-size:20px;
-    color:#fff;
+    min-width:0;
+    right:5px;
+    font-size:25px;
   }
 }
 #message_content, #content {
@@ -585,12 +590,14 @@ width:100%;
   background:#f5f5f5;
   display:inline-block;
   overflow: visible;
-  input{
+  input[type="text"]{
+    border: none;
     background: #f5f5f5;
     padding:5px;
     line-height:100%;
     font-size: 100%;
     height:auto;
+    width: 180px;
   }
 }
 .mb-body_add-users-btn {
@@ -603,6 +610,7 @@ width:100%;
 }
 
 .msg-bx-convo {
+  padding-bottom: 60px;
   .icon-bar {
     clear: both;
 

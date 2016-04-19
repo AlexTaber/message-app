@@ -24,6 +24,10 @@
   <% if tasks %>
     <%= hidden_field_tag :tasks, tasks %>
   <% end %>
+
+  <% if mb %>
+    <%= hidden_field_tag :mb, true %>
+  <% end %>
     <%= button_tag(class: "button button-primary") do %>
     <i class="fa fa-paper-plane"></i>
   <% end %>
