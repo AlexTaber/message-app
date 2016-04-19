@@ -358,7 +358,7 @@ function startConversation(e) {
         $(".no-pending-tasks").remove();
         $(".pending-tasks").append(data.html);
       } else {
-        $(".app-view, .msg-bx-convo").append(anchorme.js(data.html, { "target":"_blank" }));
+        $(".app-view, .mb-view").append(anchorme.js(data.html, { "target":"_blank" }));
       }
       updateTaskListeners();
       subscribeToConvo(data.token, curConvoToken);
@@ -411,9 +411,9 @@ function subscribeToConvo(conversationToken, curConvoToken) {
         $(".notes").append(data.note_html);
       } else {
         if(userId == data.user_id) {
-          $(".app-view, .msg-bx-convo").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
+          $(".app-view, .mb-view").append(anchorme.js(data.current_user_html, { "target":"_blank" }));
         } else {
-          $(".app-view, .msg-bx-convo").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
+          $(".app-view, .mb-view").append(anchorme.js(data.other_user_html, { "target":"_blank" }));
         }
       }
 
@@ -535,9 +535,9 @@ function updateTaskListeners() {
     attachmentPreview(this);
   });
   //search
-  $("#search-show").on('click', showSearch);
-  $(".search-hide").on('click', hideSearch);
-  $("#search-form").on('submit', sendQuery);
+  $("#search-show").off('click',showSearch).on('click', showSearch);
+  $(".search-hide").off('click',hideSearch).on('click', hideSearch);
+  $("#search-form").off('click',sendQuery).on('submit', sendQuery);
 }
 
 function validateUserData(data, element, submit) {
@@ -742,7 +742,7 @@ function sendMessageAjaxInit() {
       lazy_load: lazyLoadIndex
     }
   }).done(function(response){
-    $(".app-view, .msg-bx-convo").html(response);
+    $(".app-view, .mb-view").html(response);
     $("#ajax-loader-message").hide();
     messagesEvents();
   });
@@ -1089,7 +1089,7 @@ function sendQuery(e) {
     searchMode = true;
 
     //append response to view
-    $(".app-view, .msg-bx-convo").html(response);
+    $(".app-view, .mb-view").html(response);
 
     //hid ajax loader
     $("#ajax-loader-message").hide();
