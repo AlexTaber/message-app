@@ -28,7 +28,7 @@
   <div class="task-item content">
     <% if task.completer_id %>
       <%= link_to task_path(task, task: { completer_id: nil }), method: "PUT", class: "uncomplete-task", title: "Mark task as not done" do %>
-        <div class="task-item icon"></div>
+        <div class="task-item icon complete"></div>
       <% end %>
       <p>
         <%= sanitize(simple_format(message.auto_linked_content.gsub(/(?:\n\r?|\r\n?)/, '<br>')), :tags => %w(br a)) %><br>
@@ -40,7 +40,7 @@
 
     <% else %>
       <%= link_to task_path(task, task: { completer_id: user.id }), method: "PUT", class: "complete-task", title: "Mark task as done" do %>
-        <div class="task-item icon"></div>
+        <div class="task-item icon pending"></div>
       <% end %>
 
       <p>

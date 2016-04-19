@@ -71,6 +71,24 @@
       }
     }
 
+    &.pending {
+      background: $red;
+
+      &:hover{
+        background: $green;
+        cursor: pointer;
+      }
+    }
+
+    &.complete {
+      background: $green;
+
+      &:hover{
+        background: $red;
+        cursor: pointer;
+      }
+    }
+
     &.content {
       width: calc(100% - 40px);
 
@@ -109,28 +127,4 @@
 }
 .completed-tasks{
   display:none;
-}
-.pending-tasks {
-  .task-container {
-    .task-item .icon {
-      background: $red;
-
-      &:hover{
-        background: $green;
-        cursor: pointer;
-      }
-    }
-  }
-}
-.completed-tasks {
-  .task-container {
-    .task-item .icon {
-      background: $green;
-
-      &:hover{
-        background: $red;
-        cursor: pointer;
-      }
-    }
-  }
 }
