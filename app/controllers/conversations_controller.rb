@@ -27,13 +27,13 @@ class ConversationsController < ApplicationController
         if params[:tasks]
           render json: {
             html: (render_to_string partial: "tasks/task", locals: { task: @task, message: @message, user: current_user }),
-            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, notes: params[:notes], tasks: params[:tasks], mb: params[:mb].to_b }),
+            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, notes: params[:notes], tasks: params[:tasks] }),
             token: @conversation.token
           }
         else
           render json: {
             html: (render_to_string partial: "messages/message", locals: { message: @message }),
-            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, notes: params[:notes], tasks: params[:tasks], mb: params[:mb].to_b }),
+            form_html: (render_to_string partial: "messages/form", locals: { message: Message.new, conversation: @conversation, notes: params[:notes], tasks: params[:tasks] }),
             token: @conversation.token
           }
         end

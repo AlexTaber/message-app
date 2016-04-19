@@ -128,7 +128,7 @@
         <div class="mb-body">
           <!-- view for saved conversation -->
           <div class="mb-body_info">
-            <p style="display:inline"><i>To: </i><b><%= @conversation.other_users_to_s(current_user) %> </b></p>
+            <p style="display:inline"><i>To: </i><b><%= @conversation.abbreviated_other_users_to_s(current_user, 2) %> </b></p>
             <div class="mb-body_add-users-form u-pull-right">
               <%= render partial: "layouts/typeahead_form", locals: { project: @project, conversation: @conversation, token: @project.token, tasks: @tasks } %>
             </div>
@@ -214,7 +214,7 @@
                 </div>
               <% elsif @conversation.users.length <= 1 %>
                 <div class="text-center" >
-                  Add users to this conversation by pressing the plus icon above!
+                  Add users to this conversation by using the form above!
                 </div>
               <% end %>
             <% end %>

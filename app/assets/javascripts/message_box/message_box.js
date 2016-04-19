@@ -11,7 +11,7 @@ jQuery(document).ready(function($){
     var conversationToken;
     for(var i = 0; i < conversationTokens.length; i++) {
       conversationToken = conversationTokens[i];
-      subscribeToMbConvo(conversationToken, curConvoToken);
+      //subscribeToMbConvo(conversationToken, curConvoToken);
     }
   }
 
@@ -126,6 +126,7 @@ function startMbConversation(e) {
       $(".msg-bx-convo").append(data.html);
     }
     subscribeToMbConvo(data.token, curConvoToken);
+    updateTaskListeners();
   });
 }
 
@@ -150,26 +151,27 @@ function addNewLine(form) {
   tar.val(value);
 }
 
-function subscribeToMbConvo(conversationToken, curConvoToken) {
-  channel = pusher.subscribe('conversation' + String(conversationToken) + String(userId));
-  channel.bind('new-message', function(data) {
-    if(curConvoToken == data.conversation_token) {
-      if(notesMode) {
+// function subscribeToMbConvo(conversationToken, curConvoToken) {
+//   channel = pusher.subscribe('conversation' + String(conversationToken) + String(userId));
+//   channel.bind('new-message', function(data) {
+//     if(curConvoToken == data.conversation_token) {
+//       if(notesMode) {
 
-      } else if(tasksMode) {
-        $(".pending-tasks-mb").prepend(data.task_html);
-      } else {
-        if(userId == data.user_id) {
-          $(".msg-bx-convo").append(data.current_user_html);
-        } else {
-          $(".msg-bx-convo").append(data.other_user_html);
-        }
-      }
+//       } else if(tasksMode) {
+//         $(".pending-tasks-mb").prepend(data.task_html);
+//       } else {
+//         if(userId == data.user_id) {
+//           $(".msg-bx-convo").append(data.current_user_html);
+//         } else {
+//           $(".msg-bx-convo").append(data.other_user_html);
+//         }
+//       }
 
-      scrollToBottom();
-    }
-  });
-}
+//       scrollToBottom();
+//       updateTaskListeners();
+//     }
+//   });
+// }
 
 function listenForNewMbConvos() {
   channel = pusher.subscribe('new-conversation' + String(userId));

@@ -435,14 +435,16 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       } else {
         //target is the targeted conversation care
         var target = $("#conversation" + String(data.conversation_id));
-        //update targets html
-        target.html(data.app_html);
-        //copy targets new html
-        var targetHtml = target[0].outerHTML;
-        //remove target
-        target.remove();
-        //prepend copied html to the top of the conversations section
-        $(".conversations-wrapper").prepend(targetHtml);
+        if(target.length > 0) {
+          //update targets html
+          target.html(data.app_html);
+          //copy targets new html
+          var targetHtml = target[0].outerHTML;
+          //remove target
+          target.remove();
+          //prepend copied html to the top of the conversations section
+          $(".conversations-wrapper").prepend(targetHtml);
+        }
       }
     }
 
