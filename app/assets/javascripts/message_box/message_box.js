@@ -118,15 +118,17 @@ function startMbConversation(e) {
     canSendMbMessage = true;
     curConvoToken = data.token;
     $("#mb-form-wrapper").html(data.form_html);
-    $("#av-message-form").submit(sendMbMessage);
+    $("#mb-form-wrapper").append("<div class='attachments-preview'></div>")
+    $("#av-message-form").submit(sendMessage);
     enterSubmit('#message_content', '#av-message-form');
     if(tasksMode) {
       $(".pending-tasks-mb").prepend(data.html);
     } else {
       $(".msg-bx-convo").append(data.html);
     }
-    subscribeToMbConvo(data.token, curConvoToken);
     updateTaskListeners();
+    subscribeToConvo(data.token, curConvoToken);
+    listenForNewTasks(data.token, curConvoToken);
   });
 }
 
