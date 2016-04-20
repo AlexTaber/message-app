@@ -53,10 +53,11 @@ class ConversationsController < ApplicationController
     project = Project.find_by(id: params[:project_id])
     tasks = is_true?(params[:tasks])
     notes = is_true?(params[:notes])
+    mb = is_true?(params[:message_box])
     message = Message.new
     render json: {
       message_center: (render_to_string partial: "message_center", locals: { conversation: @conversation, project: project, notes: notes, tasks: tasks, message: message }),
-      app_messages: (render_to_string partial: "app_messages", locals: { conversation: @conversation, tasks: tasks, notes: notes, lazy_load: 0, project: project })
+      app_messages: (render_to_string partial: "app_messages", locals: { conversation: @conversation, tasks: tasks, notes: notes, lazy_load: 0, project: project, mb: mb })
     }
   end
 
@@ -100,8 +101,9 @@ class ConversationsController < ApplicationController
     project = Project.find_by(id: params[:project_id])
     tasks = is_true?(params[:tasks])
     notes = is_true?(params[:notes])
+    mb = is_true?(params[:messageBox])
     lazy_load = params[:lazy_load].to_i
-    render partial: "app_messages", locals: { conversation: conversation, tasks: tasks, notes: notes, lazy_load: lazy_load, project: project }
+    render partial: "app_messages", locals: { conversation: conversation, tasks: tasks, notes: notes, lazy_load: lazy_load, project: project, mb: mb }
   end
 
   def read_messages
