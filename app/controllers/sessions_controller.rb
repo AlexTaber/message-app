@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       cookies.permanent.signed[:user_id] = @user.id
+      session[:project_id] = nil
       if params[:mb].to_b
         redirect_to message_box_path
       else

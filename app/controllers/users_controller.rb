@@ -78,8 +78,9 @@ class UsersController < ApplicationController
 
     current_user.has_active_projects? ? find_user_project : @project = Project.new
     unless current_user.permitted_on_project?(@project)
+      session[:project_id] = nil #just to be safe
       flash[:warn] = "You are not permitted to view this project"
-      redirect_to home_path and return
+      redirect_to splash_path and return
     end
 
     if params[:new_conversation]
