@@ -141,6 +141,7 @@ class UsersController < ApplicationController
           set_up_notes
           @tasks = params[:tasks]
           @notes = params[:notes]
+          @message_box = true;
           @lazy_load = find_lazy_load
         else
           redirect_to new_request_path(token: token)

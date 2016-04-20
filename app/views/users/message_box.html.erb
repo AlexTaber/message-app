@@ -1,4 +1,5 @@
 <%= javascript_include_tag "message_box/message_box" %>
+
 <% if @lazy_load %>
   <%= javascript_tag "lazyLoadIndex = #{@lazy_load}" %>
 <% end %>
@@ -134,28 +135,26 @@
             </div>
           </div>
 
-          <% unless @conversation.new_record? %>
-            <div class="task-conversation-switch text-center">
+          <div class="task-conversation-switch text-center">
 
-              <div class="search-wrapper u-pull-right">
-                <form id="search-form">
-                  <input id="search-input" type="text" placeholder="Search...">
-                </form>
-                <i class="fa fa-search" id="search-show"></i>
-                <i class="fa fa-times search-hide" id="search-hide"></i>
-              </div>
-
-              <span id="switch-wrapper">
-                <% if @tasks %>
-                  <%= link_to "View #{@notes ? 'Notes' : 'Conversation'}", root_path(notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
-                    Tasks
-                <% else %>
-                  <%= "#{@notes ? 'Notes' : 'Conversation'}" %>  |
-                  <%= link_to "View Tasks", root_path(notes: @notes, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
-                <% end %>
-              </span>
+            <div class="search-wrapper u-pull-right">
+              <form id="search-form">
+                <input id="search-input" type="text" placeholder="Search...">
+              </form>
+              <i class="fa fa-search" id="search-show"></i>
+              <i class="fa fa-times search-hide" id="search-hide"></i>
             </div>
-          <% end %>
+
+            <span id="switch-wrapper">
+              <% if @tasks %>
+                <%= link_to "View #{@notes ? 'Notes' : 'Conversation'}", root_path(notes: @notes, project_id: @project.id, mobile_conversations: true, user_ids: @conversation.user_ids), class: "convo-links" %>  |
+                  Tasks
+              <% else %>
+                <%= "#{@notes ? 'Notes' : 'Conversation'}" %>  |
+                <%= link_to "View Tasks", root_path(notes: @notes, tasks: true, project_id: @project.id, user_ids: @conversation.user_ids), class: "convo-links" %>
+              <% end %>
+            </span>
+          </div>
 
           <div class="msg-bx-convo mb-view">
             <% if @tasks %>

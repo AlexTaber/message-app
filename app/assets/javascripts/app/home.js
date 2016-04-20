@@ -845,7 +845,8 @@ function changeConvo(e) {
         data: {
           project_id: projectId,
           tasks: tasksMode,
-          notes: notesMode
+          notes: notesMode,
+          message_box: msgBx
         }
       }).done(function(data){
         $(".message-center").html(data.message_center);
