@@ -39,8 +39,11 @@
   <% else %>
     <%= javascript_tag "projectId = null;" %>
   <% end %>
-  <%= javascript_tag "#{@tasks ? 'tasksMode = true;' : 'tasksMode = false;'}" %>
-  <%= javascript_tag "#{@message_box ? 'msgBx = true;' : 'msgBx = false;'}" %>
+  <% if @tasks %>
+    <%= javascript_tag "tasksMode = true;" %>
+  <% else %>
+    <%= javascript_tag "tasksMode = false;" %>
+  <% end %>
   <% if @lazy_load %>
     <%= javascript_tag "lazyLoadIndex = #{@lazy_load}" %>
   <% end %>
