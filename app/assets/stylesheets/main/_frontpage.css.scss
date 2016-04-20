@@ -507,6 +507,10 @@ ul.edit-project-list {
 	border-top:1px solid #ddd;
 	padding: 5px 0 5px 0;
 
+	&.is-hidden {
+		display: none;
+	}
+
 	#switch-wrapper {
 		opacity: 1;
 

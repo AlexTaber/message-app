@@ -122,13 +122,12 @@ class UsersController < ApplicationController
   end
 
   def message_box
-    token = params[:token]
 
     if current_user
       update_last_online
-      @project = token_project(token)
+      find_user_project
       unless @project
-        redirect_to token_redirect_path
+        redirect_to mb_new_project_path
       else
         if current_user.projects.include?(@project)
           if params[:new_conversation]
@@ -143,15 +142,15 @@ class UsersController < ApplicationController
           @notes = params[:notes]
           @lazy_load = find_lazy_load
         else
-          redirect_to new_request_path(token: token)
+          redirect_to new_request_path
         end
       end
     else
-      redirect_to mb_login_path(token: token)
+      redirect_to mb_login_path
     end
   end
 
-  def token_redirect
+  def mb_new_project
 
   end
 
@@ -209,12 +208,12 @@ class UsersController < ApplicationController
   def find_user_project
     if params[:project_id]
       @project = Project.find_by(id: params[:project_id])
-      set_project_session
+      set_project_session if @project
     elsif session[:project_id]
       @project = Project.find_by(id: session[:project_id])
     else
       @project = current_user.active_projects_ordered_by_admin.first
-      set_project_session
+      set_project_session if @project
     end
   end
 

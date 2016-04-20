@@ -13,8 +13,8 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       cookies.permanent.signed[:user_id] = @user.id
-      if params[:token]
-        redirect_to message_box_path(token: params[:token])
+      if params[:mb].to_b
+        redirect_to message_box_path
       else
         redirect_to home_path
       end
@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
 
   def destroy
     cookies.signed[:user_id] = nil
+    session[:project_id] = nil
     if params[:message_box]
       redirect_to mb_login_path(token: params[:token])
     else

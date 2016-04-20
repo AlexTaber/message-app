@@ -135,7 +135,7 @@
             </div>
           </div>
 
-          <div class="task-conversation-switch text-center">
+          <div class="task-conversation-switch text-center <%= @conversation.new_record? ? 'is-hidden' : '' %>">
 
             <div class="search-wrapper u-pull-right">
               <form id="search-form">
