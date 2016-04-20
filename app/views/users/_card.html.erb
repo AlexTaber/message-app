@@ -8,16 +8,18 @@
         <small>Remove User</small>
       </div>
     </div>
-    <div class="tool-button-hover">
-      <% if user.find_user_project(project).admin %>
-        <%= link_to "", user_project_path(user.find_user_project(project), user_project: { admin: false }), method: "put", class: "fa fa-user is-admin admin-select" %>
-      <% else %>
-        <%= link_to "", user_project_path(user.find_user_project(project), user_project: { admin: true }), method: "put", class: "fa fa-user is-not-admin admin-select" %>
-      <% end %>
-      <div class="tool-button-hover-text user-tooltip">
-        <small>Make user an Admin</small>
+    <% if current_user.owner %>
+      <div class="tool-button-hover">
+        <% if user.find_user_project(project).admin %>
+          <%= link_to "", user_project_path(user.find_user_project(project), user_project: { admin: false }), method: "put", class: "fa fa-user is-admin admin-select" %>
+        <% else %>
+          <%= link_to "", user_project_path(user.find_user_project(project), user_project: { admin: true }), method: "put", class: "fa fa-user is-not-admin admin-select" %>
+        <% end %>
+        <div class="tool-button-hover-text user-tooltip">
+          <small>Make user an Admin</small>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
   <div class="media">
     <% if user.image %>
