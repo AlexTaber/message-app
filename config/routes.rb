@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get '/splash' => 'sessions#splash'
   get '/home' => 'users#home'
   get '/message_box' => 'users#message_box'
-  get '/token_redirect' => 'users#token_redirect'
+  get '/mb-new-project' => 'users#mb_new_project'
   get '/typeahead' => 'users#typeahead'
   get '/owner-data' => 'users#owner_data'
   get '/validate' => 'users#validate'

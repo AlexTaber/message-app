@@ -36,6 +36,7 @@
         <% end %>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
+          <%= link_to @project.name, home_path(project_id: @project.id), target: "_blank" %>
           <% if current_user.has_unread_conversations_other_projects?(@project) %>
             <i class="fa fa-globe is-unread-icon" id="projects-btn"></i>
           <% else %>
@@ -88,12 +89,12 @@
           <% current_user.projects.each do |project| %>
             <li>
               <% if @project == project %>
-                <%= link_to project.name, home_path(project_id: project.id), target: '_blank', class: 'is-active' %>
+                <%= link_to project.name, message_box_path(project_id: project.id), class: 'is-active' %>
               <% else %>
                 <% if current_user.has_unread_conversations_by_project?(project) %>
-                  <%= link_to project.name, home_path(project_id: project.id), target: '_blank', class: 'is-unread-project' %>
+                  <%= link_to project.name, message_box_path(project_id: project.id), class: 'is-unread-project' %>
                 <% else %>
-                  <%= link_to project.name, home_path(project_id: project.id), target: '_blank' %>
+                  <%= link_to project.name, message_box_path(project_id: project.id) %>
                 <% end %>
               <% end %>
             </li>
@@ -135,7 +136,7 @@
             </div>
           </div>
 
-          <div class="task-conversation-switch text-center">
+          <div class="task-conversation-switch text-center <%= @conversation.new_record? ? 'is-hidden' : '' %>">
 
             <div class="search-wrapper u-pull-right">
               <form id="search-form">

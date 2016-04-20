@@ -120,6 +120,8 @@ function startMbConversation(e) {
     $("#mb-form-wrapper").html(data.form_html);
     $("#mb-form-wrapper").append("<div class='attachments-preview'></div>")
     $("#av-message-form").submit(sendMessage);
+    $(".task-conversation-switch").removeClass("is-hidden");
+    $(".convo-links").off('click').on('click', toggleTasks);
     enterSubmit('#message_content', '#av-message-form');
     if(tasksMode) {
       $(".pending-tasks-mb").prepend(data.html);
