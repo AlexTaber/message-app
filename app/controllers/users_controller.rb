@@ -207,7 +207,19 @@ class UsersController < ApplicationController
   end
 
   def find_user_project
-    params[:project_id] ? @project = Project.find_by(id: params[:project_id]) : @project = current_user.active_projects_ordered_by_admin.first
+    if params[:project_id]
+      @project = Project.find_by(id: params[:project_id])
+      set_project_session
+    elsif session[:project_id]
+      @project = Project.find_by(id: session[:project_id])
+    else
+      @project = current_user.active_projects_ordered_by_admin.first
+      set_project_session
+    end
+  end
+
+  def set_project_session
+    session[:project_id] = @project.id
   end
 
   def find_conversation(user)
