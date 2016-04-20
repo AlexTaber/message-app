@@ -36,6 +36,7 @@
         <% end %>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
+          <%= link_to @project.name, home_path(project_id: @project.id), target: "_blank" %>
           <% if current_user.has_unread_conversations_other_projects?(@project) %>
             <i class="fa fa-globe is-unread-icon" id="projects-btn"></i>
           <% else %>

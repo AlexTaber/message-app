@@ -143,7 +143,9 @@ class UsersController < ApplicationController
           @notes = params[:notes]
           @lazy_load = find_lazy_load
         else
-          redirect_to new_request_path
+          flash[:warn] = "You are not a member of that project"
+          session[:project_id] = nil
+          redirect_to message_box_path
         end
       end
     else
