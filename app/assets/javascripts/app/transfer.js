@@ -32,6 +32,8 @@ function activateTransfer() {
   $('#current-account').slideUp();
   i = $(el).parent().children().index(el) - 1
   $('.mobile-target').eq(i).fadeIn();
+
+  changeConvoBool = false;
 }
 
 function closeTransfer() {
