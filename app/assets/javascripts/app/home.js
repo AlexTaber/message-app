@@ -285,6 +285,12 @@ function show_modal(modal_id){
 	$('#'+modal_id).fadeIn(500);
 }
 
+function showAjaxErrorModal() {
+  $("#ajax-loader-message").hide();
+  $("#ajax-loader").hide();
+  show_modal('ajax-error');
+}
+
 function enterSubmit(input, form) {
   $(input).keypress(function(event) {
     if (event.which == 13) {
@@ -320,6 +326,8 @@ function sendMessage(e) {
       contentType: false,  // tell jQuery not to set contentType
     }).done(function(response){
       //send message events called from pusher event
+    }).fail(function() {
+      showAjaxErrorModal();
     });
   }
 }
@@ -368,7 +376,9 @@ function startConversation(e) {
       $('#form-wrapper textarea').css('height', '40px');
       $("#ajax-loader").hide();
       totalMessages += 1;
-    });
+    }).fail(function() {
+      showAjaxErrorModal();
+    });;
   }
 }
 
@@ -588,7 +598,9 @@ function updateTask(e) {
     method: "PUT"
   }).done(function(count){
     $("#ajax-loader").hide();
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
 
 function newModel(e) {
@@ -601,7 +613,9 @@ function newModel(e) {
     method: "POST"
   }).done(function(response){
     $("#ajax-loader").hide();
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
 
 function removeModel(e) {
@@ -618,7 +632,9 @@ function removeModel(e) {
       //replace notes wrapper
       $(".notes-wrapper").html(response.html);
     }
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
 
 function removeNote(e) {
@@ -703,7 +719,9 @@ function lazyLoad() {
     } else {
       disableLazyLoad(msgBox);
     }
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
 
 function disableLazyLoad(msgBox) {
@@ -745,7 +763,9 @@ function sendMessageAjaxInit() {
     $(".app-view, .mb-view").html(response);
     $("#ajax-loader-message").hide();
     messagesEvents();
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
 
 function messagesEvents() {
@@ -856,7 +876,9 @@ function changeConvo(e) {
         setUpTypeahead();
         changeConvoBool = true;
         searchMode = false;
-      });
+      }).fail(function() {
+        showAjaxErrorModal();
+      });;
     }
   }
 }
@@ -932,7 +954,9 @@ function removeUser(e) {
     show_modal('manage-users');
     $('.close-modal, .close-modal-text').on('click', close_modal);
     setManageUserEvents();
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
 
 function addUser(e) {
@@ -954,7 +978,9 @@ function addUser(e) {
     show_modal('manage-users');
     $('.close-modal, .close-modal-text').on('click', close_modal);
     setManageUserEvents();
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
 
 function setManageUserEvents() {
@@ -1109,5 +1135,7 @@ function sendQuery(e) {
 
     //reset search input text
     $("#search-input").val("");
-  });
+  }).fail(function() {
+    showAjaxErrorModal();
+  });;
 }
