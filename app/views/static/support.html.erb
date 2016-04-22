@@ -1,20 +1,47 @@
-<div style="height:100%; width:100%; overflow: scroll;">
+<div id="scroll-div" style="height:100%; width:100%; overflow: scroll;">
   <%= render partial: 'layouts/header', locals: { transitioned: true } %>
+
+  <!-- VIDEO MODAL -->
+  <div id="video-modal">
+    <i class="fa fa-times" aria-hidden="true"></i>
+    <iframe src="" frameborder="0" allowfullscreen></iframe>
+  </div>
 <!--
 Feature Area
 -->
-<section class="feature">
-  <h1 class="text-center">Mercury App Support</h1>
+<section class="feature gradient-background">
+  <h1>MercuryApp Support</h1>
+</section>
+<section class="support-cards">
+  <div class="container">
+    <div class="row">
+      <div class="six columns support-card right">
+        <%= link_to "#", class: "support-card-content", id: "faq-click" do %>
+          <h2>FAQ</h2>
+          <p>Learn the inner workings of MercuryApp, such as signing up, our pricing model, and more!</p>
+          <button class="button button-primary">Click for More</button>
+        <% end %>
+      </div>
+
+      <div class="six columns support-card left">
+        <%= link_to "#", class: "support-card-content", id: "tutorials-click" do %>
+          <h2>Video Tutorials</h2>
+          <p>More of a visual learner? Our nifty video tutorials have your covered!</p>
+          <button class="button button-primary">Click for More</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- End Feature -->
 <!-- main body -->
 <div>
- <section>
+<div id="support-content-wrapper">
+  <section class="faq">
    <div class="container">
      <div class="row">
        <div class="ten offset-by-one columns text-center">
-        <h2>FAQ</h2>
-        <hr class="fifty">
+        <h1>FAQ</h1>
 
         <div>
           <div class="list-div">
@@ -94,18 +121,56 @@ Feature Area
        </div>
      </div>
    </div>
+  </section>
+
+  <section class="tutorials">
+    <h1 class="text-center">MercuryApp Video Tutorials</h1>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/I7yfoNWDR6Y">
+          <div class="tutorial-card" id="tut-card-0">
+            <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+          </div>
+
+          <p class="text-center">Getting Started</p>
+        </div>
+
+        <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/90eYsPWIVHY">
+          <div class="tutorial-card" id="tut-card-1">
+            <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+          </div>
+
+          <p class="text-center">Using Tasks</p>
+        </div>
+
+        <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/CFZOgKJz52E">
+          <div class="tutorial-card" id="tut-card-2">
+            <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+          </div>
+
+          <p class="text-center">Attaching Files</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+   <section id="support-info">
+    <div class="container">
+      <div class="row">
+        <div class="ten offset-by-one columns text-center">
+          <h1 class="splash-header">Need help?</h1>
+          <h3>Our team will be happy to assist you. </h3>
+          <a href="mailto:admin@mercuryapp.co">Send us an email</a>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
    </section>
-   <div class="container">
-     <div class="row">
-       <div class="ten offset-by-one columns text-center">
-         <h1>Need more help?</h1>
-         <h3>Our team will be happy to assist you. </h3>
-         <a href="mailto:admin@mercuryapp.co">Send us an email</a>
-         <p>&nbsp;</p>
-         <p>&nbsp;</p>
-       </div>
-     </div>
-   </div>
 
 <footer>
   <div class="container">

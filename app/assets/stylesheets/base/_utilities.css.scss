@@ -8,6 +8,14 @@
 * http://www.opensource.org/licenses/mit-license.php
 * 12/29/2014
 */
+
+.gradient-background {
+  background: lighten($pwdlight, 10%);
+  background: -webkit-linear-gradient(left, $pwddark , lighten($pwdlight, 10%));
+  background: -o-linear-gradient(right, $pwddark, lighten($pwdlight, 10%));
+  background: -moz-linear-gradient(right, $pwddark, lighten($pwdlight, 10%));
+  background: linear-gradient(to right, $pwddark , lighten($pwdlight, 10%));
+}
 .top-50 {
   margin-top: 50px;
 }
@@ -57,6 +65,12 @@ hr {
   .table-cell{
       display:inline-table;
       vertical-align:middle;
+}
+.center-table-cell {
+  display:table-cell;
+  vertical-align:middle;
+  text-align: center;
+  width: 100%;
 }
 .color-green{
   color:darken($green, 40%);
