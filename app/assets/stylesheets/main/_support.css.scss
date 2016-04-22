@@ -76,6 +76,117 @@
   }
 }
 
-.faq {
+.faq, .tutorials {
   display: none;
+}
+
+.faq {
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+
+.tutorials {
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  .tutorial-card-container {
+    border-bottom: 1px solid $grey;
+    padding-top: 20px;
+
+    p {
+      margin-top: 10px;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      p {
+        color: $pwdlight;
+      }
+
+     .tutorial-card {
+        div {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .tutorial-card {
+    height: 120px;
+    border-radius: 5px;
+    border: 1px solid $grey;
+    background-size: cover;
+    background-position: center center;
+    max-width: 220px;
+    margin: auto;
+
+    div {
+      width: 100%;
+      height: 100%;
+      background: rgba($black, 0.5);
+      opacity: 0;
+      display: table;
+      text-align: center;
+      color: $white;
+      font-size: 5rem;
+    }
+
+    i {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  #tut-card-0 {
+    background-image: url('https://s3.amazonaws.com/mercury-app-assets/vid-preview-1');
+  }
+
+  #tut-card-1 {
+    background-image: url('https://s3.amazonaws.com/mercury-app-assets/vid-preview-2');
+  }
+
+  #tut-card-2 {
+    background-image: url('https://s3.amazonaws.com/mercury-app-assets/vid-preview-3');
+  }
+}
+
+#video-modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba($black, 0.85);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  -webkit-transition: opacity 0.3s; /* Safari */
+  transition: opacity 0.3s;
+  text-align: center;
+
+  i {
+    position: absolute;
+    right: 20px;
+    top: 3vh;
+    font-size: 1.5em;
+    color: $white;
+
+    &:hover {
+      color: $pwdlight;
+      cursor: pointer;
+    }
+  }
+
+  &.is-active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  iframe {
+    height: 80vh;
+    width: 142.3vh;
+    max-width: 90vw;
+    margin-top: 10vh;
+  }
 }
