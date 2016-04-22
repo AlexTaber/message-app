@@ -190,10 +190,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def support
-
-  end
-
   def plugin_info
 
   end

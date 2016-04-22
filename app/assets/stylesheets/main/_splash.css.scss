@@ -233,26 +233,6 @@ a:hover {
 .home-link a {
 	color: $white;
 }
-.feature {
-	margin-top: 50px;
-	padding: 0;
-	background: url('map-feature-2.png') no-repeat;
-	height: 200px;
-	background-size: cover;
-	background-position: center center;
-	display: table;
-	width:100%;
-	h1 {
-		display: table-cell;
-		vertical-align: middle;
-	}
-}
-@media (min-width: 550px) {
-	.feature {
-		height: 500px;
-		margin-top:0;
-	}
-}
 
 ///Page Styles
 

@@ -3,13 +3,34 @@
 <!--
 Feature Area
 -->
-<section class="feature">
-  <h1 class="text-center">Mercury App Support</h1>
+<section class="feature gradient-background">
+  <h1>MercuryApp Support</h1>
+</section>
+<section class="support-cards">
+  <div class="container">
+    <div class="row">
+      <div class="six columns support-card right">
+        <%= link_to "#", class: "support-card-content" do %>
+          <h2>FAQ</h2>
+          <p>Learn the inner workings of MercuryApp, such as signing up, our pricing model, and more!</p>
+          <button class="button button-primary">Click for More</button>
+        <% end %>
+      </div>
+
+      <div class="six columns support-card left">
+        <%= link_to "#", class: "support-card-content" do %>
+          <h2>Video Tutorials</h2>
+          <p>More of a visual learner? Our nifty video tutorials have your covered!</p>
+          <button class="button button-primary">Click for More</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- End Feature -->
 <!-- main body -->
 <div>
- <section>
+ <section class="faq">
    <div class="container">
      <div class="row">
        <div class="ten offset-by-one columns text-center">
@@ -95,17 +116,20 @@ Feature Area
      </div>
    </div>
    </section>
-   <div class="container">
-     <div class="row">
-       <div class="ten offset-by-one columns text-center">
-         <h1>Need more help?</h1>
-         <h3>Our team will be happy to assist you. </h3>
-         <a href="mailto:admin@mercuryapp.co">Send us an email</a>
-         <p>&nbsp;</p>
-         <p>&nbsp;</p>
-       </div>
-     </div>
-   </div>
+
+   <section id="support-info">
+    <div class="container">
+      <div class="row">
+        <div class="ten offset-by-one columns text-center">
+          <h1 class="splash-header">Need help?</h1>
+          <h3>Our team will be happy to assist you. </h3>
+          <a href="mailto:admin@mercuryapp.co">Send us an email</a>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+   </section>
 
 <footer>
   <div class="container">

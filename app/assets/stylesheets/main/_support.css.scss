@@ -1,0 +1,81 @@
+.feature {
+  margin-top: 58px;
+  padding: 0;
+  display: table;
+  text-align: center;
+  width: 100%;
+  color: $white;
+
+  h1 {
+    padding: 30px;
+    margin: 0;
+  }
+
+  i {
+    font-size: 8rem;
+  }
+}
+
+.support-cards {
+  padding: 0;
+  //background: url('map-feature-2.png') no-repeat;
+  background: $grey;
+  background-size: cover;
+  background-position: center center;
+  width:100%;
+  height: 400px;
+
+  .support-card {
+    height: 400px;
+    background: $grey;
+    text-align: center;
+    display: table;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1;
+    -webkit-transition: 0.3s; /* Safari */
+    transition: 0.3s;
+
+    &:hover {
+      height: 420px;
+      margin-top: -10px;
+      box-shadow: 5px 5px 5px #666666;
+
+      .support-card-content {
+        background: rgba($black, 0.5);
+        color: $white;
+      }
+    }
+
+    &.right {
+      background-image: url('https://s3.amazonaws.com/mercury-app-assets/home1.jpg');
+    }
+
+    &.left {
+      background-image: url('https://s3.amazonaws.com/mercury-app-assets/home2.jpg');
+    }
+
+    .support-card-content {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 50px;
+      background: $grey;
+      text-decoration: none;
+      color: $black;
+
+      p {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 750px) {
+  .feature {
+    margin-top: 50px;
+  }
+}
+
+.faq {
+  display: none;
+}
