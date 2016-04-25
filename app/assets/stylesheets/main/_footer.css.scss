@@ -5,6 +5,15 @@ footer {
 	padding-bottom: 2rem;
 	background-color: rgba($pwdlight, .8);
   color: rgba($white, 1);
+
+  a {
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      color: $grey;
+    }
+  }
 }
 
 .copyright-footer {
