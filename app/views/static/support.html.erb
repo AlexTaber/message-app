@@ -6,180 +6,174 @@
     <i class="fa fa-times" aria-hidden="true"></i>
     <iframe src="" frameborder="0" allowfullscreen></iframe>
   </div>
-<!--
-Feature Area
--->
-<section class="feature gradient-background">
-  <h1>MercuryApp Support</h1>
-</section>
-<section class="support-cards">
-  <div class="container">
-    <div class="row">
-      <div class="six columns support-card right">
-        <%= link_to "#", class: "support-card-content", id: "faq-click" do %>
-          <h2>FAQ</h2>
-          <p>Learn the inner workings of MercuryApp, such as signing up, our pricing model, and more!</p>
-          <button class="button button-primary">Click for More</button>
-        <% end %>
-      </div>
 
-      <div class="six columns support-card left">
-        <%= link_to "#", class: "support-card-content", id: "tutorials-click" do %>
-          <h2>Video Tutorials</h2>
-          <p>More of a visual learner? Our nifty video tutorials have your covered!</p>
-          <button class="button button-primary">Click for More</button>
-        <% end %>
+  <section class="feature gradient-background">
+    <h1>MercuryApp Support</h1>
+  </section>
+
+  <section class="support-cards">
+    <div class="container">
+      <div class="row">
+        <div class="six columns support-card right">
+          <%= link_to "#", class: "support-card-content", id: "faq-click" do %>
+            <h2>FAQ</h2>
+            <p>Learn the inner workings of MercuryApp, such as signing up, our pricing model, and more!</p>
+            <button class="button button-primary">Click for More</button>
+          <% end %>
+        </div>
+
+        <div class="six columns support-card left">
+          <%= link_to "#", class: "support-card-content", id: "tutorials-click" do %>
+            <h2>Video Tutorials</h2>
+            <p>More of a visual learner? Our nifty video tutorials have your covered!</p>
+            <button class="button button-primary">Click for More</button>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End Feature -->
-<!-- main body -->
-<div>
-<div id="support-content-wrapper">
-  <section class="faq">
-   <div class="container">
-     <div class="row">
-       <div class="ten offset-by-one columns text-center">
-        <h1>FAQ</h1>
+  </section>
+  <!-- End Feature -->
+  <!-- main body -->
+  <div>
+    <div id="support-content-wrapper">
+      <section class="faq">
+       <div class="container">
+         <div class="row">
+           <div class="ten offset-by-one columns text-center">
+            <h1>FAQ</h1>
 
-        <div>
-          <div class="list-div">
-            <h4 class="list-drop-down">What is Mercury?<i class="fa fa-caret-down list-caret"></i></h4>
-          </div>
-          <div class="drop-list">
-              <p>Mercury is a messaging app designed to help you get group projects done quicker and more efficiently. With Mercury you can keep all of your communications about a specific project in one place and make those messages into tasks so everyone in your group knows what needs to get done!</p>
-          </div>
-        </div>
+            <div>
+              <div class="list-div">
+                <h4 class="list-drop-down">What is Mercury?<i class="fa fa-caret-down list-caret"></i></h4>
+              </div>
+              <div class="drop-list">
+                  <p>Mercury is a messaging app designed to help you get group projects done quicker and more efficiently. With Mercury you can keep all of your communications about a specific project in one place and make those messages into tasks so everyone in your group knows what needs to get done!</p>
+              </div>
+            </div>
 
-        <div>
-          <div class="list-div">
-            <h4 class="list-drop-down">How much does it cost?<i class="fa fa-caret-down list-caret"></i></h4>
-          </div>
-          <div class="drop-list">
-            <p>Mercury is free to use for up to three projects and you can add up to three other users to each project. You can upgrade your account to get more projects and to add more users to projects.</p>
-            <% if current_user %>
-              <p>
-                Check out all of our plans <%= link_to 'here', edit_subscription_path(current_user.subscription) %>
-              </p>
-            <% end %>
-          </div>
-        </div>
+            <div>
+              <div class="list-div">
+                <h4 class="list-drop-down">How much does it cost?<i class="fa fa-caret-down list-caret"></i></h4>
+              </div>
+              <div class="drop-list">
+                <p>Mercury is free to use for up to three projects and you can add up to three other users to each project. You can upgrade your account to get more projects and to add more users to projects.</p>
+                <% if current_user %>
+                  <p>
+                    Check out all of our plans <%= link_to 'here', edit_subscription_path(current_user.subscription) %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
 
-        <div>
-          <div class="list-div">
-            <h4 class="list-drop-down">How do I sign up?<i class="fa fa-caret-down list-caret"></i></h4>
-          </div>
-          <div class="drop-list">
-              <h4><b>1. Visit our <%= link_to 'signup page', new_user_path %></b></h4>
-             <p class="welcome-text">Here you will tell us some information about your self including your name and email address. You will use your email address to sign in to your account.</p>
-             <h4><b>2. Create a unique username</b></h4>
-             <p class="welcome-text">This allows you to be found by other Mercury users.</p>
-             <h4><b>2. Choose a profile image</b></h4>
-             <p class="welcome-text">If you don't set up a profile image other users will see the first letter of your name in a blue circle.</p>
-          </div>
-        </div>
+            <div>
+              <div class="list-div">
+                <h4 class="list-drop-down">How do I sign up?<i class="fa fa-caret-down list-caret"></i></h4>
+              </div>
+              <div class="drop-list">
+                  <h4><b>1. Visit our <%= link_to 'signup page', new_user_path %></b></h4>
+                 <p class="welcome-text">Here you will tell us some information about your self including your name and email address. You will use your email address to sign in to your account.</p>
+                 <h4><b>2. Create a unique username</b></h4>
+                 <p class="welcome-text">This allows you to be found by other Mercury users.</p>
+                 <h4><b>2. Choose a profile image</b></h4>
+                 <p class="welcome-text">If you don't set up a profile image other users will see the first letter of your name in a blue circle.</p>
+              </div>
+            </div>
 
 
-        <div>
-          <div class="list-div">
-            <h4 class="list-drop-down">How do I get started?<i class="fa fa-caret-down list-caret"></i></h4>
-          </div>
-          <div class="drop-list">
-            <h4><b>1. Add a project</b></h4>
-            <p class="welcome-text">Projects are at the core of how Mercury App works. A project can be anything from a group school project to a place for messages and task to be shared for an entire company. Add a project by hitting "New Project" in the left most column of your dashboard.</p>
+            <div>
+              <div class="list-div">
+                <h4 class="list-drop-down">How do I get started?<i class="fa fa-caret-down list-caret"></i></h4>
+              </div>
+              <div class="drop-list">
+                <h4><b>1. Add a project</b></h4>
+                <p class="welcome-text">Projects are at the core of how Mercury App works. A project can be anything from a group school project to a place for messages and task to be shared for an entire company. Add a project by hitting "New Project" in the left most column of your dashboard.</p>
 
-            <br>
-            <h4><b>2. Add Some Users</b></h4>
-            <p class="welcome-text">You can't message anyone without other people in your project! Go go to the manage users button under your project name to add people to your project. If they are already Mercury App users you can simply add them or you can invite them by email if they are not!</p>
-            <br>
+                <br>
+                <h4><b>2. Add Some Users</b></h4>
+                <p class="welcome-text">You can't message anyone without other people in your project! Go go to the manage users button under your project name to add people to your project. If they are already Mercury App users you can simply add them or you can invite them by email if they are not!</p>
+                <br>
 
-            <h4><b>3. Start a New Conversation</b></h4>
-            <p class="welcome-text">Click new conversation to open a new message thread in the next section. Choose what users you want to talk to in the messages section by typing their name into the area after <b>to:</b></p>
-            <br>
+                <h4><b>3. Start a New Conversation</b></h4>
+                <p class="welcome-text">Click new conversation to open a new message thread in the next section. Choose what users you want to talk to in the messages section by typing their name into the area after <b>to:</b></p>
+                <br>
 
-            <h4><b>4. Start Messaging</b></h4>
-            <p class="welcome-text">This section will allow you to message a single user in your project or multiple users. Keep all of your communication about a project in one place! You can make any message a task by clicking the icon below the message. When the message turns red you'll know it is a pending task. When it is complete it will turn green!</p>
-            <br>
+                <h4><b>4. Start Messaging</b></h4>
+                <p class="welcome-text">This section will allow you to message a single user in your project or multiple users. Keep all of your communication about a project in one place! You can make any message a task by clicking the icon below the message. When the message turns red you'll know it is a pending task. When it is complete it will turn green!</p>
+                <br>
 
-            <h4><b>5. Start Setting Tasks</b></h4>
-            <p class="welcome-text">Checkout all of your conversation's tasks by clicking view tasks at the top of the message section. From there, you can claim the task to tell everyone you are working on it. If you created the task you can even move it to a different conversation. Don't forget to mark it done by clicking the red dot when you're finished!</p>
-            <br>
-          </div>
-        </div>
+                <h4><b>5. Start Setting Tasks</b></h4>
+                <p class="welcome-text">Checkout all of your conversation's tasks by clicking view tasks at the top of the message section. From there, you can claim the task to tell everyone you are working on it. If you created the task you can even move it to a different conversation. Don't forget to mark it done by clicking the red dot when you're finished!</p>
+                <br>
+              </div>
+            </div>
 
-        <div>
-          <div class="list-div">
-            <h4 class="list-drop-down">How do I edit my account?<i class="fa fa-caret-down list-caret"></i></h4>
-          </div>
-          <div class="drop-list">
-              <p>On the top right corner of your dashboard, click the triangle to get to your account menu. From here you can hit the edit button to change any of the information on your account. Remember your username and email still have to be unique!</p>
-          </div>
-        </div>
+            <div>
+              <div class="list-div">
+                <h4 class="list-drop-down">How do I edit my account?<i class="fa fa-caret-down list-caret"></i></h4>
+              </div>
+              <div class="drop-list">
+                  <p>On the top right corner of your dashboard, click the triangle to get to your account menu. From here you can hit the edit button to change any of the information on your account. Remember your username and email still have to be unique!</p>
+              </div>
+            </div>
 
-        </div>
+            </div>
+           </div>
+         </div>
        </div>
-     </div>
-   </div>
-  </section>
+      </section>
 
-  <section class="tutorials">
-    <h1 class="text-center">MercuryApp Video Tutorials</h1>
+      <section class="tutorials">
+        <h1 class="text-center">MercuryApp Video Tutorials</h1>
 
-    <div class="container">
-      <div class="row">
+        <div class="container">
+          <div class="row">
 
-        <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/I7yfoNWDR6Y">
-          <div class="tutorial-card" id="tut-card-0">
-            <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+            <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/I7yfoNWDR6Y">
+              <div class="tutorial-card" id="tut-card-0">
+                <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+              </div>
+
+              <p class="text-center">Getting Started</p>
+            </div>
+
+            <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/90eYsPWIVHY">
+              <div class="tutorial-card" id="tut-card-1">
+                <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+              </div>
+
+              <p class="text-center">Using Tasks</p>
+            </div>
+
+            <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/CFZOgKJz52E">
+              <div class="tutorial-card" id="tut-card-2">
+                <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+              </div>
+
+              <p class="text-center">Attaching Files</p>
+            </div>
+
           </div>
-
-          <p class="text-center">Getting Started</p>
         </div>
-
-        <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/90eYsPWIVHY">
-          <div class="tutorial-card" id="tut-card-1">
-            <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
-          </div>
-
-          <p class="text-center">Using Tasks</p>
-        </div>
-
-        <div class="three columns tutorial-card-container" data-source="https://www.youtube.com/embed/CFZOgKJz52E">
-          <div class="tutorial-card" id="tut-card-2">
-            <div><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
-          </div>
-
-          <p class="text-center">Attaching Files</p>
-        </div>
-
-      </div>
+      </section>
     </div>
-  </section>
-</div>
 
-   <section id="support-info">
-    <div class="container">
-      <div class="row">
-        <div class="ten offset-by-one columns text-center">
-          <h1 class="splash-header">Need More Help?</h1>
-          <h3>Our team will be happy to assist you. </h3>
-          <a href="mailto:admin@mercuryapp.co">Send us an email</a>
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
+    <section id="support-info">
+      <div class="container">
+        <div class="row">
+          <div class="ten offset-by-one columns text-center">
+            <h1 class="splash-header">Need More Help?</h1>
+            <h3>Our team will be happy to assist you. </h3>
+            <a href="mailto:admin@mercuryapp.co">Send us an email</a>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </div>
         </div>
       </div>
-    </div>
-   </section>
+    </section>
 
-<footer>
-  <div class="container">
-   <div class="row">
-    <p>Copyright 2016 | Mercury Messenger App</p>
-  </div><!--row-->
-</div>
-</footer>
-</div>
+    <%= render partial: "layouts/footer" %>
+
+  </div>
 </div>
 
 
