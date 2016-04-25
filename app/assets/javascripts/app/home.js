@@ -1188,7 +1188,7 @@ function removeUnreadConvo () {
     var curToken = curConvoWrapper.data("convo-token");
     var convoId = curConvoWrapper.data("convo-id");
 
-    if(curToken == curConvoToken) {
+    if(curToken === curConvoToken) {
       curConvo.removeClass("is-unread-convo");
       updateReadMessages(convoId);
       updateTitle(-1);
