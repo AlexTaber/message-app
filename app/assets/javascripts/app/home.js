@@ -441,11 +441,17 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       if(notesMode) {
         $("#notes" + String(data.conversation_id)).html(data.notes_html);
       } else {
-        //target is the targeted conversation care
+        //target is the targeted conversation card
         var target = $("#conversation" + String(data.conversation_id));
         if(target.length > 0) {
+          //check if current convo
+          var isCurConvo = target.find(".message-item").hasClass("msg-item-current");
           //update targets html
           target.html(data.app_html);
+          //update if currentConvo
+          if(isCurConvo) {
+            target.find(".message-item").addClass("msg-item-current");
+          }
           //copy targets new html
           var targetHtml = target[0].outerHTML;
           //remove target
@@ -456,8 +462,12 @@ function subscribeToConvo(conversationToken, curConvoToken) {
       }
     }
 
-    if(userId != data.user_id && projectId != data.project_id) {
-      $("#project-" + String(data.project_id)).addClass("is-unread-project");
+    if(userId != data.user_id) {
+      updateTitle(1);
+
+      if(projectId != data.project_id) {
+        $("#project-" + String(data.project_id)).addClass("is-unread-project");
+      }
     }
 
     messagesEvents();
@@ -476,6 +486,8 @@ function listenForNewConvos() {
       );
     }
 
+    //update title if conversation not started by current user
+    if(data.user_id != userId) { updateTitle(1); }
   });
 }
 
@@ -548,6 +560,7 @@ function updateTaskListeners() {
   $("#search-form").off('click',sendQuery).on('submit', sendQuery);
   //autogrow
   $('#form-wrapper textarea').css('overflow', 'hidden').autogrow();
+  $('#form-wrapper textarea').off('focus').on('focus', removeUnreadConvo);
 }
 
 function validateUserData(data, element, submit) {
@@ -839,8 +852,16 @@ function changeConvo(e) {
     if(canChangeConvo(convoId, convoToken, oldConvoToken)) {
       $(".msg-item-current").removeClass("msg-item-current");
       var newMsgItem = el.find(".message-item");
+
       newMsgItem.addClass("msg-item-current");
-      newMsgItem.removeClass("is-unread-convo");
+      if(newMsgItem.hasClass("is-unread-convo")) {
+        newMsgItem.removeClass("is-unread-convo");
+        updateTitle(-1);
+
+        if($("is-unread-convo").length == 0) {
+          $("is-unread-project").removeClass("is-unread-project");
+        }
+      }
 
       //pusher------
       updatePusherListeners(convoToken, oldConvoToken);
@@ -1141,7 +1162,36 @@ function sendQuery(e) {
 }
 
 function updateTitle(added_number) {
-  var string = $("title").html().trim().match(/\(([^\)]+)\)/);
+  var prev_number, new_number;
+  var title = $("title");
+  var matches = title.html().trim().match(/\(([^\)]+)\)/);
 
-  console.log(string);
+  if(matches !== null) {
+    var prev_number = parseInt(matches[1]);
+    var new_number = prev_number + added_number
+  } else {
+    new_number = added_number;
+  }
+
+  if(new_number > 0) {
+    title.html("(" + String(new_number) + ") New Message | MercuryApp Messenger");
+  } else {
+    title.html("MercuryApp Messenger");
+  }
+}
+
+function removeUnreadConvo () {
+  var curConvo = $(".msg-item-current");
+
+  if(curConvo.length > 0) {
+    curConvoWrapper = curConvo.parents(".conversation-wrapper");
+    var curToken = curConvoWrapper.data("convo-token");
+    var convoId = curConvoWrapper.data("convo-id");
+
+    if(curToken == curConvoToken) {
+      curConvo.removeClass("is-unread-convo");
+      updateReadMessages(convoId);
+      updateTitle(-1);
+    }
+  }
 }
