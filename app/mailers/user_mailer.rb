@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
     @url  = "http://localhost:3000/users/new?invite_token=#{invite.token}"
     @project = invite.project
     @user = invite.user
-    mail(to: invite.email, subject: "You've just been invited!", from: "Mercury Invite <admin@mercuryapp.co>")
+    mail(to: invite.email, subject: "#{@user.name} has invited you to join #{@project.name} on MercuryApp", from: "Mercury Invite <admin@mercuryapp.co>")
   end
 
   def project_email(user, project)
