@@ -52,7 +52,6 @@ Rails.application.routes.draw do
   post '/read-messages' => 'conversations#read_messages'
   get '/search' => 'conversations#search'
   get '/pricing' => 'tiers#pricing'
-  post '/pusher-auth' => 'pusher#auth'
 
   root 'users#home'
 end
