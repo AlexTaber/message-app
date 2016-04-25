@@ -238,8 +238,6 @@ $('.signup input').on('blur', function(){
   }
 });
 
-$('#form-wrapper textarea').css('overflow', 'hidden').autogrow()
-
 $('.back-button').on('click', function(){
   $(this).parent().fadeOut(0).prev().fadeIn();
 });
@@ -548,6 +546,8 @@ function updateTaskListeners() {
   $("#search-show").off('click',showSearch).on('click', showSearch);
   $(".search-hide").off('click',hideSearch).on('click', hideSearch);
   $("#search-form").off('click',sendQuery).on('submit', sendQuery);
+  //autogrow
+  $('#form-wrapper textarea').css('overflow', 'hidden').autogrow();
 }
 
 function validateUserData(data, element, submit) {
