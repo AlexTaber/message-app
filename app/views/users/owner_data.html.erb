@@ -1,4 +1,4 @@
-<%= render partial: "layouts/header", locals: { transitioned: true } %>
+<%= render partial: "layouts/home_header", locals: { project: nil } %>
 
 <section class="owner-data">
   <div class="container">
@@ -25,18 +25,22 @@
 
         <div class="table-wrapper">
           <h4>Recent Data (<%= @time %> Days)</h4>
-          <%= form_tag owner_data_path, method: 'GET' do %>
-            <%= number_field_tag 'time' %>
-          <% end %>
+          <p>
+            <%= link_to "Past 7 Days", owner_data_path(time: 7), class: "button button-primary" %>
+            <%= link_to "Past 30 Days", owner_data_path(time: 30), class: "button button-primary" %>
+            <%= link_to "Past 100 Days", owner_data_path(time: 100), class: "button button-primary" %>
+          </p>
           <table class="tablesorter">
             <thead>
               <tr>
-                <th>Recent Users</th>
-                <th>Recent Conversations</th>
-                <th>Recent Messages</th>
+                <th>Active Users</th>
+                <th>New Users</th>
+                <th>New Conversations</th>
+                <th>New Messages</th>
               </tr>
             </thead>
             <tr>
+              <td><%= User.recent_active_users(@time).count %></td>
               <td><%= User.recent_count_by_days(@time) %></td>
               <td><%= Conversation.recent_count_by_days(@time) %></td>
               <td><%= Message.recent_count_by_days(@time) %></td>
@@ -45,7 +49,7 @@
         </div>
 
         <div class="table-wrapper">
-          <h4>Users</h4>
+          <h4>Recent Users</h4>
           <table class="tablesorter">
             <thead>
               <tr>
@@ -53,6 +57,7 @@
                 <th>Name</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Join Date</th>
                 <th>Active Projects</th>
                 <th>Admin Projects</th>
                 <th>Total Conversations</th>
@@ -63,12 +68,13 @@
               </tr>
             </thead>
             <tbody>
-              <% User.all.each do |user| %>
+              <% @recent_users.each do |user| %>
                 <tr>
                   <td><%= user.id %></td>
                   <td><%= link_to user.name, user_owner_data_user_path(user) %></td>
                   <td><%= user.username %></td>
                   <td><%= user.email %></td>
+                  <td><%= user.join_date %></td>
                   <td><%= user.active_projects.count %></td>
                   <td><%= user.active_admin_projects.count %></td>
                   <td><%= user.conversations.count %></td>
@@ -87,10 +93,14 @@
               <% end %>
             </tbody>
           </table>
+
+          <h5>
+            <%= link_to "All Users", users_data_path %>
+          </h5>
         </div>
 
         <div class="table-wrapper">
-          <h4>Projects</h4>
+          <h4>Recent Projects</h4>
           <table class="tablesorter">
             <thead>
               <tr>
@@ -98,17 +108,23 @@
                 <th>Name</th>
                 <th>Token</th>
                 <th>Active?</th>
+                <th>Date Created</th>
               </tr>
             </thead>
-            <% Project.all.each do |project| %>
+            <% @recent_projects.each do |project| %>
               <tr>
                 <td><%= project.id %></td>
                 <td><%= link_to project.name, project_owner_data_project_path(project) %></td>
                 <td><%= project.token %></td>
                 <td><%= project.active %></td>
+                <td><%= project.creation_date %></td>
               </tr>
             <% end %>
           </table>
+
+          <h5>
+            <%= link_to "All Projects", projects_data_path %>
+          </h5>
         </div>
       </div>
     </div>

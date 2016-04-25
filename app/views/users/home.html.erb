@@ -129,49 +129,9 @@
 
 <!-- ********************* END MODALS *********************** -->
 
-<!-- Desktop Navbar -->
-<div class="menu-bar desktop-nav show-desktop">
-  <span class="home-logo"><%= link_to 'MercuryApp', splash_path %></span>
-  <!-- User Account Section -->
-  <nav class="profile-data">
-    <span><%= current_user.name %> | <span class="header-username"><%= current_user.username %></span></span>
-    <i class="fa fa-user"></i>
-    <i id="users-account" class="fa fa-chevron-down menu-caret" title="Edit your account"></i>
-    <nav id="current-account">
-     <p><b>Your Acount</b></p>
-     <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
-     <% if current_user.owner %>
-      <li>
-        <%= link_to 'Admin', owner_data_path %>
-      </li>
-    <% end %>
-      <li>
-        <%= link_to pricing_path do %>
-          Upgrade<br><small>Current Plan: <b><%= current_user.tier.name %></b></small>
-        <% end %>
-      </li>
-     <li><%= link_to 'Logout', logout_path %></li>
-   </nav>
- </nav>
-</div>
-<!-- End Desktop Navbar -->
-<!-- Mobile Navbar -->
- <nav class="mobile-info mobile-nav show-mobile">
-    <div class="mobile-top-menu">
-      <%= link_to 'MercuryApp', splash_path %>
-      <span class="u-pull-right"><%= @project.name %></span>
-    </div>
-    <div class="mobile-icons">
-      <a class="button mobile-button mobile-active" id="mobile-projects">Projects</a>
-      <a class="button mobile-button" id="mobile-convos">Coversations</a>
-      <a class="button mobile-button" id="msg-bx-acct-btn">Account</a>
-      <!-- <i class="fa fa-globe mobile-active" id="mobile-projects"></i>
-      <i class="fa fa-comments" id="mobile-convos"></i>
-      <i class="fa fa-comment" id="mobile-messages"></i>
-      <i class="fa fa-user" id="msg-bx-acct-btn"></i> -->
-    </div>
- </nav>
-<!-- End Mobile Navbar -->
+<!-- Header is in view/layouts/_home_header.html.erb -->
+<%= render partial: "layouts/home_header", locals: { project: @project } %>
+
 <!-- End Menu Bar -->
 <div id="ajax-loader">
   <div class="cssload-thecube">

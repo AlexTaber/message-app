@@ -61,6 +61,10 @@ class ProjectsController < ApplicationController
   def add_users
   end
 
+  def projects_data
+    @projects = Project.all.order(id: :desc)
+  end
+
   def project_owner_data
 
   end

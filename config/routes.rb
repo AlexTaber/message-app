@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get '/mb-new-project' => 'users#mb_new_project'
   get '/typeahead' => 'users#typeahead'
   get '/owner-data' => 'users#owner_data'
+  get '/users-data' => 'users#users_data'
+  get '/projects-data' => 'projects#projects_data'
   get '/validate' => 'users#validate'
   get '/support' => 'static#support'
   get '/lazy_load' => 'conversations#lazy_load'
