@@ -215,19 +215,21 @@
           </li>
         </div>
       <% end %>
-      <% if current_user.has_unapproved_projects? %>
-        <div class="text-center" id="invites-title">Invites</div>
-      <% end %>
-      <% current_user.unapproved_projects.each do |project| %>
-        <%= render partial: "user_projects/form", locals: { user_project: current_user.find_user_project(project) } %>
-      <% end %>
-
       <% unless current_user.has_active_projects? %>
         <div class="welcome-msg new-project-cta">
           <p><b>Click 'New Project' to add your first project!</b></p>
           <i class="fa fa-level-up u-pull-right"></i>
         </div>
       <% end %>
+
+      <% if current_user.has_unapproved_projects? %>
+        <div class="text-center" id="invites-title">Invites</div>
+
+        <% current_user.unapproved_projects.each do |project| %>
+          <%= render partial: "user_projects/form", locals: { user_project: current_user.find_user_project(project) } %>
+        <% end %>
+      <% end %>
+
     </nav>
   </div>
   <!-- End Your projects Sidebar -->
