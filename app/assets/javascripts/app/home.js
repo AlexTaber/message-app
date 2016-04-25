@@ -1139,3 +1139,9 @@ function sendQuery(e) {
     showAjaxErrorModal();
   });;
 }
+
+function updateTitle(added_number) {
+  var string = $("title").html().trim().match(/\(([^\)]+)\)/);
+
+  console.log(string);
+}
