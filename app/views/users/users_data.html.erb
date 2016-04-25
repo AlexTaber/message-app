@@ -1,0 +1,58 @@
+<%= render partial: "layouts/home_header", locals: { project: nil } %>
+
+<section class="owner-data">
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+
+        <div class="table-wrapper">
+          <h4>All Users</h4>
+          <table class="tablesorter">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Join Date</th>
+                <th>Active Projects</th>
+                <th>Admin Projects</th>
+                <th>Total Conversations</th>
+                <th>Total Messages</th>
+                <th>Total Visits</th>
+                <th>Tier</th>
+                <th>Banned?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= link_to user.name, user_owner_data_user_path(user) %></td>
+                  <td><%= user.username %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.join_date %></td>
+                  <td><%= user.active_projects.count %></td>
+                  <td><%= user.active_admin_projects.count %></td>
+                  <td><%= user.conversations.count %></td>
+                  <td><%= user.messages.count %></td>
+                  <td><%= user.visits %></td>
+                  <td><%= user.tier.name %></td>
+                  <td>
+                    <%= user.is_banned? %>
+                    <% if user.is_banned? %>
+                      <%= link_to "Remove Ban", ban_path(user.current_ban, ban: { user_id: user.id, active: false }), method: "PUT" %>
+                    <% else %>
+                      <%= link_to "Ban", new_ban_path(user_id: user.id) %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

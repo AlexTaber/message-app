@@ -336,4 +336,12 @@ class User < ActiveRecord::Base
   def self.recent_count_by_days(number)
     where("created_at > ?", DateTime.now - number.days).count
   end
+
+  def self.recent_active_users(number)
+    where("last_online > ?", DateTime.now - number.days)
+  end
+
+  def join_date
+    created_at.strftime("%m/%d/%Y")
+  end
 end

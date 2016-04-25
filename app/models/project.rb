@@ -92,4 +92,8 @@ class Project < ActiveRecord::Base
   def find_notes(user)
     conversations.find { |conversation| conversation.user_ids == [user.id] }
   end
+
+  def creation_date
+    created_at.strftime("%m/%d/%Y")
+  end
 end

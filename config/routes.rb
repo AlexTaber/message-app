@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get '/mb-new-project' => 'users#mb_new_project'
   get '/typeahead' => 'users#typeahead'
   get '/owner-data' => 'users#owner_data'
+  get '/users-data' => 'users#users_data'
+  get '/projects-data' => 'projects#projects_data'
   get '/validate' => 'users#validate'
   get '/support' => 'static#support'
   get '/lazy_load' => 'conversations#lazy_load'
@@ -50,6 +52,7 @@ Rails.application.routes.draw do
   post '/read-messages' => 'conversations#read_messages'
   get '/search' => 'conversations#search'
   get '/pricing' => 'tiers#pricing'
+  post '/pusher-auth' => 'pusher#auth'
 
   root 'users#home'
 end

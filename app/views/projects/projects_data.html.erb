@@ -1,0 +1,34 @@
+<%= render partial: "layouts/home_header", locals: { project: nil } %>
+<section class="owner-data">
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+
+        <div class="table-wrapper">
+          <h4>All Projects</h4>
+          <table class="tablesorter">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Token</th>
+                <th>Active?</th>
+                <th>Date Created</th>
+              </tr>
+            </thead>
+            <% @projects.each do |project| %>
+              <tr>
+                <td><%= project.id %></td>
+                <td><%= link_to project.name, project_owner_data_project_path(project) %></td>
+                <td><%= project.token %></td>
+                <td><%= project.active %></td>
+                <td><%= project.creation_date %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
