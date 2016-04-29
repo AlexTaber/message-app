@@ -176,7 +176,7 @@ class UsersController < ApplicationController
     require_owner
     @recent_users = User.all.order(id: :desc).limit(5)
     @recent_projects = Project.all.order(id: :desc).limit(5)
-    @time = [params[:time].to_i, 7].max
+    @time = [params[:time].to_i, 1].max
   end
 
   def users_data
