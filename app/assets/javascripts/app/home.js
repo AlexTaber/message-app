@@ -83,6 +83,9 @@ jQuery(document).ready(function($){
   setUpMessageAjaxInit();
   //----------------------
 
+  //set up invite email validation
+  setUpInviteEmailValidation();
+
   lostConnectionWarning();
 
   //add user to conversation
@@ -1198,4 +1201,26 @@ function removeUnreadConvo () {
       updateTitle(-1);
     }
   }
+}
+
+function setUpInviteEmailValidation() {
+  $("#new_invite").submit(validateInviteEmail);
+}
+
+function validateInviteEmail(e) {
+  var email = $("#invite_email").val();
+
+  if(!validateEmail(email)) {
+    e.preventDefault();
+    invalidInviteEmail();
+  }
+}
+
+function invalidInviteEmail() {
+  $("#invite-warn").show();
+}
+
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 }

@@ -19,6 +19,7 @@
   <h1>Invite someone to use Mercury</h1>
   <% if current_user.tier.permit_project_user(@project) %>
     <p>Enter their email below and press enter. We'll send them instructions on how to sign up. <br>Once they do, they will be automatically added to your project.</p>
+    <p id="invite-warn"><small>Invalid email</small></p>
     <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
   <% else %>
     <p>You have reached the maximum number of users for this project. If you would like to invite more, please upgrade your account!</p>
