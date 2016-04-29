@@ -26,6 +26,7 @@
         <div class="table-wrapper">
           <h4>Recent Data (<%= @time %> Days)</h4>
           <p>
+            <%= link_to "Past 1 Day", owner_data_path(time: 1), class: "button button-primary" %>
             <%= link_to "Past 7 Days", owner_data_path(time: 7), class: "button button-primary" %>
             <%= link_to "Past 30 Days", owner_data_path(time: 30), class: "button button-primary" %>
             <%= link_to "Past 100 Days", owner_data_path(time: 100), class: "button button-primary" %>

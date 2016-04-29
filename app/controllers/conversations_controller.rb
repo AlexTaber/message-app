@@ -49,6 +49,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    current_user.update_last_online
     @conversation = Conversation.find_by(id: params[:id])
     project = Project.find_by(id: params[:project_id])
     tasks = is_true?(params[:tasks])

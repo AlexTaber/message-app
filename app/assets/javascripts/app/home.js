@@ -83,6 +83,9 @@ jQuery(document).ready(function($){
   setUpMessageAjaxInit();
   //----------------------
 
+  //set up invite email validation
+  setUpInviteEmailValidation();
+
   lostConnectionWarning();
 
   //add user to conversation
@@ -145,12 +148,7 @@ $(".mobile-icons a").on('click', function(){
 var window_width = $(window).width();
 var window_height = $(window).height();
 
-$('.activate-modal').click(function(e){
-  e.preventDefault();
-  $('.modal-window').fadeOut(500);
-	var modal_id = $(this).attr('name');
-	show_modal(modal_id);
-});
+$('.activate-modal').click(activateModal);
 
 $('.close-modal, .close-modal-text').on('click', close_modal);
 
@@ -251,6 +249,13 @@ $(window).on('load',function(){
 });
 
 //Functions
+function activateModal(e) {
+  e.preventDefault();
+  $('.modal-window').fadeOut(500);
+  var modal_id = $(this).attr('name');
+  show_modal(modal_id);
+}
+
 function nextButton(target){
   $(target).parent().parent().fadeOut(0).next().fadeIn();
   curNext += 1;
@@ -974,6 +979,7 @@ function removeUser(e) {
     setUpTypeahead();
     show_modal('manage-users');
     $('.close-modal, .close-modal-text').on('click', close_modal);
+    $('.activate-modal').off('click').click(activateModal);
     setManageUserEvents();
   }).fail(function() {
     showAjaxErrorModal();
@@ -998,6 +1004,7 @@ function addUser(e) {
     setUpTypeahead();
     show_modal('manage-users');
     $('.close-modal, .close-modal-text').on('click', close_modal);
+    $('.activate-modal').off('click').click(activateModal);
     setManageUserEvents();
   }).fail(function() {
     showAjaxErrorModal();
@@ -1194,4 +1201,26 @@ function removeUnreadConvo () {
       updateTitle(-1);
     }
   }
+}
+
+function setUpInviteEmailValidation() {
+  $("#new_invite").submit(validateInviteEmail);
+}
+
+function validateInviteEmail(e) {
+  var email = $("#invite_email").val();
+
+  if(!validateEmail(email)) {
+    e.preventDefault();
+    invalidInviteEmail();
+  }
+}
+
+function invalidInviteEmail() {
+  $("#invite-warn").show();
+}
+
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 }

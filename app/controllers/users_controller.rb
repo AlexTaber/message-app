@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   end
 
   def home
-    update_last_online
+    current_user.update_last_online
     redirect_to new_subscription_path and return unless current_user.subscription
 
     current_user.has_active_projects? ? find_user_project : @project = Project.new
@@ -125,7 +125,7 @@ class UsersController < ApplicationController
   def message_box
 
     if current_user
-      update_last_online
+      current_user.update_last_online
       find_user_project
       unless @project
         redirect_to mb_new_project_path
@@ -176,7 +176,7 @@ class UsersController < ApplicationController
     require_owner
     @recent_users = User.all.order(id: :desc).limit(5)
     @recent_projects = Project.all.order(id: :desc).limit(5)
-    @time = [params[:time].to_i, 7].max
+    @time = [params[:time].to_i, 1].max
   end
 
   def users_data
@@ -286,10 +286,6 @@ class UsersController < ApplicationController
       params[:user].delete("password")
       params.delete("confirm_password")
     end
-  end
-
-  def update_last_online
-    current_user.update_attributes(last_online: DateTime.now)
   end
 
   def find_lazy_load
