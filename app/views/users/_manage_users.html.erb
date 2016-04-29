@@ -11,7 +11,7 @@
           </ul> -->
         <% if user.tier.permit_project_user(project) %>
           <h4>Add a user to <%= project.name %></h4>
-          <%= render partial: "layouts/project_typeahead", locals: { project: project } %>
+          <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
         <% else %>
           <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
           <%= link_to "Upgrade Now", edit_subscription_path(user.subscription), class: "button button-primary" %>
