@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   def create
+    current_user.update_last_online
     @message = Message.new(message_params)
     @message.default_content
 

@@ -344,4 +344,8 @@ class User < ActiveRecord::Base
   def join_date
     created_at.strftime("%m/%d/%Y")
   end
+
+  def update_last_online
+    update_attributes(last_online: DateTime.now)
+  end
 end
