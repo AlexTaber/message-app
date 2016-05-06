@@ -11,7 +11,7 @@
           </ul> -->
         <% if user.tier.permit_project_user(project) %>
           <h4>Add a user to <%= project.name %></h4>
-          <%= render partial: "invites/form", locals: { invite: @invite, project: @project } %>
+          <%= render partial: "invites/form", locals: { invite: invite, project: project } %>
         <% else %>
           <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
           <%= link_to "Upgrade Now", edit_subscription_path(user.subscription), class: "button button-primary" %>
@@ -27,7 +27,11 @@
           <% else %>
             <p>There aren't any other users on this project yet!</p>
           <% end %>
-            <p style="padding-top:20px;">Do you want to invite someone who isn't a mercury user yet? <a href="#" class="activate-modal" name="invite-users">Click here</a> to send them an invite via email.</p>
+            <p style="padding-top:20px;">
+              <% if invite_notice %>
+                <%= invite_notice %>
+              <% end %>
+            </p>
         </div>
       </div>
     </section>

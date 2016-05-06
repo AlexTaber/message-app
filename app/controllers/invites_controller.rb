@@ -10,11 +10,18 @@ class InvitesController < ApplicationController
     if @invite.can_be_sent?
       @invite.save
       send_invite_email
-      flash[:notice] = "Invite sent!"
-      redirect_to home_path
+      flash[:notice] = "Invite sent to #{@invite.email}"
+    elsif @invite.existing_user
+      create_user_project
+      flash[:notice] = "#{@invite.existing_user.name} was added!"
     else
       flash[:warn] = "Unable to send invite, please try again"
-      redirect_to :back
+    end
+
+    if request.xhr?
+      render partial: 'users/manage_users', locals: { user: current_user, project: @invite.project, invite: Invite.new, invite_notice: flash[:notice] }
+    else
+      redirect_to home_path(project_id: @invite.project.id)
     end
   end
 
@@ -26,5 +33,13 @@ class InvitesController < ApplicationController
 
   def send_invite_email
     UserMailer.invite_email(@invite).deliver_now
+  end
+
+  def create_user_project
+    UserProject.create(
+      user_id: @invite.existing_user.id,
+      project_id: @invite.project.id,
+      admin: false
+    )
   end
 end

@@ -26,7 +26,7 @@ class UserProjectsController < ApplicationController
     @user_project.delete ? flash[:notice] = "#{@user_project.user.name} removed" : flash[:warn] = "Unable to remove #{@user_project.user.name}, please try again"
 
     if request.xhr?
-      render partial: 'users/manage_users', locals: { user: current_user, project: project }
+      render partial: 'users/manage_users', locals: { user: current_user, project: project, invite: Invite.new, invite_notice: "#{@user_project.user.name} removed" }
     else
       redirect_to :back
     end
