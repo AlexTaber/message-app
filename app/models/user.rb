@@ -318,7 +318,7 @@ class User < ActiveRecord::Base
   end
 
   def remaining_users_count(project)
-    tier.users_per_project - project.non_owner_users.size
+    tier.users_per_project - project.invited_users_count
   end
 
   def active_conversation?(conversation)

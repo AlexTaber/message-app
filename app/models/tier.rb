@@ -9,7 +9,7 @@ class Tier < ActiveRecord::Base
   end
 
   def permit_project_user(project)
-    project.non_owner_users.count < users_per_project
+    project.invited_users_count < users_per_project
   end
 
   def self.all_published

@@ -101,4 +101,8 @@ class Project < ActiveRecord::Base
   def has_invites?
     invites.count > 0
   end
+
+  def invited_users_count
+    non_owner_users.size + invites.count
+  end
 end

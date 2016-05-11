@@ -15,9 +15,11 @@ class InvitesController < ApplicationController
     elsif existing_user
       if existing_user.is_member_of_project?(@invite.project)
         flash[:notice] = "#{existing_user.name} is already a member of #{@invite.project.name}"
-      else
+      elsif current_user.tier.permit_project_user(@invite.project)
         create_user_project(existing_user)
         flash[:notice] = "#{existing_user.name} was added!"
+      else
+        flash[:warn] = "You have reached the maximum number of users for this project. Please upgrade to add more!"
       end
     else
       flash[:notice] = "Unable to send invite, please try again"
