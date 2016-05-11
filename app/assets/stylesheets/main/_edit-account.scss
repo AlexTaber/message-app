@@ -47,3 +47,13 @@
 		}
 	}
 }
+.edit-back-button{
+	position:absolute;
+	margin-top:20px;
+	margin-left:20px;
+	color:#000;
+	text-decoration:none;
+	&:hover{
+		opacity:.6;
+	}
+}
