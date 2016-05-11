@@ -255,19 +255,6 @@ a.close-modal{
  position:relative;
 }
 }
-.tab-content {
-  padding: 30px;
-  clear: both;
-  margin-top:-6px;
-  position: relative;
-  border:1px solid $grey;
-}
-.tab-content > div {
-  display: none;
-}
-.tab-content .active-tab {
-  display: inherit;
-}
 .hidden {
   display: none;
 }

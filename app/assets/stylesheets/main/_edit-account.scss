@@ -1,0 +1,45 @@
+.edit-form{
+	.title{
+		margin-top:20px;
+	}
+	#img-input {
+		height:100px;
+		width:100px;
+	}
+	.profile-upload-label{
+		color:#1379be;
+		text-decoration:underline;
+		&:hover{
+			cursor:pointer;
+		}
+	}
+	.edit-form_field{
+		margin-bottom:20px;
+	}
+}
+.edit-account{
+	padding-top:50px;
+	padding-bottom:50px;
+	.tab-content{
+		border:1px solid #ddd;
+	}
+	nav {
+		width:100%;
+		a.tab-button{
+			width:50%;
+			border:1px solid #ddd;
+			display:inline-block;
+			float:left;
+			padding-top:5px;
+			padding-bottom:5px;
+			text-decoration: none;
+			color:#000;
+			box-sizing:border-box;
+		}
+		a.is-active{
+			background-color:$pwdlight;
+			color:#fff;
+			border-color:$pwdlight;
+		}
+	}
+}
