@@ -15,6 +15,9 @@
 	}
 	.edit-form_field{
 		margin-bottom:20px;
+		input{
+			width:100%;
+		}
 	}
 }
 .edit-account{
@@ -22,6 +25,7 @@
 	padding-bottom:50px;
 	.tab-content{
 		border:1px solid #ddd;
+		border-radius:10px;
 	}
 	nav {
 		width:100%;
@@ -35,11 +39,11 @@
 			text-decoration: none;
 			color:#000;
 			box-sizing:border-box;
+			background-color:#eee;
 		}
 		a.is-active{
-			background-color:$pwdlight;
-			color:#fff;
-			border-color:$pwdlight;
+			background-color:#fff;
+			border-bottom:0;
 		}
 	}
 }
