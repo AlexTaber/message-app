@@ -50,6 +50,10 @@ jerry_sub = Subscription.create(
   user_id: jerry.id
 )
 
+jerry_setting = Setting.create(
+  user_id: jerry.id
+)
+
 alex = User.create(
   username: "alextaber",
   first_name: "Alex",
@@ -70,6 +74,10 @@ alex_image = Image.create(
   imageable_id: alex.id
 )
 
+alex_setting = Setting.create(
+  user_id: alex.id
+)
+
 dan = User.create(
   username: "danintriligator",
   first_name: "Dan",
@@ -84,6 +92,10 @@ dan_image = Image.create(
   url: "http://www.cybersummitusa.com/site/wp-content/uploads/2014/01/avatar_blank.png",
   imageable_type: "User",
   imageable_id: dan.id
+)
+
+dan_setting = Setting.create(
+  user_id: dan.id
 )
 
 dan_sub = Subscription.create(
