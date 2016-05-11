@@ -120,8 +120,4 @@ class ProjectsController < ApplicationController
   def send_project_email
     UserMailer.project_email(current_user, @project).deliver_now
   end
-
-  def send_added_to_project_email(user, project, inviter)
-    UserMailer.added_to_project_email(user, project, inviter).deliver_now
-  end
 end

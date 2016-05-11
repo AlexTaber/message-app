@@ -56,11 +56,17 @@ class InvitesController < ApplicationController
     UserMailer.invite_email(@invite).deliver_now
   end
 
+  def send_added_to_project_email(user, project, inviter)
+    UserMailer.added_to_project_email(user, project, inviter).deliver_now
+  end
+
   def create_user_project(existing_user)
     UserProject.create(
       user_id: existing_user.id,
       project_id: @invite.project.id,
       admin: false
     )
+
+    send_added_to_project_email(existing_user, @invite.project, @invite.user)
   end
 end
