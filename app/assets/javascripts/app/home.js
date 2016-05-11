@@ -83,9 +83,6 @@ jQuery(document).ready(function($){
   setUpMessageAjaxInit();
   //----------------------
 
-  //set up invite email validation
-  setUpInviteEmailValidation();
-
   lostConnectionWarning();
 
   //set up tabs 
@@ -981,7 +978,7 @@ function showMessageCenter() {
   $('.mobile-active').removeClass('mobile-active')
 }
 
-function removeUser(e) {
+function removeModelMU(e) {
   e.preventDefault();
   e.stopPropagation();
 
@@ -1009,33 +1006,38 @@ function addUser(e) {
   e.preventDefault();
   e.stopPropagation();
 
-  $("#ajax-loader").show();
+  if(validateInviteEmail()) {
 
-  $.ajax({
-    url: $(this).attr("action"),
-    method: "PUT",
-    data: $(this).serialize()
-  }).done(function(response){
-    $("#ajax-loader").hide();
+    $("#ajax-loader").show();
 
-    $("#manage-users").replaceWith(response);
-    removeTypeahead();
-    setUpTypeahead();
-    show_modal('manage-users');
-    $('.close-modal, .close-modal-text').on('click', close_modal);
-    $('.activate-modal').off('click').click(activateModal);
-    setManageUserEvents();
-  }).fail(function() {
-    showAjaxErrorModal();
-  });;
+    $.ajax({
+      url: $(this).attr("action"),
+      method: "POST",
+      data: $(this).serialize()
+    }).done(function(response){
+      $("#ajax-loader").hide();
+
+      $("#manage-users").replaceWith(response);
+      removeTypeahead();
+      setUpTypeahead();
+      show_modal('manage-users');
+      $('.close-modal, .close-modal-text').on('click', close_modal);
+      $('.activate-modal').off('click').click(activateModal);
+      setManageUserEvents();
+    }).fail(function() {
+      showAjaxErrorModal();
+    });;
+  } else {
+    invalidInviteEmail();
+  }
 }
 
 function setManageUserEvents() {
   //remove user ajax
-  $(".remove-user-link").off('click').on('click', removeUser);
+  $(".remove-model-mu").off('click').on('click', removeModelMU);
 
   //add user ajax
-  $("#project-typeahead").off('submit', addUser).on('submit', addUser);
+  $("#new_invite").off('submit', addUser).on('submit', addUser);
 }
 function lostConnectionWarning(){
   // Update the online status icon based on connectivity
@@ -1222,21 +1224,19 @@ function removeUnreadConvo () {
   }
 }
 
-function setUpInviteEmailValidation() {
-  $("#new_invite").submit(validateInviteEmail);
-}
-
-function validateInviteEmail(e) {
+function validateInviteEmail() {
   var email = $("#invite_email").val();
 
   if(!validateEmail(email)) {
-    e.preventDefault();
     invalidInviteEmail();
+    return false
   }
+
+  return true
 }
 
 function invalidInviteEmail() {
-  $("#invite-warn").show();
+  $("#invite-notice").html("Invalid Email");
 }
 
 function validateEmail(email) {

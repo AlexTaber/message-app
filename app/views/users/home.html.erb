@@ -10,7 +10,7 @@
 
 
 <!-- MANAGE USERS MODAL (partial - users/manage_users) -->
-<%= render partial: 'users/manage_users', locals: { user: current_user, project: @project } %>
+<%= render partial: 'users/manage_users', locals: { user: current_user, project: @project, invite: @invite, invite_notice: nil } %>
 <!-- END MANAGE USERS MODAL -->
 
 <!-- INVITE USERS MODAL -->

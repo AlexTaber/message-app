@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   has_many :user_projects
   has_many :users, through: :user_projects
   has_many :requests
+  has_many :invites
   has_many :tasks, through: :conversations
 
   validates :name, presence: true
@@ -95,5 +96,13 @@ class Project < ActiveRecord::Base
 
   def creation_date
     created_at.strftime("%m/%d/%Y")
+  end
+
+  def has_invites?
+    invites.count > 0
+  end
+
+  def invited_users_count
+    non_owner_users.size + invites.count
   end
 end
