@@ -9,9 +9,6 @@
       <h1 style="text-align: center; color: #fff; font-family: helvetica, sans-serif; font-weight: 200;"><b>M</b>ercury<b>A</b>pp</h1>
 
       <div style="padding: 50px; background: #fff; border-radius: 10px; text-align: center;">
-        <% if @user.image %>
-          <img src="<%= @user.image.url %>" style="width: 100px; height: 100px; object-fit: cover; object-position: center center; border-radius: 50px;">
-        <% end %>
         <h2>Hello <%= @user.name %>!</h2>
         <h3>
           Thank you for adding the project <b><%= @project.name %></b>!
