@@ -4,6 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+    <div style="padding: 30px; background: #133c64; border-radius: 10px;">
+
+      <h1 style="text-align: center; color: #fff; font-family: helvetica, sans-serif; font-weight: 200;"><b>M</b>ercury<b>A</b>pp</h1>
+
+      <div style="padding: 50px; background: #fff; border-radius: 10px; text-align: center;">
     <h1>Hello <%= @user.name %>!</h1>
     <p>
       You have just been added by <b><%= @inviter.name %></b> to join <b><%= @project.name %></b>!<br>
@@ -12,5 +17,7 @@
       Please <a href="<%= @url %>">click here</a> to start sending messages to members of <b><%= @project.name %></b>.
     </p>
     <p>Thanks for your time and have a great day!</p>
+    </div>
+    </div>
   </body>
 </html>
