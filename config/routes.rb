@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
   end
   resources :claims, only: [:create, :destroy]
+  resources :settings, only: [:update]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
