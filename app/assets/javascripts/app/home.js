@@ -13,6 +13,9 @@ jQuery(document).ready(function($){
     //sidr
   jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
 
+  //set up settings form
+  setUpSettingsForm();
+
   //typeahead ajax-loader
   $(".typeahead-form").submit(typeaheadAjaxLoader);
 
@@ -85,7 +88,7 @@ jQuery(document).ready(function($){
 
   lostConnectionWarning();
 
-  //set up tabs 
+  //set up tabs
   tabs();
 
   //add user to conversation
@@ -1242,4 +1245,18 @@ function invalidInviteEmail() {
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
+}
+
+function setUpSettingsForm() {
+  $("#setting_email_notifications").change(toggleInactiveTimeField);
+}
+
+function toggleInactiveTimeField() {
+  var form = $("#setting_email_notifications");
+
+  if(form.val() == 'false') {
+    $("#inactive-time-field").removeClass('is-transitioned');
+  } else {
+    $("#inactive-time-field").addClass('is-transitioned');
+  }
 }

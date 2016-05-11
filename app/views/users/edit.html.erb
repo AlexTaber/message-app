@@ -40,10 +40,14 @@
               <%= f.submit class: 'button button-primary' %>
             <% end %>
             <br>
-          <%= link_to 'cancel', :back %>
+          <%= link_to 'cancel', home_path %>
         </div>
     </section>
     <section class="tab-content" data-target="settings" style="display:none;">
-      <p>This is the settings tab</p>
+      <div class="edit-form">
+        <h3 class="title">Edit Your Settings</h3>
+        <%= render partial: "settings/form", locals: { setting: current_user.setting, user: current_user } %>
+        <%= link_to 'cancel', home_path %>
+      </div>
     </section>
 </div>

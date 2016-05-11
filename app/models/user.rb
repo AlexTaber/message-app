@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :recieved_messages, through: :message_users, source: :message
   has_many :notifications
   has_one  :subscription
+  has_one  :setting
   has_many :password_recoveries
   has_many :bans
   has_many :completions, foreign_key: "completer_id", class_name: "Task"
@@ -178,14 +179,6 @@ class User < ActiveRecord::Base
     unapproved_projects.size > 0;
   end
 
-  def self.send_monthly_emails
-    all.each(&:send_monthly_email)
-  end
-
-  def send_monthly_email
-    UserMailer.monthly_email(self).deliver_now
-  end
-
   def is_member_of_project?(project)
     user_projects.where(project_id: project.id).size > 0
   end
@@ -272,6 +265,8 @@ class User < ActiveRecord::Base
   end
 
   def does_not_need_notification?(message)
+    return true unless setting.email_notifications
+
     recently_sent_message? || recently_online? || recently_messaged(message)
   end
 
@@ -280,21 +275,21 @@ class User < ActiveRecord::Base
   end
 
   def does_not_need_task_notification?(task)
-    does_not_need_notification?(task.message) || task.from_recent_message?
+    does_not_need_notification?(task.message) || task.from_recent_message?(setting.inactive_time)
   end
 
   def recently_sent_message?
     message = messages.last
-    message ? messages.last.is_recent? : false
+    message ? messages.last.is_recent?(setting.inactive_time) : false
   end
 
   def recently_online?
-    last_online ? last_online > DateTime.now - 15.minutes : false
+    last_online ? last_online > DateTime.now - setting.inactive_time.minutes : false
   end
 
   def recently_messaged(message)
     old_message = message.conversation.messages[-2]
-    old_message ? old_message.is_recent? : false
+    old_message ? old_message.is_recent?(setting.inactive_time) : false
   end
 
   def format_new_user

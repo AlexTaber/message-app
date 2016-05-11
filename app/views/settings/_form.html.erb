@@ -1,0 +1,13 @@
+<%= form_for setting do |f| %>
+  <div>
+    I  <%= f.select :email_notifications, [['Do', true],['Do not', false]] %> want to receive email notifications for new messages/tasks
+  </div>
+
+  <div id="inactive-time-field" class="<%= setting.email_notifications ? 'is-transitioned' : '' %>">
+    Send me an email notification when I've been away for <%= f.number_field :inactive_time, min: 0, max: 100 %> minutes
+  </div>
+
+  <div>
+    <%= f.submit "Update Settings", class: "button button-primary" %>
+  </div>
+<% end %>
