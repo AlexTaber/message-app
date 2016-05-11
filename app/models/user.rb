@@ -265,7 +265,7 @@ class User < ActiveRecord::Base
   end
 
   def does_not_need_notification?(message)
-    return false unless setting.email_notifications
+    return true unless setting.email_notifications
 
     recently_sent_message? || recently_online? || recently_messaged(message)
   end
