@@ -25,8 +25,8 @@ class Task < ActiveRecord::Base
     message.content
   end
 
-  def from_recent_message?
-    message.is_recent?
+  def from_recent_message?(inactive_time)
+    message.is_recent?(inactive_time)
   end
 
   def complete?

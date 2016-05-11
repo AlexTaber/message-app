@@ -55,8 +55,8 @@ class Message < ActiveRecord::Base
     Rinku.auto_link(content, :all, 'target="_blank"')
   end
 
-  def is_recent?
-    created_at > DateTime.now - 10.minutes
+  def is_recent?(inactive_time)
+    created_at > DateTime.now - inactive_time.minutes
   end
 
   def delete_old_task
