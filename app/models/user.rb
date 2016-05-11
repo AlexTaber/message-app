@@ -178,14 +178,6 @@ class User < ActiveRecord::Base
     unapproved_projects.size > 0;
   end
 
-  def self.send_monthly_emails
-    all.each(&:send_monthly_email)
-  end
-
-  def send_monthly_email
-    UserMailer.monthly_email(self).deliver_now
-  end
-
   def is_member_of_project?(project)
     user_projects.where(project_id: project.id).size > 0
   end

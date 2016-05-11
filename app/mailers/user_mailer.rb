@@ -35,11 +35,6 @@ class UserMailer < ApplicationMailer
     mail(to: user.email, subject: "Password Recovery", from: "Mercury Password Recovery <no-reply@mercuryapp.co>")
   end
 
-  def monthly_email(user)
-    @user = user
-    mail(to: user.email, subject: "Monthly Newsletter from MercuryApp", from: "MercuryApp Newsletter <no-reply@mercuryapp.co>")
-  end
-
   def new_message_email(message, user)
     @url = "#{home_url(tasks: nil, user_ids: message.conversation.user_ids, project_id: message.conversation.project.id)}"
     @message = message
