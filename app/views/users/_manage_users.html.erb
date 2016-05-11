@@ -1,5 +1,9 @@
 <div id='manage-users' class='modal-window'>
   <div>
+    <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
+  </div>
+
+  <div>
     <h1>Manage Users of <%= project.name %></h1>
     <section class="tabs">
       <hr class="fifty">
@@ -17,10 +21,18 @@
           <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
           <%= link_to "Upgrade Now", edit_subscription_path(user.subscription), class: "button button-primary" %>
         <% end %>
+
+        <% if invite_notice %>
+          <div id="invite-notice">
+            <%= simple_format(invite_notice) %>
+          </div>
+        <% end %>
+
         <div class="edit-users">
+
           <% if project.has_other_users?(user) %>
             <h4>Current <%= project.name %> Users</h4>
-            <div id="project-user-list">
+            <div class="project-list">
               <% project.other_users(user).each do |user| %>
                 <%= render partial: 'users/card', locals: { user: user, project: project } %>
               <% end %>
@@ -29,17 +41,17 @@
             <p>There aren't any other users on this project yet!</p>
           <% end %>
 
-          <% if invite_notice %>
-            <div id="invite-notice">
-              <%= simple_format(invite_notice) %>
+          <% if project.has_invites? %>
+            <h4>Pending Email Invitations</h4>
+            <div class="project-list">
+              <% project.invites.each do |invite| %>
+                <%= render partial: 'invites/card', locals: { invite: invite, project: project } %>
+              <% end %>
             </div>
           <% end %>
 
         </div>
       </div>
     </section>
-    <div>
-      <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
-    </div>
   </div>
 </div>

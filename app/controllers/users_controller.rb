@@ -257,6 +257,7 @@ class UsersController < ApplicationController
   def set_up_invite
     @invite = token_invite(params[:invite_token])
     create_user_project if @invite
+    @invite.delete
   end
 
   def create_user_project

@@ -134,22 +134,25 @@ hr.fifty{
     width:100%;
     display:none;
     background-color: rgba($black, .8);
-    z-index:100;
+    z-index:1001;
   }
   .modal-window{
     position:absolute;
     box-sizing:border-box;
     width: calc(100vw - 20px);
-    height:calc(100vh - 20px);
+    max-height:calc(100vh - 80px);
     margin-left:10px;
     margin-top:10px;
     display:none;
     padding: 20px;
     background: #fff;
     text-align: center;
-    z-index: 4440000;
+    z-index: 444000;
     border-radius: 5px;
-    overflow:visible;
+    overflow:scroll;
+    top:50%;
+    transform: translateY(-50%);
+    bottom:auto;
     -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
@@ -170,9 +173,6 @@ hr.fifty{
     width:50vw;
     height:auto;
     margin-left:25vw;
-    top:50%;
-    transform: translateY(-50%);
-    bottom:auto;
   }
 }
 
@@ -183,12 +183,13 @@ a.close-modal{
   width:20px;
   top:0;
   right:0;
-  margin-top:-25px;
-  margin-right:-25px;
+  margin-top:-8px;
+  margin-right:-8px;
   background: $brand-color;
   border-radius:100%;
   border: 2px solid #fff;
   color:#fff;
+  z-index: 2;
   -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);

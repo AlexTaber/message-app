@@ -30,6 +30,18 @@ class InvitesController < ApplicationController
     end
   end
 
+  def destroy
+    @invite = Invite.find_by(id: params[:id])
+
+    if @invite.delete
+      flash[:notice] = "Invite deleted"
+    else
+      flash[:warn] = "Unable to delete invite, please try again"
+    end
+
+    redirect_to :back
+  end
+
   private
 
   def invite_params

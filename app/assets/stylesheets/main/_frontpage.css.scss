@@ -947,12 +947,13 @@ ul.edit-project-list {
 .section .tabs{
 	padding-bottom:0;
 }
-#project-user-list{
+.project-list{
 	max-height:35vh;
 	overflow-y:scroll;
 	text-align:left !important;
 	border:1px solid #ddd;
 }
+
 .project-typeahead{
 	width:238px;
 	max-width:100%;
@@ -981,6 +982,22 @@ ul.edit-project-list {
 		padding-top:10px;
 	}
 }
+
+.invite-card {
+	border: 1px solid #ddd;
+	width: 45%;
+	display:inline-block;
+	margin:2.2%;
+
+	p {
+		padding: 10px;
+	}
+
+	i:hover {
+		color: red;
+	}
+}
+
 .remove-user{
 	position:absolute;
 	top:5px;
