@@ -1,7 +1,7 @@
 <div class="invite-card">
   <p class="ellipsis">
     <%= invite.email %>
-    <%= link_to invite_path(invite), method: "DELETE" do %>
+    <%= link_to invite_path(invite), class: "remove-model-mu", method: "DELETE" do %>
       <i class="fa fa-times u-pull-right"></i>
     <% end %>
   </p>

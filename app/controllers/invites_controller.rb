@@ -39,7 +39,11 @@ class InvitesController < ApplicationController
       flash[:warn] = "Unable to delete invite, please try again"
     end
 
-    redirect_to :back
+    if request.xhr?
+      render partial: 'users/manage_users', locals: { user: current_user, project: @invite.project, invite: Invite.new, invite_notice: flash[:notice] }
+    else
+      redirect_to :back
+    end
   end
 
   private

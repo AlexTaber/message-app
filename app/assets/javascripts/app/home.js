@@ -978,7 +978,7 @@ function showMessageCenter() {
   $('.mobile-active').removeClass('mobile-active')
 }
 
-function removeUser(e) {
+function removeModelMU(e) {
   e.preventDefault();
   e.stopPropagation();
 
@@ -1034,7 +1034,7 @@ function addUser(e) {
 
 function setManageUserEvents() {
   //remove user ajax
-  $(".remove-user-link").off('click').on('click', removeUser);
+  $(".remove-model-mu").off('click').on('click', removeModelMU);
 
   //add user ajax
   $("#new_invite").off('submit', addUser).on('submit', addUser);
