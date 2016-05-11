@@ -26,6 +26,7 @@
 }
 .mobile-logo{
   margin-top:5px;
+  display:inline;
 }
 .intro {
   padding-top: 10px;
@@ -281,7 +282,6 @@ a:hover {
 .landing-tabs {
   position: absolute;
   background:$white;
-  height: 530px;
   z-index: -1;
   left: 0;
   right: 0;
@@ -305,7 +305,7 @@ a:hover {
   .lt-img {
     position: absolute;
     width: 0px;
-    height: 380px;
+    height: 250px;
     background-size: cover;
     background-position: center left;
     margin-left: 0px;
@@ -359,7 +359,7 @@ a:hover {
     position: absolute;
     color: $white;
     margin-left: 40px;
-    margin-top: 230px;
+    margin-top: 200px;
     z-index: 2;
     font-size: 3rem;
     width: 80%;
@@ -370,7 +370,7 @@ a:hover {
     position: absolute;
     margin-left: 22%;
     width: 62%;
-    margin-top: 350px;
+    margin-top: 320px;
     color: $white;
     z-index: 2;
     font-weight: 700;
@@ -410,12 +410,12 @@ a:hover {
 
   .lt-header {
     position: absolute;
-    top: 80px;
+    top: 70px;
     z-index: 100;
 
     h1 {
       text-decorationt-align: center;
-      font-size: 6rem;
+      font-size: 4rem;
       margin-left: 0px;
     }
 
@@ -441,7 +441,7 @@ a:hover {
     }
 
     .lt-block {
-      margin-top: 180px;
+      margin-top: 140px;
       margin-left: 0px;
       width: 90%;
     }
@@ -573,7 +573,7 @@ a:hover {
 
 .circles {
   position: absolute;
-  top: 490px;
+  top: 410px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -622,6 +622,9 @@ a:hover {
 @media(min-width: 700px) {
   .landing-tab {
     width: 700px;
+    .lt-img{
+      height: 380px;
+    }
 
     .lt-header {
       margin-left: -50px;
@@ -676,6 +679,9 @@ a:hover {
       }
     }
   }
+    .circles{
+      top:490px;
+    }
 
   .arrow {
     display: block;
