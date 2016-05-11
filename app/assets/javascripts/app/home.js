@@ -1006,7 +1006,7 @@ function addUser(e) {
   e.preventDefault();
   e.stopPropagation();
 
-  if(validateInviteEmail) {
+  if(validateInviteEmail()) {
 
     $("#ajax-loader").show();
 
@@ -1226,7 +1226,6 @@ function removeUnreadConvo () {
 
 function validateInviteEmail() {
   var email = $("#invite_email").val();
-  debugger;
 
   if(!validateEmail(email)) {
     invalidInviteEmail();
@@ -1237,7 +1236,7 @@ function validateInviteEmail() {
 }
 
 function invalidInviteEmail() {
-  $("#invite-warn").show();
+  $("#invite-notice").html("Invalid Email");
 }
 
 function validateEmail(email) {

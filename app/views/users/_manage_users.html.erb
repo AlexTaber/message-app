@@ -10,7 +10,8 @@
             <li class="tab3"><a class="users-tab" href="#">Invite Users</a></li>
           </ul> -->
         <% if user.tier.permit_project_user(project) %>
-          <h4>Add a user to <%= project.name %></h4>
+          <h4>Invite a user to join <%= project.name %></h4>
+          <p><small>You can invite <%= current_user.remaining_users_count(project) %> more users to this project</small></p>
           <%= render partial: "invites/form", locals: { invite: invite, project: project } %>
         <% else %>
           <p>You have reached the maximum number of users for this project. If you would like to add more, please upgrade your account!</p>
@@ -27,9 +28,9 @@
           <% else %>
             <p>There aren't any other users on this project yet!</p>
           <% end %>
-            <p style="padding-top:20px;">
+            <p id="invite-notice" style="padding-top:20px;">
               <% if invite_notice %>
-                <%= invite_notice %>
+                <%= simple_format(invite_notice) %>
               <% end %>
             </p>
         </div>

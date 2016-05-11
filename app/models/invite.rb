@@ -7,7 +7,15 @@ class Invite < ActiveRecord::Base
   validates :user_id, :project_id, :email, presence: true
 
   def can_be_sent?
-    valid? && no_existing_user?
+    valid? && no_existing_user?  && not_duplicate?
+  end
+
+  def not_duplicate?
+    !duplicate?
+  end
+
+  def duplicate?
+    Invite.where("email = ? AND project_id = ?", email, project_id).size > 0
   end
 
   def no_existing_user?

@@ -6,16 +6,21 @@ class InvitesController < ApplicationController
   def create
     @invite = Invite.new(invite_params)
     @invite.assign_attributes(email: @invite.email.downcase)
+    existing_user = @invite.existing_user
 
     if @invite.can_be_sent?
       @invite.save
       send_invite_email
-      flash[:notice] = "Invite sent to #{@invite.email}"
-    elsif @invite.existing_user
-      create_user_project
-      flash[:notice] = "#{@invite.existing_user.name} was added!"
+      flash[:notice] = "We have sent an email to #{@invite.email} inviting them to join #{@invite.project.name}!\n\nWhen they sign up, they will be automatically added to your project!"
+    elsif existing_user
+      if existing_user.is_member_of_project?(@invite.project)
+        flash[:notice] = "#{existing_user.name} is already a member of #{@invite.project.name}"
+      else
+        create_user_project(existing_user)
+        flash[:notice] = "#{existing_user.name} was added!"
+      end
     else
-      flash[:warn] = "Unable to send invite, please try again"
+      flash[:notice] = "Unable to send invite, please try again"
     end
 
     if request.xhr?
@@ -35,9 +40,9 @@ class InvitesController < ApplicationController
     UserMailer.invite_email(@invite).deliver_now
   end
 
-  def create_user_project
+  def create_user_project(existing_user)
     UserProject.create(
-      user_id: @invite.existing_user.id,
+      user_id: existing_user.id,
       project_id: @invite.project.id,
       admin: false
     )

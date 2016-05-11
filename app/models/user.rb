@@ -317,6 +317,10 @@ class User < ActiveRecord::Base
     tier.admin_projects - active_admin_projects.size
   end
 
+  def remaining_users_count(project)
+    tier.users_per_project - project.non_owner_users.size
+  end
+
   def active_conversation?(conversation)
     conversation.project ? user_projects.find_by(project_id: conversation.project.id) : false
   end
