@@ -28,11 +28,13 @@
           <% else %>
             <p>There aren't any other users on this project yet!</p>
           <% end %>
-            <p id="invite-notice" style="padding-top:20px;">
-              <% if invite_notice %>
-                <%= simple_format(invite_notice) %>
-              <% end %>
-            </p>
+
+          <% if invite_notice %>
+            <div id="invite-notice">
+              <%= simple_format(invite_notice) %>
+            </div>
+          <% end %>
+
         </div>
       </div>
     </section>
