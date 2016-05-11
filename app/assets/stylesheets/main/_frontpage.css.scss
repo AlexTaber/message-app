@@ -37,7 +37,7 @@ body {
 	width: 100vw;
 	height: 100vh;
 	position:fixed;
-	background:rgba($grey, 1);
+	background:rgba($white, 1);
 	height: 100%;
 	border-right: 1px solid rgba($darkgrey, 1);
 	color: $black;
@@ -157,6 +157,7 @@ i.admin-profile {
 	display:block !important;
 	width: 20%;
 	float: left;
+	background:rgba($grey, 1);
 }
 }
 .connection-warning{
@@ -240,7 +241,7 @@ ul.edit-project-list {
 .message-bar {
 	position:fixed;
 	display:none;
-	background: #f5f5f5;
+	background: #fff;
 	width: 100%;
 	height: calc(100vh - 30px);
 	overflow-y: scroll;
@@ -250,6 +251,12 @@ ul.edit-project-list {
   &.is-transitioned {
   	z-index: 2;
   }
+  @media (min-width: 750px) {
+  	.message-bar {
+  		background: #f5f5f5;
+  	}
+  }
+
 	.message-bar-border{
 		border-right:1px solid #ababab;
 		height: auto;
@@ -383,18 +390,21 @@ ul.edit-project-list {
 	}
 }
 .msg-item-current{
-	background: #e5e5e5;
+	background: #fff;
 	position:relative;
 	overflow:visible;
 	&:hover {
 			background: rgba($darkgrey, .1);
 		}
 	}
+@media (min-width: 750px) {
+	.msg-item-current{
+	background: #e5e5e5;
+}
+}
 
 	.mobile-active{
-		background:#fff;
-		color:$brand-color !important;
-		border-color:#fff;
+		border-bottom: 2px solid $pwdlight;
 	}
 	.fa-globe:after{
 		border-bottom-color:#dddddd;
