@@ -143,14 +143,19 @@ input[type="button"].button-white:focus {
 }
 .mobile-button{
   min-width: 30.6666666667% !important;
+  border: none;
+  border-radius: 0px;
   padding:5px;
   height:auto;
   display:inline-block;
   line-height: 100%;
   margin-left:1%;
   font-size:10px;
-  background-color:$brand-color;
+  background-color:transparent;
   margin-top:5px;
+  &:hover {
+    border-color: $pwdlight;
+  }
 }
 
 
