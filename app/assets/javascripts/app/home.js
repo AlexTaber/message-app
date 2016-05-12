@@ -247,7 +247,7 @@ $('.back-button').on('click', function(){
 });
 $(window).on('load',function(){
   var newLoad = $('.new-focus');
-  if(newLoad.length > 0) {
+  if(newLoad.length > 0 && projectId) {
     newLoad.focus();
   }
 });

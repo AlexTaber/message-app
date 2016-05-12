@@ -14,6 +14,7 @@ function setUpTypeahead() {
       }
     }).done(function(response){
       var project_users = response.project_users;
+      if(typeof project_users === 'undefined') { project_users = [] }
 
       var substringMatcher = function(users, query) {
         return function findMatches(q, cb) {
