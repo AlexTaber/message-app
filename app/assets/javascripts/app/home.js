@@ -1154,11 +1154,13 @@ function showSearch() {
 }
 
 function hideSearch() {
+  searchMode = false;
   $("#search-input").removeClass("is-transitioned");
   $("#search-show").removeClass("is-transitioned");
   $("#search-hide").removeClass("is-transitioned");
   $("#search-form").removeClass("is-transitioned");
   $("#switch-wrapper").removeClass("is-transitioned");
+  $("#form-wrapper").show();
 
   sendMessageAjaxInit();
 }
