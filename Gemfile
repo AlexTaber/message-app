@@ -38,6 +38,7 @@ gem 'pusher'
 gem 'stripe'
 gem 'rinku'
 gem 'wannabe_bool', :require => 'wannabe_bool'
+gem 'rmagick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

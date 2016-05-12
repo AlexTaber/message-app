@@ -244,9 +244,14 @@ class UsersController < ApplicationController
   end
 
   def upload_image(file)
+    tempfile = Tempfile.new(file.original_filename)
+    img = Magick::Image.from_blob(file.read).first
+    img.resize_to_fit!(100, 100)
+    img.write(tempfile.path)
+
     obj = S3_BUCKET.object(file.original_filename)
 
-    obj.upload_file(file.tempfile, acl:'public-read')
+    obj.upload_file(tempfile, acl:'public-read')
     @user.remove_image if @user.image
     @image = Image.new(url: obj.public_url, imageable_id: @user.id, imageable_type: "User")
     unless @image.save
