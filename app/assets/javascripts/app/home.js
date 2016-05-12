@@ -7,6 +7,8 @@ var completedTasksShow = false;
 var totalTransitions;
 var invalidFiles = [];
 var searchMode = false;
+var canSubmitProject = true;
+
 
 jQuery(document).ready(function($){
 
@@ -90,6 +92,9 @@ jQuery(document).ready(function($){
 
   //set up tabs
   tabs();
+
+  //prevent double submit for projects
+  preventProjectDoubleSubmit();
 
   //add user to conversation
   $('.add-user-to-convo').on('click', function(){
@@ -1275,4 +1280,16 @@ function toggleInactiveTimeField() {
   } else {
     $("#inactive-time-field").addClass('is-transitioned');
   }
+}
+
+function preventProjectDoubleSubmit() {
+  $("#new_project").submit(function(e) {
+
+    if(canSubmitProject) {
+      canSubmitProject = false;
+      $("#ajax-loader").show();
+    } else {
+      e.preventDefault();
+    }
+  })
 }
