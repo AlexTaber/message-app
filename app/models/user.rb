@@ -347,4 +347,8 @@ class User < ActiveRecord::Base
   def update_last_online
     update_attributes(last_online: DateTime.now)
   end
+
+  def set_up_setting
+    Setting.create(user_id: id)
+  end
 end

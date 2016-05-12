@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     if @user.confirm_password(params[:confirm_password])
       if @user.valid?
         @user.save
+        @user.set_up_setting
         @subscription = Subscription.new(user_id: @user.id)
         tier = Tier.find_by(id: 1)
         @subscription.save_with_payment(tier, false)
