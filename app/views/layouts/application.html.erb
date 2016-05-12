@@ -36,9 +36,9 @@
     <%= javascript_tag "curConvoToken = false; curConvoId = false; convoUserIds = [];" %>
   <% end %>
   <% if @project %>
-    <%= javascript_tag "projectId = #{@project.id.to_json.html_safe};" %>
+    <%= javascript_tag "projectId = #{@project.id.to_json.html_safe}; projectUserIds = #{@project.user_ids};" %>
   <% else %>
-    <%= javascript_tag "projectId = null;" %>
+    <%= javascript_tag "projectId = null; projectUserIds = [];" %>
   <% end %>
   <% if @tasks %>
     <%= javascript_tag "tasksMode = true;" %>

@@ -85,7 +85,7 @@ function removeTypeahead() {
 }
 
 function emptyHtml(project_users) {
-  if(convoUserIds.length == 1) {
+  if(projectUserIds.length <= 1) {
     return [
       '<div class="empty-message">',
         '<b class="text-center" style="display:block;">There are no users in this project.</b><br> <span style="font-size:80%;"">If you created this project, add some by going to <b>MANAGE USERS</b> under this project\'s name on the left of your dashboard.</span>',
