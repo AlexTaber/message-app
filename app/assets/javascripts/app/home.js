@@ -873,6 +873,8 @@ function changeConvo(e) {
       notesMode = false;
     }
 
+    checkForUnreadConvo(convoId);
+
     if(canChangeConvo(convoId, convoToken, oldConvoToken)) {
       $(".msg-item-current").removeClass("msg-item-current");
       var newMsgItem = el.find(".message-item");
@@ -930,6 +932,18 @@ function changeConvo(e) {
 
 function canChangeConvo(convoId, convoToken, oldConvoToken) {
   return typeof convoId !== undefined && (convoToken != oldConvoToken || searchMode);
+}
+
+function checkForUnreadConvo(convo_id) {
+  var target = $(".is-unread-convo");
+
+  if(target.length > 0) {
+    var parent = target.parents('.conversation-wrapper');
+
+    if(parent.data('convo-id') == convo_id) {
+      target.removeClass('is-unread-convo');
+    }
+  }
 }
 
 function updatePusherListeners(convoToken, oldConvoToken) {
