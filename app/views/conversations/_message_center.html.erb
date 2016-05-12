@@ -47,13 +47,15 @@
 </div>
 <div class="task-conversation-switch text-center">
 
-  <div class="search-wrapper u-pull-right">
-    <form id="search-form">
-      <input id="search-input" type="text" placeholder="Search...">
-    </form>
-    <i class="fa fa-search" id="search-show"></i>
-    <i class="fa fa-times search-hide" id="search-hide"></i>
-  </div>
+  <% unless conversation.new_record? %>
+    <div class="search-wrapper u-pull-right">
+      <form id="search-form">
+        <input id="search-input" type="text" placeholder="Search...">
+      </form>
+      <i class="fa fa-search" id="search-show"></i>
+      <i class="fa fa-times search-hide" id="search-hide"></i>
+    </div>
+  <% end %>
 
   <span id="switch-wrapper">
     <% if tasks %>
