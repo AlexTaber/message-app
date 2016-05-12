@@ -38,8 +38,8 @@ class Project < ActiveRecord::Base
     user_projects.find_by(admin: true)
   end
 
-  def typeahead_users_data(user)
-    other_users(user).map(&:typeahead_data)
+  def typeahead_users_data(conversation, user)
+    conversation.other_project_users.map(&:typeahead_data)
   end
 
   def non_member_users_data

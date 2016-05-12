@@ -31,9 +31,9 @@
     <%= javascript_tag "conversationTokens = #{current_user.conversation_tokens.to_json.html_safe}; userId = #{current_user.id};" %>
   <% end %>
   <% if @conversation %>
-    <%= javascript_tag "curConvoToken = #{@conversation.token.to_json.html_safe}; curConvoId = #{@conversation.id || false};" %>
+    <%= javascript_tag "curConvoToken = #{@conversation.token.to_json.html_safe}; curConvoId = #{@conversation.id || false}; convoUserIds = #{@conversation.user_ids};" %>
   <% else %>
-    <%= javascript_tag "curConvoToken = false; curConvoId = false;" %>
+    <%= javascript_tag "curConvoToken = false; curConvoId = false; convoUserIds = [];" %>
   <% end %>
   <% if @project %>
     <%= javascript_tag "projectId = #{@project.id.to_json.html_safe};" %>

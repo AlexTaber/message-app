@@ -172,4 +172,8 @@ class Conversation < ActiveRecord::Base
   def search_tasks(query)
     search_messages(query).includes(:task).where.not(tasks: { id: nil })
   end
+
+  def other_project_users
+    project.users.where.not(id: user_ids)
+  end
 end

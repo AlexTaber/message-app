@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     if @user.confirm_password(params[:confirm_password])
       if @user.valid?
         @user.save
+        @user.set_up_setting
         @subscription = Subscription.new(user_id: @user.id)
         tier = Tier.find_by(id: 1)
         @subscription.save_with_payment(tier, false)
@@ -91,6 +92,7 @@ class UsersController < ApplicationController
     else
       current_user.has_conversations_by_project?(@project) ? find_conversation(current_user) : set_up_new_conversation
     end
+
     unless @conversation.user_is_permitted?(current_user)
       flash[:warn] = "You are not permitted to view this conversation"
       redirect_to home_path and return
@@ -159,17 +161,16 @@ class UsersController < ApplicationController
 
   def typeahead
     project = Project.find_by(id: params[:project_id])
+    conversation = Conversation.find_by(id: params[:convo_id]) || Conversation.new(user_ids: params[:convo_user_ids], project: project)
+
     if project
       render json: {
-        project_users: project.typeahead_users_data(current_user),
-        all_users: project.non_member_users_data,
-        all_projects: Project.all_projects_data
+        project_users: project.typeahead_users_data(conversation, current_user),
       }.to_json
     else
-      render json: {
-        all_projects: Project.all_projects_data
-      }.to_json
+      render json: {}
     end
+
   end
 
   def owner_data
