@@ -8,11 +8,9 @@
 	     <div class="edit-form">
         	<h3 class="title">Edit Your Profile</h3>
           <%= form_for current_user do |f| %>
-            <% if current_user.image %>
-            <img id="img-input" class="profile-preview edit-page" src="<%= current_user.image_url %>"><br>
+            <img id="img-input" class="profile-preview edit-page <%= 'hidden' unless current_user.image %>" src="<%= current_user.image_url %>"><br>
             <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
-               <label for='profile-uploader' class="profile-upload-label">Change Profile Image</label><br>
-            <% end %>
+               <label for='profile-uploader' class="profile-upload-label"><%= current_user.image ? 'Change Profile Image' : 'Upload Profile Image' %></label><br>
             <div class="row">
               <div class="five offset-by-one columns edit-form_field">
                 <p>Username:</p><%= f.text_field :username, placeholder: "Username" %>
