@@ -254,6 +254,7 @@ class UsersController < ApplicationController
     obj.upload_file(tempfile, acl:'public-read')
     @user.remove_image if @user.image
     @image = Image.new(url: obj.public_url, imageable_id: @user.id, imageable_type: "User")
+    tempfile.unlink
     unless @image.save
       flash[:warn] = "There was a problem uploading your image, please try again"
       redirect_to :back
