@@ -143,6 +143,7 @@
   </div>
 
   <% if @has_active_projects %>
+
     <div id="transfer-cover" class="gradient-background"></div>
   <% else %>
     <div class="is-transitioned gradient-background-alpha" id="transfer-cover"></div>
@@ -284,6 +285,7 @@
         <% end %>
       </div>
     <% end %>
+
 
     <div class="conversations-wrapper hide-scrollbar">
       <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>

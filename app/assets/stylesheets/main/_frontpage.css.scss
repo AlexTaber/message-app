@@ -105,7 +105,11 @@ body {
 	text-indent: 25px;
 }
 .admin-user {
+<<<<<<< HEAD
 	background: rgba($white, 1);
+=======
+	background: rgba($grey, 1);
+>>>>>>> initial redesign
 }
 i.admin-profile {
 	padding-right: 10px;
@@ -305,9 +309,15 @@ ul.edit-project-list {
 		position:relative;
 		display:block !important;
 		width: 28%;
+<<<<<<< HEAD
 		margin: 0 0 0 1%;
 		height: calc(100vh - 72px);
   	background: rgba($white, 1);
+=======
+		margin: 1% 0 1% 1%;
+		height: calc(100% - 35px);
+  	background: rgba($white, 0.8);
+>>>>>>> initial redesign
 		float: left;
 	}
 }
@@ -328,7 +338,11 @@ ul.edit-project-list {
 	display:none;
 	width:100%;
 	height: 100%;
+<<<<<<< HEAD
 	background: rgba($white, 1);
+=======
+	background: rgba($white, 0.8);
+>>>>>>> initial redesign
 	border-radius: 0px 3px 3px 0px;
 
 	header {
@@ -369,9 +383,15 @@ ul.edit-project-list {
 	position:relative;
 	display:block !important;
 	float: left;
+<<<<<<< HEAD
 	width: 48%;
 	margin: 0 2% 0 0;
 	height: calc(100vh - 72px);
+=======
+	width: 50%;
+	margin: 1% 1% 1% 0;
+	height: calc(100% - 35px);
+>>>>>>> initial redesign
 
 }
 }
@@ -437,7 +457,11 @@ ul.edit-project-list {
 		height: 0;
 		border-top: 10px solid transparent;
 		border-bottom: 10px solid transparent;
+<<<<<<< HEAD
 		border-right:10px solid $white;
+=======
+		border-right:10px solid #E6E4E9;
+>>>>>>> initial redesign
 		margin-right:-1px;
 	}
 		.msg-item-current:before {
