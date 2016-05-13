@@ -18,7 +18,7 @@ a:hover {
   height: auto;
   width: 100%;
   color: $white;
-  padding: 12px 5px 12px 15px;
+  padding: 15px 1.5% 12px 2%;
 
   span {
     font-size: 18px;
@@ -112,8 +112,8 @@ a:hover {
 nav#current-account {
   display:none;
   position: absolute;
-  right: 18px;
-  top: 32px;
+  right: calc(1% + 19px);
+  top: 38px;
   font-size: 1.4rem;
   z-index: 999;
   width:150px;

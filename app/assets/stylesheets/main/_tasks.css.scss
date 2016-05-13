@@ -63,7 +63,8 @@
 
     &.icon {
       padding: 7px;
-      border-radius:7px;
+      border-radius:8px;
+      border: 1px solid $white;
       margin-top: 7px;
       &:hover{
         background: $black;
