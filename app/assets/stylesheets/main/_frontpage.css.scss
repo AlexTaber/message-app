@@ -27,7 +27,7 @@ body {
 
 .home-wrapper {
   overflow: hidden;
-  height: calc(100% - 30px);
+  height: calc(100% - 43px);
 }
 .logo {
 	display: inline-block;
@@ -414,9 +414,6 @@ ul.edit-project-list {
 }
 }
 
-	.mobile-active{
-		border-bottom: 2px solid $pwdlight;
-	}
 	.fa-globe:after{
 		border-bottom-color:#dddddd;
 		left:2px
@@ -917,7 +914,7 @@ ul.edit-project-list {
 #transfer-cover {
 	position: absolute;
 	width: 100%;
-	height: calc(100% - 30px);
+	height: calc(100% - 43px);
 	z-index: -5;
 	opacity: 0;
 	-webkit-transition: opacity 0.4s; /* Safari */

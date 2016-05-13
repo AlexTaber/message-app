@@ -153,6 +153,8 @@ input[type="button"].button-white:focus {
   font-size:10px;
   background-color:transparent;
   margin-top:5px;
+  padding-bottom: 12px;
+  padding-top: 6px;
   &:hover {
     border-color: $pwdlight;
   }

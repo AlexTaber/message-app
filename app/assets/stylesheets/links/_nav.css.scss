@@ -266,6 +266,10 @@ nav#current-account {
     &:hover {
       color:$black;
     }
+
+    &.mobile-active {
+      color: $white;
+    }
   }
 }
 .mobile-icons {
