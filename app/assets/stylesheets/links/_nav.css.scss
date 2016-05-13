@@ -17,10 +17,8 @@ a:hover {
 .menu-bar {
   height: auto;
   width: 100%;
-  background: $brand-color;
   color: $white;
-  padding: 5px 10px;
-  border-bottom: 1px solid $grey;
+  padding: 10px 5px 0px 15px;
   span {
   font-size: 18px;
   line-height: 1.5%;
@@ -107,8 +105,8 @@ a:hover {
 nav#current-account {
   display:none;
   position: absolute;
-  right: 23px;
-  top: 29px;
+  right: 18px;
+  top: 32px;
   font-size: 1.4rem;
   z-index: 999;
   width:150px;

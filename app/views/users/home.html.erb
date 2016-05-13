@@ -81,7 +81,6 @@
     <a herf="#" class='close-modal close-modal-btn'><i class="fa fa-times"></i></a>
   </div>
 </div>
-<!-- END DELETE PROJECT MODAL-->
 
 <!-- WELCOME MODAL-->
 <% if(current_user.first_visit?) %>
@@ -129,194 +128,195 @@
 <!-- WELCOME MODAL-->
 
 <!-- ********************* END MODALS *********************** -->
+<div class="app-container gradient-background">
+  <!-- Header is in view/layouts/_home_header.html.erb -->
+  <%= render partial: "layouts/home_header", locals: { project: @project } %>
 
-<!-- Header is in view/layouts/_home_header.html.erb -->
-<%= render partial: "layouts/home_header", locals: { project: @project } %>
-
-<!-- End Menu Bar -->
-<div id="ajax-loader">
-  <div class="cssload-thecube">
-    <div class="cssload-cube cssload-c1"></div>
-    <div class="cssload-cube cssload-c2"></div>
-    <div class="cssload-cube cssload-c4"></div>
-    <div class="cssload-cube cssload-c3"></div>
+  <!-- End Menu Bar -->
+  <div id="ajax-loader">
+    <div class="cssload-thecube">
+      <div class="cssload-cube cssload-c1"></div>
+      <div class="cssload-cube cssload-c2"></div>
+      <div class="cssload-cube cssload-c4"></div>
+      <div class="cssload-cube cssload-c3"></div>
+    </div>
   </div>
-</div>
 
-<% if @has_active_projects %>
-  <div id="transfer-cover"></div>
-<% else %>
-  <div class="is-transitioned" id="transfer-cover"></div>
-<% end %>
-
-<!-- overflow hidden wrapper -->
-<div class="home-wrapper">
-  <!-- INBOX SIDEBAR -->
   <% if @has_active_projects %>
-    <div class="inbox-sidebar mobile-target hide-scrollbar">
+    <div id="transfer-cover"></div>
   <% else %>
-    <div class="inbox-sidebar mobile-target hide-scrollbar is-transitioned">
+    <div class="is-transitioned" id="transfer-cover"></div>
   <% end %>
-    <header>
-      <b>Your</b> Projects
-        <% if current_user.tier.permit_user_project(current_user) %>
-          <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
-            <div class="tool-button-hover">
-              <p>New Project</p>
-              <div class="tool-button-hover-text is-first"><small><%= current_user.remaining_projects_count %> Remaining</small>
+
+  <!-- overflow hidden wrapper -->
+  <div class="home-wrapper">
+    <!-- INBOX SIDEBAR -->
+    <% if @has_active_projects %>
+      <div class="inbox-sidebar mobile-target hide-scrollbar">
+    <% else %>
+      <div class="inbox-sidebar mobile-target hide-scrollbar is-transitioned">
+    <% end %>
+      <header>
+        <b>Your</b> Projects
+          <% if current_user.tier.permit_user_project(current_user) %>
+            <%= link_to new_project_path, class: "activate-modal add-btn", name: "window" do %>
+              <div class="tool-button-hover">
+                <p>New Project</p>
+                <div class="tool-button-hover-text is-first"><small><%= current_user.remaining_projects_count %> Remaining</small>
+                </div>
               </div>
-            </div>
-          <% end %>
-        <% else %>
-          <%= link_to pricing_path, class: "add-btn" do %>
-            <div class="add-button-hover">
-              <div class="add-button-hover-text is-first"><small>Upgrade Now</small>
+            <% end %>
+          <% else %>
+            <%= link_to pricing_path, class: "add-btn" do %>
+              <div class="add-button-hover">
+                <div class="add-button-hover-text is-first"><small>Upgrade Now</small>
+                </div>
               </div>
-            </div>
+            <% end %>
+          <% end %>
+        </header>
+      <nav class="project-list">
+        <% current_user.active_projects_ordered_by_admin.each do |project| %>
+
+        <% unless current_user.admin_of_project?(project) %>
+          <div class="non-admin-user" id="project-<%= project.id %>">
+        <% else %>
+          <div class="admin-user" id="project-<%= project.id %>">
+        <% end %>
+          <% if project.has_alert?(current_user) %>
+            <li class="is-unread-project ellipsis">
+          <% else %>
+            <li class="ellipsis">
+          <% end %>
+              <% if project == @admin_project %>
+                  <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret rotated" title="Edit project"></i>
+              <% end %>
+              <% if current_user.admin_of_project?(project) %>
+                <i class="fa fa-user admin-profile"></i>
+              <% end %>
+              <% if project == @project %>
+              <b class="open-accordian project-target"><%= link_to project.name, '#' %></b>
+              <% else %>
+              <%= link_to project.name, home_path(project_id: project.id) %>
+              <% end %>
+              <% if project == @admin_project %>
+                <div class="accordian-content">
+
+                <ul class="edit-project-list">
+                    <li>
+                      <%= link_to "Manage Users", "#", class: "activate-modal", name: "manage-users" %>
+                    </li>
+                    <li>
+                      <%= link_to "Edit project", edit_project_path(@project), class: "activate-modal", name: "edit-project" %>
+                    </li>
+                </ul>
+              </div>
+              <% end %>
+            </li>
+          </div>
+        <% end %>
+        <% unless current_user.has_active_projects? %>
+          <div class="welcome-msg new-project-cta">
+            <p><b>Click 'New Project' to add your first project!</b></p>
+            <i class="fa fa-level-up u-pull-right"></i>
+          </div>
+        <% end %>
+
+        <% if current_user.has_unapproved_projects? %>
+          <div class="text-center" id="invites-title">Invites</div>
+
+          <% current_user.unapproved_projects.each do |project| %>
+            <%= render partial: "user_projects/form", locals: { user_project: current_user.find_user_project(project) } %>
           <% end %>
         <% end %>
-      </header>
-    <nav class="project-list">
-      <% current_user.active_projects_ordered_by_admin.each do |project| %>
 
-      <% unless current_user.admin_of_project?(project) %>
-        <div class="non-admin-user" id="project-<%= project.id %>">
-      <% else %>
-        <div id="project-<%= project.id %>">
-      <% end %>
-        <% if project.has_alert?(current_user) %>
-          <li class="is-unread-project ellipsis">
-        <% else %>
-          <li class="ellipsis">
-        <% end %>
-            <% if project == @admin_project %>
-                <i class="fa fa-chevron-down u-pull-right open-accordian menu-caret rotated" title="Edit project"></i>
-            <% end %>
-            <% if current_user.admin_of_project?(project) %>
-              <i class="fa fa-user admin-profile"></i>
-            <% end %>
-            <% if project == @project %>
-            <b class="open-accordian project-target"><%= link_to project.name, '#' %></b>
-            <% else %>
-            <%= link_to project.name, home_path(project_id: project.id) %>
-            <% end %>
-            <% if project == @admin_project %>
-              <div class="accordian-content">
-
-              <ul class="edit-project-list">
-                  <li>
-                    <%= link_to "Manage Users", "#", class: "activate-modal", name: "manage-users" %>
-                  </li>
-                  <li>
-                    <%= link_to "Edit project", edit_project_path(@project), class: "activate-modal", name: "edit-project" %>
-                  </li>
-              </ul>
-            </div>
-            <% end %>
-          </li>
-        </div>
-      <% end %>
-      <% unless current_user.has_active_projects? %>
-        <div class="welcome-msg new-project-cta">
-          <p><b>Click 'New Project' to add your first project!</b></p>
-          <i class="fa fa-level-up u-pull-right"></i>
-        </div>
-      <% end %>
-
-      <% if current_user.has_unapproved_projects? %>
-        <div class="text-center" id="invites-title">Invites</div>
-
-        <% current_user.unapproved_projects.each do |project| %>
-          <%= render partial: "user_projects/form", locals: { user_project: current_user.find_user_project(project) } %>
-        <% end %>
-      <% end %>
-
-    </nav>
-  </div>
-  <!-- End Your projects Sidebar -->
-  <!-- Current project Data and Conversations Area -->
-  <div class="message-bar hide-scrollbar mobile-target">
-    <div id="transfer-header">
-      Select conversation to transfer task to
-      <i class="fa fa-times u-pull-right" id="transfer-close"></i>
+      </nav>
     </div>
-    <div class="message-bar-border">
-    <nav class="current-project-data">
-     <header>
-        <b><%= @project.name %></b> &nbsp;
+    <!-- End Your projects Sidebar -->
+    <!-- Current project Data and Conversations Area -->
+    <div class="message-bar hide-scrollbar mobile-target">
+      <div id="transfer-header">
+        Select conversation to transfer task to
+        <i class="fa fa-times u-pull-right" id="transfer-close"></i>
+      </div>
+      <div class="message-bar-border">
+      <nav class="current-project-data">
+       <header>
+          <b><%= @project.name %></b> &nbsp;
 
-        <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
-          <p>New Conversation</p>
-        <% end %>
-        <div id="new-message">
+          <%= link_to home_path(tasks: @tasks, project_id: @project.id, new_conversation: true), class: "add-btn" do %>
+            <p>New Conversation</p>
+          <% end %>
+          <div id="new-message">
+          </div>
+        </header>
+      </nav>
+
+      <% unless @project.new_record? %>
+        <div class="notes-wrapper" id="notes<%= @notes_conversation.id %>" data-convo-id="<%= @notes_conversation.id %>" data-convo-token="<%= @notes_conversation.token %>">
+          <%= render partial: "conversations/notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
         </div>
-      </header>
-    </nav>
+      <% end %>
 
-    <% unless @project.new_record? %>
-      <div class="notes-wrapper" id="notes<%= @notes_conversation.id %>" data-convo-id="<%= @notes_conversation.id %>" data-convo-token="<%= @notes_conversation.token %>">
-        <%= render partial: "conversations/notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
+      <% if @conversation.new_record? && current_user.has_active_projects?  %>
+        <div class="message-item msg-item-current new-convo-placeholder">
+        <div class="media">
+             <% if current_user.image %>
+            <div class="profile-pic u-pull-left app-view-p-img">
+              <img class="profile-pic" src="<%= current_user.image_url %>">
+            </div>
+          <% else %>
+            <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
+              <p><%= current_user.first_name[0] %></p>
+            </div>
+          <% end %>
+          <div class="bd conversation-preview">
+            <h4>
+              New Conversation
+            </h4>
+            <p>Start messaging now</p>
+          </div>
+        </div>
+        <% if @project.has_conversations? %>
+          <%= link_to home_path(project_id: @project.id), class: "close-new-convo" do %>
+            <i class="fa fa-times"></i>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
 
-    <% if @conversation.new_record? && current_user.has_active_projects?  %>
-      <div class="message-item msg-item-current new-convo-placeholder">
-      <div class="media">
-           <% if current_user.image %>
-          <div class="profile-pic u-pull-left app-view-p-img">
-            <img class="profile-pic" src="<%= current_user.image_url %>">
-          </div>
-        <% else %>
-          <div class="profile-pic has-no-pic u-pull-left app-view-p-img">
-            <p><%= current_user.first_name[0] %></p>
-          </div>
-        <% end %>
-        <div class="bd conversation-preview">
-          <h4>
-            New Conversation
-          </h4>
-          <p>Start messaging now</p>
+    <div class="conversations-wrapper">
+      <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
+        <div class="conversation-wrapper" id="conversation<%= conversation.id %>" data-convo-id="<%= conversation.id %>" data-convo-token="<%= conversation.token %>">
+          <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
         </div>
-      </div>
-      <% if @project.has_conversations? %>
-        <%= link_to home_path(project_id: @project.id), class: "close-new-convo" do %>
-          <i class="fa fa-times"></i>
-        <% end %>
       <% end %>
     </div>
-  <% end %>
-
-  <div class="conversations-wrapper">
-    <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
-      <div class="conversation-wrapper" id="conversation<%= conversation.id %>" data-convo-id="<%= conversation.id %>" data-convo-token="<%= conversation.token %>">
-        <%= render partial: "conversations/app_card", locals: { conversation: conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
       </div>
-    <% end %>
-  </div>
     </div>
-  </div>
-  <!-- End Current project Data and Conversations Area -->
+    <!-- End Current project Data and Conversations Area -->
 
 
-  <div id="mobile-current-account" class="mobile-target">
-    <p><b><%= current_user.name %>'s Acount</b></p>
-    <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
-    <li><%= link_to 'Upgrade', pricing_path %></li>
-    <li><%= link_to 'Logout', logout_path %></li>
-  </div>
-  <!-- Message Content Section -->
-  <div class="message-center mobile-target">
-    <%= render partial: "conversations/message_center", locals: { notes: @notes, message: @message, tasks: @tasks, conversation: @conversation, project: @project } %>
+    <div id="mobile-current-account" class="mobile-target">
+      <p><b><%= current_user.name %>'s Acount</b></p>
+      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+      <li><%= link_to 'Upgrade', pricing_path %></li>
+      <li><%= link_to 'Logout', logout_path %></li>
+    </div>
+    <!-- Message Content Section -->
+    <div class="message-center mobile-target">
+      <%= render partial: "conversations/message_center", locals: { notes: @notes, message: @message, tasks: @tasks, conversation: @conversation, project: @project } %>
+    </div>
+
   </div>
 
+
+  <% if current_user.active_projects_ordered_by_admin.length > 0 %>
+
+    <!-- I-Frame -->
+  <!--   <div id="fixed-iframe" class="pwd-init pwd-closed">
+      <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
+      <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="https://guarded-eyrie-2585.herokuapp.com/message_box?token=<%= current_user.active_projects_ordered_by_admin.first.token %>"></iframe>
+    </div> -->
+  <% end %>
 </div>
-
-
-<% if current_user.active_projects_ordered_by_admin.length > 0 %>
-
-  <!-- I-Frame -->
-<!--   <div id="fixed-iframe" class="pwd-init pwd-closed">
-    <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
-    <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="https://guarded-eyrie-2585.herokuapp.com/message_box?token=<%= current_user.active_projects_ordered_by_admin.first.token %>"></iframe>
-  </div> -->
-<% end %>

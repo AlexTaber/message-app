@@ -258,10 +258,11 @@ input:-webkit-autofill {
 #form-wrapper{
   background:#eee;
   position:fixed;
-  bottom:0;
-  right:0;
+  bottom: 24px;
+  right:1%;
   width:100%;
   border-top:1px solid #ddd;
+  border-radius: 0px 0px 3px 3px;
   &>form>div{
     width: calc(100% - 110px);
     display:inline-block;
