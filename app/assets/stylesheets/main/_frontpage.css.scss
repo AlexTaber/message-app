@@ -705,7 +705,8 @@ ul.edit-project-list {
 }
 
 .conversations-wrapper {
-	padding-bottom: 170px;
+	height: calc(100vh - 173px);
+	overflow: scroll;
 }
 
 .conversation-wrapper {
