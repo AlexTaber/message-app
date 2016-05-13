@@ -12,7 +12,7 @@
 		height:100%;
 		top:0;
 		left:0;
-		background-image: linear-gradient(to bottom right,darken($pwdlight, 50%),$pwdlight);
+		background-image: linear-gradient(to bottom right,$pwddark ,$pwdlight);
 		opacity: .7;
   	}
   h2.pro-large-text{
@@ -71,8 +71,6 @@
 }
 
 .pricing-details{
-	background:url('https://s3.amazonaws.com/mercury-app-assets/pricing.jpg') no-repeat center center;
-	background-size:cover;
 	position:relative;
 	padding-top:40px;
 	padding-bottom:40px;
@@ -83,7 +81,6 @@
 		width:100%;
 		height:100%;
 		top:0;
-		background-image: linear-gradient(to bottom left,darken($pwdlight, 30%),lighten($pwdlight,40%));
 		opacity: .6;
   	}
   	.white-background{
