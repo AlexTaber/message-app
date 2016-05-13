@@ -85,8 +85,8 @@ a:hover {
 
 .mobile-nav {
     display: block;
-    background-color: rgba($pwdlight, .8);
-    color: #fff;
+    background-color: rgba($white, 1);
+    color: $pwdlight;
     padding: 1rem 0;
     z-index: 1000;
 
@@ -95,7 +95,7 @@ a:hover {
       display: inline;
     }
     a {
-      color: rgba($white, .8);
+      color: $pwdlight;
       text-decoration: none;
     }
     &.menu-bar{

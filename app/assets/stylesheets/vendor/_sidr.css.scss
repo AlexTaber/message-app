@@ -10,11 +10,10 @@
   width: 260px;
   overflow-x: none;
   overflow-y: auto;
-  background-color: rgba($pwdlight, .8);
-  color: $white;
-  -webkit-box-shadow: inset 0 0 1px 1px #666;
-  -moz-box-shadow: inset 0 0 1px 1px #666;
-  box-shadow: inset 0 0 1px 1px #666; }
+  background-color: rgba($white, .8);
+  color: $pwdlight;
+  border-left: 1px solid $grey
+}
 
 .sidr .sidr-inner {
   padding: 0 0 15px; }
@@ -34,22 +33,21 @@
   margin: 0;
   font-size: 2.4rem;
   font-weight: 300;
-  line-height: 48px; 
+  line-height: 48px;
   border-bottom: 1px solid #ddd;
 }
 
 .sidr ul li:hover, .sidr ul li.active, .sidr ul li.sidr-class-active {
   border-top: none;
-  line-height: 49px; 
 }
 
 .sidr ul li a, .sidr ul li span {
   padding: 0 15px;
   display: block;
   text-decoration: none;
-  color: $white; }
+  color: $pwdlight; }
 .sidr ul li a:hover {
-  color: rgba($white, .6);
+  color: rgba($pwdlight, .6);
 }
 .sidr ul li ul {
   border-bottom: none;

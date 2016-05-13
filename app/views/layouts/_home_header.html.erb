@@ -1,6 +1,6 @@
 <!-- Desktop Navbar -->
 <div class="menu-bar desktop-nav show-desktop">
-  <span class="home-logo maski-font"><%= link_to 'Maski', splash_path %></span>
+  <span class="home-logo evia-font"><%= link_to 'Evia', splash_path %></span>
   <!-- User Account Section -->
   <nav class="profile-data">
     <span><%= link_to current_user.name, home_path %> | <span class="header-username"><%= current_user.username %></span></span>
@@ -28,7 +28,7 @@
  <nav class="mobile-info mobile-nav show-mobile">
     <div class="mobile-top-menu">
       <%= link_to splash_path do %>
-        <span class="maski-font">Maski</span>
+        <span class="evia-font">Evia</span>
       <% end %>
       <% if project %>
         <span class="u-pull-right"><%= project.name %></span>
