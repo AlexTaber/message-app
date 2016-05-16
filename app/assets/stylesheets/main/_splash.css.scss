@@ -310,6 +310,11 @@ a:hover {
     color: $white;
     text-align: center;
     width: 100%;
+
+    h1 {
+      font-size: 2.5rem;
+      padding: 0 10px;
+    }
   }
 
   .landing-content {
@@ -419,6 +424,10 @@ a:hover {
 
     .landing-icons {
       margin-top: 260px;
+    }
+
+    .landing-text h1 {
+      font-size: 4rem;
     }
   }
 }

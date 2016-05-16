@@ -28,7 +28,7 @@
       }
 
       .claimed {
-        color: #ffdc02;
+        color: $pwdlight;
       }
     }
 
@@ -107,7 +107,7 @@
   p {
     margin: 0;
     display: inline-block;
-    width: calc(100% - 30px);
+    width: calc(100% - 32px);
     max-width: none;
     min-width: initial;
     padding: 0;
@@ -115,6 +115,7 @@
     padding-top: 5px;
     padding-left:10px;
     background:transparent;
+    border: none;
 
     small {
       margin-top: 3px;
