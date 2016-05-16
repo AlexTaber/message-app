@@ -251,7 +251,7 @@ ul.edit-project-list {
   &.is-transitioned {
   	z-index: 2;
   }
- 
+
 	.message-bar-border{
 		border-right:1px solid #ababab;
 		height: auto;
@@ -820,7 +820,7 @@ ul.edit-project-list {
 	background:#fff;
 	border: 1px solid #ddd;
 	z-index:999;
-	overflow:visible;
+	overflow-y:scroll;
 	width: 100%;
 	border-radius: 0 0 5px 5px;
 	box-shadow: 0px 1px 1px $grey;
