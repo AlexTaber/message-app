@@ -48,15 +48,16 @@ body {
 	overflow-y: scroll;
 	overflow-x: hidden;
 	z-index: 0;
-	border-radius: 3px;
+		border-radius:0;
 
 	&.is-transitioned {
 		z-index: 2;
 	}
 	header  {
 		padding: 10px;
-		background-color: lighten($blue, 10%);
+		background-color: #f5f5f5;
 		color:#000;
+		border-bottom:1px solid #ddd;
 		h4 {
 			display: inline-block;
 			line-height: 0;
@@ -110,7 +111,6 @@ body {
 }
 .admin-user {
 	background:lighten($blue, 32%);
-
 }
 i.admin-profile {
 	padding-right: 10px;
@@ -170,9 +170,14 @@ i.admin-profile {
 	display:block !important;
 	width: 19%;
 	height: calc(100vh - 72px);
-	margin: 0 0 0 2%;
+	margin: 0 0 0 1%;
 	float: left;
 	background:lighten($blue, 28%);
+	border-radius: 3px;
+	header{
+		background-color: lighten($blue, 10%);
+		border-bottom:none;
+	}
 }
 }
 .connection-warning{
@@ -256,7 +261,7 @@ ul.edit-project-list {
 .message-bar {
 	position:fixed;
 	display:none;
-	background:lighten($blue, 28%);;
+	background:#fff;
 	width: 100%;
 	height: calc(100vh - 30px);
 	overflow-y: scroll;
@@ -269,7 +274,7 @@ ul.edit-project-list {
   }
 
 	.message-bar-border{
-		border-right:1px solid #aaa;
+		border-right:1px solid #C0C1DC;
 		height: auto;
 		min-height:100%;
 	}
@@ -282,7 +287,8 @@ ul.edit-project-list {
 
 	}
 	header {
-		background-color: #B5C3DB;
+		background-color: #f5f5f5;
+		border-bottom:1px solid #ddd;
 		color:#000;
 		h4 {
 			display: inline-block;
@@ -322,20 +328,15 @@ ul.edit-project-list {
 		position:relative;
 		display:block !important;
 		width: 28%;
-<<<<<<< HEAD
 		margin: 0 0 0 1%;
 		height: calc(100vh - 72px);
-<<<<<<< HEAD
-  	background: rgba($white, 1);
-=======
-		margin: 1% 0 1% 1%;
-		height: calc(100% - 35px);
-  	background: rgba($white, 0.8);
->>>>>>> initial redesign
-=======
-  	background:lighten($blue, 28%);;
->>>>>>> purple gradient
+  	background:lighten($blue, 28%);
 		float: left;
+		header{
+			background-color: #B5C3DB;
+			border-right: 1px solid #ddd;
+			border-bottom:none;
+		}
 	}
 }
 #new-message {
@@ -355,18 +356,15 @@ ul.edit-project-list {
 	display:none;
 	width:100%;
 	height: 100%;
-<<<<<<< HEAD
 	background: rgba($white, 1);
-=======
-	background: rgba($white, 0.8);
->>>>>>> initial redesign
 	border-radius: 0px 3px 3px 0px;
 
 		header {
-		background-color: #C0C1DC;
+		background-color: #f5f5f5;
 		padding: 10px;
 		color:#000;
 		border-radius: 0 3px 0 0;
+		border-bottom:1px solid #ddd;
 		h4 {
 			display: inline-block;
 			line-height: 0;
@@ -393,7 +391,12 @@ ul.edit-project-list {
 		}
 	}
 }
-
+@media (min-width: 750px) {
+	.message-center header{
+		background-color:#C0C1DC;
+		border-bottom: none;
+	}
+}
 .hover-item {
 	z-index: 999;
 	color: $black;
@@ -409,15 +412,9 @@ ul.edit-project-list {
 	position:relative;
 	display:block !important;
 	float: left;
-<<<<<<< HEAD
-	width: 48%;
-	margin: 0 2% 0 0;
-	height: calc(100vh - 72px);
-=======
 	width: 50%;
-	margin: 1% 1% 1% 0;
-	height: calc(100% - 35px);
->>>>>>> initial redesign
+	margin: 0 1% 0 0;
+	height: calc(100vh - 72px);
 
 }
 }
@@ -474,24 +471,6 @@ ul.edit-project-list {
 		i:after {
 			display:none;
 		}
-<<<<<<< HEAD
-	.msg-item-current:after {
-		position:absolute;
-		right:0;
-		top: 30px;
-		content: "";
-		width: 0;
-		height: 0;
-		border-top: 10px solid transparent;
-		border-bottom: 10px solid transparent;
-<<<<<<< HEAD
-		border-right:10px solid $white;
-=======
-		border-right:10px solid #E6E4E9;
->>>>>>> initial redesign
-		margin-right:-1px;
-	}
-=======
 	// .msg-item-current:after {
 	// 	position:absolute;
 	// 	right:0;
@@ -504,7 +483,6 @@ ul.edit-project-list {
 	// 	border-right:10px solid $white;
 	// 	margin-right:-1px;
 	// }
->>>>>>> purple gradient
 		.msg-item-current:before {
 		position:absolute;
 		right:0;
@@ -514,7 +492,7 @@ ul.edit-project-list {
 		height: 0;
 		border-top: 11px solid transparent;
 		border-bottom: 11px solid transparent;
-		border-right:11px solid #aaa;
+		border-right:11px solid #B5C3DB;
 		margin-right:-1px;
 	}
 	#mobile-current-account {
@@ -585,8 +563,7 @@ ul.edit-project-list {
 }
 
 .task-conversation-switch {
-	background-color: #f5f5f5;
-	border-top:1px solid #ddd;
+	background-color: #fff;
 	padding: 5px 0 5px 0;
 
 	&.is-hidden {
@@ -666,6 +643,12 @@ ul.edit-project-list {
 			opacity: 1;
 			width: 200px;
 		}
+	}
+}
+/* Larger than tablet */
+@media (min-width: 750px) {
+	.task-conversation-switch {
+		background-color: lighten(#C0C1DC, 10%);
 	}
 }
 .no-pending-tasks{
@@ -889,7 +872,7 @@ ul.edit-project-list {
 			width: 135px;
 			border: none;
 			font-size: 11px;
-			background: lighten($blue, 30%);
+			background: lighten($blue, 40%);
 			border-radius:3px;
 		}
 		input[type="submit"] {
@@ -901,7 +884,7 @@ ul.edit-project-list {
 	background:#fff;
 	border: 1px solid #ddd;
 	z-index:999;
-	overflow-y:scroll;
+	overflow:visible;
 	width: 100%;
 	border-radius: 0 0 5px 5px;
 	box-shadow: 0px 1px 1px $grey;
@@ -1149,4 +1132,17 @@ a.is-admin{
 	margin-top:20px;
 	display: inline-block;
 	padding: 12px 12px 7px 12px;
+}
+	.app-container{
+		background: #fff;
+	}
+/* Larger than tablet */
+@media (min-width: 750px) {
+.app-container {
+	background: darken(rgba($blue, 0.7), 10%);
+  background: -webkit-linear-gradient(left, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
+  background: -o-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: -moz-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: linear-gradient(to right, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
+}
 }

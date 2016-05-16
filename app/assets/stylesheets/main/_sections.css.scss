@@ -14,11 +14,11 @@ section  {
 #why {
 	padding-top: 80px;
 	border-bottom: 1px solid $grey;
-	background: lighten($pwdlight, 10%);
-  background: -webkit-linear-gradient(left, $pwddark , lighten($pwdlight, 10%));
-  background: -o-linear-gradient(right, $pwddark, lighten($pwdlight, 10%));
-  background: -moz-linear-gradient(right, $pwddark, lighten($pwdlight, 10%));
-  background: linear-gradient(to right, $pwddark , lighten($pwdlight, 10%));
+	  background: darken(rgba($blue, 0.7), 10%);
+  background: -webkit-linear-gradient(left, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
+  background: -o-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: -moz-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: linear-gradient(to right, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
 	color: $white;
 	i {
 		margin: 20px 0;

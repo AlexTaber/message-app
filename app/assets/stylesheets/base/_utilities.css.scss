@@ -9,18 +9,18 @@
 * 12/29/2014
 */
 
+/* Larger than tablet */
+
 .gradient-background {
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#343477+0,86aecc+100 */
-background: rgb(52,52,119); /* Old browsers */
-background: -moz-linear-gradient(left,  rgba(52,52,119,1) 0%, rgba(134,174,204,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left,  rgba(52,52,119,1) 0%,rgba(134,174,204,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right,  rgba(52,52,119,1) 0%,rgba(134,174,204,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#343477', endColorstr='#86aecc',GradientType=1 ); /* IE6-9 */
 
-
-
+  background: darken(rgba($blue, 0.7), 10%);
+  background: -webkit-linear-gradient(left, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
+  background: -o-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: -moz-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: linear-gradient(to right, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
 
 }
+
 
 .gradient-background-alpha {
   background: darken(rgba($pwdlight, 0.7), 10%);
@@ -199,7 +199,7 @@ a.close-modal{
   right:0;
   margin-top:-8px;
   margin-right:-8px;
-  background: $brand-color;
+  background: $blue;
   border-radius:100%;
   border: 2px solid #fff;
   color:#fff;
@@ -209,7 +209,7 @@ a.close-modal{
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     &:hover {
       color:#fff;
-      background: lighten($brand-color, 25%);
+      background: lighten($blue, 25%);
     }
 
 
