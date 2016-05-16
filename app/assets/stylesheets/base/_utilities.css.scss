@@ -166,6 +166,7 @@ hr.fifty{
     overflow:scroll;
     top:50%;
     transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
     bottom:auto;
     -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
