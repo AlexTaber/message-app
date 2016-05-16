@@ -1,5 +1,5 @@
 <%= form_for my_request, html: { class: 'typeahead-form', id: "request-typeahead" } do |f| %>
-  <%= text_field_tag :project_id, nil, class: "typeahead app-view-typeahead request-typeahead", value: "", placeholder: "Search Mercury Projects" %>
+  <%= text_field_tag :project_id, nil, class: "typeahead app-view-typeahead request-typeahead", value: "", placeholder: "Search Evia Projects" %>
 
   <%= f.hidden_field :project_id, value: nil %>
   <%= f.hidden_field :user_id, value: current_user.id %>

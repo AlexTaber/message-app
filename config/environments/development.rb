@@ -40,14 +40,14 @@ Rails.application.configure do
     :address        => 'smtp.gmail.com',
     :domain         => 'mail.google.com',
     :port           => 587,
-    :user_name      => 'admin@mercuryapp.co',
+    :user_name      => 'admin@eviaonline.io',
     :password       => ENV['EMAIL_PW'],
     :authentication => :plain,
     :enable_starttls_auto => true
   }
 
   config.action_mailer.default_options = {
-    from: "Mercury App <no-reply@mercuryapp.co>"
+    from: "Evia <no-reply@eviaonline.io>"
   }
 
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'

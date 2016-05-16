@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Mercury App <no-reply@mercuryapp.co>"
+  default from: "Evia <no-reply@evia.co>"
   layout 'mailer'
 end
