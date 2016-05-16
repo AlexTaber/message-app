@@ -4,11 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <div style="padding: 30px; background: #133c64; border-radius: 10px;">
+    <div style="padding: 0 0px 30px; border: 1px solid #ddd; max-width: 640px; border-top: none;">
 
-      <h1 style="text-align: center; color: #fff; font-family: helvetica, sans-serif; font-weight: 200;"><b>Evia</h1>
+      <h1 style="padding: 0 10px; color: #fff; background: #343477; font-family: helvetica, sans-serif; font-weight: 200;"><b>Evia</h1>
 
-      <div style="padding: 50px; background: #fff; border-radius: 10px; text-align: center;">
+      <div style="padding: 50px; background: #fff; text-align: center;">
+
       <h3>Hello <%= @user.name %>!</h3>
       <p>
         The following task has been completed on the project <b><%= @project.name %></b>
@@ -18,7 +19,7 @@
       </div>
       <p><a href="<%= @url %>">Click here</a> to view this message!</p>
       <p>Have a great day!</p>
-      <p>The Evia Dev Team</p>
+      <p>The Evia Team</p>
       </div>
     </div>
   </body>
