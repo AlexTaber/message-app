@@ -136,10 +136,11 @@ input[type="button"].button-white:focus {
   margin-right:20px;
   margin-top:0px;
   font-size:10px;
-
+  margin-top: 6px;
+  font-size: 1.5rem;
 }
 #right-menu{
-  margin-top:5px;
+  margin-top:3px;
 }
 .mobile-button{
   min-width: 30.6666666667% !important;
@@ -153,6 +154,8 @@ input[type="button"].button-white:focus {
   font-size:10px;
   background-color:transparent;
   margin-top:5px;
+  padding-bottom: 12px;
+  padding-top: 6px;
   &:hover {
     border-color: $pwdlight;
   }

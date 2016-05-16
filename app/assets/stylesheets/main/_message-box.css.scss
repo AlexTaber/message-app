@@ -374,8 +374,9 @@
     display:inline-block;
     padding: 1rem;
     margin-bottom: 0px;
-    background: #ddd;
+    background: rgba($white, 0.75);
     word-break: break-word;
+    border: 1px solid rgba($white, 0.65);
   }
   .self-pwd {
     float:right;

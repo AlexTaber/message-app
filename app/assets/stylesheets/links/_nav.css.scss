@@ -17,13 +17,17 @@ a:hover {
 .menu-bar {
   height: auto;
   width: 100%;
-  background: $brand-color;
   color: $white;
-  padding: 5px 10px;
-  border-bottom: 1px solid $grey;
+  padding: 15px 1.5% 12px 2%;
+
   span {
-  font-size: 18px;
-  line-height: 1.5%;
+    font-size: 18px;
+    line-height: 1.5%;
+  }
+
+  .home-logo {
+    font-size: 22px;
+    padding-top: 2px;
   }
   a {
     color: $white;
@@ -81,8 +85,8 @@ a:hover {
 
 .mobile-nav {
     display: block;
-    background-color: rgba($pwdlight, .8);
-    color: #fff;
+    background-color: rgba($white, 1);
+    color: $pwdlight;
     padding: 1rem 0;
     z-index: 1000;
 
@@ -91,7 +95,7 @@ a:hover {
       display: inline;
     }
     a {
-      color: rgba($white, .8);
+      color: $pwdlight;
       text-decoration: none;
     }
     &.menu-bar{
@@ -107,8 +111,8 @@ a:hover {
 nav#current-account {
   display:none;
   position: absolute;
-  right: 23px;
-  top: 29px;
+  right: calc(1% + 19px);
+  top: 38px;
   font-size: 1.4rem;
   z-index: 999;
   width:150px;
@@ -260,6 +264,10 @@ nav#current-account {
     color:$black;
     &:hover {
       color:$black;
+    }
+
+    &.mobile-active {
+      color: $white;
     }
   }
 }

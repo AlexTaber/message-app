@@ -32,7 +32,7 @@
           <span class="is-unread-mb"> &bull; </span> &nbsp;
         <% end %>
         <%= link_to login_path, target: '_blank' do %>
-          <span>Mercury<b>App</b></span>
+          <span class="evia-font">Evia</span>
         <% end %>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
@@ -210,7 +210,7 @@
             <% else %>
               <% if @project.users.length == 1 %>
                 <div class="text-center">
-                  Looks as if your don't have any users for this project. Head over to <%= link_to "mercuryapp.co", home_path, target: "blank" %> to add some!
+                  Looks as if your don't have any users for this project. Head over to <%= link_to "eviaonline.io", home_path, target: "blank" %> to add some!
                 </div>
               <% elsif @conversation.users.length <= 1 %>
                 <div class="text-center" >

@@ -1,7 +1,7 @@
 .task-container {
   width: 100%;
   margin-bottom: 6px;
-  border-bottom: 1px solid $grey;
+  border-bottom: 1px solid $white;
   padding: 5px;
 
   a {
@@ -28,7 +28,7 @@
       }
 
       .claimed {
-        color: #ffdc02;
+        color: $pwdlight;
       }
     }
 
@@ -63,7 +63,8 @@
 
     &.icon {
       padding: 7px;
-      border-radius:7px;
+      border-radius:8px;
+      border: 1px solid $white;
       margin-top: 7px;
       &:hover{
         background: $black;
@@ -106,7 +107,7 @@
   p {
     margin: 0;
     display: inline-block;
-    width: calc(100% - 30px);
+    width: calc(100% - 32px);
     max-width: none;
     min-width: initial;
     padding: 0;
@@ -114,6 +115,7 @@
     padding-top: 5px;
     padding-left:10px;
     background:transparent;
+    border: none;
 
     small {
       margin-top: 3px;

@@ -1226,9 +1226,9 @@ function updateTitle(added_number) {
   }
 
   if(new_number > 0) {
-    title.html("(" + String(new_number) + ") New Message | MercuryApp Messenger");
+    title.html("(" + String(new_number) + ") New Message | Evia");
   } else {
-    title.html("MercuryApp Messenger");
+    title.html("Evia");
   }
 }
 
