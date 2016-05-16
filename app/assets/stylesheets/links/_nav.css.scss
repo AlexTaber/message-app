@@ -19,26 +19,24 @@ a:hover {
   width: 100%;
   color: $white;
   padding: 15px 1.5% 12px 2%;
-
   span {
     font-size: 18px;
     line-height: 1.5%;
   }
 
-  .home-logo {
-    font-size: 22px;
-    padding-top: 2px;
-  }
   a {
     color: $white;
     text-decoration: none;
+  }
+  .home-logo {
+    font-size: 22px;
+    padding-top: 2px;
   }
 }
 .active {
   background: rgba($white, .25);
 }
 .current-project-data {
- border-bottom: 1px solid $grey;
  color: $black;
  header {
   padding: 10px;
@@ -53,6 +51,7 @@ a:hover {
   background: #fff;
   color: #222;
   width:100%;
+  height:100vh;
   left:0;
     li {
    list-style: none;
@@ -267,21 +266,25 @@ nav#current-account {
     }
 
     &.mobile-active {
-      color: $white;
+      border-bottom:3px solid $blue;
     }
   }
 }
 .mobile-icons {
-  display:inline;
   padding:0;
   margin:0;
-  width:100%;;
-  margin-top:5px;
+  width:100%;
+  display:block;
+  background: #ddd;
 }
 
   .mobile-top-menu{
     border-bottom:1px solid #ddd;
-    background-color:$brand-color;
+    background: darken(rgba($blue, 0.7), 10%);
+  background: -webkit-linear-gradient(left, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
+  background: -o-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: -moz-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: linear-gradient(to right, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
     margin-bottom:0px;
     padding:5px;
     a {
@@ -289,12 +292,18 @@ nav#current-account {
   }
   }
 .mobile-target{
-  top:65px;
+  top:59px;
+}
+.message-center.mobile-target{
+  top:56px;
 }
 @media (min-width: 750px) {
   .mobile-target{
     top:auto;
   }
+  .message-center.mobile-target{
+    top:auto
   }
+}
 
 //end Alex's amazing fantastical PWD Nav

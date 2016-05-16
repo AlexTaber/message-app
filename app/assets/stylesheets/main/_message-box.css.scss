@@ -374,15 +374,14 @@
     display:inline-block;
     padding: 1rem;
     margin-bottom: 0px;
-    background: rgba($white, 0.75);
+    background: #C0C1DC;
     word-break: break-word;
-    border: 1px solid rgba($white, 0.65);
   }
   .self-pwd {
     float:right;
     margin-right: 10px;
     border-radius: 10px 0 10px 10px;
-    background: #8dbce9;
+    background: lighten(#aac6db, 5%);
 
   }
   .complete {

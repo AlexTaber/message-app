@@ -154,11 +154,16 @@ input[type="button"].button-white:focus {
   font-size:10px;
   background-color:transparent;
   margin-top:5px;
-  padding-bottom: 12px;
-  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-top: 3px;
   &:hover {
     border-color: $pwdlight;
   }
+}
+.button-message{
+  color:#fff;
+  background-color: #9195C1;
+  border-color:#9195C1;
 }
 
 

@@ -143,6 +143,7 @@
   </div>
 
   <% if @has_active_projects %>
+
     <div id="transfer-cover" class="gradient-background"></div>
   <% else %>
     <div class="is-transitioned gradient-background-alpha" id="transfer-cover"></div>
@@ -285,6 +286,7 @@
       </div>
     <% end %>
 
+
     <div class="conversations-wrapper hide-scrollbar">
       <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
         <div class="conversation-wrapper" id="conversation<%= conversation.id %>" data-convo-id="<%= conversation.id %>" data-convo-token="<%= conversation.token %>">
@@ -314,7 +316,7 @@
   <% if current_user.active_projects_ordered_by_admin.length > 0 %>
 
     <!-- I-Frame -->
-  <!--   <div id="fixed-iframe" class="pwd-init pwd-closed">
+<!--     <div id="fixed-iframe" class="pwd-init pwd-closed">
       <a href="#" id="pwd-open-btn"> <span>&#9650;</span></a>
       <iframe id="pwd-message-box" frameborder="0" scrolling="no" src="https://guarded-eyrie-2585.herokuapp.com/message_box?token=<%= current_user.active_projects_ordered_by_admin.first.token %>"></iframe>
     </div> -->

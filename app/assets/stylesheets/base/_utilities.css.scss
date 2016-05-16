@@ -9,13 +9,18 @@
 * 12/29/2014
 */
 
+/* Larger than tablet */
+
 .gradient-background {
-  background: lighten($pwdlight, 10%);
-  background: -webkit-linear-gradient(left, $pwddark , darken($pwdlight, 10%));
-  background: -o-linear-gradient(right, $pwddark, darken($pwdlight, 10%));
-  background: -moz-linear-gradient(right, $pwddark, darken($pwdlight, 10%));
-  background: linear-gradient(to right, $pwddark , darken($pwdlight, 10%));
+
+  background: darken(rgba($blue, 0.7), 10%);
+  background: -webkit-linear-gradient(left, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
+  background: -o-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: -moz-linear-gradient(right, rgba($purple, 1), darken(rgba($blue, 1), 15%));
+  background: linear-gradient(to right, rgba($purple, 1) , darken(rgba($blue, 1), 15%));
+
 }
+
 
 .gradient-background-alpha {
   background: darken(rgba($pwdlight, 0.7), 10%);
@@ -194,7 +199,7 @@ a.close-modal{
   right:0;
   margin-top:-8px;
   margin-right:-8px;
-  background: $brand-color;
+  background: $blue;
   border-radius:100%;
   border: 2px solid #fff;
   color:#fff;
@@ -204,7 +209,7 @@ a.close-modal{
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     &:hover {
       color:#fff;
-      background: lighten($brand-color, 25%);
+      background: lighten($blue, 25%);
     }
 
 
