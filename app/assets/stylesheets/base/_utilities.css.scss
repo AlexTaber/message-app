@@ -10,11 +10,16 @@
 */
 
 .gradient-background {
-  background: lighten($pwdlight, 10%);
-  background: -webkit-linear-gradient(left, $pwddark , darken($pwdlight, 10%));
-  background: -o-linear-gradient(right, $pwddark, darken($pwdlight, 10%));
-  background: -moz-linear-gradient(right, $pwddark, darken($pwdlight, 10%));
-  background: linear-gradient(to right, $pwddark , darken($pwdlight, 10%));
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#343477+0,86aecc+100 */
+background: rgb(52,52,119); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(52,52,119,1) 0%, rgba(134,174,204,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(52,52,119,1) 0%,rgba(134,174,204,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(52,52,119,1) 0%,rgba(134,174,204,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#343477', endColorstr='#86aecc',GradientType=1 ); /* IE6-9 */
+
+
+
+
 }
 
 .gradient-background-alpha {

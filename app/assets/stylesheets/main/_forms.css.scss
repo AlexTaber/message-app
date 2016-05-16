@@ -256,7 +256,7 @@ input:-webkit-autofill {
 }
 // message form -----------
 #form-wrapper{
-  background:#eee;
+  background:lighten($blue, 30%);
   position:fixed;
   bottom: 0px;
   right:2%;

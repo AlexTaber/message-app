@@ -24,13 +24,13 @@ a:hover {
     line-height: 1.5%;
   }
 
-  .home-logo {
-    font-size: 22px;
-    padding-top: 2px;
-  }
   a {
     color: $white;
     text-decoration: none;
+  }
+  .home-logo {
+    font-size: 22px;
+    padding-top: 2px;
   }
 }
 .active {

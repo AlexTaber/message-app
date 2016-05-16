@@ -55,10 +55,14 @@ body {
 	}
 	header  {
 		padding: 10px;
-		border-bottom: 1px solid rgba($darkgrey, 1);
+		background-color: lighten($blue, 10%);
+		color:#000;
 		h4 {
 			display: inline-block;
 			line-height: 0;
+		}
+		a{
+			color:darken($accent, 20%);
 		}
 	}
 
@@ -105,15 +109,12 @@ body {
 	text-indent: 25px;
 }
 .admin-user {
-<<<<<<< HEAD
-	background: rgba($white, 1);
-=======
-	background: rgba($grey, 1);
->>>>>>> initial redesign
+	background:lighten($blue, 32%);
+
 }
 i.admin-profile {
 	padding-right: 10px;
-	color: rgba($brand-color, .8);
+	color: $accent;
 }
 .profile-data{
 	padding: 10px;
@@ -171,7 +172,7 @@ i.admin-profile {
 	height: calc(100vh - 72px);
 	margin: 0 0 0 2%;
 	float: left;
-	background:rgba($white, 1);
+	background:lighten($blue, 28%);
 }
 }
 .connection-warning{
@@ -255,7 +256,7 @@ ul.edit-project-list {
 .message-bar {
 	position:fixed;
 	display:none;
-	background: rgba($white, 0.9);
+	background:lighten($blue, 28%);;
 	width: 100%;
 	height: calc(100vh - 30px);
 	overflow-y: scroll;
@@ -268,7 +269,7 @@ ul.edit-project-list {
   }
 
 	.message-bar-border{
-		border-right:1px solid #ababab;
+		border-right:1px solid #aaa;
 		height: auto;
 		min-height:100%;
 	}
@@ -277,6 +278,18 @@ ul.edit-project-list {
 		text-decoration: none;
 	&:hover {
 			cursor: pointer;
+		}
+
+	}
+	header {
+		background-color: #B5C3DB;
+		color:#000;
+		h4 {
+			display: inline-block;
+			line-height: 0;
+		}
+		a{
+			color:darken($accent, 20%);
 		}
 	}
 
@@ -312,12 +325,16 @@ ul.edit-project-list {
 <<<<<<< HEAD
 		margin: 0 0 0 1%;
 		height: calc(100vh - 72px);
+<<<<<<< HEAD
   	background: rgba($white, 1);
 =======
 		margin: 1% 0 1% 1%;
 		height: calc(100% - 35px);
   	background: rgba($white, 0.8);
 >>>>>>> initial redesign
+=======
+  	background:lighten($blue, 28%);;
+>>>>>>> purple gradient
 		float: left;
 	}
 }
@@ -345,10 +362,19 @@ ul.edit-project-list {
 >>>>>>> initial redesign
 	border-radius: 0px 3px 3px 0px;
 
-	header {
+		header {
+		background-color: #C0C1DC;
 		padding: 10px;
+		color:#000;
+		border-radius: 0 3px 0 0;
+		h4 {
+			display: inline-block;
+			line-height: 0;
+		}
+		a{
+			color:darken($accent, 20%);
+		}
 	}
-
 	.other-users {
 		p {
 			margin-top: 7px;
@@ -402,7 +428,7 @@ ul.edit-project-list {
 .message-item {
 	border-bottom: 1px solid $grey;
 	color: $black;
-	background: $white;
+	background: lighten($blue, 32%);
 
 	p{
 		margin-bottom: 0;
@@ -448,6 +474,7 @@ ul.edit-project-list {
 		i:after {
 			display:none;
 		}
+<<<<<<< HEAD
 	.msg-item-current:after {
 		position:absolute;
 		right:0;
@@ -464,6 +491,20 @@ ul.edit-project-list {
 >>>>>>> initial redesign
 		margin-right:-1px;
 	}
+=======
+	// .msg-item-current:after {
+	// 	position:absolute;
+	// 	right:0;
+	// 	top: 30px;
+	// 	content: "";
+	// 	width: 0;
+	// 	height: 0;
+	// 	border-top: 10px solid transparent;
+	// 	border-bottom: 10px solid transparent;
+	// 	border-right:10px solid $white;
+	// 	margin-right:-1px;
+	// }
+>>>>>>> purple gradient
 		.msg-item-current:before {
 		position:absolute;
 		right:0;
@@ -473,7 +514,7 @@ ul.edit-project-list {
 		height: 0;
 		border-top: 11px solid transparent;
 		border-bottom: 11px solid transparent;
-		border-right:11px solid #ababab;
+		border-right:11px solid #aaa;
 		margin-right:-1px;
 	}
 	#mobile-current-account {
@@ -561,11 +602,12 @@ ul.edit-project-list {
 	}
 
 	a{
-		color: $pwdlight;
+		color: $accent;
 		text-decoration: none;
 
 		&:hover {
 			cursor: pointer;
+			color:lighten($accent, 20%);
 		}
 	}
 
@@ -847,7 +889,8 @@ ul.edit-project-list {
 			width: 135px;
 			border: none;
 			font-size: 11px;
-			background: transparent;
+			background: lighten($blue, 30%);
+			border-radius:3px;
 		}
 		input[type="submit"] {
 			padding:0 20px;
@@ -994,7 +1037,7 @@ ul.edit-project-list {
 	max-height:100vh;
 	overflow-y:scroll;
 	text-align:left !important;
-	border:1px solid #ddd;
+
 }
 
 .project-typeahead{
