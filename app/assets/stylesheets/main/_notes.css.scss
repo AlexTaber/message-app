@@ -118,19 +118,3 @@
     }
   }
 }
-display: block;
-      padding-top: 3px;
-      background: transparent;
-      max-width: calc(100% - 80px);
-      border: none;
-
-      &.complete {
-        color: green;
-      }
-
-      &.incomplete {
-        color: darken(red, 10%);
-      }
-    }
-  }
-}
