@@ -186,28 +186,29 @@ i.admin-profile {
 	font-size:12px;
 }
 // project List Accordian
+
 @keyframes unread-project {
   0%{}
-  45%{background:lighten($pwdlight, 40%)}
+  45%{background:lighten(#CDDFF7, 5%)}
   100%{}
 }
 @-webkit-keyframes unread-project {
   0%{}
-  45%{background:lighten($pwdlight, 40%)}
+  45%{background:lighten(#CDDFF7, 5%)}
   100%{}
 }
   @-moz-keyframes unread-project {
   0%{}
-  45%{background:lighten($pwdlight, 40%)}
+  45%{background:lighten(#CDDFF7, 5%)}
   100%{}
 }
   @-o-keyframes unread-project {
   0%{}
-  45%{background:lighten($pwdlight, 40%)}
+  45%{background:lighten(#CDDFF7, 5%)}
   100%{}
 }
 .is-unread-project{
-	  animation: unread-project 2s infinite;
+	 animation: unread-project 2s infinite;
   -webkit-animation: unread-project 2s infinite;
   -moz-animation: unread-project 2s infinite;
   -o-animation: unread-project 2s infinite;
@@ -274,7 +275,7 @@ ul.edit-project-list {
   }
 
 	.message-bar-border{
-		border-right:1px solid #C0C1DC;
+		border-right:1px solid #ddd;
 		height: auto;
 		min-height:100%;
 	}
@@ -334,7 +335,6 @@ ul.edit-project-list {
 		float: left;
 		header{
 			background-color: #B5C3DB;
-			border-right: 1px solid #ddd;
 			border-bottom:none;
 		}
 	}
@@ -439,7 +439,13 @@ ul.edit-project-list {
 	}
 
 	&:hover {
-		background: rgba($white, .3);
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9fbfc+35,cddff7+100 */
+background: rgb(249,251,252); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(249,251,252,1) 50%, rgba(205,223,247,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(249,251,252,1) 50%,rgba(205,223,247,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(249,251,252,1) 50%,rgba(205,223,247,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', endColorstr='#cddff7',GradientType=1 ); /* IE6-9 */
+
 
 		.fa-edit {
 			color: $pwdlight;
@@ -483,17 +489,16 @@ ul.edit-project-list {
 	// 	border-right:10px solid $white;
 	// 	margin-right:-1px;
 	// }
-		.msg-item-current:before {
-		position:absolute;
-		right:0;
-		top: 29px;
-		content: "";
-		width: 0;
-		height: 0;
-		border-top: 11px solid transparent;
-		border-bottom: 11px solid transparent;
-		border-right:11px solid #B5C3DB;
-		margin-right:-1px;
+		.msg-item-current{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9fbfc+35,cddff7+100 */
+background: rgb(249,251,252); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(249,251,252,1) 35%, rgba(205,223,247,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(249,251,252,1) 35%,rgba(205,223,247,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(249,251,252,1) 35%,rgba(205,223,247,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', endColorstr='#cddff7',GradientType=1 ); /* IE6-9 */
+
+
+
 	}
 	#mobile-current-account {
 		display:none !important;
@@ -709,7 +714,7 @@ ul.edit-project-list {
 }
 @media (min-width: 750px) {
 	.app-view {
-		height: calc(100vh - 206px) !important;
+		height: calc(100vh - 204px) !important;
 		width:auto !important;
 		padding: 40px 20px 40px !important;
 		.them-msg-wrapper {

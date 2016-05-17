@@ -14,10 +14,11 @@
         <p>
           The following task has been added to the project <b><%= @project.name %></b>
          by <b><%= @tasker.name %></b></p>
-        <div style="background-color:#ffb3b3; padding:10px; border-radius:10px 10px 0px 10px;">
+        <div style="background-color:#ffb3b3; padding:10px; border-radius:10px 10px 0px 10px; display:inline-block; max-width: 400px">
+        
           <%= simple_format(@task.message.content) %>
         </div>
-        <p><a href="<%= @url %>">Click here</a> to view this message!</p>
+        <p><a href="<%= @url %>" style ="display: inline-block; height: 38px; padding: 0 30px; color: #fff; text-align: center; font-size: 11px; font-weight: 600; line-height: 38px; letter-spacing: .1rem; text-transform: uppercase; text-decoration: none; white-space: nowrap; background-color: #343477; border-radius: 4px; border: 1px solid #343477; cursor: pointer; box-sizing: border-box;">Click here to view this message</a></p>
         <p>Have a great day!</p>
         <p>The Evia Team</p>
       </div>
