@@ -756,7 +756,8 @@ ul.edit-project-list {
 
 .conversations-wrapper {
 	height: calc(100vh - 173px);
-	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 .conversation-wrapper {
