@@ -186,6 +186,7 @@ i.admin-profile {
 	font-size:12px;
 }
 // project List Accordian
+
 @keyframes unread-project {
   0%{}
   45%{background:lighten(#CDDFF7, 5%)}
@@ -207,7 +208,7 @@ i.admin-profile {
   100%{}
 }
 .is-unread-project{
-	  animation: unread-project 2s infinite;
+	 animation: unread-project 2s infinite;
   -webkit-animation: unread-project 2s infinite;
   -moz-animation: unread-project 2s infinite;
   -o-animation: unread-project 2s infinite;
