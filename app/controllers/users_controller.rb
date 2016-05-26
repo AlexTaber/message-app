@@ -181,10 +181,10 @@ class UsersController < ApplicationController
 
   def users_data
     @users = User.all.order(id: :desc)
+    @emails = @users.pluck(:email)
   end
 
   def user_owner_data
-
   end
 
   def validate
