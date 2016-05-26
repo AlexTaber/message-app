@@ -1,4 +1,4 @@
-<%= render partial: "layouts/home_header", locals: { project: nil } %>
+<%= render partial: "layouts/admin_header" %>
 
 <section class="owner-data">
   <div class="container">
@@ -38,6 +38,7 @@
                 <th>New Users</th>
                 <th>New Conversations</th>
                 <th>New Messages</th>
+                <th>Non-Owner Messages</th>
               </tr>
             </thead>
             <tr>
@@ -45,6 +46,7 @@
               <td><%= User.recent_count_by_days(@time) %></td>
               <td><%= Conversation.recent_count_by_days(@time) %></td>
               <td><%= Message.recent_count_by_days(@time) %></td>
+              <td><%= Message.recent_non_owner_count_by_days(@time) %></td>
             </tr>
           </table>
         </div>
