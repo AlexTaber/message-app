@@ -25,4 +25,14 @@ class Invite < ActiveRecord::Base
   def existing_user
     User.find_by(email: email)
   end
+
+  def create_user_project(user)
+    UserProject.create(
+      user_id: user.id,
+      project_id: project.id,
+      admin: false
+    )
+
+    delete
+  end
 end

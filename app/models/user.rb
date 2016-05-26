@@ -351,4 +351,8 @@ class User < ActiveRecord::Base
   def set_up_setting
     Setting.create(user_id: id)
   end
+
+  def all_invites
+    Invite.where(email: email)
+  end
 end
