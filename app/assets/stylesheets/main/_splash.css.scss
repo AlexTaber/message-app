@@ -29,6 +29,18 @@
   margin-top:5px;
   display:inline;
 }
+.mobile-logo-link{
+  transition: all 500ms ease-in-out;
+}
+.mobile-logo-link.active{
+  z-index:1000000;
+  position:absolute;
+  color:#fff;
+  background: transparent;
+}
+.active{
+
+}
 .intro {
   padding-top: 10px;
 
@@ -458,7 +470,7 @@ position: absolute;
 display: block;
 content: '';
 right:20px;
-top:15px;
+top:13px;
 }
 #mobile-menu-btn span:before {
   top: -7px;
