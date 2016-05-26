@@ -257,14 +257,14 @@ $(window).on('load',function(){
   //splashpage mobile menu
   $('#mobile-menu-btn').on('click', function(e){
     e.preventDefault();
-    $('#mobile-menu').fadeIn();
-    $('#mobile-menu-btn').fadeOut();
+    $('#mobile-menu').fadeToggle();
+    $(this).toggleClass('active')
   });
-  $('#mobile-menu-close-btn').on('click', function(e){
-    e.preventDefault();
+  $('#mobile-menu-close-btn, #mobile-menu a').on('click', function(e){
     $('#mobile-menu').fadeOut();
-    $('#mobile-menu-btn').fadeIn();
+    $('#mobile-menu-btn').removeClass('active');
   });
+
 
 
 }); // end document ready
