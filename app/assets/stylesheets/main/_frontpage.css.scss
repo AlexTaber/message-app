@@ -46,6 +46,7 @@ body {
 	height: 100%;
 	color: $black;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
 	z-index: 0;
 		border-radius:0;
@@ -266,6 +267,7 @@ ul.edit-project-list {
 	width: 100%;
 	height: calc(100vh - 30px);
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   z-index: 0;
   border-radius: 3px 0px 0px 3px;
@@ -763,6 +765,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 	height: calc(100vh - 173px);
 	overflow-x: hidden;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 .conversation-wrapper {

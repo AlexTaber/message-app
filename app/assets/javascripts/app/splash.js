@@ -62,7 +62,7 @@ function splashLoad() {
 };
 
 function setUpNav() {
-  scrollDiv = $(".scroll-div");
+  scrollDiv = $("#scroll-div");
   scrollDiv.on('scroll', scrollNav);
 }
 

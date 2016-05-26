@@ -1077,7 +1077,7 @@ function updateIndicator() {
 }
 
 function setUpTransitions() {
-  scrollDiv = $(".scroll-div");
+  scrollDiv = $("#scroll-div");
   scrollDiv.on('scroll', scrollTransitions);
   curTransitionEl = $("#transition-" + String(curTransition));
   scrollTransitions();
