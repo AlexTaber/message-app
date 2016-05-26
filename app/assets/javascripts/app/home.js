@@ -281,7 +281,6 @@ function tabs(){
       tab_this.addClass('is-active');
       $('.tab-content').hide();
       $('.tab-content[data-target='+tar+']').fadeIn();
-
     }
   });
 }
