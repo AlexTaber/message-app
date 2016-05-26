@@ -47,6 +47,7 @@
                     <li><%= link_to 'Dashboard', home_path %></li>
                     <li><%= link_to 'Logout', logout_path %></li>
                   <% else %>
+                    <li><%= link_to 'Sign Up', new_user_path %></li>
                     <li><%= link_to 'Login', login_path %></li>
                   <% end %>
 
