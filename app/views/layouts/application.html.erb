@@ -8,7 +8,12 @@
     Evia
   </title>
   <meta name="description" content="Evia was made to increase productivity for your next project Evia layers powerful task-management features on top of a simple, familiar messaging interface.">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <meta property="og:url" content="https://www.eviaonline.io" />
+  <meta property="og:title" content="Evia" />
+  <meta property="og:description" content="A simple, fresh approach to task management" />
+  <meta property="og:image" content="https://s3.amazonaws.com/mercury-app-assets/evia-logo.png" />
+
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLISHABLE_KEY %>
   <%= javascript_include_tag "https://js.stripe.com/v1/", 'application' %>
   <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
