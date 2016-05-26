@@ -110,7 +110,7 @@ a:hover {
 nav#current-account {
   display:none;
   position: absolute;
-  right: calc(1% + 19px);
+  right: calc(1% + 8px);
   top: 38px;
   font-size: 1.4rem;
   z-index: 999;
@@ -144,7 +144,7 @@ nav#current-account {
   li:last-child{
     border:none;
   }
-  &:before{
+/*  &:before{
     border: solid;
     border-color: #fff transparent;
     border-width: 0 .7rem .7rem .7rem;
@@ -155,7 +155,7 @@ nav#current-account {
     z-index: 99;
     right:0px;
 
-  }
+  }*/
 }
 }
 .profile-data {
