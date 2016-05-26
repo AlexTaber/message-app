@@ -71,11 +71,11 @@
   .intro-item {
     margin-top: 0px;
     padding-bottom: 60px;
-    margin-left: 60px;
+    opacity: 0;
     width: 100%;
 
     &.is-transitioned {
-      margin-left: 0px;
+      opacity: 1;
     }
   }
 }
@@ -99,6 +99,14 @@
       i {
         font-size: 50px;
         width: 90px;
+      }
+    }
+
+    .intro-item {
+      margin-left: 60px;
+
+      &.is-transitioned {
+        margin-left: 0px;
       }
     }
   }
