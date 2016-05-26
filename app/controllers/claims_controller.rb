@@ -7,7 +7,6 @@ class ClaimsController < ApplicationController
     if @claim.valid?
       @claim.save
       claim_pusher_event(@claim.task)
-      flash[:notice] = "Claim successfully created"
     else
       flash[:warn] = "Unable to create claim, please try again"
     end
@@ -23,7 +22,6 @@ class ClaimsController < ApplicationController
     task = @claim.task
 
     if @claim.delete
-      flash[:notice] = "Claim removed"
       claim_pusher_event(task)
     else
       flash[:warn] = "Unable to remove claim, please try again"

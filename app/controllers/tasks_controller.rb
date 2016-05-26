@@ -7,7 +7,6 @@ class TasksController < ApplicationController
 
     if @task.valid?
       @task.save
-      flash[:notice] = "Task successfully created"
       fire_pusher_event(@task.id, @task.message, @task.message.conversation.users, true, false)
       new_task_emails
     else
@@ -22,7 +21,6 @@ class TasksController < ApplicationController
 
     if @task.valid?
       @task.save
-      flash[:notice] = "Task successfully updated"
       fire_pusher_event(@task.id, @task.message, @task.message.conversation.users, false, false)
       completed_task_emails if @task.completed
     else
@@ -43,7 +41,6 @@ class TasksController < ApplicationController
       users = @task.message.conversation.users
       @task.delete_claims
       @task.delete
-      flash[:notice] = "Task Deleted"
       fire_pusher_event(task_id, message, users, false, true)
     else
       flash[:warn] = "No task by that id"

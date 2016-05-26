@@ -28,7 +28,6 @@ class UsersController < ApplicationController
         send_welcome_email(@user)
         upload_image(params[:user][:file]) if params[:user][:file]
         set_up_invites
-        flash[:notice] = "User successfully created"
         cookies.permanent.signed[:user_id] = @user.id
         redirect_to home_path
       else
