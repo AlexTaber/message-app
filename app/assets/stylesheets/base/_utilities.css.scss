@@ -30,6 +30,13 @@
   background: linear-gradient(to right, rgba($pwddark, 0.7) , darken(rgba($pwdlight, 0.7), 10%));
 }
 
+#scroll-div {
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
 .top-50 {
   margin-top: 50px;
 }
@@ -164,6 +171,7 @@ hr.fifty{
     z-index: 444000;
     border-radius: 5px;
     overflow:scroll;
+    -webkit-overflow-scrolling: touch;
     top:50%;
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
