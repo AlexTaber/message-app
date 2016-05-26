@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         @subscription.save_with_payment(tier, false)
         send_welcome_email(@user)
         upload_image(params[:user][:file]) if params[:user][:file]
-        set_up_invite if params[:invite_token]
+        set_up_invites
         flash[:notice] = "User successfully created"
         cookies.permanent.signed[:user_id] = @user.id
         redirect_to home_path
@@ -261,18 +261,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def set_up_invite
-    @invite = token_invite(params[:invite_token])
-    create_user_project if @invite
-    @invite.delete
-  end
-
-  def create_user_project
-    UserProject.create(
-      user_id: @user.id,
-      project_id: @invite.project.id,
-      admin: false
-    )
+  def set_up_invites
+    @user.all_invites.each { |invite| invite.create_user_project(@user) }
   end
 
   def set_up_new_conversation
