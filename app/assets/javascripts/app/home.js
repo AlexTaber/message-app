@@ -12,9 +12,6 @@ var canSubmitProject = true;
 
 jQuery(document).ready(function($){
 
-    //sidr
-  jQuery("#right-menu").sidr({name:"sidr-right", side:"right"})
-
   //set up settings form
   setUpSettingsForm();
 
@@ -255,7 +252,22 @@ $(window).on('load',function(){
   if(newLoad.length > 0 && projectId) {
     newLoad.focus();
   }
-});
+
+
+  //splashpage mobile menu
+  $('#mobile-menu-btn').on('click', function(e){
+    e.preventDefault();
+    $('#mobile-menu').fadeToggle();
+    $(this).toggleClass('active')
+  });
+  $('#mobile-menu-close-btn, #mobile-menu a').on('click', function(e){
+    $('#mobile-menu').fadeOut();
+    $('#mobile-menu-btn').removeClass('active');
+  });
+
+
+
+}); // end document ready
 
 //Functions
 function tabs(){

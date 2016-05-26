@@ -28,28 +28,31 @@
       <div class="row">
         <div class="twelve columns">
           <a href="/"><h3 class="mobile-logo"><span class="evia-font">Evia</span></h3></a>
-          <a id="right-menu" class="u-pull-right" href="#right-menu"><i class="fa fa-bars fa-2x"></i></a>
+          <a id="mobile-menu-btn" class="u-pull-right" href="#"><span></span></a>
           <% if current_user %>
           <%= link_to 'Dashboard', home_path, class: 'button-mobile-signup u-pull-right' %>
           <% else %>
-          <%= link_to 'Sign Up', new_user_path, class: 'button button-primary button-mobile-signup u-pull-right' %>
+          <%= link_to 'Sign Up', new_user_path, class: 'button-mobile-signup u-pull-right' %>
           <% end %>
-          <div id="sidr-right" class="sidr right">
-            <ul>
-              <li><%= link_to "Info", splash_path(anchor: 'why') %></li>
-              <li><%= link_to "Features", splash_path(anchor: 'features') %></li>
-              <li><%= link_to "Support", support_path %></li>
-              <li><%= link_to "Pricing", pricing_path %></li>
+            <div id="mobile-menu" class="splash_mobile-menu">
+              <div class="mobile-menu-table">
+                <ul>
+                  <li><%= link_to "Info", splash_path(anchor: 'why') %></li>
+                  <li><%= link_to "Features", splash_path(anchor: 'features') %></li>
+                  <li><%= link_to "Support", support_path %></li>
+                  <li><%= link_to "Pricing", pricing_path %></li>
 
-              <% if current_user %>
-                <li><%= link_to 'Dashboard', home_path %></li>
-                <li><%= link_to 'Logout', logout_path %></li>
-              <% else %>
-                <li><%= link_to 'Login', login_path %></li>
-              <% end %>
+                  <% if current_user %>
+                    <li><%= link_to 'Dashboard', home_path %></li>
+                    <li><%= link_to 'Logout', logout_path %></li>
+                  <% else %>
+                    <li><%= link_to 'Sign Up', new_user_path %></li>
+                    <li><%= link_to 'Login', login_path %></li>
+                  <% end %>
 
-            </ul>
-          </div>
+                </ul>
+              </div><!-- mobile mask -->
+            </div>
         </div>
       </div><!-- row -->
     </div><!-- container -->
