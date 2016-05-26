@@ -71,6 +71,18 @@ class Message < ActiveRecord::Base
     where("created_at > ?", DateTime.now - number.days).count
   end
 
+  def self.recent_non_owner_count_by_days(number)
+    where("created_at > ?", DateTime.now - number.days).select(&:not_from_owner).count
+  end
+
+  def not_from_owner
+    !from_owner
+  end
+
+  def from_owner
+    user.owner
+  end
+
   def has_attachments?
     attachments.size > 0
   end
