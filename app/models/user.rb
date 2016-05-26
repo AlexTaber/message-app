@@ -329,6 +329,7 @@ class User < ActiveRecord::Base
   end
 
   def permitted_on_project?(project)
+    return false unless project.active
     project.new_record? ? true : is_member_of_project?(project)
   end
 

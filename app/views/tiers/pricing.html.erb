@@ -1,5 +1,6 @@
+<%= render partial: 'layouts/header', locals: { transitioned: true } %>
+
 <div id="scroll-div" style="overflow: scroll; width: 100%; height: 100%;">
-  <%= render partial: 'layouts/header', locals: { transitioned: true } %>
 
   <% if current_user %>
 	  <%= link_to edit_subscription_path(current_user.subscription), id: "pricing-button" do %>
