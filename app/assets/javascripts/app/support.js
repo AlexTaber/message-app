@@ -29,13 +29,14 @@ function contentScroll() {
 function videoClick() {
   var source = $(this).data('source');
   var modal = $("#video-modal");
-  console.log(modal);
-  modal.addClass("is-active");
-  modal.children("iframe").attr("src", source);
+  modal.fadeIn(500);
+  setTimeout(function() {
+    modal.children("iframe").attr("src", source);
+  }, 200);
 }
 
 function closeVideo () {
   var modal = $("#video-modal");
-  modal.removeClass("is-active");
+  modal.fadeOut(500);
   modal.children("iframe").attr("src", "");
 }
