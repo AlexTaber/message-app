@@ -112,8 +112,12 @@
   100%{}
 }
 .mb-header{
-      background: $pwdlight !important;
-      opacity: 1;
+    background: rgba(98,150,189,0.7);
+    background: -webkit-linear-gradient(left, #343477, #508ab5);
+    background: -o-linear-gradient(right, #343477, #508ab5);
+    background: -moz-linear-gradient(right, #343477, #508ab5);
+    background: linear-gradient(to right, #343477, #508ab5);
+    opacity: 1;
       a {
         text-decoration: none;
         color:#fff;
@@ -194,20 +198,20 @@
   float:right;
   padding-right: 80px;
   font-size: 20px;
-  color: rgba(255, 255 , 255, 0.6);
+  color: #fff;
   cursor:pointer !important;
   i:hover, & i.is-active{
-   color:#fff;
+   opacity: .7;
    background: none;
   }
   i{
     padding-left: 8px;
   }
   a{
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: #fff;
     text-decoration: none;
     &:hover {
-      color: #fff;
+      
       text-shadow: none;
     }
   }
@@ -314,6 +318,7 @@
 }
 .msg-bx-convo-data {
   h4{
+    padding-top: 10px;
   margin-bottom:0;
   }
 }

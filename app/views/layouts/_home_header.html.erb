@@ -5,7 +5,7 @@
   <nav class="profile-data">
     <span><%= link_to current_user.name, home_path %> | <span class="header-username"><%= current_user.username %></span></span>
     <!-- <i class="fa fa-user"></i> -->
-    <i id="users-account" class="fa fa-chevron-down menu-caret" title="Edit your account"></i>
+    <i id="users-account" class="fa fa-user fa-lg" title="Edit your account"></i>
     <nav id="current-account">
      <p><b>Your Acount</b></p>
      <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>

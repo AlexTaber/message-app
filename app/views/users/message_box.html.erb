@@ -36,7 +36,7 @@
         <% end %>
 |       <%= current_user.name %>
         <span id="mb-header_icons">
-          <%= link_to @project.name, home_path(project_id: @project.id), target: "_blank" %>
+          <%=  @project.name %>
           <% if current_user.has_unread_conversations_other_projects?(@project) %>
             <i class="fa fa-globe is-unread-icon" id="projects-btn"></i>
           <% else %>
@@ -66,15 +66,13 @@
                   <i class="fa fa-plus add-btn" style="right: 25px; top:10px; position:absolute;"></i>
                 <% end %>
               </p>
-
+              <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
+                <%= render partial: "conversations/mb_card", locals: { project: @project, conversation: conversation, current_conversation: @conversation, user: current_user, tasks: @tasks } %>
+              <% end %>
               <% unless @project.new_record? %>
                 <div class="mb-notes-wrapper" id="mb-notes<%= @notes_conversation.id %>">
                   <%= render partial: "conversations/mb_notes_card", locals: { conversation: @notes_conversation, current_conversation: @conversation, project: @project, user: current_user, tasks: @tasks } %>
                 </div>
-              <% end %>
-
-              <% current_user.ordered_conversations_by_project(@project).each do |conversation| %>
-                <%= render partial: "conversations/mb_card", locals: { project: @project, conversation: conversation, current_conversation: @conversation, user: current_user, tasks: @tasks } %>
               <% end %>
             </div>
           </div>
@@ -86,7 +84,7 @@
       <div id="mb-projects-dropdown" class="mb-dropdown">
         <p><b>Your Projects</b></p>
         <ul id='project-list'>
-          <% current_user.projects.each do |project| %>
+          <% current_user.active_projects.each do |project| %>
             <li>
               <% if @project == project %>
                 <%= link_to project.name, message_box_path(project_id: project.id), class: 'is-active' %>
