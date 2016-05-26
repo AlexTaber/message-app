@@ -258,9 +258,10 @@ $(window).on('load',function(){
   $('#mobile-menu-btn').on('click', function(e){
     e.preventDefault();
     $('#mobile-menu').fadeToggle();
-    $(this).toggleClass('active')
+    $(this).toggleClass('active');
+    $('.mobile-logo-link').toggleClass('active');
   });
-  $('#mobile-menu-close-btn, #mobile-menu a').on('click', function(e){
+  $('#mobile-menu a').on('click', function(e){
     $('#mobile-menu').fadeOut();
     $('#mobile-menu-btn').removeClass('active');
   });
