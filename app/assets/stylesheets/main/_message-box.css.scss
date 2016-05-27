@@ -22,7 +22,7 @@
 #fixed-iframe{
   display:none;
 }
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 #pwd-message-box {
   width: 100%;
   height:100%;
@@ -211,7 +211,7 @@
     color: #fff;
     text-decoration: none;
     &:hover {
-      
+
       text-shadow: none;
     }
   }
