@@ -170,7 +170,7 @@
               </div>
             <% end %>
           <% else %>
-            <%= link_to pricing_path, class: "add-btn" do %>
+            <%= link_to upgrade_path, class: "add-btn" do %>
               <div class="add-button-hover">
                 <div class="add-button-hover-text is-first"><small>Upgrade Now</small>
                 </div>
@@ -304,7 +304,7 @@
     <div id="mobile-current-account" class="mobile-target">
       <p><b><%= current_user.name %>'s Acount</b></p>
       <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
-      <li><%= link_to 'Upgrade', pricing_path %></li>
+      <li><%= link_to 'Upgrade', upgrade_path %></li>
       <li><%= link_to 'Logout', logout_path %></li>
     </div>
     <!-- Message Content Section -->

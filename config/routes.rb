@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get '/app-messages' => 'conversations#app_messages'
   post '/read-messages' => 'conversations#read_messages'
   get '/search' => 'conversations#search'
+  get '/upgrade' => 'tiers#upgrade'
   get '/pricing' => 'tiers#pricing'
 
   root 'users#home'
