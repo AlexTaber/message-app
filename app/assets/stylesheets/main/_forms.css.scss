@@ -186,7 +186,6 @@ input:-webkit-autofill {
     margin: 0 auto;
     width:200px;
     padding:0;
-
   }
   .button-create{
     background-color: $pwdlight !important;
@@ -212,16 +211,11 @@ input:-webkit-autofill {
       display:inline-block;
       min-width:300px;
     }
-    .signup_email{
-      width:100%;
-      margin-left:35px;
-    }
-    #user_email{
-      width:calc(100% - 85px) !important;
-    }
   }
 }
-
+.email-next{
+  margin-left:15px;
+}
 .login-page{
   .signup_first-row{
     padding-top:20px;
@@ -229,6 +223,15 @@ input:-webkit-autofill {
 
   input{
     min-width:300px;
+  }
+  input[type="submit"]{
+    margin-left: 10px;
+  }
+}
+.login_footer {
+  margin-bottom:20px;
+  p{
+    text-align:center !important;
   }
 }
 .login-form{
@@ -461,4 +464,8 @@ input:-webkit-autofill {
 
 .attachments-preview {
   padding-left: 14px;
+}
+.edit_user{
+  padding:20px;
+  box-sizing:border-box;
 }

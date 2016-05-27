@@ -281,7 +281,7 @@ a:hover {
   .card-data {
     border-radius: 20px;
     padding: 20px;
-    padding-top: 30px;
+    padding-top: 10px;
     border: 2px solid $white;
     color: $pwdlight;
     background: rgba($white, 0.8);
@@ -459,7 +459,15 @@ a:hover {
   }
 }
 //mobile menu splash page
-
+#mobile-menu-btn{
+  position:absolute;
+  height:30px;
+  width:30px;
+  right:0;
+  top:0;
+  z-index:10000000;
+  background:transparent;
+}
 #mobile-menu-btn span, #mobile-menu-btn span:before, #mobile-menu-btn span:after {
 cursor: pointer;
 border-radius: 2px;
@@ -469,8 +477,8 @@ background: $pwdlight;
 position: absolute;
 display: block;
 content: '';
-right:20px;
-top:13px;
+top:12px;
+
 }
 #mobile-menu-btn span:before {
   top: -7px;

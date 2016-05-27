@@ -15,14 +15,16 @@
         <%= password_field_tag :password, nil%></label><br><br>
         <%= submit_tag "Sign In" , :class => 'button button-primary' %><br><br>
       </div>
-      <p>
-        DON'T HAVE AN ACCOUNT?
-        <%= link_to "SIGN UP", new_user_path %>
-      </p>
-      <p>
-        <%= link_to "Forgot your password?", new_password_recovery_path %>
-      </p>
     <% end %>
+        <div class="login_footer">
+          <p>
+            DON'T HAVE AN ACCOUNT?
+            <%= link_to "SIGN UP", new_user_path %>
+          </p>
+          <p>
+            <%= link_to "Forgot your password?", new_password_recovery_path %>
+          </p>
+        </div>
     </div>
   </div>
 </div>
