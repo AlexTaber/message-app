@@ -1,19 +1,28 @@
-<div class="display-table">
-<div class="text-center centered">
-<h2 class="text-center">
-Sign in to start messaging with Evia
-</h2>
-<%= form_tag '/login', id: "sign-in-form" do %>
-  <%= email_field_tag :email, @email, placeholder: "Email" %><br>
-  <%= password_field_tag :password, nil, placeholder: "Password" %><br><br>
-  <%= submit_tag "Sign In" , :class => 'button button-primary' %><br><br>
-  <p>
-    DON'T HAVE AN ACCOUNT?
-    <%= link_to "SIGN UP", new_user_path %>
-  </p>
-  <p>
-    <%= link_to "Forgot your password?", new_password_recovery_path %>
-  </p>
-<% end %>
-</div>
+<%= render partial: 'layouts/header', locals: { transitioned: true } %>
+<div class="signup gradient-background login-page">
+  <div class="display-table signup-page text-center">
+    <div class="text-center centered">
+    <div class="signup_header">
+      <h2 class="signup_title">Sign in to start messaging with Evia</h2>
+    </div>
+    <%= form_tag '/login', id: "sign-in-form" do %>
+      <div class="signup_first-row">
+        <label for="email"><span>Email:</span><br>
+        <%= email_field_tag :email, @email %></label><br>
+      </div>
+      <div class="signup_third-row">
+      <label for="password"><span>Password:</span><br>
+        <%= password_field_tag :password, nil%></label><br><br>
+        <%= submit_tag "Sign In" , :class => 'button button-primary' %><br><br>
+      </div>
+      <p>
+        DON'T HAVE AN ACCOUNT?
+        <%= link_to "SIGN UP", new_user_path %>
+      </p>
+      <p>
+        <%= link_to "Forgot your password?", new_password_recovery_path %>
+      </p>
+    <% end %>
+    </div>
+  </div>
 </div>

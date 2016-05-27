@@ -243,7 +243,7 @@ $('.signup input').on('blur', function(){
 });
 
 $('.back-button').on('click', function(){
-  $(this).parent().fadeOut(0).prev().fadeIn();
+  $(this).parent().parent().parent().fadeOut(0).prev().fadeIn();
 });
 
 
@@ -294,7 +294,7 @@ function activateModal(e) {
 }
 
 function nextButton(target){
-  $(target).parent().parent().fadeOut(0).next().fadeIn();
+  $(target).parent().parent().parent().fadeOut(0).next().fadeIn();
   curNext += 1;
 }
 
