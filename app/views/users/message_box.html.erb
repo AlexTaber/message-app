@@ -112,7 +112,7 @@
             <%= link_to 'Edit Account', edit_user_path(current_user), target: '_blank' %>
           </li>
           <li>
-            <%= link_to 'Upgrade', edit_user_path(current_user), target: '_blank' %>
+            <%= link_to 'Upgrade', upgrade_path, target: '_blank' %>
           </li>
           <li>
             <%= link_to 'Log Out', logout_path(message_box: true, token: @project.token) %>

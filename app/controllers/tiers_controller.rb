@@ -1,6 +1,8 @@
 class TiersController < ApplicationController
+  def upgrade
+    redirect_to pricing_path unless current_user
+  end
+
   def pricing
-    @pro = Tier.find_by(name: "Pro")
-    @tiers = Tier.all
   end
 end
