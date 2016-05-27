@@ -1,6 +1,8 @@
 <% title "Sign Up" %>
 <% meta_description "Evia offers a fresh approach to task management. Sign up for free." %>
 
+<%= render partial: 'layouts/header', locals: { transitioned: true } %>
+
 <div id="ajax-loader">
   <div class="cssload-thecube">
     <div class="cssload-cube cssload-c1"></div>
@@ -10,6 +12,6 @@
   </div>
 </div>
 
-<div class="display-table text-center eight offset-by-two columns">
+<div class="display-table">
 		<%= render partial: "form", locals: { user: @user, default_tier_id: @default_tier_id } %>
 </div>

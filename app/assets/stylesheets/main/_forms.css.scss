@@ -85,6 +85,7 @@ input:-webkit-autofill {
 }
 .signup{
   text-align:center;
+  width:100vw;
 }
 .signup-page{
   width:100vw;
@@ -96,11 +97,32 @@ input:-webkit-autofill {
   i {
     font-size:50px;
   }
+  label{
+    display:inline-block;
+  }
+  .signup_email{
+    width:100%;
+  }
   input{
     border-radius:5px;
-    border:1px solid #ddd;
+    border:none;
     margin:10px 5px 10px 5px;
     min-width:100%;
+    color:#fff;
+  }
+  .signup_first-row {
+    input{
+      background-color:$gr-start;
+    }
+    label{
+      color:$gr-start;
+    }
+  }
+  .signup_second-row input{
+    background-color:$gr-middle;
+  }
+  .signup_third-row input{
+    background-color:$gr-end;
   }
   #user_email{
     width:calc(100% - 80px) !important;
@@ -138,6 +160,7 @@ input:-webkit-autofill {
       border-radius:10px;
       border:1px solid #ddd;
       padding:50px;
+      background-color:#fff;
     }
     input {
       min-width:0;

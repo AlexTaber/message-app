@@ -1,22 +1,31 @@
 <%= form_for user do |f| %>
-<div class="signup">
+<div class="signup gradient-background">
 
   <div class="signup-page">
     <div>
-      <i class="fa fa-comment-o"></i><br><br>
+<!--       <i class="fa fa-comment-o"></i><br><br>
       <h2>Projects Messaging and Tasks.</h2>
-      <p><b>All In One Place - Sign Up for Free</b></p>
-      <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
-      <%= f.text_field :last_name, placeholder: "Last Name" %> <br>
-      <% if @invite %>
-        <%= f.text_field :email, value: @invite.email, placeholder:"Email"%> <br>
-      <% else %>
-        <%= f.text_field :email, placeholder:"Email" %> <br>
-      <% end %>
-
-      <%= f.password_field :password, placeholder: "Password" %> &nbsp;
-      <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %><br>
-
+      <p><b>All In One Place - Sign Up for Free</b></p> -->
+      <div class="row signup_first-row">
+        <label for="first_name">First Name:<br>
+        <%= f.text_field :first_name %> &nbsp;</label>
+        <label for="last_name">Last Name:<br>
+        <%= f.text_field :last_name %> </label><br>
+      </div>
+      <div class="signup_second-row">
+       <label for="email" class="signup_email">Email:<br>
+        <% if @invite %>
+          <%= f.text_field :email, value: @invite.email%> 
+        <% else %>
+          <%= f.text_field :email %> 
+        <% end %> </label> <br>
+      </div>
+      <div class="signup_third-row">
+      <label for="password">Password:<br>
+        <%= f.password_field :password %> </label> &nbsp;
+      <label for="confirm_password">Password:<br>
+        <%= password_field_tag :confirm_password, nil %></label><br>
+      </div>
       <a href="#" class="button button-primary email-next" id="next-1">Next</a> <br><br>
       Already a user? <%= link_to 'Log In', login_path %> here.
 
