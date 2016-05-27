@@ -262,6 +262,8 @@ input:-webkit-autofill {
   width:100%;
   border-top:1px solid #ddd;
   border-radius: 0px 0px 3px 3px;
+  -webkit-transition: 0.2s; /* Safari */
+  transition: 0.2s;
   &>form>div{
     width: calc(100% - 110px);
     display:inline-block;
