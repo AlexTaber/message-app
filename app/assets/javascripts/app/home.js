@@ -1316,9 +1316,9 @@ function setUpFormColor() {
 
 function changeFormColor() {
   var length = $(this).val().length;
-  var maxLength = 50;
+  var maxLength = 40;
   var firstColor = "f2f6f9";
-  var lastColor = "C0C1DC";
+  var lastColor = "cecee4";
 
   var newColor = mix(firstColor, lastColor, 100 - (Math.min(1, length / maxLength) * 100));
 

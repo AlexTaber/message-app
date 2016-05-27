@@ -162,7 +162,7 @@ i.admin-profile {
   	padding:20px;
   	padding-top:0;
   }
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 	.profile-data{
 		padding:0;
 	}
@@ -326,7 +326,7 @@ ul.edit-project-list {
 		}
 	}
 }
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 	.message-bar {
 		position:relative;
 		display:block !important;
@@ -393,7 +393,7 @@ ul.edit-project-list {
 		}
 	}
 }
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 	.message-center header{
 		background-color:#C0C1DC;
 		border-bottom: none;
@@ -409,7 +409,7 @@ ul.edit-project-list {
 	display: none;
 	border: 1px solid $grey;
 }
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 .message-center {
 	position:relative;
 	display:block !important;
@@ -459,7 +459,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 	position:relative;
 	overflow:visible;
 	}
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 	.msg-item-current{
 	background: rgba($white, .7);
 }
@@ -475,7 +475,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 	.fa-user:after{
 		left:2px;
 	}
-	@media (min-width: 750px) {
+	@media (min-width: 900px) {
 		i:after {
 			display:none;
 		}
@@ -653,7 +653,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 	}
 }
 /* Larger than tablet */
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 	.task-conversation-switch {
 		background-color: lighten(#C0C1DC, 10%);
 	}
@@ -672,8 +672,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 	overflow:hidden;
 }
 .modal-text {
-	padding-right:100px;
-	padding-left:100px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 .app-view {
 	width:100vw !important;
@@ -714,9 +714,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 .self-meta-data{
 	margin-right:10px;
 }
-@media (min-width: 750px) {
+@media (min-width: 550px) {
 	.app-view {
-		height: calc(100vh - 204px) !important;
 		width:auto !important;
 		padding: 40px 20px 40px !important;
 		.them-msg-wrapper {
@@ -744,7 +743,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 }
 
 }
-@media (min-width: 750px) {
+@media (min-width: 550px) {
+.modal-text {
+	padding-left: 80px;
+	padding-right: 80px;
+}
 .conversation-wrapper {
 	.profile-pic {
 	display:block !important;
@@ -758,6 +761,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 		.profile-pic {
 			display:block !important;
 		}
+	}
+}
+
+@media(min-width: 900px) {
+	.app-view {
+		height: calc(100vh - 204px) !important;
 	}
 }
 
@@ -942,7 +951,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 	}
 }
 
-@media(min-width: 750px) {
+@media(min-width: 900px) {
 	.send-request {
 		width: 19.9%;
 	}
@@ -1102,7 +1111,7 @@ a.is-admin{
 	}
 }
 /* Larger than tablet */
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 	.user-card{
 		width:45%;
 		&:last-child{
@@ -1146,7 +1155,7 @@ a.is-admin{
 		background: #fff;
 	}
 /* Larger than tablet */
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 .app-container {
 	background: darken(rgba($blue, 0.7), 10%);
   background: -webkit-linear-gradient(left, rgba($purple, 1) , darken(rgba($blue, 1), 15%));

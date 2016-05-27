@@ -60,7 +60,7 @@ a:hover {
     background:#fff;
    }
   }
-@media (min-width: 750px) {
+@media (min-width: 900px) {
   background: #f5f5f5;
   li {
     &:hover {
@@ -106,7 +106,7 @@ a:hover {
   color: $white;
 }
 //dropdown
-@media (min-width: 750px) {
+@media (min-width: 900px) {
 nav#current-account {
   display:none;
   position: absolute;
@@ -321,7 +321,7 @@ nav#current-account {
 .message-center.mobile-target{
   top:56px;
 }
-@media (min-width: 750px) {
+@media (min-width: 900px) {
   .mobile-target{
     top:auto;
   }
