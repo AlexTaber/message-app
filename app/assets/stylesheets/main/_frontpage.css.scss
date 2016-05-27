@@ -672,8 +672,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 	overflow:hidden;
 }
 .modal-text {
-	padding-right:100px;
-	padding-left:100px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 .app-view {
 	width:100vw !important;
@@ -745,6 +745,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbfc', end
 
 }
 @media (min-width: 750px) {
+.modal-text {
+	padding-left: 80px;
+	padding-right: 80px;
+}
 .conversation-wrapper {
 	.profile-pic {
 	display:block !important;
