@@ -85,25 +85,86 @@ input:-webkit-autofill {
 }
 .signup{
   text-align:center;
+  width:100vw;
+  padding:10px;
+  box-sizing:border-box;
+
 }
 .signup-page{
   width:100vw;
   display:table-cell;
   vertical-align: middle;
   height:100vh;
-  padding-right:15px;
-  padding-left:15px;
-  i {
-    font-size:50px;
+  margin:10px;
+
+  .signup_header{
+    background: $gr-end;
+    width:100%;
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+    margin-bottom:0px;
+    
+    .signup_title{
+      padding:10px;
+      margin:0;
+    }
   }
+  .signup_content{
+    padding:15px;
+    padding-top:0;
+    p{
+      text-align:left;
+      padding-right:20px;
+      padding-left:20px;
+
+    }
+  }
+
+  label{
+    display:inline-block;
+    margin-left: 8px;
+    text-align:left;
+    span{
+      padding-left:5px;
+    }
+  }
+
   input{
     border-radius:5px;
-    border:1px solid #ddd;
+    border:none;
     margin:10px 5px 10px 5px;
     min-width:100%;
+    color:#fff;
   }
-  #user_email{
-    width:calc(100% - 80px) !important;
+  .signup_centered{
+    text-align:center !important;
+  }
+  .signup_content{
+    padding:50px;
+  }
+  .signup_first-row {
+    input{
+      background-color:$gr-end !important;
+    }
+    label{
+      color:$gr-end !important;
+    }
+  }
+  .signup_second-row {
+    input{
+      background-color:$gr-middle !important;
+    }
+    label{
+      color:$gr-middle;
+    }
+  }
+  .signup_third-row {
+    input{
+      background-color:$gr-start !important;
+    }
+    label{
+      color:$gr-start;
+    }
   }
   .button{
     margin-top:10px;
@@ -111,8 +172,10 @@ input:-webkit-autofill {
   &>div{
     display:inline-block;
     width: 100%;
-    border-radius:10px;
-    border:none;
+    border-radius:3px;
+    background-color:#fff;
+    box-sizing:border-box;
+    margin-top:50px;
 
   }
   img{
@@ -123,7 +186,6 @@ input:-webkit-autofill {
     margin: 0 auto;
     width:200px;
     padding:0;
-
   }
   .button-create{
     background-color: $pwdlight !important;
@@ -135,15 +197,49 @@ input:-webkit-autofill {
     &>div{
       display:inline-block;
       width: 600px;
-      border-radius:10px;
-      border:1px solid #ddd;
-      padding:50px;
+      border-radius:3px;
+      background-color:#fff;
+      margin-top:100px;
+    p{
+      text-align:left;
+      padding-right:45px;
+      padding-left:45px
     }
+  }
+
     input {
-      min-width:0;
+      display:inline-block;
+      min-width:300px;
     }
   }
 }
+.email-next{
+  margin-left:15px;
+}
+.login-page{
+  .signup_first-row{
+    padding-top:20px;
+  }
+
+  input{
+    min-width:300px;
+  }
+  input[type="submit"]{
+    margin-left: 10px;
+  }
+}
+.login_footer {
+  margin-bottom:20px;
+  p{
+    text-align:center !important;
+  }
+}
+.login-form{
+  width:100vw;
+  height:100vh;
+}
+
+
 .signup-warning{
   border:1px solid #ED1C24 !important;
 }
@@ -368,4 +464,18 @@ input:-webkit-autofill {
 
 .attachments-preview {
   padding-left: 14px;
+}
+.edit_user{
+  padding:20px;
+  box-sizing:border-box;
+}
+.edit-user-form{
+  padding-top:20px;
+  color:#fff;
+  width:100vw;
+  height: 100vh;
+  .tab-content{
+    color:#222;
+    background:#fff;
+  }
 }

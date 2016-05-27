@@ -1,42 +1,64 @@
 <%= form_for user do |f| %>
-<div class="signup">
+<div class="signup gradient-background">
 
   <div class="signup-page">
     <div>
-      <i class="fa fa-comment-o"></i><br><br>
-      <h2>Projects Messaging and Tasks.</h2>
-      <p><b>All In One Place - Sign Up for Free</b></p>
-      <%= f.text_field :first_name, placeholder: "First Name" %> &nbsp;
-      <%= f.text_field :last_name, placeholder: "Last Name" %> <br>
-      <% if @invite %>
-        <%= f.text_field :email, value: @invite.email, placeholder:"Email"%> <br>
-      <% else %>
-        <%= f.text_field :email, placeholder:"Email" %> <br>
-      <% end %>
-
-      <%= f.password_field :password, placeholder: "Password" %> &nbsp;
-      <%= password_field_tag :confirm_password, nil, placeholder: "Confirm Password" %><br>
-
-      <a href="#" class="button button-primary email-next" id="next-1">Next</a> <br><br>
-      Already a user? <%= link_to 'Log In', login_path %> here.
-
+      <div class="signup_header">
+        <h2 class="signup_title">Sign Up for Evia</h2>
+      </div>
+      <div class="signup_content">
+        <p>Get started sending messages and setting tasks on projects. With <b>Evia</b> you can create 3 projects and invite up to 3 users per project.</p>
+        <p>If you were invited to join a project, don't worry, that doesn't count agains you. You still get three more projects and can be added to unlimited projects.</p>
+        <p>We want everyone to be happy, productive and orgainized... enjoy and happy <b>Evia-ing</b></p>
+        <hr class="fifty">
+        <div class="row signup_first-row">
+          <label for="first_name"><span>First Name:</span><br>
+          <%= f.text_field :first_name %> </label>
+          <label for="last_name"><span>Last Name:</span><br>
+          <%= f.text_field :last_name %> </label><br>
+        </div>
+        <div class="signup_second-row">
+         <label for="email" class="signup_email"><span>Email:</span><br>
+          <% if @invite %>
+            <%= f.text_field :email, value: @invite.email%> 
+          <% else %>
+            <%= f.text_field :email %> 
+          <% end %> </label> <br>
+        </div>
+        <div class="signup_third-row">
+        <label for="password"><span>Password:</span><br>
+          <%= f.password_field :password %> </label>
+        <label for="confirm_password"><span>Password:</span><br>
+          <%= password_field_tag :confirm_password, nil %></label><br>
+        </div>
+        <a href="#" class="button button-primary email-next" id="next-1">Next</a> <br><br>
+        Already a user? <%= link_to 'Log In', login_path %> here.
+        </div>
     </div>
   </div>
 
-  <div class="signup-page"  style="display:none;">
+  <div class="signup-page" style="display:none;">
     <div>
-      <i class="fa fa-street-view"></i><br><br>
-      <h2>Create Your Profile</h2>
-      <p><b>Pick a username and Profile Image. Other users will be able to search for you with your unique username</b></p>
-      <%= f.text_field :username, placeholder: "Username" %><br>
-      <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
-     <label for='profile-uploader' class="button button-primary sign-up-button">Choose a Profile Picture</label>
-     <img id="img-input" class="profile-preview" src="#"><br>
-      <% if @invite %>
-        <%= hidden_field_tag :invite_token, @invite.token %>
-      <% end %>
-      <%= f.submit class: 'username-next button button-primary sign-up-button button-create'%>
-      <a href="#" class="back-button">Back</a>
+      <div class="signup_header">
+        <h2 class="signup_title">Create Your Profile</h2>
+      </div>
+      <div class="signup_content">
+        <p class="signup_centered">Pick a username and Profile Image.</p>
+        <div class="row signup_first-row">
+        <label for="username">Username: <br>
+        <%= f.text_field :username %></label><br>
+        </div>
+        <div class="row signup_second-row">
+          <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
+        </div>
+       <label for='profile-uploader' class="button button-primary sign-up-button" style="text-align:center;">Choose a Profile Picture</label>
+       <img id="img-input" class="profile-preview" src="#"><br>
+        <% if @invite %>
+          <%= hidden_field_tag :invite_token, @invite.token %>
+        <% end %>
+        <%= f.submit class: 'username-next button button-primary sign-up-button button-create'%>
+        <a href="#" class="back-button">Back</a>
+      </div>
     </div>
   </div>
 
