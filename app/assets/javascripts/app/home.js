@@ -91,9 +91,6 @@ jQuery(document).ready(function($){
   //set up tabs
   tabs();
 
-  //set up message form color change
-  setUpFormColor();
-
   //prevent double submit for projects
   preventProjectDoubleSubmit();
 
@@ -381,6 +378,7 @@ function sendMessageEvents() {
   $('#form-wrapper textarea').css('height', '40px');
   $("#ajax-loader").hide();
   $(".attachments-preview").html("");
+  resetFormColor();
 }
 
 function startConversation(e) {
@@ -606,6 +604,7 @@ function updateTaskListeners() {
   //autogrow
   $('#form-wrapper textarea').css('overflow', 'hidden').autogrow();
   $('#form-wrapper textarea').off('focus').on('focus', removeUnreadConvo);
+  setUpFormColor();
 }
 
 function validateUserData(data, element, submit) {
@@ -1311,6 +1310,7 @@ function preventProjectDoubleSubmit() {
 }
 
 function setUpFormColor() {
+  $("#message_content")[0].removeEventListener("keyup", changeFormColor);
   $("#message_content")[0].addEventListener("keyup", changeFormColor);
 }
 
@@ -1323,6 +1323,10 @@ function changeFormColor() {
   var newColor = mix(firstColor, lastColor, 100 - (Math.min(1, length / maxLength) * 100));
 
   $("#form-wrapper").css("background", newColor);
+}
+
+function resetFormColor() {
+  $("#form-wrapper").css("background", '#f2f6f9');
 }
 
 var mix = function(color_1, color_2, weight) {
