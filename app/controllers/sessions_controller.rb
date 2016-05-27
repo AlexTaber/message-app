@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 
   def new
+    @email = params[:email]
+
     if current_user
       redirect_to home_path
     end
@@ -21,7 +23,7 @@ class SessionsController < ApplicationController
       end
     else
       flash[:warn] = "Invalid email or password. Please try again."
-      redirect_to :back
+      redirect_to login_path(email: params[:email])
     end
 
   end
