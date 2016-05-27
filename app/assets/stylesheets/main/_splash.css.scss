@@ -481,7 +481,7 @@ top:13px;
   right:0;
 }
 #mobile-menu-btn span, #mobile-menu-btn span:before, #mobile-menu-btn span:after {
-  transition: all 500ms ease-in-out;
+  transition: all 700ms ease-in-out;
 }
 #mobile-menu-btn.active span {
   background-color: transparent;
@@ -493,10 +493,10 @@ top:13px;
   background:#fff;
 }
 #mobile-menu-btn.active span:before {
-  transform: rotate(45deg);
+  transform: rotate(225deg);
 }
 #mobile-menu-btn.active span:after {
-  transform: rotate(-45deg);
+  transform: rotate(-225deg);
 }
 #mobile-menu{
     display:none;
@@ -512,19 +512,22 @@ top:13px;
   background: -moz-linear-gradient(right, rgba($pwddark, 0.9), darken(rgba($pwdlight, 0.9), 10%));
   background: linear-gradient(to right, rgba($pwddark, 0.9) , darken(rgba($pwdlight, 0.9), 10%));
   z-index:10000;
+  overflow-y:scroll;
 }
 .mobile-menu-table{
   display:inline-table;
-  height:100vh
+  height:100vh;
+
 }
 .mobile-menu-table ul{
+
   padding:0;
   display:table-cell;
   vertical-align: middle;
   text-align:left;
   list-style: none;
   li{
-    margin:20px;
+    margin:10px;
     a{
       font-size:25px;
       color:#fff;

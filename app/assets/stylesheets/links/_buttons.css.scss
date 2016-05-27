@@ -129,9 +129,10 @@ input[type="button"].button-white:focus {
   margin-top: 20px;
 }
 .button-mobile-signup{
-  padding:0 10px 0 10px;
   background:transparent !important;
   display:inline-block;
+  position:absolute;
+  right:30px;
   border:none;
   margin-right:30px;
   margin-top:0px;
