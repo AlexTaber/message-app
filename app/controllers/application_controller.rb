@@ -3,11 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
-  helper_method :current_user, :require_current_user
+  helper_method :current_user, :require_current_user, :owner_user
 
   def require_current_user
     unless current_user
-      flash.now[:warn] = "You must be logged in to perform that action"
       redirect_to splash_path
     end
   end
@@ -20,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_owner
-    unless current_user && current_user.owner
+    unless owner_user
       flash[:warn] = "You do not have permission to view this page"
       redirect_to home_path
     end
@@ -28,6 +27,10 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= User.find(cookies.signed[:user_id]) if cookies.signed[:user_id]
+  end
+
+  def owner_user
+    current_user ? current_user.owner : false
   end
 
   def token_project(token)
