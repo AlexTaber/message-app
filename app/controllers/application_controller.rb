@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
 
-  helper_method :current_user, :require_current_user, :owner_user
+  helper_method :current_user, :require_current_user, :owner_user, :display_analytics?
 
   def require_current_user
     unless current_user
@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 
   def owner_user
     current_user ? current_user.owner : false
+  end
+
+  def display_analytics?
+    Rails.env.production? && !owner_user
   end
 
   def token_project(token)
