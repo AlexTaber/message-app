@@ -1,16 +1,16 @@
 <%= render partial: 'layouts/header', locals: { transitioned: true } %>
-<div class="signup gradient-background login-page">
-  <div class="display-table signup-page text-center">
+<div class="form-background gradient-background login-page">
+  <div class="display-table form-page text-center">
     <div class="text-center centered">
-    <div class="signup_header">
-      <h2 class="signup_title">Sign in to start messaging with Evia</h2>
+    <div class="form_header">
+      <h2 class="form_title">Sign in to start messaging with Evia</h2>
     </div>
     <%= form_tag '/login', id: "sign-in-form" do %>
-      <div class="signup_first-row">
+      <div class="form_first-row">
         <label for="email"><span>Email:</span><br>
         <%= email_field_tag :email, @email %></label><br>
       </div>
-      <div class="signup_third-row">
+      <div class="form_third-row">
       <label for="password"><span>Password:</span><br>
         <%= password_field_tag :password, nil%></label><br><br>
         <%= submit_tag "Sign In" , :class => 'button button-primary' %><br><br>

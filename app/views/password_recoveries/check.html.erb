@@ -1,10 +1,39 @@
-<%= form_tag verify_password_recovery_path(@password_recovery) do %>
-  <%= hidden_field_tag :token, @token %>
-  <div class="input-form-container">
-	<div class="wrapper">
-	<h2> Please update your password</h2>
-    <%= password_field_tag :password, nil, placeholder: "New Password" %>
-    <%= password_field_tag :confirm_password, nil, placeholder: "Confirm New Password" %>
-  <%= submit_tag "Create New Password", class: "primary button-primary" %>
-<% end %>
-</div></div>
+<%= render partial: 'layouts/header', locals: { transitioned: true } %>
+
+<div class="form-background gradient-background">
+
+  <div class="form-page">
+    <div>
+      <div class="form_header">
+        <h2 class="form_title">Confirm New Password</h2>
+      </div>
+      <div class="form_content">
+        <h5> Please update your password</h5>
+
+        <%= form_tag verify_password_recovery_path(@password_recovery) do %>
+          <%= hidden_field_tag :token, @token %>
+
+          <div class="row form_first-row">
+            <label for="password">
+              <span>
+                Password:
+              </span><br>
+
+              <%= password_field_tag :password %>
+            </label>
+
+            <label for="confirm_password">
+              <span>
+                Confirm Password:
+              </span><br>
+
+              <%= password_field_tag :confirm_password %>
+            </label>
+          </div>
+
+          <%= submit_tag "Create New Password", class: "primary button-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
