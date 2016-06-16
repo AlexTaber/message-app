@@ -1,31 +1,31 @@
 <%= form_for user do |f| %>
-<div class="signup gradient-background">
+<div class="form-background gradient-background">
 
-  <div class="signup-page">
+  <div class="form-page">
     <div>
-      <div class="signup_header">
-        <h2 class="signup_title">Sign Up for Evia</h2>
+      <div class="form_header">
+        <h2 class="form_title">Sign Up for Evia</h2>
       </div>
-      <div class="signup_content">
+      <div class="form_content">
         <p>Get started sending messages and setting tasks on projects. With <b>Evia</b> you can create 3 projects and invite up to 3 users per project.</p>
         <p>If you were invited to join a project, don't worry, that doesn't count agains you. You still get three more projects and can be added to unlimited projects.</p>
         <p>We want everyone to be happy, productive and orgainized... enjoy and happy <b>Evia-ing</b></p>
         <hr class="fifty">
-        <div class="row signup_first-row">
+        <div class="row form_first-row">
           <label for="first_name"><span>First Name:</span><br>
           <%= f.text_field :first_name %> </label>
           <label for="last_name"><span>Last Name:</span><br>
           <%= f.text_field :last_name %> </label><br>
         </div>
-        <div class="signup_second-row">
-         <label for="email" class="signup_email"><span>Email:</span><br>
+        <div class="form_second-row">
+         <label for="email" class="form_email"><span>Email:</span><br>
           <% if @invite %>
-            <%= f.text_field :email, value: @invite.email%> 
+            <%= f.text_field :email, value: @invite.email%>
           <% else %>
-            <%= f.text_field :email %> 
+            <%= f.text_field :email %>
           <% end %> </label> <br>
         </div>
-        <div class="signup_third-row">
+        <div class="form_third-row">
         <label for="password"><span>Password:</span><br>
           <%= f.password_field :password %> </label>
         <label for="confirm_password"><span>Password:</span><br>
@@ -37,18 +37,18 @@
     </div>
   </div>
 
-  <div class="signup-page" style="display:none;">
+  <div class="form-page" style="display:none;">
     <div>
-      <div class="signup_header">
-        <h2 class="signup_title">Create Your Profile</h2>
+      <div class="form_header">
+        <h2 class="form_title">Create Your Profile</h2>
       </div>
-      <div class="signup_content">
-        <p class="signup_centered">Pick a username and Profile Image.</p>
-        <div class="row signup_first-row">
+      <div class="form_content">
+        <p class="form_centered">Pick a username and Profile Image.</p>
+        <div class="row form_first-row">
         <label for="username">Username: <br>
         <%= f.text_field :username %></label><br>
         </div>
-        <div class="row signup_second-row">
+        <div class="row form_second-row">
           <%= f.file_field :file, id: 'profile-uploader', class: 'inputfile' %>
         </div>
        <label for='profile-uploader' class="button button-primary sign-up-button" style="text-align:center;">Choose a Profile Picture</label>

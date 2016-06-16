@@ -83,32 +83,32 @@ input:-webkit-autofill {
     }
   }
 }
-.signup{
+.form-background{
   text-align:center;
   width:100vw;
   padding:10px;
   box-sizing:border-box;
 
 }
-.signup-page{
+.form-page{
   width:100vw;
   display:table-cell;
   vertical-align: middle;
   height:100vh;
   margin:10px;
-  .signup_header{
+  .form_header{
     background: $gr-end;
     width:100%;
     color: #fff;
     border-radius: 3px 3px 0 0;
     margin-bottom:0px;
-    
-    .signup_title{
+
+    .form_title{
       padding:10px;
       margin:0;
     }
   }
-  .signup_content{
+  .form_content{
     padding:15px;
     padding-top:0;
     p{
@@ -135,13 +135,13 @@ input:-webkit-autofill {
     min-width:100%;
     color:#fff;
   }
-  .signup_centered{
+  .form_centered{
     text-align:center !important;
   }
-  .signup_content{
+  .form_content{
     padding:50px;
   }
-  .signup_first-row {
+  .form_first-row {
     input{
       background-color:$gr-end !important;
     }
@@ -149,7 +149,7 @@ input:-webkit-autofill {
       color:$gr-end !important;
     }
   }
-  .signup_second-row {
+  .form_second-row {
     input{
       background-color:$gr-middle !important;
     }
@@ -157,7 +157,7 @@ input:-webkit-autofill {
       color:$gr-middle;
     }
   }
-  .signup_third-row {
+  .form_third-row {
     input{
       background-color:$gr-start !important;
     }
@@ -192,7 +192,7 @@ input:-webkit-autofill {
   }
 }
 @media(min-width:550px){
-  .signup-page{
+  .form-page{
     &>div{
       display:inline-block;
       width: 600px;
@@ -216,7 +216,7 @@ input:-webkit-autofill {
   margin-left:15px;
 }
 .login-page{
-  .signup_first-row{
+  .form_first-row{
     padding-top:20px;
   }
 
@@ -239,7 +239,7 @@ input:-webkit-autofill {
 }
 
 
-.signup-warning{
+.form-warning{
   border:1px solid #ED1C24 !important;
 }
 .warning-text{
