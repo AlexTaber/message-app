@@ -1,0 +1,105 @@
+<% title "Features" %>
+<% meta_description "Evia layers powerful task management features atop a familiar, intuitive interface. Learn more about what makes Evia the task management app for any team." %>
+
+<%= render partial: 'layouts/header', locals: { transitioned: true } %>
+
+<div id="scroll-div" style="overflow: scroll; width: 100%; height: 100%;">
+
+  <section class="gradient-background" id="features-landing">
+    <div class="features-header">
+      <h2 class="text-center">Simple Interface</h2>
+      <h1 class="text-center">Powerful Features</h1>
+    </div>
+  </section>
+
+  <section id="feature-section">
+    <div class="container">
+      <div class="row">
+        <div class="six columns text-center feature-half transitionable" id="transition-0">
+          <div class="feature-content">
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="six columns text-center feature-half transitionable" id="transition-1">
+          <div class="feature-content">
+            <h1>Group Messaging</h1>
+            <p>Message as many project members as you want! Your conversations are private; only those belonging to the conversation can see what's being said.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="feature-section">
+    <div class="container">
+      <div class="row">
+        <div class="six columns text-center feature-half transitionable" id="transition-2">
+          <div class="feature-content">
+            <h1>Mobile Friendly</h1>
+            <p><span class="evia-font">Evia's</span> sleek, responsive mobile design keeps you connected on any device.</p>
+          </div>
+        </div>
+
+        <div class="six columns text-center feature-half transitionable" id="transition-3">
+          <div class="feature-content">
+            <i class="fa fa-mobile fa-6x" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="feature-section">
+    <div class="container">
+      <div class="row">
+        <div class="six columns text-center feature-half transitionable" id="transition-4">
+          <div class="feature-content">
+            <i class="fa fa-plug" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="six columns text-center feature-half transitionable" id="transition-5">
+          <div class="feature-content">
+            <h1>Use on Any Site</h1>
+            <p>Are you a developer or site owner? Wish you could message your team right from your own site? <span class="evia-font">Evia</span> offers an elegant plugin that can be embedded on any website.</p>
+            <button class="button button-primary"> Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features-more" class="gradient-background">
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <h1 class='text-center'>Plus</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="six columns">
+          <ul>
+            <li><b>Real-time everything</b> - No refreshing required</li>
+            <li><b>Transfer tasks.</b> Accidentally put a task in the wrong conversation? Transfer it to the correct one with ease.</li>
+            <li><b>Easy onboarding.</b> Get your project members set up in no time.</li>
+          </ul>
+        </div>
+
+        <div class="six columns">
+          <ul>
+            <li><b>Monitor productivity.</b> A simple interface to see pending tasks and who's working on them</li>
+            <li><b>Search enabled.</b> No endless scrolling - search any conversation with ease.</li>
+            <li><b>SSL-encryption.</b> Conversations stay safe and sound.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%= render partial: 'layouts/support_info' %>
+
+  <%= render partial: "layouts/footer" %>
+
+</div>

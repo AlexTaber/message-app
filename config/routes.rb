@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get '/projects-data' => 'projects#projects_data'
   get '/validate' => 'users#validate'
   get '/support' => 'static#support'
+  get '/features' => 'static#features'
   get '/lazy_load' => 'conversations#lazy_load'
   post '/add_user' => 'conversations#add_user'
   get '/plugin-info' => 'users#plugin_info'
